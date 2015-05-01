@@ -199,6 +199,7 @@
 		058DAE6C1AE7A339009D0008 /* KSBasicURLResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 058DAE6B1AE7A339009D0008 /* KSBasicURLResolver.m */; };
 		058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 058DAE711AE7A5CF009D0008 /* KSBasicNavigator.m */; };
 		05AB565C1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB565B1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m */; };
+		05B8DF541AF344B8002C2E4F /* ManWuDiscoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -633,6 +634,8 @@
 		058DAE741AE7D45B009D0008 /* KSManWuPageMaroc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSManWuPageMaroc.h; sourceTree = "<group>"; };
 		05AB565A1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicNetWorkAdapter.h; sourceTree = "<group>"; };
 		05AB565B1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicNetWorkAdapter.m; sourceTree = "<group>"; };
+		05B8DF521AF344B8002C2E4F /* ManWuDiscoverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverViewCell.h; sourceTree = "<group>"; };
+		05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1174,6 +1177,7 @@
 		058BC3F21AE89DA700A4F799 /* ManWuDiscoverVC */ = {
 			isa = PBXGroup;
 			children = (
+				05B8DF511AF344B8002C2E4F /* ManWuDiscoverView */,
 				058BC3F31AE89DA700A4F799 /* ManWuDiscoverViewController.h */,
 				058BC3F41AE89DA700A4F799 /* ManWuDiscoverViewController.m */,
 			);
@@ -1624,6 +1628,15 @@
 			path = configCenter;
 			sourceTree = "<group>";
 		};
+		05B8DF511AF344B8002C2E4F /* ManWuDiscoverView */ = {
+			isa = PBXGroup;
+			children = (
+				05B8DF521AF344B8002C2E4F /* ManWuDiscoverViewCell.h */,
+				05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */,
+			);
+			path = ManWuDiscoverView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1780,6 +1793,7 @@
 				058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */,
 				056664A11AEE2F7C00FD1C65 /* ManWuCommodityDetailViewController.m in Sources */,
 				058D5D1D1AF2296F006EA35C /* ManWuConfirmView.m in Sources */,
+				05B8DF541AF344B8002C2E4F /* ManWuDiscoverViewCell.m in Sources */,
 				058D5AAD1AF0D04C006EA35C /* ManWuCommodityBuyViewController.m in Sources */,
 				055866CD1AD3E05B00A23FFA /* WeAppBasicPagedList.m in Sources */,
 				056664911AEE0F8C00FD1C65 /* ManWuDetailBuyNumberStepView.m in Sources */,
