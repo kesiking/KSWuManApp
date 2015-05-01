@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>viewControllerClassName</key>
+		<string>ManWuHomeViewController</string>
+		<key>viewControllerURL</key>
+		<string>manwu_home_url</string>
+		<key>tabbarNormalImage</key>
+		<string>tabitem_home_normal</string>
+		<key>tabbarSelectedImage</key>
+		<string>tabitem_home_highlight</string>
+		<key>tabbarTitle</key>
+		<string>首页</string>
+	</dict>
+	<dict>
+		<key>viewControllerClassName</key>
+		<string>ManWuDiscoverViewController</string>
+		<key>viewControllerURL</key>
+		<string>manwu_discover_url</string>
+		<key>tabbarNormalImage</key>
+		<string>tabitem_discover_normal</string>
+		<key>tabbarSelectedImage</key>
+		<string>tabitem_discover_highlight</string>
+		<key>tabbarTitle</key>
+		<string>发现</string>
+	</dict>
+	<dict>
+		<key>viewControllerClassName</key>
+		<string>ManWuMyInfoViewController</string>
+		<key>viewControllerURL</key>
+		<string>manwu_myinfo_url</string>
+		<key>tabbarNormalImage</key>
+		<string>tabitem_info_normal</string>
+		<key>tabbarSelectedImage</key>
+		<string>tabitem_info_highlight</string>
+		<key>tabbarTitle</key>
+		<string>我的</string>
+	</dict>
+</array>
+</plist>

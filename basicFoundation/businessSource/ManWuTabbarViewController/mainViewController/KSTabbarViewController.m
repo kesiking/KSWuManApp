@@ -1,0 +1,53 @@
+//
+//  KSMainViewController.m
+//  basicFoundation
+//
+//  Created by 逸行 on 15-4-22.
+//  Copyright (c) 2015年 逸行. All rights reserved.
+//
+
+#import "KSTabbarViewController.h"
+
+@interface KSTabbarViewController ()
+
+@end
+
+@implementation KSTabbarViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    UIViewController *rdv_tabBarController = self.rdv_tabBarController;
+    [rdv_tabBarController setTitle:self.title];
+    // 设置bar颜色
+    UINavigationController* navigationController = self.navigationController;
+    if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
+        navigationController.navigationBar.barTintColor= RGB(0xed, 0x65, 0x65);
+    }
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

@@ -1,0 +1,449 @@
+//
+//  KSScrollViewServiceController.m
+//  basicFoundation
+//
+//  Created by 逸行 on 15-4-23.
+//  Copyright (c) 2015年 逸行. All rights reserved.
+//
+
+#import "KSScrollViewServiceController.h"
+#import "WeAppLoadingView.h"
+#import "KSAdapterService.h"
+
+#define errorView 1001
+
+#define labelView 1002
+
+@interface KSScrollViewServiceController()
+
+@property (nonatomic, assign) BOOL                   isLoading;
+
+@property (nonatomic, assign) BOOL                   isNextPage;
+
+@property (nonatomic, assign) BOOL                   isRefreshDataSignal;
+
+@property (nonatomic, assign) BOOL                   isFirstLoadingView;
+
+@property (nonatomic, strong) WeAppLoadingView       *nextPageLoadingView;
+
+@property (nonatomic, strong) MBProgressHUD          *hud;
+
+#if OS_OBJECT_USE_OBJC
+@property (strong, nonatomic) dispatch_queue_t serialQueue;
+#else
+@property (assign, nonatomic) dispatch_queue_t serialQueue;
+#endif
+
+@end
+
+@implementation KSScrollViewServiceController
+
+-(instancetype)initWithConfigObject:(KSScrollViewConfigObject*)configObject{
+    if (self = [self init]) {
+        self.configObject = configObject;
+    }
+    return self;
+}
+
+-(id)init{
+    self = [super init];
+    if (self) {
+        NSString *serialQueueName = [NSString stringWithFormat:@"com.taobao.WeApp.tableview.%@",[NSNumber numberWithUnsignedInteger:[self hash]]];
+        _serialQueue = dispatch_queue_create([serialQueueName UTF8String], DISPATCH_QUEUE_SERIAL);
+        self.isFirstLoadingView = YES;
+    }
+    return self;
+}
+
+-(void)setService:(WeAppBasicService *)service{
+    if (_service != service) {
+        _service = service;
+        _service.delegate = self;
+    }
+}
+
+-(void)dealloc {
+    if (_nextPageLoadingView) {
+        _nextPageLoadingView = nil;
+    }
+    [self releaseScrollView];
+    self.errorViewTitle = nil;
+    self.service.delegate = nil;
+    self.service = nil;
+    WeAppDispatchQueueRelease(_serialQueue);
+}
+
+-(void)releaseConstrutView{
+    [super releaseConstrutView];
+    [self releaseScrollView];
+}
+
+-(void)releaseScrollView{
+    if (self.scrollView && [self.scrollView isKindOfClass:[UIScrollView class]]) {
+        @try {
+            if ([NSThread isMainThread])
+            {
+                [self.scrollView setShowsPullToRefresh:NO];
+                self.scrollView.delegate = nil;
+            }else{
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [self.scrollView setShowsPullToRefresh:NO];
+                    self.scrollView.delegate = nil;
+                });
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"setWeAppShowsPullToRefresh crashed");
+        }
+    }
+    self.scrollView = nil;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark errorView
+//统一到基类中去以后
+-(void)setErrerView{
+    //如果当前list为空并且unScroll为假，即能滑动，且无headerview或是footerview
+    BOOL isRfresh = self.service && [self.service.pagedList isRefresh];
+    if ([self needErrerView]) {
+        UIView *view = [self.scrollView viewWithTag:errorView];
+        if (!view) {
+            view = [[UIView alloc] initWithFrame:self.scrollView.bounds];
+            view.backgroundColor = RGB(0xf0, 0xf0, 0xf0);
+            
+            CGFloat oringeY = (view.frame.size.height - (100.0 + 40.0 + 18.0 + 24.0 + 14.0))/2;
+            
+            UIImage *image = [UIImage imageNamed:@"weapp_empty"];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(view.origin.x + (view.width - 100)/2, view.origin.y + oringeY, 100, 100)];
+            imageView.image = image;
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.origin.y + imageView.height + 40, view.width, 18)];
+            label.backgroundColor = [UIColor clearColor];
+            label.textAlignment =  NSTextAlignmentCenter;
+            label.textColor = RGB(0x3d, 0x42, 0x45);
+            label.font = [UIFont systemFontOfSize:18];
+            if (self.errorViewTitle && self.errorViewTitle.length > 0) {
+                label.text = self.errorViewTitle;
+            }
+            [view addSubview:label];
+            
+            UILabel *labelSubTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, label.origin.y + label.height + 12, view.width, 14)];
+            labelSubTitle.textColor = RGB(0x99, 0x99, 0x99);
+            labelSubTitle.backgroundColor = [UIColor clearColor];
+            labelSubTitle.textAlignment =  NSTextAlignmentCenter;
+            labelSubTitle.font = [UIFont systemFontOfSize:14];
+            labelSubTitle.text = @"暂时没有相关数据";
+            [view addSubview:labelSubTitle];
+            
+            [view addSubview:imageView];
+        }
+        [self setFootView:view];
+    }else if([self needFootView] && [self needNextPage] && !isRfresh){
+        [self setFootView:self.nextFootView];
+    }else{
+        [self setFootView:nil];
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark nextFootView
+
+-(void)updateFootView{
+    UILabel* label = (UILabel*)[self.nextFootView viewWithTag:labelView];
+    if (label != nil && [label isMemberOfClass:[UILabel class]]) {
+        BOOL hasMore = self.service && [self.service.pagedList hasMore];
+        if (hasMore) {
+            label.text = @"正在加载，请稍候";
+            self.nextFootView.height = 30;
+        }else{
+            label.text = nil;
+            self.nextFootView.height = 0;
+        }
+        if([self needFootView] && [self needNextPage]){
+            [self setFootView:self.nextFootView];
+        }
+    }
+}
+
+-(UIView *)nextFootView{
+    if (_nextFootView == nil) {
+        _nextFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.width, 30)];
+        _nextFootView.backgroundColor = [UIColor clearColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:_nextFootView.bounds];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:12];
+        label.textColor = RGB(53, 55, 59);
+        label.tag = labelView;
+        label.backgroundColor = [UIColor clearColor];
+        [_nextFootView addSubview:label];
+        [_nextFootView addSubview:self.nextPageLoadingView];
+    }
+    return _nextFootView;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark MBProgressHUD method
+
+-(MBProgressHUD *)hud{
+    if (_hud == nil) {
+        _hud = [[MBProgressHUD alloc] initWithFrame:self.frame];
+        _hud.mode = MBProgressHUDModeIndeterminate;
+        _hud.labelText = @"请稍等···";
+        [self.scrollView addSubview:_hud];
+    }
+    return _hud;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark loadingView method
+
+-(WeAppLoadingView *)nextPageLoadingView {
+    if (_nextPageLoadingView == nil) {
+        self.nextPageLoadingView = [[WeAppLoadingView alloc]initWithFrame:CGRectMake(([self.scrollView width] - 28)/2, 1, 28, 28)];
+    }
+    return _nextPageLoadingView;
+}
+
+-(void)showLodingView{
+    [self showNextPageLoadingView];
+    if (self.isFirstLoadingView) {
+        [self.hud show:YES];
+        self.isFirstLoadingView = NO;
+    }
+}
+
+-(void)hideLodingView {
+    self.isLoading = NO;
+    [self updateFootView];
+    self.nextPageLoadingView.hidden = YES;
+    [self.nextPageLoadingView stopAnimating];
+    [self.hud hide:YES];
+}
+
+-(void)showNextPageLoadingView {
+    if (!self.isLoading || self.nextPageLoadingView.hidden) {
+        self.isLoading = YES;
+        [self updateFootView];
+        self.nextPageLoadingView.hidden = NO;
+        [self.nextPageLoadingView startAnimating];
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark table config
+
+-(void)configPullToRefresh:(UIScrollView*)scrollView{
+    //刷新逻辑
+    if ([self needRefresh] && [scrollView isKindOfClass:[UIScrollView class]]) {
+        __block __weak __typeof(self) tempSelf = self;
+        [scrollView addPullToRefreshWithActionHandler:^{
+            __strong __typeof(self) strongSelf = tempSelf;
+            
+            int64_t delayInSeconds = 2.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                if ([strongSelf.scrollView showsPullToRefresh]) {
+                    //判断是否已经被取消刷新，避免出现crash
+                    [strongSelf refresh];
+                    [strongSelf.scrollView.pullToRefreshView stopAnimating];
+                }
+            });
+        }];
+    }
+    
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark override method
+
+-(void)setFootView:(UIView*)view{
+    
+}
+
+-(void)refresh {
+    self.isNextPage = NO;
+    // refresh
+    [self.service refreshPagedList];
+}
+
+-(void)nextPage {
+    self.isNextPage = YES;
+    [self performSelector:@selector(changeNextPage) withObject:nil afterDelay:5.0];
+    [self showNextPageLoadingView];
+    // nextPage
+    [self.service nextPage];
+}
+
+// override subclass 是否需要翻页
+-(BOOL)needNextPage {
+    return self.configObject.needNextPage;
+}
+
+-(BOOL)needRefresh {
+    return self.configObject.needRefreshView;
+}
+
+-(BOOL)isNetReachable{
+    return YES;//(kNotReachable != [AppConfiguration() currentNetWorkStatus]);
+}
+
+-(BOOL)canNextPage{
+    if (![self needNextPage] || self.isLoading || self.isNextPage) {
+        return NO;
+    }
+    
+    if (![self isNetReachable]) {
+        return NO;
+    }
+    
+    if (self.service == nil || self.service.pagedList == nil) {
+        return NO;
+    }
+    
+    BOOL isServiceLoading = self.service.requestModel.isLoading;
+    if (isServiceLoading) {
+        return NO;
+    }
+    
+    BOOL hasMore = [self.service.pagedList hasMore];
+    if (!hasMore) {
+        return NO;
+    }
+    return YES;
+}
+
+-(void)changeNextPage{
+    self.isNextPage = NO;
+}
+
+-(BOOL)needFootView{
+    return self.configObject.needFootView;
+}
+
+-(BOOL)needErrerView{
+    return self.service == nil || [self.dataSourceRead count] == 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark private method
+-(void)refreshData{
+    if (self.scrollView == nil) {
+        return;
+    }
+    // refresh cell
+    if ([self needQueueLoadData]) {
+        __block __weak __typeof(self) wself = self;
+        // 设置信号量，refreshData异步线程开始时设置为YES，在此阶段中调用reloadData都会被无视
+        self.isRefreshDataSignal = YES;
+        BOOL isRefresh = self.service && [self.service.pagedList isRefresh];
+        dispatch_async(_serialQueue, ^{
+            @try {
+                __strong __typeof(self) sself = wself;
+                if (wself == nil) {
+                    return;
+                }
+                
+                // copy data from read buff
+                if (isRefresh) {
+                    // clear
+                    [sself.dataSourceWrite removeAllCellitems];
+                }
+                
+                for (NSInteger i = 0; i < [sself.dataSourceWrite count]; i++) {
+                    [sself.dataSourceWrite setupComponentItemWithIndex:i];
+                }
+                if (wself == nil) {
+                    return;
+                }
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // change the write to read
+                    if (isRefresh ) {
+                        // clear
+                        [sself.dataSourceRead removeAllCellitems];
+                    }
+                    id temp = sself.dataSourceRead;
+                    sself.dataSourceRead = sself.dataSourceWrite;
+                    sself.dataSourceWrite = temp;
+                    
+                    // 设置信号量，refreshData异步线程结束时设置为NO，reloadData可以执行
+                    sself.isRefreshDataSignal = NO;
+                    if (wself == nil) {
+                        return;
+                    }
+                    [sself reloadData];
+                    [sself performSelector:@selector(setErrerView) withObject:nil afterDelay:0];
+                    if (sself.listComponentDidRelease){
+                        sself.listComponentDidRelease = NO;
+                    }
+                    sself.isNextPage = NO;
+                });
+            }
+            @catch (NSException *exception) {
+                NSLog(@"dispatch list crashed");
+            }
+        });
+    }else{
+        [self reloadData];
+        self.isNextPage = NO;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark subclass override method
+
+-(void)reloadData{
+    [super reloadData];
+}
+
+// 默认返回YES，需要异步线程渲染数据
+-(BOOL)needQueueLoadData{
+    return self.configObject.needQueueLoadData;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark WeAppBasicServiceDelegate method
+
+- (void)serviceDidStartLoad:(WeAppBasicService *)service{
+    if (service && service.apiName) {
+        [self requestDidStart];
+    }
+}
+
+- (void)serviceDidFinishLoad:(WeAppBasicService *)service{
+    if (service && service.apiName && service.pagedList) {
+        [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+        [self requestDidLoad];
+    }
+}
+
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+    if (service && service.apiName) {
+        [self apiRequestDidFail];
+    }
+}
+
+- (void)requestDidStart{
+    [self showLodingView];
+}
+
+- (void)requestDidLoad{
+    [self refreshData];
+    [self hideLodingView];
+    [self performSelector:@selector(setErrerView) withObject:nil afterDelay:0];
+}
+
+-(void)apiRequestDidFail{
+    [self hideLodingView];
+    [self performSelector:@selector(setErrerView) withObject:nil afterDelay:0];
+}
+
+@end

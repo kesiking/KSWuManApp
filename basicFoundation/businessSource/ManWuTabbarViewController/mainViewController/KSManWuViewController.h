@@ -1,0 +1,13 @@
+//
+//  KSManWuViewController.h
+//  basicFoundation
+//
+//  Created by 逸行 on 15-4-23.
+//  Copyright (c) 2015年 逸行. All rights reserved.
+//
+
+#import "KSViewController.h"
+
+@interface KSManWuViewController : KSViewController
+
+@end

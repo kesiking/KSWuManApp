@@ -1,0 +1,27 @@
+//
+//  KSManWuViewController.m
+//  basicFoundation
+//
+//  Created by 逸行 on 15-4-23.
+//  Copyright (c) 2015年 逸行. All rights reserved.
+//
+
+#import "KSManWuViewController.h"
+
+@implementation KSManWuViewController
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // 设置bar颜色
+    UINavigationController* navigationController = self.navigationController;
+    if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
+        navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    }
+}
+
+
+@end

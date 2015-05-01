@@ -1,0 +1,136 @@
+//
+//  TBSNSBasicService.h
+//  Taobao2013
+//
+//  Created by 逸行 on 13-1-18.
+//  Copyright (c) 2013年 Taobao.com. All rights reserved.
+//
+
+#import "WeAppBasicRequestModel.h"
+#import "BasicNetWorkAdapter.h"
+#import "WeAppUtils.h"
+
+typedef void(^CallMethod)();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TBSNSBasicServiceDelegate
+@class WeAppBasicService;
+@protocol WeAppBasicServiceDelegate <NSObject>
+@required
+
+@optional
+- (void)serviceDidStartLoad:(WeAppBasicService *)service;
+- (void)serviceDidCancelLoad:(WeAppBasicService *)service;
+- (void)serviceDidFinishLoad:(WeAppBasicService *)service;
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error;
+
+- (void)serviceDidTimeout:(WeAppBasicService *)service;
+// 服务降级时回调该方法
+- (void)serviceDidDowngrade:(WeAppBasicService *)service;
+// 数据操作
+- (void)serviceDataOperationFinished:(WeAppBasicService *)service;
+@end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TBSNSBasicService
+@interface WeAppBasicService : NSObject <WeAppBasicRequestModelDelegate>
+@property (nonatomic, assign) id<WeAppBasicServiceDelegate>delegate;
+
+-(id)initWithItemClass:(Class)itemClass andRequestModelClass:(Class)requestModelClass;
+
+-(void)setNetwork:(BasicNetWorkAdapter*)network;
+
+// pageList使用的类，默认是TBSNSPageList
+@property (nonatomic,strong) Class       pageListClass;
+@property (nonatomic,strong) NSString*   listPath;
+@property (nonatomic,assign) BOOL        needLogin;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 能够自动映射的核心参数
+// 如果返回值类型是TBSNSReturnDataTypeItem，则为item的Class；如果为TBSNSReturnDataTypeArray，则为数组中每个对象的Class
+@property(nonatomic, strong) Class itemClass;
+// 发请求的TBSNSBasicRequestModel 的类型，必须为TBSNSBasicRequestModel及其子类
+@property(nonatomic, strong) Class requestModelClass;
+// json最上层的key，注意是data不算，是data内的最上层的key
+@property (nonatomic,strong) NSString* jsonTopKey;
+// 发请求的model
+@property(nonatomic,readonly) WeAppBasicRequestModel *requestModel;
+// 在多个服务情况下，做以区分
+@property(nonatomic, strong) NSString* apiName;
+// version of
+@property(nonatomic, strong) NSString * version;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark set Item 设置service的属性
+-(void)setServicePagedListWithAPIName:(NSString *)apiName params:(NSDictionary *)params pagination:(WeAppPaginationItem *)pagination version:(NSString *)version;
+
+-(void)setServiceWithAPIName:(NSString *)apiName params:(NSDictionary *)params returnDataType:(WeAppDataType)returnDataType pagination:(WeAppPaginationItem *)pagination version:(NSString *)version;
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 查询TBModel及其子类
+// 返回的item
+@property(nonatomic,readonly) WeAppComponentBaseItem *item;
+// 走MTOP,返回值为TBItem及其子类的，用该方法
+- (void)loadItemWithAPIName:(NSString*)apiName params:(NSDictionary *)params version:(NSString *)version;
+// 直接走URL
+- (void)loadItemWithURL:(NSString*)urlStr params:(NSDictionary *)params version:(NSString *)version;
+// 实现多态的方法，由子类实现
+- (void)loadItemWithParams:(NSDictionary *)params;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 查询NSArray类数据
+// 返回的item
+@property(nonatomic,readonly) NSArray *dataList;
+- (void)loadDataListWithAPIName:(NSString*)apiName params:(NSDictionary *)params version:(NSString *)version;
+- (void)loadDataListWithURL:(NSString*)urlStr params:(NSDictionary *)params version:(NSString *)version;
+- (void)loadDataListWithParams:(NSDictionary *)params;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 可翻页的数据
+// 返回的可翻页的list
+@property (nonatomic, readonly) WeAppBasicPagedList* pagedList;
+- (void)loadPagedListWithAPIName:(NSString*)apiName params:(NSDictionary *)params pagination:(WeAppPaginationItem*)pagination version:(NSString *)version;
+- (void)loadPagedListWithURL:(NSString*)urlStr params:(NSDictionary *)params pagination:(WeAppPaginationItem*)pagination version:(NSString *)version;
+- (void)loadPagedListWithParams:(NSDictionary *)params pagination:(WeAppPaginationItem*)pagination;
+
+// 如果除了分页参数其他全部与之前的请求相同，则只用基类的即可
+// 如果有不一样的地方，可以在这里进行设置，包括接口名字、url地址、params、itemClass
+// 比如：
+// self.requestModel.apiName = @"AABBCCDD";
+// self.requestModel.params = XXXX;
+// self.requestModel.urlStr = XXXX;
+// self.requestModel.itemClass = XXXX;
+- (void)refreshPagedList;
+- (void)nextPage;
+- (void)refreshPagedListWithBlock:(IsObjectEnableBlock)isObjectEnableBlock;
+- (void)nextPageWithBlock:(IsObjectEnableBlock)isObjectEnableBlock;
+// 返回总的数据数量
+- (NSInteger)totalCount;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 写操作相关的服务，返回值为TBSNSBatOperationResultItem
+- (void)operationWithAPIName:(NSString*)apiName params:(NSDictionary *)params version:(NSString *)version;
+- (void)operationWithURL:(NSString*)urlStr params:(NSDictionary *)params version:(NSString *)version;
+- (void)operationWithParams:(NSDictionary *)params;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 写操作相关的服务，返回值为TBSNSBatOperationResultItem
+@property(nonatomic,readonly) NSNumber *numberValue;
+- (void)loadNumberValueWithAPIName:(NSString*)apiName params:(NSDictionary *)params version:(NSString *)version;
+- (void)loadNumberValueWithURL:(NSString*)urlStr params:(NSDictionary *)params version:(NSString *)version;
+- (void)loadNumberValueWithParams:(NSDictionary *)params;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Service Context 调用方式
+//-(void)loadDataListWithObject:(NSObject*)object context:(TBServiceContext *)context;
+@end
