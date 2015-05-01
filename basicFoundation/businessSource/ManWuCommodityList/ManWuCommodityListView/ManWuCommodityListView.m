@@ -19,24 +19,8 @@
 
 @implementation ManWuCommodityListView
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self setupView];
-    }
-    return self;
-}
-
--(instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupView];
-    }
-    return self;
-}
-
 -(void)setupView{
+    [super setupView];
     [self addSubview:self.collectionViewCtl.scrollView];
     NSMutableArray* arrayData = [[NSMutableArray alloc] init];
     for (int i = 0; i < 10 ; i++) {

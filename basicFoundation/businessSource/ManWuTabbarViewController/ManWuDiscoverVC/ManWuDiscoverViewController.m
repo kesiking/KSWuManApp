@@ -7,8 +7,11 @@
 //
 
 #import "ManWuDiscoverViewController.h"
+#import "ManWuDiscoverListView.h"
 
 @interface ManWuDiscoverViewController ()
+
+@property (nonatomic ,strong) ManWuDiscoverListView*          discoverListView;
 
 @end
 
@@ -18,6 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"发现";
+    [self.view addSubview:self.discoverListView];
+}
+
+-(void)viewDidUnload{
+    self.discoverListView = nil;
+    [super viewDidUnload];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -27,6 +36,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(ManWuDiscoverListView *)discoverListView{
+    if (_discoverListView == nil) {
+        _discoverListView = [[ManWuDiscoverListView alloc] initWithFrame:self.view.bounds];
+    }
+    return _discoverListView;
 }
 
 /*

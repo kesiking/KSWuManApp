@@ -7,7 +7,11 @@
 //
 
 #import "KSViewCell.h"
+#import "KSCollectionViewController.h"
 
 @interface ManWuDiscoverViewCell : KSViewCell
+
+@property (nonatomic,strong) UILabel*                       titleLabel;
+@property (nonatomic,strong) KSCollectionViewController*    collectionViewCtl;
 
 @end

@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self measureViewFrame];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +38,14 @@
     UINavigationController* navigationController = self.navigationController;
     if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
         navigationController.navigationBar.barTintColor= RGB(0xed, 0x65, 0x65);
+    }
+}
+
+-(void)measureViewFrame{
+    CGRect frame = self.view.frame;
+    frame.size.height -= 56;
+    if (!CGRectEqualToRect(frame, self.view.frame)) {
+        [self.view setFrame:frame];
     }
 }
 

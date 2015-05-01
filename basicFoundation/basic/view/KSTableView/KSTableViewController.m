@@ -7,7 +7,7 @@
 //
 
 #import "KSTableViewController.h"
-#import "KSTableViewCell.h"
+#import "WeAppTableViewCell.h"
 
 @interface KSTableViewController ()
 
@@ -119,7 +119,7 @@
     NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
     for (NSIndexPath *visibleIndexPath in indexPaths) {
         if (visibleIndexPath.row >= 0) {
-            KSTableViewCell *cell = (KSTableViewCell *)[self.tableView cellForRowAtIndexPath:visibleIndexPath];
+            WeAppTableViewCell *cell = (WeAppTableViewCell *)[self.tableView cellForRowAtIndexPath:visibleIndexPath];
             BOOL imageLoaded = [self.dataSourceRead getImageDidLoadedWithIndex:[visibleIndexPath row]];
             //如果imageLoaded标志位不存在或是为NO则刷新，如果canImageRefreshed被设为NO，表示速度过快优化后不再加载图片，因此也需要刷新
             if(!imageLoaded || self.canImageRefreshed){
@@ -144,17 +144,22 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KSTableViewCell *cell = (KSTableViewCell *)[tableView dequeueReusableCellWithIdentifier:[KSTableViewCell reuseIdentifier]];
+    WeAppTableViewCell *cell = (WeAppTableViewCell *)[tableView dequeueReusableCellWithIdentifier:[WeAppTableViewCell reuseIdentifier]];
     
     //获取cell模板数据
     WeAppComponentBaseItem *componentItem = [self.dataSourceRead getComponentItemWithIndex:[indexPath row]];
     KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
     
-    CGRect rect = CGRectMake(0, 0, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.width, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height);
-    
+    CGRect rect = CGRectZero;
+    if(CGSizeEqualToSize(CGSizeZero, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize)){
+        KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
+        rect = CGRectMake(0, 0, self.tableView.width, modelInfoItem.frame.size.height);
+    }else{
+        rect = CGRectMake(0, 0, self.tableView.width, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height);
+    }
     
     if (!cell) {
-        cell = [KSTableViewCell createCell];
+        cell = [WeAppTableViewCell createCell];
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor clearColor];
     }
@@ -231,7 +236,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Select Item
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    KSTableViewCell *cell = (KSTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    WeAppTableViewCell *cell = (WeAppTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
     if (cell) {
         //获取cell模板数据
         WeAppComponentBaseItem *componentItem = [self.dataSourceRead getComponentItemWithIndex:[indexPath row]];

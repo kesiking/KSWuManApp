@@ -21,7 +21,7 @@
 
 @end
 
-@interface KSViewCell : UIView
+@interface KSViewCell : KSView
 
 // 检查cell是否合法
 - (BOOL)checkCellLegalWithWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem;

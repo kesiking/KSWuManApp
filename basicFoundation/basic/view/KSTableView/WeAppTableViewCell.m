@@ -1,60 +1,44 @@
 //
-//  KSTableViewCell.m
+//  WeAppTableViewCell.m
 //  basicFoundation
 //
-//  Created by 逸行 on 15-4-26.
+//  Created by 逸行 on 15-5-1.
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "KSTableViewCell.h"
+#import "WeAppTableViewCell.h"
 
-@interface KSTableViewCell ()
+@interface WeAppTableViewCell ()
 
 @property (nonatomic, strong) KSViewCell* cellView;
 
+@property (nonatomic, assign) CGRect      cellViewFrame;
+
 @end
 
-@implementation KSTableViewCell
+@implementation WeAppTableViewCell
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code
-        [self setupCellView];
-    }
-    return self;
+- (void)awakeFromNib {
+    // Initialization code
 }
 
--(instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupCellView];
-    }
-    return self;
-}
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
 
--(void)awakeFromNib{
-    [self setupCellView];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected];
     // Configure the view for the selected state
 }
 
 +(id)createCell {
-    id cellObj = [[KSTableViewCell alloc] init];
+    id cellObj = [[self alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[self reuseIdentifier]];
     if (cellObj) {
-        [cellObj setupCellView];
+        [(WeAppTableViewCell*)cellObj setupCellView];
         return cellObj;
     }
     return nil;
 }
 
 +(NSString*)reuseIdentifier{
-    return @"KSTableViewCell";
+    return @"KSTableViewCellReUserId";
 }
 
 -(void)setViewCellClass:(Class)viewCellClass{
@@ -64,21 +48,34 @@
 }
 
 -(void)setupCellView{
-    
+
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
 }
 
 -(KSViewCell *)cellView{
     if (_cellView == nil) {
         if (self.viewCellClass && [self.viewCellClass isSubclassOfClass:[KSViewCell class]]) {
-            _cellView = [[self.viewCellClass alloc] initWithFrame:self.bounds];
+            if (!CGRectEqualToRect(CGRectZero, self.cellViewFrame)) {
+                _cellView = [[self.viewCellClass alloc] initWithFrame:self.cellViewFrame];
+            }else{
+                _cellView = [[self.viewCellClass alloc] initWithFrame:self.bounds];
+            }
         }else{
-            _cellView = [[KSViewCell alloc] initWithFrame:self.bounds];
+            if (!CGRectEqualToRect(CGRectZero, self.cellViewFrame)) {
+                _cellView = [[KSViewCell alloc] initWithFrame:self.cellViewFrame];
+            }else{
+                _cellView = [[KSViewCell alloc] initWithFrame:self.bounds];
+            }
         }
     }
     return _cellView;
 }
 
 - (void)configCellWithFrame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(id)extroParams{
+    self.cellViewFrame = rect;
     if (![self.cellView checkCellLegalWithWithCellView:self componentItem:componentItem]) {
         return;
     }
