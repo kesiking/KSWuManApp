@@ -114,7 +114,8 @@
 }
 
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
-    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
+    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityDetail), self,nil,params);
 }
 
 @end

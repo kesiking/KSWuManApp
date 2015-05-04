@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		052CC67B1AF357A800AF7C78 /* WeAppTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */; };
 		052CC67E1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67D1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m */; };
+		052CC68D1AF7198B00AF7C78 /* UIColor+WeAppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6821AF7198B00AF7C78 /* UIColor+WeAppColor.m */; };
+		052CC68E1AF7198B00AF7C78 /* WeAppBannerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6841AF7198B00AF7C78 /* WeAppBannerItem.m */; };
+		052CC68F1AF7198B00AF7C78 /* WeAppBasicBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6861AF7198B00AF7C78 /* WeAppBasicBannerView.m */; };
+		052CC6901AF7198B00AF7C78 /* WeAppColorPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6881AF7198B00AF7C78 /* WeAppColorPageControl.m */; };
+		052CC6911AF7198B00AF7C78 /* WeAppColorStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC68A1AF7198B00AF7C78 /* WeAppColorStyleSheet.m */; };
+		052CC6921AF7198B00AF7C78 /* WeAppCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC68C1AF7198B00AF7C78 /* WeAppCycleScrollView.m */; };
+		052CC6961AF71B1A00AF7C78 /* ManWuCommodityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6951AF71B1A00AF7C78 /* ManWuCommodityView.m */; };
+		052CC6991AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6981AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m */; };
+		052CC69C1AF7446900AF7C78 /* ManWuCommodityGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC69B1AF7446900AF7C78 /* ManWuCommodityGuideView.m */; };
+		052CC69F1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC69E1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.m */; };
+		052CC6A21AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6A11AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.m */; };
+		052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052CC6A41AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib */; };
 		0558668F1AD3B4F900A23FFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0558668E1AD3B4F900A23FFA /* main.m */; };
 		055866921AD3B4F900A23FFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866911AD3B4F900A23FFA /* AppDelegate.m */; };
 		055866951AD3B4F900A23FFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866941AD3B4F900A23FFA /* ViewController.m */; };
@@ -220,6 +232,29 @@
 		052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppTableViewCell.m; sourceTree = "<group>"; };
 		052CC67C1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverCellModelInfoItem.h; sourceTree = "<group>"; };
 		052CC67D1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverCellModelInfoItem.m; sourceTree = "<group>"; };
+		052CC6811AF7198B00AF7C78 /* UIColor+WeAppColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WeAppColor.h"; sourceTree = "<group>"; };
+		052CC6821AF7198B00AF7C78 /* UIColor+WeAppColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WeAppColor.m"; sourceTree = "<group>"; };
+		052CC6831AF7198B00AF7C78 /* WeAppBannerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppBannerItem.h; sourceTree = "<group>"; };
+		052CC6841AF7198B00AF7C78 /* WeAppBannerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppBannerItem.m; sourceTree = "<group>"; };
+		052CC6851AF7198B00AF7C78 /* WeAppBasicBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppBasicBannerView.h; sourceTree = "<group>"; };
+		052CC6861AF7198B00AF7C78 /* WeAppBasicBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppBasicBannerView.m; sourceTree = "<group>"; };
+		052CC6871AF7198B00AF7C78 /* WeAppColorPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppColorPageControl.h; sourceTree = "<group>"; };
+		052CC6881AF7198B00AF7C78 /* WeAppColorPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppColorPageControl.m; sourceTree = "<group>"; };
+		052CC6891AF7198B00AF7C78 /* WeAppColorStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppColorStyleSheet.h; sourceTree = "<group>"; };
+		052CC68A1AF7198B00AF7C78 /* WeAppColorStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppColorStyleSheet.m; sourceTree = "<group>"; };
+		052CC68B1AF7198B00AF7C78 /* WeAppCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppCycleScrollView.h; sourceTree = "<group>"; };
+		052CC68C1AF7198B00AF7C78 /* WeAppCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppCycleScrollView.m; sourceTree = "<group>"; };
+		052CC6941AF71B1A00AF7C78 /* ManWuCommodityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityView.h; sourceTree = "<group>"; };
+		052CC6951AF71B1A00AF7C78 /* ManWuCommodityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityView.m; sourceTree = "<group>"; };
+		052CC6971AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityInfoDescriptionView.h; sourceTree = "<group>"; };
+		052CC6981AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityInfoDescriptionView.m; sourceTree = "<group>"; };
+		052CC69A1AF7446900AF7C78 /* ManWuCommodityGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityGuideView.h; sourceTree = "<group>"; };
+		052CC69B1AF7446900AF7C78 /* ManWuCommodityGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityGuideView.m; sourceTree = "<group>"; };
+		052CC69D1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityDescriptionBasicView.h; sourceTree = "<group>"; };
+		052CC69E1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityDescriptionBasicView.m; sourceTree = "<group>"; };
+		052CC6A01AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityTitleAndPriceView.h; sourceTree = "<group>"; };
+		052CC6A11AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityTitleAndPriceView.m; sourceTree = "<group>"; };
+		052CC6A41AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManWuCommodityTitleAndPriceView.xib; sourceTree = "<group>"; };
 		055866891AD3B4F900A23FFA /* basicFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = basicFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0558668D1AD3B4F900A23FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0558668E1AD3B4F900A23FFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -672,6 +707,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		052CC6801AF7198B00AF7C78 /* KSBannerView */ = {
+			isa = PBXGroup;
+			children = (
+				052CC6811AF7198B00AF7C78 /* UIColor+WeAppColor.h */,
+				052CC6821AF7198B00AF7C78 /* UIColor+WeAppColor.m */,
+				052CC6831AF7198B00AF7C78 /* WeAppBannerItem.h */,
+				052CC6841AF7198B00AF7C78 /* WeAppBannerItem.m */,
+				052CC6851AF7198B00AF7C78 /* WeAppBasicBannerView.h */,
+				052CC6861AF7198B00AF7C78 /* WeAppBasicBannerView.m */,
+				052CC6871AF7198B00AF7C78 /* WeAppColorPageControl.h */,
+				052CC6881AF7198B00AF7C78 /* WeAppColorPageControl.m */,
+				052CC6891AF7198B00AF7C78 /* WeAppColorStyleSheet.h */,
+				052CC68A1AF7198B00AF7C78 /* WeAppColorStyleSheet.m */,
+				052CC68B1AF7198B00AF7C78 /* WeAppCycleScrollView.h */,
+				052CC68C1AF7198B00AF7C78 /* WeAppCycleScrollView.m */,
+			);
+			path = KSBannerView;
+			sourceTree = "<group>";
+		};
+		052CC6931AF71AFF00AF7C78 /* ManWuCommodityDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				052CC6941AF71B1A00AF7C78 /* ManWuCommodityView.h */,
+				052CC6951AF71B1A00AF7C78 /* ManWuCommodityView.m */,
+				052CC6A01AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.h */,
+				052CC6A11AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.m */,
+				052CC6A41AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib */,
+				052CC69D1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.h */,
+				052CC69E1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.m */,
+				052CC69A1AF7446900AF7C78 /* ManWuCommodityGuideView.h */,
+				052CC69B1AF7446900AF7C78 /* ManWuCommodityGuideView.m */,
+				052CC6971AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.h */,
+				052CC6981AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m */,
+			);
+			path = ManWuCommodityDetailView;
+			sourceTree = "<group>";
+		};
 		055866801AD3B4F900A23FFA = {
 			isa = PBXGroup;
 			children = (
@@ -1046,6 +1118,7 @@
 		0566648D1AEE0F2100FD1C65 /* ManWuCommodityDetail */ = {
 			isa = PBXGroup;
 			children = (
+				052CC6931AF71AFF00AF7C78 /* ManWuCommodityDetailView */,
 				056677B01AF081C200FD1C65 /* ManWuCommodityDetailService */,
 				056664D61AEF390400FD1C65 /* ManWuCommodityDetailModel */,
 				0566649E1AEE2F4100FD1C65 /* ManWuCommodityDetailViewController */,
@@ -1478,6 +1551,7 @@
 		058DADB11AE1107D009D0008 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				052CC6801AF7198B00AF7C78 /* KSBannerView */,
 				058D5A931AF0B358006EA35C /* KSBigPhotoBrower */,
 				056664521AEDD88500FD1C65 /* KSSKUView */,
 				0566644B1AEC79D900FD1C65 /* KSTableView */,
@@ -1752,6 +1826,7 @@
 				058BC3FB1AE89DA700A4F799 /* tabbarViewControllerRegister.plist in Resources */,
 				058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */,
 				058BC4151AE8D97400A4F799 /* tabitem_home_highlight@2x.png in Resources */,
+				052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */,
 				058DAE201AE638BA009D0008 /* tabbar_background_white@2x.png in Resources */,
 				058BC4161AE8D97400A4F799 /* tabitem_home_normal@2x.png in Resources */,
 				058D5D0B1AF2140C006EA35C /* tbbuy_item_decrease2@2x.png in Resources */,
@@ -1814,6 +1889,7 @@
 				055866CD1AD3E05B00A23FFA /* WeAppBasicPagedList.m in Sources */,
 				056664911AEE0F8C00FD1C65 /* ManWuDetailBuyNumberStepView.m in Sources */,
 				058DADE21AE5E0BB009D0008 /* KSAdapterService.m in Sources */,
+				052CC69C1AF7446900AF7C78 /* ManWuCommodityGuideView.m in Sources */,
 				058BC3FC1AE89DA700A4F799 /* ManWuMyInfoViewController.m in Sources */,
 				056664441AEB4A0B00FD1C65 /* KSFoundationCommon.m in Sources */,
 				058D5AB91AF0D98A006EA35C /* Order.m in Sources */,
@@ -1821,6 +1897,7 @@
 				0566643C1AEB284F00FD1C65 /* KSScrollViewServiceController.m in Sources */,
 				058D5A9A1AF0B358006EA35C /* TBDetailBigPhotoBrowerController.m in Sources */,
 				058DAE6C1AE7A339009D0008 /* KSBasicURLResolver.m in Sources */,
+				052CC6911AF7198B00AF7C78 /* WeAppColorStyleSheet.m in Sources */,
 				0566643A1AEB284F00FD1C65 /* KSScrollViewConfigObject.m in Sources */,
 				058DADB81AE110C2009D0008 /* KSView.m in Sources */,
 				056664BB1AEF1C3C00FD1C65 /* TBDetailSkuModel.m in Sources */,
@@ -1846,6 +1923,7 @@
 				058D5CF41AF1F62E006EA35C /* openssl_wrapper.m in Sources */,
 				055C758E1ADFBF6000C35854 /* UIImage+WebP.m in Sources */,
 				058D5A9C1AF0B358006EA35C /* TBDetailSimplePhotoView.m in Sources */,
+				052CC6A21AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.m in Sources */,
 				055C75511ADFB32100C35854 /* WeAppPagedList.m in Sources */,
 				05B8DF571AF3455A002C2E4F /* ManWuDiscoverListView.m in Sources */,
 				058D5CF61AF1F62E006EA35C /* RSADataVerifier.m in Sources */,
@@ -1857,6 +1935,7 @@
 				055866B71AD3B65900A23FFA /* Routable.m in Sources */,
 				0566648B1AEE0B1C00FD1C65 /* TBDetailSkuPropsModel.m in Sources */,
 				058BC3FA1AE89DA700A4F799 /* KSManWuTabBarViewController.m in Sources */,
+				052CC68F1AF7198B00AF7C78 /* WeAppBasicBannerView.m in Sources */,
 				058DADAE1AE10FF7009D0008 /* RDVTabBarController.m in Sources */,
 				058BC3E51AE89C2000A4F799 /* KSNavigator+RDVTabBarController.m in Sources */,
 				058D5D171AF21F70006EA35C /* ManWuQuantityView.m in Sources */,
@@ -1867,6 +1946,7 @@
 				0566647C1AEDF4E100FD1C65 /* TBDetailSKUButton.m in Sources */,
 				058BC3F81AE89DA700A4F799 /* KSHomeURLResolver.m in Sources */,
 				055C75981ADFC6CA00C35854 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				052CC68D1AF7198B00AF7C78 /* UIColor+WeAppColor.m in Sources */,
 				055C755F1ADFBED000C35854 /* UIView+Geometry.m in Sources */,
 				055866E11AD3EAA500A23FFA /* WeAppJsonUtil.m in Sources */,
 				058D5AB41AF0D0FF006EA35C /* KSSafePayUtility.m in Sources */,
@@ -1894,9 +1974,11 @@
 				055C75881ADFBF6000C35854 /* SDWebImageDownloaderOperation.m in Sources */,
 				058DADCF1AE52EC0009D0008 /* AFHTTPRequestOperationManager.m in Sources */,
 				056664391AEB284F00FD1C65 /* KSDataSource.m in Sources */,
+				052CC6901AF7198B00AF7C78 /* WeAppColorPageControl.m in Sources */,
 				055866DE1AD3EA7000A23FFA /* WeAppURLStringUtil.m in Sources */,
 				055866D21AD3E09900A23FFA /* WeAppUtils.m in Sources */,
 				058D5CEF1AF1F62E006EA35C /* base64.m in Sources */,
+				052CC6921AF7198B00AF7C78 /* WeAppCycleScrollView.m in Sources */,
 				058DADDC1AE52F97009D0008 /* SVProgressHUD.m in Sources */,
 				0566643E1AEB284F00FD1C65 /* WeAppUIScrollViewSpeed.m in Sources */,
 				058DADD31AE52EC0009D0008 /* AFURLConnectionOperation.m in Sources */,
@@ -1924,19 +2006,23 @@
 				058BC40C1AE8CF8700A4F799 /* KSManWuViewController.m in Sources */,
 				058DAE661AE79A8B009D0008 /* KSConfigCenter.m in Sources */,
 				058DAE561AE73040009D0008 /* TBNavigationParams.m in Sources */,
+				052CC68E1AF7198B00AF7C78 /* WeAppBannerItem.m in Sources */,
 				0566647F1AEE0A2900FD1C65 /* TBTradeSKUSelectionControl.m in Sources */,
 				058DAE521AE72FF2009D0008 /* TBNavigationType.m in Sources */,
 				058D5CF21AF1F62E006EA35C /* MD5DataSigner.m in Sources */,
 				055C758C1ADFBF6000C35854 /* UIImage+GIF.m in Sources */,
 				058DADD11AE52EC0009D0008 /* AFNetworkReachabilityManager.m in Sources */,
+				052CC69F1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.m in Sources */,
 				056664701AEDDC5500FD1C65 /* WeAppToast.m in Sources */,
 				058DADD51AE52EC0009D0008 /* AFURLResponseSerialization.m in Sources */,
 				058BC3FD1AE89DA700A4F799 /* ManWuDiscoverViewController.m in Sources */,
 				056664A41AEE308300FD1C65 /* UIViewController+KNSemiModal.m in Sources */,
 				0566643B1AEB284F00FD1C65 /* KSScrollViewController.m in Sources */,
 				056664D91AEF395900FD1C65 /* ManWuCommodityDetailModel.m in Sources */,
+				052CC6991AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m in Sources */,
 				055C75841ADFBF6000C35854 /* SDImageCache.m in Sources */,
 				058D5CFD1AF20F03006EA35C /* ManWuAddressView.m in Sources */,
+				052CC6961AF71B1A00AF7C78 /* ManWuCommodityView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

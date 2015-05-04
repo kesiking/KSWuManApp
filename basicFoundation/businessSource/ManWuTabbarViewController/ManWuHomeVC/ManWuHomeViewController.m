@@ -30,7 +30,7 @@
 
 -(void)add{
     NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
-    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityDetail), self,nil,params);
+    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
 }
 
 - (void)didReceiveMemoryWarning {

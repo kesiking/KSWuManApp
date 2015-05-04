@@ -10,14 +10,16 @@
 #import "ManWuDiscoverCollectionViewCell.h"
 #import "ManWuDiscoverCellModelInfoItem.h"
 
-#define titleLabel_left_border     (8.0)
+#define titleLabel_left_border     (0.0)
 #define titleLabel_right_border    (8.0)
-#define titleLabel_top_border      (8.0)
+#define titleLabel_top_border      (6.0)
 #define titleLabel_height          (20.0)
 
 @interface ManWuDiscoverViewCell()
 
 @property (nonatomic,strong) KSDataSource*      dataSourceRead;
+
+@property (nonatomic,strong) UIView*            endline;
 
 @end
 
@@ -28,6 +30,7 @@
     [self.titleLabel setFrame:CGRectMake(titleLabel_left_border, titleLabel_top_border, self.width - titleLabel_left_border - titleLabel_right_border, titleLabel_height)];
     [self addSubview:self.titleLabel];
     [self addSubview: self.collectionViewCtl.scrollView];
+    [self addSubview:self.endline];
 }
 
 -(KSCollectionViewController *)collectionViewCtl{
@@ -54,10 +57,19 @@
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:13];
         _titleLabel.numberOfLines = 1;
     }
     return _titleLabel;
+}
+
+-(UIView *)endline{
+    if (_endline == nil) {
+        _endline = [TBDetailUITools drawDivisionLine:0
+                                                yPos:self.height - 0.5
+                                           lineWidth:self.width];
+    }
+    return _endline;
 }
 
 -(KSDataSource *)dataSourceRead {
@@ -95,7 +107,9 @@
 }
 
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
-    
+    NSLog(@"did select cell in list");
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
+    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
 }
 
 @end

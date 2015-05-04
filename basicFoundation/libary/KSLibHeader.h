@@ -27,4 +27,10 @@
 #import "MBProgressHUD.h"
 #import "WeAppToast.h"
 
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...)
+#endif
+
 #endif

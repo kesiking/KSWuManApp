@@ -47,6 +47,8 @@
 
 @property (nonatomic, assign) BOOL               imageHasLoaded;
 
+@property (nonatomic, assign) NSUInteger         cellIndex;
+
 @property (nonatomic, strong) id                 modelInfoObject;
 
 @property (nonatomic, strong) NSDictionary*      modelInfoDict;

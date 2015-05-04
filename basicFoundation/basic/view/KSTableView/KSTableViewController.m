@@ -161,6 +161,7 @@
     if (!cell) {
         cell = [WeAppTableViewCell createCell];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = [UIColor clearColor];
     }
     
@@ -226,10 +227,6 @@
 
 // 用于展示加载动画
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return nil;
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return nil;
 }
 

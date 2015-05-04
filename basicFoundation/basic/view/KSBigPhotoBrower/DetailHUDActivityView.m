@@ -59,7 +59,7 @@
         [backView addSubview:activityView];
         
         textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, floor(indicatorHeight/2.0+6), indicatorWidth, 25.0)];
-        textLabel.textAlignment = UITextAlignmentCenter;
+        textLabel.textAlignment = NSTextAlignmentCenter;
         textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         textLabel.contentMode = UIViewContentModeRedraw;
         textLabel.text = @"正在加载";

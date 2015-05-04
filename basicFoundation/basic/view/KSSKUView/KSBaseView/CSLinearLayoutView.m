@@ -53,6 +53,15 @@
     self.autoresizesSubviews = NO;
 }
 
+-(void)setAutoAdjustFrameSize:(BOOL)autoAdjustFrameSize{
+    _autoAdjustFrameSize = autoAdjustFrameSize;
+    _autoAdjustContentSize = !autoAdjustFrameSize;
+}
+
+-(void)setAutoAdjustContentSize:(BOOL)autoAdjustContentSize{
+    _autoAdjustContentSize = autoAdjustContentSize;
+    _autoAdjustFrameSize = !autoAdjustContentSize;
+}
 
 #pragma mark - Lifecycle
 

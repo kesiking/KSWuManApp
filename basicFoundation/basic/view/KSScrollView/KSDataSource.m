@@ -145,7 +145,7 @@
     }
     
     modelInfoItem.modelInfoItemId = modelInfoItemId;
-    
+    modelInfoItem.cellIndex = index;
     [modelInfoItem setupCellModelInfoItemWithComponentItem:componentItem];
     
     @synchronized(_modelList){

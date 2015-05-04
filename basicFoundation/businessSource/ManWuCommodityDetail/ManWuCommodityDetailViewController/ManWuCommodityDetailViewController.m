@@ -7,18 +7,20 @@
 //
 
 #import "ManWuCommodityDetailViewController.h"
-#import "TBDetailBigPhotoBrowerController.h"
 #import "ManWuDetailSKUView.h"
 #import "ManWuCommodityDetailModel.h"
 #import "ManWuCommodityDetailService.h"
+#import "ManWuCommodityView.h"
 
 #define TBDETAIL_SKU_HEIGHT                320            //SKU的高度
 
 @interface ManWuCommodityDetailViewController ()<KSDetailTradeSKUViewDelegate>
 
-@property (nonatomic, strong) TBDetailBigPhotoBrowerController *simpleBrower;
-
 @property (nonatomic, strong) ManWuDetailSKUView           *skuView;
+
+@property (nonatomic, strong) ManWuCommodityView           *commodityDetailView;
+
+@property (nonatomic, strong) UIButton                     *confirmButton;
 
 @property (nonatomic, strong) ManWuCommodityDetailModel    *detailModel;
 
@@ -31,19 +33,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    //    button.frame = CGRectMake(0, 0, 100, 100);
-    [button addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    
+    [self.view addSubview:self.commodityDetailView];
+    [self.view addSubview:self.confirmButton];
+    
     NSDictionary* dict = @{@"skuTitle":@"titleTest",@"skuDetailModel":@{@"skuModel":@{@"skuTitle":@"skuTitleTest1",@"skus":@{@"quantity":@2},@"skuProps":@[@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest2",@"values":@[@{@"name":@"nameTest2"},@{@"name":@"nameTest3"}]}]}}};
     self.detailModel = [ManWuCommodityDetailModel modelWithJSON:dict];
     [self.service loadLogin];
+    [self.commodityDetailView setDescriptionModel:self.detailModel];
     [self reloadData];
 }
 
 -(void)dealloc{
-    [_simpleBrower removeFromSuperview];
-    _simpleBrower = nil;
     _skuView.delegate = nil;
     _skuView = nil;
     _service.delegate = nil;
@@ -62,11 +63,21 @@
     return _service;
 }
 
--(TBDetailBigPhotoBrowerController *)simpleBrower{
-    if (!_simpleBrower) {
-        _simpleBrower = [[TBDetailBigPhotoBrowerController alloc] initWithFrame:self.view.bounds];
+-(ManWuCommodityView *)commodityDetailView{
+    if (_commodityDetailView == nil) {
+        _commodityDetailView = [[ManWuCommodityView alloc] initWithFrame:self.view.bounds];
     }
-    return _simpleBrower;
+    return _commodityDetailView;
+}
+
+-(UIButton *)confirmButton{
+    if (_confirmButton == nil) {
+        _confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.height - 44, self.view.width, 44)];
+        [_confirmButton setTitle:@"选购" forState:UIControlStateNormal];
+        [_confirmButton setBackgroundColor:RGB_A(0x00, 0x00, 0x00, 0.5)];
+        [_confirmButton addTarget:self action:@selector(confirmButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _confirmButton;
 }
 
 - (ManWuDetailSKUView *)skuView{
@@ -78,7 +89,7 @@
     return _skuView;
 }
 
--(void)add{
+-(void)confirmButtonClicked:(id)sender{
     [self presentSemiView:self.skuView withOptions:nil completion:nil];
 }
 
@@ -86,52 +97,7 @@
     self.skuView.skuDetailModel = self.detailModel.skuDetailModel;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark - TBDetailBigPhotoBrowerController config
 
--(NSInteger)getCurrentChooseIndex
-{
-    NSInteger index = 0;
-    
-    for (TBDetailBigPhotoModel *model in self.simpleBrower.photoList) {
-        if ([model.photoUrl isEqualToString:self.detailModel.skuDetailModel.skuService.currentSKUInfo.picUrl]) {
-            index = [self.simpleBrower.photoList indexOfObject:model];
-        }
-    }
-    
-    return index;
-}
-
--(void)configImgList:(NSInteger)index photoCount:(NSInteger)photoCount
-{
-    NSMutableArray *imgs = [[NSMutableArray alloc] initWithCapacity:photoCount];
-    for (int i = 0; i < photoCount; i++) {
-       
-    }
-    self.simpleBrower.imgs = imgs;
-}
-
--(NSInteger)configBigPhotoBrowser
-{
-    [self.simpleBrower removeAllSubviews];
-    
-    /*配置photoList*/
-    NSMutableArray *photoList = [NSMutableArray array];
-    
-    self.simpleBrower.photoList = (NSArray<TBDetailBigPhotoModel> *)photoList;
-    
-    NSInteger index = [self getCurrentChooseIndex];
-    
-    /*配置imgs*/
-    [self configImgList:index photoCount:photoList.count];
-    
-    /*其他配置*/
-    self.simpleBrower.selectedIndex = index;
-    
-    return index;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

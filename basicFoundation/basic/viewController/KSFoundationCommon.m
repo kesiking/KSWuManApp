@@ -15,7 +15,7 @@
     if ([[[UIDevice currentDevice] systemVersion] integerValue] < 7.0) {
         adapterHeight = 44;
     }else{
-        adapterHeight = 20 + 44 + 5;
+        adapterHeight = 20 + 44;
     }
     return adapterHeight;
 }
