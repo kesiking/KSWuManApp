@@ -7,8 +7,15 @@
 //
 
 #import "ManWuHomeViewController.h"
+#import "ManWuHomeHeaderView.h"
+#import "ManWuCommodityListView.h"
 
 @interface ManWuHomeViewController ()
+
+@property (nonatomic, strong) ManWuHomeHeaderView            *headerView;
+
+@property (nonatomic,strong) ManWuCommodityListView          *commodityListView;
+
 
 @end
 
@@ -18,10 +25,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"屋满";
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-//    button.frame = CGRectMake(0, 0, 100, 100);
-    [button addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+//    UIButton* button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+////    button.frame = CGRectMake(0, 0, 100, 100);
+//    [button addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:button];
+    [self.view addSubview:self.commodityListView];
+    [self.headerView setDescriptionModel:nil];
+    [self.headerView sizeToFit];
+    [self.commodityListView.collectionViewCtl setColletionHeaderView:self.headerView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -38,14 +49,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - discountInfo
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(ManWuHomeHeaderView *)headerView{
+    if (_headerView == nil) {
+        _headerView = [[ManWuHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.commodityListView.collectionViewCtl.frame.size.width, 0)];
+        _headerView.backgroundColor = [UIColor clearColor];
+    }
+    return _headerView;
 }
-*/
+
+#pragma mark - commodityListView
+
+-(ManWuCommodityListView *)commodityListView{
+    if (_commodityListView == nil) {
+        _commodityListView = [[ManWuCommodityListView alloc] initWithFrame:self.view.bounds];
+        _commodityListView.backgroundColor = [UIColor whiteColor];
+    }
+    return _commodityListView;
+}
 
 @end

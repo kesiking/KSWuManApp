@@ -8,7 +8,8 @@
 
 #import "ManWuViewCell.h"
 
-#define commodityImage_width_height  (self.width)
+#define commodityImage_border        (8.0)
+#define commodityImage_width_height  (self.width - 0)
 #define commodityImage_bottom_border (5.0)
 #define favorateLabel_width          (25)
 #define favorateLabel_height         (15)
@@ -36,7 +37,7 @@
 }
 
 -(void)setupView{
-    [self.commodityImageView setFrame:CGRectMake((self.width - commodityImage_width_height)/2, 8, commodityImage_width_height, commodityImage_width_height)];
+    [self.commodityImageView setFrame:CGRectMake(0, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
     [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - favorateLabel_width, self.commodityImageView.bottom + commodityImage_bottom_border, favorateLabel_width, favorateLabel_height)];
     [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 1, favorateImage_width_height, favorateImage_width_height)];
     [self.titleLabel setFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom + commodityImage_bottom_border, self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.favorateLabel.height)];

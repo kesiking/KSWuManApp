@@ -102,7 +102,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImage *image= [UIImage imageNamed:SNSBannerDefaultImage];
+        UIImage *image = [UIImage imageNamed:SNSBannerDefaultImage];
         if (image != nil) {
             _dataArray = [NSMutableArray arrayWithObject:image];
         }
@@ -115,6 +115,7 @@
         
         //cycleScroll
         _bannerCycleScrollView = [[WeAppCycleScrollView alloc]initWithFrame:frame];
+        [_bannerCycleScrollView setBackgroundColor:[UIColor clearColor]];
         _bannerCycleScrollView.opaque = YES;
         _bannerCycleScrollView.delegate = self;
         _bannerCycleScrollView.datasource = self;
@@ -139,6 +140,14 @@
         
     }
     return self;
+}
+
+-(UIImageView *)bannerBackgroundImage{
+    if (_bannerBackgroundImage == nil) {
+        _bannerBackgroundImage = [[UIImageView alloc] initWithFrame:self.bannerCycleScrollView.bounds];
+        [self insertSubview:_bannerBackgroundImage belowSubview:self.bannerCycleScrollView];
+    }
+    return _bannerBackgroundImage;
 }
 
 -(UIButton *)bannerCloseButton{

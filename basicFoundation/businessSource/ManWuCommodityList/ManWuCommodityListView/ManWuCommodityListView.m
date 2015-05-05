@@ -29,13 +29,13 @@
     }
     [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
     [self.collectionViewCtl reloadData];
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    view.backgroundColor = [UIColor clearColor];
-    UILabel* label = [[UILabel alloc] initWithFrame:view.bounds];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setText:@"headerView"];
-    [view addSubview:label];
-    [self.collectionViewCtl setColletionHeaderView:view];
+//    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+//    view.backgroundColor = [UIColor clearColor];
+//    UILabel* label = [[UILabel alloc] initWithFrame:view.bounds];
+//    [label setTextAlignment:NSTextAlignmentCenter];
+//    [label setText:@"headerView"];
+//    [view addSubview:label];
+//    [self.collectionViewCtl setColletionHeaderView:view];
 }
 
 -(KSCollectionViewController *)collectionViewCtl{

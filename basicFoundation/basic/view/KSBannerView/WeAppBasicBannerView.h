@@ -38,11 +38,12 @@ typedef struct CGRectOffsetXY CGRectOffsetXY;
     NSMutableArray*                                                                                     _dataArray;
 }
 
-@property(nonatomic,unsafe_unretained)id<TBSNSBannerViewDelegate>                                            delegate;
-@property(nonatomic,strong)WeAppCycleScrollView*                                                                                       bannerCycleScrollView;
-@property(nonatomic,strong)UIButton*   bannerCloseButton;
-@property(nonatomic,assign)BOOL        isRounded;//默认有圆角
-@property(nonatomic,assign)BOOL        isPageControlCenter;//默认有圆角
+@property(nonatomic,weak)id<TBSNSBannerViewDelegate> delegate;
+@property(nonatomic,strong)WeAppCycleScrollView*    bannerCycleScrollView;
+@property(nonatomic,strong)UIImageView*             bannerBackgroundImage;
+@property(nonatomic,strong)UIButton*                bannerCloseButton;
+@property(nonatomic,assign)BOOL                     isRounded;//默认有圆角
+@property(nonatomic,assign)BOOL                     isPageControlCenter;//默认有圆角
 /*********************
  new property
  *********************/
