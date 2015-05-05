@@ -67,6 +67,12 @@
         _nextPageLoadingView = nil;
     }
     [self releaseScrollView];
+    if (self.onRefreshEvent) {
+        self.onRefreshEvent = nil;
+    }
+    if (self.onNextEvent) {
+        self.onNextEvent = nil;
+    }
     self.errorViewTitle = nil;
     self.service.delegate = nil;
     self.service = nil;
@@ -270,6 +276,9 @@
     self.isNextPage = NO;
     // refresh
     [self.service refreshPagedList];
+    if (self.onRefreshEvent) {
+        self.onRefreshEvent(self);
+    }
 }
 
 -(void)nextPage {
@@ -278,6 +287,9 @@
     [self showNextPageLoadingView];
     // nextPage
     [self.service nextPage];
+    if (self.onNextEvent) {
+        self.onNextEvent(self);
+    }
 }
 
 // override subclass 是否需要翻页

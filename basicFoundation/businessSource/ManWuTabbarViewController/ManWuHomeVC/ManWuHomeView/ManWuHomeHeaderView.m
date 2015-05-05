@@ -13,7 +13,7 @@
 #import "ManWuRecommendForListHeaderView.h"
 
 #define banner_height               (60.0)
-#define discountInfo_height         (100.0)
+#define discountInfo_height         (108.0)
 #define specialView_height          (100.0)
 #define recommendView_height        (25.0)
 
@@ -43,6 +43,12 @@
     [self.specialView setDescriptionModel:descriptionModel];
     [self.recommendView setDescriptionModel:descriptionModel];
     [self reloadData];
+}
+
+-(void)refresh{
+    [self.discountInfo refresh];
+    [self.specialView refresh];
+    [self.recommendView refresh];
 }
 
 -(void)dealloc{
@@ -111,7 +117,8 @@
 
 - (void)BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url{
     if (aBannerView == _bannerView) {
-        
+        NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
+        TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
     }
 }
 

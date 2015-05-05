@@ -99,7 +99,8 @@
     
     [self.dataSourceRead setDataWithPageList:cellModelInfoItem.discoverCollectionArray extraDataSource:nil];
     [self.collectionViewCtl reloadData];
-    self.frame = rect;
+    
+    [self.endline setOrigin:CGPointMake(self.endline.origin.x, rect.size.height - 0.5)];
 }
 
 - (void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{

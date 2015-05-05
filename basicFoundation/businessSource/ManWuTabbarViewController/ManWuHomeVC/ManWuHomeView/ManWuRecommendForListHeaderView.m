@@ -48,4 +48,8 @@
     [self.imageView sd_setImageWithURL:nil placeholderImage:nil];
 }
 
+-(void)refresh{
+    
+}
+
 @end

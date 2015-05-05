@@ -23,18 +23,35 @@
 
 -(UIImageView *)imageView{
     if (_imageView == nil) {
-        _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        CGRect rect = self.bounds;
+        rect.origin.y = 8;
+        rect.size.height = rect.size.height - 8;
+        _imageView = [[UIImageView alloc] initWithFrame:rect];
         [_imageView setImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
+        _imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* getstureRecognize = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleImageViewClickEvent:)];
+        [_imageView addGestureRecognizer:getstureRecognize];
     }
     return _imageView;
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
     [self reloadData];
+    
 }
 
 -(void)reloadData{
     [self.imageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
+}
+
+-(void)refresh{
+    
+}
+
+-(void)handleImageViewClickEvent:(UITapGestureRecognizer *)getstureRecognize
+{
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
+    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
 }
 
 @end

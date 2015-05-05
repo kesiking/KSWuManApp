@@ -12,6 +12,8 @@
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel;
 
+-(void)refresh;
+
 -(void)reloadData;
 
 @end

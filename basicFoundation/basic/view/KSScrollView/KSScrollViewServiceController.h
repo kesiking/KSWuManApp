@@ -9,6 +9,11 @@
 #import "KSScrollViewController.h"
 #import "KSScrollViewConfigObject.h"
 
+@class KSScrollViewServiceController;
+
+typedef void (^ scrollViewOnRefreshEvent)(KSScrollViewServiceController* scrollViewController);
+typedef void (^ scrollViewOnNextEvnet)(KSScrollViewServiceController* scrollViewController);
+
 @interface KSScrollViewServiceController : KSScrollViewController<WeAppBasicServiceDelegate>
 
 @property (nonatomic, strong) KSScrollViewConfigObject*     configObject;
@@ -18,6 +23,10 @@
 @property (nonatomic, strong) NSString*                     errorViewTitle;
 
 @property (nonatomic, strong) UIView*                       nextFootView;
+
+@property (nonatomic, strong) scrollViewOnRefreshEvent      onRefreshEvent;
+
+@property (nonatomic, strong) scrollViewOnNextEvnet         onNextEvent;
 
 -(instancetype)initWithConfigObject:(KSScrollViewConfigObject*)configObject;
 

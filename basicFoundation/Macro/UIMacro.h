@@ -18,4 +18,8 @@
 #import "TBDetailUIStyle.h"
 #import "TBDetailUITools.h"
 
+#define UI_NAVIGATION_HEIGHT (IOS_VERSION<7?44:64)
+
+#define UI_STATU_HEIGHT (IOS_VERSION<7?20:0)
+
 #endif

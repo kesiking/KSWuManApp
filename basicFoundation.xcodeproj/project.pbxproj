@@ -29,6 +29,7 @@
 		052CC6B91AF8588400AF7C78 /* home_placehold_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 052CC6B51AF8588400AF7C78 /* home_placehold_banner.png */; };
 		052CC6BA1AF8588400AF7C78 /* home_specialForToday_first_placehold_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 052CC6B61AF8588400AF7C78 /* home_specialForToday_first_placehold_banner.png */; };
 		052CC6BB1AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 052CC6B71AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png */; };
+		052CC6C01AF86D1A00AF7C78 /* KSSearchBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6BF1AF86D1900AF7C78 /* KSSearchBasicView.m */; };
 		0558668F1AD3B4F900A23FFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0558668E1AD3B4F900A23FFA /* main.m */; };
 		055866921AD3B4F900A23FFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866911AD3B4F900A23FFA /* AppDelegate.m */; };
 		055866951AD3B4F900A23FFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866941AD3B4F900A23FFA /* ViewController.m */; };
@@ -275,6 +276,8 @@
 		052CC6B51AF8588400AF7C78 /* home_placehold_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_placehold_banner.png; sourceTree = "<group>"; };
 		052CC6B61AF8588400AF7C78 /* home_specialForToday_first_placehold_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_specialForToday_first_placehold_banner.png; sourceTree = "<group>"; };
 		052CC6B71AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_specialForToday_second_placehold_banner.png; sourceTree = "<group>"; };
+		052CC6BE1AF86D1900AF7C78 /* KSSearchBasicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSSearchBasicView.h; sourceTree = "<group>"; };
+		052CC6BF1AF86D1900AF7C78 /* KSSearchBasicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSSearchBasicView.m; sourceTree = "<group>"; };
 		055866891AD3B4F900A23FFA /* basicFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = basicFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0558668D1AD3B4F900A23FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0558668E1AD3B4F900A23FFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -789,6 +792,15 @@
 				052CC6B71AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		052CC6BD1AF86D1900AF7C78 /* ManWuDiscoverSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				052CC6BE1AF86D1900AF7C78 /* KSSearchBasicView.h */,
+				052CC6BF1AF86D1900AF7C78 /* KSSearchBasicView.m */,
+			);
+			path = ManWuDiscoverSearchView;
 			sourceTree = "<group>";
 		};
 		055866801AD3B4F900A23FFA = {
@@ -1306,6 +1318,7 @@
 		058BC3F21AE89DA700A4F799 /* ManWuDiscoverVC */ = {
 			isa = PBXGroup;
 			children = (
+				052CC6BD1AF86D1900AF7C78 /* ManWuDiscoverSearchView */,
 				05B8DF511AF344B8002C2E4F /* ManWuDiscoverView */,
 				058BC3F31AE89DA700A4F799 /* ManWuDiscoverViewController.h */,
 				058BC3F41AE89DA700A4F799 /* ManWuDiscoverViewController.m */,
@@ -1932,6 +1945,7 @@
 				058DADAF1AE10FF7009D0008 /* RDVTabBarItem.m in Sources */,
 				058D5CF01AF1F62E006EA35C /* DataSigner.m in Sources */,
 				055866951AD3B4F900A23FFA /* ViewController.m in Sources */,
+				052CC6C01AF86D1A00AF7C78 /* KSSearchBasicView.m in Sources */,
 				058D5D001AF210C0006EA35C /* ManWuBuyBasicView.m in Sources */,
 				058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */,
 				056664A11AEE2F7C00FD1C65 /* ManWuCommodityDetailViewController.m in Sources */,

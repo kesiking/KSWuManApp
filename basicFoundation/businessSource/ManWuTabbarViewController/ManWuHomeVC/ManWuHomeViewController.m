@@ -25,10 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"屋满";
-//    UIButton* button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-////    button.frame = CGRectMake(0, 0, 100, 100);
-//    [button addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:button];
     [self.view addSubview:self.commodityListView];
     [self.headerView setDescriptionModel:nil];
     [self.headerView sizeToFit];
@@ -37,11 +33,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-}
-
--(void)add{
-    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
-    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +56,14 @@
     if (_commodityListView == nil) {
         _commodityListView = [[ManWuCommodityListView alloc] initWithFrame:self.view.bounds];
         _commodityListView.backgroundColor = [UIColor whiteColor];
+        __weak __block __typeof(self) weadSelf = self;
+        _commodityListView.collectionViewCtl.onRefreshEvent = ^(KSScrollViewServiceController* scrollViewController){
+            if (weadSelf == nil) {
+                return;
+            }
+            __strong __typeof(self) strongSelf = weadSelf;
+            [strongSelf.headerView refresh];
+        };
     }
     return _commodityListView;
 }

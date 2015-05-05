@@ -12,4 +12,6 @@
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel;
 
+-(void)refresh;
+
 @end
