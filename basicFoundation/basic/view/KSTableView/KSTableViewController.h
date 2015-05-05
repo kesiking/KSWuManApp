@@ -9,12 +9,16 @@
 #import "KSScrollViewServiceController.h"
 #import "KSCollectionViewConfigObject.h"
 
+typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource);
+
 @interface KSTableViewController : KSScrollViewServiceController<UITableViewDataSource, UITableViewDelegate>{
     UITableView*                 _tableView;
 }
 
 @property (nonatomic, strong) UIView*           tableHeaderView;
 @property (nonatomic, strong) UIView*           tableFooterView;
+
+@property (nonatomic, strong) tableViewDidSelectedBlock  tableViewDidSelectedBlock;
 
 // init method
 -(instancetype)initWithFrame:(CGRect)frame withConfigObject:(KSCollectionViewConfigObject*)configObject;

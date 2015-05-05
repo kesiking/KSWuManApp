@@ -108,10 +108,12 @@
 }
 
 -(void)setTableFooterView:(UIView *)tableFooterView{
+    self.tableView.tableFooterView = nil;
     self.tableView.tableFooterView = tableFooterView;
 }
 
 -(void)setTableHeaderView:(UIView *)tableHeaderView{
+    self.tableView.tableHeaderView = nil;
     self.tableView.tableHeaderView = tableHeaderView;
 }
 
@@ -239,6 +241,9 @@
         WeAppComponentBaseItem *componentItem = [self.dataSourceRead getComponentItemWithIndex:[indexPath row]];
         KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
         [cell didSelectItemWithComponentItem:componentItem extroParams:modelInfoItem];
+    }
+    if (self.tableViewDidSelectedBlock) {
+        self.tableViewDidSelectedBlock(tableView,indexPath,self.dataSourceRead);
     }
 }
 

@@ -12,25 +12,33 @@
 
 #define SEARCH_BAR_HEIGHT (44)
 #define WEAKSELF typeof(self) __weak weakSelf = self;
+#define STRONGSELF typeof(self) __strong strongSelf = weakSelf;
 #define labelViewTag 1002
 
-@interface KSSearchBasicView ()<UISearchBarDelegate>
+@interface KSSearchBasicView ()
 
 @property(nonatomic,strong) KSTableViewController     *tableViewCtl;
+@property(nonatomic,strong) Class                      viewCellClass;
+@property(nonatomic,strong) Class                      modelInfoClass;
+// 可操作dataSourceRead数据
 @property(nonatomic,strong) KSDataSource              *dataSourceRead;
 
 @property(nonatomic,strong) UISearchBar               *searchBar;
 @property(nonatomic,strong) UIButton                  *btnAccessoryView;
 
-/**
- *  searchBar位置
- */
-@property(nonatomic,assign) CGRect                     searchBarRect;
-@property(nonatomic,assign) CGRect                     searchBarSelectRect;
-
 @end
 
 @implementation KSSearchBasicView
+
+-(instancetype)initWithFrame:(CGRect)frame viewCellClass:(Class)viewCellClass modelInfoClass:(Class)modelInfoClass{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.viewCellClass = viewCellClass;
+        self.modelInfoClass = modelInfoClass;
+        [self setupView];
+    }
+    return self;
+}
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -52,6 +60,11 @@
     [self create];
 }
 
+// 刷新tableview数据
+-(void)reloadData{
+    [self.tableViewCtl reloadData];
+}
+
 -(void)create
 {
     self.backgroundColor = [UIColor whiteColor];
@@ -70,7 +83,19 @@
     frame.origin.y = self.navigateview.bottom;
     frame.size.height -= self.navigateview.height;
     self.tableViewCtl = [[KSTableViewController alloc] initWithFrame:frame withConfigObject:configObject];
-    [self.tableViewCtl registerClass:[KSViewCell class]];
+    if (self.viewCellClass && [self.viewCellClass isSubclassOfClass:[KSViewCell class]]) {
+        [self.tableViewCtl registerClass:[self.viewCellClass class]];
+    }else{
+        [self.tableViewCtl registerClass:[KSViewCell class]];
+    }
+    [self.tableViewCtl setDataSourceRead:self.dataSourceRead];
+    WEAKSELF
+    self.tableViewCtl.tableViewDidSelectedBlock = ^(UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource){
+        STRONGSELF
+        if (strongSelf.searchCompleteBlock) {
+            strongSelf.searchCompleteBlock(strongSelf.searchBar,strongSelf.tableViewCtl);
+        }
+    };
     UITableView* tableView = [self.tableViewCtl getTableView];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.scrollsToTop = YES;
@@ -78,31 +103,24 @@
 }
 
 -(void)initSearchBar{
-    CGFloat navigateViewYOringe = (IOS_VERSION<7?0:20);
-    _navigateview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, UI_NAVIGATION_HEIGHT)];
+    CGFloat navigateViewYOringe = 0;
+    _navigateview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, SEARCH_BAR_HEIGHT)];
     _navigateview.autoresizingMask=UIViewAutoresizingFlexibleWidth;
-    _navigateview.backgroundColor=[UIColor colorWithPatternImage:LOADIMAGE(@"navigate_background")];
     
-    self.searchBarRect = CGRectMake(0, navigateViewYOringe, self.navigateview.frame.size.width - 5, SEARCH_BAR_HEIGHT);
+    self.searchBarRect = CGRectMake(0, navigateViewYOringe, self.navigateview.frame.size.width, SEARCH_BAR_HEIGHT);
     self.searchBarSelectRect = CGRectMake(0,navigateViewYOringe, self.navigateview.frame.size.width, SEARCH_BAR_HEIGHT);
     
-    _searchbarbackgroundview = [[UIView alloc] initWithFrame:self.searchBarRect];
-    _searchbarbackgroundview.backgroundColor=[UIColor yellowColor];
-    _searchbarbackgroundview.autoresizingMask=UIViewAutoresizingFlexibleWidth;
-    
-    [_navigateview addSubview:_searchbarbackgroundview];
-    
-    self.searchBar = [[UISearchBar alloc] initWithFrame:_searchbarbackgroundview.bounds];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:self.searchBarRect];
     self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
-    self.searchBar.backgroundImage=LOADIMAGE(@"navigate_background");
+    self.searchBar.backgroundImage = LOADIMAGE(@"discover_searchview_background");
     [self.searchBar setSearchTextPositionAdjustment:UIOffsetMake(0, 0)];// 设置搜索框中文本框的文本偏移量
     [self.searchBar setAutocorrectionType:UITextAutocorrectionTypeDefault];
     self.searchBar.delegate = self;
     
-    [_searchbarbackgroundview addSubview:self.searchBar];
+    [_navigateview addSubview:self.searchBar];
     
     [self.searchBar sizeToFit];
     
@@ -111,7 +129,10 @@
 
 -(KSDataSource *)dataSourceRead {
     if (!_dataSourceRead) {
-        _dataSourceRead = [[KSDataSource alloc]init];
+        _dataSourceRead = [[KSDataSource alloc] init];
+        if (self.modelInfoClass && [self.modelInfoClass isSubclassOfClass:[KSCellModelInfoItem class]]) {
+            [_dataSourceRead setModelInfoItemClass:self.modelInfoClass];
+        }
     }
     return _dataSourceRead;
 }
@@ -121,20 +142,20 @@
         _btnAccessoryView=[[UIButton alloc] initWithFrame:CGRectMake(0, _navigateview.frame.origin.y + _navigateview.height, self.width, self.height)];
         [_btnAccessoryView setBackgroundColor:[UIColor blackColor]];
         [_btnAccessoryView setAlpha:0.0f];
-        [_btnAccessoryView addTarget:self action:@selector(ClickControlAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnAccessoryView addTarget:self action:@selector(clickControlAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_btnAccessoryView];
     }
     return _btnAccessoryView;
 }
 
--(void)setShowSearchChoose:(BOOL)showSearchChoose{
-    _showSearchChoose = showSearchChoose;
-    if (showSearchChoose) {
-        CGRect rect = self.searchBarSelectRect;
-        rect.origin.x = 30;
-        rect.size.width = rect.size.width - 30;
-        self.searchBarSelectRect = rect;
-    }
+#pragma mark - override
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    CGRect frame = self.bounds;
+    frame.origin.y = self.navigateview.bottom;
+    frame.size.height -= self.navigateview.height;
+    [self.tableViewCtl.scrollView setFrame:frame];
 }
 
 #pragma mark - reset searchView
@@ -144,6 +165,10 @@
     [self.tableViewCtl reloadData];
 }
 
+-(void)cancel{
+    [self clickControlAction:nil];
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark private method
@@ -151,9 +176,12 @@
 #pragma mark - btnAccessoryView
 
 // 遮罩层（按钮）-点击处理事件
-- (void) ClickControlAction:(id)sender{
+- (void) clickControlAction:(id)sender{
     NSLog(@"handleTaps");
     [self controlAccessoryView:0];
+    if (self.searchCancelBlock) {
+        self.searchCancelBlock(self.searchBar);
+    }
 }
 
 // 控制遮罩层的透明度
@@ -162,7 +190,7 @@
         //动画代码
         [self.btnAccessoryView setAlpha:alphaValue];
     }completion:^(BOOL finished){
-        if (alphaValue<=0 && [self.searchBar isFirstResponder]) {
+        if (alphaValue<=0) {
             [self.searchBar resignFirstResponder];
             [self.searchBar setShowsCancelButton:NO animated:YES];
             [self controlSearchBarAnimation:YES completion:nil];
@@ -176,7 +204,7 @@
     if (searchBarIsShow) {
         [UIView animateWithDuration:0.2 animations:^{
             //动画代码
-            [self.searchbarbackgroundview setFrame:self.searchBarRect];
+            [self.searchBar setFrame:self.searchBarRect];
             [self.searchBar sizeToFit];
         }completion:^(BOOL finished){
             if (completion) {
@@ -186,7 +214,7 @@
     }else{
         [UIView animateWithDuration:0.2 animations:^{
             //动画代码
-            [self.searchbarbackgroundview setFrame:self.searchBarSelectRect];
+            [self.searchBar setFrame:self.searchBarSelectRect];
             [self.searchBar sizeToFit];
         }completion:^(BOOL finished){
             if (completion) {
@@ -217,6 +245,9 @@
     [self.searchBar resignFirstResponder];
     [self.searchBar setShowsCancelButton:NO animated:YES];
     [self controlAccessoryView:0];// 隐藏遮盖层。
+    if (self.searchCancelBlock) {
+        self.searchCancelBlock(searchBar);
+    }
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{

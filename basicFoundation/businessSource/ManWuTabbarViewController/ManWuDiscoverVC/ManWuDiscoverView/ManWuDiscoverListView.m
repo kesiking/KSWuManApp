@@ -9,12 +9,21 @@
 #import "ManWuDiscoverListView.h"
 #import "ManWuDiscoverViewCell.h"
 #import "ManWuDiscoverCellModelInfoItem.h"
+#import "ManWuSearchView.h"
+#import "ManWuSearchViewCell.h"
+#import "ManWuSearchViewCellInfoItem.h"
+
+#define WEAKSELF typeof(self) __weak __block weakSelf = self;
+#define STRONGSELF typeof(self) __strong strongSelf = weakSelf;
+
 
 @interface ManWuDiscoverListView()
 
 @property (nonatomic,strong) KSDataSource*      dataSourceRead;
 
 @property (nonatomic,strong) KSDataSource*      dataSourceWrite;
+
+@property (nonatomic,strong) ManWuSearchView*   searchView;
 
 @end
 
@@ -23,6 +32,8 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.tableViewCtl.scrollView];
+    [self addSubview:self.searchView];
+    self.tableViewCtl.tableHeaderView = self.searchView.navigateview;
     NSMutableArray* arrayData = [[NSMutableArray alloc] init];
     for (int i = 0; i < 20 ; i++) {
         WeAppComponentBaseItem* component = [[WeAppComponentBaseItem alloc] init];
@@ -37,8 +48,8 @@
         KSCollectionViewConfigObject* configObject = [[KSCollectionViewConfigObject alloc] init];
         [configObject setupStandConfig];
         CGRect frame = self.bounds;
-        frame.size.width = frame.size.width - 2 * 8;
-        frame.origin.x = 8;
+        frame.size.width = frame.size.width - 2 * 0;
+        frame.origin.x = 0;
         configObject.collectionCellSize = CGSizeZero;
         configObject.needQueueLoadData = NO;
         configObject.needRefreshView = NO;
@@ -50,6 +61,42 @@
         [_tableViewCtl setDataSourceWrite:self.dataSourceWrite];
     }
     return _tableViewCtl;
+}
+
+-(ManWuSearchView *)searchView{
+    if (_searchView == nil) {
+        _searchView = [[ManWuSearchView alloc] initWithFrame:self.bounds viewCellClass:[ManWuSearchViewCell class] modelInfoClass:[ManWuSearchViewCellInfoItem class]];
+        _searchView.hidden = YES;
+        WEAKSELF
+        _searchView.searchStarkBlock = ^(UISearchBar* searchBar){
+            STRONGSELF
+            strongSelf.searchView.hidden = NO;
+            if (strongSelf.searchView.navigateview.superview != strongSelf.searchView) {
+                [strongSelf.searchView.navigateview removeFromSuperview];
+                [strongSelf.searchView addSubview:strongSelf.searchView.navigateview];
+            }
+        };
+        
+        void (^searchBarOperationBlock)(UISearchBar* searchBar) = ^(UISearchBar* searchBar){
+            STRONGSELF
+            if (strongSelf.searchView.navigateview.superview != strongSelf.tableViewCtl.scrollView) {
+                [strongSelf.searchView.navigateview removeFromSuperview];
+            }
+            strongSelf.tableViewCtl.tableHeaderView = strongSelf.searchView.navigateview;
+            strongSelf.searchView.hidden = YES;
+        };
+        
+        _searchView.searchCancelBlock = ^(UISearchBar* searchBar){
+            searchBarOperationBlock(searchBar);
+        };
+        
+        _searchView.searchCompleteBlock = ^(UISearchBar* searchBar,KSTableViewController* tableViewCtl){
+            STRONGSELF
+            searchBar.text = @"";
+            [strongSelf.searchView cancel];
+        };
+    }
+    return _searchView;
 }
 
 -(KSDataSource *)dataSourceRead {

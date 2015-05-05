@@ -10,7 +10,7 @@
 #import "ManWuDiscoverCollectionViewCell.h"
 #import "ManWuDiscoverCellModelInfoItem.h"
 
-#define titleLabel_left_border     (0.0)
+#define titleLabel_left_border     (8.0)
 #define titleLabel_right_border    (8.0)
 #define titleLabel_top_border      (6.0)
 #define titleLabel_height          (20.0)
@@ -38,6 +38,8 @@
         KSCollectionViewConfigObject* configObject = [[KSCollectionViewConfigObject alloc] init];
         CGRect frame = self.bounds;
         frame.origin.y = self.titleLabel.bottom + 4;
+        frame.origin.x = titleLabel_left_border;
+        frame.size.width = frame.size.width - 2 * titleLabel_left_border;
         configObject.collectionColumn = 4;
         configObject.minimumInteritemSpacing = 4;
         configObject.minimumLineSpacing = 4;
