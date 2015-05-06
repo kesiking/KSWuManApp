@@ -64,7 +64,7 @@
 
 -(ManWuCommoditySortListView *)sortListSelectView{
     if (_sortListSelectView == nil) {
-        _sortListSelectView = [[ManWuCommoditySortListView alloc] initWithFrame:self.bounds viewCellClass:NSClassFromString(@"ManWuCommoditySortViewCell") modelCellClass:NSClassFromString(@"ManWuCommoditySortAndFiltModel")];
+        _sortListSelectView = [[ManWuCommoditySortListView alloc] initWithFrame:self.bounds viewCellClass:NSClassFromString(@"ManWuCommoditySortViewCell") modelCellClass:NSClassFromString(@"ManWuCommoditySortAndDiscountModelInfoCell")];
         WEAKSELF
         void(^sortListSelectBlock)(void) = ^(){
             STRONGSELF
@@ -93,7 +93,7 @@
 
 -(ManWuCommodityFiltForDiscoverListView *)filtForDiscoverSelectView{
     if (_filtForDiscoverSelectView == nil) {
-        _filtForDiscoverSelectView = [[ManWuCommodityFiltForDiscoverListView alloc] initWithFrame:self.bounds viewCellClass:NSClassFromString(@"ManWuCommoditySortViewCell") modelCellClass:NSClassFromString(@"ManWuCommoditySortAndFiltModel")];
+        _filtForDiscoverSelectView = [[ManWuCommodityFiltForDiscoverListView alloc] initWithFrame:self.bounds viewCellClass:NSClassFromString(@"ManWuCommoditySortViewCell") modelCellClass:NSClassFromString(@"ManWuCommoditySortAndDiscountModelInfoCell")];
         WEAKSELF
         
         void(^flitForDiscoverBlock)(void) = ^(){
