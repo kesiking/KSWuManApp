@@ -16,6 +16,8 @@
 // 商品列表url
 #define kManWuCommodityList      @"manwu_commodity_list"
 
+#define KManWuCommodityListForDiscount @"manwu_commodity_list_discount"
+
 // 商品详情url
 #define kManWuCommodityDetail    @"manwu_commodity_detail"
 

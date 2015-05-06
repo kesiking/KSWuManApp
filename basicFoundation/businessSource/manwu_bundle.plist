@@ -6,6 +6,8 @@
 	<dict>
 		<key>manwu_commodity_list</key>
 		<string>ManWuCommodityListViewController</string>
+		<key>manwu_commodity_list_discount</key>
+		<string>ManWuCommodityListForDiscountViewController</string>
 		<key>manwu_commodity_detail</key>
 		<string>ManWuCommodityDetailViewController</string>
 		<key>manwu_commodity_buy_info</key>

@@ -264,6 +264,9 @@
         KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
         [cell didSelectItemWithComponentItem:componentItem extroParams:modelInfoItem];
     }
+    if (self.collectionViewDidSelectedBlock) {
+        self.collectionViewDidSelectedBlock(collectionView,indexPath,self.dataSourceRead);
+    }
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Deselect item

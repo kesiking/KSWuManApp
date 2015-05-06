@@ -28,6 +28,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         hasAddStateTarget = NO;
+        self.buttonDidSeleced = NO;
     }
     return self;
 }

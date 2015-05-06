@@ -118,7 +118,7 @@
 - (void)BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url{
     if (aBannerView == _bannerView) {
         NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
-        TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
+        TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);
     }
 }
 

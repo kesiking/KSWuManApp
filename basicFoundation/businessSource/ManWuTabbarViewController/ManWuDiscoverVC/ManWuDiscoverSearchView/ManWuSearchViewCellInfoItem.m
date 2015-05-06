@@ -15,5 +15,4 @@
     self.frame = CGRectMake(0, 0, 320, 44);
 }
 
-
 @end

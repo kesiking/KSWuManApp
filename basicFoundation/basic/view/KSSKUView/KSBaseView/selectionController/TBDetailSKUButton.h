@@ -10,6 +10,8 @@
 
 @interface TBDetailSKUButton : UIButton
 
+@property (nonatomic,assign)  BOOL buttonDidSeleced;
+
 /**
  *  设置在不同状态下按钮的背景颜色
  *

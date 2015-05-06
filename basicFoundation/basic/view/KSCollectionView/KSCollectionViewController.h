@@ -9,12 +9,18 @@
 #import "KSScrollViewServiceController.h"
 #import "KSCollectionViewConfigObject.h"
 
+typedef void(^collectionViewDidSelectedBlock) (UICollectionView* collectionView,NSIndexPath* indexPath,KSDataSource* dataSource);
+
+
 @interface KSCollectionViewController : KSScrollViewServiceController<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
     UICollectionView*               _collectionView;
 }
 
 @property (nonatomic, strong) UIView*           colletionHeaderView;
 @property (nonatomic, strong) UIView*           colletionFooterView;
+
+@property (nonatomic, strong) collectionViewDidSelectedBlock  collectionViewDidSelectedBlock;
+
 
 // init method
 -(instancetype)initWithFrame:(CGRect)frame withConfigObject:(KSCollectionViewConfigObject*)configObject;

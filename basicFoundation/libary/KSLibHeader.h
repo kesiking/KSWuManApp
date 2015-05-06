@@ -27,6 +27,9 @@
 #import "MBProgressHUD.h"
 #import "WeAppToast.h"
 
+#define WEAKSELF typeof(self) __weak __block weakSelf = self;
+#define STRONGSELF typeof(self) __strong strongSelf = weakSelf;
+
 #ifdef DEBUG
 #define NSLog(...) NSLog(__VA_ARGS__)
 #else

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KSTableViewController.h"
 
-typedef void(^SearchCompleteBlock) (UISearchBar* searchBar,KSTableViewController* tableViewCtl);
+typedef void(^tableDidSelectedBlock) (UISearchBar* searchBar,KSTableViewController* tableViewCtl);
 
 typedef void(^SearchStartBlock) (UISearchBar* searchBar);
 
@@ -51,7 +51,7 @@ typedef void(^SearchEndBlock) (UISearchBar* searchBar, NSString* searchText);
 /**
  *  回调函数
  */
-@property(nonatomic,strong) SearchCompleteBlock searchCompleteBlock;
+@property(nonatomic,strong) tableDidSelectedBlock tableViewDidSelectedBlock;
 
 @property(nonatomic,strong) SearchStartBlock    searchStarkBlock;
 

@@ -8,7 +8,9 @@
 
 #import "KSCollectionViewController.h"
 
-@interface ManWuCommodityListView : KSView
+@interface ManWuCommodityListView : KSView{
+    KSCollectionViewController* _collectionViewCtl;
+}
 
 @property (nonatomic,strong) KSCollectionViewController* collectionViewCtl;
 

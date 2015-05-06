@@ -76,7 +76,7 @@
         [params setObject:@"commodityId" forKey:@"commodityId"];
     }
     
-    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
+    TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);
 }
 
 @end

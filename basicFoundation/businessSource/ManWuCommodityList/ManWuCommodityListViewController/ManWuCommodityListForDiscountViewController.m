@@ -1,21 +1,21 @@
 //
-//  ManWuCommodityListViewController.m
+//  ManWuCommodityListForDiscountViewController.m
 //  basicFoundation
 //
-//  Created by 逸行 on 15-4-23.
+//  Created by 逸行 on 15-5-6.
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "ManWuCommodityListViewController.h"
-#import "ManWuCommodityListWithSortAndFiltBasicView.h"
+#import "ManWuCommodityListForDiscountViewController.h"
+#import "ManWuCommodityListSortAndFiltForDiscountView.h"
 
-@interface ManWuCommodityListViewController()
+@interface ManWuCommodityListForDiscountViewController ()
 
-@property (nonatomic,strong) ManWuCommodityListWithSortAndFiltView* commodityListView;
+@property (nonatomic,strong) ManWuCommodityListSortAndFiltForDiscountView* commodityListView;
 
 @end
 
-@implementation ManWuCommodityListViewController
+@implementation ManWuCommodityListForDiscountViewController
 
 -(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
     if (self = [self init]) {
@@ -35,9 +35,9 @@
     [super viewDidUnload];
 }
 
--(ManWuCommodityListWithSortAndFiltView *)commodityListView{
+-(ManWuCommodityListSortAndFiltForDiscountView *)commodityListView{
     if (_commodityListView == nil) {
-        _commodityListView = [[ManWuCommodityListWithSortAndFiltView alloc] initWithFrame:self.view.bounds];
+        _commodityListView = [[ManWuCommodityListSortAndFiltForDiscountView alloc] initWithFrame:self.view.bounds];
     }
     return _commodityListView;
 }
