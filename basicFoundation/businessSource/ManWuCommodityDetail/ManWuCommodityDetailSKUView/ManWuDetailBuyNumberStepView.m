@@ -27,7 +27,7 @@
 
 - (PAStepperDetail *)numberStepper {
     if (!_numberStepper) {
-        CGRect frame = CGRectMake(self.width - TBSKU_NUMBER_STEPPER_WIDTH - 15, 22, TBSKU_NUMBER_STEPPER_WIDTH, 30);
+        CGRect frame = CGRectMake(self.width - TBSKU_NUMBER_STEPPER_WIDTH - 15, (self.height - 30)/2, TBSKU_NUMBER_STEPPER_WIDTH, 30);
         _numberStepper = [[PAStepperDetail alloc] initWithFrame:frame];
         
         /*倍数购买*/
@@ -44,7 +44,7 @@
 
 - (UILabel *)buyTitleLabel {
     if (!_buyTitleLabel) {
-        _buyTitleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 25, 60, 30)];
+        _buyTitleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, (self.height - 30)/2, 60, 30)];
         _buyTitleLabel.backgroundColor=[UIColor clearColor];
         _buyTitleLabel.text = @"购买数量";
         _buyTitleLabel.font = [UIFont systemFontOfSize:14.0];

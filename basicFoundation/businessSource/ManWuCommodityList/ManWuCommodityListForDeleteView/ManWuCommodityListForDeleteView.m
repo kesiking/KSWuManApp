@@ -25,9 +25,6 @@
 
 -(void)setupView{
     [super setupView];
-    CGRect rect = self.collectionViewCtl.frame;
-    rect.size.height -= self.deleteView.height;
-    [self.collectionViewCtl setFrame:rect];
     [self addSubview:self.deleteView];
 }
 
@@ -37,21 +34,38 @@
         return;
     }
     _isCollectionEdit = isCollectionEdit;
+    
     KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject);
     configObject.isEditModel = isCollectionEdit;
     [self.collectionViewCtl reloadData];
+    
+    [self deleteBottomDoAnimation:isCollectionEdit];
+}
+
+-(void)deleteBottomDoAnimation:(BOOL)isCollectionEdit{
+    CGRect rect = self.deleteView.frame;
+    if (isCollectionEdit) {
+        rect.origin.y = self.bottom - rect.size.height;
+    }else{
+        rect.origin.y = self.bottom;
+    }
+    [UIView animateKeyframesWithDuration:0.3 delay:0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
+        [self.deleteView setFrame:rect];
+    } completion:nil];
+    _isCollectionEdit = isCollectionEdit;
 }
 
 -(ManWuCommodityDeleteBottom *)deleteView{
     if (_deleteView == nil) {
         CGRect rect = self.bounds;
         rect.size.height = 44;
-        rect.origin.y = self.bottom - rect.size.height;
+        rect.origin.y = self.bottom;
         _deleteView = [[ManWuCommodityDeleteBottom alloc] initWithFrame:rect];
         WEAKSELF
         _deleteView.deleteViewDidClickedBlock = ^(){
             STRONGSELF
             [strongSelf deleteSelectedCollectionCell];
+            [strongSelf deleteBottomDoAnimation:NO];
         };
     }
     return _deleteView;

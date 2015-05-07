@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface KSSafePayUtility : NSObject
 
@@ -17,6 +17,6 @@
  * 必须包含：tradeNO（订单号），price（价格）
  * 可包含：  productDescription（商品描述），productName（商品标题）
  */
-//+(void)aliPayForParams:(NSDictionary *)params CallbackBlock: (CompletionBlock)callbackBlock;
++(void)aliPayForParams:(NSDictionary *)params callbackBlock: (CompletionBlock)callbackBlock;
 
 @end

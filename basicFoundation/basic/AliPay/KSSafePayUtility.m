@@ -7,7 +7,6 @@
 //
 
 #import "KSSafePayUtility.h"
-#import <AlipaySDK/AlipaySDK.h>
 #import "DataSigner.h"
 #import "Order.h"
 
@@ -19,7 +18,7 @@
  * 必须包含：tradeNO（订单号），price（价格）
  * 可包含：  productDescription（商品描述），productName（商品标题）
  */
-+(void)aliPayForParams:(NSDictionary *)params CallbackBlock: (CompletionBlock)callbackBlock{
++(void)aliPayForParams:(NSDictionary *)params callbackBlock: (CompletionBlock)callbackBlock{
     /*
      *商户的唯一的parnter和seller。
      *签约后，支付宝会为每个商户分配一个唯一的 parnter 和 seller。

@@ -14,6 +14,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的";
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.backgroundColor = [UIColor redColor];
+    [button setFrame:self.view.bounds];
+    [button addTarget:self action:@selector(doClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+-(void)doClick{
+    TBOpenURLFromSourceAndParams(internalURL(KManWuCommodityListFavorite), self, nil);
 }
 
 -(void)viewWillAppear:(BOOL)animated{

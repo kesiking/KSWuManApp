@@ -63,6 +63,7 @@
         CGFloat w = ITEM_ICON_SIDE_LENGTH;
         CGFloat h = ITEM_ICON_SIDE_LENGTH;
         _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        _itemImageView.image = [UIImage imageNamed:@"gz_image_loading"];
         _itemImageView.layer.borderColor = TBBUY_COLOR_d_bg.CGColor;
         _itemImageView.layer.borderWidth = 0.5;
         _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -87,6 +88,7 @@
 - (UIImageView *)giftIcon {
     if (!_giftIcon) {
         _giftIcon = [[UIImageView alloc] init];
+        _giftIcon.image = [UIImage imageNamed:@"gz_image_loading"];
         _giftIcon.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_giftIcon];
     }
@@ -244,6 +246,13 @@
 //}
 
 - (void)setObject:(id)object {
+    self.titleLabel.text = @"fdsjfsdljfsdfdsjfjdslkfjdslkjfdskljfkldsjfkldsjfkldsjflkakl";
+    self.subtitleLabel.text = @"dfdsffjdslkjfdlksjfkdlsjfldskajflksdajfkldsdsfds";
+    self.quantityLabel.text = @"x2" ?: @"x1";
+    self.weightLabel.text = [NSString stringWithFormat:@"%@ kg", @"12"];
+    self.weightLabel.hidden = NO;
+    self.priceLabel.text = @"10" ?: @"";
+
 //    self.model = (TBTradeItemInfoCellModel *)object;
 //    TBTradeItemInfoCellModel *model = (TBTradeItemInfoCellModel *)self.model;
 //    
@@ -262,7 +271,7 @@
 //    }
 //    
 //    self.titleLabel.text = itemInfoModel.title;
-//    
+//
 //    if (model.itemModel.valid) {
 //        self.subtitleLabel.text = itemInfoModel.skuInfo;
 //    } else {
@@ -274,7 +283,7 @@
 //        price = [NSString stringWithFormat:@"%@ %@", COMMON_RMB_SYMBOL, price];
 //    }
 //    self.priceLabel.text = price ?: @"";
-//    
+//
 //    NSString *quantity = itemPayModel.quantity;
 //    if (quantity) {
 //        quantity = [NSString stringWithFormat:@"x%@", quantity];

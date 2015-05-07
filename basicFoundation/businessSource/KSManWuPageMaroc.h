@@ -18,6 +18,8 @@
 
 #define KManWuCommodityListForDiscount @"manwu_commodity_list_discount"
 
+#define KManWuCommodityListFavorite    @"manwu_commodity_list_favorite"
+
 // 商品详情url
 #define kManWuCommodityDetail    @"manwu_commodity_detail"
 

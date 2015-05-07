@@ -188,9 +188,17 @@
 
 #pragma mark  - TBTradeCellDelegate
 
-//- (void)setObject:(id)object {
-//    self.model = object;
+- (void)setObject:(id)object {
+    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@", @"kesi" ?: @""];
+    self.phoneNumLabel.text = @"13743432423" ?: @"";
+    self.addressLabel.text = [NSString stringWithFormat:@"收货地址：%@%@%@%@%@%@",
+                              @"府苑" ?: @"", @"浙江"  ?: @"",
+                              @"杭州"    ?: @"", @"未知"      ?: @"",
+                              @"西荡苑"    ?: @"", @"" ?: @""];
     
+
+//    self.model = object;
+//    
 //    TBTradeAddressModel *addressModel = (TBTradeAddressModel *)object;
 //    TBTradeAddressOption *option = addressModel.selectedOption;
 //    if (!option) {
@@ -199,7 +207,7 @@
 //    
 //    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@", option.fullName ?: @""];
 //    self.phoneNumLabel.text = option.mobile ?: @"";
-//            
+//
 //    self.addressLabel.text = [NSString stringWithFormat:@"收货地址：%@%@%@%@%@%@",
 //            option.countryName ?: @"", option.provinceName  ?: @"",
 //            option.cityName    ?: @"", option.areaName      ?: @"",
@@ -210,6 +218,6 @@
 //    } else {
 //        self.agencyInfoLabel.text = @"";
 //    }
-//}
+}
 
 @end

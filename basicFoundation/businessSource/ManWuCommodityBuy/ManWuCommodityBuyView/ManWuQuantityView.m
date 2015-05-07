@@ -35,7 +35,7 @@
 
 - (ManWuDetailBuyNumberStepView *)buyNumberStepView {
     if (!_buyNumberStepView) {
-        _buyNumberStepView=[[ManWuDetailBuyNumberStepView alloc] initWithFrame:CGRectMake(0, 0, TBSKU_CONTROL_WIDTH, 55+15)];
+        _buyNumberStepView=[[ManWuDetailBuyNumberStepView alloc] initWithFrame:CGRectMake(8, 0, self.width - 8 * 2, self.height)];
     }
     return _buyNumberStepView;
 }
@@ -63,12 +63,15 @@
 //}
 
 - (void)setObject:(id)object{
+    self.buyNumberStepView.numberStepper.value = 2;
+    self.buyNumberStepView.numberStepper.maximumValue = 10;
+
 //    self.model = (TBTradeQuantityModel *)object;
 //    TBTradeQuantityModel *model = (TBTradeQuantityModel *)self.model;
 //
 //    self.countView.numberStepper.num = model.quantity;
 //    self.countView.maxAmount = [NSString stringWithFormat:@"%d",model.max];
-//    
+//
 //    BOOL enable = model.status != TBTradeComponentStatusDisable;
 //    self.countView.userInteractionEnabled = enable;
 }

@@ -58,6 +58,9 @@
 @property (nonatomic, strong) UIImageView           *seperateLine;
 @property (nonatomic, assign, readonly) CGRect      seperateFrame;
 @property (nonatomic, strong, readonly) UIColor     *seperateColor;
+@property (nonatomic,strong) UIView                 *endline;
+
+
 
 - (void)inspectSeperateFrame;
 

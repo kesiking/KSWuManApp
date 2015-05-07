@@ -12,6 +12,8 @@
 		<string>ManWuCommodityDetailViewController</string>
 		<key>manwu_commodity_buy_info</key>
 		<string>ManWuCommodityBuyViewController</string>
+		<key>manwu_commodity_list_favorite</key>
+		<string>ManWuCommodityListDeleteDemoViewControolerViewController</string>
 	</dict>
 	<key>object_list</key>
 	<array>

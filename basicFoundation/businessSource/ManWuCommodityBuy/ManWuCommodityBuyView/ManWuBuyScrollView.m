@@ -49,7 +49,7 @@
 
 -(ManWuQuantityView *)quantityView{
     if (!_quantityView) {
-        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 100);
+        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 60);
         _quantityView = [[ManWuQuantityView alloc] initWithFrame:frame];
     }
     return _quantityView;
@@ -57,7 +57,7 @@
 
 -(ManWuDeliveryView *)deliveryView{
     if (!_deliveryView) {
-        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 100);
+        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 44);
         _deliveryView = [[ManWuDeliveryView alloc] initWithFrame:frame];
     }
     return _deliveryView;
@@ -65,7 +65,7 @@
 
 -(ManWuConfirmView *)comfirmView{
     if (!_comfirmView) {
-        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 100);
+        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 44);
         _comfirmView = [[ManWuConfirmView alloc] initWithFrame:frame];
     }
     return _comfirmView;
@@ -73,7 +73,7 @@
 
 - (CSLinearLayoutView *)skuContainer {
     if (!_skuContainer) {
-        float containerHeight = self.height -  TBSKU_BOTTOM_HEIGHT;
+        float containerHeight = self.height;
         CGRect frame = CGRectMake(0, 0, self.frame.size.width, containerHeight);
         _skuContainer = [[CSLinearLayoutView alloc] initWithFrame:frame];
         _skuContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -84,9 +84,16 @@
 
 -(void)reloadData{
     /*重新布局*/
+    [self.addressView setObject:nil];
+    [self.commodityInfoItem setObject:nil];
+    [self.quantityView setObject:nil];
+    [self.deliveryView setObject:nil];
+    [self.comfirmView setObject:nil];
+
+
     CGPoint skuContentOffset          = self.skuContainer.contentOffset;
     [self.skuContainer removeAllItems];
-    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, TBSKU_BORDER_GAP, 5.0, 0.0);
+    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, 0, 0, 0.0);
     
     
     /*收获地址*/
@@ -121,7 +128,7 @@
         [self.skuContainer addItem:deliveryViewItem];
     }
     
-    /*送货方式*/
+    /*确认付款*/
     if (1) {
         CSLinearLayoutItem *comfirmViewItem = [[CSLinearLayoutItem alloc]
                                                 initWithView:self.comfirmView];

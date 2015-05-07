@@ -13,6 +13,7 @@
 -(void)setupView{
     [super setupView];
     self.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.endline];
 }
 
 - (void)setObject:(id)object{
@@ -25,6 +26,15 @@
 
 - (UIColor *)seperateColor {
     return RGB(0xDD, 0xDD, 0xDD);
+}
+
+-(UIView *)endline{
+    if (_endline == nil) {
+        _endline = [TBDetailUITools drawDivisionLine:0
+                                                yPos:self.height - 0.5
+                                           lineWidth:self.width];
+    }
+    return _endline;
 }
 
 - (UIImageView *)seperateLine {

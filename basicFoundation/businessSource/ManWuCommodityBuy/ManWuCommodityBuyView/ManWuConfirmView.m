@@ -8,6 +8,7 @@
 
 #import "ManWuConfirmView.h"
 #import "TBDetailSKUButton.h"
+#import "KSSafePayUtility.h"
 
 @interface ManWuConfirmView()
 
@@ -20,12 +21,14 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.selectBtn];
+    self.endline.hidden = YES;
 }
 
 - (TBDetailSKUButton *)selectBtn {
     if (!_selectBtn) {
-        CGRect frame = CGRectMake(0, 0, 100, 50);
+        CGRect frame = CGRectMake((self.width - 100)/2, (self.height - 30)/2, 100, 30);
         _selectBtn = [[TBDetailSKUButton alloc] initWithFrame:frame];
+        _selectBtn.layer.cornerRadius = 3.0;
         [_selectBtn setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Tag alpha:1]
                          forState:UIControlStateNormal];
         [_selectBtn setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Tag alpha:0.2]
@@ -35,20 +38,18 @@
                                                    blue:225.0/255 alpha:0.7f]
                          forState:UIControlStateSelected];
         
-        [_selectBtn setTitle:@"确认" forState:UIControlStateNormal];
+        [_selectBtn setTitle:@"确认付款" forState:UIControlStateNormal];
         [_selectBtn setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal];
         _selectBtn.titleLabel.font = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_ChineseBold
                                                                size:TBDetailFontSize_Title0];
+        [_selectBtn addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _selectBtn;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(void)selectBtnClick:(TBDetailSKUButton*)sender{
+    [KSSafePayUtility aliPayForParams:nil callbackBlock:^(NSDictionary *resultDic) {
+        ;
+    }];
 }
-*/
-
 @end
