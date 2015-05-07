@@ -82,6 +82,15 @@
     [self.realItemList removeObjectsInArray:otherArray];
 }
 
+- (void)removeObjectsAtIndexes:(NSIndexSet *)indexes{
+    if (indexes == nil
+        || ![indexes isKindOfClass:[NSIndexSet class]]
+        || [indexes count] <= 0) {
+        return;
+    }
+    [self.realItemList removeObjectsAtIndexes:indexes];
+}
+
 - (NSArray *)sortedArrayUsingComparator:(NSComparator)cmptr NS_AVAILABLE(10_6, 4_0){
     return [self.realItemList sortedArrayUsingComparator:cmptr];
 }

@@ -407,6 +407,32 @@
     }
 }
 
+#pragma mark deleteItemAtIndexs
+
+-(void)deleteItemAtIndexs:(NSIndexSet*)indexs{
+    if (self.service && self.service.pagedList) {
+        [self.service.pagedList removeObjectsAtIndexes:indexs];
+    }
+    if ([self needQueueLoadData]) {
+        __block __weak __typeof(self) wself = self;
+        dispatch_sync(_serialQueue, ^{
+            @try {
+                __strong __typeof(self) sself = wself;
+                if (wself == nil) {
+                    return;
+                }
+                [sself.dataSourceWrite deleteItemAtIndexs:indexs];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"------>dispatch %s list crashed for %@",__FUNCTION__,exception.reason);
+            }
+        });
+        [self.dataSourceRead deleteItemAtIndexs:indexs];
+    }else{
+        [self.dataSourceRead deleteItemAtIndexs:indexs];
+    }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark subclass override method

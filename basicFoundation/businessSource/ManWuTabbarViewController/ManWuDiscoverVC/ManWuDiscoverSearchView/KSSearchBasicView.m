@@ -90,7 +90,7 @@
     }
     [self.tableViewCtl setDataSourceRead:self.dataSourceRead];
     WEAKSELF
-    self.tableViewCtl.tableViewDidSelectedBlock = ^(UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource){
+    self.tableViewCtl.tableViewDidSelectedBlock = ^(UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject){
         STRONGSELF
         if (strongSelf.tableViewDidSelectedBlock) {
             strongSelf.tableViewDidSelectedBlock(strongSelf.searchBar,strongSelf.tableViewCtl);

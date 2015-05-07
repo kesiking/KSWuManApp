@@ -63,6 +63,13 @@
     }
 }
 
+-(void)setScrollViewCtl:(KSScrollViewServiceController *)scrollViewCtl{
+    if (scrollViewCtl != _scrollViewCtl) {
+        _scrollViewCtl = scrollViewCtl;
+        _cellView.scrollViewCtl = scrollViewCtl;
+    }
+}
+
 -(void)setupCellView{
     
 }
@@ -74,6 +81,7 @@
         }else{
             _cellView = [[KSViewCell alloc] initWithFrame:self.bounds];
         }
+        _cellView.scrollViewCtl = self.scrollViewCtl;
     }
     return _cellView;
 }
@@ -81,6 +89,9 @@
 - (void)configCellWithFrame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(id)extroParams{
     if (![self.cellView checkCellLegalWithWithCellView:self componentItem:componentItem]) {
         return;
+    }
+    if ([extroParams isKindOfClass:[KSCellModelInfoItem class]]) {
+        self.cellView.indexPath = [(KSCellModelInfoItem*)extroParams cellIndexPath];
     }
     [self.cellView configCellWithCellView:self Frame:rect componentItem:componentItem extroParams:extroParams];
     if (self.cellView && self.cellView.superview == nil) {
@@ -97,6 +108,10 @@
 
 -(void)didSelectItemWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(id)extroParams{
     [self.cellView didSelectCellWithCellView:self componentItem:componentItem extroParams:extroParams];
+}
+
+-(void)configDeleteCellAtIndexPath:(NSIndexPath *)indexPath componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(id)extroParams{
+    [self.cellView configDeleteCellWithCellView:self atIndexPath:indexPath componentItem:componentItem extroParams:extroParams];
 }
 
 -(void)dealloc{

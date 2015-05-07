@@ -84,6 +84,38 @@
     }
 }
 
+-(void)deleteItemAtIndexs:(NSIndexSet*)indexs{
+    if (indexs == nil
+        || ![indexs isKindOfClass:[NSIndexSet class]]
+        || [indexs count] <= 0) {
+        return;
+    }
+    @try {
+        __block BOOL isArrayIndexOverBoundary = NO;
+        [indexs enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+            if (idx >= [self.dataList count]) {
+                *stop = YES;
+                isArrayIndexOverBoundary = YES;
+            }else{
+                WeAppComponentBaseItem* componentItem = [self getComponentItemWithIndex:idx];
+                NSString* modelInfoItemId = [self getModelInfoItemIdWithComponentItem:componentItem atIndex:idx];
+                if (_modelList && [_modelList count] > 0 && modelInfoItemId) {
+                    [_modelList removeObjectForKey:modelInfoItemId];
+                }
+            }
+        }];
+        if (!isArrayIndexOverBoundary) {
+            NSMutableArray* dataList = [_dataList mutableCopy];
+            [dataList removeObjectsAtIndexes:indexs];
+            _dataList = dataList;
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"-------> KSDataSource %s crashed for %@",__FUNCTION__,exception.reason);
+    }
+    
+}
+
 // 根据index获取componentItem，而后配置初始化modelInfoItem，在modelInfoItem中可以配置cell需要的参数
 -(void)setupComponentItemWithIndex:(NSUInteger)index{
     

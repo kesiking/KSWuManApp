@@ -23,6 +23,7 @@
 - (void)insertObject:(id)anObject atIndex:(NSUInteger)index;
 - (void)insertObjects:(NSArray *)objects atIndexes:(NSIndexSet *)indexes;
 - (void)removeObjectAtIndex:(NSUInteger)index;
+- (void)removeObjectsAtIndexes:(NSIndexSet *)indexes;
 - (void)removeObjectsInArray:(NSArray *)otherArray;
 
 - (NSArray *)sortedArrayUsingComparator:(NSComparator)cmptr NS_AVAILABLE(10_6, 4_0);

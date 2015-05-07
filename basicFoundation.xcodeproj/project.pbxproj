@@ -241,6 +241,9 @@
 		058DAE6C1AE7A339009D0008 /* KSBasicURLResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 058DAE6B1AE7A339009D0008 /* KSBasicURLResolver.m */; };
 		058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 058DAE711AE7A5CF009D0008 /* KSBasicNavigator.m */; };
 		05AB565C1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB565B1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m */; };
+		05ACAC591AFB473A00853E1C /* ManWuCommodityListForDeleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC581AFB473A00853E1C /* ManWuCommodityListForDeleteView.m */; };
+		05ACAC5C1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC5B1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.m */; };
+		05ACAC5F1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC5E1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m */; };
 		05B8DF541AF344B8002C2E4F /* ManWuDiscoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */; };
 		05B8DF571AF3455A002C2E4F /* ManWuDiscoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF561AF3455A002C2E4F /* ManWuDiscoverListView.m */; };
 		05B8DF5A1AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF591AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m */; };
@@ -752,6 +755,12 @@
 		058DAE741AE7D45B009D0008 /* KSManWuPageMaroc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSManWuPageMaroc.h; sourceTree = "<group>"; };
 		05AB565A1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicNetWorkAdapter.h; sourceTree = "<group>"; };
 		05AB565B1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicNetWorkAdapter.m; sourceTree = "<group>"; };
+		05ACAC571AFB473A00853E1C /* ManWuCommodityListForDeleteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListForDeleteView.h; sourceTree = "<group>"; };
+		05ACAC581AFB473A00853E1C /* ManWuCommodityListForDeleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListForDeleteView.m; sourceTree = "<group>"; };
+		05ACAC5A1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityDeleteBottom.h; sourceTree = "<group>"; };
+		05ACAC5B1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityDeleteBottom.m; sourceTree = "<group>"; };
+		05ACAC5D1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListDeleteDemoViewControolerViewController.h; sourceTree = "<group>"; };
+		05ACAC5E1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListDeleteDemoViewControolerViewController.m; sourceTree = "<group>"; };
 		05B8DF521AF344B8002C2E4F /* ManWuDiscoverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverViewCell.h; sourceTree = "<group>"; };
 		05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverViewCell.m; sourceTree = "<group>"; };
 		05B8DF551AF3455A002C2E4F /* ManWuDiscoverListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverListView.h; sourceTree = "<group>"; };
@@ -1437,6 +1446,8 @@
 			children = (
 				058BC3F01AE89DA700A4F799 /* ManWuMyInfoViewController.h */,
 				058BC3F11AE89DA700A4F799 /* ManWuMyInfoViewController.m */,
+				05ACAC5D1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.h */,
+				05ACAC5E1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m */,
 			);
 			path = ManMyInfoVC;
 			sourceTree = "<group>";
@@ -1475,6 +1486,7 @@
 		058BC4031AE89EA700A4F799 /* ManWuCommodityList */ = {
 			isa = PBXGroup;
 			children = (
+				05ACAC561AFB471700853E1C /* ManWuCommodityListForDeleteView */,
 				0553F76C1AFA15820013BB97 /* ManWuCommodityListForDiscountrView */,
 				0553F75A1AF9EB660013BB97 /* Resources */,
 				052CC6DB1AF9E84700AF7C78 /* ManWuComodityListModel */,
@@ -1903,6 +1915,17 @@
 			path = configCenter;
 			sourceTree = "<group>";
 		};
+		05ACAC561AFB471700853E1C /* ManWuCommodityListForDeleteView */ = {
+			isa = PBXGroup;
+			children = (
+				05ACAC571AFB473A00853E1C /* ManWuCommodityListForDeleteView.h */,
+				05ACAC581AFB473A00853E1C /* ManWuCommodityListForDeleteView.m */,
+				05ACAC5A1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.h */,
+				05ACAC5B1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.m */,
+			);
+			path = ManWuCommodityListForDeleteView;
+			sourceTree = "<group>";
+		};
 		05B8DF511AF344B8002C2E4F /* ManWuDiscoverView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2209,6 +2232,7 @@
 				0553F76F1AFA15BE0013BB97 /* ManWuCommodityListSortAndFiltForDiscountView.m in Sources */,
 				052CC6CA1AF8C77E00AF7C78 /* ManWuSearchViewCell.m in Sources */,
 				058DAE5A1AE731A3009D0008 /* NSDictionary+JSONSerialize.m in Sources */,
+				05ACAC591AFB473A00853E1C /* ManWuCommodityListForDeleteView.m in Sources */,
 				056664381AEB284F00FD1C65 /* KSViewCell.m in Sources */,
 				055C75821ADFBF6000C35854 /* MKAnnotationView+WebCache.m in Sources */,
 				056664351AEB284F00FD1C65 /* KSCollectionViewCell.m in Sources */,
@@ -2237,12 +2261,14 @@
 				056664701AEDDC5500FD1C65 /* WeAppToast.m in Sources */,
 				058DADD51AE52EC0009D0008 /* AFURLResponseSerialization.m in Sources */,
 				058BC3FD1AE89DA700A4F799 /* ManWuDiscoverViewController.m in Sources */,
+				05ACAC5C1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.m in Sources */,
 				056664A41AEE308300FD1C65 /* UIViewController+KNSemiModal.m in Sources */,
 				0566643B1AEB284F00FD1C65 /* KSScrollViewController.m in Sources */,
 				056664D91AEF395900FD1C65 /* ManWuCommodityDetailModel.m in Sources */,
 				052CC6991AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m in Sources */,
 				055C75841ADFBF6000C35854 /* SDImageCache.m in Sources */,
 				058D5CFD1AF20F03006EA35C /* ManWuAddressView.m in Sources */,
+				05ACAC5F1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m in Sources */,
 				052CC6961AF71B1A00AF7C78 /* ManWuCommodityView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

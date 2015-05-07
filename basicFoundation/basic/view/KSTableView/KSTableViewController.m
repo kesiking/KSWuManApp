@@ -89,6 +89,51 @@
     return self.tableView;
 }
 
+-(NSMutableArray *)collectionDeleteItems{
+    if (_collectionDeleteItems == nil) {
+        _collectionDeleteItems = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+    return _collectionDeleteItems;
+}
+
+-(void)deleteCollectionCellProccessBlock:(void(^)(NSArray* collectionDeleteItems,KSDataSource* dataSource))proccessBlock completeBolck:(void(^)(void))completeBlock{
+    
+    if ([self.collectionDeleteItems count] > 0) {
+        __block BOOL isCollectionDeleteItemValuable = YES;
+        [self.collectionDeleteItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if (obj == nil || ![obj isKindOfClass:[NSIndexPath class]]) {
+                *stop = YES;
+                isCollectionDeleteItemValuable = NO;
+            }
+        }];
+        if (isCollectionDeleteItemValuable) {
+            [self.tableView beginUpdates];
+            // Delete the items with proccessBlock.
+            if (proccessBlock) {
+                proccessBlock(self.collectionDeleteItems,self.dataSourceRead);
+            }
+            // Delete the items from the data source.
+            NSMutableIndexSet* indexSet = [NSMutableIndexSet indexSet];
+            [self.collectionDeleteItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSIndexPath* indexPath = obj;
+                [indexSet addIndex:[indexPath row]];
+            }];
+            [self deleteItemAtIndexs:indexSet];
+            // Now delete the items from the collection view.
+            [self.tableView deleteRowsAtIndexPaths:self.collectionDeleteItems withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
+            if (completeBlock) {
+                completeBlock();
+            }
+        }
+        [self.collectionDeleteItems removeAllObjects];
+    }else{
+        if (completeBlock) {
+            completeBlock();
+        }
+    }
+}
+
 -(void)refreshData {
     if (self.tableView == nil) {
         return;
@@ -170,6 +215,7 @@
     //保证cell中的可以重用
     if (componentItem) {
         [cell setViewCellClass:self.viewCellClass];
+        [cell setScrollViewCtl:self];
         [cell configCellWithFrame:rect componentItem:componentItem extroParams:modelInfoItem];
     }
     
@@ -243,7 +289,7 @@
         [cell didSelectItemWithComponentItem:componentItem extroParams:modelInfoItem];
     }
     if (self.tableViewDidSelectedBlock) {
-        self.tableViewDidSelectedBlock(tableView,indexPath,self.dataSourceRead);
+        self.tableViewDidSelectedBlock(tableView,indexPath,self.dataSourceRead,(KSCollectionViewConfigObject*)self.configObject);
     }
 }
 

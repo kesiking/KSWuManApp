@@ -16,5 +16,6 @@
 @property (nonatomic,strong) UILabel*             titleLabel;
 @property (nonatomic,strong) UILabel*             priceLabel;
 @property (nonatomic,strong) UILabel*             favorateLabel;
+@property (nonatomic,strong) UIButton*            selectButton;
 
 @end

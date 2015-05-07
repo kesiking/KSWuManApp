@@ -15,5 +15,6 @@
 @property (nonatomic, assign) CGSize               collectionCellSize;
 @property (nonatomic, assign) NSUInteger           minimumInteritemSpacing;
 @property (nonatomic, assign) NSUInteger           minimumLineSpacing;
+@property (nonatomic, assign) BOOL                 isEditModel;
 
 @end

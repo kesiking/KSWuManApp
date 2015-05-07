@@ -54,4 +54,7 @@ typedef void (^ scrollViewOnNextEvnet)(KSScrollViewServiceController* scrollView
 // override subclass 数据返回后回调用refreshData，最后会调用reloadData接口
 -(void)refreshData;
 
+// override subclass 删除数据dataSource中的数据，调用dataSource的deleteItemAtIndexs接口
+-(void)deleteItemAtIndexs:(NSIndexSet*)indexs;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ManWuViewCell.h"
+#import "KSCollectionViewController.h"
 
 #define commodityImage_border        (8.0)
 #define commodityImage_width_height  (self.width - 0)
@@ -17,6 +18,7 @@
 #define favorateImage_width_height   (20)
 #define favorateImage_left_border    (2)
 #define titleLabel_bottom_border     (2.0)
+#define selectButton_width_height    (30.0)
 
 @implementation ManWuViewCell
 
@@ -99,15 +101,55 @@
     return _favorateImageView;
 }
 
-- (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
-    self.commodityImageView.image = nil;
+-(UIButton *)selectButton{
+    if (_selectButton == nil) {
+        _selectButton = [[UIButton alloc] initWithFrame:CGRectMake(self.commodityImageView.right - selectButton_width_height, self.commodityImageView.top, selectButton_width_height, selectButton_width_height)];
+        [self setupSelectViewStatus:NO];
+        _selectButton.hidden = YES;
+        [self addSubview:_selectButton];
+    }
+    return _selectButton;
+}
+
+- (void)reloadDataWithComponent:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     if (extroParams.imageHasLoaded) {
         [self.commodityImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+    }else{
+        self.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
     }
     self.titleLabel.text = @"测试风刀霜剑烦死了都快捷方式来得及菲利克斯";
     self.priceLabel.text = @"￥1000";
     NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:100 number:2];
     self.favorateLabel.text = favorateLabelText;
+}
+
+- (void)reloadSelectViewWithComponent:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
+    if (extroParams.configObject && [extroParams.configObject isKindOfClass:[KSCollectionViewConfigObject class]]) {
+        KSCollectionViewConfigObject* configObject = extroParams.configObject;
+        if (configObject.isEditModel) {
+            self.selectButton.hidden = NO;
+            KSCollectionViewController* collectionViewCtl = ((KSCollectionViewController*)self.scrollViewCtl);
+            NSMutableArray* collectionDeleteItems = collectionViewCtl.collectionDeleteItems;
+            BOOL isSelect = extroParams.cellIndexPath && [collectionDeleteItems containsObject:extroParams.cellIndexPath];
+            [self setupSelectViewStatus:isSelect];
+            return;
+        }
+    }
+    self.selectButton.hidden = YES;
+}
+
+-(void)setupSelectViewStatus:(BOOL)isSelect{
+    if (isSelect) {
+        [self.selectButton setBackgroundColor:[UIColor redColor]];
+    }else{
+        [self.selectButton setBackgroundColor:[UIColor greenColor]];
+    }
+}
+
+- (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
+    [super configCellWithCellView:cell Frame:rect componentItem:componentItem extroParams:extroParams];
+    [self reloadSelectViewWithComponent:componentItem extroParams:extroParams];
+    [self reloadDataWithComponent:componentItem extroParams:extroParams];
 }
 
 - (void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
@@ -117,6 +159,19 @@
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
     TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityDetail), self,nil,params);
+}
+
+-(void)configDeleteCellWithCellView:(id<KSViewCellProtocol>)cell atIndexPath:(NSIndexPath *)indexPath componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
+    
+    KSCollectionViewController* collectionViewCtl = ((KSCollectionViewController*)self.scrollViewCtl);
+    NSMutableArray* collectionDeleteItems = collectionViewCtl.collectionDeleteItems;
+    if (![collectionDeleteItems containsObject:indexPath]) {
+        [collectionDeleteItems addObject:indexPath];
+        self.selectButton.backgroundColor = [UIColor redColor];
+    }else{
+        self.selectButton.backgroundColor = [UIColor greenColor];
+        [collectionDeleteItems removeObject:indexPath];
+    }
 }
 
 @end

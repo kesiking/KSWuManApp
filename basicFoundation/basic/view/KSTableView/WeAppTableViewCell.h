@@ -17,4 +17,6 @@
 
 @property (nonatomic, strong) Class                viewCellClass;
 
+@property (nonatomic,weak) KSScrollViewServiceController* scrollViewCtl;
+
 @end

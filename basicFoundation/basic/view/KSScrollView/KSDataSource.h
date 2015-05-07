@@ -30,6 +30,8 @@
 
 -(void)removeAllCellitems;
 
+-(void)deleteItemAtIndexs:(NSIndexSet*)indexs;
+
 // 获取KSCellModelInfoItem，在modelInfoItem中可以获取cell需要的参数
 -(KSCellModelInfoItem*)getComponentModelInfoItemWithIndex:(NSUInteger)index;
 
@@ -47,10 +49,16 @@
 
 @property (nonatomic, assign) BOOL               imageHasLoaded;
 
+// 原则上与[cellIndexPath row]相同
 @property (nonatomic, assign) NSUInteger         cellIndex;
 
-@property (nonatomic, strong) id                 modelInfoObject;
+// 可包含section信息，未来可扩展
+@property (nonatomic, assign) NSIndexPath*       cellIndexPath;
 
+// 存储了配置信息
+@property (nonatomic, strong) id                 configObject;
+
+// 预留
 @property (nonatomic, strong) NSDictionary*      modelInfoDict;
 
 // 配置初始化KSCellModelInfoItem，在modelInfoItem中可以配置cell需要的参数

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "basicFoundation/basic/view/KSCollectionView/KSCollectionViewController.m"
-            timestampString = "451657448.297455"
+            timestampString = "452674018.476812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -102,16 +102,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "basicFoundation/basic/view/KSCollectionView/KSCollectionViewCell.m"
-            timestampString = "452487598.465897"
+            filePath = "basicFoundation/businessSource/ManWuCommodityList/ManWuCommodityListView/ManWuCommodityListBaiscView/ManWuViewCell.m"
+            timestampString = "452674447.046131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "-init"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "-configCellWithCellView:Frame:componentItem:extroParams:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

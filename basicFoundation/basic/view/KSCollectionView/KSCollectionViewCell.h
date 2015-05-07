@@ -13,6 +13,8 @@
 
 +(NSString*)reuseIdentifier;
 
-@property (nonatomic, strong) Class                viewCellClass;
+@property (nonatomic, strong) Class                       viewCellClass;
+
+@property (nonatomic,weak) KSScrollViewServiceController* scrollViewCtl;
 
 @end

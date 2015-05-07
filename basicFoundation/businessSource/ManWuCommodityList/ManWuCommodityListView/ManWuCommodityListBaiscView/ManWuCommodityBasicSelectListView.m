@@ -92,7 +92,7 @@
         [_collectionViewCtl registerClass:[self.viewCellClass class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         WEAKSELF
-        _collectionViewCtl.collectionViewDidSelectedBlock = ^(UICollectionView* collectionView,NSIndexPath* indexPath,KSDataSource* dataSource){
+        _collectionViewCtl.collectionViewDidSelectedBlock = ^(UICollectionView* collectionView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject){
             STRONGSELF
             if (strongSelf.sortListSelectedBlock) {
                 strongSelf.sortListSelectedBlock(strongSelf

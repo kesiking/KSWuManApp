@@ -47,6 +47,13 @@
     }
 }
 
+-(void)setScrollViewCtl:(KSScrollViewServiceController *)scrollViewCtl{
+    if (scrollViewCtl != _scrollViewCtl) {
+        _scrollViewCtl = scrollViewCtl;
+        _cellView.scrollViewCtl = scrollViewCtl;
+    }
+}
+
 -(void)setupCellView{
 
 }
@@ -70,6 +77,7 @@
                 _cellView = [[KSViewCell alloc] initWithFrame:self.bounds];
             }
         }
+        _cellView.scrollViewCtl = self.scrollViewCtl;
     }
     return _cellView;
 }
@@ -94,6 +102,10 @@
 
 -(void)didSelectItemWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(id)extroParams{
     [self.cellView didSelectCellWithCellView:self componentItem:componentItem extroParams:extroParams];
+}
+
+-(void)configDeleteCellAtIndexPath:(NSIndexPath *)indexPath componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(id)extroParams{
+    [self.cellView configDeleteCellWithCellView:self atIndexPath:indexPath componentItem:componentItem extroParams:extroParams];
 }
 
 -(void)dealloc{

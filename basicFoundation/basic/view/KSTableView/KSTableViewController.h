@@ -9,7 +9,7 @@
 #import "KSScrollViewServiceController.h"
 #import "KSCollectionViewConfigObject.h"
 
-typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource);
+typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject);
 
 @interface KSTableViewController : KSScrollViewServiceController<UITableViewDataSource, UITableViewDelegate>{
     UITableView*                 _tableView;
@@ -19,6 +19,9 @@ typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* in
 @property (nonatomic, strong) UIView*           tableFooterView;
 
 @property (nonatomic, strong) tableViewDidSelectedBlock  tableViewDidSelectedBlock;
+
+// tableView的删除操作时使用
+@property (nonatomic, strong) NSMutableArray*   collectionDeleteItems;
 
 // init method
 -(instancetype)initWithFrame:(CGRect)frame withConfigObject:(KSCollectionViewConfigObject*)configObject;
@@ -31,6 +34,9 @@ typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* in
 
 // 更新configObject
 -(void)updateCollectionConfigObject:(KSCollectionViewConfigObject*)configObject;
+
+// 删除tableViewCell
+-(void)deleteCollectionCellProccessBlock:(void(^)(NSArray* collectionDeleteItems,KSDataSource* dataSource))proccessBlock completeBolck:(void(^)(void))completeBlock;
 
 // method used by subclass
 // 公用函数 在子类的- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath中调用

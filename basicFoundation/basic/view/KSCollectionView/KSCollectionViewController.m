@@ -98,6 +98,54 @@
     return self.collectionView;
 }
 
+-(NSMutableArray *)collectionDeleteItems{
+    if (_collectionDeleteItems == nil) {
+        _collectionDeleteItems = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+    return _collectionDeleteItems;
+}
+
+-(void)deleteCollectionCellProccessBlock:(void(^)(NSArray* collectionDeleteItems,KSDataSource* dataSource))proccessBlock completeBolck:(void(^)(void))completeBlock{
+
+    if ([self.collectionDeleteItems count] > 0) {
+        __block BOOL isCollectionDeleteItemValuable = YES;
+        [self.collectionDeleteItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if (obj == nil || ![obj isKindOfClass:[NSIndexPath class]]) {
+                *stop = YES;
+                isCollectionDeleteItemValuable = NO;
+            }
+        }];
+        if (isCollectionDeleteItemValuable) {
+            [self.collectionView performBatchUpdates:^{
+                // Delete the items with proccessBlock.
+                if (proccessBlock) {
+                    proccessBlock(self.collectionDeleteItems,self.dataSourceRead);
+                }
+                // Delete the items from the data source.
+                NSMutableIndexSet* indexSet = [NSMutableIndexSet indexSet];
+                [self.collectionDeleteItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    NSIndexPath* indexPath = obj;
+                    [indexSet addIndex:[indexPath row]];
+                }];
+                [self deleteItemAtIndexs:indexSet];
+                // Now delete the items from the collection view.
+                [self.collectionView deleteItemsAtIndexPaths:self.collectionDeleteItems];
+                
+                
+            } completion:^(BOOL finished) {
+                if (completeBlock) {
+                    completeBlock();
+                }
+            }];
+        }
+        [self.collectionDeleteItems removeAllObjects];
+    }else{
+        if (completeBlock) {
+            completeBlock();
+        }
+    }
+}
+
 -(void)releaseConstrutView{
     _collectionView.delegate = nil;
     _collectionView.dataSource = nil;
@@ -117,7 +165,12 @@
     [super refreshData];
 }
 
+-(void)deleteItemAtIndexs:(NSIndexSet*)indexs{
+    [super deleteItemAtIndexs:indexs];
+}
+
 -(void)reloadData{
+    [self.collectionDeleteItems removeAllObjects];
     [self.collectionView reloadData];
 }
 
@@ -163,6 +216,8 @@
     //获取cell模板数据
     WeAppComponentBaseItem *componentItem = [self.dataSourceRead getComponentItemWithIndex:[indexPath row]];
     KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
+    modelInfoItem.configObject = self.configObject;
+    modelInfoItem.cellIndexPath = indexPath;
     
     CGRect rect = CGRectMake(0, 0, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.width, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height);
     
@@ -173,6 +228,7 @@
     //保证cell中的可以重用
     if (componentItem) {
         [cell setViewCellClass:self.viewCellClass];
+        [cell setScrollViewCtl:self];
         [cell configCellWithFrame:rect componentItem:componentItem extroParams:modelInfoItem];
     }
     
@@ -262,10 +318,15 @@
         //获取cell模板数据
         WeAppComponentBaseItem *componentItem = [self.dataSourceRead getComponentItemWithIndex:[indexPath row]];
         KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
-        [cell didSelectItemWithComponentItem:componentItem extroParams:modelInfoItem];
+        KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.configObject);
+        if (configObject.isEditModel) {
+            [cell configDeleteCellAtIndexPath:indexPath componentItem:componentItem extroParams:modelInfoItem];
+        }else{
+            [cell didSelectItemWithComponentItem:componentItem extroParams:modelInfoItem];
+        }
     }
     if (self.collectionViewDidSelectedBlock) {
-        self.collectionViewDidSelectedBlock(collectionView,indexPath,self.dataSourceRead);
+        self.collectionViewDidSelectedBlock(collectionView,indexPath,self.dataSourceRead,(KSCollectionViewConfigObject*)self.configObject);
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {

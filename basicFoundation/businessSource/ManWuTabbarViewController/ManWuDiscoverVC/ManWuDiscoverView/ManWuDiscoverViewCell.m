@@ -82,7 +82,7 @@
 }
 
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
-    
+    [super configCellWithCellView:cell Frame:rect componentItem:componentItem extroParams:extroParams];
     ManWuDiscoverCellModelInfoItem* cellModelInfoItem = (ManWuDiscoverCellModelInfoItem*)extroParams;
     
     self.titleLabel.text = @"测试风刀霜剑烦死了都快捷方式来得及菲利克斯";
