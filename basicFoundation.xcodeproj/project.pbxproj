@@ -250,6 +250,14 @@
 		05ACAC6F1AFC6EC500853E1C /* ManWuAddressSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC6E1AFC6EC500853E1C /* ManWuAddressSelectViewCell.m */; };
 		05ACAC711AFC6F7B00853E1C /* ManWuAddressSelectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC701AFC6F7B00853E1C /* ManWuAddressSelectViewCell.xib */; };
 		05ACAC751AFC7A6200853E1C /* ManWuAddressInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC741AFC7A6200853E1C /* ManWuAddressInfoModel.m */; };
+		05ACAC941AFC9FC800853E1C /* KSErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC8D1AFC9FC800853E1C /* KSErrorView.m */; };
+		05ACAC951AFC9FC800853E1C /* TBModelStatusHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC8F1AFC9FC800853E1C /* TBModelStatusHandler.m */; };
+		05ACAC961AFC9FC800853E1C /* TBModelStatusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC911AFC9FC800853E1C /* TBModelStatusInfo.m */; };
+		05ACAC971AFC9FC800853E1C /* KSModelStatusBasicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ACAC931AFC9FC800853E1C /* KSModelStatusBasicInfo.m */; };
+		05ACAC9A1AFCA03A00853E1C /* wifi_error_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC991AFCA03A00853E1C /* wifi_error_image.png */; };
+		05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC9B1AFCA08200853E1C /* smile_error_image.png */; };
+		05ACAC9F1AFCA94800853E1C /* tb_btn_all_square_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC9D1AFCA94800853E1C /* tb_btn_all_square_normal.png */; };
+		05ACACA01AFCA94800853E1C /* tb_btn_all_square_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC9E1AFCA94800853E1C /* tb_btn_all_square_press.png */; };
 		05B8DF541AF344B8002C2E4F /* ManWuDiscoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */; };
 		05B8DF571AF3455A002C2E4F /* ManWuDiscoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF561AF3455A002C2E4F /* ManWuDiscoverListView.m */; };
 		05B8DF5A1AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF591AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m */; };
@@ -778,6 +786,19 @@
 		05ACAC701AFC6F7B00853E1C /* ManWuAddressSelectViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManWuAddressSelectViewCell.xib; sourceTree = "<group>"; };
 		05ACAC731AFC7A6200853E1C /* ManWuAddressInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressInfoModel.h; sourceTree = "<group>"; };
 		05ACAC741AFC7A6200853E1C /* ManWuAddressInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressInfoModel.m; sourceTree = "<group>"; };
+		05ACAC771AFC98E900853E1C /* KSErrorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSErrorProtocol.h; sourceTree = "<group>"; };
+		05ACAC8C1AFC9FC800853E1C /* KSErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSErrorView.h; sourceTree = "<group>"; };
+		05ACAC8D1AFC9FC800853E1C /* KSErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSErrorView.m; sourceTree = "<group>"; };
+		05ACAC8E1AFC9FC800853E1C /* TBModelStatusHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBModelStatusHandler.h; sourceTree = "<group>"; };
+		05ACAC8F1AFC9FC800853E1C /* TBModelStatusHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBModelStatusHandler.m; sourceTree = "<group>"; };
+		05ACAC901AFC9FC800853E1C /* TBModelStatusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBModelStatusInfo.h; sourceTree = "<group>"; };
+		05ACAC911AFC9FC800853E1C /* TBModelStatusInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBModelStatusInfo.m; sourceTree = "<group>"; };
+		05ACAC921AFC9FC800853E1C /* KSModelStatusBasicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSModelStatusBasicInfo.h; sourceTree = "<group>"; };
+		05ACAC931AFC9FC800853E1C /* KSModelStatusBasicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSModelStatusBasicInfo.m; sourceTree = "<group>"; };
+		05ACAC991AFCA03A00853E1C /* wifi_error_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wifi_error_image.png; sourceTree = "<group>"; };
+		05ACAC9B1AFCA08200853E1C /* smile_error_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile_error_image.png; sourceTree = "<group>"; };
+		05ACAC9D1AFCA94800853E1C /* tb_btn_all_square_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tb_btn_all_square_normal.png; sourceTree = "<group>"; };
+		05ACAC9E1AFCA94800853E1C /* tb_btn_all_square_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tb_btn_all_square_press.png; sourceTree = "<group>"; };
 		05B8DF521AF344B8002C2E4F /* ManWuDiscoverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverViewCell.h; sourceTree = "<group>"; };
 		05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverViewCell.m; sourceTree = "<group>"; };
 		05B8DF551AF3455A002C2E4F /* ManWuDiscoverListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverListView.h; sourceTree = "<group>"; };
@@ -1789,6 +1810,7 @@
 		058DADB21AE1107D009D0008 /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				05ACAC761AFC98CC00853E1C /* KSError */,
 				056664A21AEE308300FD1C65 /* UIViewController+KNSemiModal.h */,
 				056664A31AEE308300FD1C65 /* UIViewController+KNSemiModal.m */,
 				058DADB31AE110AA009D0008 /* KSViewController.h */,
@@ -1986,6 +2008,42 @@
 			path = ManWuAddressManagerModel;
 			sourceTree = "<group>";
 		};
+		05ACAC761AFC98CC00853E1C /* KSError */ = {
+			isa = PBXGroup;
+			children = (
+				05ACAC8B1AFC9FC800853E1C /* KSModelStatus */,
+				05ACAC771AFC98E900853E1C /* KSErrorProtocol.h */,
+			);
+			path = KSError;
+			sourceTree = "<group>";
+		};
+		05ACAC8B1AFC9FC800853E1C /* KSModelStatus */ = {
+			isa = PBXGroup;
+			children = (
+				05ACAC981AFCA03A00853E1C /* Resources */,
+				05ACAC8C1AFC9FC800853E1C /* KSErrorView.h */,
+				05ACAC8D1AFC9FC800853E1C /* KSErrorView.m */,
+				05ACAC8E1AFC9FC800853E1C /* TBModelStatusHandler.h */,
+				05ACAC8F1AFC9FC800853E1C /* TBModelStatusHandler.m */,
+				05ACAC901AFC9FC800853E1C /* TBModelStatusInfo.h */,
+				05ACAC911AFC9FC800853E1C /* TBModelStatusInfo.m */,
+				05ACAC921AFC9FC800853E1C /* KSModelStatusBasicInfo.h */,
+				05ACAC931AFC9FC800853E1C /* KSModelStatusBasicInfo.m */,
+			);
+			path = KSModelStatus;
+			sourceTree = "<group>";
+		};
+		05ACAC981AFCA03A00853E1C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				05ACAC991AFCA03A00853E1C /* wifi_error_image.png */,
+				05ACAC9B1AFCA08200853E1C /* smile_error_image.png */,
+				05ACAC9D1AFCA94800853E1C /* tb_btn_all_square_normal.png */,
+				05ACAC9E1AFCA94800853E1C /* tb_btn_all_square_press.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		05B8DF511AF344B8002C2E4F /* ManWuDiscoverView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2083,6 +2141,7 @@
 			files = (
 				058DAE351AE63A31009D0008 /* tabitem_home_normal.png in Resources */,
 				058DAE331AE63A31009D0008 /* tabitem_discover_normal.png in Resources */,
+				05ACAC9F1AFCA94800853E1C /* tb_btn_all_square_normal.png in Resources */,
 				058DAE621AE7992D009D0008 /* MatrixConfig.plist in Resources */,
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
 				058D5D0F1AF2140C006EA35C /* tbbuy_location@2x.png in Resources */,
@@ -2130,9 +2189,12 @@
 				058D5D0A1AF2140C006EA35C /* tbbuy_arrow@2x.png in Resources */,
 				058DADDB1AE52F97009D0008 /* SVProgressHUD.bundle in Resources */,
 				056664B31AEE37AC00FD1C65 /* tb_control_flow_number_right.png in Resources */,
+				05ACAC9A1AFCA03A00853E1C /* wifi_error_image.png in Resources */,
 				052CC6B91AF8588400AF7C78 /* home_placehold_banner.png in Resources */,
 				052CC6BA1AF8588400AF7C78 /* home_specialForToday_first_placehold_banner.png in Resources */,
 				058DAE681AE79CB4009D0008 /* manwu_bundle.plist in Resources */,
+				05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */,
+				05ACACA01AFCA94800853E1C /* tb_btn_all_square_press.png in Resources */,
 				056664B41AEE37AC00FD1C65 /* tb_control_flow_number_right_press.png in Resources */,
 				052CC6BB1AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png in Resources */,
 			);
@@ -2196,6 +2258,7 @@
 				056664BB1AEF1C3C00FD1C65 /* TBDetailSkuModel.m in Sources */,
 				058DAE4F1AE72FC3009D0008 /* TBURLAction.m in Sources */,
 				055C758A1ADFBF6000C35854 /* SDWebImagePrefetcher.m in Sources */,
+				05ACAC941AFC9FC800853E1C /* KSErrorView.m in Sources */,
 				058D5A9F1AF0B39B006EA35C /* DetailHUDActivityView.m in Sources */,
 				056664361AEB284F00FD1C65 /* KSCollectionViewConfigObject.m in Sources */,
 				058D5A9B1AF0B358006EA35C /* TBDetailNumberPageControl.m in Sources */,
@@ -2231,6 +2294,7 @@
 				052CC68F1AF7198B00AF7C78 /* WeAppBasicBannerView.m in Sources */,
 				0553F7921AFA1F7A0013BB97 /* ManWuCommoditySortListView.m in Sources */,
 				058DADAE1AE10FF7009D0008 /* RDVTabBarController.m in Sources */,
+				05ACAC971AFC9FC800853E1C /* KSModelStatusBasicInfo.m in Sources */,
 				058BC3E51AE89C2000A4F799 /* KSNavigator+RDVTabBarController.m in Sources */,
 				058D5D171AF21F70006EA35C /* ManWuQuantityView.m in Sources */,
 				0553F7901AFA1F7A0013BB97 /* ManWuCommoditySortAndDiscountModelInfoCell.m in Sources */,
@@ -2315,6 +2379,7 @@
 				058DAE661AE79A8B009D0008 /* KSConfigCenter.m in Sources */,
 				058DAE561AE73040009D0008 /* TBNavigationParams.m in Sources */,
 				052CC68E1AF7198B00AF7C78 /* WeAppBannerItem.m in Sources */,
+				05ACAC951AFC9FC800853E1C /* TBModelStatusHandler.m in Sources */,
 				052CC6B21AF7760900AF7C78 /* ManWuRecommendForListHeaderView.m in Sources */,
 				0566647F1AEE0A2900FD1C65 /* TBTradeSKUSelectionControl.m in Sources */,
 				05ACAC751AFC7A6200853E1C /* ManWuAddressInfoModel.m in Sources */,
@@ -2334,6 +2399,7 @@
 				052CC6991AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m in Sources */,
 				055C75841ADFBF6000C35854 /* SDImageCache.m in Sources */,
 				058D5CFD1AF20F03006EA35C /* ManWuAddressView.m in Sources */,
+				05ACAC961AFC9FC800853E1C /* TBModelStatusInfo.m in Sources */,
 				05ACAC5F1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m in Sources */,
 				052CC6961AF71B1A00AF7C78 /* ManWuCommodityView.m in Sources */,
 			);

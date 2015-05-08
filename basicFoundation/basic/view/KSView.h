@@ -7,12 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TBModelStatusHandler.h"
 
 @interface KSView : UIView
+
+@property(nonatomic,strong) TBModelStatusHandler*               statusHandler;
 
 -(void)setupView;
 
 // 寻找Keyboard输入框
 + (UIView *)findKeyboard;
+
+// override for subclass 发生错误后点击或是需要刷新时调用可刷新页面数据
+-(void)refreshDataRequest;
+
+// call by subclass 统一展示错误页面，错误信息可通过 statusHandler的statusInfo绑定
+-(void)showLoadingView;
+
+-(void)hideLoadingView;
+
+-(void)showErrorView:(NSError*)error;
+
+-(void)hideErrorView;
+
+-(void)showEmptyView;
+
+-(void)hideEmptyView;
 
 @end

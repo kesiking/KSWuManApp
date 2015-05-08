@@ -47,6 +47,11 @@ typedef void (^failureWrapper)();
     [self.view addSubview:self.commodityListView];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // 刷新逻辑，更新了收货管理列表后需要刷新
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

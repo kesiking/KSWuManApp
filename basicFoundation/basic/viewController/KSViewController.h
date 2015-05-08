@@ -9,7 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "KSTabBarViewControllerProtocol.h"
 #import "KSFoundationCommon.h"
+#import "TBModelStatusHandler.h"
 
 @interface KSViewController : UIViewController<KSTabBarViewControllerProtocol>
+
+@property(nonatomic,strong) TBModelStatusHandler*               statusHandler;
+
+// override for subclass 发生错误后点击或是需要刷新时调用可刷新页面数据
+-(void)refreshDataRequest;
+
+// call by subclass 统一展示错误页面，错误信息可通过 statusHandler的statusInfo绑定
+-(void)showLoadingView;
+
+-(void)hideLoadingView;
+
+-(void)showErrorView:(NSError*)error;
+
+-(void)hideErrorView;
+
+-(void)showEmptyView;
+
+-(void)hideEmptyView;
 
 @end

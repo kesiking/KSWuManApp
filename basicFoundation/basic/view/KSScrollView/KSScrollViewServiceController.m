@@ -57,6 +57,8 @@
 
 -(void)setService:(WeAppBasicService *)service{
     if (_service != service) {
+        _service.delegate = nil;
+        _service = nil;
         _service = service;
         _service.delegate = self;
     }

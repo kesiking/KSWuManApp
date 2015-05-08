@@ -7,6 +7,7 @@
 //
 
 #import "KSView.h"
+#import "KSModelStatusBasicInfo.h"
 
 @implementation KSView
 
@@ -63,8 +64,66 @@
     return self;
 }
 
+#pragma mark- override by subclass
+
 -(void)setupView{
     
+}
+
+-(void)refreshDataRequest{
+    
+}
+
+#pragma mark- TBModelStatusHandler
+
+- (TBModelStatusHandler*)statusHandler{
+    if (_statusHandler == nil) {
+        KSModelStatusBasicInfo *info = [[KSModelStatusBasicInfo alloc] init];
+        
+        info.titleForErrorBlock=^(NSError*error){
+            return @"服务器正忙，请稍微再试";
+        };
+        info.subTitleForErrorBlock=^(NSError*error){
+            return @"";
+        };
+        info.actionButtonTitleForErrorBlock=^(NSError*error){
+            return @"立刻刷新";
+        };
+        
+        WEAKSELF
+        _statusHandler = [[TBModelStatusHandler alloc] initWithStatusInfo:info];
+        _statusHandler.selectorForErrorBlock=^(NSError *error){
+            STRONGSELF
+            [strongSelf refreshDataRequest];
+        };
+    }
+    return _statusHandler;
+}
+
+#pragma mark- used by subclass
+
+-(void)showLoadingView{
+    [self.statusHandler showLoadingViewInView:self];
+}
+
+-(void)hideLoadingView{
+    [self.statusHandler hideLoadingView];
+}
+
+-(void)showErrorView:(NSError*)error{
+    [self.statusHandler showViewforError:error inView:self frame:self.frame];
+}
+
+-(void)hideErrorView{
+    [self.statusHandler removeStatusViewFromView:self];
+}
+
+-(void)showEmptyView{
+    [self.statusHandler showEmptyViewInView:self frame:self.frame];
+}
+
+-(void)hideEmptyView{
+    [self.statusHandler removeStatusViewFromView:self];
 }
 
 @end

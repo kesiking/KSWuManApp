@@ -7,6 +7,7 @@
 //
 
 #import "KSViewController.h"
+#import "KSModelStatusBasicInfo.h"
 
 @interface KSViewController ()
 
@@ -39,6 +40,64 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark- TBModelStatusHandler
+
+- (TBModelStatusHandler*)statusHandler{
+    if (_statusHandler == nil) {
+        KSModelStatusBasicInfo *info = [[KSModelStatusBasicInfo alloc] init];
+        
+        info.titleForErrorBlock=^(NSError*error){
+            return @"服务器正忙，请稍微再试";
+        };
+        info.subTitleForErrorBlock=^(NSError*error){
+            return @"";
+        };
+        info.actionButtonTitleForErrorBlock=^(NSError*error){
+            return @"立刻刷新";
+        };
+        
+        WEAKSELF
+        _statusHandler = [[TBModelStatusHandler alloc] initWithStatusInfo:info];
+        _statusHandler.selectorForErrorBlock=^(NSError *error){
+            STRONGSELF
+            [strongSelf refreshDataRequest];
+        };
+    }
+    return _statusHandler;
+}
+
+#pragma mark- override by subclass
+
+-(void)refreshDataRequest{
+    
+}
+
+#pragma mark- used by subclass
+
+-(void)showLoadingView{
+    [self.statusHandler showLoadingViewInView:self.view];
+}
+
+-(void)hideLoadingView{
+    [self.statusHandler hideLoadingView];
+}
+
+-(void)showErrorView:(NSError*)error{
+    [self.statusHandler showViewforError:error inView:self.view frame:self.view.frame];
+}
+
+-(void)hideErrorView{
+    [self.statusHandler removeStatusViewFromView:self.view];
+}
+
+-(void)showEmptyView{
+    [self.statusHandler showEmptyViewInView:self.view frame:self.view.frame];
+}
+
+-(void)hideEmptyView{
+    [self.statusHandler removeStatusViewFromView:self.view];
+}
+
 #pragma mark- KSTabBarViewControllerProtocol
 
 -(BOOL)shouldSelectViewController:(UIViewController *)viewController{
@@ -54,15 +113,5 @@
 -(void)didSelectSameViewController:(UIViewController *)viewController{
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
