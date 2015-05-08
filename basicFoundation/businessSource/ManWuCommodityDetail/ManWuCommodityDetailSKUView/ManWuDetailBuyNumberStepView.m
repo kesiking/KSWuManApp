@@ -18,7 +18,6 @@
     
     /*初始化添加分割线*/
     CGRect frame = CGRectMake(0, self.bottom - 0.5, self.width, 0.5);
-    frame.origin.y = 69;
     UIView *bottomLine=[[UIView alloc] initWithFrame:frame];
     bottomLine.backgroundColor = [TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Title0
                                                            alpha:0.2];
@@ -27,7 +26,7 @@
 
 - (PAStepperDetail *)numberStepper {
     if (!_numberStepper) {
-        CGRect frame = CGRectMake(self.width - TBSKU_NUMBER_STEPPER_WIDTH - 15, (self.height - 30)/2, TBSKU_NUMBER_STEPPER_WIDTH, 30);
+        CGRect frame = CGRectMake(self.width - TBSKU_NUMBER_STEPPER_WIDTH - 15, (self.height - 36)/2, TBSKU_NUMBER_STEPPER_WIDTH, 36);
         _numberStepper = [[PAStepperDetail alloc] initWithFrame:frame];
         
         /*倍数购买*/
@@ -44,11 +43,11 @@
 
 - (UILabel *)buyTitleLabel {
     if (!_buyTitleLabel) {
-        _buyTitleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, (self.height - 30)/2, 60, 30)];
+        _buyTitleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, (self.height - 36)/2, 60, 36)];
         _buyTitleLabel.backgroundColor=[UIColor clearColor];
         _buyTitleLabel.text = @"购买数量";
-        _buyTitleLabel.font = [UIFont systemFontOfSize:14.0];
-        [_buyTitleLabel setTextColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Title1]];
+        _buyTitleLabel.font = [UIFont boldSystemFontOfSize:15.0];
+        [_buyTitleLabel setTextColor:RGB(0x99, 0x99, 0x99)];
     }
     return _buyTitleLabel;
 }
@@ -57,8 +56,8 @@
 - (UILabel *)buyLimitLabel {
     if (!_buyLimitLabel) {
         float width = self.numberStepper.left - self.buyTitleLabel.right - 10;
-        CGFloat y   = self.buyTitleLabel.top + (self.buyTitleLabel.height - 26) / 2;
-        CGRect frame = CGRectMake(self.buyTitleLabel.right + 5, y, width, 26);
+        CGFloat y   = self.buyTitleLabel.top + (self.buyTitleLabel.height - 36) / 2;
+        CGRect frame = CGRectMake(self.buyTitleLabel.right + 5, y, width, 36);
         _buyLimitLabel           = [[UILabel alloc] initWithFrame:frame];
         _buyLimitLabel.font      = [UIFont systemFontOfSize:10.0];
         _buyLimitLabel.textColor = RGB(170, 170, 170);

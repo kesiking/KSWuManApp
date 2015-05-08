@@ -91,6 +91,8 @@
             return [self colorWithHex:0xf72862 alpha:alpha];
         case TBDetailColorStyle_JHSBackColor:
             return [self colorWithHex:0xfff7f9 alpha:alpha];
+        case TBDetailColorStyle_SKUButtonColor:
+            return [self colorWithHex:0x333333 alpha:alpha];
         default:
             return [UIColor clearColor];
     }

@@ -33,6 +33,7 @@
 #define kTBBuyColorND RGB_A(0x00,0x00,0x00,0.5)
 #define kTBBuyColorNE RGB(0x3D,0x42,0x45)
 #define kTBBuyColorNF RGB(0xCC,0xCC,0xCC)
+#define kTBBuyColorNG RGB(0x00,0x00,0x00)
 
 #define TBBUY_COLOR_a_bg   RGB(0xF9,0xF9,0xF9)
 #define TBBUY_COLOR_b_bg   RGB(0xEE,0xEE,0xEE)
@@ -43,21 +44,23 @@
 #define TBBUY_COLOR_C      RGB(0x99,0x99,0x99)
 #define TBBUY_COLOR_K      RGB(0x5F,0x64,0x6E)
 #define TBBUY_COLOR_G      RGB(0xFF,0x50,0x00)
+#define TBBUY_COLOR_M      RGB(0xFF,0x50,0x00)
 #define TBBUY_COLOR_b_line RGB(0xDD,0xDD,0xDD)
 #define TBBUY_COLOR_N_A    RGB(0xFF,0x50,0x01)
 #define TBBUY_COLOR_N_B    RGB(0xE0,0xE0,0xE0)
+#define TBBUY_COLOR_N_C    RGB(0xF8,0xF8,0xF8)
+
 
 #define TBBUY_FONT_3 16
 #define TBBUY_FONT_4 14
+#define TBBUY_FONT_6 13
 #define TBBUY_FONT_5 12
 
 @interface ManWuBuyBasicView : KSView
 
 @property (nonatomic, weak)   id                    delegate;
 
-@property (nonatomic, strong) UIImageView           *seperateLine;
 @property (nonatomic, assign, readonly) CGRect      seperateFrame;
-@property (nonatomic, strong, readonly) UIColor     *seperateColor;
 @property (nonatomic,strong) UIView                 *endline;
 
 

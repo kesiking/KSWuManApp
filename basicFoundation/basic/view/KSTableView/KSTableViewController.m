@@ -31,6 +31,16 @@
     return self;
 }
 
+-(instancetype)initWithFrame:(CGRect)frame{
+    KSCollectionViewConfigObject* configObject = [[KSCollectionViewConfigObject alloc] init];
+    [configObject setupStandConfig];
+    self = [self initWithFrame:frame withConfigObject:configObject];
+    if (self) {
+        
+    }
+    return self;
+}
+
 -(instancetype)initWithConfigObject:(KSScrollViewConfigObject *)configObject{
     self = [super initWithConfigObject:configObject];
     if (self) {

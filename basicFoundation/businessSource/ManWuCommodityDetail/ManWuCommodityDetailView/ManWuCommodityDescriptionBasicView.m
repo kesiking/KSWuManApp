@@ -34,8 +34,8 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 20)];
         _titleLabel.backgroundColor = [UIColor whiteColor];
         _titleLabel.numberOfLines = 1;
-        _titleLabel.textColor = RGB(0x63, 0x66, 0x69);
-        _titleLabel.font = [UIFont systemFontOfSize:12];
+        _titleLabel.textColor = RGB(0x66, 0x66, 0x66);
+        _titleLabel.font = [UIFont systemFontOfSize:13];
     }
     return _titleLabel;
 }
@@ -96,8 +96,8 @@
     label.autoresizingMask =  UIViewAutoresizingFlexibleHeight;
     label.adjustsFontSizeToFitWidth = NO;
     label.numberOfLines = 0;
-    label.textColor = RGB(0x63, 0x66, 0x69);
-    label.font = [UIFont systemFontOfSize:12];
+    label.textColor = RGB(0x66, 0x66, 0x66);
+    label.font = [UIFont systemFontOfSize:13];
     [label setText:description];
     [label sizeToFit];
     

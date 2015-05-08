@@ -73,7 +73,7 @@
     label.font            = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_Chinese
                                                       size:TBDetailFontSize_Title1];
     label.backgroundColor = [UIColor clearColor];
-    label.textColor       = [TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Title1];
+    label.textColor       = [TBDetailUIStyle colorWithStyle:TBDetailColorStyle_SKUButtonColor];
     
     [labelContainer addSubview:label];
     return labelContainer;
@@ -234,7 +234,7 @@
     CGSize  newSize = size;
     if ([self.propertySelectControls count] > 0) {
         UIView *lastView = [self.propertySelectControls objectAtIndex:[self.propertySelectControls count] - 1];
-        newSize = CGSizeMake(size.width, lastView.frame.origin.y + lastView.frame.size.height);
+        newSize = CGSizeMake(size.width, lastView.frame.origin.y + lastView.frame.size.height + TBSKU_VERTICAL_GAP);
     }
     
     return newSize;

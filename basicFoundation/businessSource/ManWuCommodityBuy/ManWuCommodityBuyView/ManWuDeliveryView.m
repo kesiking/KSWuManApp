@@ -13,13 +13,13 @@
 #define kLocationIconSize         23.0f
 #define kLocationIconMarginLeft   12.0f
 #define kIndicatorIconSize        17.0f
-#define kShipInfoMarginLeft       8.0f
+#define kShipInfoMarginLeft       15.0f
 #define kShipInfoMarginRight      33.0f
 #define kShipInfoMarginTop        16.0f
 #define kShipInfoMarginBottom     16.0f
 #define kFullNameLabelWidth      140.0f
 #define kFullNameLabelHeight      16.0f
-#define kFullNameFontSize         16.0f
+#define kFullNameFontSize         15.0f
 #define kPhoneNumFontSize         16.0f
 #define kAddressLabelMarginTop     6.0f
 #define kAddressLabelHeight       32.0f
@@ -44,25 +44,18 @@
 
 -(void)setupView{
     [super setupView];
-    CGFloat x = self.width - kArrowSize - 8.0f;
-    CGFloat y = (self.height - kArrowSize)/2;
-    CGFloat w = kArrowSize;
-    CGFloat h = kArrowSize;
-    CGRect frame = CGRectMake(x, y, w, h);
+//    CGFloat x = self.width - kArrowSize - 8.0f;
+//    CGFloat y = (self.height - kArrowSize)/2;
+//    CGFloat w = kArrowSize;
+//    CGFloat h = kArrowSize;
+//    CGRect frame = CGRectMake(x, y, w, h);
     
-    UIImageView *arrow = [[UIImageView alloc] initWithFrame:frame];
-    arrow.image = [UIImage imageNamed:kArrowFileName];
-    self.accessoryView = arrow;
-    [self addSubview:self.accessoryView];
+//    UIImageView *arrow = [[UIImageView alloc] initWithFrame:frame];
+//    arrow.image = [UIImage imageNamed:kArrowFileName];
+//    self.accessoryView = arrow;
+//    [self addSubview:self.accessoryView];
     
-    self.textLabel.font = [UIFont systemFontOfSize:TBBUY_FONT_4];
-    self.textLabel.textColor = kTBBuyColorNA;
     [self addSubview:self.textLabel];
-    
-    self.detailTextLabel.font = [UIFont systemFontOfSize:TBBUY_FONT_4];
-    self.detailTextLabel.textColor = kTBBuyColorNA;
-    self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping
-    | NSLineBreakByTruncatingTail;
     [self addSubview:self.detailTextLabel];
 }
 
@@ -78,6 +71,8 @@
         _detailTextLabel.backgroundColor = [UIColor whiteColor];
         _detailTextLabel.textColor = kTBBuyColorNA;
         _detailTextLabel.font = [UIFont systemFontOfSize:kFullNameFontSize];
+        _detailTextLabel.textAlignment = NSTextAlignmentRight;
+        _detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping | NSLineBreakByTruncatingTail;
     }
     return _detailTextLabel;
 }
@@ -85,15 +80,15 @@
 - (UILabel *)textLabel {
     if (!_textLabel) {
         CGFloat x = kShipInfoMarginLeft;
-        CGFloat y = kShipInfoMarginTop;
+        CGFloat y = (self.height - kFullNameLabelHeight)/2;
         CGFloat w = kFullNameLabelWidth;
         CGFloat h = kFullNameLabelHeight;
         CGRect frame = CGRectMake(x, y, w, h);
         
         _textLabel = [[UILabel alloc] initWithFrame:frame];
         _textLabel.backgroundColor = [UIColor whiteColor];
-        _textLabel.textColor = kTBBuyColorNA;
-        _textLabel.font = [UIFont systemFontOfSize:kFullNameFontSize];
+        _textLabel.textColor = kTBBuyColorNB;
+        _textLabel.font = [UIFont boldSystemFontOfSize:kFullNameFontSize];
     }
     return _textLabel;
 }
@@ -111,7 +106,7 @@
         
         NSString *dateString = [formatter stringFromDate:@"2015-11-12"];
         date = dateString ? dateString : @"";
-        period = @"dfs";
+        period = @"免邮费";
     }
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@ %@", name, date, period];
 

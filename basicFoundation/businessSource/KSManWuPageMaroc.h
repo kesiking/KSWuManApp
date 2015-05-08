@@ -16,8 +16,10 @@
 // 商品列表url
 #define kManWuCommodityList      @"manwu_commodity_list"
 
+// 商品折上折列表
 #define KManWuCommodityListForDiscount @"manwu_commodity_list_discount"
 
+// 商品收藏列表
 #define KManWuCommodityListFavorite    @"manwu_commodity_list_favorite"
 
 // 商品详情url
@@ -25,5 +27,7 @@
 
 // 商品下单url
 #define kManWuCommodityBuyInfo   @"manwu_commodity_buy_info"
+
+#define kManWuAddressManager     @"manwu_address_manager"
 
 #endif

@@ -128,7 +128,7 @@
     if (NEED_BUYNUMBERSTEPVIEW_COMPONENT) {
         CSLinearLayoutItem *buyNumberItem = [[CSLinearLayoutItem alloc]
                                              initWithView:self.buyNumberStepView];
-        buyNumberItem.padding             = padding;
+        buyNumberItem.padding             = CSLinearLayoutMakePadding(0, TBSKU_BORDER_GAP, 0.0, 0.0);
         [self.skuContainer addItem:buyNumberItem];
     }
     

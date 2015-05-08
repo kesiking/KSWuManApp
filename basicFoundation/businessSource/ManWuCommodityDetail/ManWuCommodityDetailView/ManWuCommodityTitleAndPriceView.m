@@ -55,9 +55,10 @@
 
 -(UIView *)commoditySeparateLine{
     if (_commoditySeparateLine == nil) {
-        _commoditySeparateLine = [TBDetailUITools drawDivisionLine:0
+        _commoditySeparateLine = [TBDetailUITools drawDivisionLine:8
                                                 yPos:self.height - 0.5
-                                           lineWidth:self.width];
+                                           lineWidth:self.width - 8 * 2];
+        [_commoditySeparateLine setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Price2]];
     }
     return _commoditySeparateLine;
 }
@@ -69,7 +70,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect rect = self.bounds;
     
-    rect.size.height = 50;
+    rect.size.height = 90;
     
     return CGSizeMake(rect.size.width, rect.size.height);
 }

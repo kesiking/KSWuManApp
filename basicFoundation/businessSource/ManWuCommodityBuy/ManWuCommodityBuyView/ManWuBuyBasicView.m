@@ -24,10 +24,6 @@
     return CGRectMake(12, 0, TBBUY_SCREEN_WIDTH - 24, kSeperateHeight);
 }
 
-- (UIColor *)seperateColor {
-    return RGB(0xDD, 0xDD, 0xDD);
-}
-
 -(UIView *)endline{
     if (_endline == nil) {
         _endline = [TBDetailUITools drawDivisionLine:0
@@ -37,20 +33,8 @@
     return _endline;
 }
 
-- (UIImageView *)seperateLine {
-    if (!_seperateLine) {
-        _seperateLine = [[UIImageView alloc] initWithFrame:self.seperateFrame];
-        _seperateLine.backgroundColor = self.seperateColor;
-    }
-    return _seperateLine;
-}
-
 - (void)extraInitializationByDelegate:(id)delegate {
     self.delegate = delegate;
-}
-
-- (void)inspectSeperateFrame {
-    _seperateLine.frame = CGRectMake(12, 0, TBBUY_SCREEN_WIDTH - 24, kSeperateHeight);
 }
 
 

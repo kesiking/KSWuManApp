@@ -13,8 +13,7 @@
 -(void)setupView{
     [super setupView];
     self.backgroundColor = [UIColor whiteColor];
-    CGFloat buttonWidth = self.frame.size.width / 2;
-    self.buyButton.frame  = CGRectMake((self.frame.size.width - buttonWidth)/2, 0, buttonWidth, self.frame.size.height);
+    self.buyButton.frame  = CGRectMake(0, 0, self.width, self.height);
     [self addSubview:self.buyButton];
     
     /*顶部分割线*/
@@ -23,9 +22,9 @@
 
 - (TBDetailSKUButton *)buyButton {
     if (!_buyButton) {
-        CGRect frame = CGRectMake(0, 0, 100, 50);
+        CGRect frame = CGRectMake(0, 0, self.width, self.height);
         _buyButton = [[TBDetailSKUButton alloc] initWithFrame:frame];
-        [_buyButton setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Tag alpha:1]
+        [_buyButton setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_SKUButtonColor alpha:1]
                        forState:UIControlStateNormal];
         [_buyButton setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Tag alpha:0.2]
                        forState:UIControlStateDisabled];
@@ -35,7 +34,7 @@
                        forState:UIControlStateSelected];
         
         [_buyButton setTitle:@"购买" forState:UIControlStateNormal];
-        [_buyButton setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal];
+        [_buyButton setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _buyButton.titleLabel.font = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_ChineseBold
                                                              size:TBDetailFontSize_Title0];
     }

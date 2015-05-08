@@ -92,8 +92,8 @@
     WEAKSELF
     self.tableViewCtl.tableViewDidSelectedBlock = ^(UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject){
         STRONGSELF
-        if (strongSelf.tableViewDidSelectedBlock) {
-            strongSelf.tableViewDidSelectedBlock(strongSelf.searchBar,strongSelf.tableViewCtl);
+        if (strongSelf.tableDidSelectedBlock) {
+            strongSelf.tableDidSelectedBlock(strongSelf.searchBar,strongSelf.tableViewCtl);
         }
     };
     UITableView* tableView = [self.tableViewCtl getTableView];

@@ -90,7 +90,7 @@
             searchBarOperationBlock(searchBar);
         };
         
-        _searchView.tableViewDidSelectedBlock = ^(UISearchBar* searchBar,KSTableViewController* tableViewCtl){
+        _searchView.tableDidSelectedBlock = ^(UISearchBar* searchBar,KSTableViewController* tableViewCtl){
             STRONGSELF
             searchBar.text = @"";
             [strongSelf.searchView cancel];

@@ -148,7 +148,11 @@ typedef enum{
     /*!
      *  聚划算背景颜色，浅粉色
      */
-    TBDetailColorStyle_JHSBackColor
+    TBDetailColorStyle_JHSBackColor,
+    /*!
+     *  屋满SKUbutton字体颜色，0x333333
+     */
+    TBDetailColorStyle_SKUButtonColor
 }TBDetailColorStyle;
 
 typedef enum {

@@ -7,7 +7,6 @@
 //
 
 #import "ManWuQuantityView.h"
-#import "ManWuDetailBuyNumberStepView.h"
 
 #define CELL_HEIGHT           60
 #define HONRIZONTAL_MARGIN    12
@@ -17,8 +16,6 @@
 #define NUM_STEPPER_ORIGIN_Y  12
 
 @interface ManWuQuantityView ()
-
-@property (nonatomic, strong) ManWuDetailBuyNumberStepView  *buyNumberStepView;
 
 @end
 
@@ -35,7 +32,7 @@
 
 - (ManWuDetailBuyNumberStepView *)buyNumberStepView {
     if (!_buyNumberStepView) {
-        _buyNumberStepView=[[ManWuDetailBuyNumberStepView alloc] initWithFrame:CGRectMake(8, 0, self.width - 8 * 2, self.height)];
+        _buyNumberStepView=[[ManWuDetailBuyNumberStepView alloc] initWithFrame:CGRectMake(15, 0, self.width - 15 * 2, self.height)];
     }
     return _buyNumberStepView;
 }

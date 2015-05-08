@@ -7,7 +7,10 @@
 //
 
 #import "ManWuBuyBasicView.h"
+#import "ManWuDetailBuyNumberStepView.h"
 
 @interface ManWuQuantityView : ManWuBuyBasicView
+
+@property (nonatomic, strong) ManWuDetailBuyNumberStepView  *buyNumberStepView;
 
 @end

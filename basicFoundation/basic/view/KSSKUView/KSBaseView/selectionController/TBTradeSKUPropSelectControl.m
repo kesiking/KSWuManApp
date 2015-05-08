@@ -129,7 +129,7 @@
     button.clipsToBounds            = YES;
     button.titleLabel.numberOfLines = 2;
     button.titleLabel.font          = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_Chinese
-                                                                size:TBDetailFontSize_Title2];
+                                                                size:TBDetailFontSize_Title0];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button setTitle:title forState:UIControlStateNormal];
     
@@ -154,9 +154,9 @@
 -(void)setButtonStyle:(TBDetailSKUButton *)button
 {
     /*normal状态*/
-    [button setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Title2]
+    [button setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_SKUButtonColor]
                  forState:UIControlStateNormal];
-    [button setBorderColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_LineColor1]
+    [button setBorderColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Price2]
                   forState:UIControlStateNormal];
     [button setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_White]
                       forState:UIControlStateNormal];

@@ -51,7 +51,7 @@ typedef void(^SearchEndBlock) (UISearchBar* searchBar, NSString* searchText);
 /**
  *  回调函数
  */
-@property(nonatomic,strong) tableDidSelectedBlock tableViewDidSelectedBlock;
+@property(nonatomic,strong) tableDidSelectedBlock tableDidSelectedBlock;
 
 @property(nonatomic,strong) SearchStartBlock    searchStarkBlock;
 

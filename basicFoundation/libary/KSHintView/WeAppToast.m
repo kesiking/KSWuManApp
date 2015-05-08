@@ -36,7 +36,7 @@
         l.numberOfLines=0;
         l.textAlignment=NSTextAlignmentCenter;
         l.text=s;
-        l.font=[UIFont boldSystemFontOfSize:16];
+        l.font=[UIFont boldSystemFontOfSize:17];
         l.textColor=[UIColor whiteColor];
         l.backgroundColor=[UIColor clearColor];
         [l sizeToFit];
@@ -49,7 +49,8 @@
         [h addSubview:l];
         h.tag=hinttag;
         h.layer.cornerRadius=7;
-        h.backgroundColor=[UIColor colorWithWhite:0 alpha:.7];
+        h.layer.borderColor = RGB(0x84, 0x83, 0x83).CGColor;
+        h.backgroundColor=[UIColor colorWithWhite:0 alpha:0.8];
     }
     
     [v addSubview:h];

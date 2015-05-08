@@ -8,19 +8,19 @@
 
 #import "ManWuBuyItemInfoView.h"
 
-#define HORIZONTAL_MARGIN        12
-#define VERTICAL_MARGIN          12
-#define ITEM_ICON_SIDE_LENGTH    60
+#define HORIZONTAL_MARGIN        15
+#define VERTICAL_MARGIN          15
+#define ITEM_ICON_SIDE_LENGTH    56
 #define ACTIVITY_ICON_TOP_MARGIN  2
 #define ACTIVITY_ICON_HEIGHT     15
 #define TITLE_LEFT_MARGIN         8
-#define TITLE_LABEL_HEIGHT       30
+#define TITLE_LABEL_HEIGHT       16
 #define SUBTITLE_TOP_MARGIN       2
 #define GIFT_ICON_WIDTH          42
 #define GIFT_ICON_HEIGHT         12
 #define GIFT_ICON_TOP_MARGIN      8
-#define PRICE_LABEL_WIDTH        78
-#define PRICE_LABEL_HEIGHT       14
+#define PRICE_LABEL_WIDTH        70
+#define PRICE_LABEL_HEIGHT       16
 
 @interface ManWuBuyItemInfoView ()
 
@@ -48,8 +48,8 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.subtitleLabel];
     [self addSubview:self.priceLabel];
-    [self addSubview:self.quantityLabel];
-    [self addSubview:self.weightLabel];
+//    [self addSubview:self.quantityLabel];
+//    [self addSubview:self.weightLabel];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,7 @@
         _itemImageView.image = [UIImage imageNamed:@"gz_image_loading"];
         _itemImageView.layer.borderColor = TBBUY_COLOR_d_bg.CGColor;
         _itemImageView.layer.borderWidth = 0.5;
+        _itemImageView.layer.cornerRadius = 3;
         _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _itemImageView;
@@ -90,6 +91,7 @@
         _giftIcon = [[UIImageView alloc] init];
         _giftIcon.image = [UIImage imageNamed:@"gz_image_loading"];
         _giftIcon.contentMode = UIViewContentModeScaleAspectFit;
+        _giftIcon.hidden = YES;
         [self addSubview:_giftIcon];
     }
     return _giftIcon;
@@ -97,15 +99,15 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        CGFloat s = TBBUY_FONT_5;
+        CGFloat s = TBBUY_FONT_6;
         CGFloat x = self.itemImageView.right + TITLE_LEFT_MARGIN;
-        CGFloat y = VERTICAL_MARGIN;
-        CGFloat w = TBBUY_SCREEN_WIDTH - x - PRICE_LABEL_WIDTH - HORIZONTAL_MARGIN;
+        CGFloat y = self.itemImageView.top - 2;
+        CGFloat w = self.width - x - PRICE_LABEL_WIDTH - HORIZONTAL_MARGIN;
         CGFloat h = TITLE_LABEL_HEIGHT;
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
-        _titleLabel.numberOfLines = 2;
+        _titleLabel.numberOfLines = 1;
         _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.font = [UIFont systemFontOfSize:s];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:s];
         _titleLabel.textColor = TBBUY_COLOR_L;
     }
     return _titleLabel;
@@ -115,7 +117,7 @@
     if (!_subtitleLabel) {
         CGFloat s = TBBUY_FONT_5;
         CGFloat x = self.titleLabel.left;
-        CGFloat y = self.titleLabel.bottom + SUBTITLE_TOP_MARGIN;
+        CGFloat y = self.titleLabel.bottom;
         CGFloat w = self.titleLabel.width;
         CGFloat h = self.titleLabel.height;
         _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
@@ -129,14 +131,14 @@
 
 - (UILabel *)priceLabel {
     if (!_priceLabel) {
-        CGFloat x = TBBUY_SCREEN_WIDTH - HORIZONTAL_MARGIN - PRICE_LABEL_WIDTH;
+        CGFloat x = self.width- HORIZONTAL_MARGIN - PRICE_LABEL_WIDTH;
         CGFloat y = VERTICAL_MARGIN;
         CGFloat w = PRICE_LABEL_WIDTH;
         CGFloat h = PRICE_LABEL_HEIGHT;
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
         _priceLabel.backgroundColor = [UIColor clearColor];
         _priceLabel.textAlignment = NSTextAlignmentRight;
-        _priceLabel.font = [UIFont systemFontOfSize:11];
+        _priceLabel.font = [UIFont systemFontOfSize:15];
         _priceLabel.textColor = TBBUY_COLOR_L;
     }
     return _priceLabel;
@@ -184,16 +186,15 @@
         self.subtitleLabel.height = ceil(self.height - self.subtitleLabel.top - VERTICAL_MARGIN);
     }
     
-    CGFloat x = self.titleLabel.left;
-    CGFloat y = self.titleLabel.bottom + GIFT_ICON_TOP_MARGIN;
-    CGFloat w = GIFT_ICON_WIDTH;
-    CGFloat h = GIFT_ICON_HEIGHT;
-    
-    if (self.subtitleLabel.text.length) {
-        y = self.subtitleLabel.bottom + GIFT_ICON_TOP_MARGIN / 2;
-    }
-    
-    self.giftIcon.frame = CGRectMake(x, y, w, h);
+//    CGFloat x = self.titleLabel.left;
+//    CGFloat y = self.titleLabel.bottom + GIFT_ICON_TOP_MARGIN;
+//    CGFloat w = GIFT_ICON_WIDTH;
+//    CGFloat h = GIFT_ICON_HEIGHT;
+//    
+//    if (self.subtitleLabel.text.length) {
+//        y = self.subtitleLabel.bottom + GIFT_ICON_TOP_MARGIN / 2;
+//    }
+//    self.giftIcon.frame = CGRectMake(x, y, w, h);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -248,10 +249,7 @@
 - (void)setObject:(id)object {
     self.titleLabel.text = @"fdsjfsdljfsdfdsjfjdslkfjdslkjfdskljfkldsjfkldsjfkldsjflkakl";
     self.subtitleLabel.text = @"dfdsffjdslkjfdlksjfkdlsjfldskajflksdajfkldsdsfds";
-    self.quantityLabel.text = @"x2" ?: @"x1";
-    self.weightLabel.text = [NSString stringWithFormat:@"%@ kg", @"12"];
-    self.weightLabel.hidden = NO;
-    self.priceLabel.text = @"10" ?: @"";
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",@"198"];
 
 //    self.model = (TBTradeItemInfoCellModel *)object;
 //    TBTradeItemInfoCellModel *model = (TBTradeItemInfoCellModel *)self.model;
