@@ -8,6 +8,7 @@
 
 #import "ManWuCommodityListForDeleteView.h"
 #import "ManWuCommodityDeleteBottom.h"
+#import "ManWuFavViewCell.h"
 
 @interface ManWuCommodityListForDeleteView()
 
@@ -26,6 +27,9 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.deleteView];
+    KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject);
+    configObject.collectionCellSize = CGSizeMake(configObject.collectionCellSize.width, 180);
+    [self.collectionViewCtl registerClass:[ManWuFavViewCell class]];
 }
 
 -(void)setIsCollectionEdit:(BOOL)isCollectionEdit{
@@ -65,7 +69,6 @@
         _deleteView.deleteViewDidClickedBlock = ^(){
             STRONGSELF
             [strongSelf deleteSelectedCollectionCell];
-            [strongSelf deleteBottomDoAnimation:NO];
         };
     }
     return _deleteView;
@@ -74,8 +77,12 @@
 #pragma mark - deleteSelectCollectionCell 操作
 
 - (void)deleteSelectedCollectionCell{
-    KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject);
-    configObject.isEditModel = NO;
+    /*
+     // 删除后不能继续删除的逻辑
+     // 注释后为可连续删除
+     KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject);
+     configObject.isEditModel = NO;
+     */
     self.collectionViewCtl.scrollView.userInteractionEnabled = NO;
     self.isEditing = YES;
     [self.collectionViewCtl deleteCollectionCellProccessBlock:^(NSArray *collectionDeleteItems,KSDataSource* dataSource) {

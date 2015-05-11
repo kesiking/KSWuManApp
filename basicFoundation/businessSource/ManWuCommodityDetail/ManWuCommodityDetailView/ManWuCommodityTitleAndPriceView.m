@@ -7,6 +7,8 @@
 //
 
 #import "ManWuCommodityTitleAndPriceView.h"
+#import "ManWuPraiseButton.h"
+#import "ManWuFavButton.h"
 
 @interface ManWuCommodityTitleAndPriceView()
 
@@ -14,8 +16,8 @@
 @property (nonatomic,strong) IBOutlet UILabel     *      commodityPriceLabel;
 
 @property (nonatomic,strong) IBOutlet UILabel     *      commodityPraiseLabel;
-@property (nonatomic,strong) IBOutlet UIButton    *      commodityPraiseButton;
-@property (nonatomic,strong) IBOutlet UIButton    *      commodityFavorateButton;
+@property (nonatomic,strong) IBOutlet ManWuPraiseButton *      commodityPraiseButton;
+@property (nonatomic,strong) IBOutlet ManWuFavButton    *      commodityFavorateButton;
 
 @property (nonatomic,strong) UIView               *      commoditySeparateLine;
 

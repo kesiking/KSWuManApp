@@ -12,10 +12,12 @@
 #define commodityImage_border        (8.0)
 #define commodityImage_width_height  (self.width - 0)
 #define commodityImage_bottom_border (5.0)
-#define favorateLabel_width          (25)
+#define favorateLabel_width          (30)
 #define favorateLabel_height         (15)
 #define favorateImage_right_border   (4)
-#define favorateImage_width_height   (20)
+#define favorateImage_width_height   (30)
+#define favorateImage_width          (17)
+#define favorateImage_height         (15)
 #define favorateImage_left_border    (2)
 #define titleLabel_bottom_border     (2.0)
 #define selectButton_width_height    (30.0)
@@ -41,7 +43,7 @@
 -(void)setupView{
     [self.commodityImageView setFrame:CGRectMake(0, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
     [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - favorateLabel_width, self.commodityImageView.bottom + commodityImage_bottom_border, favorateLabel_width, favorateLabel_height)];
-    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 1, favorateImage_width_height, favorateImage_width_height)];
+    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border, favorateImage_width_height, favorateImage_width_height)];
     [self.titleLabel setFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom + commodityImage_bottom_border, self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.favorateLabel.height)];
     [self.priceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
 }
@@ -84,18 +86,10 @@
     return _commodityImageView;
 }
 
--(UIImageView *)enjoyImageView{
-    if (_enjoyImageView == nil) {
-        _enjoyImageView = [[UIImageView alloc] init];
-        [self addSubview:_enjoyImageView];
-    }
-    return _enjoyImageView;
-}
-
--(UIImageView *)favorateImageView{
+-(ManWuPraiseButton *)favorateImageView{
     if (_favorateImageView == nil) {
-        _favorateImageView = [[UIImageView alloc] init];
-        [_favorateImageView setImage:[UIImage imageNamed:@"gz_image_loading"]];
+        _favorateImageView = [[ManWuPraiseButton alloc] init];
+        [_favorateImageView setImageEdgeInsets:UIEdgeInsetsMake(1, (favorateImage_width_height - favorateImage_width), (favorateImage_width_height - favorateImage_height) - 1, 0)];
         [self addSubview:_favorateImageView];
     }
     return _favorateImageView;
@@ -111,6 +105,13 @@
     return _selectButton;
 }
 
+- (void)updateFrame{
+    [self.favorateLabel sizeToFit];
+    [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - self.favorateLabel.width, self.favorateLabel.top, self.favorateLabel.width, self.favorateLabel.height)];
+    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - self.favorateImageView.width, self.favorateImageView.top, self.favorateImageView.width, self.favorateImageView.height)];
+    [self.titleLabel setFrame:CGRectMake(self.titleLabel.left, self.titleLabel.top , self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.titleLabel.height)];
+}
+
 - (void)reloadDataWithComponent:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     if (extroParams.imageHasLoaded) {
         [self.commodityImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
@@ -119,8 +120,9 @@
     }
     self.titleLabel.text = @"测试风刀霜剑烦死了都快捷方式来得及菲利克斯";
     self.priceLabel.text = @"￥1000";
-    NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:100 number:2];
+    NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:9 number:3];
     self.favorateLabel.text = favorateLabelText;
+    [self updateFrame];
 }
 
 - (void)reloadSelectViewWithComponent:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{

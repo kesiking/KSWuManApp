@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef BOOL(^IsViewEnableBlock)(UIView *view);
+
 /**
  * 移入plugin中 TB_UIViewAdditions.h
  */
@@ -25,5 +27,7 @@
 - (UIView*)descendantOrSelfWithClass:(Class)cls;
 - (UIView*)ancestorOrSelfWithClass:(Class)cls;
 - (void)removeAllSubviews;
+//获取当前view的superView属性，通过IsViewEnableBlock判断是否需要的view，若是所需view则返回当前view，否则返回nil;
+-(id)getEnableViewFromSuperView:(IsViewEnableBlock)IsViewEnableBlock;
 
 @end

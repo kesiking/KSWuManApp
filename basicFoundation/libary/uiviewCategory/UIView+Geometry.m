@@ -54,6 +54,21 @@
     }
 }
 
+-(id)getEnableViewFromSuperView:(IsViewEnableBlock)IsViewEnableBlock{
+    id obj = self;
+    while (obj != nil && [obj isKindOfClass:[UIView class]]) {
+        if (obj == nil) {
+            break;
+        }
+        if (IsViewEnableBlock && IsViewEnableBlock(obj)) {
+            return obj;
+            break;
+        }
+        obj = [obj superview];
+    }
+    return nil;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Accessors

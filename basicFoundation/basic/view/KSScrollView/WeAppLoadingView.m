@@ -57,14 +57,14 @@
 
 -(void)config{
     NSArray* imagesArray = [NSArray arrayWithObjects:
-                            [UIImage imageNamed:@"1.png"],
-                            [UIImage imageNamed:@"2.png"],
-                            [UIImage imageNamed:@"3.png"],
-                            [UIImage imageNamed:@"4.png"],
-                            [UIImage imageNamed:@"5.png"],
-                            [UIImage imageNamed:@"6.png"],
-                            [UIImage imageNamed:@"7.png"],
-                            [UIImage imageNamed:@"8.png"],
+                            [UIImage imageNamed:@"loading_view_1.png"],
+                            [UIImage imageNamed:@"loading_view_2.png"],
+                            [UIImage imageNamed:@"loading_view_3.png"],
+                            [UIImage imageNamed:@"loading_view_4.png"],
+                            [UIImage imageNamed:@"loading_view_5.png"],
+                            [UIImage imageNamed:@"loading_view_6.png"],
+                            [UIImage imageNamed:@"loading_view_7.png"],
+                            [UIImage imageNamed:@"loading_view_8.png"],
                             nil];
     self.animationImages = imagesArray;
     self.animationDuration = 0.5;

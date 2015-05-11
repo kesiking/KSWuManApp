@@ -13,6 +13,10 @@
 
 @property (nonatomic,strong) ManWuCommodityListForDeleteView* commodityListView;
 
+@property (nonatomic,strong) UIBarButtonItem* editListButtonItem;
+@property (nonatomic,strong) UIBarButtonItem* finishListButtonItem;
+
+
 @end
 
 @implementation ManWuCommodityListDeleteDemoViewControolerViewController
@@ -28,7 +32,9 @@
     [super viewDidLoad];
     self.title = @"我喜欢的";
     [self.view addSubview:self.commodityListView];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(edit)];
+    self.editListButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(editStart:)];
+    self.finishListButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(editFinish:)];
+    self.navigationItem.rightBarButtonItem = self.editListButtonItem;
 }
 
 -(void)viewDidUnload{
@@ -36,8 +42,14 @@
     [super viewDidUnload];
 }
 
-- (void)edit{
+- (void)editStart:(UIBarButtonItem*)button{
     [self.commodityListView setIsCollectionEdit:!self.commodityListView.isCollectionEdit];
+    self.navigationItem.rightBarButtonItem = self.finishListButtonItem;
+}
+
+- (void)editFinish:(UIBarButtonItem*)button{
+    [self.commodityListView setIsCollectionEdit:!self.commodityListView.isCollectionEdit];
+    self.navigationItem.rightBarButtonItem = self.editListButtonItem;
 }
 
 -(ManWuCommodityListForDeleteView *)commodityListView{

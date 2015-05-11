@@ -258,9 +258,28 @@
 		05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC9B1AFCA08200853E1C /* smile_error_image.png */; };
 		05ACAC9F1AFCA94800853E1C /* tb_btn_all_square_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC9D1AFCA94800853E1C /* tb_btn_all_square_normal.png */; };
 		05ACACA01AFCA94800853E1C /* tb_btn_all_square_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 05ACAC9E1AFCA94800853E1C /* tb_btn_all_square_press.png */; };
+		05AF2FEE1B003CF500890A65 /* ManWuFavViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AF2FED1B003CF500890A65 /* ManWuFavViewCell.m */; };
+		05AF2FF21B003F2800890A65 /* TBBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AF2FF11B003F2800890A65 /* TBBlurView.m */; };
+		05AF2FF61B0048F300890A65 /* ManWuOperationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AF2FF51B0048F300890A65 /* ManWuOperationButton.m */; };
+		05AF30031B004D3F00890A65 /* loading_view_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF2FFB1B004D3F00890A65 /* loading_view_1.png */; };
+		05AF30041B004D3F00890A65 /* loading_view_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF2FFC1B004D3F00890A65 /* loading_view_2.png */; };
+		05AF30051B004D3F00890A65 /* loading_view_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF2FFD1B004D3F00890A65 /* loading_view_3.png */; };
+		05AF30061B004D3F00890A65 /* loading_view_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF2FFE1B004D3F00890A65 /* loading_view_4.png */; };
+		05AF30071B004D3F00890A65 /* loading_view_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF2FFF1B004D3F00890A65 /* loading_view_5.png */; };
+		05AF30081B004D3F00890A65 /* loading_view_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF30001B004D3F00890A65 /* loading_view_6.png */; };
+		05AF30091B004D3F00890A65 /* loading_view_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF30011B004D3F00890A65 /* loading_view_7.png */; };
+		05AF300A1B004D3F00890A65 /* loading_view_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF30021B004D3F00890A65 /* loading_view_8.png */; };
+		05AF300D1B004FAF00890A65 /* ManWuFavButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AF300C1B004FAF00890A65 /* ManWuFavButton.m */; };
+		05AF30131B00506C00890A65 /* favorate_button_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF300F1B00506C00890A65 /* favorate_button_image.png */; };
+		05AF30141B00506C00890A65 /* praise_button_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF30101B00506C00890A65 /* praise_button_image.png */; };
+		05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF30111B00506C00890A65 /* unFavorate_button_image.png */; };
+		05AF30161B00506C00890A65 /* unPraise_button_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AF30121B00506C00890A65 /* unPraise_button_image.png */; };
+		05AF30201B005A8500890A65 /* ManWuFavService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AF301F1B005A8500890A65 /* ManWuFavService.m */; };
+		05AF30231B005B6400890A65 /* ManWuPraiseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AF30221B005B6400890A65 /* ManWuPraiseService.m */; };
 		05B8DF541AF344B8002C2E4F /* ManWuDiscoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */; };
 		05B8DF571AF3455A002C2E4F /* ManWuDiscoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF561AF3455A002C2E4F /* ManWuDiscoverListView.m */; };
 		05B8DF5A1AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8DF591AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m */; };
+		05D5F2B81B006224002EF23D /* ManWuPraiseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D5F2B71B006224002EF23D /* ManWuPraiseButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -799,12 +818,38 @@
 		05ACAC9B1AFCA08200853E1C /* smile_error_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile_error_image.png; sourceTree = "<group>"; };
 		05ACAC9D1AFCA94800853E1C /* tb_btn_all_square_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tb_btn_all_square_normal.png; sourceTree = "<group>"; };
 		05ACAC9E1AFCA94800853E1C /* tb_btn_all_square_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tb_btn_all_square_press.png; sourceTree = "<group>"; };
+		05AF2FEC1B003CF500890A65 /* ManWuFavViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuFavViewCell.h; sourceTree = "<group>"; };
+		05AF2FED1B003CF500890A65 /* ManWuFavViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuFavViewCell.m; sourceTree = "<group>"; };
+		05AF2FF01B003F2800890A65 /* TBBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBBlurView.h; sourceTree = "<group>"; };
+		05AF2FF11B003F2800890A65 /* TBBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBBlurView.m; sourceTree = "<group>"; };
+		05AF2FF41B0048F300890A65 /* ManWuOperationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuOperationButton.h; sourceTree = "<group>"; };
+		05AF2FF51B0048F300890A65 /* ManWuOperationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuOperationButton.m; sourceTree = "<group>"; };
+		05AF2FFB1B004D3F00890A65 /* loading_view_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_1.png; sourceTree = "<group>"; };
+		05AF2FFC1B004D3F00890A65 /* loading_view_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_2.png; sourceTree = "<group>"; };
+		05AF2FFD1B004D3F00890A65 /* loading_view_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_3.png; sourceTree = "<group>"; };
+		05AF2FFE1B004D3F00890A65 /* loading_view_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_4.png; sourceTree = "<group>"; };
+		05AF2FFF1B004D3F00890A65 /* loading_view_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_5.png; sourceTree = "<group>"; };
+		05AF30001B004D3F00890A65 /* loading_view_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_6.png; sourceTree = "<group>"; };
+		05AF30011B004D3F00890A65 /* loading_view_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_7.png; sourceTree = "<group>"; };
+		05AF30021B004D3F00890A65 /* loading_view_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_view_8.png; sourceTree = "<group>"; };
+		05AF300B1B004FAF00890A65 /* ManWuFavButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuFavButton.h; sourceTree = "<group>"; };
+		05AF300C1B004FAF00890A65 /* ManWuFavButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuFavButton.m; sourceTree = "<group>"; };
+		05AF300F1B00506C00890A65 /* favorate_button_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorate_button_image.png; sourceTree = "<group>"; };
+		05AF30101B00506C00890A65 /* praise_button_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = praise_button_image.png; sourceTree = "<group>"; };
+		05AF30111B00506C00890A65 /* unFavorate_button_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unFavorate_button_image.png; sourceTree = "<group>"; };
+		05AF30121B00506C00890A65 /* unPraise_button_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unPraise_button_image.png; sourceTree = "<group>"; };
+		05AF301E1B005A8500890A65 /* ManWuFavService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuFavService.h; sourceTree = "<group>"; };
+		05AF301F1B005A8500890A65 /* ManWuFavService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuFavService.m; sourceTree = "<group>"; };
+		05AF30211B005B6400890A65 /* ManWuPraiseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuPraiseService.h; sourceTree = "<group>"; };
+		05AF30221B005B6400890A65 /* ManWuPraiseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuPraiseService.m; sourceTree = "<group>"; };
 		05B8DF521AF344B8002C2E4F /* ManWuDiscoverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverViewCell.h; sourceTree = "<group>"; };
 		05B8DF531AF344B8002C2E4F /* ManWuDiscoverViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverViewCell.m; sourceTree = "<group>"; };
 		05B8DF551AF3455A002C2E4F /* ManWuDiscoverListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverListView.h; sourceTree = "<group>"; };
 		05B8DF561AF3455A002C2E4F /* ManWuDiscoverListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverListView.m; sourceTree = "<group>"; };
 		05B8DF581AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverCollectionViewCell.h; sourceTree = "<group>"; };
 		05B8DF591AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverCollectionViewCell.m; sourceTree = "<group>"; };
+		05D5F2B61B006224002EF23D /* ManWuPraiseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuPraiseButton.h; sourceTree = "<group>"; };
+		05D5F2B71B006224002EF23D /* ManWuPraiseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuPraiseButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -956,6 +1001,7 @@
 		0553F77C1AFA1F7A0013BB97 /* ManWuCommodityListBaiscView */ = {
 			isa = PBXGroup;
 			children = (
+				05AF2FF31B0048E000890A65 /* ManWuButton */,
 				0553F77D1AFA1F7A0013BB97 /* ManWuCommodityBasicSelectListView.h */,
 				0553F77E1AFA1F7A0013BB97 /* ManWuCommodityBasicSelectListView.m */,
 				0553F77F1AFA1F7A0013BB97 /* ManWuCommodityFiltForDiscoverListView.h */,
@@ -1228,6 +1274,7 @@
 		056664281AEB284F00FD1C65 /* KSScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				05AF2FFA1B004D3F00890A65 /* Resources */,
 				056664291AEB284F00FD1C65 /* KSDataSource.h */,
 				0566642A1AEB284F00FD1C65 /* KSDataSource.m */,
 				0566642B1AEB284F00FD1C65 /* KSScrollViewConfigObject.h */,
@@ -1795,6 +1842,7 @@
 		058DADB11AE1107D009D0008 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				05AF2FEF1B003F2800890A65 /* KSBlurView */,
 				052CC6801AF7198B00AF7C78 /* KSBannerView */,
 				058D5A931AF0B358006EA35C /* KSBigPhotoBrower */,
 				056664521AEDD88500FD1C65 /* KSSKUView */,
@@ -1964,6 +2012,8 @@
 				05ACAC581AFB473A00853E1C /* ManWuCommodityListForDeleteView.m */,
 				05ACAC5A1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.h */,
 				05ACAC5B1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.m */,
+				05AF2FEC1B003CF500890A65 /* ManWuFavViewCell.h */,
+				05AF2FED1B003CF500890A65 /* ManWuFavViewCell.m */,
 			);
 			path = ManWuCommodityListForDeleteView;
 			sourceTree = "<group>";
@@ -2042,6 +2092,67 @@
 				05ACAC9E1AFCA94800853E1C /* tb_btn_all_square_press.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		05AF2FEF1B003F2800890A65 /* KSBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				05AF2FF01B003F2800890A65 /* TBBlurView.h */,
+				05AF2FF11B003F2800890A65 /* TBBlurView.m */,
+			);
+			path = KSBlurView;
+			sourceTree = "<group>";
+		};
+		05AF2FF31B0048E000890A65 /* ManWuButton */ = {
+			isa = PBXGroup;
+			children = (
+				05AF301D1B005A6D00890A65 /* ManWuOperationService */,
+				05AF300E1B00506C00890A65 /* Resources */,
+				05AF2FF41B0048F300890A65 /* ManWuOperationButton.h */,
+				05AF2FF51B0048F300890A65 /* ManWuOperationButton.m */,
+				05AF300B1B004FAF00890A65 /* ManWuFavButton.h */,
+				05AF300C1B004FAF00890A65 /* ManWuFavButton.m */,
+				05D5F2B61B006224002EF23D /* ManWuPraiseButton.h */,
+				05D5F2B71B006224002EF23D /* ManWuPraiseButton.m */,
+			);
+			path = ManWuButton;
+			sourceTree = "<group>";
+		};
+		05AF2FFA1B004D3F00890A65 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				05AF2FFB1B004D3F00890A65 /* loading_view_1.png */,
+				05AF2FFC1B004D3F00890A65 /* loading_view_2.png */,
+				05AF2FFD1B004D3F00890A65 /* loading_view_3.png */,
+				05AF2FFE1B004D3F00890A65 /* loading_view_4.png */,
+				05AF2FFF1B004D3F00890A65 /* loading_view_5.png */,
+				05AF30001B004D3F00890A65 /* loading_view_6.png */,
+				05AF30011B004D3F00890A65 /* loading_view_7.png */,
+				05AF30021B004D3F00890A65 /* loading_view_8.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		05AF300E1B00506C00890A65 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				05AF300F1B00506C00890A65 /* favorate_button_image.png */,
+				05AF30101B00506C00890A65 /* praise_button_image.png */,
+				05AF30111B00506C00890A65 /* unFavorate_button_image.png */,
+				05AF30121B00506C00890A65 /* unPraise_button_image.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		05AF301D1B005A6D00890A65 /* ManWuOperationService */ = {
+			isa = PBXGroup;
+			children = (
+				05AF301E1B005A8500890A65 /* ManWuFavService.h */,
+				05AF301F1B005A8500890A65 /* ManWuFavService.m */,
+				05AF30211B005B6400890A65 /* ManWuPraiseService.h */,
+				05AF30221B005B6400890A65 /* ManWuPraiseService.m */,
+			);
+			path = ManWuOperationService;
 			sourceTree = "<group>";
 		};
 		05B8DF511AF344B8002C2E4F /* ManWuDiscoverView */ = {
@@ -2141,21 +2252,29 @@
 			files = (
 				058DAE351AE63A31009D0008 /* tabitem_home_normal.png in Resources */,
 				058DAE331AE63A31009D0008 /* tabitem_discover_normal.png in Resources */,
+				05AF30161B00506C00890A65 /* unPraise_button_image.png in Resources */,
+				05AF30031B004D3F00890A65 /* loading_view_1.png in Resources */,
+				05AF30091B004D3F00890A65 /* loading_view_7.png in Resources */,
 				05ACAC9F1AFCA94800853E1C /* tb_btn_all_square_normal.png in Resources */,
 				058DAE621AE7992D009D0008 /* MatrixConfig.plist in Resources */,
+				05AF300A1B004D3F00890A65 /* loading_view_8.png in Resources */,
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
 				058D5D0F1AF2140C006EA35C /* tbbuy_location@2x.png in Resources */,
 				055866981AD3B4F900A23FFA /* Main.storyboard in Resources */,
 				058DAE1F1AE638BA009D0008 /* tabbar_background_white.png in Resources */,
+				05AF30141B00506C00890A65 /* praise_button_image.png in Resources */,
 				058DAE371AE63A31009D0008 /* tabitem_info_normal.png in Resources */,
 				058BC4171AE8D97400A4F799 /* tabitem_info_highlight@2x.png in Resources */,
 				058DAE231AE638BA009D0008 /* tabitem_discover_highlight.png in Resources */,
+				05AF30071B004D3F00890A65 /* loading_view_5.png in Resources */,
 				056664B21AEE37AC00FD1C65 /* tb_control_flow_number_left_press.png in Resources */,
 				056664B01AEE37AC00FD1C65 /* tb_control_flow_number_center.png in Resources */,
 				058D5A911AF0B2BB006EA35C /* Default.png in Resources */,
 				0553F75F1AF9EB660013BB97 /* manwu_commodity_filt_all.jpg in Resources */,
 				058BC4181AE8D97400A4F799 /* tabitem_info_normal@2x.png in Resources */,
+				05AF30081B004D3F00890A65 /* loading_view_6.png in Resources */,
 				058D5D0E1AF2140C006EA35C /* tbbuy_item_increase@2x.png in Resources */,
+				05AF30041B004D3F00890A65 /* loading_view_2.png in Resources */,
 				058DAE271AE638BA009D0008 /* tabitem_home_highlight.png in Resources */,
 				058D5D0D1AF2140C006EA35C /* tbbuy_item_increase2@2x.png in Resources */,
 				05ACAC711AFC6F7B00853E1C /* ManWuAddressSelectViewCell.xib in Resources */,
@@ -2165,12 +2284,16 @@
 				0553F7621AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg in Resources */,
 				052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */,
 				0553F7611AF9EB660013BB97 /* manwu_commodity_filt_discount.png in Resources */,
+				05AF30061B004D3F00890A65 /* loading_view_4.png in Resources */,
+				05AF30131B00506C00890A65 /* favorate_button_image.png in Resources */,
 				058DAE201AE638BA009D0008 /* tabbar_background_white@2x.png in Resources */,
 				058BC4161AE8D97400A4F799 /* tabitem_home_normal@2x.png in Resources */,
 				058D5D0B1AF2140C006EA35C /* tbbuy_item_decrease2@2x.png in Resources */,
 				056664AE1AEE37AC00FD1C65 /* skuview_increase.png in Resources */,
+				05AF30051B004D3F00890A65 /* loading_view_3.png in Resources */,
 				0558669D1AD3B4F900A23FFA /* LaunchScreen.xib in Resources */,
 				058D5D101AF2140C006EA35C /* tbbuy_question_fill@2x.png in Resources */,
+				05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */,
 				056664B11AEE37AC00FD1C65 /* tb_control_flow_number_left.png in Resources */,
 				058BC4141AE8D97400A4F799 /* tabitem_discover_normal@2x.png in Resources */,
 				056664AF1AEE37AC00FD1C65 /* skuview_increase2.png in Resources */,
@@ -2252,6 +2375,7 @@
 				058D5A9A1AF0B358006EA35C /* TBDetailBigPhotoBrowerController.m in Sources */,
 				052CC6AF1AF7755700AF7C78 /* ManWuSpecialForTodayView.m in Sources */,
 				058DAE6C1AE7A339009D0008 /* KSBasicURLResolver.m in Sources */,
+				05D5F2B81B006224002EF23D /* ManWuPraiseButton.m in Sources */,
 				052CC6911AF7198B00AF7C78 /* WeAppColorStyleSheet.m in Sources */,
 				0566643A1AEB284F00FD1C65 /* KSScrollViewConfigObject.m in Sources */,
 				058DADB81AE110C2009D0008 /* KSView.m in Sources */,
@@ -2261,6 +2385,7 @@
 				05ACAC941AFC9FC800853E1C /* KSErrorView.m in Sources */,
 				058D5A9F1AF0B39B006EA35C /* DetailHUDActivityView.m in Sources */,
 				056664361AEB284F00FD1C65 /* KSCollectionViewConfigObject.m in Sources */,
+				05AF2FF21B003F2800890A65 /* TBBlurView.m in Sources */,
 				058D5A9B1AF0B358006EA35C /* TBDetailNumberPageControl.m in Sources */,
 				0553F7911AFA1F7A0013BB97 /* ManWuCommoditySortAndFiltView.m in Sources */,
 				056677AF1AF075A000FD1C65 /* ManWuBasicModel.m in Sources */,
@@ -2309,10 +2434,12 @@
 				058BC3F81AE89DA700A4F799 /* KSHomeURLResolver.m in Sources */,
 				0553F78F1AFA1F7A0013BB97 /* ManWuCommodityListView.m in Sources */,
 				055C75981ADFC6CA00C35854 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				05AF30201B005A8500890A65 /* ManWuFavService.m in Sources */,
 				052CC68D1AF7198B00AF7C78 /* UIColor+WeAppColor.m in Sources */,
 				055C755F1ADFBED000C35854 /* UIView+Geometry.m in Sources */,
 				055866E11AD3EAA500A23FFA /* WeAppJsonUtil.m in Sources */,
 				058D5AB41AF0D0FF006EA35C /* KSSafePayUtility.m in Sources */,
+				05AF2FEE1B003CF500890A65 /* ManWuFavViewCell.m in Sources */,
 				056664561AEDD88500FD1C65 /* CSLinearLayoutView.m in Sources */,
 				058DADB51AE110AA009D0008 /* KSViewController.m in Sources */,
 				055866D81AD3E14000A23FFA /* WeAppPaginationItem.m in Sources */,
@@ -2320,6 +2447,7 @@
 				05ACAC6C1AFC6D4800853E1C /* ManWuAddressSelectListView.m in Sources */,
 				055C75831ADFBF6000C35854 /* NSData+ImageContentType.m in Sources */,
 				05AB565C1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m in Sources */,
+				05AF300D1B004FAF00890A65 /* ManWuFavButton.m in Sources */,
 				052CC6CD1AF8D30600AF7C78 /* ManWuSearchViewCellInfoItem.m in Sources */,
 				055C755B1ADFBDE200C35854 /* WeAppComponentBaseItem.m in Sources */,
 				055C75891ADFBF6000C35854 /* SDWebImageManager.m in Sources */,
@@ -2339,6 +2467,7 @@
 				0553F78D1AFA1F7A0013BB97 /* ManWuCommodityBasicSelectListView.m in Sources */,
 				0566641E1AEB225F00FD1C65 /* MBProgressHUD.m in Sources */,
 				055C75881ADFBF6000C35854 /* SDWebImageDownloaderOperation.m in Sources */,
+				05AF30231B005B6400890A65 /* ManWuPraiseService.m in Sources */,
 				058DADCF1AE52EC0009D0008 /* AFHTTPRequestOperationManager.m in Sources */,
 				056664391AEB284F00FD1C65 /* KSDataSource.m in Sources */,
 				052CC6901AF7198B00AF7C78 /* WeAppColorPageControl.m in Sources */,
@@ -2401,6 +2530,7 @@
 				058D5CFD1AF20F03006EA35C /* ManWuAddressView.m in Sources */,
 				05ACAC961AFC9FC800853E1C /* TBModelStatusInfo.m in Sources */,
 				05ACAC5F1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m in Sources */,
+				05AF2FF61B0048F300890A65 /* ManWuOperationButton.m in Sources */,
 				052CC6961AF71B1A00AF7C78 /* ManWuCommodityView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

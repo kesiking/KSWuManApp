@@ -7,12 +7,12 @@
 //
 
 #import "KSViewCell.h"
+#import "ManWuPraiseButton.h"
 
 @interface ManWuViewCell : KSViewCell
 
 @property (nonatomic,strong) UIImageView*         commodityImageView;
-@property (nonatomic,strong) UIImageView*         favorateImageView;
-@property (nonatomic,strong) UIImageView*         enjoyImageView;
+@property (nonatomic,strong) ManWuPraiseButton*   favorateImageView;
 @property (nonatomic,strong) UILabel*             titleLabel;
 @property (nonatomic,strong) UILabel*             priceLabel;
 @property (nonatomic,strong) UILabel*             favorateLabel;

@@ -316,18 +316,20 @@
         return NO;
     }
     
-    if (self.service == nil || self.service.pagedList == nil) {
-        return NO;
-    }
-    
-    BOOL isServiceLoading = self.service.requestModel.isLoading;
-    if (isServiceLoading) {
-        return NO;
-    }
-    
-    BOOL hasMore = [self.service.pagedList hasMore];
-    if (!hasMore) {
-        return NO;
+    if (self.service != nil) {
+        if (self.service.pagedList == nil) {
+            return NO;
+        }
+        
+        BOOL isServiceLoading = self.service.requestModel.isLoading;
+        if (isServiceLoading) {
+            return NO;
+        }
+        
+        BOOL hasMore = [self.service.pagedList hasMore];
+        if (!hasMore) {
+            return NO;
+        }
     }
     return YES;
 }
