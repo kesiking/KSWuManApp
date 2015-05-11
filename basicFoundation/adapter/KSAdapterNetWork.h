@@ -10,4 +10,6 @@
 
 @interface KSAdapterNetWork : BasicNetWorkAdapter
 
+@property(nonatomic, assign) BOOL                needLogin;
+
 @end
