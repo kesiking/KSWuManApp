@@ -8,14 +8,17 @@
 
 #import "KSAdapterNetWork.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "KSAuthenticationCenter.h"
 
 @implementation KSAdapterNetWork
 
 -(void)request:(NSString *)apiName withParam:(NSDictionary *)param onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
-    // 默认为json序列化
+    // 检查是否需要登陆
     self.needLogin = [param objectForKey:@"needLogin"];
+    // 统一调用登陆逻辑
     [self callWithAuthCheck:apiName method:^{
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
+        // 默认为json序列化
         AFHTTPRequestOperationManager *httpRequestOM = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:KS_MANWU_BASE_URL]];
         [httpRequestOM POST:path parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -52,18 +55,32 @@
     
     if (self.needLogin)
     {
-//        [self.loginService authenticateWithCompletion:^(BOOL succeed)
-//         {
-//             if (succeed)
-//                 callMethod();
-//             else if (self.needLogin && errorBlock){
-//                 errorBlock(nil);
-//             }
-//         }];
+        [[KSAuthenticationCenter sharedCenter] authenticateWithLoginActionBlock:^(BOOL loginSuccess) {
+            if (loginSuccess)
+                callMethod();
+            else if (self.needLogin && errorBlock){
+                NSDictionary* errorDic = [self getLoginErrorDict];
+                errorBlock(errorDic);
+            }
+        } cancelActionBlock:^{
+            if (errorBlock) {
+                NSDictionary* errorDic = [self getLoginErrorDict];
+                errorBlock(errorDic);
+            }
+        }];
     }
     else {
         callMethod();
     }
+}
+
+-(NSMutableDictionary*)getLoginErrorDict{
+    NSError* error = [NSError errorWithDomain:loginFailDomain code:loginFailCode userInfo:nil];
+    NSMutableDictionary* errorDic = [NSMutableDictionary dictionary];
+    if (error) {
+        [errorDic setObject:error forKey:@"responseError"];
+    }
+    return errorDic;
 }
 
 @end

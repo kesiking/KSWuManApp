@@ -49,14 +49,20 @@
     }
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark- KSTabBarViewControllerProtocol
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(BOOL)shouldSelectViewController:(UIViewController *)viewController{
+    return YES;
 }
-*/
+
+// 点击选中
+-(void)didSelectViewController:(UIViewController*)viewController{
+    
+}
+
+// 重复点击选中
+-(void)didSelectSameViewController:(UIViewController *)viewController{
+    
+}
 
 @end

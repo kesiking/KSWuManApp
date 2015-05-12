@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KSTabBarViewControllerProtocol.h"
 #import "KSFoundationCommon.h"
 #import "TBModelStatusHandler.h"
 
-@interface KSViewController : UIViewController<KSTabBarViewControllerProtocol>
+@interface KSViewController : UIViewController
 
 @property(nonatomic,strong) TBModelStatusHandler*               statusHandler;
 

@@ -7,6 +7,7 @@
 //
 
 #import "KSManWuTabBarViewController.h"
+#import "KSTabBarViewControllerProtocol.h"
 #import "RDVTabBarItem.h"
 
 @interface KSManWuTabBarViewController ()<RDVTabBarControllerDelegate>

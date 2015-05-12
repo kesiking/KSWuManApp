@@ -16,9 +16,17 @@
 		<string>ManWuCommodityListDeleteDemoViewControolerViewController</string>
 		<key>manwu_address_manager</key>
 		<string>ManWuAddressSelectViewController</string>
+		<key>login</key>
+		<string>ManWuLoginDemoViewController</string>
 	</dict>
 	<key>object_list</key>
 	<array>
+		<dict>
+			<key>name</key>
+			<string>login</string>
+			<key>class</key>
+			<string>ManWuLoginResolver</string>
+		</dict>
 		<dict>
 			<key>name</key>
 			<string>manwu_discover_url</string>

@@ -98,20 +98,4 @@
     [self.statusHandler removeStatusViewFromView:self.view];
 }
 
-#pragma mark- KSTabBarViewControllerProtocol
-
--(BOOL)shouldSelectViewController:(UIViewController *)viewController{
-    return YES;
-}
-
-// 点击选中
--(void)didSelectViewController:(UIViewController*)viewController{
-    
-}
-
-// 重复点击选中
--(void)didSelectSameViewController:(UIViewController *)viewController{
-    
-}
-
 @end

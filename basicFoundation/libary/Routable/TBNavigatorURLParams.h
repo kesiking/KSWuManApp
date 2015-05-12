@@ -26,8 +26,11 @@ typedef void(^SimplePayCallbackBlock)(TBSimplePayStatus status);
 #define kInternalNavigationURLScheme            @"app"
 #define kInternalGoToURLHost                    @"go"
 #define kInternalTabbarURLHost                  @"tabbar"
+
 #define loginPath                               @"login"
 
 #define tabbarURL(tab)                          [NSString stringWithFormat:@"%@://%@/%@",kInternalNavigationURLScheme, kInternalTabbarURLHost,tab]
 
-#define internalURL(vcName)                          [NSString stringWithFormat:@"%@://%@/%@",kInternalNavigationURLScheme, kInternalGoToURLHost,vcName]
+#define internalURL(vcName)                     [NSString stringWithFormat:@"%@://%@/%@",kInternalNavigationURLScheme, kInternalGoToURLHost,vcName]
+
+#define loginURL                                [NSString stringWithFormat:@"%@://%@/%@",kInternalNavigationURLScheme, kInternalGoToURLHost,loginPath]

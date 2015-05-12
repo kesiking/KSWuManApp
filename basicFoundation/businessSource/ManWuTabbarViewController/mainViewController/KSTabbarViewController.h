@@ -7,7 +7,8 @@
 //
 
 #import "KSViewController.h"
+#import "KSTabBarViewControllerProtocol.h"
 
-@interface KSTabbarViewController : KSViewController
+@interface KSTabbarViewController : KSViewController<KSTabBarViewControllerProtocol>
 
 @end
