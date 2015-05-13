@@ -99,8 +99,4 @@
     return _dataSourceRead;
 }
 
--(void)doCallBackWithAddressComponent:(ManWuAddressInfoModel*)addressComponent{
-    
-}
-
 @end

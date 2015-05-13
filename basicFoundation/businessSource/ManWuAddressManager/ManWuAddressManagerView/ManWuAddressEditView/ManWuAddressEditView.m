@@ -219,8 +219,10 @@
         _bottomView.addressBottomClick = ^(){
             STRONGSELF
             // bottom click todo save or delete
+            // 请求service 成功后再执行
             if (strongSelf.addressDidChangeBlock) {
                 strongSelf.addressDidChangeBlock(YES,strongSelf.addressInfoModel);
+                [strongSelf.viewController.navigationController popViewControllerAnimated:YES];
             }
         };
     }
