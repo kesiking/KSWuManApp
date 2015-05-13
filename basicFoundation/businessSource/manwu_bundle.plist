@@ -14,8 +14,12 @@
 		<string>ManWuCommodityBuyViewController</string>
 		<key>manwu_commodity_list_favorite</key>
 		<string>ManWuCommodityListDeleteDemoViewControolerViewController</string>
-		<key>manwu_address_manager</key>
+		<key>manwu_address_select</key>
 		<string>ManWuAddressSelectViewController</string>
+		<key>manwu_address_manager</key>
+		<string>ManWuAddressManagerViewController</string>
+		<key>manwu_address_edit</key>
+		<string>ManWuAddressEditViewController</string>
 		<key>login</key>
 		<string>ManWuLoginDemoViewController</string>
 	</dict>

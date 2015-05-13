@@ -9,12 +9,7 @@
 #import "ManWuAddressSelectViewController.h"
 #import "ManWuAddressSelectListView.h"
 #import "ManWuAddressInfoModel.h"
-
-#define kAddressSelectedSuccessBlock         @"AddressSelectedSuccessBlock"
-#define kAddressSelectedFailureBlock         @"AddressSelectedFailureBlock"
-
-typedef void (^successWrapper)(ManWuAddressInfoModel *addressModel);
-typedef void (^failureWrapper)();
+#import "ManWuAddressManagerMaroc.h"
 
 @interface ManWuAddressSelectViewController ()
 
@@ -23,6 +18,8 @@ typedef void (^failureWrapper)();
 @property (nonatomic,strong) successWrapper              successBlock;
 
 @property (nonatomic,strong) failureWrapper              failureWrapper;
+
+@property (nonatomic,assign) BOOL                        needRefreshList;
 
 @end
 
@@ -42,7 +39,6 @@ typedef void (^failureWrapper)();
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"选择收货地址";
-    [self.view addSubview:self.commodityListView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"管理" style:UIBarButtonItemStyleBordered target:self action:@selector(managerAddress)];
     [self.view addSubview:self.commodityListView];
 }
@@ -50,6 +46,11 @@ typedef void (^failureWrapper)();
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     // 刷新逻辑，更新了收货管理列表后需要刷新
+    if (self.needRefreshList) {
+        // 刷新list
+        [self.commodityListView refreshDataRequest];
+        self.needRefreshList = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,6 +60,17 @@ typedef void (^failureWrapper)();
 
 - (void)managerAddress{
     // 跳转到管理地址页面
+    // 如果有数据更新需要重新请求数据刷新
+    WEAKSELF
+    addressDidChangeBlock addressDidChangeBlock = ^(BOOL addressDidChange,WeAppComponentBaseItem *addressModel) {
+        STRONGSELF
+        if (addressDidChange) {
+            // todo refresh
+            strongSelf.needRefreshList = addressDidChange;
+        }
+    };
+    NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:addressDidChangeBlock, kAddressManagerSuccessBlock, nil];
+    TBOpenURLFromTargetWithNativeParams(kManWuAddressManager, self, nil, callBacks);
 }
 
 -(ManWuAddressSelectListView *)commodityListView{
@@ -74,4 +86,5 @@ typedef void (^failureWrapper)();
     }
     return _commodityListView;
 }
+
 @end

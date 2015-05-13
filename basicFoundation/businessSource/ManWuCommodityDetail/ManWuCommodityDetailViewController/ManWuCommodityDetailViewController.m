@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"商品详情";
     [self.view addSubview:self.commodityDetailView];
     [self.view addSubview:self.confirmButton];
     

@@ -30,4 +30,8 @@
 
 #define kManWuAddressManager     @"manwu_address_manager"
 
+#define kManWuAddressSelect      @"manwu_address_select"
+
+#define kManWuAddressEdit        @"manwu_address_edit"
+
 #endif

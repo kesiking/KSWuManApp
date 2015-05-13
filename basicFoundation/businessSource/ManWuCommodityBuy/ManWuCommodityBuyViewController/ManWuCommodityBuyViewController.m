@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"确定订单";
     [self.view addSubview:self.buyScrollView];
 }
 

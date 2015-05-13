@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		050FFD2B1B02DEEB00721E02 /* KSServiceDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD2A1B02DEEB00721E02 /* KSServiceDemo.m */; };
 		050FFD2E1B02DFA400721E02 /* KSModelDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD2D1B02DFA400721E02 /* KSModelDemo.m */; };
+		050FFD391B02ECF800721E02 /* ManWuAddressManagerListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD381B02ECF800721E02 /* ManWuAddressManagerListView.m */; };
+		050FFD3C1B02EE3600721E02 /* ManWuAddressManagerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD3B1B02EE3600721E02 /* ManWuAddressManagerViewCell.m */; };
+		050FFD3E1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050FFD3D1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib */; };
+		050FFD411B02EFDD00721E02 /* ManWuAddressManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD401B02EFDD00721E02 /* ManWuAddressManagerViewController.m */; };
+		050FFD6A1B02F98000721E02 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050FFD641B02F98000721E02 /* area.plist */; };
+		050FFD6B1B02F98000721E02 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050FFD651B02F98000721E02 /* city.plist */; };
+		050FFD6C1B02F98000721E02 /* HZAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD671B02F98000721E02 /* HZAreaPickerView.m */; };
+		050FFD6D1B02F98000721E02 /* HZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD691B02F98000721E02 /* HZLocation.m */; };
+		050FFD701B02F9E000721E02 /* ManWuAddressEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD6F1B02F9E000721E02 /* ManWuAddressEditView.m */; };
+		050FFD761B02FB7300721E02 /* ManWuAddAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD751B02FB7300721E02 /* ManWuAddAddressView.m */; };
+		050FFD7A1B0310E500721E02 /* ManWuAddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD791B0310E500721E02 /* ManWuAddressEditViewController.m */; };
+		050FFD7C1B03222600721E02 /* HZAreaPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050FFD7B1B03222600721E02 /* HZAreaPickerView.xib */; };
+		050FFD7F1B0339A400721E02 /* ManWuAddressSetDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD7E1B0339A400721E02 /* ManWuAddressSetDefaultView.m */; };
 		052CC67B1AF357A800AF7C78 /* WeAppTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */; };
 		052CC67E1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67D1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m */; };
 		052CC68D1AF7198B00AF7C78 /* UIColor+WeAppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6821AF7198B00AF7C78 /* UIColor+WeAppColor.m */; };
@@ -285,6 +298,7 @@
 		05D5F2B81B006224002EF23D /* ManWuPraiseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D5F2B71B006224002EF23D /* ManWuPraiseButton.m */; };
 		05D5F2C01B00B496002EF23D /* ManWuLoginDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D5F2BF1B00B496002EF23D /* ManWuLoginDemoViewController.m */; };
 		05D5F2C61B00CBE4002EF23D /* KSAuthenticationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D5F2C51B00CBE4002EF23D /* KSAuthenticationCenter.m */; };
+		05E88EDC1B033E0500E0B646 /* ManWuAddressBottomVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E88EDB1B033E0500E0B646 /* ManWuAddressBottomVIew.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -302,6 +316,29 @@
 		050FFD2A1B02DEEB00721E02 /* KSServiceDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSServiceDemo.m; sourceTree = "<group>"; };
 		050FFD2C1B02DFA400721E02 /* KSModelDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSModelDemo.h; sourceTree = "<group>"; };
 		050FFD2D1B02DFA400721E02 /* KSModelDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSModelDemo.m; sourceTree = "<group>"; };
+		050FFD371B02ECF800721E02 /* ManWuAddressManagerListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressManagerListView.h; sourceTree = "<group>"; };
+		050FFD381B02ECF800721E02 /* ManWuAddressManagerListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressManagerListView.m; sourceTree = "<group>"; };
+		050FFD3A1B02EE3600721E02 /* ManWuAddressManagerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressManagerViewCell.h; sourceTree = "<group>"; };
+		050FFD3B1B02EE3600721E02 /* ManWuAddressManagerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressManagerViewCell.m; sourceTree = "<group>"; };
+		050FFD3D1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManWuAddressManagerViewCell.xib; sourceTree = "<group>"; };
+		050FFD3F1B02EFDD00721E02 /* ManWuAddressManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressManagerViewController.h; sourceTree = "<group>"; };
+		050FFD401B02EFDD00721E02 /* ManWuAddressManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressManagerViewController.m; sourceTree = "<group>"; };
+		050FFD431B02F34900721E02 /* ManWuAddressManagerMaroc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManWuAddressManagerMaroc.h; sourceTree = "<group>"; };
+		050FFD641B02F98000721E02 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		050FFD651B02F98000721E02 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
+		050FFD661B02F98000721E02 /* HZAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZAreaPickerView.h; sourceTree = "<group>"; };
+		050FFD671B02F98000721E02 /* HZAreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZAreaPickerView.m; sourceTree = "<group>"; };
+		050FFD681B02F98000721E02 /* HZLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLocation.h; sourceTree = "<group>"; };
+		050FFD691B02F98000721E02 /* HZLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLocation.m; sourceTree = "<group>"; };
+		050FFD6E1B02F9E000721E02 /* ManWuAddressEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressEditView.h; sourceTree = "<group>"; };
+		050FFD6F1B02F9E000721E02 /* ManWuAddressEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressEditView.m; sourceTree = "<group>"; };
+		050FFD741B02FB7300721E02 /* ManWuAddAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddAddressView.h; sourceTree = "<group>"; };
+		050FFD751B02FB7300721E02 /* ManWuAddAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddAddressView.m; sourceTree = "<group>"; };
+		050FFD781B0310E500721E02 /* ManWuAddressEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressEditViewController.h; sourceTree = "<group>"; };
+		050FFD791B0310E500721E02 /* ManWuAddressEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressEditViewController.m; sourceTree = "<group>"; };
+		050FFD7B1B03222600721E02 /* HZAreaPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZAreaPickerView.xib; sourceTree = "<group>"; };
+		050FFD7D1B0339A400721E02 /* ManWuAddressSetDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressSetDefaultView.h; sourceTree = "<group>"; };
+		050FFD7E1B0339A400721E02 /* ManWuAddressSetDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressSetDefaultView.m; sourceTree = "<group>"; };
 		052CC6791AF357A800AF7C78 /* WeAppTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppTableViewCell.h; sourceTree = "<group>"; };
 		052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppTableViewCell.m; sourceTree = "<group>"; };
 		052CC67C1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverCellModelInfoItem.h; sourceTree = "<group>"; };
@@ -866,6 +903,8 @@
 		05D5F2BF1B00B496002EF23D /* ManWuLoginDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuLoginDemoViewController.m; sourceTree = "<group>"; };
 		05D5F2C41B00CBE4002EF23D /* KSAuthenticationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAuthenticationCenter.h; sourceTree = "<group>"; };
 		05D5F2C51B00CBE4002EF23D /* KSAuthenticationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAuthenticationCenter.m; sourceTree = "<group>"; };
+		05E88EDA1B033E0500E0B646 /* ManWuAddressBottomVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressBottomVIew.h; sourceTree = "<group>"; };
+		05E88EDB1B033E0500E0B646 /* ManWuAddressBottomVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressBottomVIew.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -893,6 +932,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050FFD361B02ECEC00721E02 /* ManWuAddressManagerListView */ = {
+			isa = PBXGroup;
+			children = (
+				050FFD741B02FB7300721E02 /* ManWuAddAddressView.h */,
+				050FFD751B02FB7300721E02 /* ManWuAddAddressView.m */,
+				050FFD371B02ECF800721E02 /* ManWuAddressManagerListView.h */,
+				050FFD381B02ECF800721E02 /* ManWuAddressManagerListView.m */,
+				050FFD3A1B02EE3600721E02 /* ManWuAddressManagerViewCell.h */,
+				050FFD3B1B02EE3600721E02 /* ManWuAddressManagerViewCell.m */,
+				050FFD3D1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib */,
+				050FFD431B02F34900721E02 /* ManWuAddressManagerMaroc.h */,
+			);
+			path = ManWuAddressManagerListView;
+			sourceTree = "<group>";
+		};
+		050FFD441B02F8EF00721E02 /* ManWuAddressEditView */ = {
+			isa = PBXGroup;
+			children = (
+				050FFD631B02F98000721E02 /* areapicker */,
+				050FFD6E1B02F9E000721E02 /* ManWuAddressEditView.h */,
+				050FFD6F1B02F9E000721E02 /* ManWuAddressEditView.m */,
+				050FFD7D1B0339A400721E02 /* ManWuAddressSetDefaultView.h */,
+				050FFD7E1B0339A400721E02 /* ManWuAddressSetDefaultView.m */,
+				05E88EDA1B033E0500E0B646 /* ManWuAddressBottomVIew.h */,
+				05E88EDB1B033E0500E0B646 /* ManWuAddressBottomVIew.m */,
+			);
+			path = ManWuAddressEditView;
+			sourceTree = "<group>";
+		};
+		050FFD631B02F98000721E02 /* areapicker */ = {
+			isa = PBXGroup;
+			children = (
+				050FFD641B02F98000721E02 /* area.plist */,
+				050FFD651B02F98000721E02 /* city.plist */,
+				050FFD661B02F98000721E02 /* HZAreaPickerView.h */,
+				050FFD671B02F98000721E02 /* HZAreaPickerView.m */,
+				050FFD7B1B03222600721E02 /* HZAreaPickerView.xib */,
+				050FFD681B02F98000721E02 /* HZLocation.h */,
+				050FFD691B02F98000721E02 /* HZLocation.m */,
+			);
+			path = areapicker;
+			sourceTree = "<group>";
+		};
+		050FFD771B0310C800721E02 /* ManWuAddressEditViewController */ = {
+			isa = PBXGroup;
+			children = (
+				050FFD781B0310E500721E02 /* ManWuAddressEditViewController.h */,
+				050FFD791B0310E500721E02 /* ManWuAddressEditViewController.m */,
+			);
+			path = ManWuAddressEditViewController;
+			sourceTree = "<group>";
+		};
 		052CC6801AF7198B00AF7C78 /* KSBannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2058,6 +2149,8 @@
 		05ACAC651AFC6B2F00853E1C /* ManWuAddressManagerView */ = {
 			isa = PBXGroup;
 			children = (
+				050FFD441B02F8EF00721E02 /* ManWuAddressEditView */,
+				050FFD361B02ECEC00721E02 /* ManWuAddressManagerListView */,
 				05ACAC6A1AFC6D4800853E1C /* ManWuAddressSelectListView.h */,
 				05ACAC6B1AFC6D4800853E1C /* ManWuAddressSelectListView.m */,
 				05ACAC6D1AFC6EC500853E1C /* ManWuAddressSelectViewCell.h */,
@@ -2072,6 +2165,9 @@
 			children = (
 				05ACAC671AFC6B4C00853E1C /* ManWuAddressSelectViewController.h */,
 				05ACAC681AFC6B4C00853E1C /* ManWuAddressSelectViewController.m */,
+				050FFD3F1B02EFDD00721E02 /* ManWuAddressManagerViewController.h */,
+				050FFD401B02EFDD00721E02 /* ManWuAddressManagerViewController.m */,
+				050FFD771B0310C800721E02 /* ManWuAddressEditViewController */,
 			);
 			path = ManWuAddressManagerViewController;
 			sourceTree = "<group>";
@@ -2283,6 +2379,8 @@
 				05AF30031B004D3F00890A65 /* loading_view_1.png in Resources */,
 				05AF30091B004D3F00890A65 /* loading_view_7.png in Resources */,
 				05ACAC9F1AFCA94800853E1C /* tb_btn_all_square_normal.png in Resources */,
+				050FFD3E1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib in Resources */,
+				050FFD7C1B03222600721E02 /* HZAreaPickerView.xib in Resources */,
 				058DAE621AE7992D009D0008 /* MatrixConfig.plist in Resources */,
 				05AF300A1B004D3F00890A65 /* loading_view_8.png in Resources */,
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
@@ -2316,6 +2414,7 @@
 				058DAE201AE638BA009D0008 /* tabbar_background_white@2x.png in Resources */,
 				058BC4161AE8D97400A4F799 /* tabitem_home_normal@2x.png in Resources */,
 				058D5D0B1AF2140C006EA35C /* tbbuy_item_decrease2@2x.png in Resources */,
+				050FFD6B1B02F98000721E02 /* city.plist in Resources */,
 				056664AE1AEE37AC00FD1C65 /* skuview_increase.png in Resources */,
 				05AF30051B004D3F00890A65 /* loading_view_3.png in Resources */,
 				0558669D1AD3B4F900A23FFA /* LaunchScreen.xib in Resources */,
@@ -2329,6 +2428,7 @@
 				0558669A1AD3B4F900A23FFA /* Images.xcassets in Resources */,
 				052CC6B81AF8588400AF7C78 /* home_discount_placehold_banner.png in Resources */,
 				058D5A921AF0B2BB006EA35C /* Default@2x.png in Resources */,
+				050FFD6A1B02F98000721E02 /* area.plist in Resources */,
 				0553F7601AF9EB660013BB97 /* manwu_commodity_filt_buy.jpg in Resources */,
 				052CC6C41AF8BDFE00AF7C78 /* discover_searchview_background.png in Resources */,
 				058DAE2B1AE638BA009D0008 /* tabitem_info_highlight.png in Resources */,
@@ -2391,6 +2491,7 @@
 				052CC6D41AF9BAD100AF7C78 /* ManWuCommodityListWithSortAndFiltBasicView.m in Sources */,
 				055866CD1AD3E05B00A23FFA /* WeAppBasicPagedList.m in Sources */,
 				056664911AEE0F8C00FD1C65 /* ManWuDetailBuyNumberStepView.m in Sources */,
+				05E88EDC1B033E0500E0B646 /* ManWuAddressBottomVIew.m in Sources */,
 				058DADE21AE5E0BB009D0008 /* KSAdapterService.m in Sources */,
 				052CC69C1AF7446900AF7C78 /* ManWuCommodityGuideView.m in Sources */,
 				058BC3FC1AE89DA700A4F799 /* ManWuMyInfoViewController.m in Sources */,
@@ -2432,11 +2533,13 @@
 				058D5CF41AF1F62E006EA35C /* openssl_wrapper.m in Sources */,
 				055C758E1ADFBF6000C35854 /* UIImage+WebP.m in Sources */,
 				058D5A9C1AF0B358006EA35C /* TBDetailSimplePhotoView.m in Sources */,
+				050FFD3C1B02EE3600721E02 /* ManWuAddressManagerViewCell.m in Sources */,
 				052CC6A21AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.m in Sources */,
 				055C75511ADFB32100C35854 /* WeAppPagedList.m in Sources */,
 				05B8DF571AF3455A002C2E4F /* ManWuDiscoverListView.m in Sources */,
 				058D5CF61AF1F62E006EA35C /* RSADataVerifier.m in Sources */,
 				055866921AD3B4F900A23FFA /* AppDelegate.m in Sources */,
+				050FFD411B02EFDD00721E02 /* ManWuAddressManagerViewController.m in Sources */,
 				055C75901ADFBF6000C35854 /* UIImageView+WebCache.m in Sources */,
 				0558668F1AD3B4F900A23FFA /* main.m in Sources */,
 				056664C21AEF203000FD1C65 /* TBDetailPriceUnitsModel.m in Sources */,
@@ -2475,6 +2578,7 @@
 				05ACAC621AFC5AC000853E1C /* ManWuBuyOrderPayView.m in Sources */,
 				05ACAC6C1AFC6D4800853E1C /* ManWuAddressSelectListView.m in Sources */,
 				055C75831ADFBF6000C35854 /* NSData+ImageContentType.m in Sources */,
+				050FFD391B02ECF800721E02 /* ManWuAddressManagerListView.m in Sources */,
 				05AB565C1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m in Sources */,
 				05AF300D1B004FAF00890A65 /* ManWuFavButton.m in Sources */,
 				052CC6CD1AF8D30600AF7C78 /* ManWuSearchViewCellInfoItem.m in Sources */,
@@ -2485,6 +2589,7 @@
 				056664731AEDDD2300FD1C65 /* TBDetailUITools.m in Sources */,
 				055C75861ADFBF6000C35854 /* SDWebImageDecoder.m in Sources */,
 				058DADD41AE52EC0009D0008 /* AFURLRequestSerialization.m in Sources */,
+				050FFD7A1B0310E500721E02 /* ManWuAddressEditViewController.m in Sources */,
 				058BC4021AE89DEF00A4F799 /* KSManWuHomeService.m in Sources */,
 				058DADAD1AE10FF7009D0008 /* RDVTabBar.m in Sources */,
 				0566643D1AEB284F00FD1C65 /* WeAppLoadingView.m in Sources */,
@@ -2495,9 +2600,11 @@
 				058BC3F91AE89DA700A4F799 /* KSTabbarViewController.m in Sources */,
 				0553F78D1AFA1F7A0013BB97 /* ManWuCommodityBasicSelectListView.m in Sources */,
 				0566641E1AEB225F00FD1C65 /* MBProgressHUD.m in Sources */,
+				050FFD701B02F9E000721E02 /* ManWuAddressEditView.m in Sources */,
 				055C75881ADFBF6000C35854 /* SDWebImageDownloaderOperation.m in Sources */,
 				05AF30231B005B6400890A65 /* ManWuPraiseService.m in Sources */,
 				058DADCF1AE52EC0009D0008 /* AFHTTPRequestOperationManager.m in Sources */,
+				050FFD7F1B0339A400721E02 /* ManWuAddressSetDefaultView.m in Sources */,
 				056664391AEB284F00FD1C65 /* KSDataSource.m in Sources */,
 				052CC6901AF7198B00AF7C78 /* WeAppColorPageControl.m in Sources */,
 				055866DE1AD3EA7000A23FFA /* WeAppURLStringUtil.m in Sources */,
@@ -2518,8 +2625,10 @@
 				058D5CF11AF1F62E006EA35C /* DataVerifier.m in Sources */,
 				058DADCE1AE52EC0009D0008 /* AFHTTPRequestOperation.m in Sources */,
 				0553F76F1AFA15BE0013BB97 /* ManWuCommodityListSortAndFiltForDiscountView.m in Sources */,
+				050FFD6C1B02F98000721E02 /* HZAreaPickerView.m in Sources */,
 				052CC6CA1AF8C77E00AF7C78 /* ManWuSearchViewCell.m in Sources */,
 				058DAE5A1AE731A3009D0008 /* NSDictionary+JSONSerialize.m in Sources */,
+				050FFD761B02FB7300721E02 /* ManWuAddAddressView.m in Sources */,
 				05ACAC591AFB473A00853E1C /* ManWuCommodityListForDeleteView.m in Sources */,
 				056664381AEB284F00FD1C65 /* KSViewCell.m in Sources */,
 				055C75821ADFBF6000C35854 /* MKAnnotationView+WebCache.m in Sources */,
@@ -2561,6 +2670,7 @@
 				055C75841ADFBF6000C35854 /* SDImageCache.m in Sources */,
 				058D5CFD1AF20F03006EA35C /* ManWuAddressView.m in Sources */,
 				05ACAC961AFC9FC800853E1C /* TBModelStatusInfo.m in Sources */,
+				050FFD6D1B02F98000721E02 /* HZLocation.m in Sources */,
 				05ACAC5F1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m in Sources */,
 				05AF2FF61B0048F300890A65 /* ManWuOperationButton.m in Sources */,
 				052CC6961AF71B1A00AF7C78 /* ManWuCommodityView.m in Sources */,

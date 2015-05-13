@@ -14,4 +14,6 @@
 
 @property(nonatomic,strong) NSString*       addressDetail;
 
+@property(nonatomic,strong) NSString*       phoneNum;
+
 @end

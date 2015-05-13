@@ -11,5 +11,7 @@
 @implementation ManWuAddressInfoModel
 
 @synthesize addressDetail = _addressDetail;
+@synthesize phoneNum = _phoneNum;
+
 
 @end

@@ -8,9 +8,7 @@
 
 #import "ManWuAddressView.h"
 #import "ManWuAddressInfoModel.h"
-
-#define kAddressSelectedSuccessBlock         @"AddressSelectedSuccessBlock"
-#define kAddressSelectedFailureBlock         @"AddressSelectedFailureBlock"
+#import "ManWuAddressManagerMaroc.h"
 
 #define kCellNormalHeight         86.0f
 #define kCellSuperHeight         104.0f
@@ -295,11 +293,17 @@
         [WeAppToast toast:@"出错误啦"];
     };
     NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:successWrapper, kAddressSelectedSuccessBlock,failureWrapper, kAddressSelectedFailureBlock, nil];
-    TBOpenURLFromTargetWithNativeParams(kManWuAddressManager, self, nil, callBacks);
+    TBOpenURLFromTargetWithNativeParams(kManWuAddressSelect, self, nil, callBacks);
 }
 
 -(void)addAddressButtonClicked:(id)sender{
-    TBOpenURLFromSourceAndParams(kManWuAddressManager, self, nil);
+    WEAKSELF
+    addressDidChangeBlock addressDidChangeBlock = ^(BOOL addressDidChange,WeAppComponentBaseItem* addressComponentItem){
+        STRONGSELF
+        [strongSelf setObject:addressComponentItem];
+    };
+    NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:addressDidChangeBlock, kAddressSelectedSuccessBlock, nil];
+    TBOpenURLFromSourceAndParams(kManWuAddressManager, self, callBacks);
 }
 
 #pragma mark  - TBTradeCellDelegate

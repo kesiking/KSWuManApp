@@ -33,6 +33,10 @@
     [self.collectionViewCtl reloadData];
 }
 
+-(void)refreshDataRequest{
+    [self.collectionViewCtl reloadData];
+}
+
 -(KSTableViewController *)collectionViewCtl{
     if (_collectionViewCtl == nil) {
         KSCollectionViewConfigObject* configObject = [[KSCollectionViewConfigObject alloc] init];

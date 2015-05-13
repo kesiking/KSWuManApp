@@ -13,10 +13,12 @@
 
 @property(nonatomic,strong) TBModelStatusHandler*               statusHandler;
 
--(void)setupView;
 
 // 寻找Keyboard输入框
 + (UIView *)findKeyboard;
+
+// override for subclass 初始化当前view
+-(void)setupView;
 
 // override for subclass 发生错误后点击或是需要刷新时调用可刷新页面数据
 -(void)refreshDataRequest;
