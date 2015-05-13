@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050FFD2B1B02DEEB00721E02 /* KSServiceDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD2A1B02DEEB00721E02 /* KSServiceDemo.m */; };
+		050FFD2E1B02DFA400721E02 /* KSModelDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD2D1B02DFA400721E02 /* KSModelDemo.m */; };
 		052CC67B1AF357A800AF7C78 /* WeAppTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */; };
 		052CC67E1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67D1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m */; };
 		052CC68D1AF7198B00AF7C78 /* UIColor+WeAppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6821AF7198B00AF7C78 /* UIColor+WeAppColor.m */; };
@@ -296,6 +298,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050FFD291B02DEEB00721E02 /* KSServiceDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSServiceDemo.h; sourceTree = "<group>"; };
+		050FFD2A1B02DEEB00721E02 /* KSServiceDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSServiceDemo.m; sourceTree = "<group>"; };
+		050FFD2C1B02DFA400721E02 /* KSModelDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSModelDemo.h; sourceTree = "<group>"; };
+		050FFD2D1B02DFA400721E02 /* KSModelDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSModelDemo.m; sourceTree = "<group>"; };
 		052CC6791AF357A800AF7C78 /* WeAppTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppTableViewCell.h; sourceTree = "<group>"; };
 		052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppTableViewCell.m; sourceTree = "<group>"; };
 		052CC67C1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverCellModelInfoItem.h; sourceTree = "<group>"; };
@@ -1925,6 +1931,10 @@
 			children = (
 				058DADE01AE5E0BB009D0008 /* KSAdapterService.h */,
 				058DADE11AE5E0BB009D0008 /* KSAdapterService.m */,
+				050FFD291B02DEEB00721E02 /* KSServiceDemo.h */,
+				050FFD2A1B02DEEB00721E02 /* KSServiceDemo.m */,
+				050FFD2C1B02DFA400721E02 /* KSModelDemo.h */,
+				050FFD2D1B02DFA400721E02 /* KSModelDemo.m */,
 				058DADE31AE5E0E6009D0008 /* KSAdapterNetWork.h */,
 				058DADE41AE5E0E6009D0008 /* KSAdapterNetWork.m */,
 				05D5F2C41B00CBE4002EF23D /* KSAuthenticationCenter.h */,
@@ -2492,6 +2502,7 @@
 				052CC6901AF7198B00AF7C78 /* WeAppColorPageControl.m in Sources */,
 				055866DE1AD3EA7000A23FFA /* WeAppURLStringUtil.m in Sources */,
 				055866D21AD3E09900A23FFA /* WeAppUtils.m in Sources */,
+				050FFD2B1B02DEEB00721E02 /* KSServiceDemo.m in Sources */,
 				058D5CEF1AF1F62E006EA35C /* base64.m in Sources */,
 				052CC6921AF7198B00AF7C78 /* WeAppCycleScrollView.m in Sources */,
 				058DADDC1AE52F97009D0008 /* SVProgressHUD.m in Sources */,
@@ -2525,6 +2536,7 @@
 				058D5CF51AF1F62E006EA35C /* RSADataSigner.m in Sources */,
 				058BC40C1AE8CF8700A4F799 /* KSManWuViewController.m in Sources */,
 				058DAE661AE79A8B009D0008 /* KSConfigCenter.m in Sources */,
+				050FFD2E1B02DFA400721E02 /* KSModelDemo.m in Sources */,
 				058DAE561AE73040009D0008 /* TBNavigationParams.m in Sources */,
 				052CC68E1AF7198B00AF7C78 /* WeAppBannerItem.m in Sources */,
 				05ACAC951AFC9FC800853E1C /* TBModelStatusHandler.m in Sources */,

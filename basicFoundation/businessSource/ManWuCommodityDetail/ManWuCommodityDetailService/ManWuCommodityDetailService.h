@@ -14,4 +14,6 @@
 
 -(void)loadLogin;
 
+-(void)loadInvite;
+
 @end

@@ -426,8 +426,15 @@ typedef struct
         return [obj performSelector:@selector(length)] <= 0;
     }
     
-    if ([[self collectionClassArray] containsObject:[obj superclass]]) {
+    if ([obj isKindOfClass:[NSArray class]]) {
         return [(NSArray *)obj count] <= 0;
+    }
+    if ([obj isKindOfClass:[NSDictionary class]]) {
+        return [(NSDictionary *)obj count] <= 0;
+    }
+    
+    if (![obj isKindOfClass:[WeAppComponentBaseItem class]]) {
+        return YES;
     }
     
     return NO;
@@ -440,7 +447,7 @@ typedef struct
 +(NSArray*)collectionClassArray {
     static NSArray *s2cMap = nil;
     if (!s2cMap) {
-        s2cMap = [NSArray arrayWithObjects:[NSArray class],[NSDictionary class],[WeAppComponentBaseItem class], nil];
+        s2cMap = [NSArray arrayWithObjects:[NSArray class],[NSDictionary class],[NSMutableArray class],[NSMutableDictionary class], nil];
     }
     return s2cMap;
 }

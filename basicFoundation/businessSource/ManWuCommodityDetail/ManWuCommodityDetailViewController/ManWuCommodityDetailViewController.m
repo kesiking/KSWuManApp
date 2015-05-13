@@ -14,7 +14,7 @@
 
 #define TBDETAIL_SKU_HEIGHT                320            //SKU的高度
 
-@interface ManWuCommodityDetailViewController ()<KSDetailTradeSKUViewDelegate>
+@interface ManWuCommodityDetailViewController ()<KSDetailTradeSKUViewDelegate,WeAppBasicServiceDelegate>
 
 @property (nonatomic, strong) ManWuDetailSKUView           *skuView;
 
@@ -39,7 +39,7 @@
     
     NSDictionary* dict = @{@"skuTitle":@"titleTest",@"skuDetailModel":@{@"skuModel":@{@"skuTitle":@"skuTitleTest1",@"skus":@{@"quantity":@2},@"skuProps":@[@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest2",@"values":@[@{@"name":@"nameTest2"},@{@"name":@"nameTest3"}]}]}}};
     self.detailModel = [ManWuCommodityDetailModel modelWithJSON:dict];
-    [self.service loadLogin];
+    [self.service loadInvite];
     [self.commodityDetailView setDescriptionModel:self.detailModel];
     [self reloadData];
 }
@@ -59,6 +59,7 @@
 -(ManWuCommodityDetailService *)service{
     if (_service == nil) {
         _service = [[ManWuCommodityDetailService alloc] init];
+        _service.delegate = self;
     }
     return _service;
 }
@@ -97,6 +98,9 @@
     self.skuView.skuDetailModel = self.detailModel.skuDetailModel;
 }
 
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+    [WeAppToast toast:[error.userInfo objectForKey:NSLocalizedDescriptionKey]];
+}
 
 
 /////////////////////////////////////////////////////////////////////////////

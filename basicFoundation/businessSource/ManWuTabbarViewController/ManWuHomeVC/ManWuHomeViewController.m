@@ -9,8 +9,11 @@
 #import "ManWuHomeViewController.h"
 #import "ManWuHomeHeaderView.h"
 #import "ManWuCommodityListView.h"
+#import "KSServiceDemo.h"
 
-@interface ManWuHomeViewController ()
+@interface ManWuHomeViewController (){
+    KSServiceDemo *_serviceDemo;
+}
 
 @property (nonatomic, strong) ManWuHomeHeaderView            *headerView;
 
