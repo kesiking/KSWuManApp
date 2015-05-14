@@ -13,6 +13,7 @@
 #import "ManWuCommoditySortForDiscountListView.h"
 #import "ManWuCommoditySortListView.h"
 #import "ManWuCommoditySortAndFiltModel.h"
+#import "ManWuCommodityFiltTagListView.h"
 
 #define sort_filt_view_height       (30.0)
 #define discountInfo_height         (108.0)
@@ -24,11 +25,14 @@
 
 @property (nonatomic, strong) ManWuDiiscountInfoDescriptionView     *discountInfo;
 
+// 刷选头
 @property (nonatomic,strong) ManWuCommoditySortAndFiltView*   sortFiltHeadView;
-
+// 筛选 弄倒了
 @property (nonatomic,strong) ManWuCommoditySortForDiscountListView*      sortListSelectView;
-
+// 排序 弄倒了
 @property (nonatomic,strong) ManWuCommodityFiltForDiscoverListView *filtForDiscoverSelectView;
+
+@property (nonatomic,strong) ManWuCommodityFiltTagListView *filtTagListView;
 
 @property (nonatomic,strong) NSString                          *filtKey;
 
@@ -112,7 +116,7 @@
     return _sortFiltHeadView;
 }
 
-#pragma mark - sortListSelectView 排序选择list
+#pragma mark - sortListSelectView 筛选选择list
 
 -(ManWuCommoditySortForDiscountListView *)sortListSelectView{
     if (_sortListSelectView == nil) {
@@ -136,6 +140,11 @@
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
             NSDictionary* params = @{@"sortKey":sortAndFiltModel.titleText};
             [strongSelf loadDataWithParams:params];
+            CGRect rect = strongSelf.filtTagListView.tagListLayoutView.frame;
+            CGRect sortFiltViewRect = [strongSelf.container convertRect:strongSelf.container.frame toView:strongSelf];
+            rect.origin.y = CGRectGetMaxY(sortFiltViewRect);
+            [strongSelf.filtTagListView.tagListLayoutView setOrigin:CGPointMake(rect.origin.x, rect.origin.y)];
+            strongSelf.filtTagListView.hidden = NO;
         };
         _sortListSelectView.hidden = YES;
         [self addSubview:_sortListSelectView];
@@ -143,7 +152,7 @@
     return _sortListSelectView;
 }
 
-#pragma mark - filtForDiscoverSelectView 筛选选择list
+#pragma mark - filtForDiscoverSelectView 排序选择list
 
 -(ManWuCommodityFiltForDiscoverListView *)filtForDiscoverSelectView{
     if (_filtForDiscoverSelectView == nil) {
@@ -173,6 +182,33 @@
         [self addSubview:_filtForDiscoverSelectView];
     }
     return _filtForDiscoverSelectView;
+}
+
+-(ManWuCommodityFiltTagListView *)filtTagListView{
+    if (_filtTagListView == nil) {
+        _filtTagListView = [[ManWuCommodityFiltTagListView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        
+        WEAKSELF
+        void(^flitTagListViewBlock)(void) = ^(){
+            STRONGSELF
+            strongSelf.filtTagListView.hidden = YES;
+        };
+        
+        _filtTagListView.cancelListViewBlock =  ^(){
+            if (flitTagListViewBlock) {
+                flitTagListViewBlock();
+            }
+        };
+        
+        _filtTagListView.filtTagListViewSelectedBlock = ^(NSUInteger index,WeAppComponentBaseItem* componentItem){
+            if (flitTagListViewBlock) {
+                flitTagListViewBlock();
+            }
+        };
+        
+        [self addSubview:_filtTagListView];
+    }
+    return _filtTagListView;
 }
 
 #pragma mark - 加载数据

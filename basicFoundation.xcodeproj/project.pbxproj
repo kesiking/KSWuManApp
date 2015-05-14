@@ -22,6 +22,11 @@
 		050FFD7A1B0310E500721E02 /* ManWuAddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD791B0310E500721E02 /* ManWuAddressEditViewController.m */; };
 		050FFD7C1B03222600721E02 /* HZAreaPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050FFD7B1B03222600721E02 /* HZAreaPickerView.xib */; };
 		050FFD7F1B0339A400721E02 /* ManWuAddressSetDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 050FFD7E1B0339A400721E02 /* ManWuAddressSetDefaultView.m */; };
+		0519007A1B035F1000C077D5 /* KSTagListLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051900791B035F1000C077D5 /* KSTagListLayoutView.m */; };
+		0519007D1B04314000C077D5 /* KSTagCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519007C1B04314000C077D5 /* KSTagCellView.m */; };
+		051900811B04326600C077D5 /* ManWuCommodityFiltTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051900801B04326600C077D5 /* ManWuCommodityFiltTagListView.m */; };
+		051900841B0432B100C077D5 /* ManWuCommodityFiltTagCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051900831B0432B100C077D5 /* ManWuCommodityFiltTagCellView.m */; };
+		051900871B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 051900861B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m */; };
 		052CC67B1AF357A800AF7C78 /* WeAppTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */; };
 		052CC67E1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC67D1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m */; };
 		052CC68D1AF7198B00AF7C78 /* UIColor+WeAppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6821AF7198B00AF7C78 /* UIColor+WeAppColor.m */; };
@@ -339,6 +344,16 @@
 		050FFD7B1B03222600721E02 /* HZAreaPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZAreaPickerView.xib; sourceTree = "<group>"; };
 		050FFD7D1B0339A400721E02 /* ManWuAddressSetDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressSetDefaultView.h; sourceTree = "<group>"; };
 		050FFD7E1B0339A400721E02 /* ManWuAddressSetDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressSetDefaultView.m; sourceTree = "<group>"; };
+		051900781B035F1000C077D5 /* KSTagListLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTagListLayoutView.h; sourceTree = "<group>"; };
+		051900791B035F1000C077D5 /* KSTagListLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTagListLayoutView.m; sourceTree = "<group>"; };
+		0519007B1B04314000C077D5 /* KSTagCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTagCellView.h; sourceTree = "<group>"; };
+		0519007C1B04314000C077D5 /* KSTagCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSTagCellView.m; sourceTree = "<group>"; };
+		0519007F1B04326600C077D5 /* ManWuCommodityFiltTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityFiltTagListView.h; sourceTree = "<group>"; };
+		051900801B04326600C077D5 /* ManWuCommodityFiltTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityFiltTagListView.m; sourceTree = "<group>"; };
+		051900821B0432B100C077D5 /* ManWuCommodityFiltTagCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityFiltTagCellView.h; sourceTree = "<group>"; };
+		051900831B0432B100C077D5 /* ManWuCommodityFiltTagCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityFiltTagCellView.m; sourceTree = "<group>"; };
+		051900851B0438C700C077D5 /* ManWuCommodityFiltTabLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityFiltTabLabel.h; sourceTree = "<group>"; };
+		051900861B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityFiltTabLabel.m; sourceTree = "<group>"; };
 		052CC6791AF357A800AF7C78 /* WeAppTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppTableViewCell.h; sourceTree = "<group>"; };
 		052CC67A1AF357A800AF7C78 /* WeAppTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppTableViewCell.m; sourceTree = "<group>"; };
 		052CC67C1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverCellModelInfoItem.h; sourceTree = "<group>"; };
@@ -984,6 +999,19 @@
 			path = ManWuAddressEditViewController;
 			sourceTree = "<group>";
 		};
+		0519007E1B04324300C077D5 /* ManWuTagListView */ = {
+			isa = PBXGroup;
+			children = (
+				0519007F1B04326600C077D5 /* ManWuCommodityFiltTagListView.h */,
+				051900801B04326600C077D5 /* ManWuCommodityFiltTagListView.m */,
+				051900821B0432B100C077D5 /* ManWuCommodityFiltTagCellView.h */,
+				051900831B0432B100C077D5 /* ManWuCommodityFiltTagCellView.m */,
+				051900851B0438C700C077D5 /* ManWuCommodityFiltTabLabel.h */,
+				051900861B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m */,
+			);
+			path = ManWuTagListView;
+			sourceTree = "<group>";
+		};
 		052CC6801AF7198B00AF7C78 /* KSBannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1136,7 @@
 		0553F77C1AFA1F7A0013BB97 /* ManWuCommodityListBaiscView */ = {
 			isa = PBXGroup;
 			children = (
+				0519007E1B04324300C077D5 /* ManWuTagListView */,
 				05AF2FF31B0048E000890A65 /* ManWuButton */,
 				0553F77D1AFA1F7A0013BB97 /* ManWuCommodityBasicSelectListView.h */,
 				0553F77E1AFA1F7A0013BB97 /* ManWuCommodityBasicSelectListView.m */,
@@ -1435,6 +1464,10 @@
 				056664581AEDDAA900FD1C65 /* PAStepperDetail.m */,
 				056664541AEDD88500FD1C65 /* CSLinearLayoutView.h */,
 				056664551AEDD88500FD1C65 /* CSLinearLayoutView.m */,
+				051900781B035F1000C077D5 /* KSTagListLayoutView.h */,
+				051900791B035F1000C077D5 /* KSTagListLayoutView.m */,
+				0519007B1B04314000C077D5 /* KSTagCellView.h */,
+				0519007C1B04314000C077D5 /* KSTagCellView.m */,
 			);
 			path = KSBaseView;
 			sourceTree = "<group>";
@@ -2480,6 +2513,7 @@
 				058D5CF01AF1F62E006EA35C /* DataSigner.m in Sources */,
 				055866951AD3B4F900A23FFA /* ViewController.m in Sources */,
 				0553F7941AFA1F7A0013BB97 /* ManWuViewCell.m in Sources */,
+				0519007A1B035F1000C077D5 /* KSTagListLayoutView.m in Sources */,
 				052CC6C01AF86D1A00AF7C78 /* KSSearchBasicView.m in Sources */,
 				058D5D001AF210C0006EA35C /* ManWuBuyBasicView.m in Sources */,
 				058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */,
@@ -2510,6 +2544,7 @@
 				058DADB81AE110C2009D0008 /* KSView.m in Sources */,
 				056664BB1AEF1C3C00FD1C65 /* TBDetailSkuModel.m in Sources */,
 				058DAE4F1AE72FC3009D0008 /* TBURLAction.m in Sources */,
+				051900871B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m in Sources */,
 				055C758A1ADFBF6000C35854 /* SDWebImagePrefetcher.m in Sources */,
 				05ACAC941AFC9FC800853E1C /* KSErrorView.m in Sources */,
 				058D5A9F1AF0B39B006EA35C /* DetailHUDActivityView.m in Sources */,
@@ -2545,6 +2580,7 @@
 				056664C21AEF203000FD1C65 /* TBDetailPriceUnitsModel.m in Sources */,
 				056664371AEB284F00FD1C65 /* KSCollectionViewController.m in Sources */,
 				055866B71AD3B65900A23FFA /* Routable.m in Sources */,
+				051900811B04326600C077D5 /* ManWuCommodityFiltTagListView.m in Sources */,
 				0566648B1AEE0B1C00FD1C65 /* TBDetailSkuPropsModel.m in Sources */,
 				058BC3FA1AE89DA700A4F799 /* KSManWuTabBarViewController.m in Sources */,
 				052CC68F1AF7198B00AF7C78 /* WeAppBasicBannerView.m in Sources */,
@@ -2571,6 +2607,7 @@
 				055866E11AD3EAA500A23FFA /* WeAppJsonUtil.m in Sources */,
 				058D5AB41AF0D0FF006EA35C /* KSSafePayUtility.m in Sources */,
 				05AF2FEE1B003CF500890A65 /* ManWuFavViewCell.m in Sources */,
+				051900841B0432B100C077D5 /* ManWuCommodityFiltTagCellView.m in Sources */,
 				055AC46E1B01BE4E005F9DA2 /* ManWuLoginResolver.m in Sources */,
 				056664561AEDD88500FD1C65 /* CSLinearLayoutView.m in Sources */,
 				058DADB51AE110AA009D0008 /* KSViewController.m in Sources */,
@@ -2586,6 +2623,7 @@
 				055C75891ADFBF6000C35854 /* SDWebImageManager.m in Sources */,
 				055C75991ADFC6CA00C35854 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				056664591AEDDAA900FD1C65 /* PAStepperDetail.m in Sources */,
+				0519007D1B04314000C077D5 /* KSTagCellView.m in Sources */,
 				056664731AEDDD2300FD1C65 /* TBDetailUITools.m in Sources */,
 				055C75861ADFBF6000C35854 /* SDWebImageDecoder.m in Sources */,
 				058DADD41AE52EC0009D0008 /* AFURLRequestSerialization.m in Sources */,
