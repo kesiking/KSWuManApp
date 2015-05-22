@@ -10,6 +10,8 @@
 
 @interface ManWuFavService : KSAdapterService
 
--(void)addFavorate;
+-(void)addFavorateWithItemId:(NSString*)itemId;
+
+-(void)unAddFavorateWithItemId:(NSString*)itemId;
 
 @end

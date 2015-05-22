@@ -23,6 +23,14 @@
     return nil;
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self.seprateBackgroundView setFrame:CGRectMake(self.seprateBackgroundView.origin.x, self.height - self.seprateBackgroundView.height, self.width, self.seprateBackgroundView.height)];
+    [self.phoneNumLabel setOrigin:CGPointMake(self.width - self.phoneNumLabel.width - 18, self.phoneNumLabel.origin.y)];
+    [self.addressLabel setWidth:self.width - 15 * 2];
+    
+}
+
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [ManWuAddressManagerViewCell createView];
     if (self) {

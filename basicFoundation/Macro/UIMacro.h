@@ -17,6 +17,7 @@
 #import "TBDetailSKULayout.h"
 #import "TBDetailUIStyle.h"
 #import "TBDetailUITools.h"
+#import "KSPaginationItem.h"
 
 #define UI_NAVIGATION_HEIGHT (IOS_VERSION<7?44:64)
 

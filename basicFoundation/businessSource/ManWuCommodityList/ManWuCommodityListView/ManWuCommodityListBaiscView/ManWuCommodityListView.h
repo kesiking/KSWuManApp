@@ -14,4 +14,8 @@
 
 @property (nonatomic,strong) KSCollectionViewController* collectionViewCtl;
 
+-(void)setCollectionService:(KSAdapterService *)service;
+
+-(KSAdapterService*)getCollectionService;
+
 @end

@@ -33,8 +33,11 @@
 -(void)buttonClickEvent{
     if ([self canResponseRequest]) {
         // todo service request
-//        [self updateFavBtnStatus:!self.isFavorate];
-        [((ManWuFavService*)self.service) addFavorate];
+        if (!self.isFavorate) {
+            [((ManWuFavService*)self.service) addFavorateWithItemId:self.itemId];
+        }else{
+            [((ManWuFavService*)self.service) unAddFavorateWithItemId:self.itemId];
+        }
     }
 }
 

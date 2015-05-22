@@ -350,9 +350,9 @@
     
     if(CGSizeEqualToSize(CGSizeZero, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize)){
         KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
-        return CGSizeMake(modelInfoItem.frame.size.width, modelInfoItem.frame.size.height);
+        return CGSizeMake(modelInfoItem.frame.size.width, modelInfoItem.frame.size.height * SCREEN_SCALE);
     }
-    return ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize;
+    return CGSizeMake(((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.width, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height * SCREEN_SCALE);
 }
 
 // 3

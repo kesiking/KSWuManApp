@@ -33,8 +33,11 @@
 -(void)buttonClickEvent{
     if ([self canResponseRequest]) {
         // todo service request
-//        [self updatePraiseBtnStatus:!self.isPraise];
-        [((ManWuPraiseService*)self.service) addPraise];
+        if (!self.isPraise) {
+            [((ManWuPraiseService*)self.service) addPraiseWithItemId:self.itemId];
+        }else{
+            [((ManWuPraiseService*)self.service) unAddPraiseWithItemId:self.itemId];
+        }
     }
 }
 

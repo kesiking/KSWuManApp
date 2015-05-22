@@ -22,13 +22,19 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.collectionViewCtl.scrollView];
-    NSMutableArray* arrayData = [[NSMutableArray alloc] init];
+    NSMutableArray* arrayData = [NSMutableArray array];
     for (int i = 0; i < 10 ; i++) {
         WeAppComponentBaseItem* component = [[WeAppComponentBaseItem alloc] init];
         [arrayData addObject:component];
     }
     [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
     [self.collectionViewCtl reloadData];
+}
+
+-(void)dealloc{
+    _collectionViewCtl = nil;
+    _dataSourceRead = nil;
+    _dataSourceWrite = nil;
 }
 
 -(KSCollectionViewController *)collectionViewCtl{
@@ -59,6 +65,22 @@
         _dataSourceWrite = [[KSDataSource alloc]init];
     }
     return _dataSourceWrite;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark service 交给collectionViewCtl
+
+-(void)setCollectionService:(KSAdapterService *)service{
+    if (service != _collectionViewCtl.service) {
+        _collectionViewCtl.service.delegate = nil;
+        _collectionViewCtl.service = nil;
+        _collectionViewCtl.service = service;
+    }
+}
+
+-(KSAdapterService*)getCollectionService{
+    return (KSAdapterService*)_collectionViewCtl.service;
 }
 
 @end

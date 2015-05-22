@@ -47,6 +47,11 @@
     [self addSubview:self.commoditySeparateLine];
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self.commoditySeparateLine setFrame:CGRectMake(8, self.height - 0.5, self.width - 8 * 2, self.commoditySeparateLine.height)];
+}
+
 - (void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
     [self reloadData];
 }
@@ -72,7 +77,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect rect = self.bounds;
     
-    rect.size.height = 90;
+    rect.size.height = 60;
     
     return CGSizeMake(rect.size.width, rect.size.height);
 }

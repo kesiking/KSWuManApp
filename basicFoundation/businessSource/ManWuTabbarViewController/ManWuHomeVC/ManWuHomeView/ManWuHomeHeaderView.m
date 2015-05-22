@@ -12,10 +12,10 @@
 #import "ManWuSpecialForTodayView.h"
 #import "ManWuRecommendForListHeaderView.h"
 
-#define banner_height               (60.0)
-#define discountInfo_height         (108.0)
-#define specialView_height          (100.0)
-#define recommendView_height        (25.0)
+#define banner_height               (60.0 * SCREEN_SCALE)
+#define discountInfo_height         (108.0 * SCREEN_SCALE)
+#define specialView_height          (100.0 * SCREEN_SCALE)
+#define recommendView_height        (25.0 * SCREEN_SCALE)
 
 @interface ManWuHomeHeaderView()
 

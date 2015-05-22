@@ -14,6 +14,7 @@
 #import "ManWuCommoditySortListView.h"
 #import "ManWuCommoditySortAndFiltModel.h"
 #import "ManWuCommodityFiltTagListView.h"
+#import "ManWuCommodityActListService.h"
 
 #define sort_filt_view_height       (30.0)
 #define discountInfo_height         (108.0)

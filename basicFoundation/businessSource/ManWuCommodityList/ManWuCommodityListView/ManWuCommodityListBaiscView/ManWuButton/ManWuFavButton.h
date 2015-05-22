@@ -10,6 +10,8 @@
 
 @interface ManWuFavButton : ManWuOperationButton
 
+@property(nonatomic,strong)  NSString*          itemId;
+
 -(void)updateFavBtnStatus:(BOOL)isFavorate;
 
 @end

@@ -32,6 +32,14 @@
     return self;
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self.seprateBackgroundView setFrame:CGRectMake(self.seprateBackgroundView.origin.x, self.height - self.seprateBackgroundView.height, self.width, self.seprateBackgroundView.height)];
+    [self.phoneNumLabel setOrigin:CGPointMake(self.width - self.phoneNumLabel.width - 18, self.phoneNumLabel.origin.y)];
+    [self.addressLabel setWidth:self.width - 15 * 2];
+
+}
+
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     ManWuAddressInfoModel* addressInfoComponentItem = (ManWuAddressInfoModel*)componentItem;
     if (addressInfoComponentItem.isDefaultAddress) {

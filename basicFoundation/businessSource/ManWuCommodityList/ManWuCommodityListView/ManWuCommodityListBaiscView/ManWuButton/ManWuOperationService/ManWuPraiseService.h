@@ -10,6 +10,8 @@
 
 @interface ManWuPraiseService : KSAdapterService
 
--(void)addPraise;
+-(void)addPraiseWithItemId:(NSString*)itemId;
+
+-(void)unAddPraiseWithItemId:(NSString*)itemId;
 
 @end

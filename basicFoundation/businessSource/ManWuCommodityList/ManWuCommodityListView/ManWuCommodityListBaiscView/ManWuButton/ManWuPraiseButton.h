@@ -10,4 +10,6 @@
 
 @interface ManWuPraiseButton : ManWuOperationButton
 
+@property(nonatomic,strong)  NSString*          itemId;
+
 @end

@@ -138,6 +138,7 @@
 -(ManWuCommodityTitleAndPriceView *)titleAndPriceView{
     if (_titleAndPriceView == nil) {
         _titleAndPriceView = [ManWuCommodityTitleAndPriceView createView];
+        [_titleAndPriceView setWidth:self.width];
         [_titleAndPriceView sizeToFit];
     }
     return _titleAndPriceView;

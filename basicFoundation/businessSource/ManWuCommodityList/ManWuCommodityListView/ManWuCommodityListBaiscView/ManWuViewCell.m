@@ -118,6 +118,7 @@
     }else{
         self.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
     }
+    self.favorateImageView.itemId = @"22";
     self.titleLabel.text = @"测试风刀霜剑烦死了都快捷方式来得及菲利克斯";
     self.priceLabel.text = @"￥1000";
     NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:9 number:3];

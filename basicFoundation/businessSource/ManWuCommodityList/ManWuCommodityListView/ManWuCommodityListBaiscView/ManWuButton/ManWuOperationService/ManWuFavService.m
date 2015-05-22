@@ -10,8 +10,28 @@
 
 @implementation ManWuFavService
 
--(void)addFavorate{
+-(void)addFavorateWithItemId:(NSString*)itemId{
+    [self doFavorateWithApiName:@"user/addItem.do" itemId:itemId];
+}
+
+-(void)unAddFavorateWithItemId:(NSString*)itemId{
+    [self doFavorateWithApiName:@"user/unAddItem.do" itemId:itemId];
+}
+
+-(void)doFavorateWithApiName:(NSString*)apiName itemId:(NSString*)itemId{
+    if (itemId == nil) {
+        return;
+    }
     
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    [params setObject:@"store" forKey:@"action"];
+    [params setObject:itemId forKey:@"itemId"];
+    
+    if (1) {
+        [params setObject:@"123" forKey:@"userId"];
+    }
+    
+    [self loadItemWithAPIName:apiName params:params version:nil];
 }
 
 @end
