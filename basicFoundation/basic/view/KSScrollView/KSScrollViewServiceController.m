@@ -10,9 +10,9 @@
 #import "WeAppLoadingView.h"
 #import "KSAdapterService.h"
 
-#define errorView 1001
+#define errorViewTag 1001
 
-#define labelView 1002
+#define labelViewTag 1002
 
 @interface KSScrollViewServiceController()
 
@@ -115,43 +115,54 @@
     //如果当前list为空并且unScroll为假，即能滑动，且无headerview或是footerview
     BOOL isRfresh = self.service && [self.service.pagedList isRefresh];
     if ([self needErrerView]) {
-        UIView *view = [self.scrollView viewWithTag:errorView];
+        UIView *view = [self.scrollView viewWithTag:errorViewTag];
         if (!view) {
-            view = [[UIView alloc] initWithFrame:self.scrollView.bounds];
-            view.backgroundColor = RGB(0xf0, 0xf0, 0xf0);
-            
-            CGFloat oringeY = (view.frame.size.height - (100.0 + 40.0 + 18.0 + 24.0 + 14.0))/2;
-            
-            UIImage *image = [UIImage imageNamed:@"weapp_empty"];
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(view.origin.x + (view.width - 100)/2, view.origin.y + oringeY, 100, 100)];
-            imageView.image = image;
-            
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.origin.y + imageView.height + 40, view.width, 18)];
-            label.backgroundColor = [UIColor clearColor];
-            label.textAlignment =  NSTextAlignmentCenter;
-            label.textColor = RGB(0x3d, 0x42, 0x45);
-            label.font = [UIFont systemFontOfSize:18];
-            if (self.errorViewTitle && self.errorViewTitle.length > 0) {
-                label.text = self.errorViewTitle;
-            }
-            [view addSubview:label];
-            
-            UILabel *labelSubTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, label.origin.y + label.height + 12, view.width, 14)];
-            labelSubTitle.textColor = RGB(0x99, 0x99, 0x99);
-            labelSubTitle.backgroundColor = [UIColor clearColor];
-            labelSubTitle.textAlignment =  NSTextAlignmentCenter;
-            labelSubTitle.font = [UIFont systemFontOfSize:14];
-            labelSubTitle.text = @"暂时没有相关数据";
-            [view addSubview:labelSubTitle];
-            
-            [view addSubview:imageView];
+            view = [self getErrorView];
+            view.tag = errorViewTag;
         }
         [self setFootView:view];
     }else if([self needFootView] && [self needNextPage] && !isRfresh){
         [self setFootView:self.nextFootView];
     }else{
+        UIView *view = [self.scrollView viewWithTag:errorViewTag];
+        [view removeFromSuperview];
         [self setFootView:nil];
     }
+}
+
+-(UIView*)getErrorView{
+    if (self.errorView) {
+        return self.errorView;
+    }
+    UIView* view = [[UIView alloc] initWithFrame:self.scrollView.bounds];
+    view.backgroundColor = RGB(0xf8, 0xf8, 0xf8);
+    
+    CGFloat oringeY = (view.frame.size.height - (100.0 + 40.0 + 18.0 + 24.0 + 14.0))/2;
+    
+    UIImage *image = [UIImage imageNamed:@"weapp_empty"];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(view.origin.x + (view.width - 100)/2, view.origin.y + oringeY, 100, 100)];
+    imageView.image = image;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.origin.y + imageView.height + 40, view.width, 18)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment =  NSTextAlignmentCenter;
+    label.textColor = RGB(0x3d, 0x42, 0x45);
+    label.font = [UIFont systemFontOfSize:18];
+    if (self.errorViewTitle && self.errorViewTitle.length > 0) {
+        label.text = self.errorViewTitle;
+    }
+    [view addSubview:label];
+    
+    UILabel *labelSubTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, label.origin.y + label.height + 12, view.width, 14)];
+    labelSubTitle.textColor = RGB(0x99, 0x99, 0x99);
+    labelSubTitle.backgroundColor = [UIColor clearColor];
+    labelSubTitle.textAlignment =  NSTextAlignmentCenter;
+    labelSubTitle.font = [UIFont systemFontOfSize:14];
+    labelSubTitle.text = @"暂时没有相关数据";
+    [view addSubview:labelSubTitle];
+    
+    [view addSubview:imageView];
+    return view;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -159,7 +170,7 @@
 #pragma mark nextFootView
 
 -(void)updateFootView{
-    UILabel* label = (UILabel*)[self.nextFootView viewWithTag:labelView];
+    UILabel* label = (UILabel*)[self.nextFootView viewWithTag:labelViewTag];
     if (label != nil && [label isMemberOfClass:[UILabel class]]) {
         BOOL hasMore = self.service && [self.service.pagedList hasMore];
         if (hasMore) {
@@ -183,7 +194,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:12];
         label.textColor = RGB(53, 55, 59);
-        label.tag = labelView;
+        label.tag = labelViewTag;
         label.backgroundColor = [UIColor clearColor];
         [_nextFootView addSubview:label];
         [_nextFootView addSubview:self.nextPageLoadingView];
@@ -479,8 +490,19 @@
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service && service.apiName) {
-        [self apiRequestDidFail];
+        if ([self needQueueLoadData]) {
+            // 如果首次进入页面或是页面一直没有数据则主线程更新
+            if ([self.dataSourceRead count] == 0) {
+                [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+            }
+            dispatch_async(_serialQueue, ^{
+                [self.dataSourceWrite setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+            });
+        }else{
+            [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+        }
     }
+    [self apiRequestDidFail];
 }
 
 - (void)requestDidStart{
@@ -494,6 +516,7 @@
 }
 
 -(void)apiRequestDidFail{
+    [self refreshData];
     [self hideLodingView];
     [self performSelector:@selector(setErrerView) withObject:nil afterDelay:0];
 }

@@ -9,15 +9,17 @@
 #import "ManWuHomeViewController.h"
 #import "ManWuHomeHeaderView.h"
 #import "ManWuCommodityListView.h"
-#import "KSServiceDemo.h"
+#import "ManWuCommodityNewListService.h"
 
 @interface ManWuHomeViewController (){
-    KSServiceDemo *_serviceDemo;
+    
 }
 
-@property (nonatomic, strong) ManWuHomeHeaderView            *headerView;
+@property (nonatomic, strong) ManWuHomeHeaderView          *headerView;
 
-@property (nonatomic,strong) ManWuCommodityListView          *commodityListView;
+@property (nonatomic, strong) ManWuCommodityListView       *commodityListView;
+
+@property (nonatomic, strong) ManWuCommodityNewListService *newListService;
 
 
 @end
@@ -32,6 +34,7 @@
     [self.headerView setDescriptionModel:nil];
     [self.headerView sizeToFit];
     [self.commodityListView.collectionViewCtl setColletionHeaderView:self.headerView];
+    [self.newListService loadCommodityListData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -67,8 +70,16 @@
             __strong __typeof(self) strongSelf = weadSelf;
             [strongSelf.headerView refresh];
         };
+        [_commodityListView setCollectionService:self.newListService];
     }
     return _commodityListView;
+}
+
+-(ManWuCommodityNewListService *)newListService{
+    if (_newListService == nil) {
+        _newListService = [[ManWuCommodityNewListService alloc] init];
+    }
+    return _newListService;
 }
 
 @end

@@ -122,7 +122,7 @@
     }
     self.favorateImageView.itemId = detailModel.itemId;
     self.titleLabel.text = detailModel.title;
-    self.priceLabel.text = detailModel.price;
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.price];
     NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.like longLongValue] number:3];
     self.favorateLabel.text = favorateLabelText;
     [self updateFrame];

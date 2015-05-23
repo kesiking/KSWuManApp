@@ -15,11 +15,13 @@
     NSArray* sortAndFiltArray = @[
                                   @{
                                       @"imageUrl":@"manwu_commodity_filt_all.jpg",
-                                      @"titleText":@"按价格排序"
+                                      @"titleText":@"按价格排序",
+                                      @"sortKey":@"1"
                                       },
                                   @{
                                       @"imageUrl":@"manwu_commodity_filt_discount.png",
-                                      @"titleText":@"按人气排序"
+                                      @"titleText":@"按人气排序",
+                                      @"sortKey":@"2"
                                       }
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];

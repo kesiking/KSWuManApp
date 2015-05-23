@@ -13,7 +13,7 @@
 #import "ManWuCommodityInfoDescriptionView.h"
 #import "ManWuCommodityGuideView.h"
 
-#define banner_height (325.0)
+#define banner_height (325.0 * SCREEN_SCALE)
 
 @interface ManWuCommodityView()
 
@@ -148,7 +148,7 @@
 
 -(ManWuCommodityInfoDescriptionView *)infoDecView{
     if (_infoDecView == nil) {
-        _infoDecView = [[ManWuCommodityInfoDescriptionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 200)];
+        _infoDecView = [[ManWuCommodityInfoDescriptionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 200 * SCREEN_SCALE)];
     }
     return _infoDecView;
 }
@@ -157,7 +157,7 @@
 
 -(ManWuCommodityGuideView *)guideView{
     if (_guideView == nil) {
-        _guideView = [[ManWuCommodityGuideView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 200)];
+        _guideView = [[ManWuCommodityGuideView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 200 * SCREEN_SCALE)];
     }
     return _guideView;
 }

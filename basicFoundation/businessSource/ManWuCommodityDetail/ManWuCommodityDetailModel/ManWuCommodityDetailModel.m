@@ -10,8 +10,8 @@
 
 @implementation ManWuCommodityDetailModel
 
--(TBJSONModelKeyMapper*)modelKeyMapper{
-    NSDictionary* dict = @{@"itemId":@"id"};
++(TBJSONModelKeyMapper*)modelKeyMapper{
+    NSDictionary* dict = @{@"id":@"itemId"};
     return [[TBJSONModelKeyMapper alloc] initWithDictionary:dict];
 }
 

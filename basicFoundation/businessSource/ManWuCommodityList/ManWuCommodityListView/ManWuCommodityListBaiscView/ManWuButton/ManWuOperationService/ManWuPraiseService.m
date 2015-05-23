@@ -20,6 +20,7 @@
 
 -(void)doPraiseWithApiName:(NSString*)apiName itemId:(NSString*)itemId{
     if (itemId == nil) {
+        [WeAppToast toast:@"没有宝贝信息"];
         return;
     }
     

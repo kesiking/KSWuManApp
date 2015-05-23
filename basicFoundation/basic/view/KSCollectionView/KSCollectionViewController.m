@@ -15,6 +15,10 @@
 
 @property (nonatomic, strong) Class                viewCellClass;
 
+@property (nonatomic, assign) CGSize               colletionFooterSize;
+
+@property (nonatomic, assign) CGSize               colletionHeaderSize;
+
 @end
 
 @implementation KSCollectionViewController
@@ -54,6 +58,8 @@
     self = [super init];
     if (self) {
         self.scrollView = (UIScrollView*)[self createView];
+        self.colletionFooterSize = CGSizeZero;
+        self.colletionHeaderSize = CGSizeZero;
     }
     return self;
 }
@@ -186,10 +192,13 @@
 
 -(void)setFootView:(UIView*)view{
     if (view == nil) {
+        self.colletionFooterSize = CGSizeZero;
         return;
     }
     if (self.colletionFooterView != view) {
         self.colletionFooterView = view;
+        self.colletionFooterSize = self.colletionFooterView.size;
+        [self.collectionView reloadData];
     }
 }
 
@@ -278,7 +287,7 @@
 
 // 4
 -(CGSize )collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return self.colletionFooterView?self.colletionFooterView.size:CGSizeZero;
+    return self.colletionFooterSize;
 }
 
 -(CGSize )collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

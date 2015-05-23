@@ -23,6 +23,8 @@
 
 @property (nonatomic,strong) ManWuCommodityFiltForDiscoverListView *filtForDiscoverSelectView;
 
+@property (nonatomic,strong) NSString                          *actIdKey;
+
 @property (nonatomic,strong) NSString                          *filtKey;
 
 @property (nonatomic,strong) NSString                          *sortKey;
@@ -86,7 +88,7 @@
                 sortListSelectBlock();
             }
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
-            NSDictionary* params = @{@"sortKey":sortAndFiltModel.titleText};
+            NSDictionary* params = @{@"actIdKey":sortAndFiltModel.actIdKey?:defaultActIdKey};
             [strongSelf loadDataWithParams:params];
         };
         _sortListSelectView.hidden = YES;
@@ -116,7 +118,7 @@
                 flitForDiscoverBlock();
             }
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
-            NSDictionary* params = @{@"filtKey":sortAndFiltModel.titleText};
+            NSDictionary* params = @{@"sortKey":sortAndFiltModel.sortKey?:defaultSortKey};
             [strongSelf loadDataWithParams:params];
         };
         _filtForDiscoverSelectView.hidden = YES;
@@ -133,18 +135,30 @@
 }
 
 -(void)loadDataWithParams:(NSDictionary*)params{
+    BOOL needRefreshService = NO;
+    
+    NSString* actIdKey = params[@"actIdKey"];
+    if (actIdKey && actIdKey != self.actIdKey) {
+        self.actIdKey = actIdKey;
+        needRefreshService = YES;
+    }
     NSString* sortKey = params[@"sortKey"];
-    if (sortKey) {
+    if (sortKey && sortKey != self.sortKey) {
         // todo
         self.sortKey = sortKey;
+        needRefreshService = YES;
     }
     NSString* filtKey = params[@"filtKey"];
-    if (filtKey) {
+    if (filtKey && filtKey != self.filtKey) {
         // todo
         self.filtKey = filtKey;
+        needRefreshService = YES;
+    }
+    if (!needRefreshService) {
+        return;
     }
     // service todo
-    [self.discoverService loadCommodityListDataWithCid:self.filtKey sort:self.sortKey];
+    [self.discoverService loadCommodityListDataWithWithActId:self.actIdKey cid:self.filtKey sort:self.sortKey];
 }
 
 @end

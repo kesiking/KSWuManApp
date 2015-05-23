@@ -305,6 +305,8 @@
 		05D5F2C61B00CBE4002EF23D /* KSAuthenticationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D5F2C51B00CBE4002EF23D /* KSAuthenticationCenter.m */; };
 		05E88EDC1B033E0500E0B646 /* ManWuAddressBottomVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E88EDB1B033E0500E0B646 /* ManWuAddressBottomVIew.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
+		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
+		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
 		5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */; };
 		5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06221B0E011F00852188 /* KSPaginationItem.m */; };
 		5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */; };
@@ -926,6 +928,9 @@
 		05E88EDB1B033E0500E0B646 /* ManWuAddressBottomVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressBottomVIew.m; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
+		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
+		5F9216201B103DF000554B44 /* ManWuCommodityNewListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityNewListService.h; sourceTree = "<group>"; };
+		5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityNewListService.m; sourceTree = "<group>"; };
 		5FBA061E1B0DEC6000852188 /* ManWuCommodityListBasicService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListBasicService.h; sourceTree = "<group>"; };
 		5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListBasicService.m; sourceTree = "<group>"; };
 		5FBA06211B0E011F00852188 /* KSPaginationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPaginationItem.h; sourceTree = "<group>"; };
@@ -2294,6 +2299,7 @@
 		05AF2FFA1B004D3F00890A65 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F92161E1B103A0600554B44 /* weapp_empty.png */,
 				05AF2FFB1B004D3F00890A65 /* loading_view_1.png */,
 				05AF2FFC1B004D3F00890A65 /* loading_view_2.png */,
 				05AF2FFD1B004D3F00890A65 /* loading_view_3.png */,
@@ -2350,6 +2356,8 @@
 				5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */,
 				5FBA06241B0F515A00852188 /* ManWuCommodityActListService.h */,
 				5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */,
+				5F9216201B103DF000554B44 /* ManWuCommodityNewListService.h */,
+				5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */,
 			);
 			path = ManWuCommodityListService;
 			sourceTree = "<group>";
@@ -2467,6 +2475,7 @@
 				058BC3FB1AE89DA700A4F799 /* tabbarViewControllerRegister.plist in Resources */,
 				058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */,
 				058BC4151AE8D97400A4F799 /* tabitem_home_highlight@2x.png in Resources */,
+				5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */,
 				0553F7621AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg in Resources */,
 				052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */,
 				0553F7611AF9EB660013BB97 /* manwu_commodity_filt_discount.png in Resources */,
@@ -2714,6 +2723,7 @@
 				058DADD01AE52EC0009D0008 /* AFHTTPSessionManager.m in Sources */,
 				058D5CF51AF1F62E006EA35C /* RSADataSigner.m in Sources */,
 				058BC40C1AE8CF8700A4F799 /* KSManWuViewController.m in Sources */,
+				5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */,
 				058DAE661AE79A8B009D0008 /* KSConfigCenter.m in Sources */,
 				050FFD2E1B02DFA400721E02 /* KSModelDemo.m in Sources */,
 				058DAE561AE73040009D0008 /* TBNavigationParams.m in Sources */,

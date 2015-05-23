@@ -25,6 +25,8 @@
     [super setupView];
     ManWuPraiseService* service = [[ManWuPraiseService alloc] init];
     [self setService:service];
+    self.messageForFailResponse = @"点赞失败";
+    self.messageForSuccessResponse = @"点赞成功";
     self.praiseImage = [UIImage imageNamed:@"praise_button_image"];
     self.unpraiseImage = [UIImage imageNamed:@"unPraise_button_image"];
     [self updatePraiseBtnStatus:NO];

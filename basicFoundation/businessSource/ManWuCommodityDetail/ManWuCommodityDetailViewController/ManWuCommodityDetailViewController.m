@@ -39,7 +39,6 @@
     
     NSDictionary* dict = @{@"skuTitle":@"titleTest",@"skuDetailModel":@{@"skuModel":@{@"skuTitle":@"skuTitleTest1",@"skus":@{@"quantity":@2},@"skuProps":@[@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest2",@"values":@[@{@"name":@"nameTest2"},@{@"name":@"nameTest3"}]}]}}};
     self.detailModel = [ManWuCommodityDetailModel modelWithJSON:dict];
-    [self.service loadInvite];
     [self.commodityDetailView setDescriptionModel:self.detailModel];
     [self reloadData];
 }
@@ -97,11 +96,6 @@
 -(void)reloadData{
     self.skuView.skuDetailModel = self.detailModel.skuDetailModel;
 }
-
-- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
-    [WeAppToast toast:[error.userInfo objectForKey:NSLocalizedDescriptionKey]];
-}
-
 
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

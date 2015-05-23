@@ -10,8 +10,8 @@
 
 @interface ManWuCommodityListBasicService : KSAdapterService
 
--(void)loadCommodityListDataWithCid:(NSString*)cid sort:(NSString*)sort;
+-(void)loadCommodityListDataWithWithActId:(NSString*)actId cid:(NSString*)cid sort:(NSString*)sort;
 
--(void)loadCommodityListDataWithCid:(NSString*)cid sort:(NSString*)sort pageinationItem:(KSPaginationItem*)pageinationItem;
+-(void)loadCommodityListDataWithWithActId:(NSString*)actId cid:(NSString*)cid sort:(NSString*)sort pageinationItem:(KSPaginationItem*)pageinationItem;
 
 @end

@@ -77,7 +77,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect rect = self.bounds;
     
-    rect.size.height = 60;
+    rect.size.height = 60 * SCREEN_SCALE;
     
     return CGSizeMake(rect.size.width, rect.size.height);
 }

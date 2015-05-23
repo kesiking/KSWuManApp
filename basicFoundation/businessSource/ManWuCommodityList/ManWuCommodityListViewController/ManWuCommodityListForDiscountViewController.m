@@ -14,6 +14,8 @@
 @property (nonatomic,strong) ManWuCommodityListSortAndFiltForDiscountView* commodityListView;
 @property (nonatomic,strong) NSString* actId;
 
+@property (nonatomic,strong) NSString* cid;
+
 @end
 
 @implementation ManWuCommodityListForDiscountViewController
@@ -21,12 +23,8 @@
 -(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
     if (self = [self init]) {
         NSString* commodityId = [nativeParams objectForKey:@"commodityId"];
-        NSString* actId = [nativeParams objectForKey:@"actId"];
-        if (actId) {
-            self.actId = actId;
-        }else{
-            self.actId = @"1";
-        }
+        self.actId = [nativeParams objectForKey:@"actId"];
+        self.cid = [nativeParams objectForKey:@"cid"];
     }
     return self;
 }
@@ -45,7 +43,7 @@
 -(ManWuCommodityListSortAndFiltForDiscountView *)commodityListView{
     if (_commodityListView == nil) {
         _commodityListView = [[ManWuCommodityListSortAndFiltForDiscountView alloc] initWithFrame:self.view.bounds];
-        [_commodityListView loadDataWithParams:@{@"actIdKey":self.actId,@"filtKey":@"2",@"sortKey":@"2"}];
+        [_commodityListView loadDataWithParams:@{@"actIdKey":self.actId?:defaultActIdKey,@"filtKey":self.cid?:defaultCidKey,@"sortKey":defaultSortKey}];
     }
     return _commodityListView;
 }

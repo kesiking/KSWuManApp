@@ -16,8 +16,8 @@
 #import "ManWuCommodityFiltTagListView.h"
 #import "ManWuCommodityActListService.h"
 
-#define sort_filt_view_height       (30.0)
-#define discountInfo_height         (108.0)
+#define sort_filt_view_height       (30.0 * SCREEN_SCALE)
+#define discountInfo_height         (108.0 * SCREEN_SCALE)
 
 
 @interface ManWuCommodityListSortAndFiltForDiscountView()
@@ -89,6 +89,7 @@
 -(ManWuDiiscountInfoDescriptionView *)discountInfo{
     if (_discountInfo == nil) {
         _discountInfo = [[ManWuDiiscountInfoDescriptionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, discountInfo_height)];
+        _discountInfo.userInteractionEnabled = NO;
         _discountInfo.backgroundColor = [UIColor whiteColor];
     }
     return _discountInfo;
@@ -145,8 +146,7 @@
                 sortListSelectBlock();
             }
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
-            NSDictionary* params = @{@"sortKey":sortAndFiltModel.titleText};
-            [strongSelf loadDataWithParams:params];
+           
             CGRect rect = strongSelf.filtTagListView.tagListLayoutView.frame;
             CGRect sortFiltViewRect = [strongSelf.container convertRect:strongSelf.container.frame toView:strongSelf];
             rect.origin.y = CGRectGetMaxY(sortFiltViewRect);
@@ -182,7 +182,7 @@
                 flitForDiscoverBlock();
             }
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
-            NSDictionary* params = @{@"filtKey":sortAndFiltModel.titleText};
+            NSDictionary* params = @{@"sortKey":sortAndFiltModel.sortKey?:defaultSortKey};
             [strongSelf loadDataWithParams:params];
         };
         _filtForDiscoverSelectView.hidden = YES;
@@ -208,9 +208,13 @@
         };
         
         _filtTagListView.filtTagListViewSelectedBlock = ^(NSUInteger index,WeAppComponentBaseItem* componentItem){
+            STRONGSELF
             if (flitTagListViewBlock) {
                 flitTagListViewBlock();
             }
+//            ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)componentItem;
+//            NSDictionary* params = @{@"filtKey":sortAndFiltModel.filtKey?:@"0"};
+//            [strongSelf loadDataWithParams:params];
         };
         
         [self addSubview:_filtTagListView];
@@ -228,19 +232,27 @@
 #pragma mark - 加载数据
 
 -(void)loadDataWithParams:(NSDictionary*)params{
+    BOOL needRefreshService = NO;
+    
     NSString* actIdKey = params[@"actIdKey"];
-    if (actIdKey) {
+    if (actIdKey && actIdKey != self.actIdKey) {
         self.actIdKey = actIdKey;
+        needRefreshService = YES;
     }
     NSString* sortKey = params[@"sortKey"];
-    if (sortKey) {
+    if (sortKey && sortKey != self.sortKey) {
         // todo
         self.sortKey = sortKey;
+        needRefreshService = YES;
     }
     NSString* filtKey = params[@"filtKey"];
-    if (filtKey) {
+    if (filtKey && filtKey != self.filtKey) {
         // todo
         self.filtKey = filtKey;
+        needRefreshService = YES;
+    }
+    if (!needRefreshService) {
+        return;
     }
     // service todo
     [self.actListService loadCommodityListDataWithActId:self.actIdKey cid:self.filtKey sort:self.sortKey];

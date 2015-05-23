@@ -87,7 +87,7 @@
         configObject.needRefreshView = NO;
         configObject.needNextPage = NO;
         configObject.needFootView = NO;
-        configObject.collectionCellSize = CGSizeMake(self.width, commoditySortCellHeight);
+        configObject.collectionCellSize = KSCGSizeMake(self.width, commoditySortCellHeight);
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl registerClass:[self.viewCellClass class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];

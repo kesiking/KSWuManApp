@@ -24,6 +24,8 @@ typedef void (^ scrollViewOnNextEvnet)(KSScrollViewServiceController* scrollView
 
 @property (nonatomic, strong) UIView*                       nextFootView;
 
+@property (nonatomic, strong) UIView*                       errorView;
+
 @property (nonatomic, strong) scrollViewOnRefreshEvent      onRefreshEvent;
 
 @property (nonatomic, strong) scrollViewOnNextEvnet         onNextEvent;
@@ -47,6 +49,9 @@ typedef void (^ scrollViewOnNextEvnet)(KSScrollViewServiceController* scrollView
 
 // override subclass 设置footView 翻页时提醒
 -(void)setFootView:(UIView*)view;
+
+// override subclass 设置errorView 错误时展示
+-(UIView*)getErrorView;
 
 // override subclass 是否需要footView
 -(BOOL)needFootView;

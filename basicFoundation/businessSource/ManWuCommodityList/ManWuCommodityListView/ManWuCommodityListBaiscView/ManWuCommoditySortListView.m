@@ -19,19 +19,23 @@
     NSArray* sortAndFiltArray = @[
                                   @{
                                       @"imageUrl":@"manwu_commodity_filt_all.jpg",
-                                      @"titleText":@"全部"
+                                      @"titleText":@"全部",
+                                      @"actIdKey":@"0"
                                       },
                                   @{
                                       @"imageUrl":@"manwu_commodity_filt_discount.png",
-                                      @"titleText":@"折上折"
+                                      @"titleText":@"折上折",
+                                      @"actIdKey":@"1"
                                       },
                                   @{
                                       @"imageUrl":@"manwu_commodity_filt_specialForToday.jpg",
-                                      @"titleText":@"今日特卖"
+                                      @"titleText":@"今日特卖",
+                                      @"actIdKey":@"2"
                                       },
                                   @{
                                       @"imageUrl":@"manwu_commodity_filt_buy.jpg",
-                                      @"titleText":@"几元购"
+                                      @"titleText":@"几元购",
+                                      @"actIdKey":@"3"
                                       }
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];

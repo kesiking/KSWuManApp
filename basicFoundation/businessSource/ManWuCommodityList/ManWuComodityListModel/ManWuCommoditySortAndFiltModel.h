@@ -16,4 +16,10 @@
 
 @property (nonatomic, strong) NSString*           subTitleText;
 
+@property (nonatomic, strong) NSString*           sortKey;
+
+@property (nonatomic, strong) NSString*           filtKey;
+
+@property (nonatomic, strong) NSString*           actIdKey;
+
 @end

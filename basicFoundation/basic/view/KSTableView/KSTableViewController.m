@@ -156,9 +156,6 @@
 }
 
 -(void)setFootView:(UIView*)view{
-    if (view == nil) {
-        return;
-    }
     [self setTableFooterView:view];
 }
 
