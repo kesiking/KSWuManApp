@@ -26,8 +26,8 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     [self.seprateBackgroundView setFrame:CGRectMake(self.seprateBackgroundView.origin.x, self.height - self.seprateBackgroundView.height, self.width, self.seprateBackgroundView.height)];
-    [self.phoneNumLabel setOrigin:CGPointMake(self.width - self.phoneNumLabel.width - 18, self.phoneNumLabel.origin.y)];
-    [self.addressLabel setWidth:self.width - 15 * 2];
+    [self.phoneNumLabel setOrigin:CGPointMake(self.width - self.phoneNumLabel.width - 18 * SCREEN_SCALE, self.phoneNumLabel.origin.y)];
+    [self.addressLabel setFrame:CGRectMake(self.addressLabel.origin.x, self.fullNameLabel.bottom + 10 * SCREEN_SCALE, self.width - 15 * 2 * SCREEN_SCALE, self.addressLabel.height)];
     
 }
 

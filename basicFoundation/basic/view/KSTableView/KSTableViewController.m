@@ -278,7 +278,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(CGSizeEqualToSize(CGSizeZero, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize)){
         KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
-        return modelInfoItem.frame.size.height;
+        return modelInfoItem.frame.size.height * SCREEN_SCALE;
     }
     return ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height;
 }

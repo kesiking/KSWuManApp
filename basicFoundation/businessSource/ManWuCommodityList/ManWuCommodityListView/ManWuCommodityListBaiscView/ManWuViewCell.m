@@ -8,6 +8,7 @@
 
 #import "ManWuViewCell.h"
 #import "KSCollectionViewController.h"
+#import "ManWuCommodityDetailModel.h"
 
 #define commodityImage_border        (8.0)
 #define commodityImage_width_height  (self.width - 0)
@@ -113,15 +114,16 @@
 }
 
 - (void)reloadDataWithComponent:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
     if (extroParams.imageHasLoaded) {
-        [self.commodityImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+        [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
     }else{
         self.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
     }
-    self.favorateImageView.itemId = @"22";
-    self.titleLabel.text = @"测试风刀霜剑烦死了都快捷方式来得及菲利克斯";
-    self.priceLabel.text = @"￥1000";
-    NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:9 number:3];
+    self.favorateImageView.itemId = detailModel.itemId;
+    self.titleLabel.text = detailModel.title;
+    self.priceLabel.text = detailModel.price;
+    NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.like longLongValue] number:3];
     self.favorateLabel.text = favorateLabelText;
     [self updateFrame];
 }
@@ -156,7 +158,9 @@
 }
 
 - (void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
-    [self.commodityImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
+    [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+    
 }
 
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{

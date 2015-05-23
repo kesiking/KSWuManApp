@@ -35,9 +35,13 @@
 
 @property (nonatomic,strong) ManWuCommodityFiltTagListView *filtTagListView;
 
+@property (nonatomic,strong) NSString                          *actIdKey;
+
 @property (nonatomic,strong) NSString                          *filtKey;
 
 @property (nonatomic,strong) NSString                          *sortKey;
+
+@property (nonatomic,strong) ManWuCommodityActListService    *actListService;
 
 @end
 
@@ -62,6 +66,8 @@
     
     
     [self.collectionViewCtl setColletionHeaderView:self.container];
+    [self setCollectionService:self.actListService];
+    
 }
 
 #pragma mark - container
@@ -212,9 +218,20 @@
     return _filtTagListView;
 }
 
+-(ManWuCommodityActListService *)actListService{
+    if (_actListService == nil) {
+        _actListService = [[ManWuCommodityActListService alloc] init];
+    }
+    return _actListService;
+}
+
 #pragma mark - 加载数据
 
 -(void)loadDataWithParams:(NSDictionary*)params{
+    NSString* actIdKey = params[@"actIdKey"];
+    if (actIdKey) {
+        self.actIdKey = actIdKey;
+    }
     NSString* sortKey = params[@"sortKey"];
     if (sortKey) {
         // todo
@@ -226,6 +243,7 @@
         self.filtKey = filtKey;
     }
     // service todo
+    [self.actListService loadCommodityListDataWithActId:self.actIdKey cid:self.filtKey sort:self.sortKey];
 }
 
 

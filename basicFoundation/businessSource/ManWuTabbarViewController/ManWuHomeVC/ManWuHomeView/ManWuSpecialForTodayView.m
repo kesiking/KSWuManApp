@@ -72,8 +72,10 @@
     
     if (sender == self.leftImageView) {
         [params setObject:@"commodityId" forKey:@"commodityId"];
+        [params setObject:@"2" forKey:@"actId"];
     }else if (sender == self.rightImageView){
         [params setObject:@"commodityId" forKey:@"commodityId"];
+        [params setObject:@"3" forKey:@"actId"];
     }
     
     TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);

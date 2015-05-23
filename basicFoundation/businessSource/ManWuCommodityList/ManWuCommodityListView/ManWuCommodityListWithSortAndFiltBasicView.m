@@ -11,6 +11,7 @@
 #import "ManWuCommodityFiltForDiscoverListView.h"
 #import "ManWuCommoditySortListView.h"
 #import "ManWuCommoditySortAndFiltModel.h"
+#import "ManWuCommodityListBasicService.h"
 
 #define sort_filt_view_height (30.0)
 
@@ -26,6 +27,8 @@
 
 @property (nonatomic,strong) NSString                          *sortKey;
 
+@property (nonatomic,strong) ManWuCommodityListBasicService    *discoverService;
+
 @end
 
 @implementation ManWuCommodityListWithSortAndFiltView
@@ -33,6 +36,7 @@
 -(void)setupView{
     [super setupView];
     [self.collectionViewCtl setColletionHeaderView:self.sortFiltHeadView];
+    [self setCollectionService:self.discoverService];
 }
 
 -(ManWuCommoditySortAndFiltView *)sortFiltHeadView{
@@ -121,6 +125,13 @@
     return _filtForDiscoverSelectView;
 }
 
+-(ManWuCommodityListBasicService *)discoverService{
+    if (_discoverService == nil) {
+        _discoverService = [[ManWuCommodityListBasicService alloc] init];
+    }
+    return _discoverService;
+}
+
 -(void)loadDataWithParams:(NSDictionary*)params{
     NSString* sortKey = params[@"sortKey"];
     if (sortKey) {
@@ -133,6 +144,7 @@
         self.filtKey = filtKey;
     }
     // service todo
+    [self.discoverService loadCommodityListDataWithCid:self.filtKey sort:self.sortKey];
 }
 
 @end

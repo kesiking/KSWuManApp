@@ -462,9 +462,19 @@
 
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service{
     if (service && service.apiName && service.pagedList) {
-        [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
-        [self requestDidLoad];
+        if ([self needQueueLoadData]) {
+            // 如果首次进入页面或是页面一直没有数据则主线程更新
+            if ([self.dataSourceRead count] == 0) {
+                [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+            }
+            dispatch_async(_serialQueue, ^{
+                [self.dataSourceWrite setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+            });
+        }else{
+            [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+        }
     }
+    [self requestDidLoad];
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{

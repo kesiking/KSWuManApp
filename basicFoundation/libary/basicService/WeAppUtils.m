@@ -432,7 +432,9 @@ typedef struct
     if ([obj isKindOfClass:[NSDictionary class]]) {
         return [(NSDictionary *)obj count] <= 0;
     }
-    
+    if ([obj isKindOfClass:[WeAppBasicPagedList class]]) {
+        return [(WeAppBasicPagedList *)obj count] <= 0;
+    }
     if (![obj isKindOfClass:[WeAppComponentBaseItem class]]) {
         return YES;
     }

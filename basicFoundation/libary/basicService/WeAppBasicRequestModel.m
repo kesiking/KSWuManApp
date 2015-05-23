@@ -305,8 +305,8 @@
         }else{
             _pagedList = [[WeAppBasicPagedList alloc] init];
         }
-        
     }
+    _pagedList.itemClass = self.itemClass;
     [_pagedList setListPath:self.listPath];
     
     self.pagedList.pagination = pagination;

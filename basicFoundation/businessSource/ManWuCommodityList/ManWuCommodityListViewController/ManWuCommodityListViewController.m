@@ -38,6 +38,7 @@
 -(ManWuCommodityListWithSortAndFiltView *)commodityListView{
     if (_commodityListView == nil) {
         _commodityListView = [[ManWuCommodityListWithSortAndFiltView alloc] initWithFrame:self.view.bounds];
+        [_commodityListView loadDataWithParams:@{@"filtKey":@"2",@"sortKey":@"2"}];
     }
     return _commodityListView;
 }

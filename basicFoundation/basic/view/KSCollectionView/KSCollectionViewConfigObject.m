@@ -18,4 +18,8 @@
     self.collectionColumn = 2;
 }
 
+-(void)setCollectionCellSize:(CGSize)collectionCellSize{
+    _collectionCellSize = collectionCellSize;
+}
+
 @end

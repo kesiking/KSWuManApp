@@ -13,13 +13,14 @@
 
 -(void)loadCommodityListDataWithCid:(NSString*)cid sort:(NSString*)sort{
     KSPaginationItem* pageinationItem = [[KSPaginationItem alloc] init];
-    pageinationItem.pageSize = 20;
+    pageinationItem.pageSize = DEFAULT_PAGE_SIZE;
     [self loadCommodityListDataWithCid:cid sort:sort pageinationItem:pageinationItem];
 }
 
 -(void)loadCommodityListDataWithCid:(NSString*)cid sort:(NSString*)sort pageinationItem:(KSPaginationItem*)pageinationItem{
     NSDictionary* params = @{@"cid":cid,@"sort":sort};
-    self.jsonTopKey = @"goodsList";
+    self.jsonTopKey = nil;
+    self.listPath = @"data";
     self.itemClass = [ManWuCommodityDetailModel class];
     [self loadPagedListWithAPIName:@"item/getCatItems.do" params:params pagination:pageinationItem version:nil];
 }

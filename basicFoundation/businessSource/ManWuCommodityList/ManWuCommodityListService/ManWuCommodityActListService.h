@@ -10,6 +10,6 @@
 
 @interface ManWuCommodityActListService : KSAdapterService
 
--(void)loadCommodityListDataWithActId:(NSString*)actId sort:(NSString*)sort;
+-(void)loadCommodityListDataWithActId:(NSString*)actId cid:(NSString*)cid sort:(NSString*)sort;
 
 @end

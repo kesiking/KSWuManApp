@@ -11,15 +11,16 @@
 
 @implementation ManWuCommodityActListService
 
--(void)loadCommodityListDataWithActId:(NSString*)actId sort:(NSString*)sort{
+-(void)loadCommodityListDataWithActId:(NSString*)actId cid:(NSString*)cid sort:(NSString*)sort{
     KSPaginationItem* pageinationItem = [[KSPaginationItem alloc] init];
-    pageinationItem.pageSize = 20;
-    [self loadCommodityListDataWithActId:actId sort:sort pageinationItem:pageinationItem];
+    pageinationItem.pageSize = DEFAULT_PAGE_SIZE;
+    [self loadCommodityListDataWithActId:actId cid:cid sort:sort pageinationItem:pageinationItem];
 }
 
--(void)loadCommodityListDataWithActId:(NSString*)actId sort:(NSString*)sort pageinationItem:(KSPaginationItem*)pageinationItem{
+-(void)loadCommodityListDataWithActId:(NSString*)actId cid:(NSString*)cid sort:(NSString*)sort pageinationItem:(KSPaginationItem*)pageinationItem{
     NSDictionary* params = @{@"actId":actId,@"sort":sort,@"cid":@"1"};
-    self.jsonTopKey = @"goodsList";
+    self.jsonTopKey = nil;
+    self.listPath = @"data";
     self.itemClass = [ManWuCommodityDetailModel class];
     [self loadPagedListWithAPIName:@"item/getActItems.do" params:params pagination:pageinationItem version:nil];
 }

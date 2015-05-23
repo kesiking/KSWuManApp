@@ -50,8 +50,8 @@
 
 -(void)handleImageViewClickEvent:(UITapGestureRecognizer *)getstureRecognize
 {
-//    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
-//    TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);
+    NSDictionary* params = @{@"commodityId":@"commodityId",@"actId":@"1"};
+    TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);
 }
 
 @end

@@ -44,7 +44,7 @@
         configObject.needQueueLoadData = NO;
         configObject.needNextPage = NO;
         CGRect frame = self.bounds;
-        configObject.collectionCellSize = CGSizeMake(frame.size.width, 115);
+        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 115);
         _collectionViewCtl = [[KSTableViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl registerClass:[ManWuAddressSelectViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];

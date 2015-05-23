@@ -51,7 +51,7 @@
         configObject.needRefreshView = NO;
         CGRect frame = self.bounds;
         frame.size.height -= self.addAddressView.height;
-        configObject.collectionCellSize = CGSizeMake(frame.size.width, 102);
+        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 102);
         _collectionViewCtl = [[KSTableViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl registerClass:[ManWuAddressManagerViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];

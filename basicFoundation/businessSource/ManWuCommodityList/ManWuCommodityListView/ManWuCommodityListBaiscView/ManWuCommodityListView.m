@@ -22,6 +22,8 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.collectionViewCtl.scrollView];
+    /*
+     * for mock
     NSMutableArray* arrayData = [NSMutableArray array];
     for (int i = 0; i < 10 ; i++) {
         WeAppComponentBaseItem* component = [[WeAppComponentBaseItem alloc] init];
@@ -29,6 +31,7 @@
     }
     [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
     [self.collectionViewCtl reloadData];
+     */
 }
 
 -(void)dealloc{
@@ -44,7 +47,7 @@
         CGRect frame = self.bounds;
         frame.size.width = frame.size.width - 2 * 8;
         frame.origin.x = 8;
-        configObject.collectionCellSize = CGSizeMake(frame.size.width/2, 190);
+        configObject.collectionCellSize = KSCGSizeMake(frame.size.width/2, 190);
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl registerClass:[ManWuViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];

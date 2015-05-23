@@ -10,4 +10,6 @@
 
 @interface ManWuCommodityListSortAndFiltForDiscountView : ManWuCommodityListView
 
+-(void)loadDataWithParams:(NSDictionary*)params;
+
 @end

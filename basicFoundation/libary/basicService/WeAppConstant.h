@@ -17,6 +17,35 @@
 #define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
 
+CG_INLINE CGSize
+KSCGSizeMake(CGFloat width, CGFloat height)
+{
+    CGSize size;
+    size.width = width * SCREEN_SCALE;
+    size.height = height * SCREEN_SCALE;
+    return size;
+}
+
+CG_INLINE CGRect
+KSCGRectMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
+{
+    CGRect rect;
+    rect.origin.x = x * SCREEN_SCALE;
+    rect.origin.y = y * SCREEN_SCALE;
+    rect.size.width = width * SCREEN_SCALE;
+    rect.size.height = height * SCREEN_SCALE;
+    return rect;
+}
+
+CG_INLINE CGPoint
+KSCGPointMake(CGFloat x, CGFloat y)
+{
+    CGPoint p;
+    p.x = x * SCREEN_SCALE;
+    p.y = y * SCREEN_SCALE;
+    return p;
+}
+
 #define SCREEN_WITHOUT_STATUS_HEIGHT (SCREEN_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height)
 
 #define IOS_VERSION ([[[UIDevice currentDevice] systemVersion] floatValue])

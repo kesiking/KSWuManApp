@@ -8,6 +8,7 @@
 
 #import "KSAdapterService.h"
 #import "KSAdapterNetWork.h"
+#import "KSPageList.h"
 
 @implementation KSAdapterService
 
@@ -21,6 +22,7 @@
 -(void)setupService{
     KSAdapterNetWork* network = [[KSAdapterNetWork alloc] init];
     [self setNetwork:network];
+    [self setPageListClass:[KSPageList class]];
 }
 
 @end
