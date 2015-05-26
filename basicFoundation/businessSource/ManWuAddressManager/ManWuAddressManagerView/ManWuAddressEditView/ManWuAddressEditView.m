@@ -10,12 +10,13 @@
 #import "HZAreaPickerView.h"
 #import "ManWuAddressSetDefaultView.h"
 #import "ManWuAddressBottomVIew.h"
+#import "ManWuAddressEditService.h"
 
 #define stand_textfield_left   (15.0)
 #define stand_textfield_right  (15.0)
 #define stand_container_height (40.0)
 
-@interface ManWuAddressEditView()<UITextFieldDelegate, HZAreaPickerDelegate>{
+@interface ManWuAddressEditView()<UITextFieldDelegate, HZAreaPickerDelegate,WeAppBasicServiceDelegate>{
 
 }
 
@@ -29,8 +30,10 @@
 
 @property (strong, nonatomic) UITextField           *descriptionText;
 
-@property (strong, nonatomic) ManWuAddressSetDefaultView  *settingDefaultView;
-@property (strong, nonatomic) ManWuAddressBottomVIew      *bottomView;
+@property (strong, nonatomic) ManWuAddressSetDefaultView   *settingDefaultView;
+@property (strong, nonatomic) ManWuAddressBottomVIew       *bottomView;
+
+@property (strong, nonatomic) ManWuAddressEditService      *addressEditService;
 
 @end
 
@@ -57,6 +60,22 @@
         _locatePicker.delegate = nil;
         _locatePicker = nil;
     }
+}
+
+-(void)setAddressInfoModel:(ManWuAddressInfoModel *)addressInfoModel{
+    _addressInfoModel = addressInfoModel;
+    self.nameInfoText.text = addressInfoModel.recvName;
+    self.phoneNumText.text = addressInfoModel.phoneNum;
+    self.areaText.text = addressInfoModel.address;
+    self.descriptionText.text = addressInfoModel.address;
+}
+
+-(ManWuAddressEditService *)addressEditService{
+    if (_addressEditService == nil) {
+        _addressEditService = [[ManWuAddressEditService alloc] init];
+        _addressEditService.delegate = self;
+    }
+    return _addressEditService;
 }
 
 -(void)reloadData{
@@ -220,10 +239,7 @@
             STRONGSELF
             // bottom click todo save or delete
             // 请求service 成功后再执行
-            if (strongSelf.addressDidChangeBlock) {
-                strongSelf.addressDidChangeBlock(YES,strongSelf.addressInfoModel);
-                [strongSelf.viewController.navigationController popViewControllerAnimated:YES];
-            }
+            [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:@"201234" recvName:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.addressInfoModel.phoneNum address:strongSelf.addressInfoModel.address defaultAddress:strongSelf.addressInfoModel.defaultAddress];
         };
     }
     return _bottomView;
@@ -281,6 +297,24 @@
     if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
         self.areaText.text = [NSString stringWithFormat:@"%@ %@ %@", picker.locate.state, picker.locate.city, picker.locate.district];
     }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark WeAppBasicServiceDelegate method
+
+-(void)serviceDidFinishLoad:(WeAppBasicService *)service{
+    if (service) {
+        [WeAppToast toast:@"保存成功"];
+        if (self.addressDidChangeBlock) {
+            self.addressDidChangeBlock(YES,self.addressInfoModel);
+            [self.viewController.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
+
+-(void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError *)error{
+    [WeAppToast toast:@"保存失败，请稍后再试"];
 }
 
 @end

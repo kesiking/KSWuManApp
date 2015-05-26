@@ -10,8 +10,10 @@
 
 @implementation ManWuAddressInfoModel
 
-@synthesize addressDetail = _addressDetail;
-@synthesize phoneNum = _phoneNum;
++(TBJSONModelKeyMapper*)modelKeyMapper{
+    NSDictionary* dict = @{@"id":@"addressId"};
+    return [[TBJSONModelKeyMapper alloc] initWithDictionary:dict];
+}
 
 
 @end

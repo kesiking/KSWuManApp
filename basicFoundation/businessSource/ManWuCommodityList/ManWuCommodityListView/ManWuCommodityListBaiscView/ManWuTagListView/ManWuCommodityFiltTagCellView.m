@@ -10,8 +10,6 @@
 
 @interface ManWuCommodityFiltTagCellView()
 
-@property (nonatomic,strong) UIButton*          tagCellButton;
-
 @end
 
 @implementation ManWuCommodityFiltTagCellView
@@ -24,10 +22,11 @@
 -(UIButton *)tagCellButton{
     if (_tagCellButton == nil) {
         _tagCellButton = [[UIButton alloc] initWithFrame:self.bounds];
-        [_tagCellButton setTitle:@"测试" forState:UIControlStateNormal];
-        [_tagCellButton setTintColor:[UIColor redColor]];
-        [_tagCellButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-
+        _tagCellButton.layer.cornerRadius = 3;
+        _tagCellButton.layer.masksToBounds = YES;
+        [_tagCellButton setBackgroundColor:RGB(0xf0, 0xf0, 0xf0)];
+        _tagCellButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_tagCellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
     return _tagCellButton;
 }
@@ -35,6 +34,9 @@
 -(void)setTitle:(NSString*)title{
     [self.tagCellButton setTitle:title forState:UIControlStateNormal];
     [self.tagCellButton sizeToFit];
+    CGRect rect = self.tagCellButton.frame;
+    rect.size.width += 20;
+    [self.tagCellButton setFrame:rect];
     [self sizeToFit];
 }
 

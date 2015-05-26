@@ -10,6 +10,8 @@
 
 @interface ManWuCommodityFiltTagCellView : KSTagCellView
 
+@property (nonatomic,strong) UIButton*          tagCellButton;
+
 -(void)setTitle:(NSString*)title;
 
 @end

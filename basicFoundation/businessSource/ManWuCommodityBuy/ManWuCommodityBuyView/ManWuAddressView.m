@@ -318,7 +318,7 @@
                               @"西荡苑", @"富家大室了开发节省打开了将发大水了开发速度富家大室了开发节省打开了将发大水了开发速度富家大室了开发节省打开了将发大水了开发速度"];
     
     if (object && [object isKindOfClass:[ManWuAddressInfoModel class]]) {
-        self.addressLabel.text = ((ManWuAddressInfoModel*)object).addressDetail;
+        self.addressLabel.text = ((ManWuAddressInfoModel*)object).address;
     }
     
     [self.fullNameLabel sizeToFit];

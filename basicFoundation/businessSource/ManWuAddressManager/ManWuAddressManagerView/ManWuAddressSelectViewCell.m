@@ -42,11 +42,19 @@
 
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     ManWuAddressInfoModel* addressInfoComponentItem = (ManWuAddressInfoModel*)componentItem;
-    if (addressInfoComponentItem.isDefaultAddress) {
+    if (addressInfoComponentItem.defaultAddress) {
         self.addressIcon.backgroundColor = [UIColor redColor];
     }else{
         self.addressIcon.backgroundColor = [UIColor greenColor];
     }
+    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人:%@",addressInfoComponentItem.recvName];
+    self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式:%@",addressInfoComponentItem.phoneNum];
+    self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",addressInfoComponentItem.address];
+    
+    self.fullNameLabel.hidden = addressInfoComponentItem.recvName ? NO : YES;
+    self.phoneNumLabel.hidden = addressInfoComponentItem.phoneNum ? NO : YES;
+    self.addressLabel.hidden = addressInfoComponentItem.address ? NO : YES;
+
 }
 
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{

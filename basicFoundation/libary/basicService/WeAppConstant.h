@@ -14,6 +14,8 @@
 #define SCREEN_BASE     320
 #define SCREEN_SCALE    ([UIScreen mainScreen].bounds.size.width / SCREEN_BASE)
 
+#define caculateNumber(x) (ceil((x) * SCREEN_SCALE))
+
 #define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
 

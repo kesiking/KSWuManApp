@@ -15,6 +15,7 @@
 #import "ManWuCommoditySortAndFiltModel.h"
 #import "ManWuCommodityFiltTagListView.h"
 #import "ManWuCommodityActListService.h"
+#import "ManWuDiscoverModel.h"
 
 #define sort_filt_view_height       (30.0 * SCREEN_SCALE)
 #define discountInfo_height         (108.0 * SCREEN_SCALE)
@@ -145,8 +146,9 @@
             if (sortListSelectBlock) {
                 sortListSelectBlock();
             }
-            ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
+            ManWuDiscoverModel* sortAndFiltModel = (ManWuDiscoverModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
            
+            [strongSelf.filtTagListView setDataWithPageList:sortAndFiltModel.leafCategoryList title:sortAndFiltModel.name];
             CGRect rect = strongSelf.filtTagListView.tagListLayoutView.frame;
             CGRect sortFiltViewRect = [strongSelf.container convertRect:strongSelf.container.frame toView:strongSelf];
             rect.origin.y = CGRectGetMaxY(sortFiltViewRect);
@@ -212,9 +214,12 @@
             if (flitTagListViewBlock) {
                 flitTagListViewBlock();
             }
-//            ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)componentItem;
-//            NSDictionary* params = @{@"filtKey":sortAndFiltModel.filtKey?:@"0"};
-//            [strongSelf loadDataWithParams:params];
+            if (![componentItem isKindOfClass:[ManWuDiscoverModel class]]) {
+                return;
+            }
+            ManWuDiscoverModel* sortAndFiltModel = (ManWuDiscoverModel*)componentItem;
+            NSDictionary* params = @{@"filtKey":sortAndFiltModel.cid?:defaultCidKey};
+            [strongSelf loadDataWithParams:params];
         };
         
         [self addSubview:_filtTagListView];

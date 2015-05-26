@@ -8,10 +8,13 @@
 
 #import "ManWuAddressSelectListView.h"
 #import "ManWuAddressSelectViewCell.h"
+#import "ManWuAddressService.h"
 
 @interface ManWuAddressSelectListView()
 
-@property (nonatomic,strong) KSDataSource*      dataSourceRead;
+@property (nonatomic,strong) KSDataSource*              dataSourceRead;
+
+@property (nonatomic,strong) ManWuAddressService*       addressService;
 
 @end
 
@@ -20,21 +23,24 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.collectionViewCtl.scrollView];
+    /*
     NSMutableArray* arrayData = [[NSMutableArray alloc] init];
     for (int i = 0; i < 10 ; i++) {
         ManWuAddressInfoModel* component = [[ManWuAddressInfoModel alloc] init];
         if (i == 0) {
-            component.isDefaultAddress = YES;
-            component.addressDetail = [NSString stringWithFormat:@"测试"];
+            component.defaultAddress = YES;
+            component.address = [NSString stringWithFormat:@"测试"];
         }
         [arrayData addObject:component];
     }
     [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
     [self.collectionViewCtl reloadData];
+     */
+    [self.addressService loadAddressList];
 }
 
 -(void)refreshDataRequest{
-    [self.collectionViewCtl reloadData];
+    [self.addressService loadAddressList];
 }
 
 -(KSTableViewController *)collectionViewCtl{
@@ -49,6 +55,7 @@
         [_collectionViewCtl registerClass:[ManWuAddressSelectViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         [_collectionViewCtl.scrollView setBackgroundColor:RGB(0xf8, 0xf8, 0xf8)];
+        [_collectionViewCtl setService:self.addressService];
         WEAKSELF
         _collectionViewCtl.tableViewDidSelectedBlock = ^(UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject){
             STRONGSELF
@@ -78,6 +85,13 @@
         _dataSourceRead = [[KSDataSource alloc]init];
     }
     return _dataSourceRead;
+}
+
+-(ManWuAddressService *)addressService{
+    if (_addressService == nil) {
+        _addressService = [[ManWuAddressService alloc] init];
+    }
+    return _addressService;
 }
 
 -(void)doCallBackWithAddressComponent:(ManWuAddressInfoModel*)addressComponent{

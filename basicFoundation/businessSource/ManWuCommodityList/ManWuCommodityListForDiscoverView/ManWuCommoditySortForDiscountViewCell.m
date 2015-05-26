@@ -8,6 +8,7 @@
 
 #import "ManWuCommoditySortForDiscountViewCell.h"
 #import "ManWuCommoditySortAndFiltModel.h"
+#import "ManWuDiscoverModel.h"
 
 @implementation ManWuCommoditySortForDiscountViewCell
 
@@ -29,9 +30,9 @@
 }
 
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
-    ManWuCommoditySortAndFiltModel* commodityComponentItem = (ManWuCommoditySortAndFiltModel*)componentItem;
-    [self.commoditySortImageView setImage:[UIImage imageNamed:commodityComponentItem.imageUrl]];
-    self.titleLabel.text = commodityComponentItem.titleText;
+    ManWuDiscoverModel* commodityComponentItem = (ManWuDiscoverModel*)componentItem;
+    [self.commoditySortImageView sd_setImageWithURL:[NSURL URLWithString:commodityComponentItem.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+    self.titleLabel.text = commodityComponentItem.name;
     self.subTitleLabel.text = commodityComponentItem.subTitleText;
 }
 

@@ -25,8 +25,7 @@
                 NSDictionary* responseDict = (NSDictionary*)responseObject;
                 NSString* resultstring = [responseDict objectForKey:@"resultString"];
                 NSString* resultcode = [responseDict objectForKey:@"resultCode"];
-                if ([resultcode isEqualToString:@"200"]
-                    || [resultcode isEqualToString:@"100"]) {
+                if ([resultcode isEqualToString:@"100"]) {
                     successBlock(responseDict);
                 }else{
                     if (resultstring == nil) {

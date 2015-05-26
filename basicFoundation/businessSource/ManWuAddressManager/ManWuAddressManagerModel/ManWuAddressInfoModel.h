@@ -10,10 +10,14 @@
 
 @interface ManWuAddressInfoModel : WeAppComponentBaseItem
 
-@property(nonatomic,assign) BOOL            isDefaultAddress;
-
-@property(nonatomic,strong) NSString*       addressDetail;
+@property(nonatomic,strong) NSString*       address;
 
 @property(nonatomic,strong) NSString*       phoneNum;
+
+@property(nonatomic,strong) NSString*       recvName;
+
+@property(nonatomic,strong) NSString*       addressId;
+
+@property(nonatomic,assign) BOOL            defaultAddress;
 
 @end

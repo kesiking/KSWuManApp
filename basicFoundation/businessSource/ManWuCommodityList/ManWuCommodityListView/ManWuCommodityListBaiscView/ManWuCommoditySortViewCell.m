@@ -9,13 +9,15 @@
 #import "ManWuCommoditySortViewCell.h"
 #import "ManWuCommoditySortAndFiltModel.h"
 
+#define sortImageViewWidthAndHeight (20)
+
 @implementation ManWuCommoditySortViewCell
 
 -(void)setupView{
     [super setupView];
     self.backgroundColor = [UIColor whiteColor];
-    [self.commoditySortImageView setFrame:CGRectMake(8, (self.height - 20)/2, 20,20)];
-    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + 8, self.commoditySortImageView.top, 200, self.commoditySortImageView.height)];
+    [self.commoditySortImageView setFrame:CGRectMake(8, ceil((self.height - caculateNumber(sortImageViewWidthAndHeight))/2), caculateNumber(sortImageViewWidthAndHeight),caculateNumber(sortImageViewWidthAndHeight))];
+    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + caculateNumber(8), self.commoditySortImageView.top, caculateNumber(200), self.commoditySortImageView.height)];
 }
 
 -(UILabel *)titleLabel{
@@ -23,6 +25,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:13];
         _titleLabel.numberOfLines = 1;
+        _titleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_titleLabel];
     }
     return _titleLabel;
@@ -43,6 +46,10 @@
     if (extroParams.cellIndex%2 == 1) {
         self.backgroundColor = RGB(0xe7, 0xe7, 0xe7);
     }
+}
+
+-(void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem *)extroParams{
+    
 }
 
 @end

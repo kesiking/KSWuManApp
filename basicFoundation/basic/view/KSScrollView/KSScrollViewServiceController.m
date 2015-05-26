@@ -472,20 +472,28 @@
 }
 
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service{
-    if (service && service.apiName && service.pagedList) {
-        if ([self needQueueLoadData]) {
-            // 如果首次进入页面或是页面一直没有数据则主线程更新
-            if ([self.dataSourceRead count] == 0) {
-                [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
-            }
-            dispatch_async(_serialQueue, ^{
-                [self.dataSourceWrite setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
-            });
-        }else{
-            [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+    if (service && service.apiName) {
+        if (service.pagedList) {
+            [self setupDataList:[service.pagedList getItemList]];
+        }else if(service.dataList){
+            [self setupDataList:service.dataList];
         }
     }
     [self requestDidLoad];
+}
+
+-(void)setupDataList:(NSArray*)array{
+    if ([self needQueueLoadData]) {
+        // 如果首次进入页面或是页面一直没有数据则主线程更新
+        if ([self.dataSourceRead count] == 0) {
+            [self.dataSourceRead setDataWithPageList:array extraDataSource:nil];
+        }
+        dispatch_async(_serialQueue, ^{
+            [self.dataSourceWrite setDataWithPageList:array extraDataSource:nil];
+        });
+    }else{
+        [self.dataSourceRead setDataWithPageList:array extraDataSource:nil];
+    }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{

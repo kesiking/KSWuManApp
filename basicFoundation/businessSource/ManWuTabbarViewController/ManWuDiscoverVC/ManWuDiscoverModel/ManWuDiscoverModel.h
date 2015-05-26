@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSString*                       cid;
 @property (nonatomic, strong) NSString*                       name;
+@property (nonatomic, strong) NSString*                       subTitleText;
 @property (nonatomic, strong) NSString*                       img;
 @property (nonatomic, strong) NSString*                       pid;
 @property (nonatomic, strong) NSArray<ManWuDiscoverModel>*    leafCategoryList;

@@ -10,7 +10,7 @@
 
 @interface ManWuCommodityFiltTabLabel()
 
-@property (nonatomic,strong) UILabel*          tagCellLabel;
+@property (nonatomic,strong) UIButton*          tagCellLabel;
 
 @end
 
@@ -21,18 +21,22 @@
     [self addSubview:self.tagCellLabel];
 }
 
--(UILabel *)tagCellLabel{
+-(UIButton *)tagCellLabel{
     if (_tagCellLabel == nil) {
-        _tagCellLabel = [[UILabel alloc] initWithFrame:self.bounds];
-        [_tagCellLabel setTextColor:[UIColor blackColor]];
+        _tagCellLabel = [[UIButton alloc] initWithFrame:self.bounds];
+        _tagCellLabel.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_tagCellLabel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
     return _tagCellLabel;
 }
 
 -(void)setTitle:(NSString*)title{
-    [self.tagCellLabel setText:title];
+    [self.tagCellLabel setTitle:title forState:UIControlStateNormal];
     [self.tagCellLabel sizeToFit];
-    [self.tagCellLabel setHeight:self.height];
+    CGRect rect = self.tagCellLabel.frame;
+    rect.size.width += 20;
+    rect.size.height = self.height;
+    [self.tagCellLabel setFrame:rect];
     [self sizeToFit];
 }
 

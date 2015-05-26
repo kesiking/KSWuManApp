@@ -21,5 +21,6 @@ typedef void(^cancelListViewBlock) (void);
 
 @property(nonatomic,strong) cancelListViewBlock             cancelListViewBlock;
 
+-(void)setDataWithPageList:(NSArray *)dataArray title:(NSString*)title;
 
 @end

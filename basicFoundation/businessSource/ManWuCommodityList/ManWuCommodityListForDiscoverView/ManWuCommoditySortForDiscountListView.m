@@ -9,7 +9,6 @@
 #import "ManWuCommoditySortForDiscountListView.h"
 #import "ManWuCommoditySortAndFiltModel.h"
 #import "ManWuDiscoverService.h"
-#import "ManWuDiscoverModel.h"
 
 @interface ManWuCommoditySortForDiscountListView()<WeAppBasicServiceDelegate>
 
@@ -20,6 +19,7 @@
 @implementation ManWuCommoditySortForDiscountListView
 
 -(void)initModel{
+    /*
     NSArray* sortAndFiltArray = @[
                                   @{
                                       @"imageUrl":@"manwu_commodity_filt_all.jpg",
@@ -36,6 +36,8 @@
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];
     [self setSortListArray:commoditySortAndFiltModels];
+     */
+    [self.sortForDiscountListService loadAllCategoryCommodityListData];
 }
 
 -(void)setupView{
@@ -62,8 +64,7 @@
 
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service{
     if (service && [service.dataList count] > 0) {
-         NSArray* commoditySortAndFiltModels = [ManWuDiscoverModel modelArrayWithJSON:service.dataList];
-        [self setSortListArray:commoditySortAndFiltModels];
+        [self setSortListArray:service.dataList];
     }
 }
 

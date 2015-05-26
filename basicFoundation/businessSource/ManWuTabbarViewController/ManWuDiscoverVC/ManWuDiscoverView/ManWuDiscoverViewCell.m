@@ -48,7 +48,7 @@
         configObject.needRefreshView = NO;
         configObject.needNextPage = NO;
         configObject.needFootView = NO;
-        configObject.collectionCellSize = CGSizeMake(72, 72);
+        configObject.collectionCellSize = KSCGSizeMake(72, 72);
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl.scrollView setScrollEnabled:NO];
         [_collectionViewCtl registerClass:[ManWuDiscoverCollectionViewCell class]];
