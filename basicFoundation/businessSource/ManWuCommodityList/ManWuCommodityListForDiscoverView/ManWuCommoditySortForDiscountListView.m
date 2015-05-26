@@ -8,6 +8,14 @@
 
 #import "ManWuCommoditySortForDiscountListView.h"
 #import "ManWuCommoditySortAndFiltModel.h"
+#import "ManWuDiscoverService.h"
+#import "ManWuDiscoverModel.h"
+
+@interface ManWuCommoditySortForDiscountListView()<WeAppBasicServiceDelegate>
+
+@property (nonatomic,strong) ManWuDiscoverService  *sortForDiscountListService;
+
+@end
 
 @implementation ManWuCommoditySortForDiscountListView
 
@@ -34,6 +42,33 @@
     [super setupView];
     ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject).collectionColumn = 2;
     ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject).collectionCellSize = KSCGSizeMake(0, 60);
+}
+
+-(ManWuDiscoverService *)sortForDiscountListService{
+    if (_sortForDiscountListService == nil) {
+        _sortForDiscountListService = [[ManWuDiscoverService alloc] init];
+        _sortForDiscountListService.delegate = self;
+    }
+    return _sortForDiscountListService;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark WeAppBasicServiceDelegate method
+
+- (void)serviceDidStartLoad:(WeAppBasicService *)service{
+   
+}
+
+- (void)serviceDidFinishLoad:(WeAppBasicService *)service{
+    if (service && [service.dataList count] > 0) {
+         NSArray* commoditySortAndFiltModels = [ManWuDiscoverModel modelArrayWithJSON:service.dataList];
+        [self setSortListArray:commoditySortAndFiltModels];
+    }
+}
+
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+    
 }
 
 @end

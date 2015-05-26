@@ -307,6 +307,8 @@
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
+		5F9216261B1077CF00554B44 /* ManWuDiscoverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216251B1077CF00554B44 /* ManWuDiscoverService.m */; };
+		5F92162A1B13498800554B44 /* ManWuDiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216291B13498800554B44 /* ManWuDiscoverModel.m */; };
 		5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */; };
 		5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06221B0E011F00852188 /* KSPaginationItem.m */; };
 		5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */; };
@@ -931,6 +933,10 @@
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
 		5F9216201B103DF000554B44 /* ManWuCommodityNewListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityNewListService.h; sourceTree = "<group>"; };
 		5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityNewListService.m; sourceTree = "<group>"; };
+		5F9216241B1077CF00554B44 /* ManWuDiscoverService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverService.h; sourceTree = "<group>"; };
+		5F9216251B1077CF00554B44 /* ManWuDiscoverService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverService.m; sourceTree = "<group>"; };
+		5F9216281B13498800554B44 /* ManWuDiscoverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverModel.h; sourceTree = "<group>"; };
+		5F9216291B13498800554B44 /* ManWuDiscoverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverModel.m; sourceTree = "<group>"; };
 		5FBA061E1B0DEC6000852188 /* ManWuCommodityListBasicService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListBasicService.h; sourceTree = "<group>"; };
 		5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListBasicService.m; sourceTree = "<group>"; };
 		5FBA06211B0E011F00852188 /* KSPaginationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPaginationItem.h; sourceTree = "<group>"; };
@@ -1701,6 +1707,8 @@
 		058BC3F21AE89DA700A4F799 /* ManWuDiscoverVC */ = {
 			isa = PBXGroup;
 			children = (
+				5F9216271B13494E00554B44 /* ManWuDiscoverModel */,
+				5F9216231B1077B900554B44 /* ManWuDiscoverService */,
 				052CC6C21AF8BDFE00AF7C78 /* Resources */,
 				052CC6BD1AF86D1900AF7C78 /* ManWuDiscoverSearchView */,
 				05B8DF511AF344B8002C2E4F /* ManWuDiscoverView */,
@@ -2349,6 +2357,24 @@
 			path = ManWuDiscoverView;
 			sourceTree = "<group>";
 		};
+		5F9216231B1077B900554B44 /* ManWuDiscoverService */ = {
+			isa = PBXGroup;
+			children = (
+				5F9216241B1077CF00554B44 /* ManWuDiscoverService.h */,
+				5F9216251B1077CF00554B44 /* ManWuDiscoverService.m */,
+			);
+			path = ManWuDiscoverService;
+			sourceTree = "<group>";
+		};
+		5F9216271B13494E00554B44 /* ManWuDiscoverModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F9216281B13498800554B44 /* ManWuDiscoverModel.h */,
+				5F9216291B13498800554B44 /* ManWuDiscoverModel.m */,
+			);
+			path = ManWuDiscoverModel;
+			sourceTree = "<group>";
+		};
 		5FBA061D1B0DEC0F00852188 /* ManWuCommodityListService */ = {
 			isa = PBXGroup;
 			children = (
@@ -2605,6 +2631,7 @@
 				058BC4081AE89F1500A4F799 /* ManWuCommodityListViewController.m in Sources */,
 				058D5CF41AF1F62E006EA35C /* openssl_wrapper.m in Sources */,
 				055C758E1ADFBF6000C35854 /* UIImage+WebP.m in Sources */,
+				5F9216261B1077CF00554B44 /* ManWuDiscoverService.m in Sources */,
 				058D5A9C1AF0B358006EA35C /* TBDetailSimplePhotoView.m in Sources */,
 				050FFD3C1B02EE3600721E02 /* ManWuAddressManagerViewCell.m in Sources */,
 				052CC6A21AF7525C00AF7C78 /* ManWuCommodityTitleAndPriceView.m in Sources */,
@@ -2658,6 +2685,7 @@
 				05AB565C1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m in Sources */,
 				05AF300D1B004FAF00890A65 /* ManWuFavButton.m in Sources */,
 				052CC6CD1AF8D30600AF7C78 /* ManWuSearchViewCellInfoItem.m in Sources */,
+				5F92162A1B13498800554B44 /* ManWuDiscoverModel.m in Sources */,
 				055C755B1ADFBDE200C35854 /* WeAppComponentBaseItem.m in Sources */,
 				055C75891ADFBF6000C35854 /* SDWebImageManager.m in Sources */,
 				055C75991ADFC6CA00C35854 /* UIScrollView+SVPullToRefresh.m in Sources */,

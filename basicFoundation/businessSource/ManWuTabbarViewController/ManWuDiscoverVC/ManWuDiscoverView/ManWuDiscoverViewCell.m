@@ -9,6 +9,7 @@
 #import "ManWuDiscoverViewCell.h"
 #import "ManWuDiscoverCollectionViewCell.h"
 #import "ManWuDiscoverCellModelInfoItem.h"
+#import "ManWuDiscoverModel.h"
 
 #define titleLabel_left_border     (8.0)
 #define titleLabel_right_border    (8.0)
@@ -85,7 +86,9 @@
     [super configCellWithCellView:cell Frame:rect componentItem:componentItem extroParams:extroParams];
     ManWuDiscoverCellModelInfoItem* cellModelInfoItem = (ManWuDiscoverCellModelInfoItem*)extroParams;
     
-    self.titleLabel.text = @"测试风刀霜剑烦死了都快捷方式来得及菲利克斯";
+    ManWuDiscoverModel* discoverModel = (ManWuDiscoverModel*)componentItem;
+    
+    self.titleLabel.text = discoverModel.name;
 
     if ([cellModelInfoItem.discoverCollectionArray count] == 0) {
         [self.collectionViewCtl.scrollView setHidden:YES];

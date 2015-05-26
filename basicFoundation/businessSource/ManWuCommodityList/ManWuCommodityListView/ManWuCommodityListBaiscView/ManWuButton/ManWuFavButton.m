@@ -25,6 +25,8 @@
     [super setupView];
     ManWuFavService* service = [[ManWuFavService alloc] init];
     [self setService:service];
+    self.messageForFailResponse = @"收藏失败";
+    self.messageForSuccessResponse = @"收藏成功";
     self.favorateImage = [UIImage imageNamed:@"favorate_button_image"];
     self.unfavorateImage = [UIImage imageNamed:@"unFavorate_button_image"];
     [self updateFavBtnStatus:NO];

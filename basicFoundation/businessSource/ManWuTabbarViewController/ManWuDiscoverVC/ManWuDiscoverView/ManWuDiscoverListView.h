@@ -13,4 +13,6 @@
 
 @property (nonatomic,strong) KSTableViewController* tableViewCtl;
 
+-(void)setDataWithPageList:(NSArray *)arrayData extraDataSource:(NSDictionary *)extraInfoParams;
+
 @end

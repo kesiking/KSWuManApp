@@ -121,6 +121,7 @@
         self.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
     }
     self.favorateImageView.itemId = detailModel.itemId;
+    [self.favorateImageView updatePraiseBtnStatus:[detailModel.like boolValue]];
     self.titleLabel.text = detailModel.title;
     self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.price];
     NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.like longLongValue] number:3];

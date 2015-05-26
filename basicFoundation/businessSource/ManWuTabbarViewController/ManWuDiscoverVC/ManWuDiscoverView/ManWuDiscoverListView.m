@@ -34,11 +34,19 @@
     [self addSubview:self.tableViewCtl.scrollView];
     [self addSubview:self.searchView];
     self.tableViewCtl.tableHeaderView = self.searchView.navigateview;
+    /*
+     * 注释mock数据
     NSMutableArray* arrayData = [[NSMutableArray alloc] init];
     for (int i = 0; i < 20 ; i++) {
         WeAppComponentBaseItem* component = [[WeAppComponentBaseItem alloc] init];
         [arrayData addObject:component];
     }
+    [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
+    [self.tableViewCtl reloadData];
+     */
+}
+
+-(void)setDataWithPageList:(NSArray *)arrayData extraDataSource:(NSDictionary *)extraInfoParams{
     [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
     [self.tableViewCtl reloadData];
 }

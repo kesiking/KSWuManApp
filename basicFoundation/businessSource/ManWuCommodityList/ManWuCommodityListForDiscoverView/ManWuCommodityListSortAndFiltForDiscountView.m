@@ -41,7 +41,7 @@
 
 @property (nonatomic,strong) NSString                          *sortKey;
 
-@property (nonatomic,strong) ManWuCommodityActListService    *actListService;
+@property (nonatomic,strong) ManWuCommodityActListService      *actListService;
 
 @end
 

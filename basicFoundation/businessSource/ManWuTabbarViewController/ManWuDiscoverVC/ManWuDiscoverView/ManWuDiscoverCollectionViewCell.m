@@ -7,6 +7,7 @@
 //
 
 #import "ManWuDiscoverCollectionViewCell.h"
+#import "ManWuDiscoverModel.h"
 
 @implementation ManWuDiscoverCollectionViewCell
 
@@ -24,7 +25,10 @@
 
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     [super configCellWithCellView:cell Frame:rect componentItem:componentItem extroParams:extroParams];
-   [self.commodityImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+    
+    ManWuDiscoverModel* discoverModel = (ManWuDiscoverModel*)componentItem;
+
+    [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:discoverModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
 }
 
 - (void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{

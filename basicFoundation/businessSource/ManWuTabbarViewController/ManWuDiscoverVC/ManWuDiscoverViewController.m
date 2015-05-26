@@ -8,10 +8,13 @@
 
 #import "ManWuDiscoverViewController.h"
 #import "ManWuDiscoverListView.h"
+#import "ManWuDiscoverService.h"
 
-@interface ManWuDiscoverViewController ()
+@interface ManWuDiscoverViewController ()<WeAppBasicServiceDelegate>
 
-@property (nonatomic ,strong) ManWuDiscoverListView*          discoverListView;
+@property (nonatomic ,strong) ManWuDiscoverListView*         discoverListView;
+
+@property (nonatomic ,strong) ManWuDiscoverService*          discoverService;
 
 @end
 
@@ -22,6 +25,7 @@
     // Do any additional setup after loading the view.
     self.title = @"发现";
     [self.view addSubview:self.discoverListView];
+    [self.discoverService loadAllCategoryCommodityListData];
 }
 
 -(void)viewDidUnload{
@@ -45,14 +49,30 @@
     return _discoverListView;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(ManWuDiscoverService *)discoverService{
+    if (_discoverService == nil) {
+        _discoverService = [[ManWuDiscoverService alloc] init];
+        _discoverService.delegate = self;
+    }
+    return _discoverService;
 }
-*/
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark WeAppBasicServiceDelegate method
+
+- (void)serviceDidStartLoad:(WeAppBasicService *)service{
+    
+}
+
+- (void)serviceDidFinishLoad:(WeAppBasicService *)service{
+    if (service && [service.dataList count] > 0) {
+        [self.discoverListView setDataWithPageList:service.dataList extraDataSource:nil];
+    }
+}
+
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+    
+}
 
 @end
