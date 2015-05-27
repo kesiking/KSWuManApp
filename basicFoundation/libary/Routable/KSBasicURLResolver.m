@@ -43,9 +43,11 @@
     if ([controllerClass isSubclassOfClass:[UIViewController class]]) {
         UIViewController* controller = [[controllerClass alloc] initWithNavigatorURL:action.URL query:action.extraInfo nativeParams:action.nativeParams];
         return controller;
-    }else{
-        return nil;
+    }else if([[action.URL scheme] isEqualToString:@"http"] || [[action.URL scheme] isEqualToString:@"https"]){
+        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:action.urlPath];
+        return webViewController;
     }
+    return nil;
 }
 
 @end

@@ -75,6 +75,20 @@
     if (self.onNextEvent) {
         self.onNextEvent = nil;
     }
+    if ([self needQueueLoadData]) {
+        WEAKSELF
+        dispatch_sync(_serialQueue, ^{
+            STRONGSELF
+            @try {
+                [strongSelf.dataSourceWrite removeAllCellitems];
+                strongSelf.dataSourceWrite = nil;
+            }
+            @catch (NSException *exception) {
+                NSLog(@"------>dispatch %s list crashed for %@",__FUNCTION__,exception.reason);
+            }
+        });
+    }
+    self.dataSourceRead = nil;
     self.errorViewTitle = nil;
     self.service.delegate = nil;
     self.service = nil;

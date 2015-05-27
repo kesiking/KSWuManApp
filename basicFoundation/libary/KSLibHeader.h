@@ -12,6 +12,8 @@
 #import "SVProgressHUD.h"
 #import "AFNetworking.h"
 #import "RDVTabBarController.h"
+#import "SVWebViewController.h"
+#import "SVModalWebViewController.h"
 #import "SVPullToRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+Geometry.h"
