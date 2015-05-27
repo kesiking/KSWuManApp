@@ -114,7 +114,7 @@
             if (strongSelf.detailModel) {
                 [dict setObject:strongSelf.detailModel forKey:@"detailModel"];
             }
-            [strongSelf gotoBuyPageWithParams:params];
+            [strongSelf gotoBuyPageWithParams:dict];
         };
         _skuView.delegate = self;
     }
@@ -122,7 +122,7 @@
 }
 
 -(void)confirmButtonClicked:(id)sender{
-    if (self.detailModel.skuDetailModel) {
+    if (!self.detailModel.skuDetailModel) {
         [self presentSemiView:self.skuView withOptions:nil completion:nil];
     }else{
         NSMutableDictionary* dict = [NSMutableDictionary dictionary];

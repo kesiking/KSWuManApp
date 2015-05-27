@@ -75,6 +75,8 @@
 
     self.buyNumberStepView.numberStepper.value = count;
     self.buyNumberStepView.numberStepper.maximumValue = [detailModel.quantity unsignedIntegerValue];
+    self.buyNumberStepView.numberStepper.minimumValue = 1;
+
 
 //    self.model = (TBTradeQuantityModel *)object;
 //    TBTradeQuantityModel *model = (TBTradeQuantityModel *)self.model;

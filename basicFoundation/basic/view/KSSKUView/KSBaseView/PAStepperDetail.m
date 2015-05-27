@@ -254,6 +254,12 @@
     
     _value = tmpValue;
     
+    if (_value - _stepValue <= 0) {
+        self.decrementButton.enabled = NO;
+    }else{
+        self.decrementButton.enabled = YES;
+    }
+    
     [self setLabelText];
 }
 
