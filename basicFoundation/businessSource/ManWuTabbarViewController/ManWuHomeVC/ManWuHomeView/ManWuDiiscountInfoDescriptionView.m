@@ -7,10 +7,13 @@
 //
 
 #import "ManWuDiiscountInfoDescriptionView.h"
+#import "ManWuHomeActivityInfoModel.h"
 
 @interface ManWuDiiscountInfoDescriptionView()
 
 @property (nonatomic, strong) UIImageView                 *imageView;
+
+@property (nonatomic, strong) ManWuHomeActivityInfoModel  *activityModel;
 
 @end
 
@@ -36,12 +39,20 @@
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
+    if (![descriptionModel isKindOfClass:[ManWuHomeActivityInfoModel class]]) {
+        return;
+    }
+    self.activityModel = (ManWuHomeActivityInfoModel*)descriptionModel;
     [self reloadData];
     
 }
 
 -(void)reloadData{
-    [self.imageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
+    if (self.activityModel.picUrl) {
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.activityModel.picUrl] placeholderImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
+    }else{
+        [self.imageView setImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
+    }
 }
 
 -(void)refresh{
@@ -50,7 +61,7 @@
 
 -(void)handleImageViewClickEvent:(UITapGestureRecognizer *)getstureRecognize
 {
-    NSDictionary* params = @{@"commodityId":@"commodityId",@"actId":@"1"};
+    NSDictionary* params = @{@"activityModel":self.activityModel?:[WeAppComponentBaseItem new],@"actId":self.activityModel.typeId?:@"1"};
     TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);
 }
 

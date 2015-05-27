@@ -9,11 +9,16 @@
 #import "KSView.h"
 #import "TBDetailSKUModelAndService.h"
 
+@class ManWuDetailSKUView;
+
+typedef void(^gotoBuyBlock) (ManWuDetailSKUView* skuView,NSDictionary* params);
+
 @protocol KSDetailTradeSKUViewDelegate;
 
 @interface ManWuDetailSKUView : KSView
 
 @property (nonatomic, strong)          TBDetailSKUModelAndService *skuDetailModel;
+@property (nonatomic, strong)          gotoBuyBlock                gotoBuyBlock;
 @property (nonatomic, assign)          id<KSDetailTradeSKUViewDelegate>    delegate;
 @property (nonatomic, readonly, assign) NSUInteger                   quantity;
 

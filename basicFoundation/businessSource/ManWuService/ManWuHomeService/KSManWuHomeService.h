@@ -7,9 +7,12 @@
 //
 
 #import "KSAdapterService.h"
+#import "ManWuHomeActivityInfoModel.h"
 
 @interface KSManWuHomeService : KSAdapterService
 
--(void)getBannerAdvertisement;
+-(void)loadHomeActivityData;
+
+-(void)loadBannerAdvertisement;
 
 @end

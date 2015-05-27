@@ -23,6 +23,12 @@
 #define titleLabel_bottom_border     (2.0)
 #define selectButton_width_height    (30.0)
 
+@interface ManWuViewCell()
+
+@property (nonatomic,strong) NSString*         commodityImageUrl;
+
+@end
+
 @implementation ManWuViewCell
 
 -(instancetype)init{
@@ -44,7 +50,7 @@
 -(void)setupView{
     [self.commodityImageView setFrame:CGRectMake(0, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
     [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - favorateLabel_width, self.commodityImageView.bottom + commodityImage_bottom_border, favorateLabel_width, favorateLabel_height)];
-    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border, favorateImage_width_height, favorateImage_width_height)];
+    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 2.0, favorateImage_width_height, favorateImage_width_height)];
     [self.titleLabel setFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom + commodityImage_bottom_border, self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.favorateLabel.height)];
     [self.priceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
 }
@@ -52,7 +58,10 @@
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.font = [UIFont systemFontOfSize:11];
+        _titleLabel.textColor = RGB(0x66, 0x66, 0x66);
+        _titleLabel.backgroundColor = self.backgroundColor;
+        _titleLabel.opaque = YES;
         _titleLabel.numberOfLines = 1;
         [self addSubview:_titleLabel];
     }
@@ -62,7 +71,10 @@
 -(UILabel *)priceLabel{
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] init];
-        _priceLabel.font = [UIFont boldSystemFontOfSize:13];
+        _priceLabel.font = [UIFont boldSystemFontOfSize:9];
+        _priceLabel.textColor = RGB(0x2d, 0x2d, 0x2d);
+        _priceLabel.backgroundColor = self.backgroundColor;
+        _priceLabel.opaque = YES;
         _priceLabel.numberOfLines = 1;
         [self addSubview:_priceLabel];
     }
@@ -72,7 +84,9 @@
 -(UILabel *)favorateLabel{
     if (_favorateLabel == nil) {
         _favorateLabel = [[UILabel alloc] init];
-        _favorateLabel.font = [UIFont systemFontOfSize:12];
+        _favorateLabel.backgroundColor = [UIColor whiteColor];
+        _favorateLabel.opaque = YES;
+        _favorateLabel.font = [UIFont boldSystemFontOfSize:9];
         _favorateLabel.numberOfLines = 1;
         [self addSubview:_favorateLabel];
     }
@@ -82,6 +96,8 @@
 -(UIImageView *)commodityImageView{
     if (_commodityImageView == nil) {
         _commodityImageView = [[UIImageView alloc] init];
+        _commodityImageView.backgroundColor = self.backgroundColor;
+        _commodityImageView.opaque = YES;
         [self addSubview:_commodityImageView];
     }
     return _commodityImageView;
@@ -114,17 +130,22 @@
 }
 
 - (void)reloadDataWithComponent:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
+    if (![componentItem isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
     if (extroParams.imageHasLoaded) {
         [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+        self.commodityImageUrl = detailModel.img;
     }else{
         self.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
+        self.commodityImageUrl = nil;
     }
     self.favorateImageView.itemId = detailModel.itemId;
     [self.favorateImageView updatePraiseBtnStatus:[detailModel.like boolValue]];
     self.titleLabel.text = detailModel.title;
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.price];
-    NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.like longLongValue] number:3];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
+    NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.love longLongValue] number:3];
     self.favorateLabel.text = favorateLabelText;
     [self updateFrame];
 }
@@ -159,13 +180,24 @@
 }
 
 - (void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
+    if (![componentItem isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
-    [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
-    
+    if (self.commodityImageUrl != detailModel.img) {
+        [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+        self.commodityImageUrl = detailModel.img;
+    }else{
+        NSLog(@"----> don't need reload image again");
+    }
 }
 
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
-    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
+    if (![componentItem isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:detailModel.itemId?:@"",@"itemId", nil];
     TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityDetail), self,nil,params);
 }
 

@@ -10,6 +10,8 @@
 
 @interface ManWuCommodityListSortAndFiltForDiscountView : ManWuCommodityListView
 
+-(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel;
+
 -(void)loadDataWithParams:(NSDictionary*)params;
 
 @end

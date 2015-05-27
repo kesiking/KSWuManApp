@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong) ManWuCommodityNewListService *newListService;
 
-
 @end
 
 @implementation ManWuHomeViewController
@@ -31,7 +30,7 @@
     // Do any additional setup after loading the view.
     self.title = @"屋满";
     [self.view addSubview:self.commodityListView];
-    [self.headerView setDescriptionModel:nil];
+    [self.headerView refresh];
     [self.headerView sizeToFit];
     [self.commodityListView.collectionViewCtl setColletionHeaderView:self.headerView];
     [self.newListService loadCommodityListData];

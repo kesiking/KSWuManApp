@@ -12,11 +12,26 @@
 
 typedef void(^CallMethod)();
 
+
+@class WeAppBasicService;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TBSNSBasicServiceBlock
+
+typedef void(^serviceDidStartLoadBlock) (WeAppBasicService* service);
+
+typedef void(^serviceDidFinishLoadBlock) (WeAppBasicService* service);
+
+typedef void(^serviceDidCancelLoadBlock) (WeAppBasicService* service);
+
+typedef void(^serviceDidFailLoadBlock) (WeAppBasicService* service,NSError* error);
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark TBSNSBasicServiceDelegate
-@class WeAppBasicService;
 @protocol WeAppBasicServiceDelegate <NSObject>
+
 @required
 
 @optional
@@ -30,12 +45,14 @@ typedef void(^CallMethod)();
 - (void)serviceDidDowngrade:(WeAppBasicService *)service;
 // 数据操作
 - (void)serviceDataOperationFinished:(WeAppBasicService *)service;
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark TBSNSBasicService
 @interface WeAppBasicService : NSObject <WeAppBasicRequestModelDelegate>
+
 @property (nonatomic, assign) id<WeAppBasicServiceDelegate>delegate;
 
 -(id)initWithItemClass:(Class)itemClass andRequestModelClass:(Class)requestModelClass;
@@ -46,6 +63,18 @@ typedef void(^CallMethod)();
 @property (nonatomic,strong) Class       pageListClass;
 @property (nonatomic,strong) NSString*   listPath;
 @property (nonatomic,assign) BOOL        needLogin;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark service block
+
+@property (nonatomic,strong) serviceDidStartLoadBlock serviceDidStartLoadBlock;
+
+@property (nonatomic,strong) serviceDidFinishLoadBlock serviceDidFinishLoadBlock;
+
+@property (nonatomic,strong) serviceDidCancelLoadBlock serviceDidCancelLoadBlock;
+
+@property (nonatomic,strong) serviceDidFailLoadBlock serviceDidFailLoadBlock;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

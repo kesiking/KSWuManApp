@@ -203,12 +203,19 @@
     }
     NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:quantity,@"quantity",skuId, @"skuId",nil];
     
+    
     // 获取weakSelfViewController是为了防止在block执行时当前skuView没法获取到viewController
     __weak __block UIViewController* weakSelfViewController = self.viewController;
+    WEAKSELF
     dispatch_block_t  gotoBuyBlock = ^(){
-        __strong __block UIViewController* sSelfViewController = weakSelfViewController;
+        STRONGSELF
         // 跳转下单
-        TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityBuyInfo), sSelfViewController,nil,params);
+        if (strongSelf.gotoBuyBlock) {
+            strongSelf.gotoBuyBlock(self,params);
+        }else{
+            __strong __block UIViewController* sSelfViewController = weakSelfViewController;
+            TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityBuyInfo), sSelfViewController,nil,params);
+        }
     };
     
     if(self.window){

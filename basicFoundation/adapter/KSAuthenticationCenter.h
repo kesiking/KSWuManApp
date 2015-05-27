@@ -13,6 +13,8 @@
 
 + (instancetype)sharedCenter;
 
++ (NSString*)userId;
+
 - (void)authenticateWithLoginActionBlock:(loginActionBlock)loginActionBlock cancelActionBlock:(cancelActionBlock)cancelActionBlock;
 
 @end

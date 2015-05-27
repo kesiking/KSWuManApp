@@ -25,11 +25,12 @@
     [super setupView];
     ManWuFavService* service = [[ManWuFavService alloc] init];
     [self setService:service];
-    self.messageForFailResponse = @"收藏失败";
-    self.messageForSuccessResponse = @"收藏成功";
+    self.messageForFailResponse = @"操作失败";
+    self.messageForSuccessResponse = @"操作成功";
     self.favorateImage = [UIImage imageNamed:@"favorate_button_image"];
     self.unfavorateImage = [UIImage imageNamed:@"unFavorate_button_image"];
-    [self updateFavBtnStatus:NO];
+    self.isFavorate = NO;
+    [self setImage:self.unfavorateImage forState:UIControlStateNormal];
 }
 
 -(void)buttonClickEvent{
@@ -44,11 +45,13 @@
 }
 
 -(void)updateFavBtnStatus:(BOOL)isFavorate{
-    self.isFavorate = isFavorate;
-    if (isFavorate) {
-        [self setImage:self.favorateImage forState:UIControlStateNormal];
-    }else{
-        [self setImage:self.unfavorateImage forState:UIControlStateNormal];
+    if (self.isFavorate != isFavorate) {
+        self.isFavorate = isFavorate;
+        if (isFavorate) {
+            [self setImage:self.favorateImage forState:UIControlStateNormal];
+        }else{
+            [self setImage:self.unfavorateImage forState:UIControlStateNormal];
+        }
     }
 }
 

@@ -71,6 +71,10 @@
     
 }
 
+-(void)setDescriptionModel:(WeAppComponentBaseItem *)descriptionModel{
+    [self.discountInfo setDescriptionModel:descriptionModel];
+}
+
 #pragma mark - container
 
 - (CSLinearLayoutView *)container {

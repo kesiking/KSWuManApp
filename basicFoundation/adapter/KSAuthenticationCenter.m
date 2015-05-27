@@ -25,6 +25,10 @@
     return sharedCenter;
 }
 
++ (NSString*)userId{
+    return @"5";
+}
+
 - (void)authenticateWithLoginActionBlock:(loginActionBlock)loginActionBlock cancelActionBlock:(cancelActionBlock)cancelActionBlock{
     
     NSMutableDictionary* callBacks = [NSMutableDictionary dictionary];

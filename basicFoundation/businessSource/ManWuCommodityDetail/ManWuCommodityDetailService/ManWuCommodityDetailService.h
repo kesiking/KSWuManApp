@@ -7,10 +7,11 @@
 //
 
 #import "KSAdapterService.h"
+#import "ManWuCommodityDetailModel.h"
 
 @interface ManWuCommodityDetailService : KSAdapterService
 
--(void)loadTest;
+-(void)loadCommodityDetailInfoWithItemId:(NSString*)itemId;
 
 -(void)loadLogin;
 

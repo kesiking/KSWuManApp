@@ -11,7 +11,7 @@
 @implementation ManWuAddressService
 
 -(void)loadAddressList{
-    NSDictionary* params = @{@"userId":@"5"};
+    NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]};
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuAddressInfoModel class];
     [self loadDataListWithAPIName:@"user/fetchAddresses.do" params:params version:nil];

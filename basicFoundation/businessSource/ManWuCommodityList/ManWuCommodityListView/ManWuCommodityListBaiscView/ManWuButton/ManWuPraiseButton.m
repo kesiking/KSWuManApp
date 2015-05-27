@@ -25,11 +25,12 @@
     [super setupView];
     ManWuPraiseService* service = [[ManWuPraiseService alloc] init];
     [self setService:service];
-    self.messageForFailResponse = @"点赞失败";
-    self.messageForSuccessResponse = @"点赞成功";
+    self.messageForFailResponse = @"操作失败";
+    self.messageForSuccessResponse = @"操作成功";
     self.praiseImage = [UIImage imageNamed:@"praise_button_image"];
     self.unpraiseImage = [UIImage imageNamed:@"unPraise_button_image"];
-    [self updatePraiseBtnStatus:NO];
+    self.isPraise = NO;
+    [self setImage:self.unpraiseImage forState:UIControlStateNormal];
 }
 
 -(void)buttonClickEvent{
@@ -44,11 +45,13 @@
 }
 
 -(void)updatePraiseBtnStatus:(BOOL)isPraise{
-    self.isPraise = isPraise;
-    if (isPraise) {
-        [self setImage:self.praiseImage forState:UIControlStateNormal];
-    }else{
-        [self setImage:self.unpraiseImage forState:UIControlStateNormal];
+    if (self.isPraise != isPraise) {
+        self.isPraise = isPraise;
+        if (isPraise) {
+            [self setImage:self.praiseImage forState:UIControlStateNormal];
+        }else{
+            [self setImage:self.unpraiseImage forState:UIControlStateNormal];
+        }
     }
 }
 

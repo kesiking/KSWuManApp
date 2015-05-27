@@ -7,6 +7,7 @@
 //
 
 #import "ManWuSpecialForTodayView.h"
+#import "ManWuHomeActivityInfoModel.h"
 
 @interface ManWuSpecialForTodayView()
 
@@ -14,6 +15,11 @@
 
 @property (nonatomic, strong) UIImageView                 *rightImageView;
 
+@property (nonatomic, strong) ManWuHomeActivityInfoModel  *leftActivityModel;
+
+@property (nonatomic, strong) ManWuHomeActivityInfoModel  *rightActivityModel;
+
+@property (nonatomic, strong) WeAppComponentBaseItem      *activityModel;
 @end
 
 @implementation ManWuSpecialForTodayView
@@ -51,13 +57,33 @@
     return _rightImageView;
 }
 
--(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
+-(void)setLeftDescriptionModel:(WeAppComponentBaseItem*)leftDescriptionModel rightDescriptionModel:(WeAppComponentBaseItem*)rightDescriptionModel{
+    if ([leftDescriptionModel isKindOfClass:[ManWuHomeActivityInfoModel class]]) {
+        self.leftActivityModel = (ManWuHomeActivityInfoModel*)leftDescriptionModel;
+    }
+    if ([rightDescriptionModel isKindOfClass:[ManWuHomeActivityInfoModel class]]) {
+        self.rightActivityModel = (ManWuHomeActivityInfoModel*)rightDescriptionModel;
+    }
     [self reloadData];
 }
 
+-(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
+    self.activityModel = descriptionModel;
+}
+
 -(void)reloadData{
-    [self.leftImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"home_specialForToday_first_placehold_banner"]];
-    [self.rightImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"home_specialForToday_second_placehold_banner"]];
+    if (self.leftActivityModel.picUrl) {
+        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:self.leftActivityModel.picUrl] placeholderImage:[UIImage imageNamed:@"home_specialForToday_first_placehold_banner"]];
+    }else{
+        [self.leftImageView setImage:[UIImage imageNamed:@"home_specialForToday_first_placehold_banner"]];
+    }
+    
+    if (self.rightActivityModel.picUrl) {
+        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:self.rightActivityModel.picUrl] placeholderImage:[UIImage imageNamed:@"home_specialForToday_second_placehold_banner"]];
+    }else{
+        [self.rightImageView setImage:[UIImage imageNamed:@"home_specialForToday_second_placehold_banner"]];
+    }
+    
 }
 
 -(void)refresh{
@@ -71,11 +97,12 @@
     NSMutableDictionary* params = [NSMutableDictionary dictionary];
     
     if (sender == self.leftImageView) {
-        [params setObject:@"commodityId" forKey:@"commodityId"];
-        [params setObject:@"2" forKey:@"actId"];
+        [params setObject:self.leftActivityModel.typeId?:@"2" forKey:@"actId"];
     }else if (sender == self.rightImageView){
-        [params setObject:@"commodityId" forKey:@"commodityId"];
-        [params setObject:@"3" forKey:@"actId"];
+        [params setObject:self.rightActivityModel.typeId?:@"3" forKey:@"actId"];
+    }
+    if (self.activityModel) {
+        [params setObject:self.activityModel forKey:@"activityModel"];
     }
     
     TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);

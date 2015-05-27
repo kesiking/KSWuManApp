@@ -27,7 +27,7 @@
 }
 
 -(void)loadCommodityListDataWithActId:(NSString*)actId cid:(NSString*)cid sort:(NSString*)sort pageinationItem:(KSPaginationItem*)pageinationItem{
-    NSDictionary* params = @{@"actId":actId,@"sort":sort,@"cid":cid};
+    NSDictionary* params = @{@"typeId":actId,@"sort":sort,@"cid":cid};
     self.jsonTopKey = nil;
     self.listPath = @"data";
     self.itemClass = [ManWuCommodityDetailModel class];

@@ -239,7 +239,7 @@
             STRONGSELF
             // bottom click todo save or delete
             // 请求service 成功后再执行
-            [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:@"201234" recvName:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.addressInfoModel.phoneNum address:strongSelf.addressInfoModel.address defaultAddress:strongSelf.addressInfoModel.defaultAddress];
+            [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:[KSAuthenticationCenter userId] recvName:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.addressInfoModel.phoneNum address:strongSelf.addressInfoModel.address defaultAddress:strongSelf.addressInfoModel.defaultAddress];
         };
     }
     return _bottomView;

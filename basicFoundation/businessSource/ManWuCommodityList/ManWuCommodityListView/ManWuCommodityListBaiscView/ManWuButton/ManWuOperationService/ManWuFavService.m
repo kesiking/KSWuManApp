@@ -27,8 +27,8 @@
     [params setObject:@"store" forKey:@"action"];
     [params setObject:itemId forKey:@"itemId"];
     
-    if (1) {
-        [params setObject:@"123" forKey:@"userId"];
+    if ([KSAuthenticationCenter userId]) {
+        [params setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
     
     [self loadItemWithAPIName:apiName params:params version:nil];

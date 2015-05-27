@@ -338,9 +338,8 @@
 #pragma mark Private Accessors
 
 - (void)setPagination:(WeAppPaginationItem *)pagination{
-    if (pagination) {
-        [_pagination setPagination:pagination];
-        
+    if (pagination != _pagination) {
+        _pagination = pagination;
     }
 }
 

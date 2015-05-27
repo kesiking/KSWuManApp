@@ -10,6 +10,10 @@
 
 @interface ManWuSpecialForTodayView : KSView
 
+// 设置图片数据
+-(void)setLeftDescriptionModel:(WeAppComponentBaseItem*)leftDescriptionModel rightDescriptionModel:(WeAppComponentBaseItem*)rightDescriptionModel;
+
+// 不用于展示，主要用于跳转到活动商品列表时需要折上折的图片信息
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel;
 
 -(void)refresh;

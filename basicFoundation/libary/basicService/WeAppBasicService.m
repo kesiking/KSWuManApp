@@ -313,12 +313,18 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(serviceDidCancelLoad:)]) {
         [self.delegate performSelector:@selector(serviceDidCancelLoad:) withObject:self];
     }
+    if (self.serviceDidCancelLoadBlock) {
+        self.serviceDidCancelLoadBlock(self);
+    }
 }
 
 -(void)modelDidFinishLoad:(WeAppBasicRequestModel *)model {
     @try {
         if (self.delegate && [self.delegate respondsToSelector:@selector(serviceDidFinishLoad:)]) {
             [self.delegate performSelector:@selector(serviceDidFinishLoad:) withObject:self];
+        }
+        if (self.serviceDidFinishLoadBlock) {
+            self.serviceDidFinishLoadBlock(self);
         }
     }
     @catch (NSException *exception) {
@@ -332,6 +338,9 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(serviceDidStartLoad:)]) {
             [self.delegate performSelector:@selector(serviceDidStartLoad:) withObject:self];
         }
+        if (self.serviceDidStartLoadBlock) {
+            self.serviceDidStartLoadBlock(self);
+        }
     }
     @catch (NSException *exception) {
         self.delegate = nil;
@@ -344,6 +353,9 @@
             
             [self.delegate performSelector:@selector(service:didFailLoadWithError:) withObject:self withObject:error];
         }
+        if (self.serviceDidFailLoadBlock) {
+            self.serviceDidFailLoadBlock(self,error);
+        }
     }
     @catch (NSException *exception) {
         self.delegate = nil;
@@ -352,6 +364,10 @@
 
 -(void)dealloc{
     self.delegate = nil;
+    self.serviceDidFailLoadBlock = nil;
+    self.serviceDidCancelLoadBlock = nil;
+    self.serviceDidStartLoadBlock = nil;
+    self.serviceDidFinishLoadBlock = nil;
     if (_requestModel) {
         [_requestModel cancel];
         _requestModel.delegate = nil;

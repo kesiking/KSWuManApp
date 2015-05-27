@@ -226,6 +226,8 @@
             NSMutableDictionary *newParams = nil;
             if (self.params) {
                 newParams = [NSMutableDictionary dictionaryWithDictionary:self.params];
+            }else{
+                newParams = [NSMutableDictionary dictionary];
             }
             
             //支持可变的pageSize等设置

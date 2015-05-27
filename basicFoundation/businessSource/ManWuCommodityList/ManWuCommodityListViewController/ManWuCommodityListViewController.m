@@ -23,7 +23,6 @@
 
 -(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
     if (self = [self init]) {
-        NSString* commodityId = [nativeParams objectForKey:@"commodityId"];
         self.actId = [nativeParams objectForKey:@"actId"];
         self.cid = [nativeParams objectForKey:@"cid"];
     }

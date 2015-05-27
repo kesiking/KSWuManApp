@@ -16,6 +16,8 @@
 
 @interface ManWuCommodityDetailViewController ()<KSDetailTradeSKUViewDelegate,WeAppBasicServiceDelegate>
 
+@property (nonatomic, strong) NSString                     *itemId;
+
 @property (nonatomic, strong) ManWuDetailSKUView           *skuView;
 
 @property (nonatomic, strong) ManWuCommodityView           *commodityDetailView;
@@ -30,17 +32,26 @@
 
 @implementation ManWuCommodityDetailViewController
 
+-(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
+    if (self = [self init]) {
+        self.itemId = [nativeParams objectForKey:@"itemId"];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"商品详情";
     [self.view addSubview:self.commodityDetailView];
     [self.view addSubview:self.confirmButton];
-    
-    NSDictionary* dict = @{@"skuTitle":@"titleTest",@"skuDetailModel":@{@"skuModel":@{@"skuTitle":@"skuTitleTest1",@"skus":@{@"quantity":@2},@"skuProps":@[@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest2",@"values":@[@{@"name":@"nameTest2"},@{@"name":@"nameTest3"}]}]}}};
-    self.detailModel = [ManWuCommodityDetailModel modelWithJSON:dict];
-    [self.commodityDetailView setDescriptionModel:self.detailModel];
-    [self reloadData];
+    [self.service loadCommodityDetailInfoWithItemId:self.itemId];
+    /*
+     NSDictionary* dict = @{@"skuTitle":@"titleTest",@"skuDetailModel":@{@"skuModel":@{@"skuTitle":@"skuTitleTest1",@"skus":@{@"quantity":@2},@"skuProps":@[@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest2",@"values":@[@{@"name":@"nameTest2"},@{@"name":@"nameTest3"}]}]}}};
+     self.detailModel = [ManWuCommodityDetailModel modelWithJSON:dict];
+     [self.commodityDetailView setDescriptionModel:self.detailModel];
+     [self reloadData];
+     */
 }
 
 -(void)dealloc{
@@ -58,7 +69,16 @@
 -(ManWuCommodityDetailService *)service{
     if (_service == nil) {
         _service = [[ManWuCommodityDetailService alloc] init];
-        _service.delegate = self;
+        WEAKSELF
+        _service.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.item && [service.item isKindOfClass:[ManWuCommodityDetailModel class]]) {
+                strongSelf.detailModel = (ManWuCommodityDetailModel*)service.item;
+                [strongSelf.commodityDetailView setDescriptionModel:strongSelf.detailModel];
+                [strongSelf reloadData];
+            }
+            
+        };
     }
     return _service;
 }
@@ -84,13 +104,26 @@
     if (!_skuView) {
         CGRect frame = CGRectMake(0, 0, [TBDetailSystemUtil getCurrentDeviceWidth], TBDETAIL_SKU_HEIGHT);
         _skuView = [[ManWuDetailSKUView alloc] initWithFrame:frame];
+        WEAKSELF
+        _skuView.gotoBuyBlock = ^(ManWuDetailSKUView* skuView, NSDictionary* params){
+            STRONGSELF
+            [strongSelf gotoBuyPageWithParams:params];
+        };
         _skuView.delegate = self;
     }
     return _skuView;
 }
 
 -(void)confirmButtonClicked:(id)sender{
-    [self presentSemiView:self.skuView withOptions:nil completion:nil];
+    if (self.detailModel.skuDetailModel) {
+        [self presentSemiView:self.skuView withOptions:nil completion:nil];
+    }else{
+        [self gotoBuyPageWithParams:nil];
+    }
+}
+
+-(void)gotoBuyPageWithParams:(NSDictionary* )params{
+    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityBuyInfo), self,nil,params);
 }
 
 -(void)reloadData{

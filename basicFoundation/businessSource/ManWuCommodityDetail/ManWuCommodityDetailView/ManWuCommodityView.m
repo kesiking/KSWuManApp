@@ -38,6 +38,7 @@
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
     [self.infoDecView setDescriptionModel:descriptionModel];
+    [self.titleAndPriceView setDescriptionModel:descriptionModel];
     [self.guideView setDescriptionModel:descriptionModel];
     [self reloadData];
 }

@@ -9,6 +9,7 @@
 #import "ManWuCommodityTitleAndPriceView.h"
 #import "ManWuPraiseButton.h"
 #import "ManWuFavButton.h"
+#import "ManWuCommodityDetailModel.h"
 
 @interface ManWuCommodityTitleAndPriceView()
 
@@ -52,12 +53,35 @@
     [self.commoditySeparateLine setFrame:CGRectMake(8, self.height - 0.5, self.width - 8 * 2, self.commoditySeparateLine.height)];
 }
 
-- (void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
+-(void)setDescriptionModel:(WeAppComponentBaseItem *)descriptionModel{
+    /*
+     for (NSUInteger index = 0; index < 5 ; index++) {
+     NSString* string = [NSString stringWithFormat:@"测试发大水发的撒:%lu",(unsigned long)index];
+     [self.descriptionArray addObject:string];
+     }
+     */
+    if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)descriptionModel;
+        self.commodityTitleLabel.text = detailModel.title;
+        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
+        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",detailModel.love];
+        [self.commodityPraiseButton updatePraiseBtnStatus:[detailModel.like boolValue]];
+        [self.commodityFavorateButton updateFavBtnStatus:[detailModel.like boolValue]];
+        [self.commodityPraiseButton setItemId:detailModel.itemId];
+        [self.commodityFavorateButton setItemId:detailModel.itemId];
+    }
     [self reloadData];
 }
 
 -(void)reloadData{
-    
+    CGSize labelSize = [self.commodityPraiseLabel.text sizeWithFont:self.commodityPraiseLabel.font constrainedToSize:CGSizeMake(100, self.commodityPraiseLabel.height) lineBreakMode:NSLineBreakByWordWrapping];
+    CGRect labelRect = self.commodityPraiseLabel.frame;
+    labelRect.origin.x = self.commodityFavorateButton.origin.x - labelSize.width;
+    labelRect.size.width = labelSize.width;
+    [self.commodityPraiseLabel setFrame:labelRect];
+    CGRect rect = self.commodityPraiseButton.frame;
+    rect.origin.x = self.commodityPraiseLabel.origin.x - self.commodityPraiseButton.width;
+    [self.commodityPraiseButton setFrame:rect];
 }
 
 -(UIView *)commoditySeparateLine{

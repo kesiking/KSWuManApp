@@ -10,6 +10,18 @@
 
 @implementation ManWuCommodityDetailService
 
+-(void)loadCommodityDetailInfoWithItemId:(NSString*)itemId{
+    if (itemId == nil) {
+        [WeAppToast toast:@"宝贝ID为空"];
+        return;
+    }
+    self.jsonTopKey = @"data";
+    self.itemClass = NSClassFromString(@"ManWuCommodityDetailModel");
+    NSDictionary* params = @{@"itemId":itemId};
+    
+    [self loadItemWithAPIName:@"item/getItem.do" params:params version:nil];
+}
+
 -(void)loadTest{
     self.jsonTopKey = @"data";
     [self loadNumberValueWithAPIName:@"user/queryCode.do" params:@{@"phonenum":@18626876833} version:nil];

@@ -53,6 +53,8 @@
         [_collectionViewCtl registerClass:[ManWuViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         [_collectionViewCtl setDataSourceWrite:self.dataSourceWrite];
+        [_collectionViewCtl getCollectionView].scrollEnabled = YES;
+        [_collectionViewCtl getCollectionView].alwaysBounceVertical = YES;
     }
     return _collectionViewCtl;
 }

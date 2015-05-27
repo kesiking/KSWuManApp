@@ -11,6 +11,7 @@
 #import "ManWuDiiscountInfoDescriptionView.h"
 #import "ManWuSpecialForTodayView.h"
 #import "ManWuRecommendForListHeaderView.h"
+#import "KSManWuHomeService.h"
 
 #define banner_height               (60.0 * SCREEN_SCALE)
 #define discountInfo_height         (108.0 * SCREEN_SCALE)
@@ -29,6 +30,8 @@
 
 @property (nonatomic, strong) ManWuRecommendForListHeaderView       *recommendView;
 
+@property (nonatomic, strong) KSManWuHomeService           *homeActivityService;
+
 @end
 
 @implementation ManWuHomeHeaderView
@@ -36,19 +39,16 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.container];
+    [self.homeActivityService loadHomeActivityData];
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
-    [self.discountInfo setDescriptionModel:descriptionModel];
-    [self.specialView setDescriptionModel:descriptionModel];
-    [self.recommendView setDescriptionModel:descriptionModel];
     [self reloadData];
 }
 
 -(void)refresh{
-    [self.discountInfo refresh];
-    [self.specialView refresh];
-    [self.recommendView refresh];
+    [self.homeActivityService loadHomeActivityData];
+    [self reloadData];
 }
 
 -(void)dealloc{
@@ -150,6 +150,35 @@
         _recommendView.backgroundColor = [UIColor whiteColor];
     }
     return _recommendView;
+}
+
+-(KSManWuHomeService *)homeActivityService{
+    if (_homeActivityService == nil) {
+        _homeActivityService = [[KSManWuHomeService alloc] init];
+        WEAKSELF
+        _homeActivityService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.dataList) {
+                [strongSelf setupHomeActivityViewWithDataList:service.dataList];
+            }
+        };
+    }
+    return _homeActivityService;
+}
+
+-(void)setupHomeActivityViewWithDataList:(NSArray *)array{
+    NSUInteger count = [array count];
+    if (count > 0) {
+        [self.discountInfo setDescriptionModel:[array objectAtIndex:0]];
+        [self.specialView setDescriptionModel:[array objectAtIndex:0]];
+    }
+    if (count > 2) {
+        [self.specialView setLeftDescriptionModel:[array objectAtIndex:1] rightDescriptionModel:[array objectAtIndex:2]];
+    }else if (count > 1){
+        [self.specialView setLeftDescriptionModel:[array objectAtIndex:1] rightDescriptionModel:nil];
+    }
+    
+    [self reloadData];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
