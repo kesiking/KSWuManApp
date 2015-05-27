@@ -321,6 +321,7 @@
 		5F214C801B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F214C701B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png */; };
 		5F214C811B158F990081BA02 /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C721B158F990081BA02 /* SVWebViewControllerActivity.m */; };
 		5F214C841B1598A20081BA02 /* ManWuPreferentialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C831B1598A20081BA02 /* ManWuPreferentialView.m */; };
+		5F214C871B15BCF60081BA02 /* UIColor+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C861B15BCF60081BA02 /* UIColor+Ext.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -980,6 +981,8 @@
 		5F214C741B158F990081BA02 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
 		5F214C821B1598A20081BA02 /* ManWuPreferentialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuPreferentialView.h; sourceTree = "<group>"; };
 		5F214C831B1598A20081BA02 /* ManWuPreferentialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuPreferentialView.m; sourceTree = "<group>"; };
+		5F214C851B15BCF60081BA02 /* UIColor+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Ext.h"; sourceTree = "<group>"; };
+		5F214C861B15BCF60081BA02 /* UIColor+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Ext.m"; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -2223,6 +2226,8 @@
 		058DAE571AE73163009D0008 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				5F214C851B15BCF60081BA02 /* UIColor+Ext.h */,
+				5F214C861B15BCF60081BA02 /* UIColor+Ext.m */,
 				058BC3E31AE89C2000A4F799 /* KSNavigator+RDVTabBarController.h */,
 				058BC3E41AE89C2000A4F799 /* KSNavigator+RDVTabBarController.m */,
 				058DAE581AE731A3009D0008 /* NSDictionary+JSONSerialize.h */,
@@ -2904,6 +2909,7 @@
 				5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */,
 				058DAE661AE79A8B009D0008 /* KSConfigCenter.m in Sources */,
 				050FFD2E1B02DFA400721E02 /* KSModelDemo.m in Sources */,
+				5F214C871B15BCF60081BA02 /* UIColor+Ext.m in Sources */,
 				058DAE561AE73040009D0008 /* TBNavigationParams.m in Sources */,
 				052CC68E1AF7198B00AF7C78 /* WeAppBannerItem.m in Sources */,
 				05ACAC951AFC9FC800853E1C /* TBModelStatusHandler.m in Sources */,

@@ -17,6 +17,7 @@
 #import "SVPullToRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+Geometry.h"
+#import "UIColor+Ext.h"
 #import "WeAppComponentBaseItem.h"
 #import "NSArray+TBJSONModel.h"
 #import "NSDictionary+TBJSONModel.h"

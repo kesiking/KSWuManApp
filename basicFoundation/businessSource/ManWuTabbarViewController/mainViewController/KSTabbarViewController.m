@@ -37,7 +37,9 @@
     // 设置bar颜色
     UINavigationController* navigationController = self.navigationController;
     if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
-        navigationController.navigationBar.barTintColor= RGB(0xed, 0x65, 0x65);
+        navigationController.navigationBar.barTintColor = RGB(0xed, 0x65, 0x65);
+    }else if([navigationController.navigationBar respondsToSelector:@selector(tintColor)]){
+        navigationController.navigationBar.tintColor = RGB(0xed, 0x65, 0x65);
     }
 }
 
