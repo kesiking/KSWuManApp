@@ -11,8 +11,10 @@
 #import "ManWuBuyItemInfoView.h"
 #import "ManWuQuantityView.h"
 #import "ManWuDeliveryView.h"
+#import "ManWuPreferentialView.h"
 #import "ManWuBuyOrderPayView.h"
 #import "ManWuConfirmView.h"
+#import "ManWuCommodityDetailModel.h"
 
 @interface ManWuBuyScrollView()
 
@@ -21,6 +23,7 @@
 @property (nonatomic, strong) ManWuBuyItemInfoView         *commodityInfoItem;
 @property (nonatomic, strong) ManWuQuantityView            *quantityView;
 @property (nonatomic, strong) ManWuDeliveryView            *deliveryView;
+@property (nonatomic, strong) ManWuPreferentialView        *preferentialView;
 @property (nonatomic, strong) ManWuBuyOrderPayView         *orderPayView;
 @property (nonatomic, strong) ManWuConfirmView             *comfirmView;
 
@@ -30,6 +33,7 @@
 
 -(void)setupView{
     self.backgroundColor = RGB(0xf8, 0xf8, 0xf8);
+    _dict = [NSMutableDictionary dictionary];
     [self addSubview:self.skuContainer];
     [self reloadData];
 }
@@ -79,6 +83,11 @@
             offsetY = offsetY > 0 ? offsetY : 0;
             [weakSelf.skuContainer setContentOffset:CGPointMake(0, offsetY) animated:YES];
         };
+        
+        _quantityView.valueDidChangeBlock = ^(double value){
+            [weakSelf.dict setObject:[NSNumber numberWithDouble:value] forKey:@"buyNumber"];
+            [weakSelf setObject:weakSelf.detailModel dict:weakSelf.dict];
+        };
     }
     return _quantityView;
 }
@@ -89,6 +98,14 @@
         _deliveryView = [[ManWuDeliveryView alloc] initWithFrame:frame];
     }
     return _deliveryView;
+}
+
+-(ManWuPreferentialView *)preferentialView{
+    if (_preferentialView == nil) {
+        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 40);
+        _preferentialView = [[ManWuPreferentialView alloc] initWithFrame:frame];
+    }
+    return _preferentialView;
 }
 
 -(ManWuBuyOrderPayView *)orderPayView{
@@ -118,15 +135,24 @@
     return _skuContainer;
 }
 
+- (void)setObject:(ManWuCommodityDetailModel *)object dict:(NSDictionary *)dict{
+    if (self.detailModel != object) {
+        self.detailModel = object;
+    }
+    if (self.dict != dict) {
+        [self.dict addEntriesFromDictionary:dict];
+    }
+    [self.commodityInfoItem setObject:object dict:dict];
+    [self.quantityView setObject:object dict:dict];
+    [self.deliveryView setObject:object dict:dict];
+    [self.preferentialView setObject:object dict:dict];
+    [self.orderPayView setObject:object dict:dict];
+    [self.comfirmView setObject:object dict:dict];
+    [self reloadData];
+}
+
 -(void)reloadData{
     /*重新布局*/
-    [self.addressView setObject:nil];
-    [self.commodityInfoItem setObject:nil];
-    [self.quantityView setObject:nil];
-    [self.deliveryView setObject:nil];
-    [self.orderPayView setObject:nil];
-    [self.comfirmView setObject:nil];
-
 
     CGPoint skuContentOffset          = self.skuContainer.contentOffset;
     [self.skuContainer removeAllItems];
@@ -163,6 +189,14 @@
                                                 initWithView:self.deliveryView];
         deliveryViewItem.padding             = padding;
         [self.skuContainer addItem:deliveryViewItem];
+    }
+    
+    /*优惠信息*/
+    if (1) {
+        CSLinearLayoutItem *orderPayViewItem = [[CSLinearLayoutItem alloc]
+                                                initWithView:self.preferentialView];
+        orderPayViewItem.padding             = padding;
+        [self.skuContainer addItem:orderPayViewItem];
     }
     
     /*合计价格*/

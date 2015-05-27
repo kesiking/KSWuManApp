@@ -8,14 +8,30 @@
 
 #import "ManWuCommodityBuyViewController.h"
 #import "ManWuBuyScrollView.h"
+#import "ManWuCommodityDetailModel.h"
 
 @interface ManWuCommodityBuyViewController ()
 
 @property (nonatomic, strong) ManWuBuyScrollView             *buyScrollView;
 
+@property (nonatomic, strong) NSString                       *itemId;
+
+@property (nonatomic, strong) NSDictionary                   *skuDict;
+
+@property (nonatomic, strong) ManWuCommodityDetailModel      *detailModel;
+
 @end
 
 @implementation ManWuCommodityBuyViewController
+
+-(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
+    if (self = [self init]) {
+        self.detailModel = [nativeParams objectForKey:@"detailModel"];
+        self.skuDict = [nativeParams objectForKey:@"skuDict"];
+        self.itemId = [nativeParams objectForKey:@"itemId"];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,18 +48,9 @@
 -(ManWuBuyScrollView *)buyScrollView{
     if(_buyScrollView == nil){
         _buyScrollView = [[ManWuBuyScrollView alloc] initWithFrame:self.view.bounds];
+        [_buyScrollView setObject:self.detailModel dict:self.skuDict];
     }
     return _buyScrollView;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

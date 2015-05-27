@@ -7,6 +7,7 @@
 //
 
 #import "ManWuBuyOrderPayView.h"
+#import "ManWuCommodityDetailModel.h"
 
 @interface ManWuBuyOrderPayView ()
 
@@ -42,12 +43,16 @@
     [_scaleView addSubview:_priceDesLabel];
 }
 
-- (void)setObject:(id)object {
-    
+- (void)setObject:(id)object dict:(NSDictionary *)dict{
+    if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
     _scaleView.transform = CGAffineTransformIdentity;
     _scaleView.frame = CGRectMake(15, 0.0, self.width - 15 * 2, self.height);
+    NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
     
-    _priceLabel.text = [NSString stringWithFormat:@"¥%@", @"198"];
+    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", (CGFloat)([detailModel.sale floatValue] * count)];
     
     CGSize priceSize = [_priceLabel.text sizeWithFont:_priceLabel.font];
     _priceLabel.frame = CGRectMake(_scaleView.width - priceSize.width, 0, priceSize.width, self.height);

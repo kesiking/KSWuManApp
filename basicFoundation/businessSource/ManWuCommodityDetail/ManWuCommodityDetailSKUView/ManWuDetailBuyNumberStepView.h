@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UILabel                 *buyLimitLabel;
 @property (nonatomic, strong) UILabel                 *buyTitleLabel;
 @property (nonatomic, strong) PAStepperDetail         *numberStepper;
+@property (strong, nonatomic) valueChange              valueDidChangeBlock;
 
 @end

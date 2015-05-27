@@ -25,8 +25,8 @@
     [super setupView];
     ManWuPraiseService* service = [[ManWuPraiseService alloc] init];
     [self setService:service];
-    self.messageForFailResponse = @"操作失败";
-    self.messageForSuccessResponse = @"操作成功";
+    self.messageForFailResponse = @"点赞失败";
+    self.messageForSuccessResponse = @"点赞成功";
     self.praiseImage = [UIImage imageNamed:@"praise_button_image"];
     self.unpraiseImage = [UIImage imageNamed:@"unPraise_button_image"];
     self.isPraise = NO;
@@ -37,8 +37,12 @@
     if ([self canResponseRequest]) {
         // todo service request
         if (!self.isPraise) {
+            self.messageForFailResponse = @"点赞失败";
+            self.messageForSuccessResponse = @"点赞成功";
             [((ManWuPraiseService*)self.service) addPraiseWithItemId:self.itemId];
         }else{
+            self.messageForFailResponse = @"取消赞失败";
+            self.messageForSuccessResponse = @"取消赞成功";
             [((ManWuPraiseService*)self.service) unAddPraiseWithItemId:self.itemId];
         }
     }

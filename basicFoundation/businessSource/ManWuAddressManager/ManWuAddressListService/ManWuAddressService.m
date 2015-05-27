@@ -17,4 +17,11 @@
     [self loadDataListWithAPIName:@"user/fetchAddresses.do" params:params version:nil];
 }
 
+-(void)loadDefaultAddress{
+    NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]};
+    self.jsonTopKey = @"data";
+    self.itemClass = [ManWuAddressInfoModel class];
+    [self loadItemWithAPIName:@"/user/fetchDefaultAddress.do" params:params version:nil];
+}
+
 @end

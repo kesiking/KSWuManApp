@@ -11,6 +11,7 @@
 
 @interface ManWuQuantityView : ManWuBuyBasicView
 
-@property (nonatomic, strong) ManWuDetailBuyNumberStepView  *buyNumberStepView;
+@property (nonatomic, strong) ManWuDetailBuyNumberStepView *buyNumberStepView;
+@property (nonatomic, strong) valueChange                   valueDidChangeBlock;
 
 @end

@@ -69,4 +69,6 @@
 
 - (void)setObject:(id)object;
 
+- (void)setObject:(id)object dict:(NSDictionary*)dict;
+
 @end

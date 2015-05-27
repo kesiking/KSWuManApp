@@ -13,4 +13,6 @@
 
 -(void)loadAddressList;
 
+-(void)loadDefaultAddress;
+
 @end

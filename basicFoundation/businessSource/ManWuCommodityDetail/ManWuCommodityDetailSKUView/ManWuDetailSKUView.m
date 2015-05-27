@@ -195,13 +195,13 @@
     // 跳转到下单页面
 //    NSString *itemId = self.detailModel.itemInfoModel.itemId;
     NSString *skuId = self.skuDetailModel.skuService.currentSKUInfo.selectSkuId;
-    NSString *quantity = @"1";
+    NSNumber *buyNumber = @1;
     
     /*现在数量都是1*/
     if (self.buyNumberStepView.numberStepper.value>0) {
-        quantity = [NSString stringWithFormat:@"%f",(double)self.buyNumberStepView.numberStepper.value];
+        buyNumber = [NSNumber numberWithDouble:(double)self.buyNumberStepView.numberStepper.value];
     }
-    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:quantity,@"quantity",skuId, @"skuId",nil];
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:buyNumber,@"buyNumber",skuId, @"skuId",nil];
     
     
     // 获取weakSelfViewController是为了防止在block执行时当前skuView没法获取到viewController

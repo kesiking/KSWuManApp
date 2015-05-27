@@ -320,6 +320,7 @@
 		5F214C7F1B158F990081BA02 /* SVWebViewControllerActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C6F1B158F990081BA02 /* SVWebViewControllerActivitySafari.m */; };
 		5F214C801B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F214C701B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png */; };
 		5F214C811B158F990081BA02 /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C721B158F990081BA02 /* SVWebViewControllerActivity.m */; };
+		5F214C841B1598A20081BA02 /* ManWuPreferentialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C831B1598A20081BA02 /* ManWuPreferentialView.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -977,6 +978,8 @@
 		5F214C721B158F990081BA02 /* SVWebViewControllerActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivity.m; sourceTree = "<group>"; };
 		5F214C731B158F990081BA02 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
 		5F214C741B158F990081BA02 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		5F214C821B1598A20081BA02 /* ManWuPreferentialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuPreferentialView.h; sourceTree = "<group>"; };
+		5F214C831B1598A20081BA02 /* ManWuPreferentialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuPreferentialView.m; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -1875,6 +1878,8 @@
 				058D5D161AF21F70006EA35C /* ManWuQuantityView.m */,
 				058D5D181AF22164006EA35C /* ManWuDeliveryView.h */,
 				058D5D191AF22164006EA35C /* ManWuDeliveryView.m */,
+				5F214C821B1598A20081BA02 /* ManWuPreferentialView.h */,
+				5F214C831B1598A20081BA02 /* ManWuPreferentialView.m */,
 				05ACAC601AFC5AC000853E1C /* ManWuBuyOrderPayView.h */,
 				05ACAC611AFC5AC000853E1C /* ManWuBuyOrderPayView.m */,
 				058D5D1B1AF2296F006EA35C /* ManWuConfirmView.h */,
@@ -2778,6 +2783,7 @@
 				055C75511ADFB32100C35854 /* WeAppPagedList.m in Sources */,
 				05B8DF571AF3455A002C2E4F /* ManWuDiscoverListView.m in Sources */,
 				058D5CF61AF1F62E006EA35C /* RSADataVerifier.m in Sources */,
+				5F214C841B1598A20081BA02 /* ManWuPreferentialView.m in Sources */,
 				055866921AD3B4F900A23FFA /* AppDelegate.m in Sources */,
 				050FFD411B02EFDD00721E02 /* ManWuAddressManagerViewController.m in Sources */,
 				055C75901ADFBF6000C35854 /* UIImageView+WebCache.m in Sources */,

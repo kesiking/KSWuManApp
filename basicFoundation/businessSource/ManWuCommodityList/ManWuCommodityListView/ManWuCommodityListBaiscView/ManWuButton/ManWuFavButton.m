@@ -25,8 +25,8 @@
     [super setupView];
     ManWuFavService* service = [[ManWuFavService alloc] init];
     [self setService:service];
-    self.messageForFailResponse = @"操作失败";
-    self.messageForSuccessResponse = @"操作成功";
+    self.messageForFailResponse = @"收藏失败";
+    self.messageForSuccessResponse = @"收藏成功";
     self.favorateImage = [UIImage imageNamed:@"favorate_button_image"];
     self.unfavorateImage = [UIImage imageNamed:@"unFavorate_button_image"];
     self.isFavorate = NO;
@@ -37,8 +37,12 @@
     if ([self canResponseRequest]) {
         // todo service request
         if (!self.isFavorate) {
+            self.messageForFailResponse = @"收藏失败";
+            self.messageForSuccessResponse = @"收藏成功";
             [((ManWuFavService*)self.service) addFavorateWithItemId:self.itemId];
         }else{
+            self.messageForFailResponse = @"取消收藏失败";
+            self.messageForSuccessResponse = @"取消收藏成功";
             [((ManWuFavService*)self.service) unAddFavorateWithItemId:self.itemId];
         }
     }

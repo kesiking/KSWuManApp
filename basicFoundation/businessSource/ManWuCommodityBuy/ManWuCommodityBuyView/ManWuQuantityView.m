@@ -7,6 +7,7 @@
 //
 
 #import "ManWuQuantityView.h"
+#import "ManWuCommodityDetailModel.h"
 
 #define CELL_HEIGHT           60
 #define HONRIZONTAL_MARGIN    12
@@ -32,9 +33,15 @@
 
 - (ManWuDetailBuyNumberStepView *)buyNumberStepView {
     if (!_buyNumberStepView) {
-        _buyNumberStepView=[[ManWuDetailBuyNumberStepView alloc] initWithFrame:CGRectMake(15, 0, self.width - 15 * 2, self.height)];
+        _buyNumberStepView = [[ManWuDetailBuyNumberStepView alloc] initWithFrame:CGRectMake(15, 0, self.width - 15 * 2, self.height)];
+        _buyNumberStepView.valueDidChangeBlock = self.valueDidChangeBlock;
     }
     return _buyNumberStepView;
+}
+
+-(void)setValueDidChangeBlock:(valueChange)valueDidChangeBlock{
+    _valueDidChangeBlock = valueDidChangeBlock;
+    self.buyNumberStepView.valueDidChangeBlock = valueDidChangeBlock;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,9 +66,15 @@
 //    return quantityModel.status == TBTradeComponentStatusHidden ? 0 : CELL_HEIGHT;
 //}
 
-- (void)setObject:(id)object{
-    self.buyNumberStepView.numberStepper.value = 2;
-    self.buyNumberStepView.numberStepper.maximumValue = 10;
+- (void)setObject:(id)object dict:(NSDictionary *)dict{
+    if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
+    NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
+
+    self.buyNumberStepView.numberStepper.value = count;
+    self.buyNumberStepView.numberStepper.maximumValue = [detailModel.quantity unsignedIntegerValue];
 
 //    self.model = (TBTradeQuantityModel *)object;
 //    TBTradeQuantityModel *model = (TBTradeQuantityModel *)self.model;

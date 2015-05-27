@@ -17,6 +17,10 @@
 }
 
 - (void)setObject:(id)object{
+    [self setObject:object dict:nil];
+}
+
+- (void)setObject:(id)object dict:(NSDictionary*)dict{
     
 }
 

@@ -76,12 +76,10 @@
         self.onNextEvent = nil;
     }
     if ([self needQueueLoadData]) {
-        WEAKSELF
         dispatch_sync(_serialQueue, ^{
-            STRONGSELF
             @try {
-                [strongSelf.dataSourceWrite removeAllCellitems];
-                strongSelf.dataSourceWrite = nil;
+                [self.dataSourceWrite removeAllCellitems];
+                self.dataSourceWrite = nil;
             }
             @catch (NSException *exception) {
                 NSLog(@"------>dispatch %s list crashed for %@",__FUNCTION__,exception.reason);

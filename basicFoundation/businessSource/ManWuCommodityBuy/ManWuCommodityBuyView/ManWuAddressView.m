@@ -9,6 +9,7 @@
 #import "ManWuAddressView.h"
 #import "ManWuAddressInfoModel.h"
 #import "ManWuAddressManagerMaroc.h"
+#import "ManWuAddressService.h"
 
 #define kCellNormalHeight         86.0f
 #define kCellSuperHeight         104.0f
@@ -52,6 +53,7 @@
 @property (nonatomic, strong) UILabel     *addressLabel;
 @property (nonatomic, strong) UILabel     *agencyInfoLabel;
 @property (nonatomic, strong) UIView      *seprateBackgroundView;
+@property (nonatomic, strong) ManWuAddressService      *addressService;
 
 @end
 
@@ -73,6 +75,7 @@
     [self addSubview:self.phoneNumLabel];
     [self addSubview:self.addressLabel];
     [self addSubview:self.seprateBackgroundView];
+    [self.addressService loadDefaultAddress];
 }
 
 #pragma mark - Private Accessor
@@ -121,7 +124,7 @@
         _takeDeliveryLabel = [[UILabel alloc] initWithFrame:frame];
         _takeDeliveryLabel.backgroundColor = [UIColor whiteColor];
         _takeDeliveryLabel.textColor = kTBBuyColorNB;
-        _takeDeliveryLabel.font = [UIFont systemFontOfSize:kTakeDeliveryLabelFontSize];
+        _takeDeliveryLabel.font = [UIFont boldSystemFontOfSize:kTakeDeliveryLabelFontSize];
         _takeDeliveryLabel.text = @"收货";
     }
     return _takeDeliveryLabel;
@@ -275,6 +278,21 @@
     return _seprateBackgroundView;
 }
 
+-(ManWuAddressService *)addressService{
+    if (_addressService == nil) {
+        _addressService = [[ManWuAddressService alloc] init];
+        WEAKSELF
+        _addressService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.item) {
+                ManWuAddressInfoModel* addressModel = (ManWuAddressInfoModel*)service.item;
+                [strongSelf setObject:addressModel dict:nil];
+            }
+        };
+    }
+    return _addressService;
+}
+
 -(void)otherAddressButtonClicked:(id)sender{
     WEAKSELF
     void (^successWrapper)(ManWuAddressInfoModel *addressModel) = ^(ManWuAddressInfoModel *addressModel) {
@@ -309,17 +327,15 @@
 #pragma mark  - TBTradeCellDelegate
 
 - (void)setObject:(id)object {
-    self.addAddressButton.hidden = YES;
-    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@", @"kesi" ?: @""];
-    self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式：%@", @"13743432423"];
-    self.addressLabel.text = [NSString stringWithFormat:@"收货地址：%@%@%@%@%@%@",
-                              @"府苑", @"浙江" ,
-                              @"杭州", @"未知",
-                              @"西荡苑", @"富家大室了开发节省打开了将发大水了开发速度富家大室了开发节省打开了将发大水了开发速度富家大室了开发节省打开了将发大水了开发速度"];
-    
-    if (object && [object isKindOfClass:[ManWuAddressInfoModel class]]) {
-        self.addressLabel.text = ((ManWuAddressInfoModel*)object).address;
+    if (![object isKindOfClass:[ManWuAddressInfoModel class]]) {
+        return;
     }
+    ManWuAddressInfoModel* addressModel = (ManWuAddressInfoModel*)object;
+    self.addAddressButton.hidden = YES;
+    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@", addressModel.recvName ?: @""];
+    self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式：%@", addressModel.phoneNum];
+    self.addressLabel.text = [NSString stringWithFormat:@"收货地址：%@",
+                              addressModel.address];
     
     [self.fullNameLabel sizeToFit];
     [self.phoneNumLabel sizeToFit];

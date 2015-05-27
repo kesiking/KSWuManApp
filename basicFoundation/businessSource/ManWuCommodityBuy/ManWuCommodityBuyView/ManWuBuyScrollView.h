@@ -8,6 +8,13 @@
 
 #import "KSView.h"
 
+@class ManWuCommodityDetailModel;
+
 @interface ManWuBuyScrollView : KSView
+
+@property (nonatomic, strong) ManWuCommodityDetailModel         *detailModel;
+@property (nonatomic, strong) NSMutableDictionary               *dict;
+
+- (void)setObject:(ManWuCommodityDetailModel *)object dict:(NSDictionary *)dict;
 
 @end

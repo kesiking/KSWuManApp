@@ -7,6 +7,7 @@
 //
 
 #import "ManWuBuyItemInfoView.h"
+#import "ManWuCommodityDetailModel.h"
 
 #define HORIZONTAL_MARGIN        15
 #define VERTICAL_MARGIN          15
@@ -246,10 +247,16 @@
 //    return totalHeight < defaultHeight ? defaultHeight : totalHeight;
 //}
 
-- (void)setObject:(id)object {
-    self.titleLabel.text = @"fdsjfsdljfsdfdsjfjdslkfjdslkjfdskljfkldsjfkldsjfkldsjflkakl";
-    self.subtitleLabel.text = @"dfdsffjdslkjfdlksjfkdlsjfldskajflksdajfkldsdsfds";
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",@"198"];
+- (void)setObject:(id)object dict:(NSDictionary *)dict {
+    if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
+    NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
+
+    self.titleLabel.text = detailModel.title;
+    self.subtitleLabel.text = [dict objectForKey:@"skuId"];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
 
 //    self.model = (TBTradeItemInfoCellModel *)object;
 //    TBTradeItemInfoCellModel *model = (TBTradeItemInfoCellModel *)self.model;

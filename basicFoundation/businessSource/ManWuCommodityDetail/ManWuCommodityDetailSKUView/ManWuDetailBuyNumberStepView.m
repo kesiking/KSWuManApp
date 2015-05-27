@@ -36,6 +36,19 @@
         _numberStepper.continuous         = NO;
         _numberStepper.autorepeat         = YES;
         _numberStepper.autorepeatInterval = 0.2;
+        WEAKSELF
+        _numberStepper.onValueChange = ^(double value){
+            STRONGSELF
+            if (strongSelf.valueDidChangeBlock) {
+                strongSelf.valueDidChangeBlock(value);
+            }
+        };
+        _numberStepper.onEnd = ^(double value){
+            STRONGSELF
+            if (strongSelf.valueDidChangeBlock) {
+                strongSelf.valueDidChangeBlock(value);
+            }
+        };
         [_numberStepper setValueWithoutEvents:_numberStepper.stepValue];
     }
     return _numberStepper;

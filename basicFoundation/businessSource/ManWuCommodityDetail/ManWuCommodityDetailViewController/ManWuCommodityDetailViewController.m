@@ -107,6 +107,13 @@
         WEAKSELF
         _skuView.gotoBuyBlock = ^(ManWuDetailSKUView* skuView, NSDictionary* params){
             STRONGSELF
+            NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+            if (params) {
+                [dict setObject:params forKey:@"skuDict"];
+            }
+            if (strongSelf.detailModel) {
+                [dict setObject:strongSelf.detailModel forKey:@"detailModel"];
+            }
             [strongSelf gotoBuyPageWithParams:params];
         };
         _skuView.delegate = self;
@@ -118,7 +125,11 @@
     if (self.detailModel.skuDetailModel) {
         [self presentSemiView:self.skuView withOptions:nil completion:nil];
     }else{
-        [self gotoBuyPageWithParams:nil];
+        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+        if (self.detailModel) {
+            [dict setObject:self.detailModel forKey:@"detailModel"];
+        }
+        [self gotoBuyPageWithParams:dict];
     }
 }
 
