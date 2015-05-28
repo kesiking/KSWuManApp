@@ -111,10 +111,10 @@
     self.skuSelectionControl.detailModel              = self.detailModel;
 
     /*更新最大值*/
-    self.buyNumberStepView.numberStepper.maximumValue = 10;//self.detailModel.itemInfoModel.quantity;
+    self.buyNumberStepView.numberStepper.maximumValue = [self.detailModel.quantity doubleValue];
     
     if (self.skuDetailModel.skuService.currentSKUInfo.selectSkuId.length > 0) {
-//        self.buyNumberStepView.numberStepper.maximumValue = self.skuDetailModel.skuService.currentSKUInfo.quantity;
+        self.buyNumberStepView.numberStepper.maximumValue = self.detailModel.skuService.currentSKUInfo.quantity;
     }
     
     /*重新布局*/

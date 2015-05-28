@@ -290,6 +290,7 @@ static CGFloat const detailAlpha = 0.95;
         if (_lastIndex==_currentPage) {
             [UIView animateWithDuration:.4 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 _maskImg.frame       = _maskFrame ;
+                _maskImg.alpha = 0.3;
                 self.backgroundColor = [UIColor clearColor];
             } completion:^(BOOL finished) {
                 self.hidden      = YES;

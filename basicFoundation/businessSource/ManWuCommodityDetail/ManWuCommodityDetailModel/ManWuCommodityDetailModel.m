@@ -20,7 +20,7 @@
         [self setupSKUArray:self.color withPropName:@"颜色"];
     }
     
-    if (self.ppathIdmap == nil) {
+    if ([self.skuArray count] > 0 && self.ppathIdmap == nil) {
         NSMutableDictionary* pathIdMapTemp = [[NSMutableDictionary alloc] init];
         NSMutableArray* array = [[NSMutableArray alloc] init];
         for (NSUInteger index = 0; index < [self.skuArray count]; index++) {

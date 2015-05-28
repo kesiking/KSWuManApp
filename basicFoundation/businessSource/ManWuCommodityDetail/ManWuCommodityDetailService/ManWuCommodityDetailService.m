@@ -17,7 +17,7 @@
     }
     self.jsonTopKey = @"data";
     self.itemClass = NSClassFromString(@"ManWuCommodityDetailModel");
-    NSDictionary* params = @{@"itemId":@1};
+    NSDictionary* params = @{@"itemId":itemId};
     
     [self loadItemWithAPIName:@"item/getItem.do" params:params version:nil];
 }

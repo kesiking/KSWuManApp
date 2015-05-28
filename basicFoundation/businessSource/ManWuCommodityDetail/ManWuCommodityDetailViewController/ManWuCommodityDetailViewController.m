@@ -122,7 +122,7 @@
 }
 
 -(void)confirmButtonClicked:(id)sender{
-    if (!self.detailModel.skuDetailModel) {
+    if ([self.detailModel.skuService hasSKU]) {
         [self presentSemiView:self.skuView withOptions:nil completion:nil];
     }else{
         NSMutableDictionary* dict = [NSMutableDictionary dictionary];

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WeAppCycleScrollView.h"
-
+#import "WeAppBannerItem.h"
 
 @protocol TBSNSBannerViewProtocol <NSObject>
 

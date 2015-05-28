@@ -12,6 +12,7 @@
 #import "TBDetailBigPhotoBrowerController.h"
 #import "ManWuCommodityInfoDescriptionView.h"
 #import "ManWuCommodityGuideView.h"
+#import "ManWuCommodityDetailModel.h"
 
 #define banner_height (325.0 * SCREEN_SCALE)
 
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) ManWuCommodityInfoDescriptionView     *infoDecView;
 @property (nonatomic, strong) ManWuCommodityGuideView               *guideView;
 
+@property (nonatomic, strong) ManWuCommodityDetailModel             *detailModel;
+
 @end
 
 @implementation ManWuCommodityView
@@ -40,6 +43,8 @@
     [self.infoDecView setDescriptionModel:descriptionModel];
     [self.titleAndPriceView setDescriptionModel:descriptionModel];
     [self.guideView setDescriptionModel:descriptionModel];
+    [self setupBannerDataWithDescriptionModel:(ManWuCommodityDetailModel*)descriptionModel];
+    self.detailModel = (ManWuCommodityDetailModel*)descriptionModel;
     [self reloadData];
 }
 
@@ -106,6 +111,12 @@
     return _bannerView;
 }
 
+-(void)setupBannerDataWithDescriptionModel:(ManWuCommodityDetailModel*)descriptionModel{
+    WeAppBannerItem* bannerItem = [WeAppBannerItem new];
+    bannerItem.picture = descriptionModel.img;
+    [self.bannerView setLocalData:@[bannerItem]];
+}
+
 #pragma mark - bannerView Delegate
 
 - (void)BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url{
@@ -114,20 +125,22 @@
         [self.window addSubview:self.simpleBrower];
         
         NSMutableArray<TBDetailBigPhotoModel> *arr = (NSMutableArray<TBDetailBigPhotoModel> *)[NSMutableArray array];
-//    for (NSString *picUrl in self.picModel.picsPath) {
-//        [arr addObject:[[TBDetailBigPhotoModel alloc] initWidthUrl:picUrl]];
-//    }
+        /*
+         * 传入数组
+         for (NSString *picUrl in self.picModel.picsPath) {
+            [arr addObject:[[TBDetailBigPhotoModel alloc] initWidthUrl:picUrl]];
+         }
+        */
+        
+        // 目前只有单张图片，传入单张
+        [arr addObject:[[TBDetailBigPhotoModel alloc] initWidthUrl:self.detailModel.img]];
         
         self.simpleBrower.photoList = arr;
-        //    self.simpleBrower.imgs   = imgs;
-        /* 保存下图片，以便弱网下大图浏览后能替换能清晰的图片 */
-//        [_imgArray removeAllObjects];
-//        _imgArray = nil;
-//        _imgArray = imgs;
+        self.simpleBrower.imgs = [@[[UIImage imageNamed:@"gz_image_loading.png"]] mutableCopy];
+
         NSUInteger selectIndex = _bannerView.bannerCycleScrollView.pageControl.currentPage;
         self.simpleBrower.selectedIndex = selectIndex;
         [self.simpleBrower displayPhoto];
-        
         self.simpleBrower.maskFrame = [aBannerView convertRect:aBannerView.frame toView:nil];
         [self.simpleBrower setHidden:NO];
         [self.simpleBrower gotoPage:selectIndex animated:NO];
@@ -182,9 +195,9 @@
     NSInteger index = 0;
     
     for (TBDetailBigPhotoModel *model in self.simpleBrower.photoList) {
-//        if ([model.photoUrl isEqualToString:self.detailModel.skuDetailModel.skuService.currentSKUInfo.picUrl]) {
-//            index = [self.simpleBrower.photoList indexOfObject:model];
-//        }
+        if ([model.photoUrl isEqualToString:self.detailModel.img]) {
+            index = [self.simpleBrower.photoList indexOfObject:model];
+        }
     }
     
     return index;

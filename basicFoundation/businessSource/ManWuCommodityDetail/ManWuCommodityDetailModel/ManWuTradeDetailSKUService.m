@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSMutableDictionary         *skuValueNameDic;//valueId到name的映射
 @property (nonatomic, strong) NSMutableDictionary         *skuPropMap;//属性map
 @property (nonatomic, strong) NSMutableDictionary         *pidvidMap;//用户已选择的pv对
-@property (nonatomic, strong) NSMutableArray              *casCadePidvids;//用户已选择的级联pv对
 @property (nonatomic, strong) NSMutableArray              *allPids;//所有的普通pid
 @property (nonatomic, strong) NSMutableDictionary         *validSkuMap;//所有有存货的SKU ppath到skuId的对应
 @property (nonatomic, strong) NSMutableDictionary         *validSkuPathMap;//所有有存货的SKUid 到ppath的对应
@@ -83,11 +82,7 @@
     _currentSkuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
-    //    _currentSkuInfo.priceUnits = _tbDetailModel.itemInfoModel.priceUnits;
-    //    _currentSkuInfo.quantity = _tbDetailModel.itemInfoModel.quantity;
-    //    _currentSkuInfo.quantityText = _tbDetailModel.itemInfoModel.quantityText;
-    //    _currentSkuInfo.picUrl = _skuImgManager.selectPic;
-    //    _currentSkuInfo.skuUnitControl = _tbDetailModel.itemControl.unitControl;
+    _currentSkuInfo.quantity = [_tbDetailModel.quantity integerValue];
     [self initEnableMap];
 }
 
@@ -131,7 +126,7 @@
 }
 
 - (BOOL)hasSKU{
-    if (_tbDetailModel.skuArray != nil) {
+    if (_tbDetailModel.skuArray != nil && [_tbDetailModel.skuArray count] > 0) {
         return true;
     }else{
         return false;
@@ -246,7 +241,7 @@
             [selectedArray replaceObjectAtIndex:propertyIndex withObject:[NSString stringWithFormat:@"%@:%@",propId,value.valueId]];
             
             NSString* enabled = @"NO";
-            if ([self.validPropertyValueComboMap objectForKey:[selectedArray componentsJoinedByString:@";"]]) {
+            if ([self.validPropertyValueComboMap objectForKey:[selectedArray componentsJoinedByString:@"-"]]) {
                 enabled = @"YES";
             }
             [skuInfo.enableMap setValue:enabled forKey:[NSString stringWithFormat:@"%@:%@",skuModel.propId,value.valueId]];

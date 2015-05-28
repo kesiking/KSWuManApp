@@ -26,7 +26,7 @@
 }
 
 + (NSString*)userId{
-    return @"5";
+    return @"18626876800";
 }
 
 - (void)authenticateWithLoginActionBlock:(loginActionBlock)loginActionBlock cancelActionBlock:(cancelActionBlock)cancelActionBlock{
