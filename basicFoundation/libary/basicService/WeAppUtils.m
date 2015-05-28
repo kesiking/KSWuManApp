@@ -426,6 +426,10 @@ typedef struct
         return [obj performSelector:@selector(length)] <= 0;
     }
     
+    if ([obj isKindOfClass:[NSNumber class]]) {
+        return NO;
+    }
+    
     if ([obj isKindOfClass:[NSArray class]]) {
         return [(NSArray *)obj count] <= 0;
     }

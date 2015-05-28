@@ -8,7 +8,6 @@
 
 #import "ManWuConfirmView.h"
 #import "TBDetailSKUButton.h"
-#import "KSSafePayUtility.h"
 
 @interface ManWuConfirmView()
 
@@ -49,8 +48,8 @@
 }
 
 -(void)selectBtnClick:(TBDetailSKUButton*)sender{
-    [KSSafePayUtility aliPayForParams:nil callbackBlock:^(NSDictionary *resultDic) {
-        ;
-    }];
+    if (self.confirmButtonClick) {
+        self.confirmButtonClick();
+    }
 }
 @end

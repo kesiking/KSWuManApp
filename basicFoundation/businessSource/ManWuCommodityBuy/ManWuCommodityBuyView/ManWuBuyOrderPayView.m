@@ -54,6 +54,8 @@
     
     _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", (CGFloat)([detailModel.sale floatValue] * count)];
     
+    self.payPrice = [NSNumber numberWithDouble:[detailModel.sale doubleValue] * count];
+    
     CGSize priceSize = [_priceLabel.text sizeWithFont:_priceLabel.font];
     _priceLabel.frame = CGRectMake(_scaleView.width - priceSize.width, 0, priceSize.width, self.height);
     

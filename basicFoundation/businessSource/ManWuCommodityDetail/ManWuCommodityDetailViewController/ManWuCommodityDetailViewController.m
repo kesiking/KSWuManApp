@@ -138,7 +138,7 @@
 }
 
 -(void)reloadData{
-    self.skuView.skuDetailModel = self.detailModel.skuDetailModel;
+    self.skuView.detailModel = self.detailModel;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -15,6 +15,8 @@
 #import "ManWuBuyOrderPayView.h"
 #import "ManWuConfirmView.h"
 #import "ManWuCommodityDetailModel.h"
+#import "ManWuOrderService.h"
+#import "KSSafePayUtility.h"
 
 @interface ManWuBuyScrollView()
 
@@ -26,6 +28,8 @@
 @property (nonatomic, strong) ManWuPreferentialView        *preferentialView;
 @property (nonatomic, strong) ManWuBuyOrderPayView         *orderPayView;
 @property (nonatomic, strong) ManWuConfirmView             *comfirmView;
+
+@property (nonatomic, strong) ManWuOrderService            *createOrderService;
 
 @end
 
@@ -120,6 +124,15 @@
     if (!_comfirmView) {
         CGRect frame = CGRectMake(0, 0, self.frame.size.width, 68);
         _comfirmView = [[ManWuConfirmView alloc] initWithFrame:frame];
+        WEAKSELF
+        _comfirmView.confirmButtonClick = ^(){
+            STRONGSELF
+            NSString* skuId = [strongSelf.dict objectForKey:@"skuId"];
+            NSString* itemId = strongSelf.detailModel.itemId;
+            NSNumber* buyNum = [strongSelf.dict objectForKey:@"buyNumber"];
+            
+            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:strongSelf.orderPayView.payPrice activityId:nil voucherId:nil];
+        };
     }
     return _comfirmView;
 }
@@ -133,6 +146,22 @@
         _skuContainer.backgroundColor  = RGB(0xf8, 0xf8, 0xf8);
     }
     return _skuContainer;
+}
+
+-(ManWuOrderService *)createOrderService{
+    if (_createOrderService == nil) {
+        _createOrderService = [[ManWuOrderService alloc] init];
+        WEAKSELF
+        _createOrderService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            NSDictionary* params = @{@"tradeNO":@"",@"productName":strongSelf.detailModel.title?:@"",@"productDescription":strongSelf.detailModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",strongSelf.orderPayView.payPrice?:@0.01]};
+   
+            [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
+                ;
+            }];
+        };
+    }
+    return _createOrderService;
 }
 
 - (void)setObject:(ManWuCommodityDetailModel *)object dict:(NSDictionary *)dict{

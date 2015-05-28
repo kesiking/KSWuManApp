@@ -8,12 +8,24 @@
 
 #import "WeAppComponentBaseItem.h"
 #import "TBDetailSKUModelAndService.h"
+#import "ManWuCommoditySKUDetailModel.h"
+#import "ManWuCommoditySKUModel.h"
+#import "ManWuTradeDetailSKUService.h"
 
 @interface ManWuCommodityDetailModel : WeAppComponentBaseItem
 
 @property (nonatomic, strong) TBDetailSKUModelAndService *skuDetailModel;
 
 @property (nonatomic, strong) NSString                   *skuTitle;
+
+//ppath 和 skuid 的map
+@property (nonatomic, strong) NSDictionary *ppathIdmap;
+
+@property (nonatomic, strong) NSDictionary<ManWuCommoditySKUDetailModel>*               skuMap;
+
+@property (nonatomic, strong) ManWuTradeDetailSKUService *skuService;
+
+@property (nonatomic, strong) NSMutableArray*             skuArray;
 
 @property (nonatomic, strong) NSString*                   itemId;
 @property (nonatomic, strong) NSString*                   title;
@@ -33,8 +45,8 @@
 @property (nonatomic, strong) NSString*                   fengge;
 @property (nonatomic, strong) NSString*                   metarial;
 @property (nonatomic, strong) NSNumber*                   status;
-@property (nonatomic, strong) NSString*                   size;
+@property (nonatomic, strong) NSArray*                    size;
 @property (nonatomic, strong) NSString*                   info;
-@property (nonatomic, strong) NSString*                   color;
+@property (nonatomic, strong) NSArray*                    color;
 
 @end

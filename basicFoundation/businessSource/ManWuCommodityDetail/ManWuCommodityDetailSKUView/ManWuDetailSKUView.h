@@ -8,6 +8,7 @@
 
 #import "KSView.h"
 #import "TBDetailSKUModelAndService.h"
+#import "ManWuCommodityDetailModel.h"
 
 @class ManWuDetailSKUView;
 
@@ -16,6 +17,8 @@ typedef void(^gotoBuyBlock) (ManWuDetailSKUView* skuView,NSDictionary* params);
 @protocol KSDetailTradeSKUViewDelegate;
 
 @interface ManWuDetailSKUView : KSView
+
+@property (nonatomic, strong)          ManWuCommodityDetailModel  *detailModel;
 
 @property (nonatomic, strong)          TBDetailSKUModelAndService *skuDetailModel;
 @property (nonatomic, strong)          gotoBuyBlock                gotoBuyBlock;

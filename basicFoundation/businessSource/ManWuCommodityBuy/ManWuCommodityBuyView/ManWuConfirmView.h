@@ -8,6 +8,10 @@
 
 #import "ManWuBuyBasicView.h"
 
+typedef void (^confirmButtonClick)(void);
+
 @interface ManWuConfirmView : ManWuBuyBasicView
+
+@property (nonatomic,strong) confirmButtonClick     confirmButtonClick;
 
 @end

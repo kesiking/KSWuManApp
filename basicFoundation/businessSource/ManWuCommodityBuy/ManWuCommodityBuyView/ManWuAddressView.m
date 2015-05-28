@@ -331,6 +331,9 @@
         return;
     }
     ManWuAddressInfoModel* addressModel = (ManWuAddressInfoModel*)object;
+    
+    self.addressId = addressModel.addressId;
+    
     self.addAddressButton.hidden = YES;
     self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@", addressModel.recvName ?: @""];
     self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式：%@", addressModel.phoneNum];

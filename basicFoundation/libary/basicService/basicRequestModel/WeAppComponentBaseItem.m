@@ -172,6 +172,105 @@ static const char * kAssociatedPropertiesKey;
     return nil;
 }
 
++(NSMutableDictionary *)getImmutableDictionaryFromMutableDictionary:(NSDictionary *)object{
+    
+    if (object == nil
+        || ![object isKindOfClass:[NSDictionary class]]
+        || [object count] <= 0) {
+        return nil;
+    }
+    
+    NSDictionary *dic = (NSDictionary *)object;
+    if (dic == nil || [dic count] <= 0) {
+        return nil;
+    }
+    
+    NSMutableDictionary *mutableDic = [[NSMutableDictionary alloc] initWithCapacity:[dic count]];
+    
+    NSArray *allkeys = [dic allKeys];
+    
+    for (NSString *key in allkeys) {
+        if (key == nil
+            || ![key isKindOfClass:[NSString class]]
+            || key.length == 0) {
+            continue;
+        }
+        
+        id value = [dic objectForKey:key];
+        
+        if (value == nil
+            || [value isKindOfClass:[NSNull class]]
+            || [value isEqual:[NSNull null]]) {
+            continue;
+        }
+        
+        if ([value isKindOfClass:[NSDictionary class]]) {
+            NSMutableDictionary *newDic = [self getImmutableDictionaryFromMutableDictionary:(NSDictionary*)value];
+            if (newDic && [newDic count] > 0) {
+                [mutableDic setObject:newDic forKey:key];
+            }
+        }else if([value isKindOfClass:[NSArray class]]){
+            NSMutableArray *newArray = [self getImmutableArrayFromMutableArray:(NSArray*)value];
+            if (newArray && [newArray count] > 0) {
+                [mutableDic setObject:newArray forKey:key];
+            }
+        }else{
+            [mutableDic setObject:value forKey:key];
+        }
+        
+    }
+    
+    if (mutableDic) {
+        return mutableDic;
+    }
+    
+    return mutableDic;
+}
+
++(NSMutableArray*)getImmutableArrayFromMutableArray:(NSArray*)array{
+    if (array == nil
+        || ![array isKindOfClass:[NSArray class]]
+        || [array count] <= 0) {
+        return nil;
+    }
+    
+    NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
+    
+    for (id value in array) {
+        
+        if (value == nil
+            || [value isKindOfClass:[NSNull class]]
+            || [value isEqual:[NSNull null]]) {
+            continue;
+        }
+        
+        if([value isKindOfClass:[NSDictionary class]]){
+            NSMutableDictionary* newParam = [self getImmutableDictionaryFromMutableDictionary:(NSDictionary*)value];
+            
+            if (newParam && [newParam count] > 0) {
+                [newArray addObject:newParam];
+            }
+            
+        }else if([value isKindOfClass:[NSArray class]]){
+            NSMutableArray* newArrayObj = [self getImmutableArrayFromMutableArray:(NSArray*)value];
+            
+            if (newArrayObj && [newArrayObj count] > 0) {
+                [newArray addObject:newArrayObj];
+            }
+            
+        }else{
+            [newArray addObject:value];
+        }
+    }
+    
+    if (newArray) {
+        return newArray;
+    }
+    
+    return nil;
+}
+
+
 #pragma mark -
 #pragma mark Initialize
 
@@ -197,7 +296,7 @@ static const char * kAssociatedPropertiesKey;
 }
 
 - (NSDictionary*)parseModule:(NSDictionary*) dict {
-    return dict;
+    return [WeAppComponentBaseItem getImmutableDictionaryFromMutableDictionary:dict];
 }
 
 - (void)setFromDictionary:(NSDictionary *)dict{

@@ -8,6 +8,7 @@
 
 #import "ManWuDetailSKUView.h"
 #import "TBTradeSKUSelectionControl.h"
+#import "ManWuTradeSKUSelectionControl.h"
 #import "ManWuDetailBuyNumberStepView.h"
 #import "ManWuDetailBottomBarView.h"
 
@@ -17,7 +18,7 @@
 
 @property (nonatomic, strong) CSLinearLayoutView               *skuContainer;
 
-@property (nonatomic, strong) TBTradeSKUSelectionControl       *skuSelectionControl;
+@property (nonatomic, strong) ManWuTradeSKUSelectionControl       *skuSelectionControl;
 
 @property (nonatomic, strong) ManWuDetailBuyNumberStepView     *buyNumberStepView;
 
@@ -38,10 +39,15 @@
     [self reloadData];
 }
 
-- (TBTradeSKUSelectionControl *)skuSelectionControl {
+-(void)setDetailModel:(ManWuCommodityDetailModel *)detailModel{
+    _detailModel = detailModel;
+    [self reloadData];
+}
+
+- (ManWuTradeSKUSelectionControl *)skuSelectionControl {
     if (!_skuSelectionControl) {
         CGRect frame = CGRectMake(TBSKU_BORDER_GAP, 0, TBSKU_CONTROL_WIDTH, 200);
-        _skuSelectionControl = [[TBTradeSKUSelectionControl alloc] initWithFrame:frame];
+        _skuSelectionControl = [[ManWuTradeSKUSelectionControl alloc] initWithFrame:frame];
         [_skuSelectionControl addTarget:self action:@selector(skuPropChanged:) forControlEvents:UIControlEventValueChanged];
         _skuSelectionControl.backgroundColor = [UIColor clearColor];
     }
@@ -101,8 +107,9 @@
 
 - (void)reloadData {
     /*属性部分*/
-    self.skuSelectionControl.detailModel              = self.skuDetailModel;
-    
+//    self.skuSelectionControl.detailModel              = self.skuDetailModel;
+    self.skuSelectionControl.detailModel              = self.detailModel;
+
     /*更新最大值*/
     self.buyNumberStepView.numberStepper.maximumValue = 10;//self.detailModel.itemInfoModel.quantity;
     
@@ -117,7 +124,7 @@
     
     
     /*sku选择*/
-    if (self.skuDetailModel.skuModel.skuProps.count > 0) {
+    if ([self.detailModel.skuService hasSKU]) {
         CSLinearLayoutItem *skuSelectionItem = [[CSLinearLayoutItem alloc]
                                                 initWithView:self.skuSelectionControl];
         skuSelectionItem.padding             = padding;
@@ -179,9 +186,9 @@
 
 - (BOOL)isSKUSelected {
     NSString *msg = nil;
-    if (self.skuDetailModel.skuService.currentSKUInfo.selectSkuId.length == 0
-        && [self.skuDetailModel.skuService hasSKU]) {
-        msg = self.skuDetailModel.skuService.currentSKUInfo.skuPopUpString;
+    if (self.detailModel.skuService.currentSKUInfo.selectSkuId.length == 0
+        && [self.detailModel.skuService hasSKU]) {
+        msg = self.detailModel.skuService.currentSKUInfo.skuPopUpString;
         if (msg.length == 0) {
             msg = @"购买失败";
         }
@@ -194,14 +201,15 @@
 -(void)gotoBuy {
     // 跳转到下单页面
 //    NSString *itemId = self.detailModel.itemInfoModel.itemId;
-    NSString *skuId = self.skuDetailModel.skuService.currentSKUInfo.selectSkuId;
+    NSString *skuId = self.detailModel.skuService.currentSKUInfo.selectSkuId;
+    NSString *skuInfo = [[self.detailModel.skuMap objectForKey:skuId] description];
     NSNumber *buyNumber = @1;
     
     /*现在数量都是1*/
     if (self.buyNumberStepView.numberStepper.value>0) {
         buyNumber = [NSNumber numberWithDouble:(double)self.buyNumberStepView.numberStepper.value];
     }
-    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:buyNumber,@"buyNumber",skuId, @"skuId",nil];
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:buyNumber,@"buyNumber",skuId, @"skuId",skuInfo,@"skuInfo",nil];
     
     
     // 获取weakSelfViewController是为了防止在block执行时当前skuView没法获取到viewController

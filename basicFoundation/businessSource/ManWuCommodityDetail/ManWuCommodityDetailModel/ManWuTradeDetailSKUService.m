@@ -1,20 +1,18 @@
 //
-//  TBTradeDetailSKUService.m
-//  TBTradeSDK
+//  ManWuTradeDetailSKUService.m
+//  basicFoundation
 //
-//  Created by neo on 14-1-23.
-//  Copyright (c) 2014年 christ.yuj. All rights reserved.
+//  Created by 孟希羲 on 15/5/28.
+//  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "TBTradeDetailSKUService.h"
+#import "ManWuTradeDetailSKUService.h"
 #import "ManWuCommodityDetailModel.h"
-#import "TBDetailSkuImgManager.h"
-#import "TBDetailSKUModelAndService.h"
 
-@interface TBTradeDetailSKUService ()
+@interface ManWuTradeDetailSKUService ()
 
-@property (nonatomic, strong) TBDetailSKUModelAndService               *tbDetailModel;
-@property (nonatomic, strong) TBDetailSkuModel            *skuModel;
+@property (nonatomic, strong) ManWuCommodityDetailModel   *tbDetailModel;
+
 @property (nonatomic, strong) NSMutableDictionary         *skuValueNameDic;//valueId到name的映射
 @property (nonatomic, strong) NSMutableDictionary         *skuPropMap;//属性map
 @property (nonatomic, strong) NSMutableDictionary         *pidvidMap;//用户已选择的pv对
@@ -27,27 +25,11 @@
 @property (nonatomic, strong) NSMutableDictionary         *validSinglePropertyValueMap;//这个存在的作用就是用于去除某些没有存货的属性值选择按钮
 @property (nonatomic, strong) NSString                    *selectedSkuId;//当前所构成的完成的SKU
 @property (nonatomic, strong) TBDetailSKUInfo             *currentSkuInfo;
-@property (nonatomic, strong) TBDetailSkuImgManager       *skuImgManager;
 
 @end
 
-@implementation TBDetailPidVidPair
+@implementation ManWuTradeDetailSKUService
 
-- (id)initWithPid:(NSString *)pid vid:(NSString *)vid{
-    _pid = pid;
-    _vid = vid;
-    return self;
-}
-
-- (id)initWithPidvid:(NSString *)pidvid{
-    _pid = [[pidvid componentsSeparatedByString:@":"] objectAtIndex:0];
-    _vid = [[pidvid componentsSeparatedByString:@":"] objectAtIndex:1];
-    return self;
-}
-
-@end
-
-@implementation TBTradeDetailSKUService
 
 - (void)initProperties {
     _allPids = [NSMutableArray array];
@@ -60,10 +42,8 @@
     _pidvidMap = [NSMutableDictionary dictionary];
 }
 
-- (id)initWithDetailResult:(TBDetailSKUModelAndService *)tBDetailModel{
+- (id)initWithDetailResult:(ManWuCommodityDetailModel *)tBDetailModel{
     if (self = [super init]) {
-        _skuImgManager = [[TBDetailSkuImgManager alloc] init];
-        
         [self resetDetailResult:tBDetailModel];
     }
     return self;
@@ -71,20 +51,18 @@
 
 
 
-- (void)resetDetailResult:(TBDetailSKUModelAndService *)tBDetailModel{
+- (void)resetDetailResult:(ManWuCommodityDetailModel *)tBDetailModel{
     _tbDetailModel = tBDetailModel;
-    _skuModel = _tbDetailModel.skuModel;
     [self initProperties];
-    _skuMap = _skuModel.skus;
+    _skuMap = tBDetailModel.skuMap;
     [self initSKUData];
     [self processSkuData];
-    [_skuImgManager resetTBDetailModel:tBDetailModel];
     [self initCurrentSkuInfo];
     [self initSelect];//帮用户选中只有一个选项的sku
 }
 
 - (void)initSelect{
-    for (TBDetailSkuPropsModel * skuModel in _skuModel.skuProps) {
+    for (ManWuCommoditySKUModel * skuModel in _tbDetailModel.skuArray) {
         if (skuModel.values != nil && [skuModel.values count] == 1) {
             TBDetailSkuPropsValuesModel *skuValue = [skuModel.values objectAtIndex:0];
             TBDetailPidVidPair * pair = [[TBDetailPidVidPair alloc]init];
@@ -98,18 +76,18 @@
 - (void)initCurrentSkuInfo{
     _currentSkuInfo = [[TBDetailSKUInfo alloc]init];
     NSString * needToselectSummary = @"";
-    NSArray<TBDetailSkuPropsModel> *skuProps = _skuModel.skuProps;
-    for (TBDetailSkuPropsModel* skuProp in skuProps) {
+    NSArray*skuProps = _tbDetailModel.skuArray;
+    for (ManWuCommoditySKUModel* skuProp in skuProps) {
         needToselectSummary=[needToselectSummary stringByAppendingFormat:@" %@",skuProp.propName];
     }
     _currentSkuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
-//    _currentSkuInfo.priceUnits = _tbDetailModel.itemInfoModel.priceUnits;
-//    _currentSkuInfo.quantity = _tbDetailModel.itemInfoModel.quantity;
-//    _currentSkuInfo.quantityText = _tbDetailModel.itemInfoModel.quantityText;
-//    _currentSkuInfo.picUrl = _skuImgManager.selectPic;
-//    _currentSkuInfo.skuUnitControl = _tbDetailModel.itemControl.unitControl;
+    //    _currentSkuInfo.priceUnits = _tbDetailModel.itemInfoModel.priceUnits;
+    //    _currentSkuInfo.quantity = _tbDetailModel.itemInfoModel.quantity;
+    //    _currentSkuInfo.quantityText = _tbDetailModel.itemInfoModel.quantityText;
+    //    _currentSkuInfo.picUrl = _skuImgManager.selectPic;
+    //    _currentSkuInfo.skuUnitControl = _tbDetailModel.itemControl.unitControl;
     [self initEnableMap];
 }
 
@@ -118,10 +96,10 @@
 }
 
 - (void)initEnableMap {
-    for (int propertyIndex = 0; propertyIndex < [_tbDetailModel.skuModel.skuProps count]; propertyIndex++) {
-        TBDetailSkuPropsModel *skuProps = [_tbDetailModel.skuModel.skuProps objectAtIndex:propertyIndex];
+    for (int propertyIndex = 0; propertyIndex < [_tbDetailModel.skuArray count]; propertyIndex++) {
+        ManWuCommoditySKUModel *skuProps = [_tbDetailModel.skuArray objectAtIndex:propertyIndex];
         
-        NSArray<TBDetailSkuPropsValuesModel> * values = skuProps.values;
+        NSArray * values = skuProps.values;
         
         for (TBDetailSkuPropsValuesModel *value in values) {
             [_currentSkuInfo.enableMap setValue:@"YES" forKey:[NSString stringWithFormat:@"%@:%@",skuProps.propId,value.valueId]];
@@ -130,17 +108,17 @@
 }
 
 - (void)initSKUData{
-    NSArray<TBDetailSkuPropsModel> *skuProps = _skuModel.skuProps;
-    for (TBDetailSkuPropsModel* skuProp in skuProps) {
+    NSArray *skuProps = _tbDetailModel.skuArray;
+    for (ManWuCommoditySKUModel* skuProp in skuProps) {
         [_allPids addObject:[NSString stringWithFormat:@"%@",skuProp.propId]];
     }
     // 因为是客户端生成的sku信息，因此不需要排序
-//    _allPids = [self sort:_allPids];
+    //    _allPids = [self sort:_allPids];
     
-    for (TBDetailSkuPropsModel* skuProp in skuProps) {
+    for (ManWuCommoditySKUModel* skuProp in skuProps) {
         
         [_skuPropMap setObject:skuProp forKey:[NSString stringWithFormat:@"%@",skuProp.propId]];
-        NSArray<TBDetailSkuPropsValuesModel> *values = skuProp.values;
+        NSArray *values = skuProp.values;
         for (TBDetailSkuPropsValuesModel *valueModel in values) {
             if (valueModel.valueAlias != nil) {
                 [_skuValueNameDic setValue:valueModel.valueAlias forKey:[NSString stringWithFormat:@"%@",valueModel.valueId]];
@@ -149,11 +127,11 @@
             }
         }
     }
-        
+    
 }
 
 - (BOOL)hasSKU{
-    if (_skuModel != nil) {
+    if (_tbDetailModel.skuArray != nil) {
         return true;
     }else{
         return false;
@@ -184,7 +162,7 @@
         }
         
         if ([subsetArray count] > 0) {
-            NSString *subsetString = [subsetArray componentsJoinedByString:@";"];
+            NSString *subsetString = [subsetArray componentsJoinedByString:@"-"];
             if (![self.validPropertyValueComboMap objectForKey:subsetString]) {
                 [self.validPropertyValueComboMap setValue:@""
                                                    forKey:subsetString];
@@ -204,55 +182,39 @@
      一个有存货的SKU中的任何一个属性值对，我们可以假设其有两种状态0和1,0代表未选择，1代表已选择，
      所以算出SKU属性值对集合的非空子集就是通过0到2的n次方减1进行遍历，然后通过位运算来检查出为1的二进制位的index
      */
- 
-    NSDictionary *ppathIdmap = _skuModel.ppathIdmap;
-    NSDictionary<TBDetailSKUPriceAndQuanitiyModel> *skus = _skuModel.skus;
-
+    
+    NSDictionary *ppathIdmap = _tbDetailModel.ppathIdmap;
+    NSDictionary<ManWuCommoditySKUDetailModel> *skus = _tbDetailModel.skuMap;
+    
     for (NSString* tmppath in [ppathIdmap allKeys]) {
         
-        NSString* ppath = [self sortPpath:tmppath];
-        NSString * skuId = [ppathIdmap objectForKey:ppath];
+        NSString * skuId = [ppathIdmap objectForKey:tmppath];
         
-        TBDetailSKUPriceAndQuanitiyModel *skuModel = [skus objectForKey:skuId];
+        ManWuCommoditySKUDetailModel *skuModel = [skus objectForKey:skuId];
         
         if ([self isValidSku:skuModel SkuId:skuId]) {
-        
-            [self.validSkuMap setValue:skuId forKey:ppath];
-            [self.validSkuPathMap setValue:ppath forKey:skuId];
-
-            NSArray *skuProps = [ppath componentsSeparatedByString:@";"];
-           
+            
+            [self.validSkuMap setValue:skuId forKey:tmppath];
+            [self.validSkuPathMap setValue:tmppath forKey:skuId];
+            
+            NSArray *skuProps = [tmppath componentsSeparatedByString:@"-"];
+            
             [self insert2ValidSinglePVMap:skuProps];
             [self insert2ValidPVComboMap:skuProps];
         }
     }
 }
 
-- (BOOL) isValidSku:(TBDetailSKUPriceAndQuanitiyModel *)skuModel SkuId:(NSString *)skuId{
-
+- (BOOL) isValidSku:(ManWuCommoditySKUDetailModel *)skuModel SkuId:(NSString *)skuId{
+    
     if ([skuModel quantity] > 0) {
         return true;
     }
-    // 暂时返回valid
-    return true;
     return false;
 }
 
 - (NSString *)sortPpath:(NSString *)ppath{
-    NSArray *skuProps = [ppath componentsSeparatedByString:@";"];
-    
-    skuProps=[skuProps sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1,NSString* obj2) {
-        NSString * pid1 = [[obj1 componentsSeparatedByString:@":"] objectAtIndex:0];
-        NSString * pid2 = [[obj1 componentsSeparatedByString:@":"] objectAtIndex:0];
-        if ([pid1 integerValue] > [pid2 integerValue]) {
-            return NSOrderedDescending;
-        }
-        if ([pid1 integerValue] < [pid2 integerValue]) {
-            return NSOrderedAscending;
-        }
-        return NSOrderedSame;
-    }];
-    return [skuProps componentsJoinedByString:@";"];
+    return ppath;
 }
 
 - (id)sort:(NSArray *)pids {
@@ -276,9 +238,9 @@
         
         NSMutableArray *selectedArray = [NSMutableArray arrayWithArray:selectedSkuPropertyValues];
         
-        TBDetailSkuPropsModel *skuModel = [_skuPropMap objectForKey:propId];
+        ManWuCommoditySKUModel *skuModel = [_skuPropMap objectForKey:propId];
         
-        NSArray<TBDetailSkuPropsValuesModel> * values = skuModel.values;
+        NSArray * values = skuModel.values;
         
         for (TBDetailSkuPropsValuesModel *value in values ) {
             [selectedArray replaceObjectAtIndex:propertyIndex withObject:[NSString stringWithFormat:@"%@:%@",propId,value.valueId]];
@@ -308,45 +270,39 @@
         for (NSString * propId in allTempPids) {
             NSString * valueId = [tempPidVidMap objectForKey:propId];
             if (valueId != nil) {
-                NSString *selectedPVString = [NSString stringWithFormat:@"%@:%@",propId,valueId];
+                NSString *selectedPVString = [NSString stringWithFormat:@"%@",valueId];
                 [selectedSkuPropertyValues addObject:selectedPVString];
                 NSString * valueName = [_skuValueNameDic objectForKey:valueId];
                 skuSummaryString=[skuSummaryString stringByAppendingFormat:@" \"%@\"",valueName];
                 
             }else{
                 [selectedSkuPropertyValues addObject:@""];
-                TBDetailSkuPropsModel *model = [_skuPropMap objectForKey:propId];
-                needToselectSummary=[needToselectSummary stringByAppendingFormat:@" %@",model.propName];
+                ManWuCommoditySKUModel *model = [_skuPropMap objectForKey:propId];
+                needToselectSummary=[needToselectSummary stringByAppendingFormat:@"%@",model.propName];
                 
             }
             
         }
-
+        
         //如果sku为nil，说明无法构成一个完整的SKU，则相应的当前 self.selectedSku 也就是nil了
-        NSString *skuId = [self.validSkuMap objectForKey:[selectedSkuPropertyValues componentsJoinedByString:@";"]];
+        NSString *skuId = [self.validSkuMap objectForKey:[selectedSkuPropertyValues componentsJoinedByString:@"-"]];
         TBDetailSKUInfo *skuInfo = [[TBDetailSKUInfo alloc]init];
-
+        
         if (skuId == nil) {
             skuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
-//            skuInfo.priceUnits = _tbDetailModel.itemInfoModel.priceUnits;
             skuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];;
-//            skuInfo.quantity = _tbDetailModel.itemInfoModel.quantity;
-//            skuInfo.quantityText = _tbDetailModel.itemInfoModel.quantityText;
         }else{
             skuInfo.skuDisplayString = skuSummaryString;
             skuInfo.skuCellString = skuSummaryString;
             skuInfo.selectSkuId = skuId;
             _selectedSkuId = skuId;
-            TBDetailSKUPriceAndQuanitiyModel * currentSku = [_skuMap objectForKey:skuId];
-            skuInfo.priceUnits = currentSku.priceUnits;
-            skuInfo.quantity = currentSku.quantity;
-            skuInfo.quantityText = currentSku.quantityText;
+            ManWuCommoditySKUDetailModel * currentSku = [_skuMap objectForKey:skuId];
+            skuInfo.quantity = [currentSku.quantity integerValue];
         }
-
+        
         if (skuId == nil && [tempPidVidMap count] == [allTempPids count]) {
             skuInfo.skuDisplayString = @"无法购买";
-
         }
         
         [self generateEnableMap:skuInfo selectedSkuPropertyValues:selectedSkuPropertyValues allPids:allTempPids];
@@ -359,26 +315,6 @@
     }
 }
 
-- (NSArray *)createCascadePids:(NSArray *)allPids selectCasCade:(NSMutableArray *)casCadePidvids{
-    NSMutableDictionary * dic = [NSMutableDictionary  dictionary];//去重
-    for (NSString * key in allPids) {
-        [dic setValue:@"" forKey:key];
-    }
-    for (TBDetailPidVidPair * pair in casCadePidvids) {
-        [dic setValue:@"" forKey:pair.pid];
-    }
-    return [self sort:[dic allKeys]];
-}
-
-- (NSDictionary *)createTempPidVidMap:(NSDictionary *)pidVidMap casCadeMap:(NSMutableArray *)casCadePidvids{
-    NSMutableDictionary * dic = [NSMutableDictionary  dictionary];
-    [dic addEntriesFromDictionary:pidVidMap];
-    for (TBDetailPidVidPair * pair in casCadePidvids) {
-        [dic setValue:pair.vid forKey:pair.pid];
-    }
-    return dic;
-}
-
 /*
  相关逻辑描述:
  当某个SKU属性的某个值被选择了之后，需要判断当前是否构成一个完整的SKU，以及对其他SKU属性的值的可选性进行更新
@@ -389,25 +325,21 @@
     [_pidvidMap setValue:pair.vid forKey:pair.pid];
     
     TBDetailSKUInfo * skuInfo = [self skuChanged];
-    [_skuImgManager getSkuPicSelected:pair];
-    skuInfo.picUrl = _skuImgManager.selectPic;
     _currentSkuInfo = skuInfo;
     return skuInfo;
 }
 
 - (TBDetailSKUInfo *)skuUnSelected:(TBDetailPidVidPair *)pair{
     [_pidvidMap removeObjectForKey:pair.pid];
-    TBDetailSKUInfo * skuInfo = [self skuChanged];
-    [_skuImgManager getSkuPicUnSelected:pair];
-    skuInfo.picUrl = [_skuImgManager selectPic];
+    TBDetailSKUInfo * skuInfo = [self skuChanged];;
     _currentSkuInfo = skuInfo;
     return skuInfo;
-
+    
 }
 
 - (TBDetailSKUInfo *)skuInitWithSkuId:(NSString *)skuId{
     
-    TBDetailSKUPriceAndQuanitiyModel *skuModel = [_skuModel.skus objectForKey:skuId];
+    ManWuCommoditySKUDetailModel *skuModel = [_tbDetailModel.skuMap objectForKey:skuId];
     
     if ([self isValidSku:skuModel SkuId:skuId]) {
         
@@ -415,41 +347,18 @@
         NSArray *skuProps = [ppath componentsSeparatedByString:@";"];
         
         for (NSString *skuProp in skuProps) {
-
+            
             TBDetailPidVidPair * pair =[[TBDetailPidVidPair alloc] initWithPidvid:skuProp];
             [_pidvidMap setValue:pair.vid forKey:pair.pid];
-            [_skuImgManager getSkuPicSelected:pair];
-            
         }
         
         TBDetailSKUInfo * skuInfo = [self skuChanged];
-        skuInfo.picUrl = _skuImgManager.selectPic;
         _currentSkuInfo = skuInfo;
         return skuInfo;
     }else{
         return _currentSkuInfo;
     }
- 
-}
-- (TBDetailSKUInfo *)caculatePrice:(double)servicePrice {
-    NSMutableArray<TBDetailPriceUnitsModel> *prices = (NSMutableArray<TBDetailPriceUnitsModel> *)[NSMutableArray array];
-
-    NSArray<TBDetailPriceUnitsModel> *originPrices = nil;
     
-//    if (_tbDetailModel.itemInfoModel.sku) {
-//        TBDetailSKUPriceAndQuanitiyModel * model = [_skuMap objectForKey:_selectedSkuId];
-//        originPrices = model.priceUnits;
-//    }else{
-//        originPrices = _tbDetailModel.itemInfoModel.priceUnits;
-//    }
-    
-    for(TBDetailPriceUnitsModel *price in originPrices){
-        TBDetailPriceUnitsModel *newPrice = [price deepCopy];
-        newPrice.price = [NSString stringWithFormat:@"%.2f",[price.price doubleValue] + servicePrice];
-        [prices addObject:newPrice];
-    }
-    _currentSkuInfo.priceUnits = prices;
-    return _currentSkuInfo;
 }
 
 - (TBDetailSKUInfo *)currentSKUInfo{
@@ -457,5 +366,3 @@
 }
 
 @end
-
-

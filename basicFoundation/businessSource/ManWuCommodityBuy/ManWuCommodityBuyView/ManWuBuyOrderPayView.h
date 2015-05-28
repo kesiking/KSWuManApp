@@ -10,4 +10,6 @@
 
 @interface ManWuBuyOrderPayView : ManWuBuyBasicView
 
+@property (nonatomic, strong)   NSNumber*                   payPrice;
+
 @end

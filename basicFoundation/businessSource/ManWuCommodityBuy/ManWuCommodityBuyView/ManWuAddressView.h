@@ -10,4 +10,6 @@
 
 @interface ManWuAddressView : ManWuBuyBasicView
 
+@property (nonatomic, strong)   NSString*           addressId;
+
 @end

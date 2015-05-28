@@ -37,6 +37,10 @@
             NSString* string = [NSString stringWithFormat:@"尺寸:%@",detailModel.size];
             [self.descriptionArray addObject:string];
         }
+        if (detailModel.color) {
+            NSString* string = [NSString stringWithFormat:@"颜色:%@",detailModel.color];
+            [self.descriptionArray addObject:string];
+        }
         if (detailModel.fengge) {
             NSString* string = [NSString stringWithFormat:@"风格:%@",detailModel.fengge];
             [self.descriptionArray addObject:string];
