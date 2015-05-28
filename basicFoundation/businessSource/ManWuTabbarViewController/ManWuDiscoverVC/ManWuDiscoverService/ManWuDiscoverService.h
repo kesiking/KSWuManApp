@@ -15,4 +15,6 @@
 
 -(void)loadAllCategoryCommodityListData;
 
+-(void)loadRootCategoryListData;
+
 @end

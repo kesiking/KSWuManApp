@@ -20,7 +20,7 @@
     if (self.pagedList) {
         [self.pagedList refresh];
     }
-    [self loadPagedListWithAPIName:@"item/getNewItems.do" params:nil pagination:pageinationItem version:nil];
+    [self loadPagedListWithAPIName:@"index/getNewItems.do" params:nil pagination:pageinationItem version:nil];
 }
 
 @end

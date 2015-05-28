@@ -98,11 +98,10 @@
     
     if (sender == self.leftImageView) {
         [params setObject:self.leftActivityModel.typeId?:@"2" forKey:@"actId"];
+        [params setObject:self.leftActivityModel?:[ManWuHomeActivityInfoModel new] forKey:@"activityModel"];
     }else if (sender == self.rightImageView){
         [params setObject:self.rightActivityModel.typeId?:@"3" forKey:@"actId"];
-    }
-    if (self.activityModel) {
-        [params setObject:self.activityModel forKey:@"activityModel"];
+        [params setObject:self.rightActivityModel?:[ManWuHomeActivityInfoModel new] forKey:@"activityModel"];
     }
     
     TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);

@@ -322,6 +322,7 @@
 		5F214C811B158F990081BA02 /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C721B158F990081BA02 /* SVWebViewControllerActivity.m */; };
 		5F214C841B1598A20081BA02 /* ManWuPreferentialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C831B1598A20081BA02 /* ManWuPreferentialView.m */; };
 		5F214C871B15BCF60081BA02 /* UIColor+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C861B15BCF60081BA02 /* UIColor+Ext.m */; };
+		5F214C8A1B16A52C0081BA02 /* ManWuCommodityActivityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C891B16A52C0081BA02 /* ManWuCommodityActivityService.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -983,6 +984,8 @@
 		5F214C831B1598A20081BA02 /* ManWuPreferentialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuPreferentialView.m; sourceTree = "<group>"; };
 		5F214C851B15BCF60081BA02 /* UIColor+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Ext.h"; sourceTree = "<group>"; };
 		5F214C861B15BCF60081BA02 /* UIColor+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Ext.m"; sourceTree = "<group>"; };
+		5F214C881B16A52C0081BA02 /* ManWuCommodityActivityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityActivityService.h; sourceTree = "<group>"; };
+		5F214C891B16A52C0081BA02 /* ManWuCommodityActivityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityActivityService.m; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -2515,6 +2518,8 @@
 				5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */,
 				5F9216201B103DF000554B44 /* ManWuCommodityNewListService.h */,
 				5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */,
+				5F214C881B16A52C0081BA02 /* ManWuCommodityActivityService.h */,
+				5F214C891B16A52C0081BA02 /* ManWuCommodityActivityService.m */,
 			);
 			path = ManWuCommodityListService;
 			sourceTree = "<group>";
@@ -2738,6 +2743,7 @@
 				052CC6D41AF9BAD100AF7C78 /* ManWuCommodityListWithSortAndFiltBasicView.m in Sources */,
 				055866CD1AD3E05B00A23FFA /* WeAppBasicPagedList.m in Sources */,
 				056664911AEE0F8C00FD1C65 /* ManWuDetailBuyNumberStepView.m in Sources */,
+				5F214C8A1B16A52C0081BA02 /* ManWuCommodityActivityService.m in Sources */,
 				05E88EDC1B033E0500E0B646 /* ManWuAddressBottomVIew.m in Sources */,
 				058DADE21AE5E0BB009D0008 /* KSAdapterService.m in Sources */,
 				052CC69C1AF7446900AF7C78 /* ManWuCommodityGuideView.m in Sources */,

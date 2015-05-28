@@ -12,6 +12,8 @@
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel;
 
+-(void)setActIdKey:(NSString*)actIdKey;
+
 -(void)loadDataWithParams:(NSDictionary*)params;
 
 @end

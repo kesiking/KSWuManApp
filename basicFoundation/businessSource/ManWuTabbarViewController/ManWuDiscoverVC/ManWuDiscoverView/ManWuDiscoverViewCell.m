@@ -114,7 +114,10 @@
 
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     NSLog(@"did select cell in list");
-    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:@"commodityId",@"commodityId", nil];
+    
+    ManWuDiscoverModel* discoverModel = (ManWuDiscoverModel*)componentItem;
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:discoverModel.cid?:defaultCidKey,@"cid", nil];
     TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityList), self,nil,params);
 }
 

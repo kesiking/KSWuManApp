@@ -15,11 +15,13 @@
 #import "ManWuCommoditySortAndFiltModel.h"
 #import "ManWuCommodityFiltTagListView.h"
 #import "ManWuCommodityActListService.h"
+#import "ManWuCommodityActivityService.h"
 #import "ManWuDiscoverModel.h"
 
 #define sort_filt_view_height       (30.0 * SCREEN_SCALE)
 #define discountInfo_height         (108.0 * SCREEN_SCALE)
 
+//#define needFiltTagListView
 
 @interface ManWuCommodityListSortAndFiltForDiscountView()
 
@@ -43,6 +45,8 @@
 @property (nonatomic,strong) NSString                          *sortKey;
 
 @property (nonatomic,strong) ManWuCommodityActListService      *actListService;
+
+@property (nonatomic,strong) ManWuCommodityActivityService     *activityService;
 
 @end
 
@@ -68,7 +72,11 @@
     
     [self.collectionViewCtl setColletionHeaderView:self.container];
     [self setCollectionService:self.actListService];
-    
+}
+
+-(void)setActIdKey:(NSString*)actIdKey{
+    _actIdKey = actIdKey;
+    [self.activityService loadCommodityActivityDataWithTypeId:actIdKey];
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem *)descriptionModel{
@@ -151,13 +159,17 @@
                 sortListSelectBlock();
             }
             ManWuDiscoverModel* sortAndFiltModel = (ManWuDiscoverModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
-           
+#ifdef needFiltTagListView
             [strongSelf.filtTagListView setDataWithPageList:sortAndFiltModel.leafCategoryList title:sortAndFiltModel.name];
             CGRect rect = strongSelf.filtTagListView.tagListLayoutView.frame;
             CGRect sortFiltViewRect = [strongSelf.container convertRect:strongSelf.container.frame toView:strongSelf];
             rect.origin.y = CGRectGetMaxY(sortFiltViewRect);
             [strongSelf.filtTagListView.tagListLayoutView setOrigin:CGPointMake(rect.origin.x, rect.origin.y)];
             strongSelf.filtTagListView.hidden = NO;
+#else
+            NSDictionary* params = @{@"filtKey":sortAndFiltModel.cid?:defaultCidKey};
+            [strongSelf loadDataWithParams:params];
+#endif
         };
         _sortListSelectView.hidden = YES;
         [self addSubview:_sortListSelectView];
@@ -238,14 +250,28 @@
     return _actListService;
 }
 
+-(ManWuCommodityActivityService *)activityService{
+    if (_activityService == nil) {
+        _activityService = [[ManWuCommodityActivityService alloc] init];
+        WEAKSELF
+        _activityService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.item) {
+                [strongSelf setDescriptionModel:service.item];
+            }
+        };
+    }
+    return _activityService;
+}
+
 #pragma mark - 加载数据
 
 -(void)loadDataWithParams:(NSDictionary*)params{
     BOOL needRefreshService = NO;
     
     NSString* actIdKey = params[@"actIdKey"];
-    if (actIdKey && actIdKey != self.actIdKey) {
-        self.actIdKey = actIdKey;
+    if (actIdKey && actIdKey != _actIdKey) {
+        _actIdKey = actIdKey;
         needRefreshService = YES;
     }
     NSString* sortKey = params[@"sortKey"];

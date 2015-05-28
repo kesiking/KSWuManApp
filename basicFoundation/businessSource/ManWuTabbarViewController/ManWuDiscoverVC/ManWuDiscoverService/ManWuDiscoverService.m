@@ -35,4 +35,10 @@
      */
 }
 
+-(void)loadRootCategoryListData{
+    self.jsonTopKey = @"data";
+    self.itemClass = [ManWuDiscoverModel class];
+    [self loadDataListWithAPIName:@"category/getRootCats.do" params:nil version:nil];
+}
+
 @end

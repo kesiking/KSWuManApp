@@ -37,7 +37,7 @@
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];
     [self setSortListArray:commoditySortAndFiltModels];
      */
-    [self.sortForDiscountListService loadAllCategoryCommodityListData];
+    [self.sortForDiscountListService loadRootCategoryListData];
 }
 
 -(void)setupView{
