@@ -21,4 +21,18 @@
 #import "KSManWuPageMaroc.h"
 #import "KSManWuTabBarViewController.h"
 
+#import "MWInsetsTextField.h"
+#import "NSString+FilePath.h"
+#import "KSUserInfoModel.h"
+
+#define kSpaceX 20
+#define WIDTH self.view.width - kSpaceX * 2
+#define SELFWIDTH self.view.width
+
+#define UserInfo @"userInfo"   //登录用户信息
+#define USERID   @"userId"   //登录用户id
+
+#define LOGIN_FLAG @"alreadyLogin"  //标识已登录
+
+
 #endif

@@ -21,7 +21,7 @@
 		<key>manwu_address_edit</key>
 		<string>ManWuAddressEditViewController</string>
 		<key>login</key>
-		<string>ManWuLoginDemoViewController</string>
+		<string>ManWuLoginViewController</string>
 	</dict>
 	<key>object_list</key>
 	<array>
