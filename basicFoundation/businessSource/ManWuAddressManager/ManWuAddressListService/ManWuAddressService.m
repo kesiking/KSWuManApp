@@ -11,17 +11,17 @@
 @implementation ManWuAddressService
 
 -(void)loadAddressList{
-    NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]};
+    NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]?:@""};
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuAddressInfoModel class];
-    [self loadDataListWithAPIName:@"user/fetchAddresses.do" params:params version:nil];
+    [self loadDataListWithAPIName:@"address/fetchAddresses.do" params:params version:nil];
 }
 
 -(void)loadDefaultAddress{
-    NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]};
+    NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]?:@""};
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuAddressInfoModel class];
-    [self loadItemWithAPIName:@"/user/fetchDefaultAddress.do" params:params version:nil];
+    [self loadItemWithAPIName:@"address/fetchDefaultAddress.do" params:params version:nil];
 }
 
 @end

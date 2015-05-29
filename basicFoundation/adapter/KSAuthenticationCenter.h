@@ -15,6 +15,8 @@
 
 + (NSString*)userId;
 
++ (BOOL)isLogin;
+
 - (void)authenticateWithLoginActionBlock:(loginActionBlock)loginActionBlock cancelActionBlock:(cancelActionBlock)cancelActionBlock;
 
 @end

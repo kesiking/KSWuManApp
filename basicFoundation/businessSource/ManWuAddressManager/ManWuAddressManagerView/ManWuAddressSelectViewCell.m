@@ -55,6 +55,10 @@
     self.phoneNumLabel.hidden = addressInfoComponentItem.phoneNum ? NO : YES;
     self.addressLabel.hidden = addressInfoComponentItem.address ? NO : YES;
 
+    [self.phoneNumLabel sizeToFit];
+    CGRect phoneNumLabelRect = self.phoneNumLabel.frame;
+    phoneNumLabelRect.origin.x = self.width - self.phoneNumLabel.width - 18;
+    [self.phoneNumLabel setFrame:phoneNumLabelRect];
 }
 
 - (void)didSelectCellWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{

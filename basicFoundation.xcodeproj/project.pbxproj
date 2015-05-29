@@ -171,7 +171,6 @@
 		058BC3F91AE89DA700A4F799 /* KSTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC3EB1AE89DA600A4F799 /* KSTabbarViewController.m */; };
 		058BC3FA1AE89DA700A4F799 /* KSManWuTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC3ED1AE89DA700A4F799 /* KSManWuTabBarViewController.m */; };
 		058BC3FB1AE89DA700A4F799 /* tabbarViewControllerRegister.plist in Resources */ = {isa = PBXBuildFile; fileRef = 058BC3EE1AE89DA700A4F799 /* tabbarViewControllerRegister.plist */; };
-		058BC3FC1AE89DA700A4F799 /* ManWuMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC3F11AE89DA700A4F799 /* ManWuMyInfoViewController.m */; };
 		058BC3FD1AE89DA700A4F799 /* ManWuDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC3F41AE89DA700A4F799 /* ManWuDiscoverViewController.m */; };
 		058BC3FE1AE89DA700A4F799 /* ManWuHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC3F71AE89DA700A4F799 /* ManWuHomeViewController.m */; };
 		058BC4021AE89DEF00A4F799 /* KSManWuHomeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC4011AE89DEF00A4F799 /* KSManWuHomeService.m */; };
@@ -336,6 +335,36 @@
 		5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */; };
 		5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06221B0E011F00852188 /* KSPaginationItem.m */; };
 		5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */; };
+		91E2D05A1B1761C500946A32 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		91E2D05B1B1761C500946A32 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0221B1761C500946A32 /* CustomImagePickerController.m */; };
+		91E2D05C1B1761C500946A32 /* ImageFilterProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0241B1761C500946A32 /* ImageFilterProcessViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		91E2D05D1B1761C500946A32 /* IphoneScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0261B1761C500946A32 /* IphoneScreen.m */; };
+		91E2D05E1B1761C500946A32 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0291B1761C500946A32 /* UIImage+Alpha.m */; };
+		91E2D05F1B1761C500946A32 /* UIImage+Cut.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D02B1B1761C500946A32 /* UIImage+Cut.m */; };
+		91E2D0601B1761C500946A32 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D02D1B1761C500946A32 /* UIImage+Resize.m */; };
+		91E2D0611B1761C500946A32 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D02F1B1761C500946A32 /* UIImage+RoundedCorner.m */; };
+		91E2D0621B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0311B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m */; };
+		91E2D0631B1761C500946A32 /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0341B1761C500946A32 /* HTHorizontalSelectionList.m */; };
+		91E2D0641B1761C500946A32 /* HTHorizontalSelectionListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0361B1761C500946A32 /* HTHorizontalSelectionListScrollView.m */; };
+		91E2D0651B1761C500946A32 /* KSOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0381B1761C500946A32 /* KSOrderModel.m */; };
+		91E2D0661B1761C500946A32 /* KSUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D03A1B1761C500946A32 /* KSUserInfoModel.m */; };
+		91E2D0671B1761C500946A32 /* MWInsetsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D03C1B1761C500946A32 /* MWInsetsTextField.m */; };
+		91E2D0681B1761C500946A32 /* NSString+FilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D03E1B1761C500946A32 /* NSString+FilePath.m */; };
+		91E2D0691B1761C500946A32 /* UserInfoViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0401B1761C500946A32 /* UserInfoViewItem.m */; };
+		91E2D06A1B1761C500946A32 /* ManWuChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0421B1761C500946A32 /* ManWuChangePwdViewController.m */; };
+		91E2D06B1B1761C500946A32 /* ManWuConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0441B1761C500946A32 /* ManWuConfigViewController.m */; };
+		91E2D06C1B1761C500946A32 /* ManWuFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0461B1761C500946A32 /* ManWuFeedBackViewController.m */; };
+		91E2D06D1B1761C500946A32 /* ManWuMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0481B1761C500946A32 /* ManWuMyInfoViewController.m */; };
+		91E2D06E1B1761C500946A32 /* ManWuMyOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D04A1B1761C500946A32 /* ManWuMyOrdersViewController.m */; };
+		91E2D06F1B1761C500946A32 /* ManWuPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D04C1B1761C500946A32 /* ManWuPersonInfoViewController.m */; };
+		91E2D0701B1761C500946A32 /* ManWuResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D04E1B1761C500946A32 /* ManWuResetPwdViewController.m */; };
+		91E2D0711B1761C500946A32 /* ManWuLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0511B1761C500946A32 /* ManWuLoginViewController.m */; };
+		91E2D0721B1761C500946A32 /* ManWuRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0531B1761C500946A32 /* ManWuRegisterViewController.m */; };
+		91E2D0731B1761C500946A32 /* inputbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0551B1761C500946A32 /* inputbox.png */; };
+		91E2D0741B1761C500946A32 /* inputbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0561B1761C500946A32 /* inputbox@2x.png */; };
+		91E2D0751B1761C500946A32 /* sure-button01-s.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0571B1761C500946A32 /* sure-button01-s.png */; };
+		91E2D0761B1761C500946A32 /* sure-button01-s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0581B1761C500946A32 /* sure-button01-s@2x.png */; };
+		91E2D0771B1761C500946A32 /* sure-button01.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0591B1761C500946A32 /* sure-button01.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -658,8 +687,6 @@
 		058BC3EC1AE89DA700A4F799 /* KSManWuTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSManWuTabBarViewController.h; sourceTree = "<group>"; };
 		058BC3ED1AE89DA700A4F799 /* KSManWuTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSManWuTabBarViewController.m; sourceTree = "<group>"; };
 		058BC3EE1AE89DA700A4F799 /* tabbarViewControllerRegister.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tabbarViewControllerRegister.plist; sourceTree = "<group>"; };
-		058BC3F01AE89DA700A4F799 /* ManWuMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuMyInfoViewController.h; sourceTree = "<group>"; };
-		058BC3F11AE89DA700A4F799 /* ManWuMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuMyInfoViewController.m; sourceTree = "<group>"; };
 		058BC3F31AE89DA700A4F799 /* ManWuDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverViewController.h; sourceTree = "<group>"; };
 		058BC3F41AE89DA700A4F799 /* ManWuDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverViewController.m; sourceTree = "<group>"; };
 		058BC3F61AE89DA700A4F799 /* ManWuHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHomeViewController.h; sourceTree = "<group>"; };
@@ -1016,6 +1043,62 @@
 		5FBA06221B0E011F00852188 /* KSPaginationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPaginationItem.m; sourceTree = "<group>"; };
 		5FBA06241B0F515A00852188 /* ManWuCommodityActListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityActListService.h; sourceTree = "<group>"; };
 		5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityActListService.m; sourceTree = "<group>"; };
+		91E2D01E1B1761C500946A32 /* AGSimpleImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSimpleImageEditorView.h; sourceTree = "<group>"; };
+		91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSimpleImageEditorView.m; sourceTree = "<group>"; };
+		91E2D0201B1761C500946A32 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
+		91E2D0211B1761C500946A32 /* CustomImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImagePickerController.h; sourceTree = "<group>"; };
+		91E2D0221B1761C500946A32 /* CustomImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImagePickerController.m; sourceTree = "<group>"; };
+		91E2D0231B1761C500946A32 /* ImageFilterProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFilterProcessViewController.h; sourceTree = "<group>"; };
+		91E2D0241B1761C500946A32 /* ImageFilterProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFilterProcessViewController.m; sourceTree = "<group>"; };
+		91E2D0251B1761C500946A32 /* IphoneScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IphoneScreen.h; sourceTree = "<group>"; };
+		91E2D0261B1761C500946A32 /* IphoneScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IphoneScreen.m; sourceTree = "<group>"; };
+		91E2D0281B1761C500946A32 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		91E2D0291B1761C500946A32 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		91E2D02A1B1761C500946A32 /* UIImage+Cut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cut.h"; sourceTree = "<group>"; };
+		91E2D02B1B1761C500946A32 /* UIImage+Cut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cut.m"; sourceTree = "<group>"; };
+		91E2D02C1B1761C500946A32 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		91E2D02D1B1761C500946A32 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		91E2D02E1B1761C500946A32 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		91E2D02F1B1761C500946A32 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		91E2D0301B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SplitImageIntoTwoParts.h"; sourceTree = "<group>"; };
+		91E2D0311B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SplitImageIntoTwoParts.m"; sourceTree = "<group>"; };
+		91E2D0331B1761C500946A32 /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
+		91E2D0341B1761C500946A32 /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
+		91E2D0351B1761C500946A32 /* HTHorizontalSelectionListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListScrollView.h; sourceTree = "<group>"; };
+		91E2D0361B1761C500946A32 /* HTHorizontalSelectionListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListScrollView.m; sourceTree = "<group>"; };
+		91E2D0371B1761C500946A32 /* KSOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOrderModel.h; sourceTree = "<group>"; };
+		91E2D0381B1761C500946A32 /* KSOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOrderModel.m; sourceTree = "<group>"; };
+		91E2D0391B1761C500946A32 /* KSUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSUserInfoModel.h; sourceTree = "<group>"; };
+		91E2D03A1B1761C500946A32 /* KSUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSUserInfoModel.m; sourceTree = "<group>"; };
+		91E2D03B1B1761C500946A32 /* MWInsetsTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWInsetsTextField.h; sourceTree = "<group>"; };
+		91E2D03C1B1761C500946A32 /* MWInsetsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWInsetsTextField.m; sourceTree = "<group>"; };
+		91E2D03D1B1761C500946A32 /* NSString+FilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FilePath.h"; sourceTree = "<group>"; };
+		91E2D03E1B1761C500946A32 /* NSString+FilePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FilePath.m"; sourceTree = "<group>"; };
+		91E2D03F1B1761C500946A32 /* UserInfoViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewItem.h; sourceTree = "<group>"; };
+		91E2D0401B1761C500946A32 /* UserInfoViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewItem.m; sourceTree = "<group>"; };
+		91E2D0411B1761C500946A32 /* ManWuChangePwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuChangePwdViewController.h; sourceTree = "<group>"; };
+		91E2D0421B1761C500946A32 /* ManWuChangePwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuChangePwdViewController.m; sourceTree = "<group>"; };
+		91E2D0431B1761C500946A32 /* ManWuConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuConfigViewController.h; sourceTree = "<group>"; };
+		91E2D0441B1761C500946A32 /* ManWuConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuConfigViewController.m; sourceTree = "<group>"; };
+		91E2D0451B1761C500946A32 /* ManWuFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuFeedBackViewController.h; sourceTree = "<group>"; };
+		91E2D0461B1761C500946A32 /* ManWuFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuFeedBackViewController.m; sourceTree = "<group>"; };
+		91E2D0471B1761C500946A32 /* ManWuMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuMyInfoViewController.h; sourceTree = "<group>"; };
+		91E2D0481B1761C500946A32 /* ManWuMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuMyInfoViewController.m; sourceTree = "<group>"; };
+		91E2D0491B1761C500946A32 /* ManWuMyOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuMyOrdersViewController.h; sourceTree = "<group>"; };
+		91E2D04A1B1761C500946A32 /* ManWuMyOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuMyOrdersViewController.m; sourceTree = "<group>"; };
+		91E2D04B1B1761C500946A32 /* ManWuPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuPersonInfoViewController.h; sourceTree = "<group>"; };
+		91E2D04C1B1761C500946A32 /* ManWuPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuPersonInfoViewController.m; sourceTree = "<group>"; };
+		91E2D04D1B1761C500946A32 /* ManWuResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuResetPwdViewController.h; sourceTree = "<group>"; };
+		91E2D04E1B1761C500946A32 /* ManWuResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuResetPwdViewController.m; sourceTree = "<group>"; };
+		91E2D0501B1761C500946A32 /* ManWuLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuLoginViewController.h; sourceTree = "<group>"; };
+		91E2D0511B1761C500946A32 /* ManWuLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuLoginViewController.m; sourceTree = "<group>"; };
+		91E2D0521B1761C500946A32 /* ManWuRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuRegisterViewController.h; sourceTree = "<group>"; };
+		91E2D0531B1761C500946A32 /* ManWuRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuRegisterViewController.m; sourceTree = "<group>"; };
+		91E2D0551B1761C500946A32 /* inputbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputbox.png; sourceTree = "<group>"; };
+		91E2D0561B1761C500946A32 /* inputbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inputbox@2x.png"; sourceTree = "<group>"; };
+		91E2D0571B1761C500946A32 /* sure-button01-s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sure-button01-s.png"; sourceTree = "<group>"; };
+		91E2D0581B1761C500946A32 /* sure-button01-s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sure-button01-s@2x.png"; sourceTree = "<group>"; };
+		91E2D0591B1761C500946A32 /* sure-button01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sure-button01.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1776,8 +1859,24 @@
 		058BC3EF1AE89DA700A4F799 /* ManMyInfoVC */ = {
 			isa = PBXGroup;
 			children = (
-				058BC3F01AE89DA700A4F799 /* ManWuMyInfoViewController.h */,
-				058BC3F11AE89DA700A4F799 /* ManWuMyInfoViewController.m */,
+				91E2D01D1B1761C500946A32 /* camera */,
+				91E2D0321B1761C500946A32 /* common */,
+				91E2D0411B1761C500946A32 /* ManWuChangePwdViewController.h */,
+				91E2D0421B1761C500946A32 /* ManWuChangePwdViewController.m */,
+				91E2D0431B1761C500946A32 /* ManWuConfigViewController.h */,
+				91E2D0441B1761C500946A32 /* ManWuConfigViewController.m */,
+				91E2D0451B1761C500946A32 /* ManWuFeedBackViewController.h */,
+				91E2D0461B1761C500946A32 /* ManWuFeedBackViewController.m */,
+				91E2D0471B1761C500946A32 /* ManWuMyInfoViewController.h */,
+				91E2D0481B1761C500946A32 /* ManWuMyInfoViewController.m */,
+				91E2D0491B1761C500946A32 /* ManWuMyOrdersViewController.h */,
+				91E2D04A1B1761C500946A32 /* ManWuMyOrdersViewController.m */,
+				91E2D04B1B1761C500946A32 /* ManWuPersonInfoViewController.h */,
+				91E2D04C1B1761C500946A32 /* ManWuPersonInfoViewController.m */,
+				91E2D04D1B1761C500946A32 /* ManWuResetPwdViewController.h */,
+				91E2D04E1B1761C500946A32 /* ManWuResetPwdViewController.m */,
+				91E2D04F1B1761C500946A32 /* register&login */,
+				91E2D0541B1761C500946A32 /* resource */,
 				05ACAC5D1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.h */,
 				05ACAC5E1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.m */,
 				05D5F2BE1B00B496002EF23D /* ManWuLoginDemoViewController.h */,
@@ -2549,6 +2648,84 @@
 			path = ManWuCommodityListService;
 			sourceTree = "<group>";
 		};
+		91E2D01D1B1761C500946A32 /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				91E2D01E1B1761C500946A32 /* AGSimpleImageEditorView.h */,
+				91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */,
+				91E2D0201B1761C500946A32 /* ColorMatrix.h */,
+				91E2D0211B1761C500946A32 /* CustomImagePickerController.h */,
+				91E2D0221B1761C500946A32 /* CustomImagePickerController.m */,
+				91E2D0231B1761C500946A32 /* ImageFilterProcessViewController.h */,
+				91E2D0241B1761C500946A32 /* ImageFilterProcessViewController.m */,
+				91E2D0251B1761C500946A32 /* IphoneScreen.h */,
+				91E2D0261B1761C500946A32 /* IphoneScreen.m */,
+				91E2D0271B1761C500946A32 /* UIImage-Extensions */,
+			);
+			path = camera;
+			sourceTree = "<group>";
+		};
+		91E2D0271B1761C500946A32 /* UIImage-Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				91E2D0281B1761C500946A32 /* UIImage+Alpha.h */,
+				91E2D0291B1761C500946A32 /* UIImage+Alpha.m */,
+				91E2D02A1B1761C500946A32 /* UIImage+Cut.h */,
+				91E2D02B1B1761C500946A32 /* UIImage+Cut.m */,
+				91E2D02C1B1761C500946A32 /* UIImage+Resize.h */,
+				91E2D02D1B1761C500946A32 /* UIImage+Resize.m */,
+				91E2D02E1B1761C500946A32 /* UIImage+RoundedCorner.h */,
+				91E2D02F1B1761C500946A32 /* UIImage+RoundedCorner.m */,
+				91E2D0301B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.h */,
+				91E2D0311B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m */,
+			);
+			path = "UIImage-Extensions";
+			sourceTree = "<group>";
+		};
+		91E2D0321B1761C500946A32 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				91E2D0331B1761C500946A32 /* HTHorizontalSelectionList.h */,
+				91E2D0341B1761C500946A32 /* HTHorizontalSelectionList.m */,
+				91E2D0351B1761C500946A32 /* HTHorizontalSelectionListScrollView.h */,
+				91E2D0361B1761C500946A32 /* HTHorizontalSelectionListScrollView.m */,
+				91E2D0371B1761C500946A32 /* KSOrderModel.h */,
+				91E2D0381B1761C500946A32 /* KSOrderModel.m */,
+				91E2D0391B1761C500946A32 /* KSUserInfoModel.h */,
+				91E2D03A1B1761C500946A32 /* KSUserInfoModel.m */,
+				91E2D03B1B1761C500946A32 /* MWInsetsTextField.h */,
+				91E2D03C1B1761C500946A32 /* MWInsetsTextField.m */,
+				91E2D03D1B1761C500946A32 /* NSString+FilePath.h */,
+				91E2D03E1B1761C500946A32 /* NSString+FilePath.m */,
+				91E2D03F1B1761C500946A32 /* UserInfoViewItem.h */,
+				91E2D0401B1761C500946A32 /* UserInfoViewItem.m */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		91E2D04F1B1761C500946A32 /* register&login */ = {
+			isa = PBXGroup;
+			children = (
+				91E2D0501B1761C500946A32 /* ManWuLoginViewController.h */,
+				91E2D0511B1761C500946A32 /* ManWuLoginViewController.m */,
+				91E2D0521B1761C500946A32 /* ManWuRegisterViewController.h */,
+				91E2D0531B1761C500946A32 /* ManWuRegisterViewController.m */,
+			);
+			path = "register&login";
+			sourceTree = "<group>";
+		};
+		91E2D0541B1761C500946A32 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				91E2D0551B1761C500946A32 /* inputbox.png */,
+				91E2D0561B1761C500946A32 /* inputbox@2x.png */,
+				91E2D0571B1761C500946A32 /* sure-button01-s.png */,
+				91E2D0581B1761C500946A32 /* sure-button01-s@2x.png */,
+				91E2D0591B1761C500946A32 /* sure-button01.png */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2643,6 +2820,7 @@
 				05AF30161B00506C00890A65 /* unPraise_button_image.png in Resources */,
 				5F214C7A1B158F990081BA02 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
 				5F214C791B158F990081BA02 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
+				91E2D0741B1761C500946A32 /* inputbox@2x.png in Resources */,
 				05AF30031B004D3F00890A65 /* loading_view_1.png in Resources */,
 				05AF30091B004D3F00890A65 /* loading_view_7.png in Resources */,
 				05ACAC9F1AFCA94800853E1C /* tb_btn_all_square_normal.png in Resources */,
@@ -2665,7 +2843,9 @@
 				056664B21AEE37AC00FD1C65 /* tb_control_flow_number_left_press.png in Resources */,
 				056664B01AEE37AC00FD1C65 /* tb_control_flow_number_center.png in Resources */,
 				058D5A911AF0B2BB006EA35C /* Default.png in Resources */,
+				91E2D0761B1761C500946A32 /* sure-button01-s@2x.png in Resources */,
 				0553F75F1AF9EB660013BB97 /* manwu_commodity_filt_all.jpg in Resources */,
+				91E2D0751B1761C500946A32 /* sure-button01-s.png in Resources */,
 				058BC4181AE8D97400A4F799 /* tabitem_info_normal@2x.png in Resources */,
 				05AF30081B004D3F00890A65 /* loading_view_6.png in Resources */,
 				058D5D0E1AF2140C006EA35C /* tbbuy_item_increase@2x.png in Resources */,
@@ -2680,6 +2860,7 @@
 				0553F7621AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg in Resources */,
 				5F214C7C1B158F990081BA02 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */,
+				91E2D0771B1761C500946A32 /* sure-button01.png in Resources */,
 				0553F7611AF9EB660013BB97 /* manwu_commodity_filt_discount.png in Resources */,
 				05AF30061B004D3F00890A65 /* loading_view_4.png in Resources */,
 				05AF30131B00506C00890A65 /* favorate_button_image.png in Resources */,
@@ -2714,6 +2895,7 @@
 				056664B31AEE37AC00FD1C65 /* tb_control_flow_number_right.png in Resources */,
 				05ACAC9A1AFCA03A00853E1C /* wifi_error_image.png in Resources */,
 				052CC6B91AF8588400AF7C78 /* home_placehold_banner.png in Resources */,
+				91E2D0731B1761C500946A32 /* inputbox.png in Resources */,
 				052CC6BA1AF8588400AF7C78 /* home_specialForToday_first_placehold_banner.png in Resources */,
 				058DAE681AE79CB4009D0008 /* manwu_bundle.plist in Resources */,
 				05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */,
@@ -2744,6 +2926,7 @@
 				055C75871ADFBF6000C35854 /* SDWebImageDownloader.m in Sources */,
 				058D5D201AF22E37006EA35C /* ManWuBuyScrollView.m in Sources */,
 				058BC3FE1AE89DA700A4F799 /* ManWuHomeViewController.m in Sources */,
+				91E2D0621B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m in Sources */,
 				056664DC1AEF581D00FD1C65 /* TBJSONModelKeyMapper.m in Sources */,
 				056664D11AEF2F4E00FD1C65 /* TBDetailSkuImgManager.m in Sources */,
 				058DADD21AE52EC0009D0008 /* AFSecurityPolicy.m in Sources */,
@@ -2753,6 +2936,7 @@
 				05D5F2C61B00CBE4002EF23D /* KSAuthenticationCenter.m in Sources */,
 				058D5CF01AF1F62E006EA35C /* DataSigner.m in Sources */,
 				055866951AD3B4F900A23FFA /* ViewController.m in Sources */,
+				91E2D06F1B1761C500946A32 /* ManWuPersonInfoViewController.m in Sources */,
 				0553F7941AFA1F7A0013BB97 /* ManWuViewCell.m in Sources */,
 				0519007A1B035F1000C077D5 /* KSTagListLayoutView.m in Sources */,
 				052CC6C01AF86D1A00AF7C78 /* KSSearchBasicView.m in Sources */,
@@ -2762,10 +2946,12 @@
 				058D5D1D1AF2296F006EA35C /* ManWuConfirmView.m in Sources */,
 				05B8DF541AF344B8002C2E4F /* ManWuDiscoverViewCell.m in Sources */,
 				5F214C7B1B158F990081BA02 /* SVWebViewControllerActivityChrome.m in Sources */,
+				91E2D0701B1761C500946A32 /* ManWuResetPwdViewController.m in Sources */,
 				058D5AAD1AF0D04C006EA35C /* ManWuCommodityBuyViewController.m in Sources */,
 				5F214C961B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m in Sources */,
 				0553F76B1AFA14830013BB97 /* ManWuCommodityListForDiscountViewController.m in Sources */,
 				5F214C501B148E520081BA02 /* ManWuAddressEditService.m in Sources */,
+				91E2D0671B1761C500946A32 /* MWInsetsTextField.m in Sources */,
 				052CC6D41AF9BAD100AF7C78 /* ManWuCommodityListWithSortAndFiltBasicView.m in Sources */,
 				055866CD1AD3E05B00A23FFA /* WeAppBasicPagedList.m in Sources */,
 				056664911AEE0F8C00FD1C65 /* ManWuDetailBuyNumberStepView.m in Sources */,
@@ -2773,7 +2959,7 @@
 				05E88EDC1B033E0500E0B646 /* ManWuAddressBottomVIew.m in Sources */,
 				058DADE21AE5E0BB009D0008 /* KSAdapterService.m in Sources */,
 				052CC69C1AF7446900AF7C78 /* ManWuCommodityGuideView.m in Sources */,
-				058BC3FC1AE89DA700A4F799 /* ManWuMyInfoViewController.m in Sources */,
+				91E2D0641B1761C500946A32 /* HTHorizontalSelectionListScrollView.m in Sources */,
 				056664441AEB4A0B00FD1C65 /* KSFoundationCommon.m in Sources */,
 				052CC6AC1AF7737A00AF7C78 /* ManWuDiiscountInfoDescriptionView.m in Sources */,
 				0553F78E1AFA1F7A0013BB97 /* ManWuCommodityFiltForDiscoverListView.m in Sources */,
@@ -2785,7 +2971,10 @@
 				058DAE6C1AE7A339009D0008 /* KSBasicURLResolver.m in Sources */,
 				05D5F2B81B006224002EF23D /* ManWuPraiseButton.m in Sources */,
 				052CC6911AF7198B00AF7C78 /* WeAppColorStyleSheet.m in Sources */,
+				91E2D0691B1761C500946A32 /* UserInfoViewItem.m in Sources */,
+				91E2D0721B1761C500946A32 /* ManWuRegisterViewController.m in Sources */,
 				0566643A1AEB284F00FD1C65 /* KSScrollViewConfigObject.m in Sources */,
+				91E2D05D1B1761C500946A32 /* IphoneScreen.m in Sources */,
 				058DADB81AE110C2009D0008 /* KSView.m in Sources */,
 				056664BB1AEF1C3C00FD1C65 /* TBDetailSkuModel.m in Sources */,
 				058DAE4F1AE72FC3009D0008 /* TBURLAction.m in Sources */,
@@ -2798,6 +2987,7 @@
 				058D5A9B1AF0B358006EA35C /* TBDetailNumberPageControl.m in Sources */,
 				0553F7911AFA1F7A0013BB97 /* ManWuCommoditySortAndFiltView.m in Sources */,
 				056677AF1AF075A000FD1C65 /* ManWuBasicModel.m in Sources */,
+				91E2D0711B1761C500946A32 /* ManWuLoginViewController.m in Sources */,
 				056664DF1AEF589400FD1C65 /* TBJSONModelProperty.m in Sources */,
 				055C75911ADFBF6000C35854 /* UIView+WebCacheOperation.m in Sources */,
 				056677B31AF081E200FD1C65 /* ManWuCommodityDetailService.m in Sources */,
@@ -2810,6 +3000,7 @@
 				052CC67B1AF357A800AF7C78 /* WeAppTableViewCell.m in Sources */,
 				056664E41AEF5F7700FD1C65 /* NSArray+TBJSONModel.m in Sources */,
 				0566646C1AEDDB7000FD1C65 /* TBDetailSystemUtil.m in Sources */,
+				91E2D05B1B1761C500946A32 /* CustomImagePickerController.m in Sources */,
 				058BC4081AE89F1500A4F799 /* ManWuCommodityListViewController.m in Sources */,
 				058D5CF41AF1F62E006EA35C /* openssl_wrapper.m in Sources */,
 				055C758E1ADFBF6000C35854 /* UIImage+WebP.m in Sources */,
@@ -2831,6 +3022,7 @@
 				051900811B04326600C077D5 /* ManWuCommodityFiltTagListView.m in Sources */,
 				0566648B1AEE0B1C00FD1C65 /* TBDetailSkuPropsModel.m in Sources */,
 				058BC3FA1AE89DA700A4F799 /* KSManWuTabBarViewController.m in Sources */,
+				91E2D06D1B1761C500946A32 /* ManWuMyInfoViewController.m in Sources */,
 				052CC68F1AF7198B00AF7C78 /* WeAppBasicBannerView.m in Sources */,
 				5F214C8D1B16B3810081BA02 /* ManWuCommoditySKUDetailModel.m in Sources */,
 				0553F7921AFA1F7A0013BB97 /* ManWuCommoditySortListView.m in Sources */,
@@ -2840,10 +3032,12 @@
 				5F214C541B154A290081BA02 /* ManWuHomeActivityInfoModel.m in Sources */,
 				058D5D171AF21F70006EA35C /* ManWuQuantityView.m in Sources */,
 				0553F7901AFA1F7A0013BB97 /* ManWuCommoditySortAndDiscountModelInfoCell.m in Sources */,
+				91E2D0651B1761C500946A32 /* KSOrderModel.m in Sources */,
 				0553F7931AFA1F7A0013BB97 /* ManWuCommoditySortViewCell.m in Sources */,
 				052CC6C71AF8BF3700AF7C78 /* ManWuSearchView.m in Sources */,
 				058DAE601AE772B1009D0008 /* UIViewController+KSNavigator.m in Sources */,
 				056664781AEDF49100FD1C65 /* TBTradeSKUPropSelectControl.m in Sources */,
+				91E2D05F1B1761C500946A32 /* UIImage+Cut.m in Sources */,
 				05ACAC691AFC6B4C00853E1C /* ManWuAddressSelectViewController.m in Sources */,
 				055C755A1ADFBDE200C35854 /* NSString+ WeAppComponentBaseItem.m in Sources */,
 				055866D71AD3E14000A23FFA /* WeAppItemList.m in Sources */,
@@ -2859,6 +3053,7 @@
 				055866E11AD3EAA500A23FFA /* WeAppJsonUtil.m in Sources */,
 				058D5AB41AF0D0FF006EA35C /* KSSafePayUtility.m in Sources */,
 				05AF2FEE1B003CF500890A65 /* ManWuFavViewCell.m in Sources */,
+				91E2D05C1B1761C500946A32 /* ImageFilterProcessViewController.m in Sources */,
 				051900841B0432B100C077D5 /* ManWuCommodityFiltTagCellView.m in Sources */,
 				055AC46E1B01BE4E005F9DA2 /* ManWuLoginResolver.m in Sources */,
 				056664561AEDD88500FD1C65 /* CSLinearLayoutView.m in Sources */,
@@ -2873,7 +3068,9 @@
 				05AB565C1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m in Sources */,
 				05AF300D1B004FAF00890A65 /* ManWuFavButton.m in Sources */,
 				052CC6CD1AF8D30600AF7C78 /* ManWuSearchViewCellInfoItem.m in Sources */,
+				91E2D0601B1761C500946A32 /* UIImage+Resize.m in Sources */,
 				5F92162A1B13498800554B44 /* ManWuDiscoverModel.m in Sources */,
+				91E2D06E1B1761C500946A32 /* ManWuMyOrdersViewController.m in Sources */,
 				055C755B1ADFBDE200C35854 /* WeAppComponentBaseItem.m in Sources */,
 				055C75891ADFBF6000C35854 /* SDWebImageManager.m in Sources */,
 				055C75991ADFC6CA00C35854 /* UIScrollView+SVPullToRefresh.m in Sources */,
@@ -2899,6 +3096,7 @@
 				058DADCF1AE52EC0009D0008 /* AFHTTPRequestOperationManager.m in Sources */,
 				050FFD7F1B0339A400721E02 /* ManWuAddressSetDefaultView.m in Sources */,
 				5F214C781B158F990081BA02 /* SVWebViewController.m in Sources */,
+				91E2D05E1B1761C500946A32 /* UIImage+Alpha.m in Sources */,
 				056664391AEB284F00FD1C65 /* KSDataSource.m in Sources */,
 				052CC6901AF7198B00AF7C78 /* WeAppColorPageControl.m in Sources */,
 				055866DE1AD3EA7000A23FFA /* WeAppURLStringUtil.m in Sources */,
@@ -2906,6 +3104,7 @@
 				5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */,
 				050FFD2B1B02DEEB00721E02 /* KSServiceDemo.m in Sources */,
 				058D5CEF1AF1F62E006EA35C /* base64.m in Sources */,
+				91E2D06B1B1761C500946A32 /* ManWuConfigViewController.m in Sources */,
 				052CC6921AF7198B00AF7C78 /* WeAppCycleScrollView.m in Sources */,
 				058DADDC1AE52F97009D0008 /* SVProgressHUD.m in Sources */,
 				0566643E1AEB284F00FD1C65 /* WeAppUIScrollViewSpeed.m in Sources */,
@@ -2939,12 +3138,16 @@
 				5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */,
 				0566649A1AEE148500FD1C65 /* ManWuDetailSKUView.m in Sources */,
 				058DADD01AE52EC0009D0008 /* AFHTTPSessionManager.m in Sources */,
+				91E2D0681B1761C500946A32 /* NSString+FilePath.m in Sources */,
 				058D5CF51AF1F62E006EA35C /* RSADataSigner.m in Sources */,
 				058BC40C1AE8CF8700A4F799 /* KSManWuViewController.m in Sources */,
+				91E2D06C1B1761C500946A32 /* ManWuFeedBackViewController.m in Sources */,
 				5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */,
 				058DAE661AE79A8B009D0008 /* KSConfigCenter.m in Sources */,
 				050FFD2E1B02DFA400721E02 /* KSModelDemo.m in Sources */,
+				91E2D06A1B1761C500946A32 /* ManWuChangePwdViewController.m in Sources */,
 				5F214C871B15BCF60081BA02 /* UIColor+Ext.m in Sources */,
+				91E2D05A1B1761C500946A32 /* AGSimpleImageEditorView.m in Sources */,
 				058DAE561AE73040009D0008 /* TBNavigationParams.m in Sources */,
 				052CC68E1AF7198B00AF7C78 /* WeAppBannerItem.m in Sources */,
 				05ACAC951AFC9FC800853E1C /* TBModelStatusHandler.m in Sources */,
@@ -2968,7 +3171,10 @@
 				056664D91AEF395900FD1C65 /* ManWuCommodityDetailModel.m in Sources */,
 				052CC6991AF7440900AF7C78 /* ManWuCommodityInfoDescriptionView.m in Sources */,
 				5F214C4D1B146FF70081BA02 /* ManWuAddressService.m in Sources */,
+				91E2D0661B1761C500946A32 /* KSUserInfoModel.m in Sources */,
+				91E2D0631B1761C500946A32 /* HTHorizontalSelectionList.m in Sources */,
 				05D5F2C01B00B496002EF23D /* ManWuLoginDemoViewController.m in Sources */,
+				91E2D0611B1761C500946A32 /* UIImage+RoundedCorner.m in Sources */,
 				055C75841ADFBF6000C35854 /* SDImageCache.m in Sources */,
 				058D5CFD1AF20F03006EA35C /* ManWuAddressView.m in Sources */,
 				05ACAC961AFC9FC800853E1C /* TBModelStatusInfo.m in Sources */,

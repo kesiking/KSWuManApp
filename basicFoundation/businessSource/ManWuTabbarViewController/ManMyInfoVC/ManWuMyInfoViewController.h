@@ -7,7 +7,15 @@
 //
 
 #import "KSTabbarViewController.h"
+#import "UserInfoViewItem.h"
 
-@interface ManWuMyInfoViewController : KSTabbarViewController
+@interface ManWuMyInfoViewController : KSTabbarViewController<UITableViewDataSource,UITableViewDelegate,UserInfoViewItemDelegate,WeAppBasicServiceDelegate>
+
+@property (nonatomic, strong) UITableView *table;
+@property (nonatomic, strong) CSLinearLayoutView *myInfoContainer;
+@property (nonatomic, strong) UIView *userInfoView;
+@property (nonatomic, strong) UIButton *btn_config;
+
+@property (nonatomic, strong) KSAdapterService *service;
 
 @end

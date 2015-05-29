@@ -30,6 +30,8 @@
 
 @property (strong, nonatomic) UITextField           *descriptionText;
 
+@property (assign, nonatomic) BOOL                   isDefaultAddress;
+
 @property (strong, nonatomic) ManWuAddressSetDefaultView   *settingDefaultView;
 @property (strong, nonatomic) ManWuAddressBottomVIew       *bottomView;
 
@@ -66,8 +68,10 @@
     _addressInfoModel = addressInfoModel;
     self.nameInfoText.text = addressInfoModel.recvName;
     self.phoneNumText.text = addressInfoModel.phoneNum;
-    self.areaText.text = addressInfoModel.address;
-    self.descriptionText.text = addressInfoModel.address;
+    NSArray* addressArray = [addressInfoModel.address componentsSeparatedByString:@" "];
+    self.areaText.text = [addressArray count] > 0? [addressArray objectAtIndex:0]:addressInfoModel.address;
+    self.descriptionText.text = [addressArray count] > 1?[addressArray objectAtIndex:1]:addressInfoModel.address;
+    self.isDefaultAddress = addressInfoModel.defaultAddress;
 }
 
 -(ManWuAddressEditService *)addressEditService{
@@ -222,10 +226,10 @@
 -(ManWuAddressSetDefaultView *)settingDefaultView{
     if (_settingDefaultView == nil) {
         _settingDefaultView = [[ManWuAddressSetDefaultView alloc] initWithFrame:CGRectMake(0, 0, self.width, 50)];
+        WEAKSELF
         _settingDefaultView.addressSwitchClick = ^(BOOL isOn){
-            if (isOn) {
-                ;
-            }
+            STRONGSELF
+            strongSelf.isDefaultAddress = isOn;
         };
     }
     return _settingDefaultView;
@@ -239,7 +243,8 @@
             STRONGSELF
             // bottom click todo save or delete
             // 请求service 成功后再执行
-            [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:[KSAuthenticationCenter userId] recvName:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.addressInfoModel.phoneNum address:strongSelf.addressInfoModel.address defaultAddress:strongSelf.addressInfoModel.defaultAddress];
+            NSString* address = [NSString stringWithFormat:@"%@ %@",strongSelf.areaText.text,strongSelf.descriptionText.text];
+            [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:[KSAuthenticationCenter userId] recvName:strongSelf.nameInfoText.text?:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.phoneNumText.text?:strongSelf.addressInfoModel.phoneNum address:address?:strongSelf.addressInfoModel.address defaultAddress:strongSelf.isDefaultAddress];
         };
     }
     return _bottomView;
@@ -295,7 +300,7 @@
 -(void)pickerDidChaneStatus:(HZAreaPickerView *)picker
 {
     if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
-        self.areaText.text = [NSString stringWithFormat:@"%@ %@ %@", picker.locate.state, picker.locate.city, picker.locate.district];
+        self.areaText.text = [NSString stringWithFormat:@"%@%@%@", picker.locate.state, picker.locate.city, picker.locate.district];
     }
 }
 

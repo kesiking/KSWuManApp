@@ -17,13 +17,13 @@
         [self addAddressInfoWithAddressId:addressId userId:userId recvName:recvName phoneNum:phoneNum address:address defaultAddress:defaultAddress];
         return;
     }
-    NSDictionary* params = @{@"addressId":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":safeString(address),@"defaultAddress":[NSNumber numberWithBool:defaultAddress]};
+    NSDictionary* params = @{@"id":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":[safeString(address) URLEncodedString],@"defaultAddress":[NSNumber numberWithBool:defaultAddress]};
     self.jsonTopKey = @"data";
-    [self loadItemWithAPIName:@"user/modifyAddress.do" params:params version:nil];
+    [self loadItemWithAPIName:@"address/modifyAddress.do" params:params version:nil];
 }
 
 -(void)addAddressInfoWithAddressId:(NSString *)addressId userId:(NSString *)userId recvName:(NSString *)recvName phoneNum:(NSString *)phoneNum address:(NSString *)address defaultAddress:(BOOL)defaultAddress{
-    NSDictionary* params = @{@"addressId":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":safeString(address),@"defaultAddress":[NSNumber numberWithBool:defaultAddress]};
+    NSDictionary* params = @{@"id":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":[safeString(address) URLEncodedString],@"defaultAddress":[NSNumber numberWithBool:defaultAddress]};
     self.jsonTopKey = @"data";
     [self loadItemWithAPIName:@"address/addAddress.do" params:params version:nil];
 }

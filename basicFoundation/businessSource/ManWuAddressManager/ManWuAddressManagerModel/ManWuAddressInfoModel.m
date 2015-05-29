@@ -11,9 +11,12 @@
 @implementation ManWuAddressInfoModel
 
 +(TBJSONModelKeyMapper*)modelKeyMapper{
-    NSDictionary* dict = @{@"id":@"addressId"};
+    NSDictionary* dict = @{@"id":@"addressId",@"phone":@"phoneNum"};
     return [[TBJSONModelKeyMapper alloc] initWithDictionary:dict];
 }
 
-
+-(void)setFromDictionary:(NSDictionary *)dict{
+    [super setFromDictionary:dict];
+    self.address = [self.address URLDecodedString];
+}
 @end

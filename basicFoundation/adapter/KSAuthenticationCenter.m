@@ -26,7 +26,11 @@
 }
 
 + (NSString*)userId{
-    return @"18626876800";
+    return [KSUserInfoModel sharedConstant].userId;
+}
+
++ (BOOL)isLogin{
+    return [KSUserInfoModel sharedConstant].isLogined;
 }
 
 - (void)authenticateWithLoginActionBlock:(loginActionBlock)loginActionBlock cancelActionBlock:(cancelActionBlock)cancelActionBlock{
