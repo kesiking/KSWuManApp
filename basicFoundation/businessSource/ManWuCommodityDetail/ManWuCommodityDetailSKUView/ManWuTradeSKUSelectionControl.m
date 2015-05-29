@@ -114,7 +114,7 @@
     /*设置选择状态*/
     for (TBDetailSkuPropsValuesModel *value in skuProperty.values) {
         NSUInteger index = [skuProperty.values indexOfObject:value];
-        NSString *key = [NSString stringWithFormat:@"%@", value.valueId];
+        NSString *key = [NSString stringWithFormat:@"%@:%@",skuProperty.propId, value.valueId];
         NSString *enable = [self.detailModel.skuService.currentSKUInfo.enableMap objectForKey:key];
         if (enable.length > 0) {
             if ([enable isEqualToString:@"NO"]) {

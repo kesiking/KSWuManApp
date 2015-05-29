@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "TBDetailSKUInfo.h"
 
+#define separatorForPidAndVid @"-"
+
 @class ManWuCommodityDetailModel,TBDetailPidVidPair;
 
 @interface ManWuTradeDetailSKUService : NSObject

@@ -13,12 +13,13 @@
 -(void)setFromDictionary:(NSDictionary *)dict{
     [super setFromDictionary:dict];
     self.skuArray = [NSMutableArray array];
-    if (self.size) {
-        [self setupSKUArray:self.size withPropName:@"尺寸"];
-    }
     if (self.color) {
         [self setupSKUArray:self.color withPropName:@"颜色"];
     }
+    if (self.size) {
+        [self setupSKUArray:self.size withPropName:@"尺寸"];
+    }
+    
     
     if ([self.skuArray count] > 0 && self.ppathIdmap == nil) {
         NSMutableDictionary* pathIdMapTemp = [[NSMutableDictionary alloc] init];
@@ -71,7 +72,7 @@
             NSString* pathIdFromSku = [skuPropAndValueArray objectAtIndex:j];
             NSString* pathIdTmp = [pathId stringByAppendingString:pathIdFromSku];
             if (indexRecur < [array count] - 1) {
-                pathIdTmp = [pathIdTmp stringByAppendingString:@"-"];
+                pathIdTmp = [pathIdTmp stringByAppendingString:separatorForPidAndVid];
                 [self getPathIdRecur:array AtIndex:indexRecur + 1 pathId:pathIdTmp pathIdMap:pathIdMap];
             }else{
                 if (pathIdTmp) {

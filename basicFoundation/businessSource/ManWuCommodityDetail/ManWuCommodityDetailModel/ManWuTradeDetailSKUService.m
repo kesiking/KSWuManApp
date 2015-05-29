@@ -157,7 +157,7 @@
         }
         
         if ([subsetArray count] > 0) {
-            NSString *subsetString = [subsetArray componentsJoinedByString:@"-"];
+            NSString *subsetString = [subsetArray componentsJoinedByString:separatorForPidAndVid];
             if (![self.validPropertyValueComboMap objectForKey:subsetString]) {
                 [self.validPropertyValueComboMap setValue:@""
                                                    forKey:subsetString];
@@ -192,7 +192,7 @@
             [self.validSkuMap setValue:skuId forKey:tmppath];
             [self.validSkuPathMap setValue:tmppath forKey:skuId];
             
-            NSArray *skuProps = [tmppath componentsSeparatedByString:@"-"];
+            NSArray *skuProps = [tmppath componentsSeparatedByString:separatorForPidAndVid];
             
             [self insert2ValidSinglePVMap:skuProps];
             [self insert2ValidPVComboMap:skuProps];
@@ -238,10 +238,12 @@
         NSArray * values = skuModel.values;
         
         for (TBDetailSkuPropsValuesModel *value in values ) {
-            [selectedArray replaceObjectAtIndex:propertyIndex withObject:[NSString stringWithFormat:@"%@:%@",propId,value.valueId]];
+//            [selectedArray replaceObjectAtIndex:propertyIndex withObject:[NSString stringWithFormat:@"%@:%@",propId,value.valueId]];
+            [selectedArray replaceObjectAtIndex:propertyIndex withObject:[NSString stringWithFormat:@"%@",value.valueId]];
+
             
             NSString* enabled = @"NO";
-            if ([self.validPropertyValueComboMap objectForKey:[selectedArray componentsJoinedByString:@"-"]]) {
+            if ([self.validPropertyValueComboMap objectForKey:[selectedArray componentsJoinedByString:separatorForPidAndVid]]) {
                 enabled = @"YES";
             }
             [skuInfo.enableMap setValue:enabled forKey:[NSString stringWithFormat:@"%@:%@",skuModel.propId,value.valueId]];
@@ -280,7 +282,7 @@
         }
         
         //如果sku为nil，说明无法构成一个完整的SKU，则相应的当前 self.selectedSku 也就是nil了
-        NSString *skuId = [self.validSkuMap objectForKey:[selectedSkuPropertyValues componentsJoinedByString:@"-"]];
+        NSString *skuId = [self.validSkuMap objectForKey:[selectedSkuPropertyValues componentsJoinedByString:separatorForPidAndVid]];
         TBDetailSKUInfo *skuInfo = [[TBDetailSKUInfo alloc]init];
         
         if (skuId == nil) {

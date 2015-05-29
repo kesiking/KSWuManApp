@@ -38,7 +38,7 @@
 #pragma mark- KSTabBarViewControllerProtocol
 
 -(BOOL)shouldSelectViewController:(UIViewController *)viewController{
-    BOOL isLogin = NO;
+    BOOL isLogin = YES;
     if (!isLogin) {
         WEAKSELF
         void(^cancelActionBlock)(void) = ^(void){
@@ -53,7 +53,7 @@
         
         NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:loginActionBlock, kLoginSuccessBlock,cancelActionBlock, kLoginCancelBlock, nil];
         
-//        TBOpenURLFromTargetWithNativeParams(loginURL, self, nil, callBacks);
+        TBOpenURLFromTargetWithNativeParams(loginURL, self, nil, callBacks);
     }
     return isLogin;
 }
