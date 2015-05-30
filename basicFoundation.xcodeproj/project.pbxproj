@@ -332,10 +332,7 @@
 		5F4087FA1B1949FF00954568 /* XHPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F51B1949FF00954568 /* XHPopMenu.m */; };
 		5F4087FB1B1949FF00954568 /* XHPopMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F71B1949FF00954568 /* XHPopMenuItem.m */; };
 		5F4087FC1B1949FF00954568 /* XHPopMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F91B1949FF00954568 /* XHPopMenuItemView.m */; };
-		5F4088081B194BA300954568 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F4087FF1B194BA300954568 /* area.plist */; };
 		5F4088091B194BA300954568 /* down_dark0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F4088001B194BA300954568 /* down_dark0.png */; };
-		5F40880A1B194BA300954568 /* screentshoot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F4088011B194BA300954568 /* screentshoot1.png */; };
-		5F40880B1B194BA300954568 /* screentshoot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F4088021B194BA300954568 /* screentshoot2.png */; };
 		5F40880C1B194BA300954568 /* LMComBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4088051B194BA300954568 /* LMComBoxView.m */; };
 		5F40880D1B194BA300954568 /* LMContainsLMComboxScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4088071B194BA300954568 /* LMContainsLMComboxScrollView.m */; };
 		5F4088111B19663200954568 /* manwu_common_address.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F40880F1B19663200954568 /* manwu_common_address.png */; };
@@ -1053,10 +1050,7 @@
 		5F4087F71B1949FF00954568 /* XHPopMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPopMenuItem.m; sourceTree = "<group>"; };
 		5F4087F81B1949FF00954568 /* XHPopMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHPopMenuItemView.h; sourceTree = "<group>"; };
 		5F4087F91B1949FF00954568 /* XHPopMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPopMenuItemView.m; sourceTree = "<group>"; };
-		5F4087FF1B194BA300954568 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		5F4088001B194BA300954568 /* down_dark0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_dark0.png; sourceTree = "<group>"; };
-		5F4088011B194BA300954568 /* screentshoot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screentshoot1.png; sourceTree = "<group>"; };
-		5F4088021B194BA300954568 /* screentshoot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screentshoot2.png; sourceTree = "<group>"; };
 		5F4088041B194BA300954568 /* LMComBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMComBoxView.h; sourceTree = "<group>"; };
 		5F4088051B194BA300954568 /* LMComBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMComBoxView.m; sourceTree = "<group>"; };
 		5F4088061B194BA300954568 /* LMContainsLMComboxScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMContainsLMComboxScrollView.h; sourceTree = "<group>"; };
@@ -2686,10 +2680,7 @@
 		5F4087FE1B194BA300954568 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5F4087FF1B194BA300954568 /* area.plist */,
 				5F4088001B194BA300954568 /* down_dark0.png */,
-				5F4088011B194BA300954568 /* screentshoot1.png */,
-				5F4088021B194BA300954568 /* screentshoot2.png */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2929,7 +2920,6 @@
 				050FFD7C1B03222600721E02 /* HZAreaPickerView.xib in Resources */,
 				058DAE621AE7992D009D0008 /* MatrixConfig.plist in Resources */,
 				05AF300A1B004D3F00890A65 /* loading_view_8.png in Resources */,
-				5F4088081B194BA300954568 /* area.plist in Resources */,
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
 				058D5D0F1AF2140C006EA35C /* tbbuy_location@2x.png in Resources */,
 				055866981AD3B4F900A23FFA /* Main.storyboard in Resources */,
@@ -2981,11 +2971,9 @@
 				058BC4141AE8D97400A4F799 /* tabitem_discover_normal@2x.png in Resources */,
 				056664AF1AEE37AC00FD1C65 /* skuview_increase2.png in Resources */,
 				058BC4131AE8D97400A4F799 /* tabitem_discover_highlight@2x.png in Resources */,
-				5F40880A1B194BA300954568 /* screentshoot1.png in Resources */,
 				056664B81AEE37E600FD1C65 /* skuview_decrease2.png in Resources */,
 				0558669A1AD3B4F900A23FFA /* Images.xcassets in Resources */,
 				052CC6B81AF8588400AF7C78 /* home_discount_placehold_banner.png in Resources */,
-				5F40880B1B194BA300954568 /* screentshoot2.png in Resources */,
 				058D5A921AF0B2BB006EA35C /* Default@2x.png in Resources */,
 				050FFD6A1B02F98000721E02 /* area.plist in Resources */,
 				0553F7601AF9EB660013BB97 /* manwu_commodity_filt_buy.jpg in Resources */,
