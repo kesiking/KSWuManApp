@@ -43,13 +43,13 @@
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     ManWuAddressInfoModel* addressInfoComponentItem = (ManWuAddressInfoModel*)componentItem;
     if (addressInfoComponentItem.defaultAddress) {
-        self.addressIcon.backgroundColor = [UIColor redColor];
+        self.addressIcon.image = [UIImage imageNamed:@"manwu_default_address"];
     }else{
-        self.addressIcon.backgroundColor = [UIColor greenColor];
+        self.addressIcon.image = [UIImage imageNamed:@"manwu_common_address"];
     }
-    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人:%@",addressInfoComponentItem.recvName];
-    self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式:%@",addressInfoComponentItem.phoneNum];
-    self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",addressInfoComponentItem.address];
+    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@",addressInfoComponentItem.recvName];
+    self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式：%@",addressInfoComponentItem.phoneNum];
+    self.addressLabel.text = [[NSString stringWithFormat:@"收货地址：%@",addressInfoComponentItem.address] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     self.fullNameLabel.hidden = addressInfoComponentItem.recvName ? NO : YES;
     self.phoneNumLabel.hidden = addressInfoComponentItem.phoneNum ? NO : YES;

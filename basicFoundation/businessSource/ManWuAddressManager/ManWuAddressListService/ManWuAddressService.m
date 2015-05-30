@@ -14,6 +14,7 @@
     NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]?:@""};
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuAddressInfoModel class];
+    self.needLogin = YES;
     [self loadDataListWithAPIName:@"address/fetchAddresses.do" params:params version:nil];
 }
 
@@ -21,6 +22,7 @@
     NSDictionary* params = @{@"userId":[KSAuthenticationCenter userId]?:@""};
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuAddressInfoModel class];
+    self.needLogin = YES;
     [self loadItemWithAPIName:@"address/fetchDefaultAddress.do" params:params version:nil];
 }
 

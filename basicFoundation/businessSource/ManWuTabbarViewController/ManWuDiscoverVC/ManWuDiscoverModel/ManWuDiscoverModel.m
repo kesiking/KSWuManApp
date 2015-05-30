@@ -10,4 +10,9 @@
 
 @implementation ManWuDiscoverModel
 
++(TBJSONModelKeyMapper*)modelKeyMapper{
+    NSDictionary* dict = @{@"id":@"cid",@"childList":@"leafCategoryList"};
+    return [[TBJSONModelKeyMapper alloc] initWithDictionary:dict];
+}
+
 @end

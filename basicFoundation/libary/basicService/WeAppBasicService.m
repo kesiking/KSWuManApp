@@ -172,6 +172,7 @@
 
 -(void)setNeedLogin:(BOOL)needLogin{
     _needLogin = needLogin;
+    _requestModel.needLogin = needLogin;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,6 +233,7 @@
         _requestModel.pageListClass = self.pageListClass == nil ?[WeAppBasicPagedList class]:self.pageListClass;
         _requestModel.listPath = self.listPath == nil ? @"list":self.listPath;
         _requestModel.network = self.network;
+        _requestModel.needLogin = self.needLogin;
     }
     
     return _requestModel;

@@ -71,6 +71,7 @@
     NSArray* addressArray = [addressInfoModel.address componentsSeparatedByString:@" "];
     self.areaText.text = [addressArray count] > 0? [addressArray objectAtIndex:0]:addressInfoModel.address;
     self.descriptionText.text = [addressArray count] > 1?[addressArray objectAtIndex:1]:addressInfoModel.address;
+    self.settingDefaultView.isDefaultAddress = addressInfoModel.defaultAddress;
     self.isDefaultAddress = addressInfoModel.defaultAddress;
 }
 

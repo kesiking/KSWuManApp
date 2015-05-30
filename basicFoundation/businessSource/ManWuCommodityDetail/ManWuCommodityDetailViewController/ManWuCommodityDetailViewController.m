@@ -122,15 +122,19 @@
 }
 
 -(void)confirmButtonClicked:(id)sender{
-    if ([self.detailModel.skuService hasSKU]) {
-        [self presentSemiView:self.skuView withOptions:nil completion:nil];
-    }else{
-        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-        if (self.detailModel) {
-            [dict setObject:self.detailModel forKey:@"detailModel"];
+    [[KSAuthenticationCenter sharedCenter] authenticateWithLoginActionBlock:^(BOOL loginSuccess) {
+        if ([self.detailModel.skuService hasSKU]) {
+            [self presentSemiView:self.skuView withOptions:nil completion:nil];
+        }else{
+            NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+            if (self.detailModel) {
+                [dict setObject:self.detailModel forKey:@"detailModel"];
+            }
+            [self gotoBuyPageWithParams:dict];
         }
-        [self gotoBuyPageWithParams:dict];
-    }
+    } cancelActionBlock:^{
+        [WeAppToast toast:@"登陆后才可以购买哦，快去登陆吧"];
+    }];
 }
 
 -(void)gotoBuyPageWithParams:(NSDictionary* )params{

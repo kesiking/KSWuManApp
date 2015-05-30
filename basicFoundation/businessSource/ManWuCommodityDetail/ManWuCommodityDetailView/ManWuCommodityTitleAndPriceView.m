@@ -63,7 +63,7 @@
     if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
         ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)descriptionModel;
         self.commodityTitleLabel.text = detailModel.title;
-        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
+        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",detailModel.sale];
         self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",detailModel.love];
         [self.commodityPraiseButton updatePraiseBtnStatus:[detailModel.like boolValue]];
         [self.commodityFavorateButton updateFavBtnStatus:[detailModel.like boolValue]];
@@ -101,7 +101,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect rect = self.bounds;
     
-    rect.size.height = 60 * SCREEN_SCALE;
+    rect.size.height = 70 * SCREEN_SCALE;
     
     return CGSizeMake(rect.size.width, rect.size.height);
 }

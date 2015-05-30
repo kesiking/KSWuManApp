@@ -37,6 +37,7 @@
         [params setObject:voucherId forKey:@"voucherId"];
     }
     
+    self.needLogin = YES;
     [self loadItemWithAPIName:@"order/createOrder.do" params:params version:nil];
 }
 

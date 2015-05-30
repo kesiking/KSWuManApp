@@ -14,7 +14,7 @@
 
 @interface ManWuDiscoverModel : WeAppComponentBaseItem
 
-@property (nonatomic, strong) NSString*                       parent;
+@property (nonatomic, strong) NSString*                       parentId;
 @property (nonatomic, strong) NSString*                       cid;
 @property (nonatomic, strong) NSString*                       name;
 @property (nonatomic, strong) NSString*                       subTitleText;

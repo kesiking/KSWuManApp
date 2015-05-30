@@ -12,6 +12,8 @@ typedef void(^addressSwitchClick) (BOOL isOn);
 
 @interface ManWuAddressSetDefaultView : KSView
 
+@property (nonatomic, assign) BOOL                       isDefaultAddress;
+
 @property (nonatomic, strong) addressSwitchClick         addressSwitchClick;
 
 @end

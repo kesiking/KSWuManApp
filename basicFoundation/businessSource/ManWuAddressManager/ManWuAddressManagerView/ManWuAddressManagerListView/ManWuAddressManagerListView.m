@@ -62,6 +62,7 @@
         [_collectionViewCtl registerClass:[ManWuAddressManagerViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         [_collectionViewCtl.scrollView setBackgroundColor:RGB(0xf8, 0xf8, 0xf8)];
+        _collectionViewCtl.errorViewTitle = @"您还没有添加收货地址哦，快去添加吧";
         [_collectionViewCtl setService:self.addressService];
         WEAKSELF
         _collectionViewCtl.tableViewDidSelectedBlock = ^(UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject){

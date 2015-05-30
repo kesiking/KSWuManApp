@@ -11,11 +11,11 @@
 @implementation ManWuPraiseService
 
 -(void)addPraiseWithItemId:(NSString*)itemId{
-    [self doPraiseWithApiName:@"user/addItem.do" itemId:itemId];
+    [self doPraiseWithApiName:@"collection/addItem.do" itemId:itemId];
 }
 
 -(void)unAddPraiseWithItemId:(NSString*)itemId{
-    [self doPraiseWithApiName:@"user/unAddItem.do" itemId:itemId];
+    [self doPraiseWithApiName:@"collection/unAddItem.do" itemId:itemId];
 }
 
 -(void)doPraiseWithApiName:(NSString*)apiName itemId:(NSString*)itemId{
@@ -31,6 +31,8 @@
     if ([KSAuthenticationCenter userId]) {
         [params setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
+    
+    self.needLogin = YES;
     
     [self loadItemWithAPIName:apiName params:params version:nil];
 }

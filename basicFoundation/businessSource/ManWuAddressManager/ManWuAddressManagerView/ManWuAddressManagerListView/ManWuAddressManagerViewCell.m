@@ -54,9 +54,9 @@
         self.backgroundColor = RGB(0xff, 0xff, 0xff);
     }
     
-    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人:%@",addressInfoComponentItem.recvName];
-    self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式:%@",addressInfoComponentItem.phoneNum];
-    self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",addressInfoComponentItem.address];
+    self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@",addressInfoComponentItem.recvName];
+    self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式：%@",addressInfoComponentItem.phoneNum];
+    self.addressLabel.text = [[NSString stringWithFormat:@"收货地址：%@",addressInfoComponentItem.address] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     self.fullNameLabel.hidden = addressInfoComponentItem.recvName ? NO : YES;
     self.phoneNumLabel.hidden = addressInfoComponentItem.phoneNum ? NO : YES;

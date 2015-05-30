@@ -326,7 +326,7 @@
 
 #pragma mark  - TBTradeCellDelegate
 
-- (void)setObject:(id)object {
+- (void)setObject:(id)object dict:(NSDictionary*)dict{
     if (![object isKindOfClass:[ManWuAddressInfoModel class]]) {
         return;
     }
@@ -334,15 +334,21 @@
     
     self.addressId = addressModel.addressId;
     
-    self.addAddressButton.hidden = YES;
+    if (self.addressId == nil || addressModel.address == nil) {
+        self.addAddressButton.hidden = NO;
+        self.addressLabel.hidden = YES;
+    }else{
+        self.addAddressButton.hidden = YES;
+        self.addressLabel.hidden = NO;
+    }
+    
     self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@", addressModel.recvName ?: @""];
     self.phoneNumLabel.text = [NSString stringWithFormat:@"联系方式：%@", addressModel.phoneNum];
-    self.addressLabel.text = [NSString stringWithFormat:@"收货地址：%@",
-                              addressModel.address];
+    self.addressLabel.text = [[NSString stringWithFormat:@"收货地址：%@",
+                              addressModel.address] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     [self.fullNameLabel sizeToFit];
     [self.phoneNumLabel sizeToFit];
-    [self.addressLabel sizeToFit];
 
     CGFloat phoneNumLabelOrigineX = self.width - self.phoneNumLabel.width - kLocationIconMarginLeft;
     [self.phoneNumLabel setOrigin:CGPointMake(phoneNumLabelOrigineX, self.phoneNumLabel.origin.y)];

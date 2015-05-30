@@ -34,17 +34,20 @@
 }
 
 - (void)authenticateWithLoginActionBlock:(loginActionBlock)loginActionBlock cancelActionBlock:(cancelActionBlock)cancelActionBlock{
-    
-    NSMutableDictionary* callBacks = [NSMutableDictionary dictionary];
-    if (loginActionBlock) {
-        [callBacks setObject:loginActionBlock forKey:kLoginSuccessBlock];
+    if ([[self class] isLogin]) {
+        loginActionBlock(YES);
+    }else{
+        NSMutableDictionary* callBacks = [NSMutableDictionary dictionary];
+        if (loginActionBlock) {
+            [callBacks setObject:loginActionBlock forKey:kLoginSuccessBlock];
+        }
+        
+        if (cancelActionBlock) {
+            [callBacks setObject:cancelActionBlock forKey:kLoginCancelBlock];
+        }
+        
+        TBOpenURLFromTargetWithNativeParams(loginURL, [UIApplication sharedApplication].keyWindow.rootViewController, nil, callBacks);
     }
-    
-    if (cancelActionBlock) {
-        [callBacks setObject:cancelActionBlock forKey:kLoginCancelBlock];
-    }
-    
-    TBOpenURLFromTargetWithNativeParams(loginURL, [UIApplication sharedApplication].keyWindow.rootViewController, nil, callBacks);
 }
 
 @end

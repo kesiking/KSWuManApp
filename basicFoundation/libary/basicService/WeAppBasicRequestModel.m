@@ -230,6 +230,10 @@
                 newParams = [NSMutableDictionary dictionary];
             }
             
+            if (self.needLogin) {
+                [newParams setObject:[NSNumber numberWithBool:self.needLogin] forKey:@"needLogin"];
+            }
+            
             //支持可变的pageSize等设置
             if (pagination) {
                 [pagination addParams:self.params withDict:newParams];

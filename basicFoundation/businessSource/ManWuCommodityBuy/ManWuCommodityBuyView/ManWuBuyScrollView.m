@@ -12,13 +12,17 @@
 #import "ManWuQuantityView.h"
 #import "ManWuDeliveryView.h"
 #import "ManWuPreferentialView.h"
+#import "ManWuVoucherView.h"
 #import "ManWuBuyOrderPayView.h"
 #import "ManWuConfirmView.h"
 #import "ManWuCommodityDetailModel.h"
 #import "ManWuOrderService.h"
+#import "ManWuVoucherService.h"
 #import "KSSafePayUtility.h"
 
-@interface ManWuBuyScrollView()
+@interface ManWuBuyScrollView(){
+
+}
 
 @property (nonatomic, strong) CSLinearLayoutView           *skuContainer;
 @property (nonatomic, strong) ManWuAddressView             *addressView;
@@ -26,10 +30,14 @@
 @property (nonatomic, strong) ManWuQuantityView            *quantityView;
 @property (nonatomic, strong) ManWuDeliveryView            *deliveryView;
 @property (nonatomic, strong) ManWuPreferentialView        *preferentialView;
+@property (nonatomic, strong) ManWuVoucherView             *voucherView;
 @property (nonatomic, strong) ManWuBuyOrderPayView         *orderPayView;
 @property (nonatomic, strong) ManWuConfirmView             *comfirmView;
 
 @property (nonatomic, strong) ManWuOrderService            *createOrderService;
+@property (nonatomic, strong) ManWuVoucherService          *voucherService;
+
+@property (nonatomic, assign) BOOL                          hasVoucher;
 
 @end
 
@@ -112,6 +120,14 @@
     return _preferentialView;
 }
 
+-(ManWuVoucherView *)voucherView{
+    if (_voucherView == nil) {
+        CGRect frame = CGRectMake(0, 0, self.frame.size.width, 40);
+        _voucherView = [[ManWuVoucherView alloc] initWithFrame:frame];
+    }
+    return _voucherView;
+}
+
 -(ManWuBuyOrderPayView *)orderPayView{
     if (!_orderPayView) {
         CGRect frame = CGRectMake(0, 0, self.frame.size.width, 45);
@@ -127,11 +143,11 @@
         WEAKSELF
         _comfirmView.confirmButtonClick = ^(){
             STRONGSELF
-            NSString* skuId = [strongSelf.dict objectForKey:@"skuId"];
+            NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"";
             NSString* itemId = strongSelf.detailModel.itemId;
-            NSNumber* buyNum = [strongSelf.dict objectForKey:@"buyNumber"];
+            NSNumber* buyNum = [strongSelf.dict objectForKey:@"buyNumber"]?:@1;
             
-            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:strongSelf.orderPayView.payPrice activityId:nil voucherId:nil];
+            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:strongSelf.orderPayView.payPrice activityId:nil voucherId:strongSelf.voucherView.voucherId];
         };
     }
     return _comfirmView;
@@ -157,11 +173,30 @@
             NSDictionary* params = @{@"tradeNO":@"",@"productName":strongSelf.detailModel.title?:@"",@"productDescription":strongSelf.detailModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",strongSelf.orderPayView.payPrice?:@0.01]};
    
             [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
-                ;
+                [WeAppToast toast:@"支付成功"];
             }];
+        };
+        _createOrderService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
+            [WeAppToast toast:[NSString stringWithFormat:@"服务器在偷懒，请稍微再试"]];
         };
     }
     return _createOrderService;
+}
+
+-(ManWuVoucherService *)voucherService{
+    if (_voucherService == nil) {
+        _voucherService = [[ManWuVoucherService alloc] init];
+        WEAKSELF
+        _voucherService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.dataList) {
+                strongSelf.hasVoucher = YES;
+                [strongSelf.voucherView setObject:service.dataList dict:nil];
+                [strongSelf reloadData];
+            }
+        };
+    }
+    return _voucherService;
 }
 
 - (void)setObject:(ManWuCommodityDetailModel *)object dict:(NSDictionary *)dict{
@@ -177,6 +212,7 @@
     [self.preferentialView setObject:object dict:dict];
     [self.orderPayView setObject:object dict:dict];
     [self.comfirmView setObject:object dict:dict];
+    [self.voucherService loadVoucherWithItemId:object.itemId buyNum:[self.dict objectForKey:@"buyNum"]?:@1];
     [self reloadData];
 }
 
@@ -220,6 +256,13 @@
         [self.skuContainer addItem:deliveryViewItem];
     }
     
+    if (self.hasVoucher) {
+        CSLinearLayoutItem *voucherViewItem = [[CSLinearLayoutItem alloc]
+                                                initWithView:self.voucherView];
+        voucherViewItem.padding             = padding;
+        [self.skuContainer addItem:voucherViewItem];
+    }
+    
     /*优惠信息*/
     if (1) {
         CSLinearLayoutItem *orderPayViewItem = [[CSLinearLayoutItem alloc]
@@ -248,6 +291,8 @@
     if (self.skuContainer.contentSize.height > self.skuContainer.height) {
         [self.skuContainer setContentOffset:skuContentOffset];
     }
+    
+    [self.skuContainer bringSubviewToFront:self.voucherView];
 }
 
 @end

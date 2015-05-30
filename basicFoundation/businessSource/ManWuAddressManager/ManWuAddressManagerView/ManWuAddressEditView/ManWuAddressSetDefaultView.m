@@ -55,6 +55,11 @@
     return _endline;
 }
 
+-(void)setIsDefaultAddress:(BOOL)isDefaultAddress{
+    _isDefaultAddress = isDefaultAddress;
+    [self.addressSwitch setOn:isDefaultAddress];
+}
+
 -(void)switchAction:(UISwitch*)sender{
     if (self.addressSwitchClick) {
         self.addressSwitchClick(sender.isOn);

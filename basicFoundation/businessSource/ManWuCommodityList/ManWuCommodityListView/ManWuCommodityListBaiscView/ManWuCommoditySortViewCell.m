@@ -16,8 +16,8 @@
 -(void)setupView{
     [super setupView];
     self.backgroundColor = [UIColor whiteColor];
-    [self.commoditySortImageView setFrame:CGRectMake(8, ceil((self.height - caculateNumber(sortImageViewWidthAndHeight))/2), caculateNumber(sortImageViewWidthAndHeight),caculateNumber(sortImageViewWidthAndHeight))];
-    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + caculateNumber(8), self.commoditySortImageView.top, caculateNumber(200), self.commoditySortImageView.height)];
+    [self.commoditySortImageView setFrame:CGRectMake(10, ceil((self.height - caculateNumber(sortImageViewWidthAndHeight))/2), caculateNumber(sortImageViewWidthAndHeight),caculateNumber(sortImageViewWidthAndHeight))];
+    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + caculateNumber(10), self.commoditySortImageView.top, caculateNumber(200), self.commoditySortImageView.height)];
 }
 
 -(UILabel *)titleLabel{

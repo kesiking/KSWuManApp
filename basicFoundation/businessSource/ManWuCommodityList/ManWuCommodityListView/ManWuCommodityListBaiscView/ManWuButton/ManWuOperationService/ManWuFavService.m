@@ -11,11 +11,11 @@
 @implementation ManWuFavService
 
 -(void)addFavorateWithItemId:(NSString*)itemId{
-    [self doFavorateWithApiName:@"user/addItem.do" itemId:itemId];
+    [self doFavorateWithApiName:@"collection/addItem.do" itemId:itemId];
 }
 
 -(void)unAddFavorateWithItemId:(NSString*)itemId{
-    [self doFavorateWithApiName:@"user/unAddItem.do" itemId:itemId];
+    [self doFavorateWithApiName:@"collection/unAddItem.do" itemId:itemId];
 }
 
 -(void)doFavorateWithApiName:(NSString*)apiName itemId:(NSString*)itemId{
@@ -30,6 +30,8 @@
     if ([KSAuthenticationCenter userId]) {
         [params setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
+    
+    self.needLogin = YES;
     
     [self loadItemWithAPIName:apiName params:params version:nil];
 }
