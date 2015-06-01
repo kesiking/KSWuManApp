@@ -31,8 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
+
     self.title = @"我的";
-    dataSource = @[@[@"CSLineLayout"],@[@"CSLineLayout",@"全部订单"],@[@"常用收货地址",@"我喜欢的",@"我收藏的",@"我的红包",@"我的邀请码"]];
+    dataSource = @[@[@"CSLineLayout"],@[@"CSLineLayout",@"全部订单"],@[@"常用收货地址",@"我收藏的",@"我的红包",@"我的邀请码"]];
+    
     
     [self initCSLineLayoutView];
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
@@ -45,17 +48,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    _btn_config = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn_config.frame = CGRectMake(SELFWIDTH - 48, 20, 44, 44);
-    _btn_config.layer.cornerRadius = 2;
-    _btn_config.titleLabel.font = [UIFont systemFontOfSize:15.5f];
-    _btn_config.clipsToBounds = YES;
-    _btn_config.userInteractionEnabled = YES;
-    [_btn_config setTitle:@"设置" forState:UIControlStateNormal];
-    [_btn_config setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_btn_config addTarget:self action:@selector(gotoConfig) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.view addSubview:_btn_config];
-        
     if(_userInfoView)
     {
         [_userInfoView removeFromSuperview];
@@ -67,9 +59,27 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    _btn_config = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn_config.frame = CGRectMake(SELFWIDTH - 48, 0, 44, 44);
+    _btn_config.layer.cornerRadius = 2;
+    _btn_config.titleLabel.font = [UIFont systemFontOfSize:15.5f];
+    _btn_config.clipsToBounds = YES;
+    _btn_config.userInteractionEnabled = YES;
+    [_btn_config setTitle:@"设置" forState:UIControlStateNormal];
+    [_btn_config setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_btn_config addTarget:self action:@selector(gotoConfig) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:_btn_config];
+
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [_btn_config removeFromSuperview];
+    if(_btn_config)
+    {
+        [_btn_config removeFromSuperview];
+    }
 }
 
 - (void)initCSLineLayoutView
@@ -94,7 +104,6 @@
 
 - (void)initUserInfoView
 {
-    KSUserInfoModel *userInfo = [KSUserInfoModel sharedConstant];
     if([KSUserInfoModel sharedConstant].isLogined)
     {
         _userInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
@@ -102,7 +111,8 @@
         UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, _userInfoView.height/2 - 30, 60, 60)];
         headImageView.layer.cornerRadius = 30;
         //headImageView.layer.borderWidth = 1;
-        headImageView.backgroundColor = [UIColor grayColor];
+        NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];
+        [headImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"tabitem_home_highlight"]];
         [_userInfoView addSubview:headImageView];
         
         UILabel *lab_userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMinY(headImageView.frame) +5, 150, 20)];
@@ -202,15 +212,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger rowNum = 0;
-    if(section == 0)
-        rowNum = 1;
-    else if(section == 1)
-        rowNum = 2;
-    else
-        rowNum = 5;
-    
-    return rowNum;
+    return [[dataSource objectAtIndex:section]count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -311,17 +313,16 @@
         {
             if(indexPath.row == 0)
             {
+                TBOpenURLFromTargetWithNativeParams(kManWuAddressManager, self, nil, nil);
                 
             }else if (indexPath.row == 1)
             {
+                TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListFavorite), self,nil,nil);
                 
             }else if (indexPath.row == 2)
             {
                 
             }else if (indexPath.row == 3)
-            {
-                
-            }else if (indexPath.row == 4)
             {
                 
             }else

@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor grayColor]];
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"意见反馈";
     [self.view addSubview:self.textView];
     [self.view addSubview:self.btn_commit];
@@ -54,14 +54,7 @@
         [_btn_commit setTitle:@"提交" forState:UIControlStateNormal];
         [_btn_commit.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_commit.titleLabel.textColor = [UIColor whiteColor];
-        UIImage *btnImage = [UIImage imageNamed:@"sure-button01.png"];
-        btnImage = [btnImage stretchableImageWithLeftCapWidth:floorf(btnImage.size.width/2) topCapHeight:floorf(btnImage.size.height/2)];
-        
-        UIImage *btnImageselected = [UIImage imageNamed:@"sure-button01-s.png"];
-        btnImageselected = [btnImageselected stretchableImageWithLeftCapWidth:floorf(btnImageselected.size.width/2) topCapHeight:floorf(btnImageselected.size.height/2)];
-        
-        [_btn_commit setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [_btn_commit setBackgroundImage:btnImageselected forState:UIControlStateSelected];
+        [_btn_commit setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
         [_btn_commit addTarget:self action:@selector(doFeedBack) forControlEvents:UIControlEventTouchUpInside];
     }
     

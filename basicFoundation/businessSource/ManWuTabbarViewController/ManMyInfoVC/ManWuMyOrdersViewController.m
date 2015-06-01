@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.view setBackgroundColor:[UIColor grayColor]];
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"我的订单";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     

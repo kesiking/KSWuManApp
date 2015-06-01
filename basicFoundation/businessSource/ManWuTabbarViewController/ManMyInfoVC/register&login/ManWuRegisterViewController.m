@@ -30,44 +30,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
+    
     self.title = @"手机注册";
     isRegister = NO;
-    [self.view addSubview:self.navgationView];
     [self.view addSubview:self.logo_imgView];
     [self.view addSubview:self.text_phoneNum];
-    [self.view addSubview:self.smsCodeView];
     [self.view addSubview:self.text_psw];
-    [self.view addSubview:self.text_inviteCode];
-    [self.view addSubview:self.text_userName];
+    [self.view addSubview:self.smsCodeView];
+//    [self.view addSubview:self.text_inviteCode];
+//    [self.view addSubview:self.text_userName];
     [self.view addSubview:self.btn_register];
-}
-
-- (UIView *)navgationView
-{
-    if(!_navgationView)
-    {
-        _navgationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SELFWIDTH, 64)];
-        [_navgationView setBackgroundColor:[UIColor redColor]];
-        _btn_cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btn_cancel.frame = CGRectMake(10, 25, 40, 34);
-        _btn_cancel.layer.cornerRadius = 2;
-        _btn_cancel.titleLabel.font = [UIFont systemFontOfSize:15.5f];
-        _btn_cancel.clipsToBounds = YES;
-        _btn_cancel.userInteractionEnabled = YES;
-        [_btn_cancel setTitle:@"取消" forState:UIControlStateNormal];
-        [_btn_cancel addTarget:self action:@selector(cancelLogin) forControlEvents:UIControlEventTouchUpInside];
-        [_navgationView addSubview:_btn_cancel];
-        
-    }
-    return _navgationView;
 }
 
 - (UIImageView *)logo_imgView
 {
     if(!_logo_imgView)
     {
-        _logo_imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SELFWIDTH/2 - 30, CGRectGetMaxY(_navgationView.frame) + 30, 60, 60)];
+        _logo_imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SELFWIDTH/2 - 30, 30, 60, 60)];
         _logo_imgView.backgroundColor = [UIColor redColor];
     }
     return _logo_imgView;
@@ -77,10 +57,10 @@
 {
     if(!_text_phoneNum)
     {
-        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_logo_imgView.frame) + 30, WIDTH, 40)];
+        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_logo_imgView.frame) + 30, SELFWIDTH, 40)];
         _text_phoneNum.placeholder = @"手机号码";
-        [_text_phoneNum setFont:[UIFont systemFontOfSize:18]];
-        _text_phoneNum.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        [_text_phoneNum setFont:[UIFont systemFontOfSize:16]];
+        _text_phoneNum.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_phoneNum.keyboardType = UIKeyboardTypeNumberPad;
         _text_phoneNum.clearButtonMode = UITextFieldViewModeAlways;
         _text_phoneNum.secureTextEntry = NO;
@@ -90,31 +70,43 @@
     return _text_phoneNum;
 }
 
+- (MWInsetsTextField *)text_psw
+{
+    if(!_text_psw)
+    {
+        _text_psw = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_phoneNum.frame) + 1, SELFWIDTH, 40)];
+        _text_psw.placeholder = @"密码";
+        [_text_psw setFont:[UIFont systemFontOfSize:16]];
+        _text_psw.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+        _text_psw.keyboardType = UIKeyboardTypeNamePhonePad;
+        _text_psw.clearButtonMode = UITextFieldViewModeAlways;
+        _text_psw.secureTextEntry = YES;
+        _text_psw.delegate = self;
+        [_text_psw setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _text_psw;
+}
+
 - (UIView *)smsCodeView
 {
     if(!_smsCodeView)
     {
-        _smsCodeView = [[UIView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_phoneNum.frame) + 15, WIDTH, 40)];
+        _smsCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_psw.frame) + 1, SELFWIDTH, 40)];
         _smsCodeView.backgroundColor = [UIColor clearColor];
-        _text_smsCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 0, (WIDTH)/2, 40)];
+        _text_smsCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 0, (SELFWIDTH)/2 + 20, 40)];
         _text_smsCode.placeholder = @"验证码";
-        [_text_smsCode setFont:[UIFont systemFontOfSize:18]];
+        [_text_smsCode setFont:[UIFont systemFontOfSize:16]];
         //        _text_smsCode.layer.borderWidth = 1.0;
-        _text_smsCode.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        _text_smsCode.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_smsCode.keyboardType = UIKeyboardTypeNumberPad;
         _text_smsCode.clearButtonMode = UITextFieldViewModeAlways;
         _text_smsCode.secureTextEntry = YES;
         [_text_smsCode setBackgroundColor:[UIColor whiteColor]];
         
-        _btn_smsCode = [[UIButton alloc]initWithFrame:CGRectMake((WIDTH)/2 + 10, 0, (WIDTH)/2 - 20, 40)];
+        _btn_smsCode = [[UIButton alloc]initWithFrame:CGRectMake((SELFWIDTH)/2 + 20, 0, (SELFWIDTH)/2 - 20, 40)];
         [_btn_smsCode setTitle:@"获取验证码"forState:UIControlStateNormal];
-        UIImage *btnImage = [UIImage imageNamed:@"sure-button01.png"];
-        btnImage = [btnImage stretchableImageWithLeftCapWidth:floorf(btnImage.size.width/2) topCapHeight:floorf(btnImage.size.height/2)];
-        
-        UIImage *btnImageselected = [UIImage imageNamed:@"sure-button01-s.png"];
-        btnImageselected = [btnImageselected stretchableImageWithLeftCapWidth:floorf(btnImageselected.size.width/2) topCapHeight:floorf(btnImageselected.size.height/2)];
-        [_btn_smsCode setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [_btn_smsCode setBackgroundImage:btnImageselected forState:UIControlStateSelected];
+        _btn_smsCode.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_btn_smsCode setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle colorWithHexString:@"#b9b9b9"]] forState:UIControlStateNormal];
         [_btn_smsCode addTarget:self action:@selector(getValidateCode) forControlEvents:UIControlEventTouchUpInside];
         
         [_smsCodeView addSubview:_text_smsCode];
@@ -126,30 +118,13 @@
     return _smsCodeView;
 }
 
-- (MWInsetsTextField *)text_psw
-{
-    if(!_text_psw)
-    {
-        _text_psw = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_smsCodeView.frame) + 15, WIDTH, 40)];
-        _text_psw.placeholder = @"密码";
-        [_text_psw setFont:[UIFont systemFontOfSize:18]];
-        _text_psw.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-        _text_psw.keyboardType = UIKeyboardTypeNumberPad;
-        _text_psw.clearButtonMode = UITextFieldViewModeAlways;
-        _text_psw.secureTextEntry = YES;
-        _text_psw.delegate = self;
-        [_text_psw setBackgroundColor:[UIColor whiteColor]];
-    }
-    return _text_psw;
-}
-
 - (MWInsetsTextField *)text_inviteCode
 {
     if(!_text_inviteCode)
     {
         _text_inviteCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_psw.frame) + 15, WIDTH, 40)];
         _text_inviteCode.placeholder = @"邀请码";
-        [_text_inviteCode setFont:[UIFont systemFontOfSize:18]];
+        [_text_inviteCode setFont:[UIFont systemFontOfSize:16]];
         _text_inviteCode.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
         _text_inviteCode.keyboardType = UIKeyboardTypeNumberPad;
         _text_inviteCode.clearButtonMode = UITextFieldViewModeAlways;
@@ -166,7 +141,7 @@
     {
         _text_userName = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_inviteCode.frame) + 15, WIDTH, 40)];
         _text_userName.placeholder = @"用户名";
-        [_text_userName setFont:[UIFont systemFontOfSize:18]];
+        [_text_userName setFont:[UIFont systemFontOfSize:16]];
         _text_userName.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
         _text_userName.keyboardType = UIKeyboardTypeNumberPad;
         _text_userName.clearButtonMode = UITextFieldViewModeAlways;
@@ -181,18 +156,12 @@
 {
     if(!_btn_register)
     {
-        _btn_register = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_userName.frame) + 30, WIDTH, 40)];
+        _btn_register = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_smsCodeView.frame) + 30, WIDTH, 40)];
         [_btn_register setTitle:@"注册" forState:UIControlStateNormal];
         [_btn_register.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_register.titleLabel.textColor = [UIColor whiteColor];
-        UIImage *btnImage = [UIImage imageNamed:@"sure-button01.png"];
-        btnImage = [btnImage stretchableImageWithLeftCapWidth:floorf(btnImage.size.width/2) topCapHeight:floorf(btnImage.size.height/2)];
-        
-        UIImage *btnImageselected = [UIImage imageNamed:@"sure-button01-s.png"];
-        btnImageselected = [btnImageselected stretchableImageWithLeftCapWidth:floorf(btnImageselected.size.width/2) topCapHeight:floorf(btnImageselected.size.height/2)];
-        
-        [_btn_register setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [_btn_register setBackgroundImage:btnImageselected forState:UIControlStateSelected];
+        [_btn_register setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
+
         [_btn_register addTarget:self action:@selector(registerButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     }
     
