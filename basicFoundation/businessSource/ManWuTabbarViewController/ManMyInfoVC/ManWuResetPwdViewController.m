@@ -17,11 +17,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     self.title = @"找回密码";
+//    [self.view addSubview:self.navgationView];
     [self.view addSubview:self.text_phoneNum];
     [self.view addSubview:self.smsCodeView];
+    [self.view addSubview:self.text_newPwd];
     [self.view addSubview:self.btn_nextStep];
+    
+    _btn_cancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn_cancel.frame = CGRectMake(10, 5, 40, 34);
+    _btn_cancel.layer.cornerRadius = 2;
+    _btn_cancel.titleLabel.font = [UIFont systemFontOfSize:15.5f];
+    _btn_cancel.clipsToBounds = YES;
+    _btn_cancel.userInteractionEnabled = YES;
+    [_btn_cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [_btn_cancel addTarget:self action:@selector(cancelLogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:_btn_cancel];
+
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if(_btn_cancel)
+    {
+        [_btn_cancel removeFromSuperview];
+    }
 }
 
 -(KSAdapterService *)service{
@@ -31,6 +52,27 @@
         //[_service setItemClass:[KSModelDemo class]];
     }
     return _service;
+}
+
+- (UIView *)navgationView
+{
+    if(!_navgationView)
+    {
+        _navgationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SELFWIDTH, 64)];
+        [_navgationView setBackgroundColor:[UIColor redColor]];
+        
+        _btn_cancel = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btn_cancel.frame = CGRectMake(10, 25, 40, 34);
+        _btn_cancel.layer.cornerRadius = 2;
+        _btn_cancel.titleLabel.font = [UIFont systemFontOfSize:15.5f];
+        _btn_cancel.clipsToBounds = YES;
+        _btn_cancel.userInteractionEnabled = YES;
+        [_btn_cancel setTitle:@"取消" forState:UIControlStateNormal];
+        [_btn_cancel addTarget:self action:@selector(cancelLogin) forControlEvents:UIControlEventTouchUpInside];
+        [_navgationView addSubview:_btn_cancel];
+        
+    }
+    return _navgationView;
 }
 
 - (MWInsetsTextField *)text_phoneNum
@@ -88,12 +130,29 @@
     return _smsCodeView;
 }
 
+- (MWInsetsTextField *)text_newPwd
+{
+    if(!_text_newPwd)
+    {
+        _text_newPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_smsCodeView.frame) + 30, WIDTH, 40)];
+        _text_newPwd.placeholder = @"输入新密码";
+        [_text_newPwd setFont:[UIFont systemFontOfSize:18]];
+        _text_newPwd.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        _text_newPwd.keyboardType = UIKeyboardTypeNumberPad;
+        _text_newPwd.clearButtonMode = UITextFieldViewModeAlways;
+        _text_newPwd.secureTextEntry = NO;
+        _text_newPwd.delegate = self;
+        [_text_newPwd setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _text_newPwd;
+}
+
 - (UIButton *)btn_nextStep
 {
     if(!_btn_nextStep)
     {
-        _btn_nextStep = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_smsCodeView.frame) + 30, WIDTH, 40)];
-        [_btn_nextStep setTitle:@"下一步" forState:UIControlStateNormal];
+        _btn_nextStep = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_newPwd.frame) + 30, WIDTH, 40)];
+        [_btn_nextStep setTitle:@"提交" forState:UIControlStateNormal];
         [_btn_nextStep.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_nextStep.titleLabel.textColor = [UIColor whiteColor];
         UIImage *btnImage = [UIImage imageNamed:@"sure-button01.png"];
@@ -112,17 +171,20 @@
 
 - (void)getValidateCode
 {
-    [self.service loadNumberValueWithAPIName:@"user/queryCode.do" params:@{@"phoneNum":@18626876833} version:nil];
+    [self.service loadNumberValueWithAPIName:@"user/sendValidateCode.do" params:@{@"phoneNum":_text_phoneNum.text} version:nil];
     
     [self showSecondTimeout:90 target:self timerOutAction:@selector(updateUIWhenSecondTimeout:)];
     
 }
 
+- (void)cancelLogin
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)doNextStep
 {
-    NSString *phoneNum = @"18867101957";
-    NSString *smsCodeView = @"123456";
-
+    [self.service loadNumberValueWithAPIName:@"user/modifyPwd.do" params:@{@"phone":_text_phoneNum.text,@"newPwd":_text_newPwd.text,@"validateCode":_text_smsCode.text} version:nil];
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -139,12 +201,19 @@
     if (service == _service) {
         // todo success
         NSLog(@"%@",service.item.componentDict);
+        if([service.apiName containsString:@"modifyPwd.do"])
+        {
+            [WeAppToast toast:@"修改密码成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service == _service) {
         // todo fail
+        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
+        [WeAppToast toast:errorInfo];
     }
 }
 

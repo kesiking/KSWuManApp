@@ -19,8 +19,6 @@
 #define update_alert_tag 21//更新
 
 
-
-
 @interface ManWuPersonInfoViewController ()<UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     MBProgressHUD *_progressHUD;    ///<指示器
@@ -36,6 +34,15 @@
 @end
 
 @implementation ManWuPersonInfoViewController
+
+-(KSAdapterService *)service{
+    if (_service == nil) {
+        _service = [[KSAdapterService alloc] init];
+        _service.delegate = self;
+        //[_service setItemClass:[KSModelDemo class]];
+    }
+    return _service;
+}
 
 - (void)viewDidLoad {
     
@@ -320,15 +327,15 @@
 - (void)uploadDataWithImage:(UIImage *)image
 {
     //初始化指示器
-    
     if (!_progressHUD) {
         _progressHUD=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         _progressHUD.detailsLabelText=@"上传头像中...";
         _progressHUD.removeFromSuperViewOnHide=YES;
-        
     }
-
+    NSData *imgData=UIImageJPEGRepresentation(image , 0.4);
+    NSString *imgDataString=[imgData base64Encoding];
+    [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"imgb64":imgDataString} version:nil];
 }
 
 //对图片尺寸进行压缩--
@@ -349,6 +356,42 @@
     
     // Return the new image.
     return newImage;
+}
+
+#pragma mark WeAppBasicServiceDelegate method
+
+- (void)serviceDidStartLoad:(WeAppBasicService *)service
+{
+    if (service == _service) {
+        // todo success
+    }
+}
+
+- (void)serviceDidFinishLoad:(WeAppBasicService *)service
+{
+    if (service == _service) {
+        // todo success
+        NSLog(@"%@",service.item.componentDict);
+        if (_progressHUD) {
+            [_progressHUD hide:YES];
+            _progressHUD = nil;
+        }
+
+        [WeAppToast toast:@"修改头像成功"];
+    }
+}
+
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+    if (service == _service) {
+        // todo fail
+        if (_progressHUD) {
+            [_progressHUD hide:YES];
+            _progressHUD = nil;
+        }
+
+        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
+        [WeAppToast toast:errorInfo];
+    }
 }
 
 #pragma mark - Navigation

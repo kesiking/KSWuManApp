@@ -24,6 +24,8 @@
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
         [_service setItemClass:[KSOrderModel class]];
+        _service.jsonTopKey = @"data";
+        _service.needLogin = YES;
     }
     return _service;
 }
@@ -34,8 +36,9 @@
     
     [self.view setBackgroundColor:[UIColor grayColor]];
     self.title = @"我的订单";
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self initOrderData];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.selectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     self.selectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleButtonBorder;
     self.selectionList.selectedButtonIndex = 0;
@@ -97,6 +100,10 @@
     [self.table reloadData];
 }
 
+- (void)initOrderData
+{
+    [self.service loadDataListWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId?:@""} version:nil];
+}
 
 #pragma mark WeAppBasicServiceDelegate method
 

@@ -47,22 +47,34 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    [self.view addSubview:self.navgationView];
     [self.view addSubview:self.logo_imgView];
     [self.view addSubview:self.text_phoneNum];
     [self.view addSubview:self.text_psw];
     [self.view addSubview:self.btn_login];
     [self.view addSubview:self.btn_forgetPwd];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar addSubview:self.navgationView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if(_navgationView)
+    {
+        [_navgationView removeFromSuperview];
+    }
 }
 
 - (UIView *)navgationView
 {
     if(!_navgationView)
     {
-        _navgationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SELFWIDTH, 64)];
-        [_navgationView setBackgroundColor:[UIColor redColor]];
+        _navgationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SELFWIDTH, 44)];
         _btn_register = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btn_register.frame = CGRectMake(SELFWIDTH - 50, 25, 40, 34);
+        _btn_register.frame = CGRectMake(SELFWIDTH - 50, 5, 40, 34);
         _btn_register.layer.cornerRadius = 2;
         _btn_register.titleLabel.font = [UIFont systemFontOfSize:15.5f];
         _btn_register.clipsToBounds = YES;
@@ -72,7 +84,7 @@
         [_navgationView addSubview:_btn_register];
         
         _btn_cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btn_cancel.frame = CGRectMake(10, 25, 40, 34);
+        _btn_cancel.frame = CGRectMake(10, 5, 40, 34);
         _btn_cancel.layer.cornerRadius = 2;
         _btn_cancel.titleLabel.font = [UIFont systemFontOfSize:15.5f];
         _btn_cancel.clipsToBounds = YES;
@@ -81,6 +93,13 @@
         [_btn_cancel addTarget:self action:@selector(cancelLogin) forControlEvents:UIControlEventTouchUpInside];
         [_navgationView addSubview:_btn_cancel];
         
+        _label_title = [[UILabel alloc] initWithFrame: CGRectMake(SELFWIDTH/2 - 50, 0, 100, 44)];
+        _label_title.backgroundColor = [UIColor clearColor];
+        _label_title.textColor=[UIColor whiteColor];
+        [_label_title setFont:[UIFont systemFontOfSize:17.0]];
+        [_label_title setText:@"登录"];
+        _label_title.textAlignment = NSTextAlignmentCenter;
+        [_navgationView addSubview:_label_title];
     }
     return _navgationView;
 }
@@ -89,7 +108,7 @@
 {
     if(!_logo_imgView)
     {
-        _logo_imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SELFWIDTH/2 - 30, CGRectGetMaxY(_navgationView.frame) + 30, 60, 60)];
+        _logo_imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SELFWIDTH/2 - 30, 30, 60, 60)];
         _logo_imgView.backgroundColor = [UIColor redColor];
     }
     return _logo_imgView;
@@ -186,12 +205,14 @@
 - (void)doRegister
 {
     ManWuRegisterViewController *registerVC = [[ManWuRegisterViewController alloc]init];
-    [self presentViewController:registerVC animated:YES completion:nil];
+
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 
 - (void)doResetPwd
 {
     ManWuResetPwdViewController *resetPwdVC = [[ManWuResetPwdViewController alloc]init];
+
     [self.navigationController pushViewController:resetPwdVC animated:YES];
 }
 

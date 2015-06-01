@@ -8,7 +8,7 @@
 
 #import "KSManWuViewController.h"
 
-@interface ManWuLoginViewController : KSManWuViewController<UITextFieldDelegate,WeAppBasicServiceDelegate>
+@interface ManWuLoginViewController : UIViewController<UITextFieldDelegate,WeAppBasicServiceDelegate>
 
 @property (nonatomic, strong) UIImageView *logo_imgView;
 @property (nonatomic, strong) MWInsetsTextField *text_phoneNum;
@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIButton *btn_register;
 @property (nonatomic, strong) UIButton *btn_cancel;
 @property (nonatomic, strong) UIButton *btn_forgetPwd;
+@property (nonatomic, strong) UILabel  *label_title;
 @property (nonatomic, strong) UIView *navgationView;
 
 @property (nonatomic, strong) KSAdapterService *service;
