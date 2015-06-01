@@ -105,6 +105,7 @@
     }
     
     TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);
+    
 }
 
 @end

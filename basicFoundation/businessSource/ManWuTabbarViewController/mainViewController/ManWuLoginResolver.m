@@ -48,6 +48,7 @@
     }
     if (viewController) {
         UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        navigationController.navigationBar.translucent = NO;
         return navigationController;
     }
     return viewController;
