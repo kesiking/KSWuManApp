@@ -7,7 +7,8 @@
 //
 
 #import "ManWuCommodityListView.h"
-#import "ManWuViewCell.h"
+//#import "ManWuViewCell.h"
+#import "ManWuFavViewCell.h"
 
 @interface ManWuCommodityListView()
 
@@ -47,10 +48,10 @@
         CGRect frame = self.bounds;
         frame.size.width = frame.size.width - 2 * 8;
         frame.origin.x = 8;
-        configObject.collectionCellSize = KSCGSizeMake(frame.size.width/2, 190);
+        configObject.collectionCellSize = CGSizeMake(frame.size.width/2, caculateNumber(180));
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl setErrorViewTitle:@"服务器在偷懒，请稍后再试"];
-        [_collectionViewCtl registerClass:[ManWuViewCell class]];
+        [_collectionViewCtl registerClass:[ManWuFavViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         [_collectionViewCtl setDataSourceWrite:self.dataSourceWrite];
         [_collectionViewCtl getCollectionView].scrollEnabled = YES;

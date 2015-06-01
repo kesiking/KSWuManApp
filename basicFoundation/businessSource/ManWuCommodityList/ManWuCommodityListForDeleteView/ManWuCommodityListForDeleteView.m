@@ -28,7 +28,7 @@
     [super setupView];
     [self addSubview:self.deleteView];
     KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject);
-    configObject.collectionCellSize = CGSizeMake(configObject.collectionCellSize.width, 180);
+    configObject.collectionCellSize = CGSizeMake(configObject.collectionCellSize.width, caculateNumber(180));
     [self.collectionViewCtl registerClass:[ManWuFavViewCell class]];
 }
 

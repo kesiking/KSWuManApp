@@ -111,7 +111,6 @@
     self.searchBarSelectRect = CGRectMake(0,navigateViewYOringe, self.navigateview.frame.size.width, SEARCH_BAR_HEIGHT);
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:self.searchBarRect];
-    self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
@@ -139,13 +138,19 @@
 
 -(UIButton*)btnAccessoryView{
     if (_btnAccessoryView == nil) {
-        _btnAccessoryView=[[UIButton alloc] initWithFrame:CGRectMake(0, _navigateview.frame.origin.y + _navigateview.height, self.width, self.height)];
+        CGRect rect = [_navigateview convertRect:_navigateview.frame toView:self];
+        _btnAccessoryView=[[UIButton alloc] initWithFrame:CGRectMake(0, rect.origin.y + rect.size.height, self.width, self.height)];
         [_btnAccessoryView setBackgroundColor:[UIColor blackColor]];
         [_btnAccessoryView setAlpha:0.0f];
         [_btnAccessoryView addTarget:self action:@selector(clickControlAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_btnAccessoryView];
     }
     return _btnAccessoryView;
+}
+
+-(void)setSearchBarRect:(CGRect)searchBarRect{
+    _searchBarRect = searchBarRect;
+    [self.searchBar setFrame:searchBarRect];
 }
 
 #pragma mark - override
@@ -156,6 +161,8 @@
     frame.origin.y = self.navigateview.bottom;
     frame.size.height -= self.navigateview.height;
     [self.tableViewCtl.scrollView setFrame:frame];
+    
+    [self.searchBar sizeToFit];
 }
 
 #pragma mark - reset searchView
@@ -205,7 +212,7 @@
         [UIView animateWithDuration:0.2 animations:^{
             //动画代码
             [self.searchBar setFrame:self.searchBarRect];
-            [self.searchBar sizeToFit];
+//            [self.searchBar sizeToFit];
         }completion:^(BOOL finished){
             if (completion) {
                 completion(finished);

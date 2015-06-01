@@ -7,6 +7,7 @@
 //
 
 #import "ManWuFavViewCell.h"
+#import "ManWuCommodityDetailModel.h"
 
 @interface ManWuFavViewCell()
 
@@ -50,7 +51,13 @@
 
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     [super configCellWithCellView:cell Frame:rect componentItem:componentItem extroParams:extroParams];
-    if (/* DISABLES CODE */ (1)) {
+    
+    if (![componentItem isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
+    
+    if ([detailModel.status integerValue] != 0) {
         self.commodityDisabelImageView.hidden = NO;
         self.commodityPriceImageView.hidden = YES;
         self.priceLabel.hidden = YES;

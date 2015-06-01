@@ -66,7 +66,7 @@
     
     [self.container removeAllItems];
     
-    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, 0, 1.0, 0.0);
+    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, 0, 4.0, 0.0);
     
     CSLinearLayoutItem *discountInfoLayoutItem = [[CSLinearLayoutItem alloc]
                                                        initWithView:self.discountInfo];

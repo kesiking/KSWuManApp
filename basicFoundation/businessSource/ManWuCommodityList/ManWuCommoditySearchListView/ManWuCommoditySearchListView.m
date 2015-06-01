@@ -1,21 +1,23 @@
 //
-//  ManWuCommodityListWithSortAndFiltView.m
+//  ManWuCommoditySearchListView.m
 //  basicFoundation
 //
-//  Created by 逸行 on 15-5-6.
+//  Created by 孟希羲 on 15/6/1.
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "ManWuCommodityListWithSortAndFiltBasicView.h"
+#import "ManWuCommoditySearchListView.h"
 #import "ManWuCommoditySortAndFiltView.h"
 #import "ManWuCommodityFiltForDiscoverListView.h"
 #import "ManWuCommoditySortListView.h"
 #import "ManWuCommoditySortAndFiltModel.h"
-#import "ManWuCommodityListBasicService.h"
+#import "ManWuDiscoverSearchService.h"
 
 #define sort_filt_view_height       (30.0 * SCREEN_SCALE)
 
-@interface ManWuCommodityListWithSortAndFiltView()
+@interface ManWuCommoditySearchListView()
+
+@property (nonatomic,strong) CSLinearLayoutView         *container;
 
 @property (nonatomic,strong) ManWuCommoditySortAndFiltView*   sortFiltHeadView;
 
@@ -23,22 +25,50 @@
 
 @property (nonatomic,strong) ManWuCommodityFiltForDiscoverListView *filtForDiscoverSelectView;
 
-@property (nonatomic,strong) NSString                          *actIdKey;
+@property (nonatomic,strong) NSString                   *searchKeyword;
 
-@property (nonatomic,strong) NSString                          *filtKey;
+@property (nonatomic,strong) NSString                   *actIdKey;
 
-@property (nonatomic,strong) NSString                          *sortKey;
+@property (nonatomic,strong) NSString                   *filtKey;
 
-@property (nonatomic,strong) ManWuCommodityListBasicService    *discoverService;
+@property (nonatomic,strong) NSString                   *sortKey;
+
+@property (nonatomic,strong) ManWuDiscoverSearchService *searchListService;
 
 @end
 
-@implementation ManWuCommodityListWithSortAndFiltView
+
+@implementation ManWuCommoditySearchListView
 
 -(void)setupView{
     [super setupView];
-    [self.collectionViewCtl setColletionHeaderView:self.sortFiltHeadView];
-    [self setCollectionService:self.discoverService];
+    [self.container removeAllItems];
+    
+    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, 0, 5.0, 0.0);
+    
+    CSLinearLayoutItem *sortFiltHeadViewLayoutItem = [[CSLinearLayoutItem alloc]
+                                                      initWithView:self.sortFiltHeadView];
+    sortFiltHeadViewLayoutItem.padding             = padding;
+    [self.container addItem:sortFiltHeadViewLayoutItem];
+    
+    
+    
+    [self.collectionViewCtl setColletionHeaderView:self.container];
+    [self setCollectionService:self.searchListService];
+}
+
+#pragma mark - container
+
+- (CSLinearLayoutView *)container {
+    if (!_container) {
+        float containerHeight = self.height -  TBSKU_BOTTOM_HEIGHT;
+        CGRect frame = CGRectMake(0, 0, self.frame.size.width, containerHeight);
+        _container = [[CSLinearLayoutView alloc] initWithFrame:frame];
+        _container.autoAdjustFrameSize = YES;
+        _container.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _container.backgroundColor  = [TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ComponentBg1];
+    }
+    return _container;
 }
 
 -(ManWuCommoditySortAndFiltView *)sortFiltHeadView{
@@ -127,11 +157,15 @@
     return _filtForDiscoverSelectView;
 }
 
--(ManWuCommodityListBasicService *)discoverService{
-    if (_discoverService == nil) {
-        _discoverService = [[ManWuCommodityListBasicService alloc] init];
+-(ManWuDiscoverSearchService *)searchListService{
+    if (_searchListService == nil) {
+        _searchListService = [[ManWuDiscoverSearchService alloc] init];
     }
-    return _discoverService;
+    return _searchListService;
+}
+
+-(void)loadDataWithSearchKeyword:(NSString*)searchKeyword{
+    [self loadDataWithParams:@{@"searchKeyword":searchKeyword}];
 }
 
 -(void)loadDataWithParams:(NSDictionary*)params{
@@ -154,11 +188,17 @@
         self.filtKey = filtKey;
         needRefreshService = YES;
     }
+    NSString* searchKeyword = params[@"searchKeyword"];
+    if (searchKeyword && searchKeyword != self.searchKeyword) {
+        // todo
+        self.searchKeyword= searchKeyword;
+        needRefreshService = YES;
+    }
     if (!needRefreshService) {
         return;
     }
     // service todo
-    [self.discoverService loadCommodityListDataWithWithActId:self.actIdKey cid:self.filtKey sort:self.sortKey];
+    [self.searchListService loadDiscoverSearchListDataWithWithKeyword:self.searchKeyword actId:self.actIdKey cid:self.filtKey sort:self.sortKey];
 }
 
 @end

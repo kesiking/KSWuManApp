@@ -27,6 +27,7 @@
 -(UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        [_imageView setImage:[UIImage imageNamed:@"manwu_newitem_recomment_image"]];
     }
     return _imageView;
 }
@@ -45,7 +46,7 @@
 }
 
 -(void)reloadData{
-    [self.imageView sd_setImageWithURL:nil placeholderImage:nil];
+//    [self.imageView sd_setImageWithURL:nil placeholderImage:nil];
 }
 
 -(void)refresh{

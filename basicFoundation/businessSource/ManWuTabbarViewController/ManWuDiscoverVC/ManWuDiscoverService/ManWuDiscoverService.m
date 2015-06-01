@@ -26,7 +26,7 @@
 -(void)loadAllCategoryCommodityListData{
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuDiscoverModel class];
-    [self loadDataListWithAPIName:@"category/getAllCats.do" params:nil version:nil];
+    [self loadDataListWithAPIName:@"category/getAllCategories.do" params:nil version:nil];
     /*
     NSDictionary* params = @{@"cids":allCidsKey};
     self.jsonTopKey = @"data";

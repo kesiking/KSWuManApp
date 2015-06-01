@@ -8,6 +8,10 @@
 
 #import "ManWuSearchView.h"
 
+@interface ManWuSearchView()
+
+@end
+
 @implementation ManWuSearchView
 
 -(void)setupView{
@@ -16,6 +20,7 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [super searchBarSearchButtonClicked:searchBar];
+    /*
     NSMutableArray* arrayData = [[NSMutableArray alloc] init];
     for (int i = 0; i < 20 ; i++) {
         WeAppComponentBaseItem* component = [[WeAppComponentBaseItem alloc] init];
@@ -23,6 +28,7 @@
     }
     [_dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
     [self reloadData];
+     */
 }
 
 @end

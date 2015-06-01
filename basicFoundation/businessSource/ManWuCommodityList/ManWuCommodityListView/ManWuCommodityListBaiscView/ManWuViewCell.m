@@ -58,7 +58,7 @@
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:11];
+        _titleLabel.font = [UIFont systemFontOfSize:13];
         _titleLabel.textColor = RGB(0x66, 0x66, 0x66);
         _titleLabel.backgroundColor = self.backgroundColor;
         _titleLabel.opaque = YES;
@@ -71,7 +71,7 @@
 -(UILabel *)priceLabel{
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] init];
-        _priceLabel.font = [UIFont boldSystemFontOfSize:9];
+        _priceLabel.font = [UIFont boldSystemFontOfSize:11];
         _priceLabel.textColor = RGB(0x2d, 0x2d, 0x2d);
         _priceLabel.backgroundColor = self.backgroundColor;
         _priceLabel.opaque = YES;
@@ -86,7 +86,7 @@
         _favorateLabel = [[UILabel alloc] init];
         _favorateLabel.backgroundColor = [UIColor whiteColor];
         _favorateLabel.opaque = YES;
-        _favorateLabel.font = [UIFont boldSystemFontOfSize:9];
+        _favorateLabel.font = [UIFont boldSystemFontOfSize:11];
         _favorateLabel.numberOfLines = 1;
         [self addSubview:_favorateLabel];
     }
@@ -142,7 +142,7 @@
         self.commodityImageUrl = nil;
     }
     self.favorateImageView.itemId = detailModel.itemId;
-    [self.favorateImageView updatePraiseBtnStatus:[detailModel.like boolValue]];
+    [self.favorateImageView updatePraiseBtnStatus:[detailModel.loved boolValue]];
     self.titleLabel.text = detailModel.title;
     self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
     NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.love longLongValue] number:3];

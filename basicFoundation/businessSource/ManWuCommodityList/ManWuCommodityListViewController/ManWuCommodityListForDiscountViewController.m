@@ -12,6 +12,7 @@
 @interface ManWuCommodityListForDiscountViewController ()
 
 @property (nonatomic,strong) ManWuCommodityListSortAndFiltForDiscountView* commodityListView;
+
 @property (nonatomic,strong) NSString*                      actId;
 
 @property (nonatomic,strong) NSString*                      cid;

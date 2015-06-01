@@ -9,7 +9,7 @@
 #import "ManWuDiscoverListView.h"
 #import "ManWuDiscoverViewCell.h"
 #import "ManWuDiscoverCellModelInfoItem.h"
-#import "ManWuSearchView.h"
+#import "KSSearchBasicView.h"
 #import "ManWuSearchViewCell.h"
 #import "ManWuSearchViewCellInfoItem.h"
 
@@ -23,7 +23,7 @@
 
 @property (nonatomic,strong) KSDataSource*      dataSourceWrite;
 
-@property (nonatomic,strong) ManWuSearchView*   searchView;
+@property (nonatomic,strong) KSSearchBasicView* searchView;
 
 @end
 
@@ -71,9 +71,9 @@
     return _tableViewCtl;
 }
 
--(ManWuSearchView *)searchView{
+-(KSSearchBasicView *)searchView{
     if (_searchView == nil) {
-        _searchView = [[ManWuSearchView alloc] initWithFrame:self.bounds viewCellClass:[ManWuSearchViewCell class] modelInfoClass:[ManWuSearchViewCellInfoItem class]];
+        _searchView = [[KSSearchBasicView alloc] initWithFrame:self.bounds viewCellClass:[ManWuSearchViewCell class] modelInfoClass:[ManWuSearchViewCellInfoItem class]];
         _searchView.hidden = YES;
         WEAKSELF
         _searchView.searchStarkBlock = ^(UISearchBar* searchBar){
@@ -98,10 +98,12 @@
             searchBarOperationBlock(searchBar);
         };
         
-        _searchView.tableDidSelectedBlock = ^(UISearchBar* searchBar,KSTableViewController* tableViewCtl){
+        _searchView.searchEndBlock = ^(UISearchBar* searchBar,NSString* searchText){
             STRONGSELF
+            searchBarOperationBlock(searchBar);
             searchBar.text = @"";
-            [strongSelf.searchView cancel];
+            NSDictionary* params = @{@"searchKeyword":searchText};
+            TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListSearch), strongSelf,nil,params);
         };
     }
     return _searchView;

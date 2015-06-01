@@ -25,12 +25,12 @@
     self.jsonTopKey = nil;
     self.listPath = @"data";
     self.itemClass = [ManWuCommodityDetailModel class];
+    self.needLogin = YES;
     if (self.pagedList) {
         [self.pagedList refresh];
     }
-    self.needLogin = YES;
-    self.itemClass = [ManWuCommodityDetailModel class];
-    [self loadItemWithAPIName:@"collection/myItems.do" params:params version:nil];
+    
+    [self loadPagedListWithAPIName:@"collection/myItems.do" params:params pagination:pageinationItem version:nil];
 }
 
 -(void)loadCommodityLoveData{
@@ -41,10 +41,18 @@
     if ([KSAuthenticationCenter userId]) {
         [params setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
-    self.needLogin = YES;
+    
+    KSPaginationItem* pageinationItem = [[KSPaginationItem alloc] init];
+    pageinationItem.pageSize = DEFAULT_PAGE_SIZE;
+    self.jsonTopKey = nil;
+    self.listPath = @"data";
     self.itemClass = [ManWuCommodityDetailModel class];
-    self.jsonTopKey = @"data";
-    [self loadItemWithAPIName:@"collection/myItems.do" params:params version:nil];
+    self.needLogin = YES;
+    if (self.pagedList) {
+        [self.pagedList refresh];
+    }
+    
+    [self loadPagedListWithAPIName:@"collection/myItems.do" params:params pagination:pageinationItem version:nil];
 }
 
 @end

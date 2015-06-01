@@ -33,12 +33,36 @@
             NSString* string = [NSString stringWithFormat:@"材料:%@",detailModel.metarial];
             [self.descriptionArray addObject:string];
         }
-        if (detailModel.size) {
-            NSString* string = [NSString stringWithFormat:@"尺寸:%@",detailModel.size];
+        if (detailModel.size && [detailModel.size isKindOfClass:[NSArray class]]) {
+            NSMutableString* string = [NSMutableString string];
+            [string appendString:@"尺寸："];
+            NSUInteger count = [detailModel.size count];
+            for (NSString* sizeString in detailModel.size) {
+                if (![sizeString isKindOfClass:[NSString class]]) {
+                    continue;
+                }
+                [string appendString:sizeString];
+                NSUInteger index = [detailModel.size indexOfObject:sizeString];
+                if (index < count - 1) {
+                    [string appendString:@"、"];
+                }
+            }
             [self.descriptionArray addObject:string];
         }
-        if (detailModel.color) {
-            NSString* string = [NSString stringWithFormat:@"颜色:%@",detailModel.color];
+        if (detailModel.color && [detailModel.color isKindOfClass:[NSArray class]]) {
+            NSMutableString* string = [NSMutableString string];
+            [string appendString:@"颜色："];
+            NSUInteger count = [detailModel.color count];
+            for (NSString* sizeString in detailModel.color) {
+                if (![sizeString isKindOfClass:[NSString class]]) {
+                    continue;
+                }
+                [string appendString:sizeString];
+                NSUInteger index = [detailModel.color indexOfObject:sizeString];
+                if (index < count - 1) {
+                    [string appendString:@"、"];
+                }
+            }
             [self.descriptionArray addObject:string];
         }
         if (detailModel.fengge) {

@@ -117,6 +117,10 @@
         self.buyNumberStepView.numberStepper.maximumValue = self.detailModel.skuService.currentSKUInfo.quantity;
     }
     
+    if (self.buyNumberStepView.numberStepper.value > self.buyNumberStepView.numberStepper.maximumValue) {
+        self.buyNumberStepView.numberStepper.value = self.buyNumberStepView.numberStepper.maximumValue;
+    }
+    
     /*重新布局*/
     CGPoint skuContentOffset          = self.skuContainer.contentOffset;
     [self.skuContainer removeAllItems];

@@ -22,6 +22,9 @@
 // 商品收藏列表
 #define KManWuCommodityListFavorite    @"manwu_commodity_list_favorite"
 
+// 商品搜索列表
+#define KManWuCommodityListSearch      @"manwu_commodity_list_search"
+
 // 商品详情url
 #define kManWuCommodityDetail    @"manwu_commodity_detail"
 

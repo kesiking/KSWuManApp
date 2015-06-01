@@ -42,6 +42,7 @@
 @property (nonatomic, strong) NSString*                   isOn;
 @property (nonatomic, strong) NSString*                   like;
 @property (nonatomic, strong) NSNumber*                   love;
+@property (nonatomic, strong) NSNumber*                   loved;
 @property (nonatomic, strong) NSNumber*                   quantity;
 @property (nonatomic, strong) NSString*                   brand;
 @property (nonatomic, strong) NSString*                   fengge;

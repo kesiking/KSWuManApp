@@ -65,7 +65,7 @@
         self.commodityTitleLabel.text = detailModel.title;
         self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",detailModel.sale];
         self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",detailModel.love];
-        [self.commodityPraiseButton updatePraiseBtnStatus:[detailModel.like boolValue]];
+        [self.commodityPraiseButton updatePraiseBtnStatus:[detailModel.loved boolValue]];
         [self.commodityFavorateButton updateFavBtnStatus:[detailModel.like boolValue]];
         [self.commodityPraiseButton setItemId:detailModel.itemId];
         [self.commodityFavorateButton setItemId:detailModel.itemId];
