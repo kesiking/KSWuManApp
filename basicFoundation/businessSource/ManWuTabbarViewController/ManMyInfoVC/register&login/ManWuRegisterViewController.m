@@ -33,7 +33,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.title = @"手机注册";
     isRegister = NO;
-    //[self.view addSubview:self.navgationView];
+    [self.view addSubview:self.navgationView];
     [self.view addSubview:self.logo_imgView];
     [self.view addSubview:self.text_phoneNum];
     [self.view addSubview:self.smsCodeView];
@@ -41,24 +41,6 @@
     [self.view addSubview:self.text_inviteCode];
     [self.view addSubview:self.text_userName];
     [self.view addSubview:self.btn_register];
-    
-    _btn_cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn_cancel.frame = CGRectMake(10, 5, 40, 34);
-    _btn_cancel.layer.cornerRadius = 2;
-    _btn_cancel.titleLabel.font = [UIFont systemFontOfSize:15.5f];
-    _btn_cancel.clipsToBounds = YES;
-    _btn_cancel.userInteractionEnabled = YES;
-    [_btn_cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [_btn_cancel addTarget:self action:@selector(cancelLogin) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar addSubview:_btn_cancel];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    if(_btn_cancel)
-    {
-        [_btn_cancel removeFromSuperview];
-    }
 }
 
 - (UIView *)navgationView
@@ -219,7 +201,7 @@
 
 - (void)cancelLogin
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)getValidateCode
@@ -276,7 +258,7 @@
         if(isRegister)
         {
             [WeAppToast toast:@"注册成功"];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         
         [WeAppToast toast:@"验证码已发送"];

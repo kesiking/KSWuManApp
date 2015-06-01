@@ -12,13 +12,9 @@
 
 @property (nonatomic, strong) MWInsetsTextField *text_phoneNum;
 @property (nonatomic, strong) MWInsetsTextField *text_smsCode;
-@property (nonatomic, strong) MWInsetsTextField *text_newPwd;
 @property (nonatomic, strong) UIView *smsCodeView;
 @property (nonatomic, strong) UIButton *btn_smsCode;
 @property (nonatomic, strong) UIButton *btn_nextStep;
-@property (nonatomic, strong) UIView *navgationView;
-@property (nonatomic, strong) UIButton *btn_cancel;
-
 
 @property (nonatomic, strong) KSAdapterService *service;
 

@@ -311,7 +311,6 @@
         {
             if(indexPath.row == 0)
             {
-                TBOpenURLFromTargetWithNativeParams(kManWuAddressManager, self, nil, nil);
                 
             }else if (indexPath.row == 1)
             {

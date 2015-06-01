@@ -112,8 +112,10 @@
 
 - (void)doChangePwd
 {
-    NSString *phoneNum = [KSUserInfoModel sharedConstant].phone;
-    [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phone":phoneNum,@"pwd":_text_oldPwd.text,@"newPwd":_text_newPwd.text} version:nil];
+    NSString *userId = [[NSUserDefaults standardUserDefaults]objectForKey:USERID];
+    NSString *oldPwd = @"1234567890";
+    NSString *newPwd = @"123456";
+    [self.service loadItemWithAPIName:@"user/inviteCode.do" params:@{@"userId":userId} version:nil];
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -129,16 +131,12 @@
 {
     if (service == _service) {
         // todo success
-        [WeAppToast toast:@"修改密码成功"];
-        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service == _service) {
         // todo fail
-        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
-        [WeAppToast toast:errorInfo];
     }
 }
 

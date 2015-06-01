@@ -377,7 +377,6 @@
 		91E2D0751B1761C500946A32 /* sure-button01-s.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0571B1761C500946A32 /* sure-button01-s.png */; };
 		91E2D0761B1761C500946A32 /* sure-button01-s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0581B1761C500946A32 /* sure-button01-s@2x.png */; };
 		91E2D0771B1761C500946A32 /* sure-button01.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0591B1761C500946A32 /* sure-button01.png */; };
-		91E2D07F1B1AFEDF00946A32 /* ManWuLoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D07E1B1AFEDF00946A32 /* ManWuLoginNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1131,8 +1130,6 @@
 		91E2D0571B1761C500946A32 /* sure-button01-s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sure-button01-s.png"; sourceTree = "<group>"; };
 		91E2D0581B1761C500946A32 /* sure-button01-s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sure-button01-s@2x.png"; sourceTree = "<group>"; };
 		91E2D0591B1761C500946A32 /* sure-button01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sure-button01.png"; sourceTree = "<group>"; };
-		91E2D07D1B1AFEDF00946A32 /* ManWuLoginNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuLoginNavigationController.h; sourceTree = "<group>"; };
-		91E2D07E1B1AFEDF00946A32 /* ManWuLoginNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuLoginNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2803,8 +2800,6 @@
 				91E2D0511B1761C500946A32 /* ManWuLoginViewController.m */,
 				91E2D0521B1761C500946A32 /* ManWuRegisterViewController.h */,
 				91E2D0531B1761C500946A32 /* ManWuRegisterViewController.m */,
-				91E2D07D1B1AFEDF00946A32 /* ManWuLoginNavigationController.h */,
-				91E2D07E1B1AFEDF00946A32 /* ManWuLoginNavigationController.m */,
 			);
 			path = "register&login";
 			sourceTree = "<group>";
@@ -3168,7 +3163,6 @@
 				05ACAC6C1AFC6D4800853E1C /* ManWuAddressSelectListView.m in Sources */,
 				5F92161D1B1020F500554B44 /* KSPageList.m in Sources */,
 				5F214C931B16B88C0081BA02 /* ManWuCommoditySKUModel.m in Sources */,
-				91E2D07F1B1AFEDF00946A32 /* ManWuLoginNavigationController.m in Sources */,
 				055C75831ADFBF6000C35854 /* NSData+ImageContentType.m in Sources */,
 				050FFD391B02ECF800721E02 /* ManWuAddressManagerListView.m in Sources */,
 				05AB565C1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m in Sources */,
