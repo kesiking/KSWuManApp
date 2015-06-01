@@ -32,6 +32,8 @@
 
 @property (nonatomic, strong) KSManWuHomeService           *homeActivityService;
 
+@property (nonatomic, strong) KSManWuHomeService           *voucherService;
+
 @end
 
 @implementation ManWuHomeHeaderView
@@ -40,6 +42,7 @@
     [super setupView];
     [self addSubview:self.container];
     [self.homeActivityService loadHomeActivityData];
+    [self.voucherService loadBannerVoucherData];
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
@@ -48,6 +51,7 @@
 
 -(void)refresh{
     [self.homeActivityService loadHomeActivityData];
+    [self.voucherService loadBannerVoucherData];
     [self reloadData];
 }
 
@@ -166,6 +170,20 @@
     return _homeActivityService;
 }
 
+-(KSManWuHomeService *)voucherService{
+    if (_voucherService == nil) {
+        _voucherService = [[KSManWuHomeService alloc] init];
+        WEAKSELF
+        _voucherService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.dataList) {
+                [strongSelf setupHomeVoucherWithDataList:service.dataList];
+            }
+        };
+    }
+    return _voucherService;
+}
+
 -(void)setupHomeActivityViewWithDataList:(NSArray *)array{
     NSUInteger count = [array count];
     if (count > 0) {
@@ -179,6 +197,20 @@
     }
     
     [self reloadData];
+}
+
+-(void)setupHomeVoucherWithDataList:(NSArray *)array{
+    NSMutableArray* bannerItems = [NSMutableArray array];
+    for (ManWuHomeVoucherModel*voucherModel in array) {
+        if (![voucherModel isKindOfClass:[ManWuHomeVoucherModel class]]) {
+            continue;
+        }
+        WeAppBannerItem* bannerItem = [WeAppBannerItem new];
+        bannerItem.bannerId = voucherModel.voucherId;
+        bannerItem.picture = voucherModel.picUrl;
+        [bannerItems addObject:bannerItem];
+    }
+    [self.bannerView setLocalData:bannerItems];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -69,8 +69,14 @@
     self.nameInfoText.text = addressInfoModel.recvName;
     self.phoneNumText.text = addressInfoModel.phoneNum;
     NSArray* addressArray = [addressInfoModel.address componentsSeparatedByString:@" "];
-    self.areaText.text = [addressArray count] > 0? [addressArray objectAtIndex:0]:addressInfoModel.address;
-    self.descriptionText.text = [addressArray count] > 1?[addressArray objectAtIndex:1]:addressInfoModel.address;
+    if ([addressArray count] > 1) {
+        self.areaText.text = [addressArray count] > 0? [addressArray objectAtIndex:0]:addressInfoModel.address;
+        self.descriptionText.text = [addressArray count] > 1?[addressArray objectAtIndex:1]:addressInfoModel.address;
+    }else{
+        self.areaText.text = @"";
+        self.descriptionText.text = addressInfoModel.address;
+    }
+    
     self.settingDefaultView.isDefaultAddress = addressInfoModel.defaultAddress;
     self.isDefaultAddress = addressInfoModel.defaultAddress;
 }
@@ -244,8 +250,17 @@
             STRONGSELF
             // bottom click todo save or delete
             // 请求service 成功后再执行
-            NSString* address = [NSString stringWithFormat:@"%@ %@",strongSelf.areaText.text,strongSelf.descriptionText.text];
-            [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:[KSAuthenticationCenter userId] recvName:strongSelf.nameInfoText.text?:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.phoneNumText.text?:strongSelf.addressInfoModel.phoneNum address:address?:strongSelf.addressInfoModel.address defaultAddress:strongSelf.isDefaultAddress];
+            @try {
+                NSRange range = [strongSelf.descriptionText.text rangeOfString:strongSelf.areaText.text];
+                if (range.location != NSNotFound) {
+                    strongSelf.descriptionText.text = [strongSelf.descriptionText.text substringFromIndex:range.location + range.length];
+                }
+                NSString* address = [NSString stringWithFormat:@"%@ %@",strongSelf.areaText.text?:@"",strongSelf.descriptionText.text];
+                [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:[KSAuthenticationCenter userId] recvName:strongSelf.nameInfoText.text?:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.phoneNumText.text?:strongSelf.addressInfoModel.phoneNum address:address?:strongSelf.addressInfoModel.address defaultAddress:strongSelf.isDefaultAddress];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"----> address edit page crashed for reason of %@",exception.reason);
+            }
         };
     }
     return _bottomView;
