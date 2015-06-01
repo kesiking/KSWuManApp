@@ -33,7 +33,7 @@
 
 -(UIImageView *)commodityDisabelImageView{
     if (_commodityDisabelImageView == nil) {
-        _commodityDisabelImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom - 20, self.commodityImageView.width, 25)];
+        _commodityDisabelImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom - 25, self.commodityImageView.width, 25)];
         _commodityDisabelImageView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
         _commodityDisabelImageView.hidden = YES;
         

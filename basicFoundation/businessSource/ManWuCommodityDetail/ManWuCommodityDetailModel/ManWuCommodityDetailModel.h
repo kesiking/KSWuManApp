@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) ManWuTradeDetailSKUService *skuService;
 
+
+@property (nonatomic, strong) NSDictionary*               skuContent;
 @property (nonatomic, strong) NSMutableArray*             skuArray;
 
 @property (nonatomic, strong) NSString*                   itemId;

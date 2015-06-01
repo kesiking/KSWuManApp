@@ -13,7 +13,7 @@
 		<key>manwu_commodity_buy_info</key>
 		<string>ManWuCommodityBuyViewController</string>
 		<key>manwu_commodity_list_favorite</key>
-		<string>ManWuCommodityListDeleteDemoViewControolerViewController</string>
+		<string>ManWuCommdityFavoriteListViewController</string>
 		<key>manwu_address_select</key>
 		<string>ManWuAddressSelectViewController</string>
 		<key>manwu_address_manager</key>

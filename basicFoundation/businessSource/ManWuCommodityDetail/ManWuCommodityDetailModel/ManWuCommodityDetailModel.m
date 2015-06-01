@@ -12,6 +12,10 @@
 
 -(void)setFromDictionary:(NSDictionary *)dict{
     [super setFromDictionary:dict];
+    if (self.skuContent) {
+        self.color = [self.skuContent objectForKey:@"颜色"];
+        self.size = [self.skuContent objectForKey:@"尺寸"];
+    }
     self.skuArray = [NSMutableArray array];
     if (self.color) {
         [self setupSKUArray:self.color withPropName:@"颜色"];

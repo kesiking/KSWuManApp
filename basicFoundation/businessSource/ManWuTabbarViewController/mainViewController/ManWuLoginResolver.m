@@ -46,6 +46,10 @@
     if (viewController == nil) {
         return [super viewControllerWithAction:action];
     }
+    if (viewController) {
+        UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        return navigationController;
+    }
     return viewController;
 }
 

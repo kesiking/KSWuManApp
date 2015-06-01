@@ -8,8 +8,8 @@
 
 #import "KSManWuHomeService.h"
 
-#define advertisement_key_name @"adlist"
-#define advertisement_api_name @"add"
+#define advertisement_key_name @"data"
+#define advertisement_api_name @"index/getVouchers.do"
 
 #define home_activity_key_name @"data"
 #define home_activity_api_name @"index/getActs.do"
@@ -22,8 +22,8 @@
     [self loadDataListWithAPIName:home_activity_api_name params:nil version:nil];
 }
 
--(void)loadBannerAdvertisement{
-    self.itemClass = [WeAppComponentBaseItem class];
+-(void)loadBannerVoucherData{
+    self.itemClass = [ManWuHomeVoucherModel class];
     self.jsonTopKey = advertisement_key_name;
     [self loadDataListWithAPIName:advertisement_api_name params:nil version:nil];
 }
