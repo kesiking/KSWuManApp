@@ -344,6 +344,7 @@
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
 		5F9216261B1077CF00554B44 /* ManWuDiscoverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216251B1077CF00554B44 /* ManWuDiscoverService.m */; };
 		5F92162A1B13498800554B44 /* ManWuDiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216291B13498800554B44 /* ManWuDiscoverModel.m */; };
+		5F9F459E1B1D40290017E632 /* aliPayfile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F9F459D1B1D40290017E632 /* aliPayfile.plist */; };
 		5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */; };
 		5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06221B0E011F00852188 /* KSPaginationItem.m */; };
 		5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */; };
@@ -1076,6 +1077,7 @@
 		5F9216251B1077CF00554B44 /* ManWuDiscoverService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverService.m; sourceTree = "<group>"; };
 		5F9216281B13498800554B44 /* ManWuDiscoverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverModel.h; sourceTree = "<group>"; };
 		5F9216291B13498800554B44 /* ManWuDiscoverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverModel.m; sourceTree = "<group>"; };
+		5F9F459D1B1D40290017E632 /* aliPayfile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = aliPayfile.plist; sourceTree = "<group>"; };
 		5FBA061E1B0DEC6000852188 /* ManWuCommodityListBasicService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListBasicService.h; sourceTree = "<group>"; };
 		5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListBasicService.m; sourceTree = "<group>"; };
 		5FBA06211B0E011F00852188 /* KSPaginationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPaginationItem.h; sourceTree = "<group>"; };
@@ -2103,6 +2105,7 @@
 			children = (
 				058D5AB21AF0D0FF006EA35C /* KSSafePayUtility.h */,
 				058D5AB31AF0D0FF006EA35C /* KSSafePayUtility.m */,
+				5F9F459D1B1D40290017E632 /* aliPayfile.plist */,
 				058D5AB71AF0D98A006EA35C /* Order.h */,
 				058D5AB81AF0D98A006EA35C /* Order.m */,
 			);
@@ -2967,6 +2970,7 @@
 				05AF30031B004D3F00890A65 /* loading_view_1.png in Resources */,
 				05AF30091B004D3F00890A65 /* loading_view_7.png in Resources */,
 				05ACAC9F1AFCA94800853E1C /* tb_btn_all_square_normal.png in Resources */,
+				5F9F459E1B1D40290017E632 /* aliPayfile.plist in Resources */,
 				5F214C7D1B158F990081BA02 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				050FFD3E1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib in Resources */,
 				5F214C7E1B158F990081BA02 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
