@@ -30,16 +30,26 @@
     UIImageView * bigImageView;
     UIView *overView ;
     AFHTTPRequestOperationManager *manager;
-    //    UIButton *leftButton;
 }
 
 @end
 
 @implementation ManWuPersonInfoViewController
 
+-(KSAdapterService *)service{
+    if (_service == nil) {
+        _service = [[KSAdapterService alloc] init];
+        _service.delegate = self;
+        [_service setItemClass:[NSDictionary class]];
+        _service.jsonTopKey = @"data";
+    }
+    return _service;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"设置个人资料";
     
     _table = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -129,6 +139,8 @@
                 headImg.layer.masksToBounds = YES;
                 headImg.layer.cornerRadius = headImg.frame.size.width * 0.5;
                 headImg.backgroundColor = [UIColor grayColor];
+                NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];
+                [headImg setImageWithURL:url placeholderImage:[UIImage imageNamed:@"tabitem_home_highlight"]];
                 [cell_person.contentView addSubview:headImg];
                 
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBigHeadImg:)];
@@ -141,14 +153,14 @@
             case 1:
             {
                 cell_person.textLabel.text = @"用户名";
-                cell_person.detailTextLabel.text = @"许学";
+                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].userName;
             }
                 break;
                 
             case 2:
             {
                 cell_person.textLabel.text = @"手机号码";
-                cell_person.detailTextLabel.text = @"18867101957";
+                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].phone;
             }
                 break;
                 
@@ -190,7 +202,7 @@
     UIButton * quitBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     quitBtn.frame=rectButton;
     quitBtn.tag=2001;
-    [quitBtn setBackgroundColor:[UIColor colorWithRed:0.987 green:0.224 blue:0.273 alpha:1.000]];
+    [quitBtn setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
     quitBtn.layer.cornerRadius=3;
     [quitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     [quitBtn addTarget:self action:@selector(quitButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -326,9 +338,11 @@
         
         _progressHUD.detailsLabelText=@"上传头像中...";
         _progressHUD.removeFromSuperViewOnHide=YES;
-        
     }
-
+    
+    NSData *imgData=UIImageJPEGRepresentation(image , 0.4);
+    NSString *imgDataString=[imgData base64Encoding];
+    [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"imgb64":imgDataString} version:nil];
 }
 
 //对图片尺寸进行压缩--
@@ -349,6 +363,48 @@
     
     // Return the new image.
     return newImage;
+}
+
+#pragma mark WeAppBasicServiceDelegate method
+
+- (void)serviceDidStartLoad:(WeAppBasicService *)service
+{
+    if (service == _service) {
+        // todo success
+    }
+}
+
+- (void)serviceDidFinishLoad:(WeAppBasicService *)service
+{
+    if (service == _service) {
+        // todo success
+        NSLog(@"%@",service.item.componentDict);
+        if (_progressHUD) {
+            [_progressHUD hide:YES];
+            _progressHUD = nil;
+        }
+        
+        NSDictionary *dic_userInfo = [NSDictionary dictionaryWithDictionary:(NSDictionary*)service.requestModel.item];
+
+        [[KSUserInfoModel sharedConstant]updateUserInfo:dic_userInfo];
+        
+        [self.table reloadData];
+
+        [WeAppToast toast:@"修改头像成功"];
+    }
+}
+
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+    if (service == _service) {
+        // todo fail
+        if (_progressHUD) {
+            [_progressHUD hide:YES];
+            _progressHUD = nil;
+        }
+        
+        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
+        [WeAppToast toast:errorInfo];
+    }
 }
 
 #pragma mark - Navigation

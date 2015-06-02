@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"设置";
     
     dataArray = @[@[@"意见反馈",@"去App Store评分"],@[@"清除缓存",@"关于我们",@"版本更新"]];

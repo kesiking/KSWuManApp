@@ -22,4 +22,6 @@
 
 +(KSUserInfoModel *)sharedConstant;
 
+- (void)updateUserInfo:(NSDictionary *)userInfoDic;
+
 @end

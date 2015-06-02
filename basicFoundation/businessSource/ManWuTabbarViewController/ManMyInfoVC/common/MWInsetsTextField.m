@@ -19,7 +19,7 @@
         
         UIImage *backgroundImage = [UIImage imageNamed:@"inputbox.png"];
         backgroundImage = [backgroundImage stretchableImageWithLeftCapWidth:floorf(backgroundImage.size.width/2) topCapHeight:floorf(backgroundImage.size.height/2)];
-        [self setBackground:backgroundImage];
+        //[self setBackground:backgroundImage];
     }
     return self;
 }

@@ -17,7 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
+
     self.title = @"找回密码";
     [self.view addSubview:self.text_phoneNum];
     [self.view addSubview:self.smsCodeView];
@@ -37,12 +38,12 @@
 {
     if(!_text_phoneNum)
     {
-        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, 30, WIDTH, 40)];
+        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, WIDTH, 40)];
         _text_phoneNum.placeholder = @"手机号码";
-        [_text_phoneNum setFont:[UIFont systemFontOfSize:18]];
+        [_text_phoneNum setFont:[UIFont systemFontOfSize:16]];
         //        _text_phoneNum.layer.borderColor = [[UIColor grayColor]CGColor];
         //        _text_phoneNum.layer.borderWidth = 1.0;
-        _text_phoneNum.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        _text_phoneNum.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_phoneNum.keyboardType = UIKeyboardTypeNumberPad;
         _text_phoneNum.clearButtonMode = UITextFieldViewModeAlways;
         _text_phoneNum.secureTextEntry = NO;
@@ -96,15 +97,7 @@
         [_btn_nextStep setTitle:@"下一步" forState:UIControlStateNormal];
         [_btn_nextStep.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_nextStep.titleLabel.textColor = [UIColor whiteColor];
-        UIImage *btnImage = [UIImage imageNamed:@"sure-button01.png"];
-        btnImage = [btnImage stretchableImageWithLeftCapWidth:floorf(btnImage.size.width/2) topCapHeight:floorf(btnImage.size.height/2)];
-        
-        UIImage *btnImageselected = [UIImage imageNamed:@"sure-button01-s.png"];
-        btnImageselected = [btnImageselected stretchableImageWithLeftCapWidth:floorf(btnImageselected.size.width/2) topCapHeight:floorf(btnImageselected.size.height/2)];
-        
-        [_btn_nextStep setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [_btn_nextStep setBackgroundImage:btnImageselected forState:UIControlStateSelected];
-        [_btn_nextStep addTarget:self action:@selector(doNextStep) forControlEvents:UIControlEventTouchUpInside];
+        [_btn_nextStep setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];        [_btn_nextStep addTarget:self action:@selector(doNextStep) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _btn_nextStep;

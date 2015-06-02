@@ -27,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"修改密码";
     [self.view addSubview:self.text_oldPwd];
     [self.view addSubview:self.text_newPwd];
@@ -40,10 +40,10 @@
 {
     if(!_text_oldPwd)
     {
-        _text_oldPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, 15, WIDTH, 40)];
+        _text_oldPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 15, SELFWIDTH, 40)];
         _text_oldPwd.placeholder = @"原始密码";
-        [_text_oldPwd setFont:[UIFont systemFontOfSize:18]];
-        _text_oldPwd.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        [_text_oldPwd setFont:[UIFont systemFontOfSize:16]];
+        _text_oldPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_oldPwd.keyboardType = UIKeyboardTypeNumberPad;
         _text_oldPwd.clearButtonMode = UITextFieldViewModeAlways;
         _text_oldPwd.secureTextEntry = YES;
@@ -57,10 +57,10 @@
 {
     if(!_text_newPwd)
     {
-        _text_newPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_oldPwd.frame) + 15, WIDTH, 40)];
+        _text_newPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_oldPwd.frame) + 1, SELFWIDTH, 40)];
         _text_newPwd.placeholder = @"新密码";
-        [_text_newPwd setFont:[UIFont systemFontOfSize:18]];
-        _text_newPwd.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        [_text_newPwd setFont:[UIFont systemFontOfSize:16]];
+        _text_newPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_newPwd.keyboardType = UIKeyboardTypeNumberPad;
         _text_newPwd.clearButtonMode = UITextFieldViewModeAlways;
         _text_newPwd.secureTextEntry = YES;
@@ -74,10 +74,10 @@
 {
     if(!_text_renewPwd)
     {
-        _text_renewPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_newPwd.frame) + 15, WIDTH, 40)];
+        _text_renewPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_newPwd.frame) + 1, SELFWIDTH, 40)];
         _text_renewPwd.placeholder = @"重新输入新密码";
-        [_text_renewPwd setFont:[UIFont systemFontOfSize:18]];
-        _text_renewPwd.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        [_text_renewPwd setFont:[UIFont systemFontOfSize:16]];
+        _text_renewPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_renewPwd.keyboardType = UIKeyboardTypeNumberPad;
         _text_renewPwd.clearButtonMode = UITextFieldViewModeAlways;
         _text_renewPwd.secureTextEntry = YES;
@@ -96,14 +96,7 @@
         [_btn_commit setTitle:@"提交" forState:UIControlStateNormal];
         [_btn_commit.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_commit.titleLabel.textColor = [UIColor whiteColor];
-        UIImage *btnImage = [UIImage imageNamed:@"sure-button01.png"];
-        btnImage = [btnImage stretchableImageWithLeftCapWidth:floorf(btnImage.size.width/2) topCapHeight:floorf(btnImage.size.height/2)];
-        
-        UIImage *btnImageselected = [UIImage imageNamed:@"sure-button01-s.png"];
-        btnImageselected = [btnImageselected stretchableImageWithLeftCapWidth:floorf(btnImageselected.size.width/2) topCapHeight:floorf(btnImageselected.size.height/2)];
-        
-        [_btn_commit setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [_btn_commit setBackgroundImage:btnImageselected forState:UIControlStateSelected];
+        [_btn_commit setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
         [_btn_commit addTarget:self action:@selector(doChangePwd) forControlEvents:UIControlEventTouchUpInside];
     }
     

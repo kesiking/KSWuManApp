@@ -11,13 +11,13 @@
 #import "ImageFilterProcessViewController.h"
 
 typedef void (^Myblock)(UIImage * UserImage);
-@interface ManWuPersonInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,CustomImagePickerControllerDelegate,ImageFitlerProcessDelegate>
+@interface ManWuPersonInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,CustomImagePickerControllerDelegate,ImageFitlerProcessDelegate,WeAppBasicServiceDelegate>
 
-@property (strong, nonatomic) UITableView *table;
-@property (nonatomic, copy)Myblock myblock;
-@property (strong, nonatomic)UIImage * image11;
--(void)useThePersoninfoImageChangeOther:(Myblock)myblock;
+@property (nonatomic, strong) UITableView *table;
+@property (nonatomic, copy)   Myblock myblock;
+@property (nonatomic, strong) UIImage * image11;
+@property (nonatomic, strong) NSString *plistUrl;
 
-@property (strong, nonatomic) NSString *plistUrl;
+@property (nonatomic, strong) KSAdapterService *service;
 
 @end
