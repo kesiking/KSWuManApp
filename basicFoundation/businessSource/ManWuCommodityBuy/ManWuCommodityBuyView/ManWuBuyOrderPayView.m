@@ -51,10 +51,11 @@
     _scaleView.transform = CGAffineTransformIdentity;
     _scaleView.frame = CGRectMake(15, 0.0, self.width - 15 * 2, self.height);
     NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
+    NSNumber* price = [dict objectForKey:@"skuPrice"];
     
-    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", (CGFloat)([detailModel.sale floatValue] * count)];
+    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", (CGFloat)((price?[price floatValue]:[detailModel.sale floatValue]) * count)];
     
-    self.payPrice = [NSNumber numberWithDouble:[detailModel.sale doubleValue] * count];
+    self.payPrice = [NSNumber numberWithFloat:(CGFloat)(price?[price floatValue]:[detailModel.sale floatValue]) * count];
     
     CGSize priceSize = [_priceLabel.text sizeWithFont:_priceLabel.font];
     _priceLabel.frame = CGRectMake(_scaleView.width - priceSize.width, 0, priceSize.width, self.height);

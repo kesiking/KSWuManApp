@@ -252,11 +252,11 @@
         return;
     }
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
-//    NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
+    NSNumber* price = [dict objectForKey:@"skuPrice"];
 
     self.titleLabel.text = detailModel.title;
     self.subtitleLabel.text = [dict objectForKey:@"skuInfo"];
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price?:detailModel.sale];
 
 //    self.model = (TBTradeItemInfoCellModel *)object;
 //    TBTradeItemInfoCellModel *model = (TBTradeItemInfoCellModel *)self.model;

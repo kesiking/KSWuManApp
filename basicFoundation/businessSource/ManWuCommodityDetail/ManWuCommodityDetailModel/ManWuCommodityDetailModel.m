@@ -12,18 +12,22 @@
 
 -(void)setFromDictionary:(NSDictionary *)dict{
     [super setFromDictionary:dict];
-    if (self.skuContent) {
-        self.color = [self.skuContent objectForKey:@"颜色"];
-        self.size = [self.skuContent objectForKey:@"尺寸"];
-    }
     self.skuArray = [NSMutableArray array];
-    if (self.color) {
-        [self setupSKUArray:self.color withPropName:@"颜色"];
+//    if (self.skuOrder == nil) {
+//        self.skuOrder = [self.skuContent allKeys];
+//    }
+    if (self.skuContent && self.skuOrder) {
+        for (NSString* key in self.skuOrder) {
+            if (![key isKindOfClass:[NSString class]]) {
+                continue;
+            }
+            NSArray* propArray = [self.skuContent objectForKey:key];
+            if (![propArray isKindOfClass:[NSArray class]]) {
+                continue;
+            }
+            [self setupSKUArray:propArray withPropName:key];
+        }
     }
-    if (self.size) {
-        [self setupSKUArray:self.size withPropName:@"尺寸"];
-    }
-    
     
     if ([self.skuArray count] > 0 && self.ppathIdmap == nil) {
         NSMutableDictionary* pathIdMapTemp = [[NSMutableDictionary alloc] init];
@@ -54,6 +58,7 @@
     for (NSUInteger index = 0; index < count; index++) {
         TBDetailSkuPropsValuesModel* skuPropValueModel = [TBDetailSkuPropsValuesModel new];
         skuPropValueModel.valueId = [skuProps objectAtIndex:index];
+        skuPropValueModel.name = [skuProps objectAtIndex:index];
         [skuSizeModel.values addObject:skuPropValueModel];
     }
     [self.skuArray addObject:skuSizeModel];
