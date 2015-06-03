@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KSCacheStrategy.h"
 
 typedef void(^WriteSuccessCacheBlock)(BOOL success);
 typedef void(^ReadSuccessCacheBlock)(NSMutableArray* componentItems);
@@ -17,6 +18,18 @@ typedef void(^ReadSuccessCacheBlock)(NSMutableArray* componentItems);
 
 @interface KSCacheService : NSObject
 
+/*
+ * fetchConditionDict apiName作为Key，获取相应的fetchCondition (apiName:fetchCondition)
+ * fetchCondition 的结构为 (where  :@"id = 1 and name = @"king" ")
+ *                        (orderBy:@"xxx")
+ *                        (offset :@1)
+ *                        (count  :@1)
+ */
+
+@property (nonatomic, strong) NSDictionary      * fetchConditionDict;
+
+@property (nonatomic, strong) KSCacheStrategy   * cacheStrategy;
+
 -(void)writeCacheWithApiName:(NSString*)apiName
      withParam:(NSDictionary*)param
  componentItem:(WeAppComponentBaseItem*)componentItem
@@ -24,6 +37,18 @@ typedef void(^ReadSuccessCacheBlock)(NSMutableArray* componentItems);
 
 -(void)writeCacheWithApiName:(NSString*)apiName
                    withParam:(NSDictionary*)param
+          componentItemArray:(NSArray*)componentItemArray
+                writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock;
+
+-(void)updateCacheWithApiName:(NSString*)apiName
+                   withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+               componentItem:(WeAppComponentBaseItem*)componentItem
+                writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock;
+
+-(void)updateCacheWithApiName:(NSString*)apiName
+                   withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
           componentItemArray:(NSArray*)componentItemArray
                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock;
 

@@ -10,6 +10,10 @@
 
 @implementation ManWuCommodityDetailModel
 
++(NSString*)getPrimaryKey{
+    return @"itemId";
+}
+
 -(void)setFromDictionary:(NSDictionary *)dict{
     [super setFromDictionary:dict];
     self.skuArray = [NSMutableArray array];

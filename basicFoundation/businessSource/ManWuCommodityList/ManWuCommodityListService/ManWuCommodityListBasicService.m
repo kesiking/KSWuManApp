@@ -34,6 +34,9 @@
     if (self.pagedList) {
         [self.pagedList refresh];
     }
+#ifdef NEEDCACHE
+    self.needCache = YES;
+#endif
     [self loadPagedListWithAPIName:@"item/getCatItems.do" params:params pagination:pageinationItem version:nil];
 }
 

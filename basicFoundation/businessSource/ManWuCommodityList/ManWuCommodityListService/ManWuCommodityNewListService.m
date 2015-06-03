@@ -20,6 +20,9 @@
     if (self.pagedList) {
         [self.pagedList refresh];
     }
+#ifdef NEEDCACHE
+    self.needCache = YES;
+#endif
     [self loadPagedListWithAPIName:@"index/getNewItems.do" params:nil pagination:pageinationItem version:nil];
 }
 

@@ -190,12 +190,14 @@ typedef void(^serviceDidFailLoadBlock) (WeAppBasicService* service,NSError* erro
 #pragma mark cache 操作
 
 /*
+ * 使用KSCacheStrategyTypeRemoteData策略:
  * 只存储dataList pageList item数据类型。
  * 每次updateCache调用时会清除数据库数据。
  * 翻页nextPage不存储数据
+ * 目前版本不支持更新，插入，删除操作，可override后实现
  */
 
-// 重载后可改变默认cache策略
+// 重载后可改变默认cache策略,如KSCacheStrategyTypeUpdate等
 -(void)updateCache;
 
 -(void)readCache;

@@ -353,6 +353,7 @@
 		5F4E404E1B1ECDCB004AE7C0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4E404D1B1ECDCB004AE7C0 /* libsqlite3.dylib */; };
 		5F4E40511B1ED325004AE7C0 /* KSCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40501B1ED325004AE7C0 /* KSCacheService.m */; };
 		5F4E40541B1EDD42004AE7C0 /* KSAdapterCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */; };
+		5F4E40571B1F1246004AE7C0 /* KSCacheStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -1109,6 +1110,8 @@
 		5F4E40501B1ED325004AE7C0 /* KSCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCacheService.m; sourceTree = "<group>"; };
 		5F4E40521B1EDD42004AE7C0 /* KSAdapterCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAdapterCacheService.h; sourceTree = "<group>"; };
 		5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAdapterCacheService.m; sourceTree = "<group>"; };
+		5F4E40551B1F1246004AE7C0 /* KSCacheStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCacheStrategy.h; sourceTree = "<group>"; };
+		5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCacheStrategy.m; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -1576,6 +1579,8 @@
 				05AB565B1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m */,
 				5F4E404F1B1ED325004AE7C0 /* KSCacheService.h */,
 				5F4E40501B1ED325004AE7C0 /* KSCacheService.m */,
+				5F4E40551B1F1246004AE7C0 /* KSCacheStrategy.h */,
+				5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */,
 				055866DF1AD3EAA500A23FFA /* WeAppJsonUtil.h */,
 				055866E01AD3EAA500A23FFA /* WeAppJsonUtil.m */,
 				055866DC1AD3EA7000A23FFA /* WeAppURLStringUtil.h */,
@@ -3349,6 +3354,7 @@
 				0519007D1B04314000C077D5 /* KSTagCellView.m in Sources */,
 				056664731AEDDD2300FD1C65 /* TBDetailUITools.m in Sources */,
 				055C75861ADFBF6000C35854 /* SDWebImageDecoder.m in Sources */,
+				5F4E40571B1F1246004AE7C0 /* KSCacheStrategy.m in Sources */,
 				058DADD41AE52EC0009D0008 /* AFURLRequestSerialization.m in Sources */,
 				050FFD7A1B0310E500721E02 /* ManWuAddressEditViewController.m in Sources */,
 				058BC4021AE89DEF00A4F799 /* KSManWuHomeService.m in Sources */,

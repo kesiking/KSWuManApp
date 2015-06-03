@@ -11,8 +11,6 @@
 #import "KSAdapterCacheService.h"
 #import "KSPageList.h"
 
-//#define NEEDCACHE
-
 @implementation KSAdapterService
 
 -(instancetype)init{
@@ -26,10 +24,8 @@
     KSAdapterNetWork* network = [[KSAdapterNetWork alloc] init];
     [self setNetwork:network];
     [self setPageListClass:[KSPageList class]];
-#ifdef NEEDCACHE
-    self.needCache = YES;
-#endif
     KSAdapterCacheService* cacheService = [KSAdapterCacheService new];
+    cacheService.cacheStrategy.strategyType = KSCacheStrategyTypeRemoteData;
     [self setCacheService:cacheService];
 }
 

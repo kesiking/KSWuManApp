@@ -11,13 +11,23 @@
 
 @implementation KSAdapterCacheService
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        self.cacheStrategy = [KSCacheStrategy new];
+    }
+    return self;
+}
+
 -(void)writeCacheWithApiName:(NSString *)apiName withParam:(NSDictionary *)param componentItem:(WeAppComponentBaseItem *)componentItem writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
     if (componentItem == nil) {
         return;
     }
     componentItem.db_tableName = [self getTableNameFromApiName:apiName];
     BOOL inseted = [[LKDBHelper getUsingLKDBHelper] insertToDB:componentItem];
-    writeSuccessBlock(inseted);
+    if (writeSuccessBlock) {
+        writeSuccessBlock(inseted);
+    }
 }
 
 -(void)writeCacheWithApiName:(NSString*)apiName
@@ -37,7 +47,51 @@
             BOOL inseted = [helper insertToDB:componentItem];
             isSuccess = isSuccess && inseted;
         }
-        writeSuccessBlock(isSuccess);
+        if (writeSuccessBlock) {
+            writeSuccessBlock(isSuccess);
+        }
+        return (isSuccess == YES);
+    }];
+}
+
+-(void)updateCacheWithApiName:(NSString*)apiName
+                    withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+                componentItem:(WeAppComponentBaseItem*)componentItem
+                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (componentItem == nil) {
+        return;
+    }
+    NSString* where = [fetchCondition objectForKey:@"where"];
+    componentItem.db_tableName = [self getTableNameFromApiName:apiName];
+    BOOL inseted = [[LKDBHelper getUsingLKDBHelper] updateToDB:componentItem where:where];
+    if (writeSuccessBlock) {
+        writeSuccessBlock(inseted);
+    }
+}
+
+-(void)updateCacheWithApiName:(NSString*)apiName
+                    withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+           componentItemArray:(NSArray*)componentItemArray
+                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (componentItemArray == nil || [componentItemArray count] <= 0) {
+        return;
+    }
+    NSString* where = [fetchCondition objectForKey:@"where"];
+    [[LKDBHelper getUsingLKDBHelper] executeForTransaction:^BOOL(LKDBHelper *helper) {
+        
+        BOOL isSuccess = YES;
+        for (int i = 0; i < componentItemArray.count; i++)
+        {
+            WeAppComponentBaseItem* componentItem = [componentItemArray objectAtIndex:i];
+            componentItem.db_tableName = [self getTableNameFromApiName:apiName];
+            BOOL inseted = [helper updateToDB:componentItem where:where];
+            isSuccess = isSuccess && inseted;
+        }
+        if (writeSuccessBlock) {
+            writeSuccessBlock(isSuccess);
+        }
         return (isSuccess == YES);
     }];
 }
