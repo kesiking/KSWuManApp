@@ -339,6 +339,18 @@
 		5F4088121B19663200954568 /* manwu_default_address.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F4088101B19663200954568 /* manwu_default_address.png */; };
 		5F4088151B196E7700954568 /* manwu_commodity_sort_like.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F4088131B196E7700954568 /* manwu_commodity_sort_like.png */; };
 		5F4088161B196E7700954568 /* manwu_commodity_sort_price.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F4088141B196E7700954568 /* manwu_commodity_sort_price.png */; };
+		5F4E40421B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E402B1B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.m */; };
+		5F4E40431B1ECD5C004AE7C0 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E402E1B1ECD5C004AE7C0 /* FMDatabase.m */; };
+		5F4E40441B1ECD5C004AE7C0 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40301B1ECD5C004AE7C0 /* FMDatabaseAdditions.m */; };
+		5F4E40451B1ECD5C004AE7C0 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40321B1ECD5C004AE7C0 /* FMDatabasePool.m */; };
+		5F4E40461B1ECD5C004AE7C0 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40341B1ECD5C004AE7C0 /* FMDatabaseQueue.m */; };
+		5F4E40471B1ECD5C004AE7C0 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40361B1ECD5C004AE7C0 /* FMResultSet.m */; };
+		5F4E40481B1ECD5C004AE7C0 /* LKDB+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40391B1ECD5C004AE7C0 /* LKDB+Mapping.m */; };
+		5F4E40491B1ECD5C004AE7C0 /* LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E403B1B1ECD5C004AE7C0 /* LKDBHelper.m */; };
+		5F4E404A1B1ECD5C004AE7C0 /* LKDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E403D1B1ECD5C004AE7C0 /* LKDBUtils.m */; };
+		5F4E404B1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E403F1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.m */; };
+		5F4E404C1B1ECD5C004AE7C0 /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40411B1ECD5C004AE7C0 /* NSObject+LKModel.m */; };
+		5F4E404E1B1ECDCB004AE7C0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4E404D1B1ECDCB004AE7C0 /* libsqlite3.dylib */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -1068,6 +1080,29 @@
 		5F4088101B19663200954568 /* manwu_default_address.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_default_address.png; sourceTree = "<group>"; };
 		5F4088131B196E7700954568 /* manwu_commodity_sort_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_sort_like.png; sourceTree = "<group>"; };
 		5F4088141B196E7700954568 /* manwu_commodity_sort_price.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_sort_price.png; sourceTree = "<group>"; };
+		5F4E402A1B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+InMemoryOnDiskIO.h"; sourceTree = "<group>"; };
+		5F4E402B1B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+InMemoryOnDiskIO.m"; sourceTree = "<group>"; };
+		5F4E402D1B1ECD5C004AE7C0 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		5F4E402E1B1ECD5C004AE7C0 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		5F4E402F1B1ECD5C004AE7C0 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		5F4E40301B1ECD5C004AE7C0 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		5F4E40311B1ECD5C004AE7C0 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		5F4E40321B1ECD5C004AE7C0 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		5F4E40331B1ECD5C004AE7C0 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		5F4E40341B1ECD5C004AE7C0 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		5F4E40351B1ECD5C004AE7C0 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		5F4E40361B1ECD5C004AE7C0 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		5F4E40381B1ECD5C004AE7C0 /* LKDB+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LKDB+Mapping.h"; sourceTree = "<group>"; };
+		5F4E40391B1ECD5C004AE7C0 /* LKDB+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LKDB+Mapping.m"; sourceTree = "<group>"; };
+		5F4E403A1B1ECD5C004AE7C0 /* LKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelper.h; sourceTree = "<group>"; };
+		5F4E403B1B1ECD5C004AE7C0 /* LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBHelper.m; sourceTree = "<group>"; };
+		5F4E403C1B1ECD5C004AE7C0 /* LKDBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBUtils.h; sourceTree = "<group>"; };
+		5F4E403D1B1ECD5C004AE7C0 /* LKDBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBUtils.m; sourceTree = "<group>"; };
+		5F4E403E1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKDBHelper.h"; sourceTree = "<group>"; };
+		5F4E403F1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKDBHelper.m"; sourceTree = "<group>"; };
+		5F4E40401B1ECD5C004AE7C0 /* NSObject+LKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKModel.h"; sourceTree = "<group>"; };
+		5F4E40411B1ECD5C004AE7C0 /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
+		5F4E404D1B1ECDCB004AE7C0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -1161,6 +1196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F4E404E1B1ECDCB004AE7C0 /* libsqlite3.dylib in Frameworks */,
 				058D5CFA1AF1F68E006EA35C /* AlipaySDK.framework in Frameworks */,
 				058D5C911AF1EEFD006EA35C /* Foundation.framework in Frameworks */,
 				058D5CED1AF1F62E006EA35C /* libcrypto.a in Frameworks */,
@@ -1399,6 +1435,7 @@
 		055866801AD3B4F900A23FFA = {
 			isa = PBXGroup;
 			children = (
+				5F4E404D1B1ECDCB004AE7C0 /* libsqlite3.dylib */,
 				058D5C901AF1EEFC006EA35C /* Foundation.framework */,
 				058D5BBA1AF0F992006EA35C /* libxml2.dylib */,
 				058D5B701AF0F405006EA35C /* libz.dylib */,
@@ -1472,6 +1509,8 @@
 		055866B31AD3B63100A23FFA /* libary */ = {
 			isa = PBXGroup;
 			children = (
+				5F4E40281B1ECD5C004AE7C0 /* FMDB */,
+				5F4E40371B1ECD5C004AE7C0 /* FMDBHelper */,
 				5F214C551B158F990081BA02 /* SVWebViewController */,
 				058D5C921AF1F62E006EA35C /* AliPaySDK */,
 				0566646D1AEDDC5500FD1C65 /* KSHintView */,
@@ -2738,6 +2777,58 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		5F4E40281B1ECD5C004AE7C0 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				5F4E40291B1ECD5C004AE7C0 /* extra */,
+				5F4E402C1B1ECD5C004AE7C0 /* src */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
+		5F4E40291B1ECD5C004AE7C0 /* extra */ = {
+			isa = PBXGroup;
+			children = (
+				5F4E402A1B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.h */,
+				5F4E402B1B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.m */,
+			);
+			path = extra;
+			sourceTree = "<group>";
+		};
+		5F4E402C1B1ECD5C004AE7C0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				5F4E402D1B1ECD5C004AE7C0 /* FMDatabase.h */,
+				5F4E402E1B1ECD5C004AE7C0 /* FMDatabase.m */,
+				5F4E402F1B1ECD5C004AE7C0 /* FMDatabaseAdditions.h */,
+				5F4E40301B1ECD5C004AE7C0 /* FMDatabaseAdditions.m */,
+				5F4E40311B1ECD5C004AE7C0 /* FMDatabasePool.h */,
+				5F4E40321B1ECD5C004AE7C0 /* FMDatabasePool.m */,
+				5F4E40331B1ECD5C004AE7C0 /* FMDatabaseQueue.h */,
+				5F4E40341B1ECD5C004AE7C0 /* FMDatabaseQueue.m */,
+				5F4E40351B1ECD5C004AE7C0 /* FMResultSet.h */,
+				5F4E40361B1ECD5C004AE7C0 /* FMResultSet.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		5F4E40371B1ECD5C004AE7C0 /* FMDBHelper */ = {
+			isa = PBXGroup;
+			children = (
+				5F4E40381B1ECD5C004AE7C0 /* LKDB+Mapping.h */,
+				5F4E40391B1ECD5C004AE7C0 /* LKDB+Mapping.m */,
+				5F4E403A1B1ECD5C004AE7C0 /* LKDBHelper.h */,
+				5F4E403B1B1ECD5C004AE7C0 /* LKDBHelper.m */,
+				5F4E403C1B1ECD5C004AE7C0 /* LKDBUtils.h */,
+				5F4E403D1B1ECD5C004AE7C0 /* LKDBUtils.m */,
+				5F4E403E1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.h */,
+				5F4E403F1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.m */,
+				5F4E40401B1ECD5C004AE7C0 /* NSObject+LKModel.h */,
+				5F4E40411B1ECD5C004AE7C0 /* NSObject+LKModel.m */,
+			);
+			path = FMDBHelper;
+			sourceTree = "<group>";
+		};
 		5F9216231B1077B900554B44 /* ManWuDiscoverService */ = {
 			isa = PBXGroup;
 			children = (
@@ -3096,6 +3187,7 @@
 				0553F7941AFA1F7A0013BB97 /* ManWuViewCell.m in Sources */,
 				0519007A1B035F1000C077D5 /* KSTagListLayoutView.m in Sources */,
 				5FD45EC51B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m in Sources */,
+				5F4E40421B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				052CC6C01AF86D1A00AF7C78 /* KSSearchBasicView.m in Sources */,
 				058D5D001AF210C0006EA35C /* ManWuBuyBasicView.m in Sources */,
 				058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */,
@@ -3141,6 +3233,7 @@
 				051900871B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m in Sources */,
 				055C758A1ADFBF6000C35854 /* SDWebImagePrefetcher.m in Sources */,
 				05ACAC941AFC9FC800853E1C /* KSErrorView.m in Sources */,
+				5F4E404B1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.m in Sources */,
 				058D5A9F1AF0B39B006EA35C /* DetailHUDActivityView.m in Sources */,
 				056664361AEB284F00FD1C65 /* KSCollectionViewConfigObject.m in Sources */,
 				05AF2FF21B003F2800890A65 /* TBBlurView.m in Sources */,
@@ -3148,6 +3241,7 @@
 				0553F7911AFA1F7A0013BB97 /* ManWuCommoditySortAndFiltView.m in Sources */,
 				056677AF1AF075A000FD1C65 /* ManWuBasicModel.m in Sources */,
 				91E2D0711B1761C500946A32 /* ManWuLoginViewController.m in Sources */,
+				5F4E40451B1ECD5C004AE7C0 /* FMDatabasePool.m in Sources */,
 				056664DF1AEF589400FD1C65 /* TBJSONModelProperty.m in Sources */,
 				055C75911ADFBF6000C35854 /* UIView+WebCacheOperation.m in Sources */,
 				056677B31AF081E200FD1C65 /* ManWuCommodityDetailService.m in Sources */,
@@ -3161,6 +3255,7 @@
 				052CC67B1AF357A800AF7C78 /* WeAppTableViewCell.m in Sources */,
 				056664E41AEF5F7700FD1C65 /* NSArray+TBJSONModel.m in Sources */,
 				0566646C1AEDDB7000FD1C65 /* TBDetailSystemUtil.m in Sources */,
+				5F4E40441B1ECD5C004AE7C0 /* FMDatabaseAdditions.m in Sources */,
 				91E2D05B1B1761C500946A32 /* CustomImagePickerController.m in Sources */,
 				058BC4081AE89F1500A4F799 /* ManWuCommodityListViewController.m in Sources */,
 				058D5CF41AF1F62E006EA35C /* openssl_wrapper.m in Sources */,
@@ -3185,6 +3280,7 @@
 				5FD45ED61B1C04D90064BA31 /* ManWuCommoditySearchListView.m in Sources */,
 				0566648B1AEE0B1C00FD1C65 /* TBDetailSkuPropsModel.m in Sources */,
 				058BC3FA1AE89DA700A4F799 /* KSManWuTabBarViewController.m in Sources */,
+				5F4E404C1B1ECD5C004AE7C0 /* NSObject+LKModel.m in Sources */,
 				91E2D06D1B1761C500946A32 /* ManWuMyInfoViewController.m in Sources */,
 				052CC68F1AF7198B00AF7C78 /* WeAppBasicBannerView.m in Sources */,
 				5F214C8D1B16B3810081BA02 /* ManWuCommoditySKUDetailModel.m in Sources */,
@@ -3209,6 +3305,7 @@
 				0553F78F1AFA1F7A0013BB97 /* ManWuCommodityListView.m in Sources */,
 				055C75981ADFC6CA00C35854 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				05AF30201B005A8500890A65 /* ManWuFavService.m in Sources */,
+				5F4E40491B1ECD5C004AE7C0 /* LKDBHelper.m in Sources */,
 				052CC68D1AF7198B00AF7C78 /* UIColor+WeAppColor.m in Sources */,
 				5F214C7F1B158F990081BA02 /* SVWebViewControllerActivitySafari.m in Sources */,
 				5F214C901B16B6EF0081BA02 /* ManWuTradeSKUSelectionControl.m in Sources */,
@@ -3245,6 +3342,7 @@
 				050FFD7A1B0310E500721E02 /* ManWuAddressEditViewController.m in Sources */,
 				058BC4021AE89DEF00A4F799 /* KSManWuHomeService.m in Sources */,
 				058DADAD1AE10FF7009D0008 /* RDVTabBar.m in Sources */,
+				5F4E40481B1ECD5C004AE7C0 /* LKDB+Mapping.m in Sources */,
 				0566643D1AEB284F00FD1C65 /* WeAppLoadingView.m in Sources */,
 				056664D51AEF2FC600FD1C65 /* TBDetailSKUModelAndService.m in Sources */,
 				0566644E1AEC7A1500FD1C65 /* KSTableViewController.m in Sources */,
@@ -3255,6 +3353,7 @@
 				0566641E1AEB225F00FD1C65 /* MBProgressHUD.m in Sources */,
 				050FFD701B02F9E000721E02 /* ManWuAddressEditView.m in Sources */,
 				055C75881ADFBF6000C35854 /* SDWebImageDownloaderOperation.m in Sources */,
+				5F4E40461B1ECD5C004AE7C0 /* FMDatabaseQueue.m in Sources */,
 				05AF30231B005B6400890A65 /* ManWuPraiseService.m in Sources */,
 				058DADCF1AE52EC0009D0008 /* AFHTTPRequestOperationManager.m in Sources */,
 				050FFD7F1B0339A400721E02 /* ManWuAddressSetDefaultView.m in Sources */,
@@ -3279,6 +3378,7 @@
 				056664C51AEF206400FD1C65 /* TBDetailTipsModel.m in Sources */,
 				05B8DF5A1AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m in Sources */,
 				056664941AEE12C400FD1C65 /* ManWuDetailBottomBarView.m in Sources */,
+				5F4E404A1B1ECD5C004AE7C0 /* LKDBUtils.m in Sources */,
 				056664BF1AEF1FF600FD1C65 /* TBDetailSKUPriceAndQuanitiyModel.m in Sources */,
 				058D5CF11AF1F62E006EA35C /* DataVerifier.m in Sources */,
 				058DADCE1AE52EC0009D0008 /* AFHTTPRequestOperation.m in Sources */,
@@ -3326,10 +3426,12 @@
 				058DADD11AE52EC0009D0008 /* AFNetworkReachabilityManager.m in Sources */,
 				052CC69F1AF744CC00AF7C78 /* ManWuCommodityDescriptionBasicView.m in Sources */,
 				0553F7721AFA16490013BB97 /* ManWuCommoditySortForDiscountListView.m in Sources */,
+				5F4E40471B1ECD5C004AE7C0 /* FMResultSet.m in Sources */,
 				056664701AEDDC5500FD1C65 /* WeAppToast.m in Sources */,
 				058DADD51AE52EC0009D0008 /* AFURLResponseSerialization.m in Sources */,
 				058BC3FD1AE89DA700A4F799 /* ManWuDiscoverViewController.m in Sources */,
 				5F214C811B158F990081BA02 /* SVWebViewControllerActivity.m in Sources */,
+				5F4E40431B1ECD5C004AE7C0 /* FMDatabase.m in Sources */,
 				05ACAC5C1AFB4ADA00853E1C /* ManWuCommodityDeleteBottom.m in Sources */,
 				056664A41AEE308300FD1C65 /* UIViewController+KNSemiModal.m in Sources */,
 				0566643B1AEB284F00FD1C65 /* KSScrollViewController.m in Sources */,
