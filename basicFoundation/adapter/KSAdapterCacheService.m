@@ -23,6 +23,9 @@
     if (componentItem == nil) {
         return;
     }
+    if (self.cacheStrategy.strategyType == KSCacheStrategyTypeRemoteData) {
+        [self clearCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemClass:[componentItem class]];
+    }
     componentItem.db_tableName = [self getTableNameFromApiName:apiName];
     BOOL inseted = [[LKDBHelper getUsingLKDBHelper] insertToDB:componentItem];
     if (writeSuccessBlock) {
@@ -36,6 +39,10 @@
                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
     if (componentItemArray == nil || [componentItemArray count] <= 0) {
         return;
+    }
+    
+    if (self.cacheStrategy.strategyType == KSCacheStrategyTypeRemoteData) {
+        [self clearCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemClass:[[componentItemArray lastObject] class]];
     }
     [[LKDBHelper getUsingLKDBHelper] executeForTransaction:^BOOL(LKDBHelper *helper) {
         

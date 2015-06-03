@@ -314,17 +314,13 @@
 #pragma mark cache 操作
 
 -(void)updateCache{
-    if (self.needCache
-        && self.cacheService.cacheStrategy.strategyType == KSCacheStrategyTypeRemoteData) {
+    if (self.needCache) {
         if (self.requestModel.returnDataType == WeAppDataTypeItem) {
-            [self.cacheService clearCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:[self.cacheService.fetchConditionDict objectForKey:self.apiName] componentItemClass:self.itemClass];
             [self.cacheService writeCacheWithApiName:self.apiName withParam:self.requestModel.params componentItem:self.item writeSuccess:nil];
         }else if (self.requestModel.returnDataType == WeAppDataTypeArray){
-            [self.cacheService clearCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:[self.cacheService.fetchConditionDict objectForKey:self.apiName] componentItemClass:self.itemClass];
             [self.cacheService writeCacheWithApiName:self.apiName withParam:self.requestModel.params componentItemArray:self.dataList writeSuccess:nil];
         }else if(self.requestModel.returnDataType == WeAppDataTypePagedList){
             if (self.pagedList && [self.pagedList isRefresh]) {
-                [self.cacheService clearCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:[self.cacheService.fetchConditionDict objectForKey:self.apiName] componentItemClass:self.itemClass];
                 [self.cacheService writeCacheWithApiName:self.apiName withParam:self.requestModel.params componentItemArray:[self.pagedList getItemList] writeSuccess:^(BOOL success) {
                     
                 }];
@@ -334,8 +330,7 @@
 }
 
 -(void)readCache{
-    if (self.needCache
-        && self.cacheService.cacheStrategy.strategyType == KSCacheStrategyTypeRemoteData) {
+    if (self.needCache) {
         if (self.requestModel.returnDataType == WeAppDataTypeItem
             || self.requestModel.returnDataType == WeAppDataTypeArray
             || self.requestModel.returnDataType == WeAppDataTypePagedList) {
