@@ -494,6 +494,13 @@
     [self requestDidLoad];
 }
 
+-(void)serviceCacheDidLoad:(WeAppBasicService *)service cacheData:(NSArray*)cacheData{
+    if (service && service.apiName && cacheData && [cacheData count] > 0) {
+        [self setupDataList:cacheData];
+        [self requestDidLoad];
+    }
+}
+
 -(void)setupDataList:(NSArray*)array{
     if ([self needQueueLoadData]) {
         // 如果首次进入页面或是页面一直没有数据则主线程更新

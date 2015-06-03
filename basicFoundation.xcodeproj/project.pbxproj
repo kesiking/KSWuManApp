@@ -351,6 +351,8 @@
 		5F4E404B1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E403F1B1ECD5C004AE7C0 /* NSObject+LKDBHelper.m */; };
 		5F4E404C1B1ECD5C004AE7C0 /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40411B1ECD5C004AE7C0 /* NSObject+LKModel.m */; };
 		5F4E404E1B1ECDCB004AE7C0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4E404D1B1ECDCB004AE7C0 /* libsqlite3.dylib */; };
+		5F4E40511B1ED325004AE7C0 /* KSCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40501B1ED325004AE7C0 /* KSCacheService.m */; };
+		5F4E40541B1EDD42004AE7C0 /* KSAdapterCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -1103,6 +1105,10 @@
 		5F4E40401B1ECD5C004AE7C0 /* NSObject+LKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKModel.h"; sourceTree = "<group>"; };
 		5F4E40411B1ECD5C004AE7C0 /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
 		5F4E404D1B1ECDCB004AE7C0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5F4E404F1B1ED325004AE7C0 /* KSCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCacheService.h; sourceTree = "<group>"; };
+		5F4E40501B1ED325004AE7C0 /* KSCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCacheService.m; sourceTree = "<group>"; };
+		5F4E40521B1EDD42004AE7C0 /* KSAdapterCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSAdapterCacheService.h; sourceTree = "<group>"; };
+		5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAdapterCacheService.m; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -1568,6 +1574,8 @@
 				055866CA1AD3E05B00A23FFA /* WeAppBasicRequestModel.m */,
 				05AB565A1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.h */,
 				05AB565B1ADF9EB900BB8EC9 /* BasicNetWorkAdapter.m */,
+				5F4E404F1B1ED325004AE7C0 /* KSCacheService.h */,
+				5F4E40501B1ED325004AE7C0 /* KSCacheService.m */,
 				055866DF1AD3EAA500A23FFA /* WeAppJsonUtil.h */,
 				055866E01AD3EAA500A23FFA /* WeAppJsonUtil.m */,
 				055866DC1AD3EA7000A23FFA /* WeAppURLStringUtil.h */,
@@ -2384,6 +2392,8 @@
 				050FFD2D1B02DFA400721E02 /* KSModelDemo.m */,
 				058DADE31AE5E0E6009D0008 /* KSAdapterNetWork.h */,
 				058DADE41AE5E0E6009D0008 /* KSAdapterNetWork.m */,
+				5F4E40521B1EDD42004AE7C0 /* KSAdapterCacheService.h */,
+				5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */,
 				05D5F2C41B00CBE4002EF23D /* KSAuthenticationCenter.h */,
 				05D5F2C51B00CBE4002EF23D /* KSAuthenticationCenter.m */,
 				5FBA06211B0E011F00852188 /* KSPaginationItem.h */,
@@ -3186,6 +3196,7 @@
 				91E2D06F1B1761C500946A32 /* ManWuPersonInfoViewController.m in Sources */,
 				0553F7941AFA1F7A0013BB97 /* ManWuViewCell.m in Sources */,
 				0519007A1B035F1000C077D5 /* KSTagListLayoutView.m in Sources */,
+				5F4E40541B1EDD42004AE7C0 /* KSAdapterCacheService.m in Sources */,
 				5FD45EC51B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m in Sources */,
 				5F4E40421B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				052CC6C01AF86D1A00AF7C78 /* KSSearchBasicView.m in Sources */,
@@ -3393,6 +3404,7 @@
 				055C75821ADFBF6000C35854 /* MKAnnotationView+WebCache.m in Sources */,
 				056664351AEB284F00FD1C65 /* KSCollectionViewCell.m in Sources */,
 				5F4087FA1B1949FF00954568 /* XHPopMenu.m in Sources */,
+				5F4E40511B1ED325004AE7C0 /* KSCacheService.m in Sources */,
 				052CC6DE1AF9E85900AF7C78 /* ManWuCommoditySortAndFiltModel.m in Sources */,
 				056664C81AEF22AA00FD1C65 /* TBDetailInputViewModel.m in Sources */,
 				058D5D1A1AF22164006EA35C /* ManWuDeliveryView.m in Sources */,

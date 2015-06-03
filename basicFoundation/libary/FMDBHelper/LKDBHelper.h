@@ -111,6 +111,8 @@
  */
 -(NSMutableArray*)search:(Class)modelClass where:(id)where orderBy:(NSString*)orderBy offset:(NSInteger)offset count:(NSInteger)count;
 
+- (NSMutableArray *)searchBase:(Class)modelClass tableName:(NSString*)tableName columns:(id)columns where:(id)where orderBy:(NSString *)orderBy offset:(NSInteger)offset count:(NSInteger)count;
+
 /**
  *  query sql, query finished result is an array(model instance collection)
  *  you can use the "@t" replace Model TableName

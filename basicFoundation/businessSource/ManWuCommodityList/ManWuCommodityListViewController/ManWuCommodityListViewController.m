@@ -48,4 +48,8 @@
     return _commodityListView;
 }
 
+-(void)refreshDataRequest{
+    [self.commodityListView loadDataWithParams:@{@"actIdKey":self.actId?:defaultActIdKey,@"filtKey":self.cid?:defaultCidKey,@"sortKey":defaultSortKey}];
+}
+
 @end

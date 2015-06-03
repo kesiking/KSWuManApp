@@ -62,6 +62,7 @@
 -(void)loadItemWithAPIName:(NSString *)apiName params:(NSDictionary *)params version:(NSString *)version{
     self.apiName = apiName;
     self.version = version;
+    
     [self.requestModel loadItemWithAPIName:apiName params:params version:version];
 }
 
@@ -310,6 +311,56 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark cache 操作
+
+-(void)updateCache{
+    if (self.needCache) {
+        if (self.requestModel.returnDataType == WeAppDataTypeItem) {
+            [self.cacheService clearCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:nil componentItemClass:self.itemClass];
+            [self.cacheService writeCacheWithApiName:self.apiName withParam:self.requestModel.params componentItem:self.item writeSuccess:^(BOOL success) {
+                
+            }];
+        }else if (self.requestModel.returnDataType == WeAppDataTypeArray){
+            [self.cacheService clearCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:nil componentItemClass:self.itemClass];
+            [self.cacheService writeCacheWithApiName:self.apiName withParam:self.requestModel.params componentItemArray:self.dataList writeSuccess:^(BOOL success) {
+                
+            }];
+        }else if(self.requestModel.returnDataType == WeAppDataTypePagedList){
+            if (self.pagedList && [self.pagedList isRefresh]) {
+                [self.cacheService clearCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:nil componentItemClass:self.itemClass];
+                [self.cacheService writeCacheWithApiName:self.apiName withParam:self.requestModel.params componentItemArray:[self.pagedList getItemList] writeSuccess:^(BOOL success) {
+                    
+                }];
+            }
+        }
+    }
+}
+
+-(void)readCache{
+    if (self.needCache) {
+        if (self.requestModel.returnDataType == WeAppDataTypeItem
+            || self.requestModel.returnDataType == WeAppDataTypeArray
+            || self.requestModel.returnDataType == WeAppDataTypePagedList) {
+            // 翻页逻辑不读取cache数据
+            if (self.requestModel.returnDataType == WeAppDataTypePagedList
+                && self.pagedList && ![self.pagedList isRefresh]) {
+                return;
+            }
+            [self.cacheService readCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:nil componentItemClass:self.itemClass readSuccess:^(NSMutableArray *componentItems) {
+                if (componentItems && [componentItems count] > 0 && self.delegate && [self.delegate respondsToSelector:@selector(serviceCacheDidLoad:cacheData:)]) {
+                    [self.delegate performSelector:@selector(serviceCacheDidLoad:cacheData:) withObject:self withObject:componentItems];
+                }
+                if (componentItems && [componentItems count] > 0 && self.serviceCacheDidLoadBlock) {
+                    self.serviceCacheDidLoadBlock(self,componentItems);
+                }
+            }];
+        }
+
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark TBRequestModelDelegate
 -(void)modelDidCancelLoad:(WeAppBasicRequestModel *)model {
     if (self.delegate && [self.delegate respondsToSelector:@selector(serviceDidCancelLoad:)]) {
@@ -322,6 +373,9 @@
 
 -(void)modelDidFinishLoad:(WeAppBasicRequestModel *)model {
     @try {
+        // todo update cache
+        [self updateCache];
+        // call back
         if (self.delegate && [self.delegate respondsToSelector:@selector(serviceDidFinishLoad:)]) {
             [self.delegate performSelector:@selector(serviceDidFinishLoad:) withObject:self];
         }
@@ -343,6 +397,7 @@
         if (self.serviceDidStartLoadBlock) {
             self.serviceDidStartLoadBlock(self);
         }
+        [self readCache];
     }
     @catch (NSException *exception) {
         self.delegate = nil;

@@ -29,6 +29,13 @@
 
 @implementation ManWuTradeDetailSKUService
 
++(BOOL)dbWillInsert:(NSObject *)entity{
+    return NO;
+}
+
++(BOOL)dbWillUpdate:(NSObject *)entity{
+    return NO;
+}
 
 - (void)initProperties {
     _allPids = [NSMutableArray array];

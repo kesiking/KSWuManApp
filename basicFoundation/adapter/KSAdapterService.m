@@ -8,7 +8,10 @@
 
 #import "KSAdapterService.h"
 #import "KSAdapterNetWork.h"
+#import "KSAdapterCacheService.h"
 #import "KSPageList.h"
+
+//#define NEEDCACHE
 
 @implementation KSAdapterService
 
@@ -23,6 +26,11 @@
     KSAdapterNetWork* network = [[KSAdapterNetWork alloc] init];
     [self setNetwork:network];
     [self setPageListClass:[KSPageList class]];
+#ifdef NEEDCACHE
+    self.needCache = YES;
+#endif
+    KSAdapterCacheService* cacheService = [KSAdapterCacheService new];
+    [self setCacheService:cacheService];
 }
 
 @end

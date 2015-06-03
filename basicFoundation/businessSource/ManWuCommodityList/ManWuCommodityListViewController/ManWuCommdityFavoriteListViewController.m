@@ -71,4 +71,8 @@
     return _favListService;
 }
 
+-(void)refreshDataRequest{
+    [self.favListService loadCommodityFavorateData];
+}
+
 @end

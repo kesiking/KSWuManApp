@@ -885,26 +885,32 @@
 
 - (NSMutableArray *)searchBase:(Class)modelClass columns:(id)columns where:(id)where orderBy:(NSString *)orderBy offset:(NSInteger)offset count:(NSInteger)count
 {
+    return [self searchBase:modelClass tableName:nil columns:columns where:where orderBy:orderBy offset:offset count:count];
+}
+
+- (NSMutableArray *)searchBase:(Class)modelClass tableName:(NSString*)tableName columns:(id)columns where:(id)where orderBy:(NSString *)orderBy offset:(NSInteger)offset count:(NSInteger)count
+{
     LKDBQueryParams *params = [[LKDBQueryParams alloc]init];
-
+    
     params.toClass = modelClass;
-
+    params.tableName = tableName;
+    
     if ([columns isKindOfClass:[NSArray class]]) {
         params.columnArray = columns;
     } else if ([columns isKindOfClass:[NSString class]]) {
         params.columns = columns;
     }
-
+    
     if ([where isKindOfClass:[NSDictionary class]]) {
         params.whereDic = where;
     } else if ([where isKindOfClass:[NSString class]]) {
         params.where = where;
     }
-
+    
     params.orderBy = orderBy;
     params.offset = offset;
     params.count = count;
-
+    
     return [self searchBaseWithParams:params];
 }
 

@@ -46,6 +46,7 @@
     [self.view addSubview:self.commodityDetailView];
     [self.view addSubview:self.confirmButton];
     [self.service loadCommodityDetailInfoWithItemId:self.itemId];
+    [self showLoadingView];
     /*
      NSDictionary* dict = @{@"skuTitle":@"titleTest",@"skuDetailModel":@{@"skuModel":@{@"skuTitle":@"skuTitleTest1",@"skus":@{@"quantity":@2},@"skuProps":@[@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest",@"values":@[@{@"name":@"nameTest"},@{@"name":@"nameTest1"}]},@{@"propName":@"propNameTest2",@"values":@[@{@"name":@"nameTest2"},@{@"name":@"nameTest3"}]}]}}};
      self.detailModel = [ManWuCommodityDetailModel modelWithJSON:dict];
@@ -77,10 +78,20 @@
                 [strongSelf.commodityDetailView setDescriptionModel:strongSelf.detailModel];
                 [strongSelf reloadData];
             }
-            
+            [strongSelf hideLoadingView];
+        };
+        
+        _service.serviceDidFailLoadBlock = ^(WeAppBasicService* service,NSError* error){
+            STRONGSELF
+            [strongSelf hideLoadingView];
+            [strongSelf showErrorView:error];
         };
     }
     return _service;
+}
+
+-(void)refreshDataRequest{
+    [self.service loadCommodityDetailInfoWithItemId:self.itemId];
 }
 
 -(ManWuCommodityView *)commodityDetailView{
