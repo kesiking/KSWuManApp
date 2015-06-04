@@ -40,18 +40,6 @@ typedef void(^ReadSuccessCacheBlock)(NSMutableArray* componentItems);
           componentItemArray:(NSArray*)componentItemArray
                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock;
 
--(void)updateCacheWithApiName:(NSString*)apiName
-                   withParam:(NSDictionary*)param
-           withFetchCondition:(NSDictionary*)fetchCondition
-               componentItem:(WeAppComponentBaseItem*)componentItem
-                writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock;
-
--(void)updateCacheWithApiName:(NSString*)apiName
-                   withParam:(NSDictionary*)param
-           withFetchCondition:(NSDictionary*)fetchCondition
-          componentItemArray:(NSArray*)componentItemArray
-                writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock;
-
 -(void)readCacheWithApiName:(NSString*)apiName
                    withParam:(NSDictionary*)param
          withFetchCondition:(NSDictionary*)fetchCondition

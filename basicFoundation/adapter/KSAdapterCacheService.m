@@ -19,12 +19,39 @@
     return self;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark- write cache value with single item
+// write cache value with single item
 -(void)writeCacheWithApiName:(NSString *)apiName withParam:(NSDictionary *)param componentItem:(WeAppComponentBaseItem *)componentItem writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
     if (componentItem == nil) {
         return;
     }
     if (self.cacheStrategy.strategyType == KSCacheStrategyTypeRemoteData) {
         [self clearCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemClass:[componentItem class]];
+        [self insertCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItem:componentItem writeSuccess:writeSuccessBlock];
+    }else if (self.cacheStrategy.strategyType == KSCacheStrategyTypeInsert){
+        [self insertCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItem:componentItem writeSuccess:writeSuccessBlock];
+    }else if (self.cacheStrategy.strategyType == KSCacheStrategyTypeUpdate){
+        [self updateCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItem:componentItem writeSuccess:writeSuccessBlock];
+    }else if (self.cacheStrategy.strategyType == KSCacheStrategyTypeDelete){
+        [self deleteCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItem:componentItem writeSuccess:writeSuccessBlock];
+    }
+}
+
+-(void)insertCacheWithApiName:(NSString*)apiName
+                    withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+                componentItem:(WeAppComponentBaseItem*)componentItem
+                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
+    if (componentItem == nil) {
+        return;
     }
     componentItem.db_tableName = [self getTableNameFromApiName:apiName];
     BOOL inseted = [[LKDBHelper getUsingLKDBHelper] insertToDB:componentItem];
@@ -33,16 +60,80 @@
     }
 }
 
+-(void)updateCacheWithApiName:(NSString*)apiName
+                    withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+                componentItem:(WeAppComponentBaseItem*)componentItem
+                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
+    if (componentItem == nil) {
+        return;
+    }
+    NSString* where = [fetchCondition objectForKey:@"where"];
+    componentItem.db_tableName = [self getTableNameFromApiName:apiName];
+    BOOL inseted = [[LKDBHelper getUsingLKDBHelper] updateToDB:componentItem where:where];
+    if (writeSuccessBlock) {
+        writeSuccessBlock(inseted);
+    }
+}
+
+-(void)deleteCacheWithApiName:(NSString*)apiName
+                    withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+                componentItem:(WeAppComponentBaseItem*)componentItem
+                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
+    if (componentItem == nil) {
+        return;
+    }
+    componentItem.db_tableName = [self getTableNameFromApiName:apiName];
+    BOOL inseted = [[LKDBHelper getUsingLKDBHelper] deleteToDB:componentItem];
+    if (writeSuccessBlock) {
+        writeSuccessBlock(inseted);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark- write cache value with item array
+// write cache value with item array
 -(void)writeCacheWithApiName:(NSString*)apiName
                    withParam:(NSDictionary*)param
           componentItemArray:(NSArray*)componentItemArray
                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
     if (componentItemArray == nil || [componentItemArray count] <= 0) {
         return;
     }
     
     if (self.cacheStrategy.strategyType == KSCacheStrategyTypeRemoteData) {
         [self clearCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemClass:[[componentItemArray lastObject] class]];
+        [self insertCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemArray:componentItemArray writeSuccess:writeSuccessBlock];
+    }else if (self.cacheStrategy.strategyType == KSCacheStrategyTypeInsert){
+        [self insertCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemArray:componentItemArray writeSuccess:writeSuccessBlock];
+    }else if (self.cacheStrategy.strategyType == KSCacheStrategyTypeUpdate){
+        [self updateCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemArray:componentItemArray writeSuccess:writeSuccessBlock];
+    }else if (self.cacheStrategy.strategyType == KSCacheStrategyTypeDelete){
+        [self deleteCacheWithApiName:apiName withParam:param withFetchCondition:[self.fetchConditionDict objectForKey:apiName] componentItemArray:componentItemArray writeSuccess:writeSuccessBlock];
+    }
+}
+
+-(void)insertCacheWithApiName:(NSString*)apiName
+                    withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+           componentItemArray:(NSArray*)componentItemArray
+                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
+    if (componentItemArray == nil || [componentItemArray count] <= 0) {
+        return;
     }
     [[LKDBHelper getUsingLKDBHelper] executeForTransaction:^BOOL(LKDBHelper *helper) {
         
@@ -64,24 +155,11 @@
 -(void)updateCacheWithApiName:(NSString*)apiName
                     withParam:(NSDictionary*)param
            withFetchCondition:(NSDictionary*)fetchCondition
-                componentItem:(WeAppComponentBaseItem*)componentItem
-                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
-    if (componentItem == nil) {
-        return;
-    }
-    NSString* where = [fetchCondition objectForKey:@"where"];
-    componentItem.db_tableName = [self getTableNameFromApiName:apiName];
-    BOOL inseted = [[LKDBHelper getUsingLKDBHelper] updateToDB:componentItem where:where];
-    if (writeSuccessBlock) {
-        writeSuccessBlock(inseted);
-    }
-}
-
--(void)updateCacheWithApiName:(NSString*)apiName
-                    withParam:(NSDictionary*)param
-           withFetchCondition:(NSDictionary*)fetchCondition
            componentItemArray:(NSArray*)componentItemArray
                  writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
     if (componentItemArray == nil || [componentItemArray count] <= 0) {
         return;
     }
@@ -102,6 +180,38 @@
         return (isSuccess == YES);
     }];
 }
+
+-(void)deleteCacheWithApiName:(NSString*)apiName
+                    withParam:(NSDictionary*)param
+           withFetchCondition:(NSDictionary*)fetchCondition
+           componentItemArray:(NSArray*)componentItemArray
+                 writeSuccess:(WriteSuccessCacheBlock)writeSuccessBlock{
+    if (apiName == nil) {
+        return;
+    }
+    if (componentItemArray == nil || [componentItemArray count] <= 0) {
+        return;
+    }
+    [[LKDBHelper getUsingLKDBHelper] executeForTransaction:^BOOL(LKDBHelper *helper) {
+        
+        BOOL isSuccess = YES;
+        for (int i = 0; i < componentItemArray.count; i++)
+        {
+            WeAppComponentBaseItem* componentItem = [componentItemArray objectAtIndex:i];
+            componentItem.db_tableName = [self getTableNameFromApiName:apiName];
+            BOOL inseted = [helper deleteToDB:componentItem];
+            isSuccess = isSuccess && inseted;
+        }
+        if (writeSuccessBlock) {
+            writeSuccessBlock(isSuccess);
+        }
+        return (isSuccess == YES);
+    }];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark- read cache value
 
 -(void)readCacheWithApiName:(NSString *)apiName
                   withParam:(NSDictionary *)param
@@ -127,6 +237,10 @@
     readSuccessBlock(componentItems);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark- clear cache value
+
 -(void)clearCacheWithApiName:(NSString*)apiName
                    withParam:(NSDictionary*)param
           withFetchCondition:(NSDictionary*)fetchCondition
@@ -137,6 +251,10 @@
     [[LKDBHelper getUsingLKDBHelper] deleteWithTableName:[self getTableNameFromApiName:apiName] where:where];
     
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark- common method
 
 -(NSString*)getTableNameFromApiName:(NSString*)apiName{
     NSString* tableName = [apiName stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
