@@ -38,6 +38,7 @@
     
     
     [self initCSLineLayoutView];
+    [self initUserInfoView];
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.table.delegate = self;
     self.table.dataSource = self;
@@ -49,16 +50,6 @@
     [super viewWillAppear:animated];
     // 查看是否登陆，如果未登陆则跳出登陆
     [self checkLogin];
-    
-    if(_userInfoView)
-    {
-        [_userInfoView removeFromSuperview];
-    }
-    
-    [self initUserInfoView];
-    
-    [self.table reloadData];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -106,49 +97,25 @@
 
 - (void)initUserInfoView
 {
-    if([KSUserInfoModel sharedConstant].isLogined)
-    {
-        _userInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
-        //_userInfoView.backgroundColor = [UIColor clearColor];
-        UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, _userInfoView.height/2 - 30, 60, 60)];
-        headImageView.layer.cornerRadius = 30;
-        //headImageView.layer.borderWidth = 1;
-        NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];
-        [headImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"tabitem_home_highlight"]];
-        [_userInfoView addSubview:headImageView];
-        
-        UILabel *lab_userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMinY(headImageView.frame) +5, 150, 20)];
-        lab_userName.font = [UIFont systemFontOfSize:18];
-        lab_userName.text = @"USER NAME";
-        [_userInfoView addSubview:lab_userName];
-        
-        UIButton *btn_edit = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMaxY(headImageView.frame) - 25, 20, 20)];
-        [btn_edit setTitle:@"" forState:UIControlStateNormal];
-        [btn_edit addTarget:self action:@selector(gotoEdit) forControlEvents:UIControlEventTouchUpInside];
-        btn_edit.backgroundColor = [UIColor grayColor];
-        [_userInfoView addSubview:btn_edit];
-
-        return;
-    }
     _userInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
     //_userInfoView.backgroundColor = [UIColor clearColor];
-    UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(_userInfoView.width/2 - 30, _userInfoView.height/2 - 30, 60, 60)];
+    UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, _userInfoView.height/2 - 30, 60, 60)];
     headImageView.layer.cornerRadius = 30;
     //headImageView.layer.borderWidth = 1;
-    headImageView.backgroundColor = [UIColor grayColor];
+    NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];
+    [headImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"tabitem_home_highlight"]];
     [_userInfoView addSubview:headImageView];
     
-    UIButton *btn_login = [[UIButton alloc]initWithFrame:CGRectMake(_userInfoView.width/2 - headImageView.width/2 - 30 - 60, _userInfoView.height/2 - 15, 60, 30)];
-    [btn_login setTitle:@"登录" forState:UIControlStateNormal];
-    [btn_login addTarget:self action:@selector(gotoLogin:) forControlEvents:UIControlEventTouchUpInside];
-    btn_login.backgroundColor = [UIColor grayColor];
-    [_userInfoView addSubview:btn_login];
+    UILabel *lab_userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMinY(headImageView.frame) +5, 150, 20)];
+    lab_userName.font = [UIFont systemFontOfSize:18];
+    lab_userName.text = @"USER NAME";
+    [_userInfoView addSubview:lab_userName];
     
-    UIButton *btn_register = [[UIButton alloc]initWithFrame:CGRectMake(_userInfoView.width/2 + headImageView.width/2 + 30, _userInfoView.height/2 - 15, 60, 30)];
-    [btn_register setTitle:@"注册" forState:UIControlStateNormal];
-    [btn_register addTarget:self action:@selector(gotoRegister:) forControlEvents:UIControlEventTouchUpInside];
-    btn_register.backgroundColor = [UIColor grayColor];
-    [_userInfoView addSubview:btn_register];
+    UIButton *btn_edit = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMaxY(headImageView.frame) - 25, 20, 20)];
+    [btn_edit setTitle:@"" forState:UIControlStateNormal];
+    [btn_edit addTarget:self action:@selector(gotoEdit) forControlEvents:UIControlEventTouchUpInside];
+    btn_edit.backgroundColor = [UIColor grayColor];
+    [_userInfoView addSubview:btn_edit];
     
 }
 
@@ -213,9 +180,15 @@
     [self.navigationController pushViewController:configVC animated:YES];
 }
 
+#pragma mark - 订单选项回调
+
 - (void)didSelectedItem:(NSInteger)tag
 {
     NSLog(@"%ld",(long)tag);
+    ManWuMyOrdersViewController *myOrdersVC = [[ManWuMyOrdersViewController alloc]init];
+    myOrdersVC.origIndex = tag;
+    [self.navigationController pushViewController:myOrdersVC animated:YES];
+
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -342,6 +315,7 @@
             else
             {
                 ManWuMyOrdersViewController *myOrdersVC = [[ManWuMyOrdersViewController alloc]init];
+                myOrdersVC.origIndex = 0;
                 [self.navigationController pushViewController:myOrdersVC animated:YES];
             }
  

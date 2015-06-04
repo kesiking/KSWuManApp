@@ -227,6 +227,7 @@
         if(isRegister)
         {
             [WeAppToast toast:@"注册成功"];
+            
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         
@@ -297,6 +298,13 @@
         }
     });
     dispatch_resume(_timer);
+}
+
+#pragma mark - 注册红包展示
+
+- (void)showRedpackage
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
