@@ -115,7 +115,9 @@
         [[self selectedViewController] removeFromParentViewController];
     }
     // 记录上一次选中的tab
-    _preSelectedIndex = _selectedIndex;
+    if (_selectedIndex != selectedIndex) {
+        _preSelectedIndex = _selectedIndex;
+    }
     // 更新当前选中的tab
     _selectedIndex = selectedIndex;
     [[self tabBar] setSelectedItem:[[self tabBar] items][selectedIndex]];

@@ -47,8 +47,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    [self shouldSelectViewController:self];
+    // 查看是否登陆，如果未登陆则跳出登陆
+    [self checkLogin];
     
     if(_userInfoView)
     {
@@ -150,6 +150,42 @@
     btn_register.backgroundColor = [UIColor grayColor];
     [_userInfoView addSubview:btn_register];
     
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark
+#pragma mark - 登陆相关 检查是否登陆
+
+-(BOOL)checkLogin{
+    BOOL isLogin = [KSAuthenticationCenter isLogin];
+    if (!isLogin) {
+        [self doLogin];
+    }
+    return isLogin;
+}
+
+-(void)doLogin{
+    WEAKSELF
+    void(^cancelActionBlock)(void) = ^(void){
+        STRONGSELF
+        [WeAppToast toast:@"取消登陆"];
+        // 如果当前选中的tab就是我的登陆页面，取消登陆后跳转到上次选中的tab
+        if (strongSelf == strongSelf.rdv_tabBarController.selectedViewController) {
+            if (strongSelf.rdv_tabBarController.preSelectedIndex != strongSelf.rdv_tabBarController.selectedIndex) {
+                [strongSelf.rdv_tabBarController setSelectedIndex:strongSelf.rdv_tabBarController.preSelectedIndex];
+            }else{
+                [strongSelf.rdv_tabBarController setSelectedIndex:0];
+            }
+        }
+    };
+    
+    void(^loginActionBlock)(BOOL loginSuccess) = ^(BOOL loginSuccess){
+        STRONGSELF
+        // 如果登陆成功就跳转到当前
+        [strongSelf.rdv_tabBarController setSelectedViewController:strongSelf];
+    };
+    
+    [[KSAuthenticationCenter sharedCenter] authenticateWithLoginActionBlock:loginActionBlock cancelActionBlock:cancelActionBlock];
 }
 
 - (void)gotoLogin:(id)sender
@@ -343,30 +379,8 @@
 #pragma mark- KSTabBarViewControllerProtocol
 
 -(BOOL)shouldSelectViewController:(UIViewController *)viewController{
-    BOOL isLogin = [KSAuthenticationCenter isLogin];
-    if (!isLogin) {
-        WEAKSELF
-        void(^cancelActionBlock)(void) = ^(void){
-            STRONGSELF
-            [WeAppToast toast:@"取消登陆"];
-            // 如果当前选中的tab就是我的登陆页面，取消登陆后跳转到上次选中的tab
-            if (strongSelf == strongSelf.rdv_tabBarController.selectedViewController) {
-                [strongSelf.rdv_tabBarController setSelectedIndex:strongSelf.rdv_tabBarController.preSelectedIndex];
-            }
-        };
-        
-        void(^loginActionBlock)(BOOL loginSuccess) = ^(BOOL loginSuccess){
-            STRONGSELF
-            // 如果登陆成功就跳转到当前
-            [strongSelf.rdv_tabBarController setSelectedViewController:strongSelf];
-        };
-        
-        [[KSAuthenticationCenter sharedCenter] authenticateWithLoginActionBlock:loginActionBlock cancelActionBlock:cancelActionBlock];
-        
-    }
-    return isLogin;
+    return [self checkLogin];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
