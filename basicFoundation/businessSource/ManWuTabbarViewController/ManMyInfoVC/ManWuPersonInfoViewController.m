@@ -212,11 +212,15 @@
 #pragma mark - UIAlertViewDelegate
 -(void)quitButtonClick:(UIButton*)sender
 {
-    if (sender.tag==2001) {
-        UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:@"" message:@"退出后不会删除任何历史数据，下次登录仍然可以使用本账号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出登录", nil];
-        alertView.tag = exit_alert_tag;
-        [alertView show];
-    }
+//    if (sender.tag==2001) {
+//        UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:@"" message:@"退出后不会删除任何历史数据，下次登录仍然可以使用本账号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出登录", nil];
+//        alertView.tag = exit_alert_tag;
+//        [alertView show];
+//    }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:[LOGIN_FLAG filePathOfCaches] error:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 -(CGSize)lableSize:(NSString*)str

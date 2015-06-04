@@ -48,7 +48,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self shouldSelectViewController:self.tabBarController];
+    [self shouldSelectViewController:self];
     
     if(_userInfoView)
     {
