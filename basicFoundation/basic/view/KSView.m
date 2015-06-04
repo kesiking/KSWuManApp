@@ -84,7 +84,7 @@
             return @"服务器正忙，请稍微再试";
         };
         info.subTitleForErrorBlock=^(NSError*error){
-            return @"";
+            return error.userInfo[NSLocalizedDescriptionKey];
         };
         info.actionButtonTitleForErrorBlock=^(NSError*error){
             return @"立刻刷新";
@@ -111,7 +111,7 @@
 }
 
 -(void)showErrorView:(NSError*)error{
-    [self.statusHandler showViewforError:error inView:self frame:self.frame];
+    [self.statusHandler showViewforError:error inView:self frame:self.bounds];
 }
 
 -(void)hideErrorView{

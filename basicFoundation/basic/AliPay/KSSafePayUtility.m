@@ -13,6 +13,20 @@
 
 @implementation KSSafePayUtility
 
+static NSDictionary* aliPayFile;
+static NSString    * aliPayKey;
+static NSString    * aliPayPublicKey;
+
++(void)initialize{
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
+    aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    if (aliPayFile == nil) {
+        aliPayFile = [[NSDictionary alloc] init];
+    }
+    aliPayKey = [aliPayFile objectForKey:@"aliPayKey"];
+    aliPayPublicKey = [aliPayFile objectForKey:@"aliPayPublicKey"];
+}
+
 /*
  * key-value传入
  * 必须包含：tradeNO（订单号），price（价格）
@@ -29,7 +43,8 @@
     /*============================================================================*/
     NSString *partner = @"2088911272587293";
     NSString *seller = @"hzwuman@126.com";
-    NSString *privateKey = @"";
+    
+    NSString *privateKey = aliPayKey;
     /*============================================================================*/
     /*============================================================================*/
     /*============================================================================*/
@@ -113,6 +128,7 @@
 +(void)processResultStatus:(NSDictionary*)resultDic{
     int statusCode = [[resultDic objectForKey:@"resultStatus"] intValue];
     NSString* result = [resultDic objectForKey:@"result"];
+    NSString* memo = [resultDic objectForKey:@"memo"];
     NSRange range = [result rangeOfString:@"success=\"true\""];
     //是否支付成功
     if (9000 == statusCode && range.location != NSNotFound) {

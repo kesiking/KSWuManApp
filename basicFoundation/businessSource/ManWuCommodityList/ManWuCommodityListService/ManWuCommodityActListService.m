@@ -37,6 +37,9 @@
     if (self.pagedList) {
         [self.pagedList refresh];
     }
+#ifdef NEEDCACHE
+    self.needCache = YES;
+#endif
     [self loadPagedListWithAPIName:@"activity/getActItems.do" params:params pagination:pageinationItem version:nil];
 }
 

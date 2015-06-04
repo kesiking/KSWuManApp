@@ -8,6 +8,7 @@
 
 #import "WeAppBasicRequestModel.h"
 #import "BasicNetWorkAdapter.h"
+#import "KSCacheService.h"
 #import "WeAppUtils.h"
 
 typedef void(^CallMethod)();
@@ -22,6 +23,8 @@ typedef void(^CallMethod)();
 typedef void(^serviceDidStartLoadBlock) (WeAppBasicService* service);
 
 typedef void(^serviceDidFinishLoadBlock) (WeAppBasicService* service);
+
+typedef void(^serviceCacheDidLoadBlock) (WeAppBasicService* service, NSArray* cacheData);
 
 typedef void(^serviceDidCancelLoadBlock) (WeAppBasicService* service);
 
@@ -39,6 +42,7 @@ typedef void(^serviceDidFailLoadBlock) (WeAppBasicService* service,NSError* erro
 - (void)serviceDidCancelLoad:(WeAppBasicService *)service;
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service;
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error;
+- (void)serviceCacheDidLoad:(WeAppBasicService *)service cacheData:(NSArray*)cacheData;
 
 - (void)serviceDidTimeout:(WeAppBasicService *)service;
 // 服务降级时回调该方法
@@ -53,44 +57,67 @@ typedef void(^serviceDidFailLoadBlock) (WeAppBasicService* service,NSError* erro
 #pragma mark TBSNSBasicService
 @interface WeAppBasicService : NSObject <WeAppBasicRequestModelDelegate>
 
+// delegate与block任选其一即可
 @property (nonatomic, assign) id<WeAppBasicServiceDelegate>delegate;
 
+// service init
 -(id)initWithItemClass:(Class)itemClass andRequestModelClass:(Class)requestModelClass;
 
--(void)setNetwork:(BasicNetWorkAdapter*)network;
-
-// pageList使用的类，默认是TBSNSPageList
-@property (nonatomic,strong) Class       pageListClass;
-@property (nonatomic,strong) NSString*   listPath;
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 能够自动映射的核心参数 必须要设置的两个属性
+// 如果返回值类型是TBSNSReturnDataTypeItem，则为item的Class；如果为TBSNSReturnDataTypeArray，则为数组中每个对象的Class
+@property(nonatomic, strong) Class itemClass;
+// json最上层的key，注意是data不算，是data内的最上层的key
+@property (nonatomic,strong) NSString* jsonTopKey;
+// 标记service是否需要登陆
 @property (nonatomic,assign) BOOL        needLogin;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark service block
+#pragma mark 网络适配器
+// service 设置 network适配器，必须设置，否则无法加载数据
+-(void)setNetwork:(BasicNetWorkAdapter*)network;
 
-@property (nonatomic,strong) serviceDidStartLoadBlock serviceDidStartLoadBlock;
+// cache对象 cache适配器，通过needCache设置是否需要使用cache缓存
+@property (nonatomic, strong) KSCacheService*       cacheService;
 
-@property (nonatomic,strong) serviceDidFinishLoadBlock serviceDidFinishLoadBlock;
-
-@property (nonatomic,strong) serviceDidCancelLoadBlock serviceDidCancelLoadBlock;
-
-@property (nonatomic,strong) serviceDidFailLoadBlock serviceDidFailLoadBlock;
+@property (nonatomic, assign) BOOL                  needCache;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark 能够自动映射的核心参数
-// 如果返回值类型是TBSNSReturnDataTypeItem，则为item的Class；如果为TBSNSReturnDataTypeArray，则为数组中每个对象的Class
-@property(nonatomic, strong) Class itemClass;
+#pragma mark service block  delegate与block任选其一即可
+
+@property (nonatomic,strong) serviceDidStartLoadBlock  serviceDidStartLoadBlock;
+
+@property (nonatomic,strong) serviceDidFinishLoadBlock serviceDidFinishLoadBlock;
+
+@property (nonatomic,strong) serviceCacheDidLoadBlock  serviceCacheDidLoadBlock;
+
+@property (nonatomic,strong) serviceDidCancelLoadBlock serviceDidCancelLoadBlock;
+
+@property (nonatomic,strong) serviceDidFailLoadBlock   serviceDidFailLoadBlock;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark 能够自动映射的核心参数 可扩展的属性
 // 发请求的TBSNSBasicRequestModel 的类型，必须为TBSNSBasicRequestModel及其子类
-@property(nonatomic, strong) Class requestModelClass;
-// json最上层的key，注意是data不算，是data内的最上层的key
-@property (nonatomic,strong) NSString* jsonTopKey;
+@property(nonatomic, strong)  Class requestModelClass;
 // 发请求的model
 @property(nonatomic,readonly) WeAppBasicRequestModel *requestModel;
 // 在多个服务情况下，做以区分
-@property(nonatomic, strong) NSString* apiName;
+@property(nonatomic, strong)  NSString* apiName;
 // version of
-@property(nonatomic, strong) NSString * version;
+@property(nonatomic, strong)  NSString* version;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark pageList 自动翻页及刷新时需要用到
+
+// pageList使用的类，默认是TBSNSPageList
+@property (nonatomic,strong) Class       pageListClass;
+
+@property (nonatomic,strong) NSString*   listPath;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -157,6 +184,23 @@ typedef void(^serviceDidFailLoadBlock) (WeAppBasicService* service,NSError* erro
 - (void)loadNumberValueWithAPIName:(NSString*)apiName params:(NSDictionary *)params version:(NSString *)version;
 - (void)loadNumberValueWithURL:(NSString*)urlStr params:(NSDictionary *)params version:(NSString *)version;
 - (void)loadNumberValueWithParams:(NSDictionary *)params;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark cache 操作
+
+/*
+ * 使用KSCacheStrategyTypeRemoteData策略:
+ * 只存储dataList pageList item数据类型。
+ * 每次updateCache调用时会清除数据库数据。
+ * 翻页nextPage不存储数据
+ * 目前版本不支持更新，插入，删除操作，可override后实现
+ */
+
+// 重载后可改变默认cache策略,如KSCacheStrategyTypeUpdate等
+-(void)updateCache;
+
+-(void)readCache;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

@@ -177,6 +177,7 @@
             }];
         };
         _createOrderService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
+            STRONGSELF
             [WeAppToast toast:[NSString stringWithFormat:@"服务器在偷懒，请稍微再试"]];
         };
     }

@@ -17,10 +17,13 @@
 @property (nonatomic, strong) NSString                 *skuDisplayString;// sku文案
 @property (nonatomic, strong) NSString                 *skuPopUpString;// sku浮层文案
 @property (nonatomic, strong) NSString                 *skuCellString;// skucell文案
-@property (nonatomic, strong) NSString                 * picUrl;//图片
+@property (nonatomic, strong) NSString                 *skuInfoDescription;// sku展示到buy的文案
+@property (nonatomic, strong) NSString                 *picUrl;//图片
 
 //key:propId:valueId  value:true or false
 @property (nonatomic, strong) NSDictionary             *enableMap;
 @property (nonatomic, strong) NSArray                  *servieUnits;//TBDetailServiceUnit的列表的列表
+
+@property (nonatomic, strong) NSNumber                 *price;
 
 @end

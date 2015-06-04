@@ -54,6 +54,12 @@
 @property (nonatomic) NSUInteger selectedIndex;
 
 /**
+ * The index of the view controller associated with the selected tab item last time.
+ * 记录上一次选中的tab
+ */
+@property (nonatomic) NSUInteger preSelectedIndex;
+
+/**
  * A Boolean value that determines whether the tab bar is hidden.
  */
 @property (nonatomic, getter=isTabBarHidden) BOOL tabBarHidden;

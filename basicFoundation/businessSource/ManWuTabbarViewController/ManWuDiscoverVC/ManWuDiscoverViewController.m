@@ -75,4 +75,10 @@
     
 }
 
+-(void)serviceCacheDidLoad:(WeAppBasicService *)service cacheData:(NSArray *)cacheData{
+    if (cacheData && [cacheData count] > 0) {
+        [self.discoverListView setDataWithPageList:cacheData extraDataSource:nil];
+    }
+}
+
 @end

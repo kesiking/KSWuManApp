@@ -28,8 +28,8 @@
                          title:title
                       subtitle:subtitle
              actionButtonTitle:actionButtonTitle
-             actionButtonImage:[[UIImage imageNamed:@"tb_btn_all_square_normal.png"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f]
-   actionButtonHighligtedImage:[[UIImage imageNamed:@"tb_btn_all_square_press.png"] stretchableImageWithLeftCapWidth:10.0f topCapHeight:10.0f]
+             actionButtonImage:[[UIImage imageNamed:@"tb_btn_all_square_normal.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)]
+   actionButtonHighligtedImage:[[UIImage imageNamed:@"tb_btn_all_square_press.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)]
                         target:target
                       selector:selector];
 }

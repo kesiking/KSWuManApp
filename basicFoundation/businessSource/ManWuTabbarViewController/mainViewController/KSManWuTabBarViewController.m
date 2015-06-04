@@ -183,22 +183,28 @@
 
 -(void)tabBarController:(RDVTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    if (![viewController isKindOfClass:[UINavigationController class]]) {
-        return;
-    }
-    UIViewController* rootVC = viewController.childViewControllers[0];
-    if ([rootVC conformsToProtocol:@protocol(KSTabBarViewControllerProtocol)]) {
-        [((id<KSTabBarViewControllerProtocol>)rootVC) didSelectViewController:self];
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UIViewController* rootVC = viewController.childViewControllers[0];
+        if ([rootVC conformsToProtocol:@protocol(KSTabBarViewControllerProtocol)]) {
+            [((id<KSTabBarViewControllerProtocol>)rootVC) didSelectViewController:self];
+        }
+    }else if ([viewController isKindOfClass:[UIViewController class]]){
+        if ([viewController conformsToProtocol:@protocol(KSTabBarViewControllerProtocol)]) {
+            return [((id<KSTabBarViewControllerProtocol>)viewController) didSelectViewController:self];
+        }
     }
 }
 
 - (void)tabBarController:(RDVTabBarController *)tabBarController didSelectSameViewController:(UIViewController *)viewController{
-    if (![viewController isKindOfClass:[UINavigationController class]]) {
-        return;
-    }
-    UIViewController* rootVC = viewController.childViewControllers[0];
-    if ([rootVC conformsToProtocol:@protocol(KSTabBarViewControllerProtocol)]) {
-        [((id<KSTabBarViewControllerProtocol>)rootVC) didSelectSameViewController:self];
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UIViewController* rootVC = viewController.childViewControllers[0];
+        if ([rootVC conformsToProtocol:@protocol(KSTabBarViewControllerProtocol)]) {
+            [((id<KSTabBarViewControllerProtocol>)rootVC) didSelectSameViewController:self];
+        }
+    }else if ([viewController isKindOfClass:[UIViewController class]]){
+        if ([viewController conformsToProtocol:@protocol(KSTabBarViewControllerProtocol)]) {
+            return [((id<KSTabBarViewControllerProtocol>)viewController) didSelectSameViewController:self];
+        }
     }
 }
 

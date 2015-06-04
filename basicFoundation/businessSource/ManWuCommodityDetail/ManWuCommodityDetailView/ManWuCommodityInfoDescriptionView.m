@@ -33,37 +33,39 @@
             NSString* string = [NSString stringWithFormat:@"材料:%@",detailModel.metarial];
             [self.descriptionArray addObject:string];
         }
-        if (detailModel.size && [detailModel.size isKindOfClass:[NSArray class]]) {
-            NSMutableString* string = [NSMutableString string];
-            [string appendString:@"尺寸："];
-            NSUInteger count = [detailModel.size count];
-            for (NSString* sizeString in detailModel.size) {
-                if (![sizeString isKindOfClass:[NSString class]]) {
-                    continue;
+        if (detailModel.skuContent) {
+            @autoreleasepool {
+                NSArray* arrayKeys = detailModel.skuOrder;
+                if (arrayKeys == nil) {
+                    arrayKeys = [detailModel.skuContent allKeys];
                 }
-                [string appendString:sizeString];
-                NSUInteger index = [detailModel.size indexOfObject:sizeString];
-                if (index < count - 1) {
-                    [string appendString:@"、"];
+                for (NSString* key in arrayKeys) {
+                    if (![key isKindOfClass:[NSString class]]) {
+                        continue;
+                    }
+                    NSArray* propArray = [detailModel.skuContent objectForKey:key];
+                    if (![propArray isKindOfClass:[NSArray class]]) {
+                        continue;
+                    }
+                    
+                    NSMutableString* string = [NSMutableString string];
+                    
+                    [string appendFormat:@"%@：",key];
+                    
+                    NSUInteger count = [propArray count];
+                    for (NSString* sizeString in propArray) {
+                        if (![sizeString isKindOfClass:[NSString class]]) {
+                            continue;
+                        }
+                        [string appendString:sizeString];
+                        NSUInteger index = [detailModel.size indexOfObject:sizeString];
+                        if (index < count - 1) {
+                            [string appendString:@"、"];
+                        }
+                    }
+                    [self.descriptionArray addObject:string];
                 }
             }
-            [self.descriptionArray addObject:string];
-        }
-        if (detailModel.color && [detailModel.color isKindOfClass:[NSArray class]]) {
-            NSMutableString* string = [NSMutableString string];
-            [string appendString:@"颜色："];
-            NSUInteger count = [detailModel.color count];
-            for (NSString* sizeString in detailModel.color) {
-                if (![sizeString isKindOfClass:[NSString class]]) {
-                    continue;
-                }
-                [string appendString:sizeString];
-                NSUInteger index = [detailModel.color indexOfObject:sizeString];
-                if (index < count - 1) {
-                    [string appendString:@"、"];
-                }
-            }
-            [self.descriptionArray addObject:string];
         }
         if (detailModel.fengge) {
             NSString* string = [NSString stringWithFormat:@"风格:%@",detailModel.fengge];

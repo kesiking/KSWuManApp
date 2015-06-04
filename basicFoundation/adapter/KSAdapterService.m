@@ -8,6 +8,7 @@
 
 #import "KSAdapterService.h"
 #import "KSAdapterNetWork.h"
+#import "KSAdapterCacheService.h"
 #import "KSPageList.h"
 
 @implementation KSAdapterService
@@ -23,6 +24,9 @@
     KSAdapterNetWork* network = [[KSAdapterNetWork alloc] init];
     [self setNetwork:network];
     [self setPageListClass:[KSPageList class]];
+    KSAdapterCacheService* cacheService = [KSAdapterCacheService new];
+    cacheService.cacheStrategy.strategyType = KSCacheStrategyTypeRemoteData;
+    [self setCacheService:cacheService];
 }
 
 @end

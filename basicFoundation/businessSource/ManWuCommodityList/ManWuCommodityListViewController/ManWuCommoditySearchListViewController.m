@@ -46,6 +46,10 @@
     [self.searchView.navigateview setOrigin:CGPointMake(0, (self.searchNavigationView.height - self.searchView.navigateview.height)/2)];
 }
 
+-(void)refreshDataRequest{
+    [self.commodityListView loadDataWithSearchKeyword:self.searchKeyword];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];

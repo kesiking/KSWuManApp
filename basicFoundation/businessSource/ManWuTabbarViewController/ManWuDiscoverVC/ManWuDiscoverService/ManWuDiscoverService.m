@@ -26,6 +26,9 @@
 -(void)loadAllCategoryCommodityListData{
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuDiscoverModel class];
+#ifdef NEEDCACHE
+    self.needCache = YES;
+#endif
     [self loadDataListWithAPIName:@"category/getAllCategories.do" params:nil version:nil];
     /*
     NSDictionary* params = @{@"cids":allCidsKey};
@@ -38,6 +41,9 @@
 -(void)loadRootCategoryListData{
     self.jsonTopKey = @"data";
     self.itemClass = [ManWuDiscoverModel class];
+#ifdef NEEDCACHE
+    self.needCache = YES;
+#endif
     [self loadDataListWithAPIName:@"category/getRootCats.do" params:nil version:nil];
 }
 

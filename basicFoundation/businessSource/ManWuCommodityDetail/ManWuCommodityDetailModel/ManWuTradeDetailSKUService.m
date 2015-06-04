@@ -29,6 +29,13 @@
 
 @implementation ManWuTradeDetailSKUService
 
++(BOOL)dbWillInsert:(NSObject *)entity{
+    return NO;
+}
+
++(BOOL)dbWillUpdate:(NSObject *)entity{
+    return NO;
+}
 
 - (void)initProperties {
     _allPids = [NSMutableArray array];
@@ -258,6 +265,8 @@
         
         NSString* skuSummaryString=@"已选:";
         NSString* needToselectSummary=@"";
+        // 已经选择的属性名称拼接
+        NSString* skuInfoDescription = @"";
         // selectedSkuPropertyValues 存放目前已选择的属性值
         NSMutableArray *selectedSkuPropertyValues = [NSMutableArray array];
         
@@ -270,7 +279,14 @@
                 NSString *selectedPVString = [NSString stringWithFormat:@"%@",valueId];
                 [selectedSkuPropertyValues addObject:selectedPVString];
                 NSString * valueName = [_skuValueNameDic objectForKey:valueId];
-                skuSummaryString=[skuSummaryString stringByAppendingFormat:@" \"%@\"",valueName];
+                skuSummaryString = [skuSummaryString stringByAppendingFormat:@" \"%@\"",valueName];
+                ManWuCommoditySKUModel *propObject = [self.skuPropMap objectForKey:propId];
+                NSString* propName = propObject.propName;
+                if (skuInfoDescription.length > 0) {
+                    skuInfoDescription = [skuInfoDescription stringByAppendingString:@","];
+                }
+                skuInfoDescription = [skuInfoDescription stringByAppendingFormat:@"%@:",propName];
+                skuInfoDescription = [skuInfoDescription stringByAppendingFormat:@"%@",valueName];
                 
             }else{
                 [selectedSkuPropertyValues addObject:@""];
@@ -294,8 +310,10 @@
             skuInfo.skuCellString = skuSummaryString;
             skuInfo.selectSkuId = skuId;
             _selectedSkuId = skuId;
+            skuInfo.skuInfoDescription = skuInfoDescription;
             ManWuCommoditySKUDetailModel * currentSku = [_skuMap objectForKey:skuId];
             skuInfo.quantity = [currentSku.quantity integerValue];
+            skuInfo.price = currentSku.price;
         }
         
         if (skuId == nil && [tempPidVidMap count] == [allTempPids count]) {
