@@ -14,6 +14,15 @@
 
 @implementation ManWuResetPwdViewController
 
+-(KSAdapterService *)service{
+    if (_service == nil) {
+        _service = [[KSAdapterService alloc] init];
+        _service.delegate = self;
+        //[_service setItemClass:[KSModelDemo class]];
+    }
+    return _service;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -25,24 +34,13 @@
     [self.view addSubview:self.btn_nextStep];
 }
 
--(KSAdapterService *)service{
-    if (_service == nil) {
-        _service = [[KSAdapterService alloc] init];
-        _service.delegate = self;
-        //[_service setItemClass:[KSModelDemo class]];
-    }
-    return _service;
-}
-
 - (MWInsetsTextField *)text_phoneNum
 {
     if(!_text_phoneNum)
     {
-        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, WIDTH, 40)];
+        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, SELFWIDTH, 40)];
         _text_phoneNum.placeholder = @"手机号码";
         [_text_phoneNum setFont:[UIFont systemFontOfSize:16]];
-        //        _text_phoneNum.layer.borderColor = [[UIColor grayColor]CGColor];
-        //        _text_phoneNum.layer.borderWidth = 1.0;
         _text_phoneNum.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_phoneNum.keyboardType = UIKeyboardTypeNumberPad;
         _text_phoneNum.clearButtonMode = UITextFieldViewModeAlways;
@@ -57,28 +55,22 @@
 {
     if(!_smsCodeView)
     {
-        _smsCodeView = [[UIView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_phoneNum.frame) + 15, WIDTH, 40)];
+        _smsCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_phoneNum.frame) + 1, SELFWIDTH, 40)];
         _smsCodeView.backgroundColor = [UIColor clearColor];
-        _text_smsCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 0, (WIDTH)/2, 40)];
+        _text_smsCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 0, (SELFWIDTH)/2 + 20, 40)];
         _text_smsCode.placeholder = @"验证码";
-        [_text_smsCode setFont:[UIFont systemFontOfSize:18]];
+        [_text_smsCode setFont:[UIFont systemFontOfSize:16]];
         //        _text_smsCode.layer.borderWidth = 1.0;
-        _text_smsCode.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        _text_smsCode.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_smsCode.keyboardType = UIKeyboardTypeNumberPad;
         _text_smsCode.clearButtonMode = UITextFieldViewModeAlways;
         _text_smsCode.secureTextEntry = YES;
         [_text_smsCode setBackgroundColor:[UIColor whiteColor]];
         
-        _btn_smsCode = [[UIButton alloc]initWithFrame:CGRectMake((WIDTH)/2 + 10, 0, (WIDTH)/2 - 20, 40)];
+        _btn_smsCode = [[UIButton alloc]initWithFrame:CGRectMake((SELFWIDTH)/2 + 20, 0, (SELFWIDTH)/2 - 20, 40)];
         [_btn_smsCode setTitle:@"获取验证码"forState:UIControlStateNormal];
-        UIImage *btnImage = [UIImage imageNamed:@"sure-button01.png"];
-        btnImage = [btnImage stretchableImageWithLeftCapWidth:floorf(btnImage.size.width/2) topCapHeight:floorf(btnImage.size.height/2)];
-        
-        UIImage *btnImageselected = [UIImage imageNamed:@"sure-button01-s.png"];
-        btnImageselected = [btnImageselected stretchableImageWithLeftCapWidth:floorf(btnImageselected.size.width/2) topCapHeight:floorf(btnImageselected.size.height/2)];
-        [_btn_smsCode setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [_btn_smsCode setBackgroundImage:btnImageselected forState:UIControlStateSelected];
-        [_btn_smsCode addTarget:self action:@selector(getValidateCode) forControlEvents:UIControlEventTouchUpInside];
+        [_btn_smsCode setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle colorWithHexString:@"#b9b9b9"]] forState:UIControlStateNormal];
+        [_btn_smsCode addTarget:self action:@selector(getValidateCode) forControlEvents:UIControlEventTouchUpInside];        [_btn_smsCode addTarget:self action:@selector(getValidateCode) forControlEvents:UIControlEventTouchUpInside];
         
         [_smsCodeView addSubview:_text_smsCode];
         
@@ -97,7 +89,8 @@
         [_btn_nextStep setTitle:@"下一步" forState:UIControlStateNormal];
         [_btn_nextStep.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_nextStep.titleLabel.textColor = [UIColor whiteColor];
-        [_btn_nextStep setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];        [_btn_nextStep addTarget:self action:@selector(doNextStep) forControlEvents:UIControlEventTouchUpInside];
+        [_btn_nextStep setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
+        [_btn_nextStep addTarget:self action:@selector(doNextStep) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _btn_nextStep;
@@ -105,7 +98,13 @@
 
 - (void)getValidateCode
 {
-    [self.service loadNumberValueWithAPIName:@"user/queryCode.do" params:@{@"phoneNum":@18626876833} version:nil];
+    //判断逻辑待完善
+    if(_text_phoneNum.text.length == 0)
+    {
+        [WeAppToast toast:@"请输入正确的手机号"];
+        return;
+    }
+    [self.service loadNumberValueWithAPIName:@"user/sendValidateCode.do" params:@{@"phoneNum":_text_phoneNum.text} version:nil];
     
     [self showSecondTimeout:90 target:self timerOutAction:@selector(updateUIWhenSecondTimeout:)];
     
@@ -113,8 +112,16 @@
 
 - (void)doNextStep
 {
-    NSString *phoneNum = @"18867101957";
-    NSString *smsCodeView = @"123456";
+    //判断逻辑待完善
+    if(_text_phoneNum.text.length == 0)
+    {
+        [WeAppToast toast:@"请输入正确的手机号"];
+        return;
+    }else if(_text_smsCode.text.length == 0)
+    {
+        [WeAppToast toast:@"请输入验证码"];
+        return;
+    }
 
 }
 

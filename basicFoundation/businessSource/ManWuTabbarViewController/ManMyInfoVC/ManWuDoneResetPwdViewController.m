@@ -1,18 +1,18 @@
 //
-//  ManWuChangePwdViewController.m
+//  ManWuDoneResetPwdViewController.m
 //  basicFoundation
 //
-//  Created by 许学 on 15/5/19.
+//  Created by 许学 on 15/6/2.
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "ManWuChangePwdViewController.h"
+#import "ManWuDoneResetPwdViewController.h"
 
-@interface ManWuChangePwdViewController ()
+@interface ManWuDoneResetPwdViewController ()
 
 @end
 
-@implementation ManWuChangePwdViewController
+@implementation ManWuDoneResetPwdViewController
 
 -(KSAdapterService *)service{
     if (_service == nil) {
@@ -26,44 +26,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
-    self.title = @"修改密码";
-    [self.view addSubview:self.text_oldPwd];
+    
+    self.title = @"找回密码";
     [self.view addSubview:self.text_newPwd];
     [self.view addSubview:self.text_renewPwd];
-    [self.view addSubview:self.btn_commit];
-
-}
-
-- (MWInsetsTextField *)text_oldPwd
-{
-    if(!_text_oldPwd)
-    {
-        _text_oldPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 15, SELFWIDTH, 40)];
-        _text_oldPwd.placeholder = @"原始密码";
-        [_text_oldPwd setFont:[UIFont systemFontOfSize:16]];
-        _text_oldPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
-        _text_oldPwd.keyboardType = UIKeyboardTypeNumberPad;
-        _text_oldPwd.clearButtonMode = UITextFieldViewModeAlways;
-        _text_oldPwd.secureTextEntry = YES;
-        _text_oldPwd.delegate = self;
-        [_text_oldPwd setBackgroundColor:[UIColor whiteColor]];
-    }
-    return _text_oldPwd;
+    [self.view addSubview:self.btn_done];
 }
 
 - (MWInsetsTextField *)text_newPwd
 {
     if(!_text_newPwd)
     {
-        _text_newPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_oldPwd.frame) + 1, SELFWIDTH, 40)];
+        _text_newPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, SELFWIDTH, 40)];
         _text_newPwd.placeholder = @"新密码";
         [_text_newPwd setFont:[UIFont systemFontOfSize:16]];
         _text_newPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_newPwd.keyboardType = UIKeyboardTypeNumberPad;
         _text_newPwd.clearButtonMode = UITextFieldViewModeAlways;
-        _text_newPwd.secureTextEntry = YES;
+        _text_newPwd.secureTextEntry = NO;
         _text_newPwd.delegate = self;
         [_text_newPwd setBackgroundColor:[UIColor whiteColor]];
     }
@@ -75,58 +56,47 @@
     if(!_text_renewPwd)
     {
         _text_renewPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_newPwd.frame) + 1, SELFWIDTH, 40)];
-        _text_renewPwd.placeholder = @"重新输入新密码";
+        _text_renewPwd.placeholder = @"确认新密码";
         [_text_renewPwd setFont:[UIFont systemFontOfSize:16]];
         _text_renewPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_renewPwd.keyboardType = UIKeyboardTypeNumberPad;
         _text_renewPwd.clearButtonMode = UITextFieldViewModeAlways;
-        _text_renewPwd.secureTextEntry = YES;
+        _text_renewPwd.secureTextEntry = NO;
         _text_renewPwd.delegate = self;
         [_text_renewPwd setBackgroundColor:[UIColor whiteColor]];
     }
     return _text_renewPwd;
 }
 
-
-- (UIButton *)btn_commit
+- (UIButton *)btn_done
 {
-    if(!_btn_commit)
+    if(!_btn_done)
     {
-        _btn_commit = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_renewPwd.frame) + 30, WIDTH, 40)];
-        [_btn_commit setTitle:@"提交" forState:UIControlStateNormal];
-        [_btn_commit.titleLabel setFont:[UIFont systemFontOfSize:18]];
-        _btn_commit.titleLabel.textColor = [UIColor whiteColor];
-        [_btn_commit setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
-        [_btn_commit addTarget:self action:@selector(doChangePwd) forControlEvents:UIControlEventTouchUpInside];
+        _btn_done = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_renewPwd.frame) + 30, WIDTH, 40)];
+        [_btn_done setTitle:@"下一步" forState:UIControlStateNormal];
+        [_btn_done.titleLabel setFont:[UIFont systemFontOfSize:18]];
+        _btn_done.titleLabel.textColor = [UIColor whiteColor];
+        [_btn_done setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
+        [_btn_done addTarget:self action:@selector(resetPwdDone) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    return _btn_commit;
+    return _btn_done;
 }
 
-- (void)doChangePwd
+- (void)resetPwdDone
 {
-    if([_text_oldPwd.text length] == 0)
-    {
-        [WeAppToast toast:@"请输入原始密码"];
-        return;
-    }
-    if([_text_newPwd.text length] == 0)
+    //判断逻辑待完善
+    if(_text_newPwd.text.length == 0)
     {
         [WeAppToast toast:@"请输入新密码"];
         return;
-    }
-    if([_text_renewPwd.text length] == 0)
+    }else if (_text_renewPwd.text.length == 0)
     {
         [WeAppToast toast:@"请确认新密码"];
         return;
     }
-    if(![_text_newPwd.text isEqualToString:_text_renewPwd.text])
-    {
-        [WeAppToast toast:@"新密码输入不一致"];
-        return;
-    }
-
-    [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phone":[KSUserInfoModel sharedConstant].phone,@"pwd":_text_oldPwd.text,@"newPwd":_text_newPwd.text} version:nil];
+    [self.service loadNumberValueWithAPIName:@"user/modifyPwd.do" params:@{@"phoneNum":_phoneNum,@"newPwd":_text_newPwd.text,@"validateCode":_smsCode} version:nil];
+    
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -142,10 +112,7 @@
 {
     if (service == _service) {
         // todo success
-        [WeAppToast toast:@"修改密码成功"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager removeItemAtPath:[LOGIN_FLAG filePathOfCaches] error:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        NSLog(@"%@",service.item.componentDict);
     }
 }
 
@@ -154,6 +121,7 @@
         // todo fail
         NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
         [WeAppToast toast:errorInfo];
+
     }
 }
 

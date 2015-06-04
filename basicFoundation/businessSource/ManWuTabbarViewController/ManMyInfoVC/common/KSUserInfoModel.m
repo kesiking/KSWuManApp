@@ -47,7 +47,7 @@ static KSUserInfoModel *userInfoModel=nil;
     [dic setValue:userInfoDic[@"inviteCode"] forKey:@"inviteCode"];
     [dic setValue:userInfoDic[@"phone"] forKey:@"phone"];
     NSString *sex = userInfoDic[@"sex"]?:@"";
-    if([sex containsString:@"null"])
+    if([sex isEqual:[NSNull null]])
     {
         sex = @"";
     }

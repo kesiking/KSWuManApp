@@ -355,6 +355,7 @@
 		5FD45ED61B1C04D90064BA31 /* ManWuCommoditySearchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ED51B1C04D90064BA31 /* ManWuCommoditySearchListView.m */; };
 		5FFEB42A1B1C38D700CAC511 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB4291B1C38D700CAC511 /* button_back.png */; };
 		5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */; };
+		91375F7C1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */; };
 		91E2D05A1B1761C500946A32 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		91E2D05B1B1761C500946A32 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0221B1761C500946A32 /* CustomImagePickerController.m */; };
 		91E2D05C1B1761C500946A32 /* ImageFilterProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0241B1761C500946A32 /* ImageFilterProcessViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1096,6 +1097,8 @@
 		5FD45ED51B1C04D90064BA31 /* ManWuCommoditySearchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySearchListView.m; sourceTree = "<group>"; };
 		5FFEB4291B1C38D700CAC511 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_newitem_recomment_image.png; sourceTree = "<group>"; };
+		91375F7A1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDoneResetPwdViewController.h; sourceTree = "<group>"; };
+		91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDoneResetPwdViewController.m; sourceTree = "<group>"; };
 		91E2D01E1B1761C500946A32 /* AGSimpleImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSimpleImageEditorView.h; sourceTree = "<group>"; };
 		91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSimpleImageEditorView.m; sourceTree = "<group>"; };
 		91E2D0201B1761C500946A32 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
@@ -1932,6 +1935,8 @@
 				91E2D04C1B1761C500946A32 /* ManWuPersonInfoViewController.m */,
 				91E2D04D1B1761C500946A32 /* ManWuResetPwdViewController.h */,
 				91E2D04E1B1761C500946A32 /* ManWuResetPwdViewController.m */,
+				91375F7A1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.h */,
+				91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */,
 				91E2D04F1B1761C500946A32 /* register&login */,
 				91E2D0541B1761C500946A32 /* resource */,
 				05ACAC5D1AFB5A4F00853E1C /* ManWuCommodityListDeleteDemoViewControolerViewController.h */,
@@ -3174,6 +3179,7 @@
 				050FFD411B02EFDD00721E02 /* ManWuAddressManagerViewController.m in Sources */,
 				055C75901ADFBF6000C35854 /* UIImageView+WebCache.m in Sources */,
 				0558668F1AD3B4F900A23FFA /* main.m in Sources */,
+				91375F7C1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m in Sources */,
 				056664C21AEF203000FD1C65 /* TBDetailPriceUnitsModel.m in Sources */,
 				056664371AEB284F00FD1C65 /* KSCollectionViewController.m in Sources */,
 				055866B71AD3B65900A23FFA /* Routable.m in Sources */,

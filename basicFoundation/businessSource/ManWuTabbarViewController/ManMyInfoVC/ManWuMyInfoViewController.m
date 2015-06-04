@@ -48,6 +48,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [self shouldSelectViewController:self.tabBarController];
+    
     if(_userInfoView)
     {
         [_userInfoView removeFromSuperview];
