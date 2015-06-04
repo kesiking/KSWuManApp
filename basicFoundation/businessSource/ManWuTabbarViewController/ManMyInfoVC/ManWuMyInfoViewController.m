@@ -341,11 +341,16 @@
 #pragma mark- KSTabBarViewControllerProtocol
 
 -(BOOL)shouldSelectViewController:(UIViewController *)viewController{
-    BOOL isLogin = [KSUserInfoModel sharedConstant].isLogined;
+    BOOL isLogin = [KSAuthenticationCenter isLogin];
     if (!isLogin) {
         WEAKSELF
         void(^cancelActionBlock)(void) = ^(void){
+            STRONGSELF
             [WeAppToast toast:@"取消登陆"];
+            // 如果当前选中的tab就是我的登陆页面，取消登陆后跳转到上次选中的tab
+            if (strongSelf == strongSelf.rdv_tabBarController.selectedViewController) {
+                [strongSelf.rdv_tabBarController setSelectedIndex:strongSelf.rdv_tabBarController.preSelectedIndex];
+            }
         };
         
         void(^loginActionBlock)(BOOL loginSuccess) = ^(BOOL loginSuccess){
@@ -354,9 +359,8 @@
             [strongSelf.rdv_tabBarController setSelectedViewController:strongSelf];
         };
         
-        NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:loginActionBlock, kLoginSuccessBlock,cancelActionBlock, kLoginCancelBlock, nil];
+        [[KSAuthenticationCenter sharedCenter] authenticateWithLoginActionBlock:loginActionBlock cancelActionBlock:cancelActionBlock];
         
-        TBOpenURLFromTargetWithNativeParams(loginURL, self, nil, callBacks);
     }
     return isLogin;
 }

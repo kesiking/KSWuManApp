@@ -54,7 +54,6 @@
     [super viewWillAppear:animated];
     
     [self setSelectedIndex:[self selectedIndex]];
-    
     [self setTabBarHidden:NO animated:NO];
 }
 
@@ -115,7 +114,9 @@
         [[[self selectedViewController] view] removeFromSuperview];
         [[self selectedViewController] removeFromParentViewController];
     }
-    
+    // 记录上一次选中的tab
+    _preSelectedIndex = _selectedIndex;
+    // 更新当前选中的tab
     _selectedIndex = selectedIndex;
     [[self tabBar] setSelectedItem:[[self tabBar] items][selectedIndex]];
     
@@ -258,6 +259,9 @@
 - (void)tabBar:(RDVTabBar *)tabBar didSelectSameItemAtIndex:(NSInteger)index{
     if (index < 0 || index >= [[self viewControllers] count]) {
         return;
+    }
+    if ([[self delegate] respondsToSelector:@selector(tabBarController:didSelectSameViewController:)]) {
+        [[self delegate] tabBarController:self didSelectSameViewController:[self viewControllers][index]];
     }
 }
 

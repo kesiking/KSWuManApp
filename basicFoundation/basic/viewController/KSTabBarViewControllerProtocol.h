@@ -13,6 +13,7 @@
 
 // 是否能够被选中，默认返回YES
 // 例如需要登陆却没有登陆情况应当返回NO
+// 传入viewController其实是RDVTabBarController类型的
 -(BOOL)shouldSelectViewController:(UIViewController*)viewController;
 
 // 点击选中
