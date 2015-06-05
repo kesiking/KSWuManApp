@@ -34,11 +34,14 @@
     
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"我的订单";
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    [self initOrdersList];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.selectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-    self.selectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleButtonBorder;
-    self.selectionList.selectedButtonIndex = 0;
+    self.selectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
+    self.selectionList.selectedButtonIndex = self.origIndex;
+    self.selectionList.selectionIndicatorColor = [UIColor redColor];
     self.selectionList.delegate = self;
     self.selectionList.dataSource = self;
     
@@ -51,7 +54,6 @@
     
     [self.view addSubview:self.selectionList];
     
-    self.origIndex = 0;
     ordersList = @[@[@"1.1",@"1.2",@"1.3"],@[@"2.1",@"2.2",@"2.3"],@[@"3.1",@"3.2",@"3.3"],@[@"4.1",@"4.2",@"4.3"],@[@"5.1",@"5.2",@"5.3"],@[@"6.1",@"6.2",@"6.3"]];
     
     CGRect rect = [[UIScreen mainScreen]bounds];
@@ -68,15 +70,22 @@
 
 }
 
+#pragma mark -请求订单数据
+
+- (void)initOrdersList
+{
+    [self.service loadItemWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
+}
+
 #pragma mark -UIScrollView Protocol Methods
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    CGRect rect = [[UIScreen mainScreen]bounds];
-    NSUInteger offx =    scrollView.contentOffset.x;
-    NSUInteger index = offx / rect.size.width;
-    [self.selectionList setHorizonalSelect:index];
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    CGRect rect = [[UIScreen mainScreen]bounds];
+//    NSUInteger offx =    scrollView.contentOffset.x;
+//    NSUInteger index = offx / rect.size.width;
+//    [self.selectionList setHorizonalSelect:index];
+//}
 
 
 #pragma mark - HTHorizontalSelectionListDataSource Protocol Methods
