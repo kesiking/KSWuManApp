@@ -173,7 +173,7 @@
             NSDictionary* params = @{@"tradeNO":@"",@"productName":strongSelf.detailModel.title?:@"",@"productDescription":strongSelf.detailModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",strongSelf.orderPayView.payPrice?:@0.01]};
    
             [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
-                [WeAppToast toast:@"支付成功"];
+                // 支付成功后 todo
             }];
         };
         _createOrderService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
