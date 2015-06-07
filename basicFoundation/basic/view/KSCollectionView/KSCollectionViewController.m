@@ -186,6 +186,9 @@
 }
 
 -(void)reloadData{
+    if (((KSCollectionViewConfigObject*)self.configObject).autoAdjustFrameSize) {
+        [self sizeToFit];
+    }
     [self.collectionDeleteItems removeAllObjects];
     [self.collectionView reloadData];
 }
@@ -384,6 +387,43 @@
         
         if (width > 0) {
             configObject.collectionCellSize = CGSizeMake(width - (configObject.collectionColumn - 1) * configObject.minimumInteritemSpacing / configObject.collectionColumn, configObject.collectionCellSize.height);
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark - sizeToFit
+// 自使用高度，配合autoAdjustFrameSize使用，autoAdjustFrameSize为YES时表示高度由cell的个数决定，目前sizeToFit只支持collectionSize为一样宽高的情况
+-(void)sizeToFit{
+    KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.configObject);
+
+    if (configObject.autoAdjustFrameSize == YES
+        && configObject.needNextPage == NO
+        && configObject.needQueueLoadData == NO
+        && [self.dataSourceRead count] > 0) {
+        CGFloat totleHeight = 0;
+        [self measureCollectionCellSize];
+        if (configObject.collectionColumn >= 1) {
+            NSUInteger gridNum = [self.dataSourceRead count]/configObject.collectionColumn + (NSUInteger)(([self.dataSourceRead count]%configObject.collectionColumn) == 0?0:1);
+            totleHeight = gridNum * configObject.collectionCellSize.height;
+        }else{
+            CGFloat width = configObject.collectionCellSize.width > 0 ? configObject.collectionCellSize.width: self.collectionView.width;
+            if (width == 0) {
+                width = SCREEN_WIDTH;
+            }
+            CGFloat collectionColumn = self.collectionView.width / width;
+            if (collectionColumn == 0) {
+                collectionColumn = 1;
+            }
+            NSUInteger gridNum = [self.dataSourceRead count] / collectionColumn;
+            totleHeight = gridNum * configObject.collectionCellSize.height;
+        }
+        
+        if (totleHeight > 0) {
+            CGRect rect = self.collectionView.frame;
+            rect.size.height = totleHeight;
+            [self setFrame:rect];
         }
     }
 }

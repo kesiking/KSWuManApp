@@ -13,6 +13,7 @@
 -(void)setupStandConfig{
     [super setupStandConfig];
     self.isEditModel = NO;
+    self.autoAdjustFrameSize = NO;
     self.minimumInteritemSpacing = 8;
     self.minimumLineSpacing = 4;
     self.collectionColumn = 2;

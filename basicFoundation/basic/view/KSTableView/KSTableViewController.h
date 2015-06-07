@@ -42,4 +42,7 @@ typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* in
 // 公用函数 在子类的- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath中调用
 -(void)configTableView:(UITableView *)tableView withCollectionViewCell:(UITableViewCell*)cell cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 
+// 自使用高度，配合autoAdjustFrameSize使用，autoAdjustFrameSize为YES时表示高度由cell的个数决定
+-(void)sizeToFit;
+
 @end

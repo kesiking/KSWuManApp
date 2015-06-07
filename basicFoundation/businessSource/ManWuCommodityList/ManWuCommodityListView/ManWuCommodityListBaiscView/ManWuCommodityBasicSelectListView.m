@@ -56,24 +56,7 @@
 
 -(void)setSortListArray:(NSArray*)arrayData{
     [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
-    [self setupTableViewHeight];
     [self.collectionViewCtl reloadData];
-}
-
--(void)setupTableViewHeight{
-    CGFloat totleHeight = 0;
-    if (((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject).collectionCellSize.height != 0){
-        totleHeight = ((KSCollectionViewConfigObject*)self.collectionViewCtl.configObject).collectionCellSize.height * [self.dataSourceRead count];
-    }else{
-        for (NSUInteger index = 0; index < [self.dataSourceRead count]; index++) {
-            KSCellModelInfoItem* cellModelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:index];
-            totleHeight += cellModelInfoItem.frame.size.height;
-        }
-    }
-    
-    CGRect frame = self.collectionViewCtl.frame;
-    frame.size.height = totleHeight;
-    [self.collectionViewCtl setFrame:frame];
 }
 
 -(KSCollectionViewController *)collectionViewCtl{
@@ -87,6 +70,7 @@
         configObject.needRefreshView = NO;
         configObject.needNextPage = NO;
         configObject.needFootView = NO;
+        configObject.autoAdjustFrameSize = YES;
         configObject.collectionCellSize = CGSizeMake(self.width, caculateNumber(commoditySortCellHeight));
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl registerClass:[self.viewCellClass class]];

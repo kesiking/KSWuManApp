@@ -259,6 +259,9 @@
 -(NSString*)getTableNameFromApiName:(NSString*)apiName{
     NSString* tableName = [apiName stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
     tableName = [tableName stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    if ([KSAuthenticationCenter userId] && [KSAuthenticationCenter userId].length > 0) {
+        tableName = [tableName stringByAppendingFormat:@"_%@",[KSAuthenticationCenter userId]];
+    }
     return tableName;
 }
 
