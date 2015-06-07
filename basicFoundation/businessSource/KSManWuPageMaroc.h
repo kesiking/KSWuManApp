@@ -37,4 +37,8 @@
 
 #define kManWuAddressEdit        @"manwu_address_edit"
 
+#define kRegisterView            @"registerPage"
+
+#define kResetPwdPage            @"resetPwdPage"
+
 #endif

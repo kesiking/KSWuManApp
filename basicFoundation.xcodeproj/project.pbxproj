@@ -367,6 +367,12 @@
 		5FD45ECF1B1BFC150064BA31 /* ManWuDiscoverSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ECE1B1BFC150064BA31 /* ManWuDiscoverSearchService.m */; };
 		5FD45ED21B1C01040064BA31 /* ManWuCommoditySearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ED11B1C01040064BA31 /* ManWuCommoditySearchListViewController.m */; };
 		5FD45ED61B1C04D90064BA31 /* ManWuCommoditySearchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ED51B1C04D90064BA31 /* ManWuCommoditySearchListView.m */; };
+		5FFD57581B24250300310255 /* KSInsetsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD57531B24250300310255 /* KSInsetsTextField.m */; };
+		5FFD57591B24250300310255 /* KSLoginViewCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD57561B24250300310255 /* KSLoginViewCtl.m */; };
+		5FFD575C1B24253400310255 /* KSLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD575B1B24253400310255 /* KSLoginView.m */; };
+		5FFD575F1B24286400310255 /* KSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD575E1B24286400310255 /* KSLoginViewController.m */; };
+		5FFD57641B242D2500310255 /* WeAppBasicFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD57611B242D2500310255 /* WeAppBasicFieldView.m */; };
+		5FFD57651B242D2500310255 /* WeAppBasicTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFD57631B242D2500310255 /* WeAppBasicTextView.m */; };
 		5FFEB42A1B1C38D700CAC511 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB4291B1C38D700CAC511 /* button_back.png */; };
 		5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */; };
 		910E5D0C1B207E4F00FA584C /* register_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 910E5D0B1B207E4F00FA584C /* register_success.png */; };
@@ -1138,6 +1144,19 @@
 		5FD45ED11B1C01040064BA31 /* ManWuCommoditySearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySearchListViewController.m; sourceTree = "<group>"; };
 		5FD45ED41B1C04D90064BA31 /* ManWuCommoditySearchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommoditySearchListView.h; sourceTree = "<group>"; };
 		5FD45ED51B1C04D90064BA31 /* ManWuCommoditySearchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySearchListView.m; sourceTree = "<group>"; };
+		5FFD57521B24250300310255 /* KSInsetsTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSInsetsTextField.h; sourceTree = "<group>"; };
+		5FFD57531B24250300310255 /* KSInsetsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSInsetsTextField.m; sourceTree = "<group>"; };
+		5FFD57541B24250300310255 /* KSLoginMaroc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSLoginMaroc.h; sourceTree = "<group>"; };
+		5FFD57551B24250300310255 /* KSLoginViewCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSLoginViewCtl.h; sourceTree = "<group>"; };
+		5FFD57561B24250300310255 /* KSLoginViewCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSLoginViewCtl.m; sourceTree = "<group>"; };
+		5FFD575A1B24253400310255 /* KSLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSLoginView.h; sourceTree = "<group>"; };
+		5FFD575B1B24253400310255 /* KSLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSLoginView.m; sourceTree = "<group>"; };
+		5FFD575D1B24286400310255 /* KSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSLoginViewController.h; sourceTree = "<group>"; };
+		5FFD575E1B24286400310255 /* KSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSLoginViewController.m; sourceTree = "<group>"; };
+		5FFD57601B242D2500310255 /* WeAppBasicFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppBasicFieldView.h; sourceTree = "<group>"; };
+		5FFD57611B242D2500310255 /* WeAppBasicFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppBasicFieldView.m; sourceTree = "<group>"; };
+		5FFD57621B242D2500310255 /* WeAppBasicTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeAppBasicTextView.h; sourceTree = "<group>"; };
+		5FFD57631B242D2500310255 /* WeAppBasicTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeAppBasicTextView.m; sourceTree = "<group>"; };
 		5FFEB4291B1C38D700CAC511 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_newitem_recomment_image.png; sourceTree = "<group>"; };
 		910E5D0B1B207E4F00FA584C /* register_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_success.png; sourceTree = "<group>"; };
@@ -1474,6 +1493,7 @@
 			children = (
 				058DAE0B1AE63797009D0008 /* Resources */,
 				058DADF11AE5F790009D0008 /* businessSource */,
+				5FFD57471B2415D500310255 /* login */,
 				058DADB01AE1107D009D0008 /* basic */,
 				058DADE61AE5E145009D0008 /* Macro */,
 				058DADDF1AE5E03B009D0008 /* adapter */,
@@ -2906,6 +2926,50 @@
 			path = ManWuCommoditySearchListView;
 			sourceTree = "<group>";
 		};
+		5FFD57471B2415D500310255 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				5FFD57501B24250300310255 /* KSLogin */,
+				5FFD57571B24250300310255 /* KSLoginAdapter */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		5FFD57501B24250300310255 /* KSLogin */ = {
+			isa = PBXGroup;
+			children = (
+				5FFD57511B24250300310255 /* KSLoginBasicCommonView */,
+				5FFD57541B24250300310255 /* KSLoginMaroc.h */,
+				5FFD57551B24250300310255 /* KSLoginViewCtl.h */,
+				5FFD57561B24250300310255 /* KSLoginViewCtl.m */,
+			);
+			path = KSLogin;
+			sourceTree = "<group>";
+		};
+		5FFD57511B24250300310255 /* KSLoginBasicCommonView */ = {
+			isa = PBXGroup;
+			children = (
+				5FFD57521B24250300310255 /* KSInsetsTextField.h */,
+				5FFD57531B24250300310255 /* KSInsetsTextField.m */,
+				5FFD57601B242D2500310255 /* WeAppBasicFieldView.h */,
+				5FFD57611B242D2500310255 /* WeAppBasicFieldView.m */,
+				5FFD57621B242D2500310255 /* WeAppBasicTextView.h */,
+				5FFD57631B242D2500310255 /* WeAppBasicTextView.m */,
+			);
+			path = KSLoginBasicCommonView;
+			sourceTree = "<group>";
+		};
+		5FFD57571B24250300310255 /* KSLoginAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				5FFD575A1B24253400310255 /* KSLoginView.h */,
+				5FFD575B1B24253400310255 /* KSLoginView.m */,
+				5FFD575D1B24286400310255 /* KSLoginViewController.h */,
+				5FFD575E1B24286400310255 /* KSLoginViewController.m */,
+			);
+			path = KSLoginAdapter;
+			sourceTree = "<group>";
+		};
 		91E2D01D1B1761C500946A32 /* camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -3194,12 +3258,14 @@
 				052CC67E1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m in Sources */,
 				055C75871ADFBF6000C35854 /* SDWebImageDownloader.m in Sources */,
 				058D5D201AF22E37006EA35C /* ManWuBuyScrollView.m in Sources */,
+				5FFD57651B242D2500310255 /* WeAppBasicTextView.m in Sources */,
 				058BC3FE1AE89DA700A4F799 /* ManWuHomeViewController.m in Sources */,
 				91E2D0621B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m in Sources */,
 				5F4087FB1B1949FF00954568 /* XHPopMenuItem.m in Sources */,
 				5FD45ED21B1C01040064BA31 /* ManWuCommoditySearchListViewController.m in Sources */,
 				056664DC1AEF581D00FD1C65 /* TBJSONModelKeyMapper.m in Sources */,
 				056664D11AEF2F4E00FD1C65 /* TBDetailSkuImgManager.m in Sources */,
+				5FFD575F1B24286400310255 /* KSLoginViewController.m in Sources */,
 				058DADD21AE52EC0009D0008 /* AFSecurityPolicy.m in Sources */,
 				056664681AEDDB3200FD1C65 /* TBDetailUIStyle.m in Sources */,
 				05ACAC6F1AFC6EC500853E1C /* ManWuAddressSelectViewCell.m in Sources */,
@@ -3244,6 +3310,7 @@
 				056664D21AEF2F4E00FD1C65 /* TBTradeDetailSKUService.m in Sources */,
 				0566643C1AEB284F00FD1C65 /* KSScrollViewServiceController.m in Sources */,
 				058D5A9A1AF0B358006EA35C /* TBDetailBigPhotoBrowerController.m in Sources */,
+				5FFD575C1B24253400310255 /* KSLoginView.m in Sources */,
 				052CC6AF1AF7755700AF7C78 /* ManWuSpecialForTodayView.m in Sources */,
 				058DAE6C1AE7A339009D0008 /* KSBasicURLResolver.m in Sources */,
 				05D5F2B81B006224002EF23D /* ManWuPraiseButton.m in Sources */,
@@ -3276,6 +3343,7 @@
 				058D5CF31AF1F62E006EA35C /* NSDataEx.m in Sources */,
 				5F40880C1B194BA300954568 /* LMComBoxView.m in Sources */,
 				058D5D141AF2149E006EA35C /* ManWuBuyItemInfoView.m in Sources */,
+				5FFD57581B24250300310255 /* KSInsetsTextField.m in Sources */,
 				5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */,
 				052CC67B1AF357A800AF7C78 /* WeAppTableViewCell.m in Sources */,
 				056664E41AEF5F7700FD1C65 /* NSArray+TBJSONModel.m in Sources */,
@@ -3339,6 +3407,8 @@
 				055C755F1ADFBED000C35854 /* UIView+Geometry.m in Sources */,
 				055866E11AD3EAA500A23FFA /* WeAppJsonUtil.m in Sources */,
 				058D5AB41AF0D0FF006EA35C /* KSSafePayUtility.m in Sources */,
+				5FFD57641B242D2500310255 /* WeAppBasicFieldView.m in Sources */,
+				5FFD57591B24250300310255 /* KSLoginViewCtl.m in Sources */,
 				05AF2FEE1B003CF500890A65 /* ManWuFavViewCell.m in Sources */,
 				91E2D05C1B1761C500946A32 /* ImageFilterProcessViewController.m in Sources */,
 				051900841B0432B100C077D5 /* ManWuCommodityFiltTagCellView.m in Sources */,

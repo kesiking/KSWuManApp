@@ -17,6 +17,14 @@
 
 @implementation ManWuRegisterViewController
 
+-(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
+    self = [self init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 -(KSAdapterService *)service{
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
