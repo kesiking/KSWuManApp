@@ -7,6 +7,7 @@
 //
 
 #import "KSAuthenticationCenter.h"
+#import "KSLoginComponentItem.h"
 
 @implementation KSAuthenticationCenter
 
@@ -26,7 +27,7 @@
 }
 
 + (NSString*)userId{
-    id userIdObj = [KSUserInfoModel sharedConstant].userId;
+    id userIdObj = [KSLoginComponentItem sharedInstance].userId;
     if (userIdObj) {
         return [NSString stringWithFormat:@"%@",userIdObj];
     }
@@ -34,7 +35,7 @@
 }
 
 + (BOOL)isLogin{
-    return [KSUserInfoModel sharedConstant].isLogined;
+    return [KSLoginComponentItem sharedInstance].isLogined;
 }
 
 - (void)authenticateWithLoginActionBlock:(loginActionBlock)loginActionBlock cancelActionBlock:(cancelActionBlock)cancelActionBlock{

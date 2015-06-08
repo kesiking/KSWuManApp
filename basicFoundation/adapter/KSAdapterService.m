@@ -27,6 +27,8 @@
     KSAdapterCacheService* cacheService = [KSAdapterCacheService new];
     cacheService.cacheStrategy.strategyType = KSCacheStrategyTypeRemoteData;
     [self setCacheService:cacheService];
+    
+    self.jsonTopKey = @"data";
 }
 
 @end

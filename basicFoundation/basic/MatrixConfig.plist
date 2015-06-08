@@ -5,6 +5,7 @@
 	<key>bundle_list</key>
 	<array>
 		<string>manwu_bundle</string>
+		<string>login_bundle</string>
 	</array>
 </dict>
 </plist>

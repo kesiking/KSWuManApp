@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) UIImageView         *backgroundImage;
 
-@property (strong, nonatomic) NSString            *text;
+@property (strong, nonatomic,getter=getText) NSString            *text;
 
 @property (weak, nonatomic  ) id<UITextFieldDelegate> aDelegate;
 

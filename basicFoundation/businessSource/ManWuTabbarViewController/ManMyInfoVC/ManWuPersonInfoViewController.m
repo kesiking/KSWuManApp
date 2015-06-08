@@ -217,8 +217,7 @@
 //        alertView.tag = exit_alert_tag;
 //        [alertView show];
 //    }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:[LOGIN_FLAG filePathOfCaches] error:nil];
+    [[KSLoginComponentItem sharedInstance] updateUserLogin:NO];
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ManWuLoginContent.h"
+#import "KSLoginMaroc.h"
 
 @interface KSAuthenticationCenter : NSObject
 

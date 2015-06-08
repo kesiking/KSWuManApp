@@ -10,7 +10,7 @@
 
 static NSDictionary*         _matrixConfig = nil;
 static NSMutableDictionary*  _urlResolverDict = nil;
-static NSDictionary*         _nametoClassDict = nil;
+static NSMutableDictionary*  _nametoClassDict = nil;
 
 @implementation KSConfigCenter
 
@@ -67,7 +67,13 @@ static NSDictionary*         _nametoClassDict = nil;
     if (dict == nil || ![dict isKindOfClass:[NSDictionary class]]) {
         return;
     }
-    _nametoClassDict = [dict objectForKey:@"name_to_class"];
+    if (_nametoClassDict == nil) {
+        _nametoClassDict = [[NSMutableDictionary alloc] initWithCapacity:5];
+    }
+    NSDictionary* name_to_class = [dict objectForKey:@"name_to_class"];
+    if (name_to_class && [name_to_class isKindOfClass:[NSDictionary class]]) {
+        [_nametoClassDict addEntriesFromDictionary:name_to_class];
+    }
 }
 
 +(NSDictionary*)getViewContollerNameToClassDict{

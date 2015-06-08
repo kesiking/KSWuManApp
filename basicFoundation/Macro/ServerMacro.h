@@ -11,7 +11,6 @@
 
 #import "KSAdapterService.h"
 #import "ManWuBasicModel.h"
-#import "KSAuthenticationCenter.h"
 
 #define DEFAULT_SCHEME @"http"
 #define DEFAULT_HOST @"115.29.227.64"

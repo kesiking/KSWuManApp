@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name_to_class</key>
+	<dict>
+		<key>login</key>
+		<string>KSLoginViewController</string>
+		<key>registerPage</key>
+		<string>ManWuRegisterViewController</string>
+		<key>resetPwdPage</key>
+		<string>ManWuResetPwdViewController</string>
+	</dict>
+	<key>object_list</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>login</string>
+			<key>class</key>
+			<string>ManWuLoginResolver</string>
+		</dict>
+	</array>
+</dict>
+</plist>

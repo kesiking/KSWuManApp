@@ -7,10 +7,18 @@
 //
 
 #import "KSLoginView.h"
+#import "KSLoginKeyChain.h"
+#import "KSLoginComponentItem.h"
+#import "KSLoginService.h"
+
+#define account_label_description  @"账户"
+#define password_label_description @"登陆密码"
+
+#define text_label_width (caculateNumber(65.0))
 
 @interface KSLoginView()
 
-@property (nonatomic, strong) KSAdapterService  *service;
+@property (nonatomic, strong) KSLoginService    *service;
 
 @end
 
@@ -18,6 +26,12 @@
 
 -(void)setupView{
     [super setupView];
+    [self initLoginViewCtl];
+    [self configTextView];
+    [self reloadData];
+}
+
+-(void)initLoginViewCtl{
     [self addSubview:self.loginViewCtl.logo_imgView];
     [self addSubview:self.loginViewCtl.text_phoneNum];
     [self addSubview:self.loginViewCtl.text_psw];
@@ -25,21 +39,32 @@
     [self addSubview:self.loginViewCtl.btn_login];
 }
 
--(KSAdapterService *)service{
+-(void)configTextView{
+    UILabel *account_label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, text_label_width, self.loginViewCtl.text_phoneNum.height)];
+    account_label.textAlignment = NSTextAlignmentLeft;
+    account_label.text = account_label_description;
+    account_label.font = [UIFont systemFontOfSize:16];
+    self.loginViewCtl.text_phoneNum.textView.leftView = account_label;
+    self.loginViewCtl.text_phoneNum.textView.leftViewMode = UITextFieldViewModeAlways;
+    
+    UILabel *password_label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, text_label_width, self.loginViewCtl.text_phoneNum.height)];
+    password_label.textAlignment = NSTextAlignmentLeft;
+    password_label.text = password_label_description;
+    password_label.font = [UIFont systemFontOfSize:16];
+    self.loginViewCtl.text_psw.textView.leftView = password_label;
+    self.loginViewCtl.text_psw.textView.leftViewMode = UITextFieldViewModeAlways;
+}
+
+-(void)reloadData{
+    self.loginViewCtl.text_phoneNum.text = [[KSLoginComponentItem sharedInstance] getAccountName];
+}
+
+-(KSLoginService *)service{
     if (_service == nil) {
-        _service = [[KSAdapterService alloc] init];
-        [_service setItemClass:[NSDictionary class]];
-        _service.jsonTopKey = @"data";
+        _service = [[KSLoginService alloc] init];
         WEAKSELF
         _service.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
             STRONGSELF
-            // 存储逻辑需要封装优化
-            NSDictionary *dic_userInfo = [NSDictionary dictionaryWithDictionary:(NSDictionary*)service.requestModel.item];
-            NSLog(@"%@",dic_userInfo);
-            [[KSUserInfoModel sharedConstant]updateUserInfo:dic_userInfo];
-            [[NSFileManager defaultManager] createDirectoryAtPath:[LOGIN_FLAG filePathOfCaches] withIntermediateDirectories:YES attributes:nil error:nil];
-            
-            [strongSelf.viewController dismissViewControllerAnimated:YES completion:nil];
             if (strongSelf.loginActionBlock) {
                 strongSelf.loginActionBlock(YES);
             }
@@ -69,12 +94,11 @@
                 return;
             }
             
-            [strongSelf.service loadItemWithAPIName:strongSelf.loginApiName params:@{strongSelf.loginUserIdKey?:@"phone":loginViewCtl.text_phoneNum.text, strongSelf.loginSecurityKey?:@"pwd":loginViewCtl.text_psw.text} version:nil];
+            [strongSelf.service loginWithAccountName:loginViewCtl.text_phoneNum.text password:loginViewCtl.text_psw.text];
         };
         
         _loginViewCtl.cancelLoginBlock = ^(KSLoginViewCtl* loginViewCtl){
             STRONGSELF
-            [strongSelf.viewController dismissViewControllerAnimated:YES completion:nil];
             if (strongSelf.cancelActionBlock) {
                 strongSelf.cancelActionBlock();
             }

@@ -44,15 +44,31 @@
     
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.loginView.loginViewCtl.btn_cancel];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.loginView reloadData];
 }
 
 -(KSLoginView *)loginView{
     if (_loginView == nil) {
         _loginView = [[KSLoginView alloc] initWithFrame:self.view.bounds];
-        _loginView.loginApiName = @"user/login.do";
-        _loginView.loginActionBlock = self.loginActionBlock;
-        _loginView.cancelActionBlock = self.cancelActionBlock;
+        WEAKSELF
+        _loginView.loginActionBlock = ^(BOOL success){
+            STRONGSELF
+            [strongSelf dismissViewControllerAnimated:YES completion:nil];
+            if (strongSelf.loginActionBlock) {
+                strongSelf.loginActionBlock(success);
+            }
+        };
+        _loginView.cancelActionBlock = ^(){
+            STRONGSELF
+            [strongSelf dismissViewControllerAnimated:YES completion:nil];
+            if (strongSelf.cancelActionBlock) {
+                strongSelf.cancelActionBlock();
+            }
+        };
     }
     return _loginView;
 }

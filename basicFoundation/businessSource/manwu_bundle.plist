@@ -22,21 +22,9 @@
 		<string>ManWuAddressManagerViewController</string>
 		<key>manwu_address_edit</key>
 		<string>ManWuAddressEditViewController</string>
-		<key>login</key>
-		<string>KSLoginViewController</string>
-		<key>registerPage</key>
-		<string>ManWuRegisterViewController</string>
-		<key>resetPwdPage</key>
-		<string>ManWuResetPwdViewController</string>
 	</dict>
 	<key>object_list</key>
 	<array>
-		<dict>
-			<key>name</key>
-			<string>login</string>
-			<key>class</key>
-			<string>ManWuLoginResolver</string>
-		</dict>
 		<dict>
 			<key>name</key>
 			<string>manwu_discover_url</string>

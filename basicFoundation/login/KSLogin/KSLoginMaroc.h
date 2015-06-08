@@ -9,6 +9,7 @@
 #ifndef basicFoundation_KSLoginMaroc_h
 #define basicFoundation_KSLoginMaroc_h
 
+#define loginFailCode      (1004)
 #define loginFailDomain    @"login failed"
 
 #define kLoginSuccessBlock @"loginSuccessBlock"

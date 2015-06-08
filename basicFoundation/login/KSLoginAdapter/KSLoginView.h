@@ -11,13 +11,6 @@
 
 @interface KSLoginView : KSView
 
-// login请求所需的内容
-@property (nonatomic, strong) NSString          *loginApiName;
-
-@property (nonatomic, strong) NSString          *loginUserIdKey;
-
-@property (nonatomic, strong) NSString          *loginSecurityKey;
-
 // 视觉控件集合
 @property (nonatomic, strong) KSLoginViewCtl    *loginViewCtl;
 
@@ -25,5 +18,7 @@
 @property (nonatomic,strong ) loginActionBlock  loginActionBlock;
 
 @property (nonatomic,strong ) cancelActionBlock cancelActionBlock;
+
+-(void)reloadData;
 
 @end

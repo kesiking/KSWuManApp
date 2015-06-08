@@ -126,7 +126,7 @@
         return;
     }
 
-    [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phone":[KSUserInfoModel sharedConstant].phone,@"pwd":_text_oldPwd.text,@"newPwd":_text_newPwd.text} version:nil];
+    [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phone":[KSLoginComponentItem sharedInstance].phone?:@"",@"pwd":_text_oldPwd.text,@"newPwd":_text_newPwd.text} version:nil];
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -143,8 +143,8 @@
     if (service == _service) {
         // todo success
         [WeAppToast toast:@"修改密码成功"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager removeItemAtPath:[LOGIN_FLAG filePathOfCaches] error:nil];
+        [[KSLoginComponentItem sharedInstance] updateUserLogin:NO];
+        [[KSLoginComponentItem sharedInstance] setPassword:_text_newPwd.text];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
