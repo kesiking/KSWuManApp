@@ -8,6 +8,7 @@
 
 #import "ManWuPersonInfoViewController.h"
 #import "ManWuChangePwdViewController.h"
+#import "ManWuUserNameViewController.h"
 
 #define HEADHIGHT   10
 #define FOOTHIGHT   0.5
@@ -161,6 +162,7 @@
             {
                 cell_person.textLabel.text = @"手机号码";
                 cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].phone;
+                cell_person.accessoryType = UITableViewCellAccessoryNone;
             }
                 break;
                 

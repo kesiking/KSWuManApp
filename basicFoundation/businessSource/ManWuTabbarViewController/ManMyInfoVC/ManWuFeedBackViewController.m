@@ -38,11 +38,12 @@
 {
     if(!_textView)
     {
-        _textView = [[UITextView alloc]initWithFrame:CGRectMake(kSpaceX, 30, WIDTH, 100)];
+        _textView = [[UITextView alloc]initWithFrame:CGRectMake(kSpaceX, 30, WIDTH, 200)];
         _textView.keyboardType = UIKeyboardTypeNamePhonePad;
         _textView.backgroundColor = [UIColor clearColor];
+        _textView.font = [UIFont systemFontOfSize:14];
     }
-    
+    [_textView becomeFirstResponder];
     return _textView;
 }
 
@@ -63,9 +64,25 @@
 
 - (void)doFeedBack
 {
-    NSString *feedBack = _textView.text;
-    NSString *userId = @"18867101957";
-    [self.service loadItemWithAPIName:@"user/feedback.do" params:@{@"userId":userId,@"suggestion":feedBack} version:nil];
+    [self.service loadItemWithAPIName:@"user/feedback.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"suggestion":_textView.text} version:nil];
+}
+
+-(void)textViewDidChange:(UITextView *)textView {
+    CGRect line = [textView caretRectForPosition:
+                   textView.selectedTextRange.start];
+    CGFloat overflow = line.origin.y + line.size.height
+    - ( textView.contentOffset.y + textView.bounds.size.height
+       - textView.contentInset.bottom - textView.contentInset.top );
+    if ( overflow > 0 ) {
+        // We are at the bottom of the visible text and introduced a line feed, scroll down (iOS 7 does not do it)
+        // Scroll caret to visible area
+        CGPoint offset = textView.contentOffset;
+        offset.y += overflow + 7; // leave 7 pixels margin
+        // Cannot animate with setContentOffset:animated: or caret will not appear
+        [UIView animateWithDuration:.2 animations:^{
+            [textView setContentOffset:offset];
+        }];
+    }
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -81,12 +98,16 @@
 {
     if (service == _service) {
         // todo success
+        [WeAppToast toast:@"提交成功"];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service == _service) {
         // todo fail
+        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
+        [WeAppToast toast:errorInfo];
     }
 }
 

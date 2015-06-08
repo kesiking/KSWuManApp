@@ -371,7 +371,8 @@
 		5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */; };
 		910E5D0C1B207E4F00FA584C /* register_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 910E5D0B1B207E4F00FA584C /* register_success.png */; };
 		910E5D0F1B208AEE00FA584C /* ManWuUserNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D0E1B208AEE00FA584C /* ManWuUserNameViewController.m */; };
-		910E5D121B208CC100FA584C /* ManWuSetPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D111B208CC100FA584C /* ManWuSetPhoneViewController.m */; };
+		910E5D1B1B20A40500FA584C /* ManWuMyRedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D1A1B20A40500FA584C /* ManWuMyRedPacketViewController.m */; };
+		910E5D1E1B20A43500FA584C /* ManWuMyInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D1D1B20A43500FA584C /* ManWuMyInviteCodeViewController.m */; };
 		91375F7C1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */; };
 		91E2D05A1B1761C500946A32 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		91E2D05B1B1761C500946A32 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0221B1761C500946A32 /* CustomImagePickerController.m */; };
@@ -1143,8 +1144,10 @@
 		910E5D0B1B207E4F00FA584C /* register_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_success.png; sourceTree = "<group>"; };
 		910E5D0D1B208AEE00FA584C /* ManWuUserNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuUserNameViewController.h; sourceTree = "<group>"; };
 		910E5D0E1B208AEE00FA584C /* ManWuUserNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuUserNameViewController.m; sourceTree = "<group>"; };
-		910E5D101B208CC100FA584C /* ManWuSetPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuSetPhoneViewController.h; sourceTree = "<group>"; };
-		910E5D111B208CC100FA584C /* ManWuSetPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuSetPhoneViewController.m; sourceTree = "<group>"; };
+		910E5D191B20A40500FA584C /* ManWuMyRedPacketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuMyRedPacketViewController.h; sourceTree = "<group>"; };
+		910E5D1A1B20A40500FA584C /* ManWuMyRedPacketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuMyRedPacketViewController.m; sourceTree = "<group>"; };
+		910E5D1C1B20A43500FA584C /* ManWuMyInviteCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuMyInviteCodeViewController.h; sourceTree = "<group>"; };
+		910E5D1D1B20A43500FA584C /* ManWuMyInviteCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuMyInviteCodeViewController.m; sourceTree = "<group>"; };
 		91375F7A1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDoneResetPwdViewController.h; sourceTree = "<group>"; };
 		91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDoneResetPwdViewController.m; sourceTree = "<group>"; };
 		91E2D01E1B1761C500946A32 /* AGSimpleImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSimpleImageEditorView.h; sourceTree = "<group>"; };
@@ -1995,8 +1998,10 @@
 				91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */,
 				910E5D0D1B208AEE00FA584C /* ManWuUserNameViewController.h */,
 				910E5D0E1B208AEE00FA584C /* ManWuUserNameViewController.m */,
-				910E5D101B208CC100FA584C /* ManWuSetPhoneViewController.h */,
-				910E5D111B208CC100FA584C /* ManWuSetPhoneViewController.m */,
+				910E5D191B20A40500FA584C /* ManWuMyRedPacketViewController.h */,
+				910E5D1A1B20A40500FA584C /* ManWuMyRedPacketViewController.m */,
+				910E5D1C1B20A43500FA584C /* ManWuMyInviteCodeViewController.h */,
+				910E5D1D1B20A43500FA584C /* ManWuMyInviteCodeViewController.m */,
 				91E2D04F1B1761C500946A32 /* register&login */,
 				91E2D0541B1761C500946A32 /* resource */,
 			);
@@ -3305,7 +3310,6 @@
 				051900811B04326600C077D5 /* ManWuCommodityFiltTagListView.m in Sources */,
 				5FD45ED61B1C04D90064BA31 /* ManWuCommoditySearchListView.m in Sources */,
 				0566648B1AEE0B1C00FD1C65 /* TBDetailSkuPropsModel.m in Sources */,
-				910E5D121B208CC100FA584C /* ManWuSetPhoneViewController.m in Sources */,
 				058BC3FA1AE89DA700A4F799 /* KSManWuTabBarViewController.m in Sources */,
 				5F4E404C1B1ECD5C004AE7C0 /* NSObject+LKModel.m in Sources */,
 				91E2D06D1B1761C500946A32 /* ManWuMyInfoViewController.m in Sources */,
@@ -3439,9 +3443,11 @@
 				058BC40C1AE8CF8700A4F799 /* KSManWuViewController.m in Sources */,
 				91E2D06C1B1761C500946A32 /* ManWuFeedBackViewController.m in Sources */,
 				5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */,
+				910E5D1E1B20A43500FA584C /* ManWuMyInviteCodeViewController.m in Sources */,
 				058DAE661AE79A8B009D0008 /* KSConfigCenter.m in Sources */,
 				050FFD2E1B02DFA400721E02 /* KSModelDemo.m in Sources */,
 				91E2D06A1B1761C500946A32 /* ManWuChangePwdViewController.m in Sources */,
+				910E5D1B1B20A40500FA584C /* ManWuMyRedPacketViewController.m in Sources */,
 				5F214C871B15BCF60081BA02 /* UIColor+Ext.m in Sources */,
 				91E2D05A1B1761C500946A32 /* AGSimpleImageEditorView.m in Sources */,
 				058DAE561AE73040009D0008 /* TBNavigationParams.m in Sources */,
