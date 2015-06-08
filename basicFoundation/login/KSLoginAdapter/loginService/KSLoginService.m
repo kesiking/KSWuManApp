@@ -33,7 +33,7 @@
     [self loadItemWithAPIName:login_api_name params:@{@"phone":self.accountName, @"pwd":self.password} version:nil];
 }
 
--(void)logoutWithUserId:(NSString*)userId{
+-(void)logoutWithAccountName:(NSString*)accountName{
     [[KSLoginComponentItem sharedInstance] updateUserLogin:NO];
 }
 
