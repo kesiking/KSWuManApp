@@ -17,10 +17,17 @@
     self.needLogin = [param objectForKey:@"needLogin"];
     // 统一调用登陆逻辑
     [self callWithAuthCheck:apiName method:^{
+        NSMutableDictionary* newParams = nil;
+        if (param) {
+            newParams = [NSMutableDictionary dictionaryWithDictionary:param];
+        }
+        if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
+            [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
+        }
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
         // 默认为json序列化
         AFHTTPRequestOperationManager *httpRequestOM = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:KS_MANWU_BASE_URL]];
-        [httpRequestOM GET:path parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [httpRequestOM GET:path parameters:newParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 NSDictionary* responseDict = (NSDictionary*)responseObject;
                 NSString* resultstring = [responseDict objectForKey:@"resultString"];

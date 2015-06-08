@@ -21,6 +21,8 @@
 
 +(KSLoginComponentItem *)sharedInstance;
 
+-(void)updateUserInfo:(NSDictionary*)userInfo;
+
 -(void)updateUserLogin:(BOOL)isLogin;
 
 -(void)setPassword:(NSString *)password;

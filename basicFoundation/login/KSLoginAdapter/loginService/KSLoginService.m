@@ -76,6 +76,7 @@
         [[KSLoginComponentItem sharedInstance] setPassword:self.password];
         [[KSLoginComponentItem sharedInstance] setAccountName:self.accountName];
         // 更新userInfo信息，更新登陆信息
+        [[KSLoginComponentItem sharedInstance] updateUserInfo:[model.item toDictionary]];
         [[KSLoginComponentItem sharedInstance] updateUserLogin:YES];
     }else if([model.apiName isEqualToString:logout_api_name]){
         [[KSLoginComponentItem sharedInstance] updateUserLogin:NO];

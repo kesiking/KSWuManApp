@@ -16,7 +16,7 @@ static KSLoginComponentItem *userInfoModel=nil;
 +(KSLoginComponentItem *)sharedInstance{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        userInfoModel=[[KSLoginComponentItem alloc] init];
+        userInfoModel = [[KSLoginComponentItem alloc] init];
         [userInfoModel initUserInfo];
     });
     
@@ -34,11 +34,11 @@ static KSLoginComponentItem *userInfoModel=nil;
     userInfoModel.isLogined  = [userDefaults boolForKey:@"userLogined"];
 }
 
-- (void)setFromDictionary:(NSDictionary *)dict
+- (void)updateUserInfo:(NSDictionary *)userInfo
 {
-    [super setFromDictionary:dict];
+    [self setFromDictionary:userInfo];
         
-    [[NSUserDefaults standardUserDefaults] setObject:[self toDictionary] forKey:@"userInfo"];
+    [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:@"userInfo"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
