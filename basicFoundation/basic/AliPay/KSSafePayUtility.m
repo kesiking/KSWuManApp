@@ -8,6 +8,7 @@
 
 #import "KSSafePayUtility.h"
 #import "DataSigner.h"
+#import "DataVerifier.h"
 #import "Order.h"
 
 
@@ -91,7 +92,7 @@ static NSString    * aliPayPublicKey;
     }
     order.amount = price; //商品价格
 #warning should change 服务器异步通知页面路径
-    order.notifyURL =  @"http://www.baidu.com"; //回调URL 服务器异步通知页面路径
+    order.notifyURL =  @"http://www.xxx.com"; //回调URL 服务器异步通知页面路径
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
@@ -117,25 +118,49 @@ static NSString    * aliPayPublicKey;
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
-            [self processResultStatus:resultDic];
-            if (callbackBlock) {
+            BOOL isSuccess = [self processResultStatus:resultDic];
+            if (callbackBlock && isSuccess) {
                 callbackBlock(resultDic);
             }
         }];
     }
 }
 
-+(void)processResultStatus:(NSDictionary*)resultDic{
++(BOOL)processResultStatus:(NSDictionary*)resultDic{
     int statusCode = [[resultDic objectForKey:@"resultStatus"] intValue];
     NSString* result = [resultDic objectForKey:@"result"];
     NSString* memo = [resultDic objectForKey:@"memo"];
     NSRange range = [result rangeOfString:@"success=\"true\""];
+    NSRange signRange = [result rangeOfString:@"sign=\""];
+    
+    BOOL signSuccess = YES;
+    // 用支付宝公钥验证签名
+    if (signRange.location != NSNotFound) {
+        NSString* sign = [result substringFromIndex:signRange.location + signRange.length];
+        signRange = [sign rangeOfString:@"\""];
+        if (signRange.location != NSNotFound) {
+            [sign substringToIndex:signRange.location];
+        }
+        NSString* message = [NSString string];
+        id<DataVerifier> verifier = CreateRSADataVerifier(aliPayPublicKey);
+        signSuccess = [verifier verifyString:message withSign:sign];
+    }
+    
     //是否支付成功
-    if (9000 == statusCode && range.location != NSNotFound) {
+    if (9000 == statusCode && range.location != NSNotFound && signSuccess) {
         [WeAppToast toast:@"支付成功"];
+        return YES;
+    }else if(8000 == statusCode){
+        [WeAppToast toast:@"正在处理中，请稍等"];
+    }else if(6002 == statusCode){
+        [WeAppToast toast:@"请检查网路连接"];
+    }else if(6001 == statusCode){
+        [WeAppToast toast:@"支付取消"];
     }else{
         [WeAppToast toast:@"支付失败"];
     }
+    
+    return NO;
 }
 
 #pragma mark -

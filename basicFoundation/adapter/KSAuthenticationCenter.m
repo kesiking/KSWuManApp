@@ -26,7 +26,11 @@
 }
 
 + (NSString*)userId{
-    return [KSUserInfoModel sharedConstant].userId;
+    id userIdObj = [KSUserInfoModel sharedConstant].userId;
+    if (userIdObj) {
+        return [NSString stringWithFormat:@"%@",userIdObj];
+    }
+    return nil;
 }
 
 + (BOOL)isLogin{

@@ -15,6 +15,8 @@
 @property (nonatomic, assign) CGSize               collectionCellSize;
 @property (nonatomic, assign) NSUInteger           minimumInteritemSpacing;
 @property (nonatomic, assign) NSUInteger           minimumLineSpacing;
+// Updates the frame size as items are added/removed. Default is NO.
+@property (nonatomic, assign) BOOL                 autoAdjustFrameSize;
 @property (nonatomic, assign) BOOL                 isEditModel;
 
 @end

@@ -25,13 +25,14 @@
                 NSDictionary* responseDict = (NSDictionary*)responseObject;
                 NSString* resultstring = [responseDict objectForKey:@"resultString"];
                 NSString* resultcode = [responseDict objectForKey:@"resultCode"];
+                NSString* resultApiName = apiName;
                 if ([resultcode isEqualToString:@"100"]) {
                     successBlock(responseDict);
                 }else{
                     if (resultstring == nil) {
                         resultstring = @"连接成功，请求数据不存在";
                     }
-                    NSError *error = [NSError errorWithDomain:@"apiRequestErrorDomain" code:[resultcode integerValue] userInfo:@{NSLocalizedDescriptionKey: resultstring}];
+                    NSError *error = [NSError errorWithDomain:@"apiRequestErrorDomain" code:[resultcode integerValue] userInfo:@{NSLocalizedDescriptionKey: resultstring,@"apiName":resultApiName?:@""}];
                     NSMutableDictionary* errorDic = [NSMutableDictionary dictionary];
                     if (error) {
                         [errorDic setObject:error forKey:@"responseError"];

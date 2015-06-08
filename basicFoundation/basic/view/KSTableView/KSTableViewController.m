@@ -152,6 +152,10 @@
 }
 
 -(void)reloadData{
+    if (((KSCollectionViewConfigObject*)self.configObject).autoAdjustFrameSize) {
+        [self sizeToFit];
+    }
+    [self.collectionDeleteItems removeAllObjects];
     [self.tableView reloadData];
 }
 
@@ -297,6 +301,44 @@
     }
     if (self.tableViewDidSelectedBlock) {
         self.tableViewDidSelectedBlock(tableView,indexPath,self.dataSourceRead,(KSCollectionViewConfigObject*)self.configObject);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark - sizeToFit
+// 自使用高度，配合autoAdjustFrameSize使用，autoAdjustFrameSize为YES时表示高度由cell的个数决定，目前sizeToFit只支持collectionSize为一样宽高的情况
+-(void)sizeToFit{
+    KSCollectionViewConfigObject* configObject = ((KSCollectionViewConfigObject*)self.configObject);
+    
+    if (configObject.autoAdjustFrameSize == YES
+        && configObject.needNextPage == NO
+        && configObject.needQueueLoadData == NO
+        && [self.dataSourceRead count] > 0) {
+        CGFloat totleHeight = 0;
+
+        if (self.tableHeaderView) {
+            totleHeight += self.tableHeaderView.height;
+        }
+        
+        for (NSUInteger index = 0; index < [self.dataSourceRead count] ; index++ ) {
+            KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:index];
+            if (modelInfoItem.frame.size.height > 0) {
+                totleHeight += modelInfoItem.frame.size.height * SCREEN_SCALE;
+            }else{
+                totleHeight += configObject.collectionCellSize.height;
+            }
+        }
+        
+        if (self.tableFooterView) {
+            totleHeight += self.tableFooterView.height;
+        }
+        
+        if (totleHeight > 0) {
+            CGRect rect = self.tableView.frame;
+            rect.size.height = totleHeight;
+            [self setFrame:rect];
+        }
     }
 }
 

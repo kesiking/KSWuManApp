@@ -10,4 +10,6 @@
 
 @interface KSAdapterCacheService : KSCacheService
 
+-(NSString*)getTableNameFromApiName:(NSString*)apiName;
+
 @end

@@ -20,7 +20,6 @@
                    voucherId:(NSString*)voucherId{
     if ([WeAppUtils isEmpty:userId]
         || [WeAppUtils isEmpty:addressId]
-        || [WeAppUtils isEmpty:skuId]
         || [WeAppUtils isEmpty:itemId]
         || [WeAppUtils isEmpty:buyNum]
         || [WeAppUtils isEmpty:payPrice]) {
@@ -29,7 +28,10 @@
     }
     
     self.jsonTopKey = @"data";
-    NSMutableDictionary* params = [@{@"itemId":itemId,@"userId":userId,@"addressId":addressId,@"skuId":skuId,@"buyNum":buyNum,@"payPrice":payPrice} mutableCopy];
+    NSMutableDictionary* params = [@{@"itemId":itemId,@"userId":userId,@"addressId":addressId,@"buyNum":buyNum,@"payPrice":payPrice} mutableCopy];
+    if (skuId) {
+        [params setObject:skuId forKey:@"skuId"];
+    }
     if (activityId) {
         [params setObject:activityId forKey:@"activityId"];
     }
