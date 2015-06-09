@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ManWuUserNameViewController : UIViewController
+@interface ManWuUserNameViewController : UIViewController<WeAppBasicServiceDelegate>
+
+@property (nonatomic, strong) KSAdapterService *service;
 
 @end
