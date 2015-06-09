@@ -1,25 +1,25 @@
 //
-//  ManWuUserNameViewController.m
+//  ManWuMyRedPacketViewController.m
 //  basicFoundation
 //
 //  Created by 许学 on 15/6/4.
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "ManWuUserNameViewController.h"
+#import "ManWuMyRedPacketViewController.h"
 
-@interface ManWuUserNameViewController ()
+@interface ManWuMyRedPacketViewController ()
 
 @end
 
-@implementation ManWuUserNameViewController
+@implementation ManWuMyRedPacketViewController
 
 -(KSAdapterService *)service{
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-        [_service setItemClass:[NSDictionary class]];
-        _service.jsonTopKey = @"data";
+//        [_service setItemClass:[NSDictionary class]];
+//        _service.jsonTopKey = @"data";
         
     }
     return _service;
@@ -28,6 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
+    
+    self.title = @"我的红包";
+    
+    [self.service loadItemWithAPIName:@"user/myVouchers.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
 }
 
 #pragma mark WeAppBasicServiceDelegate method

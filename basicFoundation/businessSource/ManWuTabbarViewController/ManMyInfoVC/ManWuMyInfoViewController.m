@@ -12,6 +12,8 @@
 #import "ManWuPersonInfoViewController.h"
 #import "ManWuMyOrdersViewController.h"
 #import "ManWuConfigViewController.h"
+#import "ManWuMyRedPacketViewController.h"
+#import "ManWuMyInviteCodeViewController.h"
 
 @implementation ManWuMyInfoViewController
 {
@@ -210,6 +212,9 @@
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service == _service) {
         // todo fail
+        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
+        [WeAppToast toast:errorInfo];
+
     }
 }
 
@@ -333,9 +338,13 @@
                 
             }else if (indexPath.row == 2)
             {
+                ManWuMyRedPacketViewController *redPacketVC = [[ManWuMyRedPacketViewController alloc]init];
+                [self.navigationController pushViewController:redPacketVC animated:YES];
                 
             }else if (indexPath.row == 3)
             {
+                ManWuMyInviteCodeViewController *inviteCodeVC = [[ManWuMyInviteCodeViewController alloc]init];
+                [self.navigationController pushViewController:inviteCodeVC animated:YES];
                 
             }else
             {
