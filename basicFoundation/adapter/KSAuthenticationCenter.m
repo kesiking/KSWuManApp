@@ -26,6 +26,9 @@
 }
 
 + (NSString*)userId{
+    if (![self isLogin]) {
+        return nil;
+    }
     id userIdObj = [KSUserInfoModel sharedConstant].userId;
     if (userIdObj) {
         return [NSString stringWithFormat:@"%@",userIdObj];
