@@ -13,10 +13,6 @@
 #import "ManWuSearchViewCell.h"
 #import "ManWuSearchViewCellInfoItem.h"
 
-#define WEAKSELF typeof(self) __weak __block weakSelf = self;
-#define STRONGSELF typeof(self) __strong strongSelf = weakSelf;
-
-
 @interface ManWuDiscoverListView()
 
 @property (nonatomic,strong) KSDataSource*      dataSourceRead;

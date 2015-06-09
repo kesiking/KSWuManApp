@@ -11,13 +11,13 @@
 
 @class KSLoginViewCtl;
 
-typedef void (^doLoginBlock)(KSLoginViewCtl* loginViewCtl);
+typedef void (^doLoginBlock)        (KSLoginViewCtl* loginViewCtl);
 
-typedef void (^doRegisterBlock)(KSLoginViewCtl* loginViewCtl);
+typedef void (^doRegisterBlock)     (KSLoginViewCtl* loginViewCtl);
 
-typedef void (^doResetPwdBlock)(KSLoginViewCtl* loginViewCtl);
+typedef void (^doResetPwdBlock)     (KSLoginViewCtl* loginViewCtl);
 
-typedef void (^doCancelLoginBlock)(KSLoginViewCtl* loginViewCtl);
+typedef void (^doCancelLoginBlock)  (KSLoginViewCtl* loginViewCtl);
 
 @interface KSLoginViewCtl : NSObject
 

@@ -7,7 +7,7 @@
 		<key>login</key>
 		<string>KSLoginViewController</string>
 		<key>registerPage</key>
-		<string>ManWuRegisterViewController</string>
+		<string>KSRegisterViewController</string>
 		<key>resetPwdPage</key>
 		<string>ManWuResetPwdViewController</string>
 	</dict>

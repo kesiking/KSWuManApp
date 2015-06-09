@@ -12,7 +12,8 @@
 #define login_width (self.frame.size.width - kSpaceX * 2)
 #define view_width (self.frame.size.width)
 
-
+#define text_height     (40.0)
+#define text_border     (8.0)
 
 @interface KSLoginViewCtl()<UITextFieldDelegate>
 
@@ -88,7 +89,7 @@
 {
     if(!_text_phoneNum)
     {
-        _text_phoneNum = [[WeAppBasicFieldView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_logo_imgView.frame) + 30, login_width, 40)];
+        _text_phoneNum = [[WeAppBasicFieldView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_logo_imgView.frame) + 30, login_width, text_height)];
         _text_phoneNum.textView.placeholder = @"手机号码/用户名";
         _text_phoneNum.textView.borderStyle = UITextBorderStyleRoundedRect;
         [_text_phoneNum.textView setFont:[UIFont systemFontOfSize:16]];
@@ -104,7 +105,7 @@
 {
     if(!_text_psw)
     {
-        _text_psw = [[WeAppBasicFieldView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_phoneNum.frame) + 8, login_width, 40)];
+        _text_psw = [[WeAppBasicFieldView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_phoneNum.frame) + text_border, login_width, text_height)];
         _text_psw.textView.placeholder = @"密码";
         [_text_psw.textView setFont:[UIFont systemFontOfSize:16]];
         _text_psw.textView.borderStyle = UITextBorderStyleRoundedRect;
@@ -136,7 +137,7 @@
 {
     if(!_btn_login)
     {
-        _btn_login = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_btn_forgetPwd.frame) + 20, login_width, 40)];
+        _btn_login = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_btn_forgetPwd.frame) + 20, login_width, text_height)];
         _btn_login.layer.cornerRadius = 5;
         _btn_login.layer.masksToBounds = YES;
         [_btn_login setTitle:@"登录" forState:UIControlStateNormal];

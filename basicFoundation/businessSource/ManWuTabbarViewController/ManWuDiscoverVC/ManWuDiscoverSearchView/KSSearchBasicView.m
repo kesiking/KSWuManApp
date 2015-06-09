@@ -11,8 +11,6 @@
 #import "KSViewCell.h"
 
 #define SEARCH_BAR_HEIGHT (44)
-#define WEAKSELF typeof(self) __weak weakSelf = self;
-#define STRONGSELF typeof(self) __strong strongSelf = weakSelf;
 #define labelViewTag 1002
 
 @interface KSSearchBasicView ()

@@ -10,6 +10,7 @@
 #import "KSLoginKeyChain.h"
 #import "KSLoginComponentItem.h"
 #import "KSLoginService.h"
+#import "MWUtils.h"
 
 #define account_label_description  @"账户"
 #define password_label_description @"登陆密码"
@@ -84,11 +85,11 @@
         WEAKSELF
         _loginViewCtl.loginBlock = ^(KSLoginViewCtl* loginViewCtl){
             STRONGSELF
-            if(loginViewCtl.text_phoneNum.text.length == 0)
+            if(![MWUtils isValidMobile:loginViewCtl.text_phoneNum.text])
             {
                 [WeAppToast toast:@"请输入正确的手机号"];
                 return;
-            }else if(loginViewCtl.text_psw.text.length == 0)
+            }else if([MWUtils isValidPassword:loginViewCtl.text_psw.text])
             {
                 [WeAppToast toast:@"请输入密码"];
                 return;
