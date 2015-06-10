@@ -13,4 +13,12 @@
 #import "KSAuthenticationCenter.h"
 #import "KSLoginMaroc.h"
 
+#define kRegisterView            @"registerPage"
+
+#define kResetPwdPage            @"resetPwdPage"
+
+#define kDoneResetPwdPage        @"doneResetPwdPage"
+
+#define kModifyPwdPage           @"modifyPwdPage"
+
 #endif

@@ -19,7 +19,7 @@ typedef void (^doResetPwdBlock)     (KSLoginViewCtl* loginViewCtl);
 
 typedef void (^doCancelLoginBlock)  (KSLoginViewCtl* loginViewCtl);
 
-@interface KSLoginViewCtl : NSObject
+@interface KSLoginViewCtl : UIView
 
 @property (nonatomic, strong) UIImageView         *logo_imgView;
 @property (nonatomic, strong) WeAppBasicFieldView *text_phoneNum;
@@ -34,7 +34,5 @@ typedef void (^doCancelLoginBlock)  (KSLoginViewCtl* loginViewCtl);
 @property (nonatomic, strong) doRegisterBlock    registerBlock;
 @property (nonatomic, strong) doResetPwdBlock    resetPwdBlock;
 @property (nonatomic, strong) doCancelLoginBlock cancelLoginBlock;
-
--(instancetype)initWithFrame:(CGRect)frame;
 
 @end

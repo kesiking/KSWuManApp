@@ -11,6 +11,10 @@
 
 @interface WeAppBasicFieldView : UIView
 
++(WeAppBasicFieldView*)getSecurityFieldView;
+
++(WeAppBasicFieldView*)getCommonFieldView;
+
 @property (strong, nonatomic) KSInsetsTextField   *textView;
 
 @property (strong, nonatomic) UIImageView         *backgroundImage;

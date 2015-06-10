@@ -16,6 +16,8 @@
 
 #define reset_api_name            @"user/reset.do"
 
+#define modifyPwd_api_name        @"user/modifyPwd.do"
+
 #define sendValidateCode_api_name @"user/sendValidateCode.do"
 
 @interface KSLoginService : KSAdapterService
@@ -26,7 +28,9 @@
 
 -(void)sendValidateCodeWithAccountName:(NSString*)accountName;
 
--(void)resetPasswordWithAccountName:(NSString*)accountName oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
+-(void)resetPasswordWithAccountName:(NSString*)accountName validateCode:(NSString*)validateCode newPassword:(NSString*)newPassword;
+
+-(void)modifyPasswordWithAccountName:(NSString*)accountName oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
 
 -(void)registerWithAccountName:(NSString*)accountName password:(NSString*)password userName:(NSString*)userName validateCode:(NSString*)validateCode inviteCode:(NSString*)inviteCode;
 

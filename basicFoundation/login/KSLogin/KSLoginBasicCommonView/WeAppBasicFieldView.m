@@ -18,6 +18,31 @@
 
 @implementation WeAppBasicFieldView
 
++(WeAppBasicFieldView*)getSecurityFieldView{
+    WeAppBasicFieldView* securityFieldView = [[WeAppBasicFieldView alloc] init];
+    securityFieldView.textView.placeholder = @"密码";
+    [securityFieldView.textView setFont:[UIFont systemFontOfSize:16]];
+    securityFieldView.textView.borderStyle = UITextBorderStyleRoundedRect;
+    securityFieldView.textView.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+    securityFieldView.textView.keyboardType = UIKeyboardTypeNamePhonePad;
+    securityFieldView.textView.clearButtonMode = UITextFieldViewModeAlways;
+    securityFieldView.textView.secureTextEntry = YES;
+    securityFieldView.backgroundColor = [UIColor clearColor];
+    return securityFieldView;
+}
+
++(WeAppBasicFieldView*)getCommonFieldView{
+    WeAppBasicFieldView* commonFieldView = [[WeAppBasicFieldView alloc] init];
+    commonFieldView.textView.borderStyle = UITextBorderStyleRoundedRect;
+    [commonFieldView.textView setFont:[UIFont systemFontOfSize:16]];
+    commonFieldView.textView.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+    commonFieldView.textView.keyboardType = UIKeyboardTypeNamePhonePad;
+    commonFieldView.textView.clearButtonMode = UITextFieldViewModeAlways;
+    commonFieldView.textView.secureTextEntry = NO;
+    commonFieldView.backgroundColor = [UIColor clearColor];
+    return commonFieldView;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];

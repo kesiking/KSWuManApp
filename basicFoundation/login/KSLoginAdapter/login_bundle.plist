@@ -9,7 +9,11 @@
 		<key>registerPage</key>
 		<string>KSRegisterViewController</string>
 		<key>resetPwdPage</key>
-		<string>ManWuResetPwdViewController</string>
+		<string>KSResetPasswordViewController</string>
+		<key>doneResetPwdPage</key>
+		<string>KSDoneResetViewController</string>
+		<key>modifyPwdPage</key>
+		<string>KSModifyPasswordViewController</string>
 	</dict>
 	<key>object_list</key>
 	<array>

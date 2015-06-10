@@ -17,8 +17,6 @@
 
 @interface KSLoginViewCtl()<UITextFieldDelegate>
 
-@property (nonatomic, assign) CGRect       frame;
-
 @end
 
 @implementation KSLoginViewCtl
@@ -32,7 +30,7 @@
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
         self.frame = frame;
         [self setupView];
@@ -81,6 +79,7 @@
         _logo_imgView = [[UIImageView alloc]initWithFrame:CGRectMake(view_width/2 - 30, 30, 60, 60)];
         _logo_imgView.backgroundColor = [UIColor whiteColor];
         _logo_imgView.opaque = YES;
+        [self addSubview:_logo_imgView];
     }
     return _logo_imgView;
 }
@@ -89,14 +88,9 @@
 {
     if(!_text_phoneNum)
     {
-        _text_phoneNum = [[WeAppBasicFieldView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_logo_imgView.frame) + 30, login_width, text_height)];
+        _text_phoneNum = [WeAppBasicFieldView getCommonFieldView];
         _text_phoneNum.textView.placeholder = @"手机号码/用户名";
-        _text_phoneNum.textView.borderStyle = UITextBorderStyleRoundedRect;
-        [_text_phoneNum.textView setFont:[UIFont systemFontOfSize:16]];
-        _text_phoneNum.textView.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
-        _text_phoneNum.textView.keyboardType = UIKeyboardTypeNamePhonePad;
-        _text_phoneNum.textView.clearButtonMode = UITextFieldViewModeAlways;
-        _text_phoneNum.textView.secureTextEntry = NO;
+        [self addSubview:_text_phoneNum];
     }
     return _text_phoneNum;
 }
@@ -105,14 +99,9 @@
 {
     if(!_text_psw)
     {
-        _text_psw = [[WeAppBasicFieldView alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_phoneNum.frame) + text_border, login_width, text_height)];
+        _text_psw = [WeAppBasicFieldView getSecurityFieldView];
         _text_psw.textView.placeholder = @"密码";
-        [_text_psw.textView setFont:[UIFont systemFontOfSize:16]];
-        _text_psw.textView.borderStyle = UITextBorderStyleRoundedRect;
-        _text_psw.textView.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
-        _text_psw.textView.keyboardType = UIKeyboardTypeNamePhonePad;
-        _text_psw.textView.clearButtonMode = UITextFieldViewModeAlways;
-        _text_psw.textView.secureTextEntry = YES;
+        [self addSubview:_text_psw];
     }
     return _text_psw;
 }
@@ -128,6 +117,7 @@
         [_btn_forgetPwd.titleLabel setFont:[UIFont systemFontOfSize:14]];
         _btn_forgetPwd.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_btn_forgetPwd addTarget:self action:@selector(doResetPwd) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_btn_forgetPwd];
     }
     
     return _btn_forgetPwd;
@@ -143,12 +133,21 @@
         [_btn_login setTitle:@"登录" forState:UIControlStateNormal];
         [_btn_login.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_login.titleLabel.textColor = [UIColor whiteColor];
-        
-        [_btn_login setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
+        [_btn_login setBackgroundColor:[UIColor colorWithRed:0xdc/255.0 green:0x78/255.0 blue:0x68/255.0 alpha:1.0]];
         [_btn_login addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_btn_login];
     }
     
     return _btn_login;
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    _logo_imgView.frame = CGRectMake(view_width/2 - 30, 30, 60, 60);
+    _text_phoneNum.frame = CGRectMake(kSpaceX, CGRectGetMaxY(_logo_imgView.frame) + 30, login_width, text_height);
+    _text_psw.frame = CGRectMake(kSpaceX, CGRectGetMaxY(_text_phoneNum.frame) + text_border, login_width, text_height);
+    _btn_forgetPwd.frame = CGRectMake(view_width-kSpaceX-80, CGRectGetMaxY(_text_psw.frame) + 15, 80, 15);
+    _btn_login.frame = CGRectMake(kSpaceX, CGRectGetMaxY(_btn_forgetPwd.frame) + 20, login_width, text_height);
 }
 
 - (void)login
@@ -177,6 +176,13 @@
     if (self.cancelLoginBlock) {
         self.cancelLoginBlock(self);
     }
+}
+
+-(void)dealloc{
+    self.loginBlock = nil;
+    self.resetPwdBlock = nil;
+    self.registerBlock = nil;
+    self.cancelLoginBlock = nil;
 }
 
 @end

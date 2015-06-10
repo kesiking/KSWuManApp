@@ -44,7 +44,7 @@
     [self loadNumberValueWithAPIName:sendValidateCode_api_name params:@{@"phoneNum":accountName} version:nil];
 }
 
--(void)resetPasswordWithAccountName:(NSString*)accountName oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword{
+-(void)modifyPasswordWithAccountName:(NSString*)accountName oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword{
     if (accountName == nil) {
         accountName = [KSLoginComponentItem sharedInstance].phone;
     }
@@ -53,7 +53,19 @@
         || newPassword == nil) {
         return;
     }
-    [self loadItemWithAPIName:reset_api_name params:@{@"phone":accountName,@"pwd":oldPassword,@"newPwd":newPassword} version:nil];
+    [self loadItemWithAPIName:modifyPwd_api_name params:@{@"phone":accountName,@"pwd":oldPassword,@"newPwd":newPassword} version:nil];
+}
+
+-(void)resetPasswordWithAccountName:(NSString*)accountName validateCode:(NSString*)validateCode newPassword:(NSString*)newPassword{
+    if (accountName == nil) {
+        accountName = [KSLoginComponentItem sharedInstance].phone;
+    }
+    if (accountName == nil
+        || validateCode == nil
+        || newPassword == nil) {
+        return;
+    }
+    [self loadNumberValueWithAPIName:reset_api_name params:@{@"phoneNum":accountName,@"newPwd":newPassword,@"validateCode":validateCode} version:nil];
 }
 
 -(void)registerWithAccountName:(NSString*)accountName password:(NSString*)password userName:(NSString*)userName validateCode:(NSString*)validateCode inviteCode:(NSString*)inviteCode{
