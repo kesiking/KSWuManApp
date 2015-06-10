@@ -21,7 +21,7 @@
 			<key>name</key>
 			<string>login</string>
 			<key>class</key>
-			<string>ManWuLoginResolver</string>
+			<string>KSLoginResolver</string>
 		</dict>
 	</array>
 </dict>
