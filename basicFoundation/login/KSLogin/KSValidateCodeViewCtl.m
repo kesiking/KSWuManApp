@@ -7,6 +7,7 @@
 //
 
 #import "KSValidateCodeViewCtl.h"
+#import "KSLoginMaroc.h"
 
 @implementation KSValidateCodeViewCtl
 

@@ -7,6 +7,7 @@
 //
 
 #import "KSRegisterViewCtl.h"
+#import "KSLoginMaroc.h"
 
 #define register_width  (self.frame.size.width - kSpaceX * 2)
 #define view_width      (self.frame.size.width)

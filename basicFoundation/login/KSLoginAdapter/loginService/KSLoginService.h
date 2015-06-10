@@ -24,7 +24,7 @@
 
 -(void)loginWithAccountName:(NSString*)accountName password:(NSString*)password;
 
--(void)logoutWithUserId:(NSString*)userId;
+-(void)logoutWithAccountName:(NSString*)accountName;
 
 -(void)sendValidateCodeWithAccountName:(NSString*)accountName;
 

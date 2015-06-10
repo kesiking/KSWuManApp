@@ -8,6 +8,7 @@
 
 #import "KSModifyPasswordViewController.h"
 #import "KSModifyPasswordView.h"
+#import "KSLoginComponentItem.h"
 
 @interface KSModifyPasswordViewController ()
 

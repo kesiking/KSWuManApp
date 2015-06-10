@@ -8,6 +8,8 @@
 
 #import "KSResetView.h"
 #import "MWUtils.h"
+#import "KSLoginComponentItem.h"
+#import "KSLoginUrlPath.h"
 
 @implementation KSResetView
 

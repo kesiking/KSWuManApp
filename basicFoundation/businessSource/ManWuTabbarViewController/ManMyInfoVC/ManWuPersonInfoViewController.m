@@ -189,10 +189,7 @@
     
     if(indexPath.section == 1)
     {
-//        ManWuChangePwdViewController *changePwd = [[ManWuChangePwdViewController alloc]init];
-//        [self.navigationController pushViewController:changePwd animated:YES];
         TBOpenURLFromTargetWithNativeParams(internalURL(kModifyPwdPage),self, nil, nil);
-
     }
 
 }

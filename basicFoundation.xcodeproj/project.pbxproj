@@ -1211,6 +1211,7 @@
 		5FFD57CC1B27E7E600310255 /* KSModifyPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSModifyPasswordView.m; sourceTree = "<group>"; };
 		5FFD57CE1B27F3DB00310255 /* KSModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSModifyPasswordViewController.h; sourceTree = "<group>"; };
 		5FFD57CF1B27F3DB00310255 /* KSModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSModifyPasswordViewController.m; sourceTree = "<group>"; };
+		5FFD582D1B280C0700310255 /* KSLoginUrlPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSLoginUrlPath.h; sourceTree = "<group>"; };
 		5FFEB4291B1C38D700CAC511 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_newitem_recomment_image.png; sourceTree = "<group>"; };
 		910E5D0B1B207E4F00FA584C /* register_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_success.png; sourceTree = "<group>"; };
@@ -3045,6 +3046,7 @@
 				5FFD57791B253E8400310255 /* KSLoginComponentItem.h */,
 				5FFD577A1B253E8400310255 /* KSLoginComponentItem.m */,
 				5FFD57661B25281200310255 /* login_bundle.plist */,
+				5FFD582D1B280C0700310255 /* KSLoginUrlPath.h */,
 			);
 			path = KSLoginAdapter;
 			sourceTree = "<group>";

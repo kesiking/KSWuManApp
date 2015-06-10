@@ -7,6 +7,7 @@
 //
 
 #import "KSResetViewCtl.h"
+#import "KSLoginMaroc.h"
 
 #define reset_width     (self.frame.size.width - kSpaceX * 2)
 

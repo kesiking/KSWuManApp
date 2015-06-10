@@ -9,6 +9,7 @@
 #import "KSView.h"
 #import "KSLoginViewCtl.h"
 #import "KSLoginService.h"
+#import "KSLoginMaroc.h"
 
 @interface KSLoginView : KSView{
     KSLoginViewCtl    *_loginViewCtl;

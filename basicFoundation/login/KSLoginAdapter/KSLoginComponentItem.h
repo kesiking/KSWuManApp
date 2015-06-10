@@ -17,6 +17,7 @@
 @property (nonatomic,strong) NSString* userName;
 @property (nonatomic,strong) NSString* userId;
 @property (nonatomic,strong) NSString* sex;
+
 @property (nonatomic,assign) BOOL isLogined;
 
 +(KSLoginComponentItem *)sharedInstance;
