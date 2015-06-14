@@ -206,6 +206,7 @@
     // 跳转到下单页面
 //    NSString *itemId = self.detailModel.itemInfoModel.itemId;
     NSString *skuId = self.detailModel.skuService.currentSKUInfo.selectSkuId;
+    NSString *selectSkuPpathId = self.detailModel.skuService.currentSKUInfo.selectSkuPpathId;
     NSString *skuInfo = self.detailModel.skuService.currentSKUInfo.skuInfoDescription?:[[self.detailModel.skuMap objectForKey:skuId] description];
     NSNumber *skuPrice = self.detailModel.skuService.currentSKUInfo.price;
 
@@ -218,6 +219,9 @@
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:buyNumber,@"buyNumber",skuId, @"skuId",skuInfo,@"skuInfo",nil];
     if (skuPrice) {
         [params setObject:skuPrice forKey:@"skuPrice"];
+    }
+    if (selectSkuPpathId) {
+        [params setObject:selectSkuPpathId forKeyedSubscript:@"selectSkuPpathId"];
     }
     
     

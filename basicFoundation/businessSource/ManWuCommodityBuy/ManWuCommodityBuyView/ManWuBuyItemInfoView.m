@@ -104,9 +104,9 @@
         CGFloat x = self.itemImageView.right + TITLE_LEFT_MARGIN;
         CGFloat y = self.itemImageView.top - 2;
         CGFloat w = self.width - x - PRICE_LABEL_WIDTH - HORIZONTAL_MARGIN;
-        CGFloat h = TITLE_LABEL_HEIGHT;
+        CGFloat h = TITLE_LABEL_HEIGHT * 2;
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
-        _titleLabel.numberOfLines = 1;
+        _titleLabel.numberOfLines = 2;
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.font = [UIFont boldSystemFontOfSize:s];
         _titleLabel.textColor = TBBUY_COLOR_L;
@@ -183,8 +183,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    [self.titleLabel sizeToFit];
+    
     if (self.subtitleLabel.text) {
-        self.subtitleLabel.height = ceil(self.height - self.subtitleLabel.top - VERTICAL_MARGIN);
+        self.subtitleLabel.top = self.titleLabel.bottom;
     }
     
 //    CGFloat x = self.titleLabel.left;

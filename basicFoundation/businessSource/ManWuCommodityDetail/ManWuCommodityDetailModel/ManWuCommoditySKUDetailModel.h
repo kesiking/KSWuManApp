@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString*             dataOwner;
 @property (nonatomic, strong) NSString*             feature;
 @property (nonatomic, strong) NSNumber*             itemId;
+@property (nonatomic, strong) NSString*             skuId;
 @property (nonatomic, strong) NSString*             nodeId;
 @property (nonatomic, strong) NSString*             operTime;
 @property (nonatomic, strong) NSNumber*             price;
