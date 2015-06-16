@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KSUserInfoTaableViewCellTableViewCell : UITableViewCell
+@interface KSRedPacketTableViewCell : UITableViewCell
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "KSUserInfoTaableViewCellTableViewCell.h"
+#import "KSRedPacketTableViewCell.h"
 
-@implementation KSUserInfoTaableViewCellTableViewCell
+@implementation KSRedPacketTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
