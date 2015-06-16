@@ -143,7 +143,7 @@
         WEAKSELF
         _comfirmView.confirmButtonClick = ^(){
             STRONGSELF
-            NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"";
+            NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"1";
             NSString* itemId = strongSelf.detailModel.itemId;
             NSNumber* buyNum = [strongSelf.dict objectForKey:@"buyNumber"]?:@1;
             
@@ -170,11 +170,14 @@
         WEAKSELF
         _createOrderService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
             STRONGSELF
-            NSDictionary* params = @{@"tradeNO":@"",@"productName":strongSelf.detailModel.title?:@"",@"productDescription":strongSelf.detailModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",strongSelf.orderPayView.payPrice?:@0.01]};
-   
-            [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
-                // 支付成功后 todo
-            }];
+            if (service && service.numberValue) {
+                NSString* tradeNO = [NSString stringWithFormat:@"%@",service.numberValue];
+                NSDictionary* params = @{@"tradeNO":tradeNO?:@"",@"productName":strongSelf.detailModel.title?:@"",@"productDescription":strongSelf.detailModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",strongSelf.orderPayView.payPrice?:@0.01]};
+                
+                [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
+                    // 支付成功后 todo
+                }];
+            }
         };
         _createOrderService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
             STRONGSELF

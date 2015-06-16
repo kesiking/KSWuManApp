@@ -11,6 +11,7 @@
 @interface TBDetailSKUInfo : NSObject
 
 @property (nonatomic, strong) NSString                 *selectSkuId;
+@property (nonatomic, strong) NSString                 *selectSkuPpathId;
 @property (nonatomic, assign) NSInteger                quantity;//sku 库存
 @property (nonatomic, strong) NSString                 *quantityText;
 @property (nonatomic, strong) NSArray<TBDetailPriceUnitsModel > *priceUnits;//sku价格
