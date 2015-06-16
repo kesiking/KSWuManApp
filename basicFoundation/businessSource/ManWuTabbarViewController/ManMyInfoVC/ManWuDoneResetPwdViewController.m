@@ -94,6 +94,11 @@
     {
         [WeAppToast toast:@"请确认新密码"];
         return;
+        
+    }else if (![_text_newPwd.text isEqualToString:_text_renewPwd.text])
+    {
+        [WeAppToast toast:@"新密码输入不一致"];
+        return;
     }
     [self.service loadNumberValueWithAPIName:@"user/modifyPwd.do" params:@{@"phoneNum":_phoneNum,@"newPwd":_text_newPwd.text,@"validateCode":_smsCode} version:nil];
     

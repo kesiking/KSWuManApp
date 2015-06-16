@@ -373,6 +373,7 @@
 		910E5D0F1B208AEE00FA584C /* ManWuUserNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D0E1B208AEE00FA584C /* ManWuUserNameViewController.m */; };
 		910E5D1B1B20A40500FA584C /* ManWuMyRedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D1A1B20A40500FA584C /* ManWuMyRedPacketViewController.m */; };
 		910E5D1E1B20A43500FA584C /* ManWuMyInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D1D1B20A43500FA584C /* ManWuMyInviteCodeViewController.m */; };
+		9116A69C1B30508700F2DBF9 /* KSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9116A69B1B30508700F2DBF9 /* KSUtils.m */; };
 		91375F7C1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */; };
 		91E2D05A1B1761C500946A32 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		91E2D05B1B1761C500946A32 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0221B1761C500946A32 /* CustomImagePickerController.m */; };
@@ -1149,6 +1150,8 @@
 		910E5D1A1B20A40500FA584C /* ManWuMyRedPacketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuMyRedPacketViewController.m; sourceTree = "<group>"; };
 		910E5D1C1B20A43500FA584C /* ManWuMyInviteCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuMyInviteCodeViewController.h; sourceTree = "<group>"; };
 		910E5D1D1B20A43500FA584C /* ManWuMyInviteCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuMyInviteCodeViewController.m; sourceTree = "<group>"; };
+		9116A69A1B30508700F2DBF9 /* KSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSUtils.h; sourceTree = "<group>"; };
+		9116A69B1B30508700F2DBF9 /* KSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSUtils.m; sourceTree = "<group>"; };
 		91375F7A1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDoneResetPwdViewController.h; sourceTree = "<group>"; };
 		91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDoneResetPwdViewController.m; sourceTree = "<group>"; };
 		91E2D01E1B1761C500946A32 /* AGSimpleImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSimpleImageEditorView.h; sourceTree = "<group>"; };
@@ -2967,6 +2970,8 @@
 				91E2D0401B1761C500946A32 /* UserInfoViewItem.m */,
 				91E3F6B41B2D37DF0080819E /* KSRedPacketTableViewCell.h */,
 				91E3F6B51B2D37DF0080819E /* KSRedPacketTableViewCell.m */,
+				9116A69A1B30508700F2DBF9 /* KSUtils.h */,
+				9116A69B1B30508700F2DBF9 /* KSUtils.m */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -3445,6 +3450,7 @@
 				0566649A1AEE148500FD1C65 /* ManWuDetailSKUView.m in Sources */,
 				058DADD01AE52EC0009D0008 /* AFHTTPSessionManager.m in Sources */,
 				91E2D0681B1761C500946A32 /* NSString+FilePath.m in Sources */,
+				9116A69C1B30508700F2DBF9 /* KSUtils.m in Sources */,
 				058D5CF51AF1F62E006EA35C /* RSADataSigner.m in Sources */,
 				058BC40C1AE8CF8700A4F799 /* KSManWuViewController.m in Sources */,
 				91E2D06C1B1761C500946A32 /* ManWuFeedBackViewController.m in Sources */,
