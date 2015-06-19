@@ -298,25 +298,26 @@
         }
         
         //如果sku为nil，说明无法构成一个完整的SKU，则相应的当前 self.selectedSku 也就是nil了
-        NSString *skuId = [self.validSkuMap objectForKey:[selectedSkuPropertyValues componentsJoinedByString:separatorForPidAndVid]];
+        NSString *skuPpathId = [self.validSkuMap objectForKey:[selectedSkuPropertyValues componentsJoinedByString:separatorForPidAndVid]];
         TBDetailSKUInfo *skuInfo = [[TBDetailSKUInfo alloc]init];
         
-        if (skuId == nil) {
+        if (skuPpathId == nil) {
             skuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];;
         }else{
             skuInfo.skuDisplayString = skuSummaryString;
             skuInfo.skuCellString = skuSummaryString;
-            skuInfo.selectSkuId = skuId;
-            _selectedSkuId = skuId;
             skuInfo.skuInfoDescription = skuInfoDescription;
-            ManWuCommoditySKUDetailModel * currentSku = [_skuMap objectForKey:skuId];
+            skuInfo.selectSkuPpathId = skuPpathId;
+            ManWuCommoditySKUDetailModel * currentSku = [_skuMap objectForKey:skuPpathId];
+            skuInfo.selectSkuId = currentSku.skuId;
+            _selectedSkuId = currentSku.skuId;
             skuInfo.quantity = [currentSku.quantity integerValue];
             skuInfo.price = currentSku.price;
         }
         
-        if (skuId == nil && [tempPidVidMap count] == [allTempPids count]) {
+        if (skuPpathId == nil && [tempPidVidMap count] == [allTempPids count]) {
             skuInfo.skuDisplayString = @"无法购买";
         }
         

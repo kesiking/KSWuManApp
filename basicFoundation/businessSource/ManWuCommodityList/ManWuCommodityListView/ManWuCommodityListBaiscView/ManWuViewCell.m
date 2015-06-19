@@ -96,6 +96,10 @@
 -(UIImageView *)commodityImageView{
     if (_commodityImageView == nil) {
         _commodityImageView = [[UIImageView alloc] init];
+        _commodityImageView.layer.borderColor = [UIColor grayColor].CGColor;
+        _commodityImageView.layer.borderWidth = 0.5;
+        _commodityImageView.layer.shadowOffset = CGSizeMake(0.5,0.5);
+        _commodityImageView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_commodityImageView.bounds].CGPath;
         _commodityImageView.backgroundColor = self.backgroundColor;
         _commodityImageView.opaque = YES;
         [self addSubview:_commodityImageView];

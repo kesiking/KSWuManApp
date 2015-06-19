@@ -31,6 +31,8 @@
     NSMutableDictionary* params = [@{@"itemId":itemId,@"userId":userId,@"addressId":addressId,@"buyNum":buyNum,@"payPrice":payPrice} mutableCopy];
     if (skuId) {
         [params setObject:skuId forKey:@"skuId"];
+    }else{
+        [params setObject:@0 forKey:@"skuId"];
     }
     if (activityId) {
         [params setObject:activityId forKey:@"activityId"];
@@ -40,7 +42,8 @@
     }
     
     self.needLogin = YES;
-    [self loadItemWithAPIName:@"order/createOrder.do" params:params version:nil];
+    self.jsonTopKey = @"data";
+    [self loadNumberValueWithAPIName:@"order/createOrder.do" params:params version:nil];
 }
 
 @end

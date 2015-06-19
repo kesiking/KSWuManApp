@@ -102,7 +102,7 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIButton *copyBtn = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 60, kSpaceX, 60, 30)];
+        UIButton *copyBtn = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX, 55, 25)];
         [copyBtn setTitle:@"复制" forState:UIControlStateNormal];
         [copyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         copyBtn.layer.cornerRadius = 3.0;

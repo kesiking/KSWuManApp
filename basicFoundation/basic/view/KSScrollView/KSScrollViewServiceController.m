@@ -437,9 +437,7 @@
 #pragma mark deleteItemAtIndexs
 
 -(void)deleteItemAtIndexs:(NSIndexSet*)indexs{
-    if (self.service && self.service.pagedList) {
-        [self.service.pagedList removeObjectsAtIndexes:indexs];
-    }
+    // 必须要先删除引用中的数据，再删除源头数据
     if ([self needQueueLoadData]) {
         __block __weak __typeof(self) wself = self;
         dispatch_sync(_serialQueue, ^{
@@ -458,6 +456,10 @@
     }else{
         [self.dataSourceRead deleteItemAtIndexs:indexs];
     }
+    if (self.service && self.service.pagedList) {
+        [self.service.pagedList removeObjectsAtIndexes:indexs];
+    }
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

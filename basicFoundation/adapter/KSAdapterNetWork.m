@@ -24,6 +24,7 @@
         if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
             [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
         }
+//        [newParams removeObjectForKey:@"needLogin"];
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
         // 默认为json序列化
         AFHTTPRequestOperationManager *httpRequestOM = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:KS_MANWU_BASE_URL]];

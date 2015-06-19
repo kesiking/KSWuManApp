@@ -24,6 +24,7 @@
 #import "MWInsetsTextField.h"
 #import "NSString+FilePath.h"
 #import "KSUserInfoModel.h"
+#import "KSUtils.h"
 
 #define kSpaceX 15
 #define WIDTH self.view.width - kSpaceX * 2

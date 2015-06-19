@@ -67,6 +67,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.table reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -79,7 +80,7 @@
 }
 
 
-#pragma  mark  -tableView Delegate方法
+#pragma  mark  - tableView Delegate方法
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -139,11 +140,16 @@
                 headImg=[[UIImageView alloc]initWithFrame:CGRectMake(WIDTH - 60, 5 , 50, 50)];
                 headImg.layer.masksToBounds = YES;
                 headImg.layer.cornerRadius = headImg.frame.size.width * 0.5;
-                headImg.backgroundColor = [UIColor grayColor];
-                NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];
-                [headImg setImageWithURL:url placeholderImage:[UIImage imageNamed:@"tabitem_home_highlight"]];
+                if([[KSUserInfoModel sharedConstant].imgUrl length] == 0)
+                {
+                    headImg.image = [UIImage imageNamed:@"tabitem_home_highlight"];
+                }else
+                {
+                    NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];                    
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    headImg.image = image;
+                }
                 [cell_person.contentView addSubview:headImg];
-                
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBigHeadImg:)];
                 headImg.userInteractionEnabled = YES;
                 [headImg addGestureRecognizer:tap];
@@ -176,14 +182,15 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0 && indexPath.row == 0)
+    if(indexPath.section == 0)
     {
         if(indexPath.row == 0)
         {
             [self updateHeadImg];
         }else if (indexPath.row == 1)
         {
-            
+            ManWuUserNameViewController *userNameVC = [[ManWuUserNameViewController alloc]init];
+            [self.navigationController pushViewController:userNameVC animated:YES];
         }
     }
     
@@ -237,7 +244,7 @@
 }
 
 
-#pragma mark----更换头像
+#pragma mark- 更换头像
 -(void)updateHeadImg
 {
     UIActionSheet *action = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"相册", nil];
@@ -245,7 +252,7 @@
 }
 
 
-#pragma mark---打开摄像头的调用----打开相册调用统一方法
+#pragma mark - 打开摄像头的调用--打开相册调用统一方法
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex==0)
@@ -303,7 +310,7 @@
     [self uploadDataWithImage:NewImage];
 }
 
-#pragma mark---打开摄像头的调用
+#pragma mark - 打开摄像头的调用
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -351,7 +358,7 @@
     [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"imgb64":imgDataString} version:nil];
 }
 
-//对图片尺寸进行压缩--
+#pragma mark - 对图片尺寸进行压缩--
 -(UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
 {
     // Create a graphics image context
@@ -371,7 +378,7 @@
     return newImage;
 }
 
-#pragma mark WeAppBasicServiceDelegate method
+#pragma mark - WeAppBasicServiceDelegate method
 
 - (void)serviceDidStartLoad:(WeAppBasicService *)service
 {
@@ -384,7 +391,6 @@
 {
     if (service == _service) {
         // todo success
-        NSLog(@"%@",service.item.componentDict);
         if (_progressHUD) {
             [_progressHUD hide:YES];
             _progressHUD = nil;

@@ -101,6 +101,11 @@
     //判断逻辑待完善
     if(_text_phoneNum.text.length == 0)
     {
+        [WeAppToast toast:@"请输入手机号"];
+        return;
+        
+    }else if(![KSUtils isValidMobile:_text_phoneNum.text])
+    {
         [WeAppToast toast:@"请输入正确的手机号"];
         return;
     }
@@ -115,8 +120,14 @@
     //判断逻辑待完善
     if(_text_phoneNum.text.length == 0)
     {
+        [WeAppToast toast:@"请输入手机号"];
+        return;
+        
+    }else if(![KSUtils isValidMobile:_text_phoneNum.text])
+    {
         [WeAppToast toast:@"请输入正确的手机号"];
         return;
+        
     }else if(_text_smsCode.text.length == 0)
     {
         [WeAppToast toast:@"请输入验证码"];
