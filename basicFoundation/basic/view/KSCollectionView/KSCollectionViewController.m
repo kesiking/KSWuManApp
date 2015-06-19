@@ -189,7 +189,9 @@
     if (((KSCollectionViewConfigObject*)self.configObject).autoAdjustFrameSize) {
         [self sizeToFit];
     }
-    [self.collectionDeleteItems removeAllObjects];
+    if (!((KSCollectionViewConfigObject*)self.configObject).isEditModel) {
+        [self.collectionDeleteItems removeAllObjects];
+    }
     [self.collectionView reloadData];
 }
 
