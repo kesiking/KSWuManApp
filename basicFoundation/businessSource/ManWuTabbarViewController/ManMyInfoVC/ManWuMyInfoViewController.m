@@ -17,7 +17,12 @@
 
 @implementation ManWuMyInfoViewController
 {
+    UIImageView *headImageView;
+    UILabel *lab_userName;
+    UIImageView *sexImageView ;
     NSArray *dataSource;
+    NSArray *orderImageArray;
+    NSArray *orderNameArray;
     BOOL isAlreadyLogined;
 }
 
@@ -37,7 +42,8 @@
 
     self.title = @"我的";
     dataSource = @[@[@"CSLineLayout"],@[@"CSLineLayout",@"全部订单"],@[@"常用收货地址",@"我收藏的",@"我的红包",@"我的邀请码"]];
-    
+    orderImageArray = @[@"order_forpay",@"order_forsend",@"order_forreceive",@"order_received",@"order_forchange"];
+    orderNameArray = @[@"待付款",@"待发货",@"待收货",@"已收货",@"退/换货"];
     
     [self initCSLineLayoutView];
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
@@ -83,13 +89,13 @@
     _myInfoContainer = [[CSLinearLayoutView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
     _myInfoContainer.orientation = CSLinearLayoutViewOrientationHorizontal;
     _myInfoContainer.scrollEnabled = YES;
-    CGFloat padding = (self.view.width / 5.0 - 40)/2;
+    CGFloat padding = (self.view.width / 5.0 - 50)/2;
     // add ten views
     for (int i=0; i<5; i++) {
-        UserInfoViewItem *useritem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 40.0, 60.0) Tag:i];
+        UserInfoViewItem *useritem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 60.0) Tag:i];
         useritem.delegate = self;
-        useritem.itemImageView.image = [UIImage imageNamed:@"tabitem_home_highlight"];
-        useritem.itemName.text = @"代收货";
+        useritem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
+        useritem.itemName.text = [orderNameArray objectAtIndex:i];
         CSLinearLayoutItem *item = [CSLinearLayoutItem layoutItemForView:useritem];
         item.padding = CSLinearLayoutMakePadding(10.0, padding,10.0, padding);
         item.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
@@ -100,10 +106,17 @@
 
 - (void)initUserInfoView
 {
-    _userInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
-    //_userInfoView.backgroundColor = [UIColor clearColor];
-    UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, _userInfoView.height/2 - 30, 60, 60)];
-    headImageView.layer.cornerRadius = 30;
+    if(!_userInfoView)
+    {
+        _userInfoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
+    }
+    if(!headImageView)
+    {
+         headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, _userInfoView.height/2 - 30, 60, 60)];
+        headImageView.layer.masksToBounds = YES;
+        headImageView.layer.cornerRadius = headImageView.frame.size.width * 0.5;
+        [_userInfoView addSubview:headImageView];
+    }
     if([[KSUserInfoModel sharedConstant].imgUrl length] == 0)
     {
         headImageView.image = [UIImage imageNamed:@"tabitem_home_highlight"];
@@ -112,32 +125,38 @@
         UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl]]];
         headImageView.image = image;
     }
-    [_userInfoView addSubview:headImageView];
     
-    UILabel *lab_userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMinY(headImageView.frame) +5, 150, 20)];
-    lab_userName.font = [UIFont systemFontOfSize:18];
+    if(!lab_userName)
+    {
+        lab_userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMinY(headImageView.frame) +5, 150, 20)];
+        lab_userName.font = [UIFont systemFontOfSize:18];
+        [_userInfoView addSubview:lab_userName];
+    }
+    NSLog(@"%@",[KSUserInfoModel sharedConstant].userName);
     lab_userName.text = [KSUserInfoModel sharedConstant].userName;
-    [_userInfoView addSubview:lab_userName];
     
-    UIImageView *sexImageView = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMaxY(headImageView.frame) - 25, 20, 20)];
+    if(!sexImageView)
+    {
+        sexImageView = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMaxY(headImageView.frame) - 25, 20, 20)];
+        [_userInfoView addSubview:sexImageView];
+    }
     if([[KSUserInfoModel sharedConstant].sex length] == 0)
     {
-        [sexImageView setBackgroundColor:[UIColor blueColor]];
+        sexImageView.image = [UIImage imageNamed:@"sex_man"];
         
-    }else if ([[KSUserInfoModel sharedConstant].sex isEqualToString:@"man"])
+    }else if ([[KSUserInfoModel sharedConstant].sex isEqualToString:@"0"])
     {
-        [sexImageView setBackgroundColor:[UIColor greenColor]];
+        sexImageView.image = [UIImage imageNamed:@"sex_man"];
 
     }else
     {
-        [sexImageView setBackgroundColor:[UIColor redColor]];
+        sexImageView.image = [UIImage imageNamed:@"sex_wuman"];
     }
-    [_userInfoView addSubview:sexImageView];
     
-    UIButton *btn_edit = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 60, CGRectGetMinY(headImageView.frame) +5, 30, 30)];
+    UIButton *btn_edit = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 60, CGRectGetMinY(headImageView.frame) +5, 25, 25)];
     [btn_edit setTitle:@"" forState:UIControlStateNormal];
     [btn_edit addTarget:self action:@selector(gotoEdit) forControlEvents:UIControlEventTouchUpInside];
-    btn_edit.backgroundColor = [UIColor grayColor];
+    [btn_edit setBackgroundImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
     [_userInfoView addSubview:btn_edit];
     
 }

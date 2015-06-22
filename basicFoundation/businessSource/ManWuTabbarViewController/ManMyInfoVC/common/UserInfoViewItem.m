@@ -31,7 +31,7 @@
 {
     if(!_itemImageView)
     {
-        _itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.width)];
+        _itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, self.width - 10, self.width - 10)];
     }
     return _itemImageView;
 }

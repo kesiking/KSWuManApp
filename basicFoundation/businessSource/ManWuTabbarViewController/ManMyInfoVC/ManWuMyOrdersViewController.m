@@ -8,6 +8,9 @@
 
 #import "ManWuMyOrdersViewController.h"
 #import "KSOrderModel.h"
+#import "KSOrderTableViewCell.h"
+
+#define ORDERCELLHEIGHT  120
 
 @interface ManWuMyOrdersViewController ()
 {
@@ -24,6 +27,7 @@
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
         [_service setItemClass:[KSOrderModel class]];
+        _service.jsonTopKey = @"data";
     }
     return _service;
 }
@@ -34,6 +38,8 @@
     
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"我的订单";
+    
+    ordersList = [[NSArray alloc]init];
     
     [self initOrdersList];
     
@@ -54,7 +60,7 @@
     
     [self.view addSubview:self.selectionList];
     
-    ordersList = @[@[@"1.1",@"1.2",@"1.3"],@[@"2.1",@"2.2",@"2.3"],@[@"3.1",@"3.2",@"3.3"],@[@"4.1",@"4.2",@"4.3"],@[@"5.1",@"5.2",@"5.3"],@[@"6.1",@"6.2",@"6.3"]];
+//    ordersList = @[@[@"1.1",@"1.2",@"1.3"],@[@"2.1",@"2.2",@"2.3"],@[@"3.1",@"3.2",@"3.3"],@[@"4.1",@"4.2",@"4.3"],@[@"5.1",@"5.2",@"5.3"],@[@"6.1",@"6.2",@"6.3"]];
     
     CGRect rect = [[UIScreen mainScreen]bounds];
     r = CGRectZero;
@@ -74,7 +80,8 @@
 
 - (void)initOrdersList
 {
-    [self.service loadItemWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
+//    [self.service loadItemWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
+    [self.service loadDataListWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
 }
 
 #pragma mark -UIScrollView Protocol Methods
@@ -120,15 +127,16 @@
 {
     if (service == _service) {
         // todo success
-        
+        ordersList = (NSArray*)service.requestModel.dataList;
+        [self.table reloadData];
     }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service == _service) {
         // todo fail
-//        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
-//        [WeAppToast toast:errorInfo];
+        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
+        [WeAppToast toast:errorInfo];
 
     }
 }
@@ -137,12 +145,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[ordersList objectAtIndex:self.origIndex] count];
+    return [ordersList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -157,19 +165,24 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return ORDERCELLHEIGHT;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identify = @"tableViewCellidentify";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if(cell == nil)
+    KSOrderTableViewCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identify];
+    if(orderCell == nil)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        orderCell = [[KSOrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify andFrame:CGRectMake(0, 0, self.view.width, ORDERCELLHEIGHT)];
+        
+//        orderCell = [[KSOrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
-    cell.textLabel.text = [[ordersList objectAtIndex:self.origIndex]objectAtIndex:indexPath.row];
-    return cell;
+    //在此设置订单列表，以便重新布局
+    KSOrderModel *ordermodel = ordersList[indexPath.row];
+    orderCell.orderModel = ordermodel;
+
+    return orderCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

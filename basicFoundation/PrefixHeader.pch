@@ -29,6 +29,7 @@
 #define kSpaceX 15
 #define WIDTH self.view.width - kSpaceX * 2
 #define SELFWIDTH self.view.width
+#define WINDOWWIDTH self.window.width
 
 #define UserInfo @"userInfo"   //登录用户信息
 #define USERID   @"userId"   //登录用户id

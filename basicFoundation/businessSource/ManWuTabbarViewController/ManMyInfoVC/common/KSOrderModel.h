@@ -7,24 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KSOrderSKUModel.h"
 
-@interface KSOrderModel : NSObject
+@interface KSOrderModel : WeAppComponentBaseItem
 
-@property (nonatomic,strong) NSString* orderId;
-@property (nonatomic,strong) NSString* productId;
-@property (nonatomic,strong) NSString* name;
-@property (nonatomic,strong) NSString* imgUrl;
-@property (nonatomic,strong) NSString* basicInfo;
-@property (nonatomic,strong) NSString* price;
-@property (nonatomic,strong) NSString* realPrice;
-@property (nonatomic,strong) NSString* recvName;
-@property (nonatomic,strong) NSString* phoneNum;
-@property (nonatomic,strong) NSString* address;
-@property (nonatomic,strong) NSString* expressName;
-@property (nonatomic,strong) NSString* expressPrice;
-@property (nonatomic,strong) NSString* discount;
-@property (nonatomic,strong) NSString* expressNum;
-@property (nonatomic,strong) NSString* orderTime;
-@property (nonatomic,strong) NSString* state;
+@property (nonatomic, strong) NSString* buyNum;
+@property (nonatomic, strong) NSString* buyerAddress;
+@property (nonatomic, strong) NSString* buyerName;
+@property (nonatomic, strong) NSString* buyerPhone;
+@property (nonatomic, strong) NSString* createTime;
+@property (nonatomic, strong) NSString* discount;
+@property (nonatomic, strong) NSString* imgUrl;
+@property (nonatomic, strong) NSString* orderId;
+@property (nonatomic, strong) NSString* oriPrice;
+@property (nonatomic, strong) NSString* payPrice;
+@property (nonatomic, strong) NSArray <KSOrderSKUModel>* skuList ;
+@property (nonatomic, strong) NSString* title;
+@property (nonatomic, strong) NSString* status;
+@property (nonatomic, strong) NSString* voucher;
 
 @end
