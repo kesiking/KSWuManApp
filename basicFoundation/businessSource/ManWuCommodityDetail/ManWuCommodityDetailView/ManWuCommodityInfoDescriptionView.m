@@ -25,6 +25,21 @@
      */
     if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
         ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)descriptionModel;
+        if (detailModel.featureMap) {
+            for (NSString* key in [detailModel.featureMap allKeys]) {
+                if (![key isKindOfClass:[NSString class]]) {
+                    continue;
+                }
+                id value = [detailModel.featureMap objectForKey:key];
+                if (value == nil
+                    || ![value isKindOfClass:[NSString class]]) {
+                    continue;
+                }
+                NSString* string = [NSString stringWithFormat:@"%@：%@",key,value];
+                [self.descriptionArray addObject:string];
+            }
+        }
+        /*
         if (detailModel.brand) {
             NSString* string = [NSString stringWithFormat:@"品牌:%@",detailModel.brand];
             [self.descriptionArray addObject:string];
@@ -33,6 +48,11 @@
             NSString* string = [NSString stringWithFormat:@"材料:%@",detailModel.metarial];
             [self.descriptionArray addObject:string];
         }
+        if (detailModel.fengge) {
+            NSString* string = [NSString stringWithFormat:@"风格:%@",detailModel.fengge];
+            [self.descriptionArray addObject:string];
+        }
+         */
         if (detailModel.skuContent) {
             @autoreleasepool {
                 NSArray* arrayKeys = detailModel.skuOrder;
@@ -58,7 +78,7 @@
                             continue;
                         }
                         [string appendString:sizeString];
-                        NSUInteger index = [detailModel.size indexOfObject:sizeString];
+                        NSUInteger index = [propArray indexOfObject:sizeString];
                         if (index < count - 1) {
                             [string appendString:@"、"];
                         }
@@ -66,10 +86,6 @@
                     [self.descriptionArray addObject:string];
                 }
             }
-        }
-        if (detailModel.fengge) {
-            NSString* string = [NSString stringWithFormat:@"风格:%@",detailModel.fengge];
-            [self.descriptionArray addObject:string];
         }
     }
     [self reloadData];

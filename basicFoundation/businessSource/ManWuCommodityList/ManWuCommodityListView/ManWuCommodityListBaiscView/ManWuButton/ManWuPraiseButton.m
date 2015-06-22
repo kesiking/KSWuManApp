@@ -11,8 +11,6 @@
 
 @interface ManWuPraiseButton()
 
-@property(nonatomic,assign)  BOOL               isPraise;
-
 @property(nonatomic,strong)  UIImage*           praiseImage;
 
 @property(nonatomic,strong)  UIImage*           unpraiseImage;
@@ -66,6 +64,9 @@
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service{
     [super serviceDidFinishLoad:service];
     [self updatePraiseBtnStatus:!self.isPraise];
+    if (self.operationStatusChanged) {
+        self.operationStatusChanged(self);
+    }
 }
 
 @end

@@ -12,6 +12,8 @@
 
 @property(nonatomic,strong)  NSString*          itemId;
 
+@property(nonatomic,assign)  BOOL               isPraise;
+
 -(void)updatePraiseBtnStatus:(BOOL)isPraise;
 
 @end

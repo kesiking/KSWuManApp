@@ -22,6 +22,8 @@
 
 @property (nonatomic,strong) UIView               *      commoditySeparateLine;
 
+@property (nonatomic,strong) ManWuCommodityDetailModel * detailModel;
+
 @end
 
 @implementation ManWuCommodityTitleAndPriceView
@@ -46,6 +48,26 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.commoditySeparateLine];
+    WEAKSELF
+    self.commodityPraiseButton.operationStatusChanged = ^(ManWuOperationButton* operationButton){
+        ManWuPraiseButton* favBtn = (ManWuPraiseButton*)operationButton;
+        STRONGSELF
+        if (favBtn.isPraise) {
+            // to do add count
+            NSInteger count = [strongSelf.detailModel.love integerValue];
+            count += 1;
+            strongSelf.detailModel.love = [NSNumber numberWithInteger:count];
+        }else{
+            // to do sub count
+            NSInteger count = [strongSelf.detailModel.love integerValue];
+            count -= 1;
+            if (count <= 0) {
+                count = 0;
+            }
+            strongSelf.detailModel.love = [NSNumber numberWithInteger:count];
+        }
+        strongSelf.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",strongSelf.detailModel.love];
+    };
 }
 
 -(void)layoutSubviews{
@@ -61,14 +83,14 @@
      }
      */
     if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
-        ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)descriptionModel;
-        self.commodityTitleLabel.text = detailModel.title;
-        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",detailModel.sale];
-        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",detailModel.love];
-        [self.commodityPraiseButton updatePraiseBtnStatus:[detailModel.loved boolValue]];
-        [self.commodityFavorateButton updateFavBtnStatus:[detailModel.like boolValue]];
-        [self.commodityPraiseButton setItemId:detailModel.itemId];
-        [self.commodityFavorateButton setItemId:detailModel.itemId];
+        self.detailModel = (ManWuCommodityDetailModel*)descriptionModel;
+        self.commodityTitleLabel.text = self.detailModel.title;
+        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",self.detailModel.sale];
+        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love];
+        [self.commodityPraiseButton updatePraiseBtnStatus:[self.detailModel.loved boolValue]];
+        [self.commodityFavorateButton updateFavBtnStatus:[self.detailModel.like boolValue]];
+        [self.commodityPraiseButton setItemId:self.detailModel.itemId];
+        [self.commodityFavorateButton setItemId:self.detailModel.itemId];
     }
     [self reloadData];
 }

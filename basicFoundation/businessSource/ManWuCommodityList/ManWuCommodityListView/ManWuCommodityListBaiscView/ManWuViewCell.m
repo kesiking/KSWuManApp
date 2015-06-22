@@ -111,6 +111,31 @@
     if (_favorateImageView == nil) {
         _favorateImageView = [[ManWuPraiseButton alloc] init];
         [_favorateImageView setImageEdgeInsets:UIEdgeInsetsMake(1, (favorateImage_width_height - favorateImage_width), (favorateImage_width_height - favorateImage_height) - 1, 0)];
+        WEAKSELF
+        _favorateImageView.operationStatusChanged = ^(ManWuOperationButton* operationButton){
+            STRONGSELF
+            ManWuPraiseButton* favBtn = (ManWuPraiseButton*)operationButton;
+            ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)[strongSelf getComponentItem];
+            if (detailModel == nil) {
+                return;
+            }
+            if (favBtn.isPraise) {
+                // to do add count
+                NSInteger count = [detailModel.love integerValue];
+                count += 1;
+                detailModel.love = [NSNumber numberWithInteger:count];
+            }else{
+                // to do sub count
+                NSInteger count = [detailModel.love integerValue];
+                count -= 1;
+                if (count <= 0) {
+                    count = 0;
+                }
+                detailModel.love = [NSNumber numberWithInteger:count];
+            }
+            NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.love longLongValue] number:3];
+            strongSelf.favorateLabel.text = favorateLabelText;
+        };
         [self addSubview:_favorateImageView];
     }
     return _favorateImageView;

@@ -12,6 +12,9 @@
 
 @property(nonatomic,strong)  NSString*          itemId;
 
+@property(nonatomic,assign)  BOOL               isFavorate;
+
+
 -(void)updateFavBtnStatus:(BOOL)isFavorate;
 
 @end
