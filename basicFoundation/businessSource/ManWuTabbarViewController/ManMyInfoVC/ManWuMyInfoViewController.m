@@ -40,7 +40,6 @@
     
     
     [self initCSLineLayoutView];
-    [self initUserInfoView];
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.table.delegate = self;
     self.table.dataSource = self;
@@ -52,6 +51,8 @@
     [super viewWillAppear:animated];
     // 查看是否登陆，如果未登陆则跳出登陆
     [self checkLogin];
+    
+    [self initUserInfoView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -103,17 +104,37 @@
     //_userInfoView.backgroundColor = [UIColor clearColor];
     UIImageView *headImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, _userInfoView.height/2 - 30, 60, 60)];
     headImageView.layer.cornerRadius = 30;
-    //headImageView.layer.borderWidth = 1;
-    NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];
-    [headImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"tabitem_home_highlight"]];
+    if([[KSUserInfoModel sharedConstant].imgUrl length] == 0)
+    {
+        headImageView.image = [UIImage imageNamed:@"tabitem_home_highlight"];
+    }else
+    {
+        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl]]];
+        headImageView.image = image;
+    }
     [_userInfoView addSubview:headImageView];
     
     UILabel *lab_userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMinY(headImageView.frame) +5, 150, 20)];
     lab_userName.font = [UIFont systemFontOfSize:18];
-    lab_userName.text = @"USER NAME";
+    lab_userName.text = [KSUserInfoModel sharedConstant].userName;
     [_userInfoView addSubview:lab_userName];
     
-    UIButton *btn_edit = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMaxY(headImageView.frame) - 25, 20, 20)];
+    UIImageView *sexImageView = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImageView.frame) + 15, CGRectGetMaxY(headImageView.frame) - 25, 20, 20)];
+    if([[KSUserInfoModel sharedConstant].sex length] == 0)
+    {
+        [sexImageView setBackgroundColor:[UIColor blueColor]];
+        
+    }else if ([[KSUserInfoModel sharedConstant].sex isEqualToString:@"man"])
+    {
+        [sexImageView setBackgroundColor:[UIColor greenColor]];
+
+    }else
+    {
+        [sexImageView setBackgroundColor:[UIColor redColor]];
+    }
+    [_userInfoView addSubview:sexImageView];
+    
+    UIButton *btn_edit = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 60, CGRectGetMinY(headImageView.frame) +5, 30, 30)];
     [btn_edit setTitle:@"" forState:UIControlStateNormal];
     [btn_edit addTarget:self action:@selector(gotoEdit) forControlEvents:UIControlEventTouchUpInside];
     btn_edit.backgroundColor = [UIColor grayColor];

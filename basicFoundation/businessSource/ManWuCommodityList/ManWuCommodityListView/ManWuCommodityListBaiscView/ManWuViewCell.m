@@ -21,7 +21,7 @@
 #define favorateImage_height         (15)
 #define favorateImage_left_border    (2)
 #define titleLabel_bottom_border     (2.0)
-#define selectButton_width_height    (30.0)
+#define selectButton_width_height    (20.0)
 
 @interface ManWuViewCell()
 
@@ -196,9 +196,9 @@
 
 -(void)setupSelectViewStatus:(BOOL)isSelect{
     if (isSelect) {
-        [self.selectButton setBackgroundColor:[UIColor redColor]];
+        [self.selectButton setImage:[UIImage imageNamed:@"deleteFavrate"] forState:UIControlStateNormal];
     }else{
-        [self.selectButton setBackgroundColor:[UIColor greenColor]];
+        [self.selectButton setImage:[UIImage imageNamed:@"unDeleteFavrate"] forState:UIControlStateNormal];
     }
 }
 
@@ -236,9 +236,9 @@
     NSMutableArray* collectionDeleteItems = collectionViewCtl.collectionDeleteItems;
     if (![collectionDeleteItems containsObject:indexPath]) {
         [collectionDeleteItems addObject:indexPath];
-        self.selectButton.backgroundColor = [UIColor redColor];
+        [self setupSelectViewStatus:YES];
     }else{
-        self.selectButton.backgroundColor = [UIColor greenColor];
+        [self setupSelectViewStatus:NO];
         [collectionDeleteItems removeObject:indexPath];
     }
 }

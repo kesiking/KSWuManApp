@@ -35,7 +35,7 @@
         _titleLabel.backgroundColor = [UIColor whiteColor];
         _titleLabel.numberOfLines = 1;
         _titleLabel.textColor = RGB(0x66, 0x66, 0x66);
-        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _titleLabel;
 }

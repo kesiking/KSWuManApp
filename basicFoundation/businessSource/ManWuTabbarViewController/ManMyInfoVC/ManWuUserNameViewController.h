@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ManWuUserNameViewController : UIViewController<WeAppBasicServiceDelegate>
+@interface ManWuUserNameViewController : UIViewController<WeAppBasicServiceDelegate,UITextFieldDelegate>
+
+@property (nonatomic, strong) MWInsetsTextField *text_userName;
+@property (nonatomic, strong) UIButton *btn_commit;
 
 @property (nonatomic, strong) KSAdapterService *service;
 

@@ -141,9 +141,10 @@
         headImage.backgroundColor = [UIColor greenColor];
         [cell.contentView addSubview:headImage];
         
-        UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(SELFWIDTH - 60, kSpaceX, 60, 30)];
+        UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX - 5, 55, 25)];
         stateLabel.text = @"失效否";
-        [stateLabel setBackgroundColor:[UIColor clearColor]];
+        [stateLabel setFont:[UIFont systemFontOfSize:16]];
+        stateLabel.backgroundColor = [UIColor clearColor];
         [cell.contentView addSubview:stateLabel];
         
         UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, kSpaceX, CGRectGetMinX(stateLabel.frame) - kSpaceX -5, 18)];

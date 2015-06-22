@@ -20,6 +20,7 @@
 @property (nonatomic,strong) IBOutlet ManWuPraiseButton *      commodityPraiseButton;
 @property (nonatomic,strong) IBOutlet ManWuFavButton    *      commodityFavorateButton;
 
+@property (nonatomic,strong) UIView               *      commoditySeparateTopLine;
 @property (nonatomic,strong) UIView               *      commoditySeparateLine;
 
 @property (nonatomic,strong) ManWuCommodityDetailModel * detailModel;
@@ -47,6 +48,7 @@
 
 -(void)setupView{
     [super setupView];
+    [self addSubview:self.commoditySeparateTopLine];
     [self addSubview:self.commoditySeparateLine];
     WEAKSELF
     self.commodityPraiseButton.operationStatusChanged = ^(ManWuOperationButton* operationButton){
@@ -72,6 +74,7 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
+    [self.commoditySeparateTopLine setFrame:CGRectMake(0, 0, self.width, self.commoditySeparateTopLine.height)];
     [self.commoditySeparateLine setFrame:CGRectMake(8, self.height - 0.5, self.width - 8 * 2, self.commoditySeparateLine.height)];
 }
 
@@ -106,6 +109,16 @@
     [self.commodityPraiseButton setFrame:rect];
 }
 
+-(UIView *)commoditySeparateTopLine{
+    if (_commoditySeparateTopLine == nil) {
+        _commoditySeparateTopLine = [TBDetailUITools drawDivisionLine:0
+                                                              yPos:0
+                                                         lineWidth:self.width];
+        [_commoditySeparateTopLine setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Price2]];
+    }
+    return _commoditySeparateTopLine;
+}
+
 -(UIView *)commoditySeparateLine{
     if (_commoditySeparateLine == nil) {
         _commoditySeparateLine = [TBDetailUITools drawDivisionLine:8
@@ -123,7 +136,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect rect = self.bounds;
     
-    rect.size.height = 70 * SCREEN_SCALE;
+    rect.size.height = 70 /* * SCREEN_SCALE */;
     
     return CGSizeMake(rect.size.width, rect.size.height);
 }
