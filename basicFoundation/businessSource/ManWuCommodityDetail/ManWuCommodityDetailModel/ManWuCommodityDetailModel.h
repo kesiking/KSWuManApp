@@ -29,6 +29,8 @@
 @property (nonatomic, strong) NSDictionary*               skuContent;
 @property (nonatomic, strong) NSMutableArray*             skuArray;
 
+@property (nonatomic, strong) NSDictionary*               featureMap;
+
 @property (nonatomic, strong) NSString*                   itemId;
 @property (nonatomic, strong) NSString*                   title;
 @property (nonatomic, strong) NSString*                   img;

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ManWuOperationButton;
+
+typedef void(^operationStatusChangedBlock) (ManWuOperationButton* operationButton);
+
 @interface ManWuOperationButton : UIButton<WeAppBasicServiceDelegate>
 
 @property(nonatomic,strong)  KSAdapterService*  service;
@@ -17,6 +21,8 @@
 @property(nonatomic,strong)  NSString*          messageForSuccessResponse;
 
 @property(nonatomic,assign)  BOOL               isLoading;
+
+@property(nonatomic,copy  )  operationStatusChangedBlock          operationStatusChanged;
 
 -(void)setupView;
 

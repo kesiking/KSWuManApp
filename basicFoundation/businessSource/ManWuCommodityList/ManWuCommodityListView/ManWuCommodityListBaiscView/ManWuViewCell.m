@@ -21,7 +21,7 @@
 #define favorateImage_height         (15)
 #define favorateImage_left_border    (2)
 #define titleLabel_bottom_border     (2.0)
-#define selectButton_width_height    (30.0)
+#define selectButton_width_height    (20.0)
 
 @interface ManWuViewCell()
 
@@ -111,6 +111,31 @@
     if (_favorateImageView == nil) {
         _favorateImageView = [[ManWuPraiseButton alloc] init];
         [_favorateImageView setImageEdgeInsets:UIEdgeInsetsMake(1, (favorateImage_width_height - favorateImage_width), (favorateImage_width_height - favorateImage_height) - 1, 0)];
+        WEAKSELF
+        _favorateImageView.operationStatusChanged = ^(ManWuOperationButton* operationButton){
+            STRONGSELF
+            ManWuPraiseButton* favBtn = (ManWuPraiseButton*)operationButton;
+            ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)[strongSelf getComponentItem];
+            if (detailModel == nil) {
+                return;
+            }
+            if (favBtn.isPraise) {
+                // to do add count
+                NSInteger count = [detailModel.love integerValue];
+                count += 1;
+                detailModel.love = [NSNumber numberWithInteger:count];
+            }else{
+                // to do sub count
+                NSInteger count = [detailModel.love integerValue];
+                count -= 1;
+                if (count <= 0) {
+                    count = 0;
+                }
+                detailModel.love = [NSNumber numberWithInteger:count];
+            }
+            NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.love longLongValue] number:3];
+            strongSelf.favorateLabel.text = favorateLabelText;
+        };
         [self addSubview:_favorateImageView];
     }
     return _favorateImageView;
@@ -171,9 +196,9 @@
 
 -(void)setupSelectViewStatus:(BOOL)isSelect{
     if (isSelect) {
-        [self.selectButton setBackgroundColor:[UIColor redColor]];
+        [self.selectButton setImage:[UIImage imageNamed:@"deleteFavrate"] forState:UIControlStateNormal];
     }else{
-        [self.selectButton setBackgroundColor:[UIColor greenColor]];
+        [self.selectButton setImage:[UIImage imageNamed:@"unDeleteFavrate"] forState:UIControlStateNormal];
     }
 }
 
@@ -211,9 +236,9 @@
     NSMutableArray* collectionDeleteItems = collectionViewCtl.collectionDeleteItems;
     if (![collectionDeleteItems containsObject:indexPath]) {
         [collectionDeleteItems addObject:indexPath];
-        self.selectButton.backgroundColor = [UIColor redColor];
+        [self setupSelectViewStatus:YES];
     }else{
-        self.selectButton.backgroundColor = [UIColor greenColor];
+        [self setupSelectViewStatus:NO];
         [collectionDeleteItems removeObject:indexPath];
     }
 }

@@ -20,7 +20,10 @@
 @property (nonatomic,strong) IBOutlet ManWuPraiseButton *      commodityPraiseButton;
 @property (nonatomic,strong) IBOutlet ManWuFavButton    *      commodityFavorateButton;
 
+@property (nonatomic,strong) UIView               *      commoditySeparateTopLine;
 @property (nonatomic,strong) UIView               *      commoditySeparateLine;
+
+@property (nonatomic,strong) ManWuCommodityDetailModel * detailModel;
 
 @end
 
@@ -45,11 +48,33 @@
 
 -(void)setupView{
     [super setupView];
+    [self addSubview:self.commoditySeparateTopLine];
     [self addSubview:self.commoditySeparateLine];
+    WEAKSELF
+    self.commodityPraiseButton.operationStatusChanged = ^(ManWuOperationButton* operationButton){
+        ManWuPraiseButton* favBtn = (ManWuPraiseButton*)operationButton;
+        STRONGSELF
+        if (favBtn.isPraise) {
+            // to do add count
+            NSInteger count = [strongSelf.detailModel.love integerValue];
+            count += 1;
+            strongSelf.detailModel.love = [NSNumber numberWithInteger:count];
+        }else{
+            // to do sub count
+            NSInteger count = [strongSelf.detailModel.love integerValue];
+            count -= 1;
+            if (count <= 0) {
+                count = 0;
+            }
+            strongSelf.detailModel.love = [NSNumber numberWithInteger:count];
+        }
+        strongSelf.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",strongSelf.detailModel.love];
+    };
 }
 
 -(void)layoutSubviews{
     [super layoutSubviews];
+    [self.commoditySeparateTopLine setFrame:CGRectMake(0, 0, self.width, self.commoditySeparateTopLine.height)];
     [self.commoditySeparateLine setFrame:CGRectMake(8, self.height - 0.5, self.width - 8 * 2, self.commoditySeparateLine.height)];
 }
 
@@ -61,14 +86,14 @@
      }
      */
     if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
-        ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)descriptionModel;
-        self.commodityTitleLabel.text = detailModel.title;
-        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",detailModel.sale];
-        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",detailModel.love];
-        [self.commodityPraiseButton updatePraiseBtnStatus:[detailModel.loved boolValue]];
-        [self.commodityFavorateButton updateFavBtnStatus:[detailModel.like boolValue]];
-        [self.commodityPraiseButton setItemId:detailModel.itemId];
-        [self.commodityFavorateButton setItemId:detailModel.itemId];
+        self.detailModel = (ManWuCommodityDetailModel*)descriptionModel;
+        self.commodityTitleLabel.text = self.detailModel.title;
+        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",self.detailModel.sale];
+        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love];
+        [self.commodityPraiseButton updatePraiseBtnStatus:[self.detailModel.loved boolValue]];
+        [self.commodityFavorateButton updateFavBtnStatus:[self.detailModel.like boolValue]];
+        [self.commodityPraiseButton setItemId:self.detailModel.itemId];
+        [self.commodityFavorateButton setItemId:self.detailModel.itemId];
     }
     [self reloadData];
 }
@@ -82,6 +107,16 @@
     CGRect rect = self.commodityPraiseButton.frame;
     rect.origin.x = self.commodityPraiseLabel.origin.x - self.commodityPraiseButton.width;
     [self.commodityPraiseButton setFrame:rect];
+}
+
+-(UIView *)commoditySeparateTopLine{
+    if (_commoditySeparateTopLine == nil) {
+        _commoditySeparateTopLine = [TBDetailUITools drawDivisionLine:0
+                                                              yPos:0
+                                                         lineWidth:self.width];
+        [_commoditySeparateTopLine setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Price2]];
+    }
+    return _commoditySeparateTopLine;
 }
 
 -(UIView *)commoditySeparateLine{
@@ -101,7 +136,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect rect = self.bounds;
     
-    rect.size.height = 70 * SCREEN_SCALE;
+    rect.size.height = 70 /* * SCREEN_SCALE */;
     
     return CGSizeMake(rect.size.width, rect.size.height);
 }

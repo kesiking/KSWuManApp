@@ -10,6 +10,24 @@
 
 @implementation KSViewCell
 
+-(WeAppComponentBaseItem*)getComponentItem{
+    if (self.scrollViewCtl
+        && [self.scrollViewCtl isKindOfClass:[KSScrollViewServiceController class]]
+        && self.indexPath) {
+        return [self.scrollViewCtl.dataSourceRead getComponentItemWithIndex:[self.indexPath row]];
+    }
+    return nil;
+}
+
+-(KSCellModelInfoItem*)getCellModelInfoItem{
+    if (self.scrollViewCtl
+        && [self.scrollViewCtl isKindOfClass:[KSScrollViewServiceController class]]
+        && self.indexPath) {
+        return [self.scrollViewCtl.dataSourceRead getComponentModelInfoItemWithIndex:[self.indexPath row]];
+    }
+    return nil;
+}
+
 // 对于girdCell等不能变高的重定向为WeAppRefreshDataModelType_All
 - (BOOL)checkCellLegalWithWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem{
     if (cell == nil || ![cell isKindOfClass:[UIView class]]) {

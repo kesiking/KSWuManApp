@@ -324,6 +324,8 @@
 		5F214C901B16B6EF0081BA02 /* ManWuTradeSKUSelectionControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C8F1B16B6EF0081BA02 /* ManWuTradeSKUSelectionControl.m */; };
 		5F214C931B16B88C0081BA02 /* ManWuCommoditySKUModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C921B16B88C0081BA02 /* ManWuCommoditySKUModel.m */; };
 		5F214C961B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C951B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m */; };
+		5F226EB21B33A27B00FEFBC6 /* deleteFavrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */; };
+		5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */; };
 		5F4087E71B19433F00954568 /* ManWuOrderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087E61B19433F00954568 /* ManWuOrderService.m */; };
 		5F4087EE1B19436C00954568 /* ManWuVoucherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087ED1B19436C00954568 /* ManWuVoucherService.m */; };
 		5F4087F11B1945FE00954568 /* ManWuVoucherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F01B1945FE00954568 /* ManWuVoucherView.m */; };
@@ -1089,6 +1091,8 @@
 		5F214C921B16B88C0081BA02 /* ManWuCommoditySKUModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySKUModel.m; sourceTree = "<group>"; };
 		5F214C941B16BE1D0081BA02 /* ManWuTradeDetailSKUService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuTradeDetailSKUService.h; sourceTree = "<group>"; };
 		5F214C951B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuTradeDetailSKUService.m; sourceTree = "<group>"; };
+		5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteFavrate.png; sourceTree = "<group>"; };
+		5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unDeleteFavrate.png; sourceTree = "<group>"; };
 		5F4087E51B19433F00954568 /* ManWuOrderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuOrderService.h; sourceTree = "<group>"; };
 		5F4087E61B19433F00954568 /* ManWuOrderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuOrderService.m; sourceTree = "<group>"; };
 		5F4087EC1B19436C00954568 /* ManWuVoucherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuVoucherService.h; sourceTree = "<group>"; };
@@ -1466,6 +1470,8 @@
 				0553F75E1AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg */,
 				5F4088131B196E7700954568 /* manwu_commodity_sort_like.png */,
 				5F4088141B196E7700954568 /* manwu_commodity_sort_price.png */,
+				5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */,
+				5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3198,10 +3204,12 @@
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
 				058D5D0F1AF2140C006EA35C /* tbbuy_location@2x.png in Resources */,
 				055866981AD3B4F900A23FFA /* Main.storyboard in Resources */,
+				5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */,
 				5F214C751B158F990081BA02 /* SVWebViewController.strings in Resources */,
 				058DAE1F1AE638BA009D0008 /* tabbar_background_white.png in Resources */,
 				05AF30141B00506C00890A65 /* praise_button_image.png in Resources */,
 				058DAE371AE63A31009D0008 /* tabitem_info_normal.png in Resources */,
+				5F226EB21B33A27B00FEFBC6 /* deleteFavrate.png in Resources */,
 				058BC4171AE8D97400A4F799 /* tabitem_info_highlight@2x.png in Resources */,
 				058DAE231AE638BA009D0008 /* tabitem_discover_highlight.png in Resources */,
 				91C76B6E1B31C516008C5EAC /* order_forchange@3x.png in Resources */,

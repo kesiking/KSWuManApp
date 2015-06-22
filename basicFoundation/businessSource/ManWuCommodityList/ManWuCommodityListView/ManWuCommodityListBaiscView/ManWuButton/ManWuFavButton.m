@@ -11,8 +11,6 @@
 
 @interface ManWuFavButton()
 
-@property(nonatomic,assign)  BOOL               isFavorate;
-
 @property(nonatomic,strong)  UIImage*           favorateImage;
 
 @property(nonatomic,strong)  UIImage*           unfavorateImage;
@@ -66,6 +64,9 @@
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service{
     [super serviceDidFinishLoad:service];
     [self updateFavBtnStatus:!self.isFavorate];
+    if (self.operationStatusChanged) {
+        self.operationStatusChanged(self);
+    }
 }
 
 @end

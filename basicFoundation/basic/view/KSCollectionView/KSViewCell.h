@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KSDataSource.h"
+#import "KSScrollViewServiceController.h"
 
 @class KSScrollViewServiceController;
 
@@ -33,6 +34,7 @@
 
 @property (nonatomic,strong) NSIndexPath                   *indexPath;
 
+#pragma override method by subClass
 // 检查cell是否合法
 - (BOOL)checkCellLegalWithWithCellView:(id<KSViewCellProtocol>)cell componentItem:(WeAppComponentBaseItem *)componentItem;
 
@@ -47,5 +49,13 @@
 
 // 用于批量删除操作时使用，可改变选中的需要删除cell的样式
 - (void)configDeleteCellWithCellView:(id<KSViewCellProtocol>)cell atIndexPath:(NSIndexPath*)indexPath componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams;
+
+#pragma public method
+
+// 获取当前cellView对应（indexPath）的componentItem
+- (WeAppComponentBaseItem*)getComponentItem;
+
+// 获取当前cellView对应（indexPath）的cellModelInfoItem
+- (KSCellModelInfoItem*)getCellModelInfoItem;
 
 @end

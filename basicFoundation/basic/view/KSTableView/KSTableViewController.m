@@ -155,7 +155,9 @@
     if (((KSCollectionViewConfigObject*)self.configObject).autoAdjustFrameSize) {
         [self sizeToFit];
     }
-    [self.collectionDeleteItems removeAllObjects];
+    if (!((KSCollectionViewConfigObject*)self.configObject).isEditModel) {
+        [self.collectionDeleteItems removeAllObjects];
+    }
     [self.tableView reloadData];
 }
 
@@ -207,6 +209,8 @@
     //获取cell模板数据
     WeAppComponentBaseItem *componentItem = [self.dataSourceRead getComponentItemWithIndex:[indexPath row]];
     KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
+    modelInfoItem.configObject = self.configObject;
+    modelInfoItem.cellIndexPath = indexPath;
     
     CGRect rect = CGRectZero;
     if(CGSizeEqualToSize(CGSizeZero, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize)){

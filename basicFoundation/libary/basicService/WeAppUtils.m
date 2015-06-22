@@ -509,7 +509,7 @@ typedef struct
     }
     
     if(longValue <= 0) {
-        numStr = @"";
+        numStr = @"0";
     } else if (longValue > showNumber) {
         numStr = [NSString stringWithFormat:@"%llu+",showNumber];
     } else {

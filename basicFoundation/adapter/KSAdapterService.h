@@ -8,7 +8,7 @@
 
 #import "WeAppBasicService.h"
 
-#define NEEDCACHE
+//#define NEEDCACHE
 
 @interface KSAdapterService : WeAppBasicService
 
