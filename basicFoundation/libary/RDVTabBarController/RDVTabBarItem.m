@@ -86,6 +86,7 @@
     _badgeTextColor = [UIColor whiteColor];
     _badgeTextFont = [UIFont systemFontOfSize:12];
     _badgePositionAdjustment = UIOffsetZero;
+    _imageSize = CGSizeZero;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -111,7 +112,11 @@
         titleAttributes = [self unselectedTitleAttributes];
     }
     
-    imageSize = [image size];
+    if (!CGSizeEqualToSize(self.imageSize, CGSizeZero)) {
+        imageSize = self.imageSize;
+    }else{
+        imageSize = [image size];
+    }
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);

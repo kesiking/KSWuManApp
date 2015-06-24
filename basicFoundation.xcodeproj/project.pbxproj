@@ -56,10 +56,7 @@
 		052CC6CD1AF8D30600AF7C78 /* ManWuSearchViewCellInfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6CC1AF8D30600AF7C78 /* ManWuSearchViewCellInfoItem.m */; };
 		052CC6D41AF9BAD100AF7C78 /* ManWuCommodityListWithSortAndFiltBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6D31AF9BAD100AF7C78 /* ManWuCommodityListWithSortAndFiltBasicView.m */; };
 		052CC6DE1AF9E85900AF7C78 /* ManWuCommoditySortAndFiltModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 052CC6DD1AF9E85900AF7C78 /* ManWuCommoditySortAndFiltModel.m */; };
-		0553F75F1AF9EB660013BB97 /* manwu_commodity_filt_all.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0553F75B1AF9EB660013BB97 /* manwu_commodity_filt_all.jpg */; };
-		0553F7601AF9EB660013BB97 /* manwu_commodity_filt_buy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0553F75C1AF9EB660013BB97 /* manwu_commodity_filt_buy.jpg */; };
 		0553F7611AF9EB660013BB97 /* manwu_commodity_filt_discount.png in Resources */ = {isa = PBXBuildFile; fileRef = 0553F75D1AF9EB660013BB97 /* manwu_commodity_filt_discount.png */; };
-		0553F7621AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0553F75E1AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg */; };
 		0553F76B1AFA14830013BB97 /* ManWuCommodityListForDiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0553F76A1AFA14830013BB97 /* ManWuCommodityListForDiscountViewController.m */; };
 		0553F76F1AFA15BE0013BB97 /* ManWuCommodityListSortAndFiltForDiscountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0553F76E1AFA15BE0013BB97 /* ManWuCommodityListSortAndFiltForDiscountView.m */; };
 		0553F7721AFA16490013BB97 /* ManWuCommoditySortForDiscountListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0553F7711AFA16490013BB97 /* ManWuCommoditySortForDiscountListView.m */; };
@@ -176,12 +173,6 @@
 		058BC4021AE89DEF00A4F799 /* KSManWuHomeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC4011AE89DEF00A4F799 /* KSManWuHomeService.m */; };
 		058BC4081AE89F1500A4F799 /* ManWuCommodityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC4071AE89F1500A4F799 /* ManWuCommodityListViewController.m */; };
 		058BC40C1AE8CF8700A4F799 /* KSManWuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BC40B1AE8CF8700A4F799 /* KSManWuViewController.m */; };
-		058BC4131AE8D97400A4F799 /* tabitem_discover_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058BC40D1AE8D97400A4F799 /* tabitem_discover_highlight@2x.png */; };
-		058BC4141AE8D97400A4F799 /* tabitem_discover_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058BC40E1AE8D97400A4F799 /* tabitem_discover_normal@2x.png */; };
-		058BC4151AE8D97400A4F799 /* tabitem_home_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058BC40F1AE8D97400A4F799 /* tabitem_home_highlight@2x.png */; };
-		058BC4161AE8D97400A4F799 /* tabitem_home_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058BC4101AE8D97400A4F799 /* tabitem_home_normal@2x.png */; };
-		058BC4171AE8D97400A4F799 /* tabitem_info_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058BC4111AE8D97400A4F799 /* tabitem_info_highlight@2x.png */; };
-		058BC4181AE8D97400A4F799 /* tabitem_info_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058BC4121AE8D97400A4F799 /* tabitem_info_normal@2x.png */; };
 		058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058D5A8D1AF0B2BB006EA35C /* Default-568h@2x.png */; };
 		058D5A911AF0B2BB006EA35C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 058D5A8E1AF0B2BB006EA35C /* Default.png */; };
 		058D5A921AF0B2BB006EA35C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 058D5A8F1AF0B2BB006EA35C /* Default@2x.png */; };
@@ -363,6 +354,9 @@
 		5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */; };
 		5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06221B0E011F00852188 /* KSPaginationItem.m */; };
 		5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */; };
+		5FD244F41B3ACBFF00353589 /* manwu_commodity_filt_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD244F11B3ACBFE00353589 /* manwu_commodity_filt_all.png */; };
+		5FD244F51B3ACBFF00353589 /* manwu_commodity_filt_buy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */; };
+		5FD244F61B3ACBFF00353589 /* manwu_commodity_filt_specialForToday.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD244F31B3ACBFE00353589 /* manwu_commodity_filt_specialForToday.png */; };
 		5FD45EC51B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */; };
 		5FD45EC81B1BE3570064BA31 /* ManWuCommodityFavListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC71B1BE3570064BA31 /* ManWuCommodityFavListService.m */; };
 		5FD45ECC1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ECB1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m */; };
@@ -510,10 +504,7 @@
 		052CC6D31AF9BAD100AF7C78 /* ManWuCommodityListWithSortAndFiltBasicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListWithSortAndFiltBasicView.m; sourceTree = "<group>"; };
 		052CC6DC1AF9E85900AF7C78 /* ManWuCommoditySortAndFiltModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommoditySortAndFiltModel.h; sourceTree = "<group>"; };
 		052CC6DD1AF9E85900AF7C78 /* ManWuCommoditySortAndFiltModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySortAndFiltModel.m; sourceTree = "<group>"; };
-		0553F75B1AF9EB660013BB97 /* manwu_commodity_filt_all.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = manwu_commodity_filt_all.jpg; sourceTree = "<group>"; };
-		0553F75C1AF9EB660013BB97 /* manwu_commodity_filt_buy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = manwu_commodity_filt_buy.jpg; sourceTree = "<group>"; };
 		0553F75D1AF9EB660013BB97 /* manwu_commodity_filt_discount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_discount.png; sourceTree = "<group>"; };
-		0553F75E1AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = manwu_commodity_filt_specialForToday.jpg; sourceTree = "<group>"; };
 		0553F7691AFA14830013BB97 /* ManWuCommodityListForDiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListForDiscountViewController.h; sourceTree = "<group>"; };
 		0553F76A1AFA14830013BB97 /* ManWuCommodityListForDiscountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListForDiscountViewController.m; sourceTree = "<group>"; };
 		0553F76D1AFA15BE0013BB97 /* ManWuCommodityListSortAndFiltForDiscountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListSortAndFiltForDiscountView.h; sourceTree = "<group>"; };
@@ -740,12 +731,6 @@
 		058BC4071AE89F1500A4F799 /* ManWuCommodityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListViewController.m; sourceTree = "<group>"; };
 		058BC40A1AE8CF8700A4F799 /* KSManWuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSManWuViewController.h; sourceTree = "<group>"; };
 		058BC40B1AE8CF8700A4F799 /* KSManWuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSManWuViewController.m; sourceTree = "<group>"; };
-		058BC40D1AE8D97400A4F799 /* tabitem_discover_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabitem_discover_highlight@2x.png"; sourceTree = "<group>"; };
-		058BC40E1AE8D97400A4F799 /* tabitem_discover_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabitem_discover_normal@2x.png"; sourceTree = "<group>"; };
-		058BC40F1AE8D97400A4F799 /* tabitem_home_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabitem_home_highlight@2x.png"; sourceTree = "<group>"; };
-		058BC4101AE8D97400A4F799 /* tabitem_home_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabitem_home_normal@2x.png"; sourceTree = "<group>"; };
-		058BC4111AE8D97400A4F799 /* tabitem_info_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabitem_info_highlight@2x.png"; sourceTree = "<group>"; };
-		058BC4121AE8D97400A4F799 /* tabitem_info_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabitem_info_normal@2x.png"; sourceTree = "<group>"; };
 		058D5A8D1AF0B2BB006EA35C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		058D5A8E1AF0B2BB006EA35C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		058D5A8F1AF0B2BB006EA35C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1133,6 +1118,9 @@
 		5FBA06221B0E011F00852188 /* KSPaginationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPaginationItem.m; sourceTree = "<group>"; };
 		5FBA06241B0F515A00852188 /* ManWuCommodityActListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityActListService.h; sourceTree = "<group>"; };
 		5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityActListService.m; sourceTree = "<group>"; };
+		5FD244F11B3ACBFE00353589 /* manwu_commodity_filt_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_all.png; sourceTree = "<group>"; };
+		5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_buy.png; sourceTree = "<group>"; };
+		5FD244F31B3ACBFE00353589 /* manwu_commodity_filt_specialForToday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_specialForToday.png; sourceTree = "<group>"; };
 		5FD45EC31B1BE1BA0064BA31 /* ManWuCommdityFavoriteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommdityFavoriteListViewController.h; sourceTree = "<group>"; };
 		5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommdityFavoriteListViewController.m; sourceTree = "<group>"; };
 		5FD45EC61B1BE3570064BA31 /* ManWuCommodityFavListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityFavListService.h; sourceTree = "<group>"; };
@@ -1410,10 +1398,10 @@
 			isa = PBXGroup;
 			children = (
 				5FFEB4291B1C38D700CAC511 /* button_back.png */,
-				0553F75B1AF9EB660013BB97 /* manwu_commodity_filt_all.jpg */,
-				0553F75C1AF9EB660013BB97 /* manwu_commodity_filt_buy.jpg */,
+				5FD244F11B3ACBFE00353589 /* manwu_commodity_filt_all.png */,
+				5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */,
+				5FD244F31B3ACBFE00353589 /* manwu_commodity_filt_specialForToday.png */,
 				0553F75D1AF9EB660013BB97 /* manwu_commodity_filt_discount.png */,
-				0553F75E1AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg */,
 				5F4088131B196E7700954568 /* manwu_commodity_sort_like.png */,
 				5F4088141B196E7700954568 /* manwu_commodity_sort_price.png */,
 				5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */,
@@ -2482,12 +2470,6 @@
 		058DAE101AE638BA009D0008 /* tabItemImages */ = {
 			isa = PBXGroup;
 			children = (
-				058BC40D1AE8D97400A4F799 /* tabitem_discover_highlight@2x.png */,
-				058BC40E1AE8D97400A4F799 /* tabitem_discover_normal@2x.png */,
-				058BC40F1AE8D97400A4F799 /* tabitem_home_highlight@2x.png */,
-				058BC4101AE8D97400A4F799 /* tabitem_home_normal@2x.png */,
-				058BC4111AE8D97400A4F799 /* tabitem_info_highlight@2x.png */,
-				058BC4121AE8D97400A4F799 /* tabitem_info_normal@2x.png */,
 				058DAE2D1AE63A31009D0008 /* tabitem_discover_normal.png */,
 				058DAE2F1AE63A31009D0008 /* tabitem_home_normal.png */,
 				058DAE311AE63A31009D0008 /* tabitem_info_normal.png */,
@@ -3109,11 +3091,13 @@
 				5F214C7D1B158F990081BA02 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				050FFD3E1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib in Resources */,
 				5F214C7E1B158F990081BA02 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
+				5FD244F41B3ACBFF00353589 /* manwu_commodity_filt_all.png in Resources */,
 				050FFD7C1B03222600721E02 /* HZAreaPickerView.xib in Resources */,
 				058DAE621AE7992D009D0008 /* MatrixConfig.plist in Resources */,
 				05AF300A1B004D3F00890A65 /* loading_view_8.png in Resources */,
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
 				058D5D0F1AF2140C006EA35C /* tbbuy_location@2x.png in Resources */,
+				5FD244F51B3ACBFF00353589 /* manwu_commodity_filt_buy.png in Resources */,
 				055866981AD3B4F900A23FFA /* Main.storyboard in Resources */,
 				5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */,
 				5F214C751B158F990081BA02 /* SVWebViewController.strings in Resources */,
@@ -3121,7 +3105,6 @@
 				05AF30141B00506C00890A65 /* praise_button_image.png in Resources */,
 				058DAE371AE63A31009D0008 /* tabitem_info_normal.png in Resources */,
 				5F226EB21B33A27B00FEFBC6 /* deleteFavrate.png in Resources */,
-				058BC4171AE8D97400A4F799 /* tabitem_info_highlight@2x.png in Resources */,
 				058DAE231AE638BA009D0008 /* tabitem_discover_highlight.png in Resources */,
 				05AF30071B004D3F00890A65 /* loading_view_5.png in Resources */,
 				056664B21AEE37AC00FD1C65 /* tb_control_flow_number_left_press.png in Resources */,
@@ -3130,9 +3113,7 @@
 				058D5A911AF0B2BB006EA35C /* Default.png in Resources */,
 				5F4088151B196E7700954568 /* manwu_commodity_sort_like.png in Resources */,
 				91E2D0761B1761C500946A32 /* sure-button01-s@2x.png in Resources */,
-				0553F75F1AF9EB660013BB97 /* manwu_commodity_filt_all.jpg in Resources */,
 				91E2D0751B1761C500946A32 /* sure-button01-s.png in Resources */,
-				058BC4181AE8D97400A4F799 /* tabitem_info_normal@2x.png in Resources */,
 				5F4088111B19663200954568 /* manwu_common_address.png in Resources */,
 				05AF30081B004D3F00890A65 /* loading_view_6.png in Resources */,
 				058D5D0E1AF2140C006EA35C /* tbbuy_item_increase@2x.png in Resources */,
@@ -3143,10 +3124,8 @@
 				05ACAC711AFC6F7B00853E1C /* ManWuAddressSelectViewCell.xib in Resources */,
 				058BC3FB1AE89DA700A4F799 /* tabbarViewControllerRegister.plist in Resources */,
 				058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */,
-				058BC4151AE8D97400A4F799 /* tabitem_home_highlight@2x.png in Resources */,
 				5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */,
 				5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */,
-				0553F7621AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg in Resources */,
 				5F214C7C1B158F990081BA02 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */,
 				91E2D0771B1761C500946A32 /* sure-button01.png in Resources */,
@@ -3154,7 +3133,6 @@
 				05AF30061B004D3F00890A65 /* loading_view_4.png in Resources */,
 				05AF30131B00506C00890A65 /* favorate_button_image.png in Resources */,
 				058DAE201AE638BA009D0008 /* tabbar_background_white@2x.png in Resources */,
-				058BC4161AE8D97400A4F799 /* tabitem_home_normal@2x.png in Resources */,
 				058D5D0B1AF2140C006EA35C /* tbbuy_item_decrease2@2x.png in Resources */,
 				050FFD6B1B02F98000721E02 /* city.plist in Resources */,
 				056664AE1AEE37AC00FD1C65 /* skuview_increase.png in Resources */,
@@ -3163,16 +3141,13 @@
 				058D5D101AF2140C006EA35C /* tbbuy_question_fill@2x.png in Resources */,
 				05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */,
 				056664B11AEE37AC00FD1C65 /* tb_control_flow_number_left.png in Resources */,
-				058BC4141AE8D97400A4F799 /* tabitem_discover_normal@2x.png in Resources */,
 				056664AF1AEE37AC00FD1C65 /* skuview_increase2.png in Resources */,
-				058BC4131AE8D97400A4F799 /* tabitem_discover_highlight@2x.png in Resources */,
 				056664B81AEE37E600FD1C65 /* skuview_decrease2.png in Resources */,
 				0558669A1AD3B4F900A23FFA /* Images.xcassets in Resources */,
 				052CC6B81AF8588400AF7C78 /* home_discount_placehold_banner.png in Resources */,
 				058D5A921AF0B2BB006EA35C /* Default@2x.png in Resources */,
 				910E5D0C1B207E4F00FA584C /* register_success.png in Resources */,
 				050FFD6A1B02F98000721E02 /* area.plist in Resources */,
-				0553F7601AF9EB660013BB97 /* manwu_commodity_filt_buy.jpg in Resources */,
 				052CC6C41AF8BDFE00AF7C78 /* discover_searchview_background.png in Resources */,
 				058DAE2B1AE638BA009D0008 /* tabitem_info_highlight.png in Resources */,
 				056664B71AEE37E600FD1C65 /* skuview_decrease.png in Resources */,
@@ -3184,6 +3159,7 @@
 				058DADDB1AE52F97009D0008 /* SVProgressHUD.bundle in Resources */,
 				056664B31AEE37AC00FD1C65 /* tb_control_flow_number_right.png in Resources */,
 				05ACAC9A1AFCA03A00853E1C /* wifi_error_image.png in Resources */,
+				5FD244F61B3ACBFF00353589 /* manwu_commodity_filt_specialForToday.png in Resources */,
 				052CC6B91AF8588400AF7C78 /* home_placehold_banner.png in Resources */,
 				91E2D0731B1761C500946A32 /* inputbox.png in Resources */,
 				5F4088091B194BA300954568 /* down_dark0.png in Resources */,

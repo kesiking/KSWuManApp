@@ -64,6 +64,8 @@
  */
 @property (nonatomic) UIOffset imagePositionAdjustment;
 
+@property (nonatomic) CGSize   imageSize;
+
 /**
  * The image used for tab bar item's selected state.
  */
