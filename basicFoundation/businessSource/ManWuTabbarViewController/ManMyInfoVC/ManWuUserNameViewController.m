@@ -43,7 +43,7 @@
         _text_userName.text = [KSUserInfoModel sharedConstant].userName;
         [_text_userName setFont:[UIFont systemFontOfSize:16]];
         _text_userName.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
-        _text_userName.keyboardType = UIKeyboardTypeNumberPad;
+        _text_userName.keyboardType = UIKeyboardTypeNamePhonePad;
         _text_userName.clearButtonMode = UITextFieldViewModeAlways;
         _text_userName.secureTextEntry = NO;
         _text_userName.delegate = self;
