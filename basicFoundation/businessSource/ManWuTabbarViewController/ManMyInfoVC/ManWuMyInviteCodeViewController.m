@@ -7,6 +7,7 @@
 //
 
 #import "ManWuMyInviteCodeViewController.h"
+#import "KSInviteCodeModel.h"
 
 @interface ManWuMyInviteCodeViewController ()
 {
@@ -21,8 +22,8 @@
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-//        [_service setItemClass:[NSDictionary class]];
-//        _service.jsonTopKey = @"data";
+        [_service setItemClass:[KSInviteCodeModel class]];
+        _service.jsonTopKey = @"data";
         
     }
     return _service;
