@@ -25,6 +25,10 @@
      */
     if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
         ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)descriptionModel;
+        if (detailModel.brand) {
+            NSString* string = [NSString stringWithFormat:@"品牌：%@",detailModel.brand];
+            [self.descriptionArray addObject:string];
+        }
         if (detailModel.featureMap) {
             for (NSString* key in [detailModel.featureMap allKeys]) {
                 if (![key isKindOfClass:[NSString class]]) {

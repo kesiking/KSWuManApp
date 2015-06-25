@@ -50,7 +50,7 @@
         frame.origin.x = 8;
         configObject.collectionCellSize = CGSizeMake(frame.size.width/2, caculateNumber(180));
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
-        [_collectionViewCtl setErrorViewTitle:@"服务器在偷懒，请稍后再试"];
+        [_collectionViewCtl setErrorViewTitle:@"暂无数据，请稍后再试"];
         [_collectionViewCtl registerClass:[ManWuFavViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         [_collectionViewCtl setDataSourceWrite:self.dataSourceWrite];

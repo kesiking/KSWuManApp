@@ -18,22 +18,22 @@
 -(void)initModel{
     NSArray* sortAndFiltArray = @[
                                   @{
-                                      @"imageUrl":@"manwu_commodity_filt_all.jpg",
+                                      @"imageUrl":@"manwu_commodity_filt_all",
                                       @"titleText":@"全部",
                                       @"actIdKey":@"0"
                                       },
                                   @{
-                                      @"imageUrl":@"manwu_commodity_filt_discount.png",
+                                      @"imageUrl":@"manwu_commodity_filt_discount",
                                       @"titleText":@"折上折",
                                       @"actIdKey":@"1"
                                       },
                                   @{
-                                      @"imageUrl":@"manwu_commodity_filt_specialForToday.jpg",
+                                      @"imageUrl":@"manwu_commodity_filt_specialForToday",
                                       @"titleText":@"今日特卖",
                                       @"actIdKey":@"2"
                                       },
                                   @{
-                                      @"imageUrl":@"manwu_commodity_filt_buy.jpg",
+                                      @"imageUrl":@"manwu_commodity_filt_buy",
                                       @"titleText":@"几元购",
                                       @"actIdKey":@"3"
                                       }

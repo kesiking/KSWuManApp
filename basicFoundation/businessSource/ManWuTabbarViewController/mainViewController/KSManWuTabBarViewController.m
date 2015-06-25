@@ -143,19 +143,20 @@
         }
         
         [item setTitle:titles[index]];
-        [item setTitlePositionAdjustment:UIOffsetMake(0, -5)];
+        [item setTitlePositionAdjustment:UIOffsetMake(0, 0)];
         
         UIImage *selectedimage = [UIImage imageNamed:selectedImages[index]];
         UIImage *unselectedimage = [UIImage imageNamed:normalImages[index]];
+        [item setImageSize:CGSizeMake(20, 20)];
         [item setFinishedSelectedImage:selectedimage withFinishedUnselectedImage:unselectedimage];
         
         if (IOS_VERSION >= 7.0) {
-            [item setSelectedTitleAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9],NSForegroundColorAttributeName:RGB(0xd8, 0x56, 0x56)}];
-            [item setUnselectedTitleAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9],NSForegroundColorAttributeName:RGB(0x5f, 0x64, 0x6e)}];
+            [item setSelectedTitleAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11],NSForegroundColorAttributeName:RGB(0xd8, 0x56, 0x56)}];
+            [item setUnselectedTitleAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11],NSForegroundColorAttributeName:RGB(0x5f, 0x64, 0x6e)}];
         } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-            [item setSelectedTitleAttributes:@{UITextAttributeFont:[UIFont systemFontOfSize:9],UITextAttributeTextColor:RGB(0xd8, 0x56, 0x56)}];
-            [item setUnselectedTitleAttributes:@{UITextAttributeFont:[UIFont systemFontOfSize:9],UITextAttributeTextColor:RGB(0x5f, 0x64, 0x6e)}];
+            [item setSelectedTitleAttributes:@{UITextAttributeFont:[UIFont systemFontOfSize:11],UITextAttributeTextColor:RGB(0xd8, 0x56, 0x56)}];
+            [item setUnselectedTitleAttributes:@{UITextAttributeFont:[UIFont systemFontOfSize:11],UITextAttributeTextColor:RGB(0x5f, 0x64, 0x6e)}];
 #endif
         }
         index++;

@@ -110,7 +110,7 @@
         _bannerView.backgroundColor = [UIColor whiteColor];
         [_bannerView.bannerCloseButton removeFromSuperview];
         _bannerView.clipsToBounds = YES;
-        _bannerView.bannerBackgroundImage.image = [UIImage imageNamed:@"home_placehold_banner"];
+        _bannerView.bannerBackgroundImage.image = [UIImage imageNamed:@"gz_image_loading.png"];
         _bannerView.delegate = (id)self;
         _bannerView.isRounded = NO;
     }
