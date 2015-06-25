@@ -228,7 +228,7 @@
 {
     NSLog(@"%ld",(long)tag);
     ManWuMyOrdersViewController *myOrdersVC = [[ManWuMyOrdersViewController alloc]init];
-    myOrdersVC.origIndex = tag;
+    myOrdersVC.origIndex = tag + 1;
     [self.navigationController pushViewController:myOrdersVC animated:YES];
 
 }

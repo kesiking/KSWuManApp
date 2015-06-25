@@ -81,7 +81,15 @@
 - (void)initOrdersList
 {
 //    [self.service loadItemWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
-    [self.service loadDataListWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
+    
+    if(self.origIndex == 0)
+    {
+        [self.service loadDataListWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
+        
+    }else
+    {
+        [self.service loadDataListWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"status":[NSString stringWithFormat:@"%ld", (long)self.origIndex - 1]} version:nil];
+    }
 }
 
 #pragma mark -UIScrollView Protocol Methods
@@ -110,7 +118,8 @@
 - (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index {
     
     self.origIndex = index;
-    [self.table reloadData];
+    
+    [self initOrdersList];
 }
 
 

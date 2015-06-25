@@ -398,6 +398,8 @@
 		91C76B811B31C7B3008C5EAC /* order_received.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C76B7E1B31C7B3008C5EAC /* order_received.png */; };
 		91C76B821B31C7B3008C5EAC /* order_received@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C76B7F1B31C7B3008C5EAC /* order_received@2x.png */; };
 		91C76B831B31C7B3008C5EAC /* order_received@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C76B801B31C7B3008C5EAC /* order_received@3x.png */; };
+		91CBB19D1B3C45710037547A /* hongbao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91CBB19B1B3C45710037547A /* hongbao@2x.png */; };
+		91CBB19E1B3C45710037547A /* hongbao@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91CBB19C1B3C45710037547A /* hongbao@3x.png */; };
 		91E2D05A1B1761C500946A32 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		91E2D05B1B1761C500946A32 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0221B1761C500946A32 /* CustomImagePickerController.m */; };
 		91E2D05C1B1761C500946A32 /* ImageFilterProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E2D0241B1761C500946A32 /* ImageFilterProcessViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1203,6 +1205,8 @@
 		91C76B7E1B31C7B3008C5EAC /* order_received.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_received.png; sourceTree = "<group>"; };
 		91C76B7F1B31C7B3008C5EAC /* order_received@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_received@2x.png"; sourceTree = "<group>"; };
 		91C76B801B31C7B3008C5EAC /* order_received@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_received@3x.png"; sourceTree = "<group>"; };
+		91CBB19B1B3C45710037547A /* hongbao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao@2x.png"; sourceTree = "<group>"; };
+		91CBB19C1B3C45710037547A /* hongbao@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao@3x.png"; sourceTree = "<group>"; };
 		91E2D01E1B1761C500946A32 /* AGSimpleImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSimpleImageEditorView.h; sourceTree = "<group>"; };
 		91E2D01F1B1761C500946A32 /* AGSimpleImageEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSimpleImageEditorView.m; sourceTree = "<group>"; };
 		91E2D0201B1761C500946A32 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
@@ -3041,6 +3045,8 @@
 		91E2D0541B1761C500946A32 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				91CBB19B1B3C45710037547A /* hongbao@2x.png */,
+				91CBB19C1B3C45710037547A /* hongbao@3x.png */,
 				91C76B7E1B31C7B3008C5EAC /* order_received.png */,
 				91C76B7F1B31C7B3008C5EAC /* order_received@2x.png */,
 				91C76B801B31C7B3008C5EAC /* order_received@3x.png */,
@@ -3191,6 +3197,7 @@
 				05AF300A1B004D3F00890A65 /* loading_view_8.png in Resources */,
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
 				058D5D0F1AF2140C006EA35C /* tbbuy_location@2x.png in Resources */,
+				91CBB19E1B3C45710037547A /* hongbao@3x.png in Resources */,
 				5FD244F51B3ACBFF00353589 /* manwu_commodity_filt_buy.png in Resources */,
 				055866981AD3B4F900A23FFA /* Main.storyboard in Resources */,
 				5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */,
@@ -3212,7 +3219,6 @@
 				91E2D0761B1761C500946A32 /* sure-button01-s@2x.png in Resources */,
 				91E2D0751B1761C500946A32 /* sure-button01-s.png in Resources */,
 				91C76B731B31C516008C5EAC /* order_forreceive@2x.png in Resources */,
-				058BC4181AE8D97400A4F799 /* tabitem_info_normal@2x.png in Resources */,
 				5F4088111B19663200954568 /* manwu_common_address.png in Resources */,
 				05AF30081B004D3F00890A65 /* loading_view_6.png in Resources */,
 				058D5D0E1AF2140C006EA35C /* tbbuy_item_increase@2x.png in Resources */,
@@ -3229,7 +3235,6 @@
 				91C76B6A1B31C516008C5EAC /* edit@2x.png in Resources */,
 				5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */,
 				91C76B691B31C516008C5EAC /* edit.png in Resources */,
-				0553F7621AF9EB660013BB97 /* manwu_commodity_filt_specialForToday.jpg in Resources */,
 				5F214C7C1B158F990081BA02 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */,
 				91E2D0771B1761C500946A32 /* sure-button01.png in Resources */,
@@ -3240,7 +3245,6 @@
 				05AF30131B00506C00890A65 /* favorate_button_image.png in Resources */,
 				058DAE201AE638BA009D0008 /* tabbar_background_white@2x.png in Resources */,
 				91C76B7C1B31C516008C5EAC /* sex_woman@3x.png in Resources */,
-				058BC4161AE8D97400A4F799 /* tabitem_home_normal@2x.png in Resources */,
 				058D5D0B1AF2140C006EA35C /* tbbuy_item_decrease2@2x.png in Resources */,
 				050FFD6B1B02F98000721E02 /* city.plist in Resources */,
 				056664AE1AEE37AC00FD1C65 /* skuview_increase.png in Resources */,
@@ -3249,7 +3253,6 @@
 				058D5D101AF2140C006EA35C /* tbbuy_question_fill@2x.png in Resources */,
 				05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */,
 				056664B11AEE37AC00FD1C65 /* tb_control_flow_number_left.png in Resources */,
-				058BC4141AE8D97400A4F799 /* tabitem_discover_normal@2x.png in Resources */,
 				91C76B771B31C516008C5EAC /* order_forsend@3x.png in Resources */,
 				056664AF1AEE37AC00FD1C65 /* skuview_increase2.png in Resources */,
 				056664B81AEE37E600FD1C65 /* skuview_decrease2.png in Resources */,
@@ -3267,6 +3270,7 @@
 				058D5D0C1AF2140C006EA35C /* tbbuy_item_decrease@2x.png in Resources */,
 				056664491AEB4BA200FD1C65 /* gz_image_loading.png in Resources */,
 				058D5CF91AF1F68E006EA35C /* AlipaySDK.bundle in Resources */,
+				91CBB19D1B3C45710037547A /* hongbao@2x.png in Resources */,
 				5F214C771B158F990081BA02 /* SVWebViewController.bundle in Resources */,
 				058D5D0A1AF2140C006EA35C /* tbbuy_arrow@2x.png in Resources */,
 				058DADDB1AE52F97009D0008 /* SVProgressHUD.bundle in Resources */,

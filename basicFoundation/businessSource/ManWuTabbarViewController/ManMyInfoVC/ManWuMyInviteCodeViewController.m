@@ -11,7 +11,7 @@
 
 @interface ManWuMyInviteCodeViewController ()
 {
-    NSMutableArray *inviteCodeArray;
+    NSDictionary *inviteCodeModel;
 }
 
 @end
@@ -22,7 +22,7 @@
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-        [_service setItemClass:[KSInviteCodeModel class]];
+        [_service setItemClass:[NSDictionary class]];
         _service.jsonTopKey = @"data";
         
     }
@@ -35,6 +35,9 @@
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     
     self.title = @"我的邀请码";
+    
+    inviteCodeModel = [[NSDictionary alloc]init];
+    
     [self.service loadItemWithAPIName:@"user/inviteCode.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
 }
 
@@ -51,7 +54,7 @@
 {
     if (service == _service) {
         // todo success
-        inviteCodeArray = [[NSMutableArray alloc]initWithObjects:@"gg",@"mm", nil];
+        inviteCodeModel = (NSDictionary *)service.requestModel.item;
         
         self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         self.table.delegate = self;
@@ -72,7 +75,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [inviteCodeArray count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -115,24 +118,31 @@
         [cell.contentView addSubview:copyBtn];
         
         UILabel *inviteCodeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CGRectGetMinX(copyBtn.frame) - kSpaceX -5, 18)];
-        inviteCodeLabel.text = @"邀请码：XXXX";
+        inviteCodeLabel.text = [NSString stringWithFormat:@"邀请码：%@",inviteCodeModel[@"inviteCode"]];
         [cell.contentView addSubview:inviteCodeLabel];
         
-        UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
-        [timeLabel setFont:[UIFont systemFontOfSize:12]];
-        timeLabel.backgroundColor = [UIColor clearColor];
-        timeLabel.textColor = [UIColor colorWithHex:0x666666];
-        timeLabel.text = @"有效期";
-        [cell.contentView addSubview:timeLabel];
-        
-        UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(timeLabel.frame) + 10, WIDTH, 14)];
+        UILabel *descLabel;
+        if([inviteCodeModel[@"startTime"] length] > 0)
+        {
+            UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
+            [timeLabel setFont:[UIFont systemFontOfSize:12]];
+            timeLabel.backgroundColor = [UIColor clearColor];
+            timeLabel.textColor = [UIColor colorWithHex:0x666666];
+            timeLabel.text = [NSString stringWithFormat:@"有效期：%@至%@",inviteCodeModel[@"startTime"],inviteCodeModel[@"endTime"]];
+            [cell.contentView addSubview:timeLabel];
+            
+            descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(timeLabel.frame) + 10, WIDTH, 14)];
+        }else
+        {
+            descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
+        }
         [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [descLabel setNumberOfLines:0];
         [descLabel setFont:[UIFont systemFontOfSize:12]];
         descLabel.backgroundColor = [UIColor clearColor];
         descLabel.textColor = [UIColor colorWithHex:0x666666];
         
-        NSString *descStr = @"可获得红包鬼斧神工实际数量和交流是历史环境是谁厉害了深刻数量还是理科好老师时候时候";
+        NSString *descStr = inviteCodeModel[@"description"];
         NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
         NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
         
@@ -177,10 +187,8 @@
 
 - (void)copyInviteCode:(id)sender
 {
-    UIButton *button=(UIButton *)sender;
-    NSInteger tag = button.tag;
     UIPasteboard *pasterBoard = [UIPasteboard pasteboardWithName:@"myInviteCode" create:YES];
-    pasterBoard.string = [inviteCodeArray objectAtIndex:tag];
+    pasterBoard.string = inviteCodeModel[@"inviteCode"];
     
     NSString * str = pasterBoard.string;
     

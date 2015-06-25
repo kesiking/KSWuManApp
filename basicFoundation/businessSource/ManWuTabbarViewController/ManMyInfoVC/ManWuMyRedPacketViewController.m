@@ -24,8 +24,8 @@
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-//        [_service setItemClass:[NSDictionary class]];
-//        _service.jsonTopKey = @"data";
+        [_service setItemClass:[NSDictionary class]];
+        _service.jsonTopKey = @"data";
         
     }
     return _service;
@@ -138,7 +138,7 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CELLHEIGHT - 2*kSpaceX, CELLHEIGHT - 2*kSpaceX)];
-        headImage.backgroundColor = [UIColor greenColor];
+        headImage.image = [UIImage imageNamed:@"hongbao"];
         [cell.contentView addSubview:headImage];
         
         UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX - 5, 55, 25)];
