@@ -99,13 +99,25 @@
 }
 
 -(void)reloadData{
+    CGSize titleLabelSize = [self.commodityTitleLabel.text sizeWithFont:self.commodityTitleLabel.font constrainedToSize:CGSizeMake(self.commodityTitleLabel.width, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    CGRect titleLabeRect = self.commodityTitleLabel.frame;
+    titleLabeRect.size.height = titleLabelSize.height;
+    [self.commodityTitleLabel setFrame:titleLabeRect];
+    
+    [self.commodityPriceLabel setOrigin:CGPointMake(self.commodityPriceLabel.origin.x, self.commodityTitleLabel.bottom + 5)];
+    
+    [self.commodityFavorateButton setOrigin:CGPointMake(self.commodityFavorateButton.origin.x, self.commodityTitleLabel.bottom)];
+    
     CGSize labelSize = [self.commodityPraiseLabel.text sizeWithFont:self.commodityPraiseLabel.font constrainedToSize:CGSizeMake(100, self.commodityPraiseLabel.height) lineBreakMode:NSLineBreakByWordWrapping];
     CGRect labelRect = self.commodityPraiseLabel.frame;
     labelRect.origin.x = self.commodityFavorateButton.origin.x - labelSize.width;
+    labelRect.origin.y = self.commodityFavorateButton.origin.y + 6;
     labelRect.size.width = labelSize.width;
     [self.commodityPraiseLabel setFrame:labelRect];
+    
     CGRect rect = self.commodityPraiseButton.frame;
     rect.origin.x = self.commodityPraiseLabel.origin.x - self.commodityPraiseButton.width;
+    rect.origin.y = self.commodityFavorateButton.origin.y + 2 ;
     [self.commodityPraiseButton setFrame:rect];
 }
 
@@ -136,7 +148,7 @@
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect rect = self.bounds;
     
-    rect.size.height = 70 /* * SCREEN_SCALE */;
+    rect.size.height = self.commodityPriceLabel.bottom + 25 /* * SCREEN_SCALE */;
     
     return CGSizeMake(rect.size.width, rect.size.height);
 }

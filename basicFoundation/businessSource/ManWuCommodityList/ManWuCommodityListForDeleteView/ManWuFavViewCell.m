@@ -17,7 +17,7 @@
 
 -(void)setupView{
     [super setupView];
-    [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - self.commodityPriceImageView.width , self.commodityImageView.bottom - self.commodityPriceImageView.height, self.commodityPriceImageView.width, self.commodityPriceImageView.height)];
+    [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - self.commodityPriceImageView.width - 0.5 , self.commodityImageView.bottom - self.commodityPriceImageView.height - 0.5, self.commodityPriceImageView.width, self.commodityPriceImageView.height)];
     [self.priceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.commodityPriceImageView.width, self.commodityPriceImageView.height)];
     [self bringSubviewToFront:self.priceLabel];
     self.priceLabel.textAlignment = NSTextAlignmentCenter;

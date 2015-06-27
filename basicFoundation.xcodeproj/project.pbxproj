@@ -295,6 +295,7 @@
 		5F01FB501B3E3C2300541648 /* ManWuVoucherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F01FB4F1B3E3C2300541648 /* ManWuVoucherModel.m */; };
 		5F01FB521B3E3E4100541648 /* KSNetworkDataMock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F01FB511B3E3E4100541648 /* KSNetworkDataMock.plist */; };
 		5F01FB551B3E3F0000541648 /* KSNetworkDataMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F01FB541B3E3F0000541648 /* KSNetworkDataMock.m */; };
+		5F01FB581B3EB0CE00541648 /* UIImageView+KSWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F01FB571B3EB0CE00541648 /* UIImageView+KSWebCache.m */; };
 		5F214C4D1B146FF70081BA02 /* ManWuAddressService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C4C1B146FF70081BA02 /* ManWuAddressService.m */; };
 		5F214C501B148E520081BA02 /* ManWuAddressEditService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C4F1B148E520081BA02 /* ManWuAddressEditService.m */; };
 		5F214C541B154A290081BA02 /* ManWuHomeActivityInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C531B154A290081BA02 /* ManWuHomeActivityInfoModel.m */; };
@@ -1040,6 +1041,8 @@
 		5F01FB511B3E3E4100541648 /* KSNetworkDataMock.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KSNetworkDataMock.plist; sourceTree = "<group>"; };
 		5F01FB531B3E3F0000541648 /* KSNetworkDataMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNetworkDataMock.h; sourceTree = "<group>"; };
 		5F01FB541B3E3F0000541648 /* KSNetworkDataMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNetworkDataMock.m; sourceTree = "<group>"; };
+		5F01FB561B3EB0CE00541648 /* UIImageView+KSWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+KSWebCache.h"; sourceTree = "<group>"; };
+		5F01FB571B3EB0CE00541648 /* UIImageView+KSWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+KSWebCache.m"; sourceTree = "<group>"; };
 		5F214C4B1B146FF70081BA02 /* ManWuAddressService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressService.h; sourceTree = "<group>"; };
 		5F214C4C1B146FF70081BA02 /* ManWuAddressService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressService.m; sourceTree = "<group>"; };
 		5F214C4E1B148E520081BA02 /* ManWuAddressEditService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressEditService.h; sourceTree = "<group>"; };
@@ -2565,6 +2568,8 @@
 				058BC3E41AE89C2000A4F799 /* KSNavigator+RDVTabBarController.m */,
 				058DAE581AE731A3009D0008 /* NSDictionary+JSONSerialize.h */,
 				058DAE591AE731A3009D0008 /* NSDictionary+JSONSerialize.m */,
+				5F01FB561B3EB0CE00541648 /* UIImageView+KSWebCache.h */,
+				5F01FB571B3EB0CE00541648 /* UIImageView+KSWebCache.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -3373,6 +3378,7 @@
 				052CC6AC1AF7737A00AF7C78 /* ManWuDiiscountInfoDescriptionView.m in Sources */,
 				0553F78E1AFA1F7A0013BB97 /* ManWuCommodityFiltForDiscoverListView.m in Sources */,
 				058D5AB91AF0D98A006EA35C /* Order.m in Sources */,
+				5F01FB581B3EB0CE00541648 /* UIImageView+KSWebCache.m in Sources */,
 				056664D21AEF2F4E00FD1C65 /* TBTradeDetailSKUService.m in Sources */,
 				0566643C1AEB284F00FD1C65 /* KSScrollViewServiceController.m in Sources */,
 				058D5A9A1AF0B358006EA35C /* TBDetailBigPhotoBrowerController.m in Sources */,
