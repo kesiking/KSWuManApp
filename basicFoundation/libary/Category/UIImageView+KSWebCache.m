@@ -30,23 +30,27 @@ static char imageURLKey;
         __weak UIImageView *wself = self;
         id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if (!wself) return;
-            if (downLoadBlock) {
-                image = downLoadBlock(image, error, cacheType, url);
-            }
-            dispatch_main_sync_safe(^{
-                if (!wself) return;
-                if (image) {
-                    wself.image = image;
-                    [wself setNeedsLayout];
-                } else {
-                    if ((options & SDWebImageDelayPlaceholder)) {
-                        wself.image = placeholder;
+            __block UIImage* imageBlock = image;
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                if (downLoadBlock) {
+                    imageBlock = downLoadBlock(imageBlock, error, cacheType, url);
+                }
+                
+                dispatch_main_sync_safe(^{
+                    if (!wself) return;
+                    if (imageBlock) {
+                        wself.image = imageBlock;
                         [wself setNeedsLayout];
+                    } else {
+                        if ((options & SDWebImageDelayPlaceholder)) {
+                            wself.image = placeholder;
+                            [wself setNeedsLayout];
+                        }
                     }
-                }
-                if (completedBlock && finished) {
-                    completedBlock(image, error, cacheType, url);
-                }
+                    if (completedBlock && finished) {
+                        completedBlock(imageBlock, error, cacheType, url);
+                    }
+                });
             });
         }];
         [self sd_setImageLoadOperation:operation forKey:@"UIImageViewImageLoad"];
