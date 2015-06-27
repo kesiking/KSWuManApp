@@ -292,6 +292,9 @@
 		05D5F2B81B006224002EF23D /* ManWuPraiseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D5F2B71B006224002EF23D /* ManWuPraiseButton.m */; };
 		05D5F2C61B00CBE4002EF23D /* KSAuthenticationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D5F2C51B00CBE4002EF23D /* KSAuthenticationCenter.m */; };
 		05E88EDC1B033E0500E0B646 /* ManWuAddressBottomVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E88EDB1B033E0500E0B646 /* ManWuAddressBottomVIew.m */; };
+		5F01FB501B3E3C2300541648 /* ManWuVoucherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F01FB4F1B3E3C2300541648 /* ManWuVoucherModel.m */; };
+		5F01FB521B3E3E4100541648 /* KSNetworkDataMock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F01FB511B3E3E4100541648 /* KSNetworkDataMock.plist */; };
+		5F01FB551B3E3F0000541648 /* KSNetworkDataMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F01FB541B3E3F0000541648 /* KSNetworkDataMock.m */; };
 		5F214C4D1B146FF70081BA02 /* ManWuAddressService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C4C1B146FF70081BA02 /* ManWuAddressService.m */; };
 		5F214C501B148E520081BA02 /* ManWuAddressEditService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C4F1B148E520081BA02 /* ManWuAddressEditService.m */; };
 		5F214C541B154A290081BA02 /* ManWuHomeActivityInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C531B154A290081BA02 /* ManWuHomeActivityInfoModel.m */; };
@@ -1032,6 +1035,11 @@
 		05D5F2C51B00CBE4002EF23D /* KSAuthenticationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAuthenticationCenter.m; sourceTree = "<group>"; };
 		05E88EDA1B033E0500E0B646 /* ManWuAddressBottomVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressBottomVIew.h; sourceTree = "<group>"; };
 		05E88EDB1B033E0500E0B646 /* ManWuAddressBottomVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressBottomVIew.m; sourceTree = "<group>"; };
+		5F01FB4E1B3E3C2300541648 /* ManWuVoucherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManWuVoucherModel.h; path = basicFoundation/businessSource/ManWuCommodityList/Resources/ManWuVoucherModel.h; sourceTree = SOURCE_ROOT; };
+		5F01FB4F1B3E3C2300541648 /* ManWuVoucherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManWuVoucherModel.m; path = basicFoundation/businessSource/ManWuCommodityList/Resources/ManWuVoucherModel.m; sourceTree = SOURCE_ROOT; };
+		5F01FB511B3E3E4100541648 /* KSNetworkDataMock.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KSNetworkDataMock.plist; sourceTree = "<group>"; };
+		5F01FB531B3E3F0000541648 /* KSNetworkDataMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNetworkDataMock.h; sourceTree = "<group>"; };
+		5F01FB541B3E3F0000541648 /* KSNetworkDataMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNetworkDataMock.m; sourceTree = "<group>"; };
 		5F214C4B1B146FF70081BA02 /* ManWuAddressService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressService.h; sourceTree = "<group>"; };
 		5F214C4C1B146FF70081BA02 /* ManWuAddressService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressService.m; sourceTree = "<group>"; };
 		5F214C4E1B148E520081BA02 /* ManWuAddressEditService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressEditService.h; sourceTree = "<group>"; };
@@ -2174,6 +2182,8 @@
 		058D5AA71AF0D022006EA35C /* ManWuCommodityBuyModel */ = {
 			isa = PBXGroup;
 			children = (
+				5F01FB4E1B3E3C2300541648 /* ManWuVoucherModel.h */,
+				5F01FB4F1B3E3C2300541648 /* ManWuVoucherModel.m */,
 			);
 			path = ManWuCommodityBuyModel;
 			sourceTree = "<group>";
@@ -2470,6 +2480,9 @@
 				050FFD2D1B02DFA400721E02 /* KSModelDemo.m */,
 				058DADE31AE5E0E6009D0008 /* KSAdapterNetWork.h */,
 				058DADE41AE5E0E6009D0008 /* KSAdapterNetWork.m */,
+				5F01FB531B3E3F0000541648 /* KSNetworkDataMock.h */,
+				5F01FB541B3E3F0000541648 /* KSNetworkDataMock.m */,
+				5F01FB511B3E3E4100541648 /* KSNetworkDataMock.plist */,
 				5F4E40521B1EDD42004AE7C0 /* KSAdapterCacheService.h */,
 				5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */,
 				05D5F2C41B00CBE4002EF23D /* KSAuthenticationCenter.h */,
@@ -3231,6 +3244,7 @@
 				058BC3FB1AE89DA700A4F799 /* tabbarViewControllerRegister.plist in Resources */,
 				91C76B831B31C7B3008C5EAC /* order_received@3x.png in Resources */,
 				058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */,
+				5F01FB521B3E3E4100541648 /* KSNetworkDataMock.plist in Resources */,
 				5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */,
 				91C76B6A1B31C516008C5EAC /* edit@2x.png in Resources */,
 				5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */,
@@ -3496,6 +3510,7 @@
 				0566644E1AEC7A1500FD1C65 /* KSTableViewController.m in Sources */,
 				058DADE51AE5E0E6009D0008 /* KSAdapterNetWork.m in Sources */,
 				0566648C1AEE0B1C00FD1C65 /* TBDetailSkuPropsValuesModel.m in Sources */,
+				5F01FB551B3E3F0000541648 /* KSNetworkDataMock.m in Sources */,
 				058BC3F91AE89DA700A4F799 /* KSTabbarViewController.m in Sources */,
 				0553F78D1AFA1F7A0013BB97 /* ManWuCommodityBasicSelectListView.m in Sources */,
 				0566641E1AEB225F00FD1C65 /* MBProgressHUD.m in Sources */,
@@ -3537,6 +3552,7 @@
 				5F4087EE1B19436C00954568 /* ManWuVoucherService.m in Sources */,
 				058DAE5A1AE731A3009D0008 /* NSDictionary+JSONSerialize.m in Sources */,
 				050FFD761B02FB7300721E02 /* ManWuAddAddressView.m in Sources */,
+				5F01FB501B3E3C2300541648 /* ManWuVoucherModel.m in Sources */,
 				05ACAC591AFB473A00853E1C /* ManWuCommodityListForDeleteView.m in Sources */,
 				056664381AEB284F00FD1C65 /* KSViewCell.m in Sources */,
 				055C75821ADFBF6000C35854 /* MKAnnotationView+WebCache.m in Sources */,

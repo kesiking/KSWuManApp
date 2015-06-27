@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>user/fetchVouchers.do</key>
+	<string>{     &quot;data&quot;: [         {             &quot;description&quot;: &quot;适用类目[null],满100.0可用&quot;,             &quot;endTime&quot;: &quot;2015-12-12 23:32:17&quot;,             &quot;id&quot;: 1,             &quot;price&quot;: 20,             &quot;startTime&quot;: &quot;2015-06-01 19:32:17&quot;        },
+    {
+      &quot;description&quot;: &quot;适用类目[null],满100.0可用&quot;,
+      &quot;endTime&quot;: &quot;2015-12-12 23:32:17&quot;,
+      &quot;id&quot;: 2,
+      &quot;price&quot;: 30,
+      &quot;startTime&quot;: &quot;2015-06-01 19:32:17&quot;
+    },
+    {
+      &quot;description&quot;: &quot;适用类目[null],满100.0可用&quot;,
+      &quot;endTime&quot;: &quot;2015-12-12 23:32:17&quot;,
+      &quot;id&quot;: 3,
+      &quot;price&quot;: 50,
+      &quot;startTime&quot;: &quot;2015-06-01 19:32:17&quot;
+    }
+  ],     &quot;resultCode&quot;: &quot;100&quot;,     &quot;resultString&quot;: &quot;&quot;,     &quot;success&quot;: true}</string>
+</dict>
+</plist>
