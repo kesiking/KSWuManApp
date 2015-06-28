@@ -118,7 +118,13 @@
         [cell.contentView addSubview:copyBtn];
         
         UILabel *inviteCodeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CGRectGetMinX(copyBtn.frame) - kSpaceX -5, 18)];
-        inviteCodeLabel.text = [NSString stringWithFormat:@"邀请码：%@",inviteCodeModel[@"inviteCode"]];
+        
+        NSString *inviteCodeStr = inviteCodeModel[@"inviteCode"];
+        NSString *inviteStr = [NSString stringWithFormat:@"邀请码：%@",inviteCodeStr];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:inviteStr];
+        [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#666666"] range:NSMakeRange(0,3)];
+        [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"] range:NSMakeRange(4,inviteCodeStr.length)];
+        inviteCodeLabel.attributedText = str;
         [cell.contentView addSubview:inviteCodeLabel];
         
         UILabel *descLabel;
