@@ -11,6 +11,7 @@
 #import "ManWuCommodityDetailModel.h"
 #import "UIImage+Resize.h"
 #import "UIImageView+KSWebCache.h"
+#import "KSImageListCache.h"
 
 #define commodityImage_border        (8.0)
 #define commodityImage_width_height  (self.width - 0)
@@ -167,13 +168,22 @@
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
     if (extroParams.imageHasLoaded) {
         WEAKSELF
-        [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            STRONGSELF
-            if (image && error == nil) {
-                return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
-            }
-            return image;
-        } completed:nil];
+        UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
+        if (image == nil) {
+            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                STRONGSELF
+                if (image && error == nil) {
+                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
+                }
+                return image;
+            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (image && imageURL) {
+                    [[KSImageListCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString];
+                }
+            }];
+        }else{
+            [self.commodityImageView setImage:image];
+        }
         self.commodityImageUrl = detailModel.img;
     }else{
         self.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
@@ -224,13 +234,22 @@
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
     if (self.commodityImageUrl != detailModel.img) {
         WEAKSELF
-        [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            STRONGSELF
-            if (image && error == nil) {
-                return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationDefault];
-            }
-            return image;
-        } completed:nil];
+        UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
+        if (image == nil) {
+            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                STRONGSELF
+                if (image && error == nil) {
+                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
+                }
+                return image;
+            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (image && imageURL) {
+                    [[KSImageListCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString];
+                }
+            }];
+        }else{
+            [self.commodityImageView setImage:image];
+        }
         self.commodityImageUrl = detailModel.img;
     }else{
         NSLog(@"----> don't need reload image again");

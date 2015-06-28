@@ -9,6 +9,7 @@
 #import "UIImageView+KSWebCache.h"
 #import "objc/runtime.h"
 #import "UIView+WebCacheOperation.h"
+#import "KSImageListCache.h"
 
 static char imageURLKey;
 
@@ -31,7 +32,7 @@ static char imageURLKey;
         id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if (!wself) return;
             __block UIImage* imageBlock = image;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_async([[KSImageListCache sharedImageCache] ioQueue], ^{
                 if (downLoadBlock) {
                     imageBlock = downLoadBlock(imageBlock, error, cacheType, url);
                 }
