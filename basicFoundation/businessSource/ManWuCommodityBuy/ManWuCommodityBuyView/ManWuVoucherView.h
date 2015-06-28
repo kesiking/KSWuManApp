@@ -8,8 +8,16 @@
 
 #import "ManWuBuyBasicView.h"
 
+@class ManWuVoucherView;
+
+typedef void (^selectVoucherViewBlock)(ManWuVoucherView *voucherView);
+
 @interface ManWuVoucherView : ManWuBuyBasicView
 
 @property (nonatomic, strong)   NSString*           voucherId;
+
+@property (nonatomic, assign)   float               voucherPrice;
+
+@property (nonatomic, copy)   selectVoucherViewBlock selectVoucherViewBlock;
 
 @end

@@ -9,10 +9,26 @@
 #import "KSAdapterNetWork.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "KSAuthenticationCenter.h"
+#import "KSNetworkDataMock.h"
+
+//#define MOCKDATA
 
 @implementation KSAdapterNetWork
 
 -(void)request:(NSString *)apiName withParam:(NSDictionary *)param onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
+    
+#ifdef MOCKDATA
+    NSString* jsonData = [[KSNetworkDataMock sharedInstantce] getJsonDataWithKey:apiName];
+    if (jsonData) {
+        NSError* error = nil;
+        NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        if (responseDict) {
+            successBlock(responseDict);
+            return;
+        }
+    }
+#endif
     // 检查是否需要登陆
     self.needLogin = [param objectForKey:@"needLogin"];
     // 统一调用登陆逻辑
@@ -24,7 +40,7 @@
         if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
             [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
         }
-//        [newParams removeObjectForKey:@"needLogin"];
+        [newParams removeObjectForKey:@"needLogin"];
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
         // 默认为json序列化
         AFHTTPRequestOperationManager *httpRequestOM = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:KS_MANWU_BASE_URL]];

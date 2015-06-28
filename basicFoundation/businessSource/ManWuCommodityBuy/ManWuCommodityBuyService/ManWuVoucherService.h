@@ -13,4 +13,8 @@
 -(void)loadVoucherWithItemId:(NSString*)itemId
                       buyNum:(NSNumber*)buyNum;
 
+-(void)fetchVoucherWithCidId:(NSNumber*)cidId
+                      userId:(NSString*)userId
+                    payPrice:(NSNumber*)payPrice;
+
 @end

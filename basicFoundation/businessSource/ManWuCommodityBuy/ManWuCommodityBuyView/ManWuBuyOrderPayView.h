@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong)   NSNumber*                   payPrice;
 
+@property (nonatomic, assign)   float                       voucherPrice;
+
 @end

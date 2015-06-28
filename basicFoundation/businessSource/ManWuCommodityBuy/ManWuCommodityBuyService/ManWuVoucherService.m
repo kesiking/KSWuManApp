@@ -7,6 +7,7 @@
 //
 
 #import "ManWuVoucherService.h"
+#import "ManWuVoucherModel.h"
 
 @implementation ManWuVoucherService
 
@@ -21,6 +22,23 @@
     NSDictionary* params = @{@"itemId":itemId,@"buyNum":buyNum};
     
     [self loadItemWithAPIName:@"voucher/getItemVouchers.do" params:params version:nil];
+}
+
+-(void)fetchVoucherWithCidId:(NSNumber*)cidId
+                      userId:(NSString*)userId
+                    payPrice:(NSNumber*)payPrice{
+    if ([WeAppUtils isEmpty:cidId]
+        || [WeAppUtils isEmpty:userId]
+        || [WeAppUtils isEmpty:payPrice]) {
+        return;
+    }
+    
+    self.jsonTopKey = @"data";
+    NSDictionary* params = @{@"catId":cidId,@"userId":userId,@"payPrice":payPrice};
+    
+    self.itemClass = [ManWuVoucherModel class];
+    
+    [self loadDataListWithAPIName:@"user/fetchVouchers.do" params:params version:nil];
 }
 
 @end

@@ -124,6 +124,11 @@
     if (_voucherView == nil) {
         CGRect frame = CGRectMake(0, 0, self.frame.size.width, 40);
         _voucherView = [[ManWuVoucherView alloc] initWithFrame:frame];
+        WEAKSELF
+        _voucherView.selectVoucherViewBlock = ^(ManWuVoucherView *voucherView){
+            STRONGSELF
+            [strongSelf.orderPayView setVoucherPrice:voucherView.voucherPrice];
+        };
     }
     return _voucherView;
 }
@@ -146,8 +151,12 @@
             NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"1";
             NSString* itemId = strongSelf.detailModel.itemId;
             NSNumber* buyNum = [strongSelf.dict objectForKey:@"buyNumber"]?:@1;
+            float payPrice = [strongSelf.orderPayView.payPrice floatValue];
+            if (strongSelf.hasVoucher) {
+                payPrice -= strongSelf.voucherView.voucherPrice;
+            }
             
-            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:strongSelf.orderPayView.payPrice activityId:nil voucherId:strongSelf.voucherView.voucherId];
+            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:[NSNumber numberWithFloat:payPrice] activityId:nil voucherId:strongSelf.voucherView.voucherId];
         };
     }
     return _comfirmView;
@@ -216,7 +225,8 @@
     [self.preferentialView setObject:object dict:dict];
     [self.orderPayView setObject:object dict:dict];
     [self.comfirmView setObject:object dict:dict];
-    [self.voucherService loadVoucherWithItemId:object.itemId buyNum:[self.dict objectForKey:@"buyNum"]?:@1];
+//    [self.voucherService loadVoucherWithItemId:object.itemId buyNum:[self.dict objectForKey:@"buyNum"]?:@1];
+    [self.voucherService fetchVoucherWithCidId:object.cid userId:[KSAuthenticationCenter userId] payPrice:self.orderPayView.payPrice];
     [self reloadData];
 }
 

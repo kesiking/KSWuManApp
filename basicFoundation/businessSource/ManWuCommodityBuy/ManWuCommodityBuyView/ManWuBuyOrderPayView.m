@@ -53,14 +53,23 @@
     NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
     NSNumber* price = [dict objectForKey:@"skuPrice"];
     
-    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", (CGFloat)((price?[price floatValue]:[detailModel.sale floatValue]) * count)];
+    float truePrice = (CGFloat)((price?[price floatValue]:[detailModel.sale floatValue]) * count - self.voucherPrice);
     
-    self.payPrice = [NSNumber numberWithFloat:(CGFloat)(price?[price floatValue]:[detailModel.sale floatValue]) * count];
+    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", truePrice];
+    
+    _payPrice = [NSNumber numberWithFloat:truePrice];
     
     CGSize priceSize = [_priceLabel.text sizeWithFont:_priceLabel.font];
+    
     _priceLabel.frame = CGRectMake(_scaleView.width - priceSize.width, 0, priceSize.width, self.height);
     
     _priceDesLabel.frame = CGRectMake(_priceLabel.origin.x - 60, 0, 45, self.height);
+}
+
+-(void)setVoucherPrice:(float)voucherPrice{
+    _voucherPrice = voucherPrice;
+    float price = [_payPrice floatValue];
+    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", price - voucherPrice];
 }
 
 @end

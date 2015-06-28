@@ -8,6 +8,7 @@
 
 #import "ManWuVoucherView.h"
 #import "LMComBoxView.h"
+#import "ManWuVoucherModel.h"
 
 #define kCellNormalHeight         86.0f
 #define kCellSuperHeight         104.0f
@@ -110,12 +111,31 @@
     if (![object isKindOfClass:[NSArray class]]) {
         return;
     }
-    
+    NSMutableArray *array = [NSMutableArray array];
+    for (ManWuVoucherModel* voucherModel in object) {
+        if (voucherModel.price == nil) {
+            continue;
+        }
+        [array addObject:voucherModel.price];
+    }
     self.textLabel.text = @"红包";
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@",@""];
-    self.voucherList = [object mutableCopy];
-    self.comBox.titlesList = self.voucherList;
+    self.voucherList = object;
+    self.comBox.titlesList = array;
+    if ([array count] < 5) {
+        self.comBox.tableHeight = [array count] * self.comBox.height;
+    }else{
+        self.comBox.tableHeight = 6 * self.comBox.height;
+    }
     [self.comBox reloadData];
+    if ([self.voucherList count] > 0) {
+        ManWuVoucherModel* voucherModel = [self.voucherList objectAtIndex:0];
+        self.voucherId = [voucherModel.voucherId stringValue];
+        self.voucherPrice = [voucherModel.price floatValue];
+        if (self.selectVoucherViewBlock) {
+            self.selectVoucherViewBlock(self);
+        }
+    }
 }
 
 #pragma mark -LMComBoxViewDelegate
@@ -124,7 +144,12 @@
     if (self.voucherList == nil || index >= [self.voucherList count]) {
         return;
     }
-    self.voucherId =  [self.voucherList objectAtIndex:index];
+    ManWuVoucherModel* voucherModel = [self.voucherList objectAtIndex:index];
+    self.voucherId = [voucherModel.voucherId stringValue];
+    self.voucherPrice = [voucherModel.price floatValue];
+    if (self.selectVoucherViewBlock) {
+        self.selectVoucherViewBlock(self);
+    }
 }
 
 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
