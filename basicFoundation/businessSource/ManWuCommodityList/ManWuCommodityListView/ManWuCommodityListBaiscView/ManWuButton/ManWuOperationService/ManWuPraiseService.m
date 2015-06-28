@@ -37,4 +37,15 @@
     [self loadItemWithAPIName:apiName params:params version:nil];
 }
 
+-(void)modelDidFinishLoad:(WeAppBasicRequestModel *)model{
+    if ([model.apiName isEqualToString:@"collection/addItem.do"]) {
+        // 发送赞成功消息
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserAddPraiseSuccessNotification object:nil userInfo:model.params];
+    }else if ([model.apiName isEqualToString:@"collection/unAddItem.do"]){
+        // 发送赞取消消息
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserUnAddPraiseSuccessNotification object:nil userInfo:model.params];
+    }
+    [super modelDidFinishLoad:model];
+}
+
 @end

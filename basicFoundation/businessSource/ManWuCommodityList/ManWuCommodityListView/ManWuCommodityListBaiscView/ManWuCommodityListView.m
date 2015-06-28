@@ -23,6 +23,7 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.collectionViewCtl.scrollView];
+
     /*
      * for mock
     NSMutableArray* arrayData = [NSMutableArray array];
@@ -33,6 +34,12 @@
     [self.dataSourceRead setDataWithPageList:arrayData extraDataSource:nil];
     [self.collectionViewCtl reloadData];
      */
+}
+
+-(void)refreshDataRequest{
+    if (_collectionViewCtl.service && _collectionViewCtl.service.pagedList) {
+        [_collectionViewCtl.service refreshPagedList];
+    }
 }
 
 -(void)dealloc{
