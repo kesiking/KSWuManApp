@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSMutableArray*             skuArray;
 
 @property (nonatomic, strong) NSDictionary*               featureMap;
+@property (nonatomic, strong) NSArray*                    featureList;
 
 @property (nonatomic, strong) NSString*                   itemId;
 @property (nonatomic, strong) NSString*                   title;

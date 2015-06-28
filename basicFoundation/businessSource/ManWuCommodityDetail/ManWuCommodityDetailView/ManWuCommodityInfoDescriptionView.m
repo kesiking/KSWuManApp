@@ -25,10 +25,23 @@
      */
     if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
         ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)descriptionModel;
-        if (detailModel.brand) {
-            NSString* string = [NSString stringWithFormat:@"品牌：%@",detailModel.brand];
-            [self.descriptionArray addObject:string];
+        
+        if (detailModel.featureList) {
+            for (NSDictionary* feature in detailModel.featureList) {
+                if (![feature isKindOfClass:[NSDictionary class]]) {
+                    continue;
+                }
+                NSString* key = [feature objectForKey:@"key"];
+                id value = [feature objectForKey:@"value"];
+                if (value == nil
+                    || ![value isKindOfClass:[NSString class]]) {
+                    continue;
+                }
+                NSString* string = [NSString stringWithFormat:@"%@：%@",key,value];
+                [self.descriptionArray addObject:string];
+            }
         }
+        /*
         if (detailModel.featureMap) {
             for (NSString* key in [detailModel.featureMap allKeys]) {
                 if (![key isKindOfClass:[NSString class]]) {
@@ -43,7 +56,6 @@
                 [self.descriptionArray addObject:string];
             }
         }
-        /*
         if (detailModel.brand) {
             NSString* string = [NSString stringWithFormat:@"品牌:%@",detailModel.brand];
             [self.descriptionArray addObject:string];

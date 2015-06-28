@@ -14,6 +14,8 @@
 
 @property(nonatomic,strong) TBModelStatusHandler*               statusHandler;
 
+@property(nonatomic,assign) BOOL           isViewAppear;
+
 // override for subclass 发生错误后点击或是需要刷新时调用可刷新页面数据
 -(void)refreshDataRequest;
 

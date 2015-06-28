@@ -8,6 +8,9 @@
 
 #import "KSAdapterService.h"
 
+#define kUserAddPraiseSuccessNotification @"userAddPraiseSuccessNotification"
+#define kUserUnAddPraiseSuccessNotification @"userUnAddPraiseSuccessNotification"
+
 @interface ManWuPraiseService : KSAdapterService
 
 -(void)addPraiseWithItemId:(NSString*)itemId;
