@@ -9,6 +9,7 @@
 #import "ManWuMyOrdersViewController.h"
 #import "KSOrderModel.h"
 #import "KSOrderTableViewCell.h"
+#import "ManWuOrderDetailViewController.h"
 
 #define ORDERCELLHEIGHT  80
 
@@ -220,6 +221,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.row == 0)
+    {
+        ManWuOrderDetailViewController *orderDetailVC = [[ManWuOrderDetailViewController alloc]init];
+        orderDetailVC.orderModel = [ordersList objectAtIndex:indexPath.section];
+        [self.navigationController pushViewController:orderDetailVC animated:YES];
+    }
 }
 
 - (void)initTableViewCell:(UITableViewCell *)cell RowAtIndexPath:(NSIndexPath *)indexPath
@@ -342,7 +349,6 @@
 {
     UIButton *button = (UIButton *)sender;
     NSInteger orderNum = button.tag;
-    
 }
 
 - (void)didSelectedButtonStyleCancelOrder:(id)sender

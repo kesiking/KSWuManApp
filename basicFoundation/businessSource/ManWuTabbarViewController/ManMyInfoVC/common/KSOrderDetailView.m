@@ -7,15 +7,14 @@
 //
 
 #import "KSOrderDetailView.h"
-#import "KSOrderModel.h"
 
 #define kSpacePaddingX 15
 #define kSpacePaddingY 15
 #define kPadding       10
-#define itemView_orderType_height    80
+#define itemView_orderType_height    70
 #define itemView_addressInfo_height  120
-#define itemView_orderInfo_height    300
-#define itemView_orderDeal_height    80
+#define itemView_orderInfo_height    240
+#define itemView_orderDeal_height    50
 
 @implementation KSOrderDetailView
 {
@@ -83,6 +82,8 @@
     [self initItemView_addressInfo];
     [self initItemView_orderInfo];
     [self initItemView_orderDeal];
+    
+    [self addSubview:myInfoContainer];
 }
 
 - (void)initItemView_orderType
@@ -90,8 +91,8 @@
     if(!itemView_orderType)
     {
         itemView_orderType = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_orderType_height)];
-        [itemView_orderType setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
-        UILabel *orderTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 200, 15)];
+        [itemView_orderType setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#dc7868"]];
+         UILabel *orderTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 200, 15)];
         [orderTypeLabel setFont:[UIFont systemFontOfSize:15]];
         [orderTypeLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
         orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
@@ -105,7 +106,7 @@
 
     }
     CSLinearLayoutItem *item = [CSLinearLayoutItem layoutItemForView:itemView_orderType];
-    item.padding = CSLinearLayoutMakePadding(kPadding, 0,kPadding, 0);
+    item.padding = CSLinearLayoutMakePadding(0, 0,kPadding, 0);
     item.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
     item.verticalAlignment = CSLinearLayoutItemVerticalAlignmentCenter;
     [myInfoContainer addItem:item];
@@ -117,6 +118,7 @@
     if(!itemView_addressInfo)
     {
         itemView_addressInfo = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_addressInfo_height)];
+        [itemView_addressInfo setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 200, 14)];
         [titleLabel setFont:[UIFont systemFontOfSize:14]];
         [titleLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
@@ -156,7 +158,7 @@
     }
     
     CSLinearLayoutItem *item = [CSLinearLayoutItem layoutItemForView:itemView_addressInfo];
-    item.padding = CSLinearLayoutMakePadding(kPadding, 0,kPadding, 0);
+    item.padding = CSLinearLayoutMakePadding(5, 0,kPadding, 0);
     item.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
     item.verticalAlignment = CSLinearLayoutItemVerticalAlignmentCenter;
     [myInfoContainer addItem:item];
@@ -167,12 +169,12 @@
     if(!itemView_orderInfo)
     {
         itemView_orderInfo = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_orderInfo_height)];
-        
+        [itemView_orderInfo setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 50, 50)];
         imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderModel.imgUrl]]];
         [itemView_orderInfo addSubview:imageView];
         
-        UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 80, kSpacePaddingY, 80, 12)];
+        UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 60, kSpacePaddingY, 60, 12)];
         priceLabel.textAlignment = NSTextAlignmentRight;
         [priceLabel setFont:[UIFont systemFontOfSize:12]];
         [priceLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
@@ -183,7 +185,7 @@
         [titleLabel setFont:[UIFont systemFontOfSize:12]];
         [titleLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         titleLabel.text = orderModel.title;
-        [self addSubview:titleLabel];
+        [itemView_orderInfo addSubview:titleLabel];
         
         UILabel *sizeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 5, CGRectGetMaxY(titleLabel.frame) + 10, 60, 12)];
         [sizeLabel setFont:[UIFont systemFontOfSize:12]];
@@ -223,6 +225,8 @@
         btn_service.layer.cornerRadius = 3;
         [btn_service setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
         btn_service.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
+        [btn_service setTag:ButtonSelectedStyleService];
+        [btn_service addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
         [itemView_orderInfo addSubview:btn_service];
 
         UIView *LineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame) + 10, self.width, 0.5)];
@@ -288,10 +292,23 @@
         LineView2.opaque = YES;
         LineView2.backgroundColor =[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1.0];
         [itemView_orderInfo addSubview:LineView2];
+        
+        UILabel *orderIdLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(LineView2.frame) + 10, self.width - 2*kSpacePaddingX, 12)];
+        [orderIdLabel setFont:[UIFont systemFontOfSize:12]];
+        [orderIdLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+        orderIdLabel.text = [NSString stringWithFormat:@"订单号：%@",orderModel.orderId];
+        [itemView_orderInfo addSubview:orderIdLabel];
+        
+        UILabel *buyTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(orderIdLabel.frame) + 10, self.width - 2*kSpacePaddingX, 12)];
+        [buyTimeLabel setFont:[UIFont systemFontOfSize:12]];
+        [buyTimeLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+        buyTimeLabel.text = [NSString stringWithFormat:@"成交时间：%@",orderModel.createTime];
+        [itemView_orderInfo addSubview:buyTimeLabel];
+        
     }
     
     CSLinearLayoutItem *item = [CSLinearLayoutItem layoutItemForView:itemView_orderInfo];
-    item.padding = CSLinearLayoutMakePadding(kPadding, 0,kPadding, 0);
+    item.padding = CSLinearLayoutMakePadding(0, 0,kPadding, 0);
     item.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
     item.verticalAlignment = CSLinearLayoutItemVerticalAlignmentCenter;
     [myInfoContainer addItem:item];
@@ -299,6 +316,128 @@
 
 - (void)initItemView_orderDeal
 {
+    if(!itemView_orderDeal)
+    {
+        itemView_orderDeal = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_orderDeal_height)];
+        [itemView_orderDeal setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
+
+        //设置按钮大小
+        UIButton *btn_left = [[UIButton alloc]init];
+        UIButton *btn_right = [[UIButton alloc]init];
+        
+        NSString *title_leftBtn = [[NSString alloc]init];
+        NSString *title_rightBtn = [[NSString alloc]init];
+        NSString *statusStr = [[NSString alloc]init];
+        
+        switch ([orderModel.status integerValue]) {
+            case 0:
+            {
+                statusStr = @"待付款";
+                title_rightBtn = @"取消订单";
+                [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+                [btn_right setTag:ButtonSelectedStyleCancelOrder];
+                title_leftBtn = @"支付";
+                [btn_left addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+                [btn_left setTag:ButtonSelectedStylePay];
+            }
+                break;
+            case 1:
+            {
+                statusStr = @"待发货";
+                title_leftBtn = @"";
+                title_rightBtn = @"提醒发货";
+                [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+                [btn_right setTag:ButtonSelectedStyleNoteSend];
+            }
+                break;
+            case 2:
+            {
+                statusStr = @"待收货";
+                title_leftBtn = @"";
+                title_rightBtn = @"确认收货";
+                [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+                [btn_right setTag:ButtonSelectedStyleReceived];
+            }
+                break;
+            case 3:
+            {
+                statusStr = @"已收货";
+                title_leftBtn = @"";
+                title_rightBtn = @"删除订单";
+                [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+                [btn_right setTag:ButtonSelectedStyleDeleteOrder];
+            }
+                break;
+            case 4:
+            {
+                statusStr = @"退/换货";
+                title_leftBtn = @"";
+                title_rightBtn = @"";
+            }
+                break;
+                
+            default:
+                break;
+        }
+        CGSize btn_rightSize = [title_rightBtn sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]}];
+        CGFloat btn_rightX = self.width - kSpacePaddingX - btn_rightSize.width - 30;
+        CGFloat btn_rightY = kSpacePaddingY;
+        CGRect btn_rightRect=CGRectMake(btn_rightX, btn_rightY, btn_rightSize.width + 30, btn_rightSize.height + 10);
+        
+        [btn_right setFrame:btn_rightRect];
+        [btn_right.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        [btn_right setTitle:title_rightBtn forState:UIControlStateNormal];
+        btn_right.layer.borderWidth = 0.5;
+        btn_right.layer.cornerRadius = 3;
+        if([title_rightBtn isEqualToString:@"支付"] || [title_rightBtn isEqualToString:@"提醒发货"] || [title_rightBtn isEqualToString:@"物流单号"])
+        {
+            [btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"] forState:UIControlStateNormal];
+            btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#d95c47"]CGColor];
+        }else
+        {
+            [btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
+            btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
+        }
+        
+        if([title_leftBtn length] == 0)
+        {
+            btn_left.enabled = NO;
+        }else
+        {
+            CGSize btn_leftSize = [title_rightBtn sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
+            CGFloat btn_leftX = CGRectGetMinX(btn_right.frame) - btn_leftSize.width - 30 - 20;
+            CGFloat btn_leftY = kSpacePaddingY;
+            CGRect btn_leftRect=CGRectMake(btn_leftX, btn_leftY, btn_leftSize.width + 30, btn_leftSize.height + 10);
+            [btn_left setFrame:btn_leftRect];
+            [btn_left.titleLabel setFont:[UIFont systemFontOfSize:12]];
+            [btn_left setTitle:title_leftBtn forState:UIControlStateNormal];
+            [btn_left setTitleColor:[TBDetailUIStyle colorWithHexString:@"666666"] forState:UIControlStateNormal];
+            btn_left.layer.borderWidth = 0.5;
+            btn_left.layer.cornerRadius = 3;
+            btn_left.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
+        }
+        
+        [itemView_orderDeal addSubview:btn_right];
+        [itemView_orderDeal addSubview:btn_left];
+    }
+
+    CSLinearLayoutItem *item = [CSLinearLayoutItem layoutItemForView:itemView_orderDeal];
+    item.padding = CSLinearLayoutMakePadding(0, 0,kPadding, 0);
+    item.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
+    item.verticalAlignment = CSLinearLayoutItemVerticalAlignmentCenter;
+    [myInfoContainer addItem:item];
+
+}
+
+- (void)didSelectedOrderDealButton:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    ButtonSelectedStyle buttonSelectedStyle = button.tag;
+    
+    if(self.delegate)
+    {
+        [self.delegate didSelectedButtonStyle:buttonSelectedStyle];
+    }
     
 }
 

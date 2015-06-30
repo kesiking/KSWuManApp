@@ -7,8 +7,12 @@
 //
 
 #import "ManWuOrderDetailViewController.h"
+#import "KSOrderDetailView.h"
 
-@interface ManWuOrderDetailViewController ()
+@interface ManWuOrderDetailViewController ()<KSOrderDetailViewDelegate>
+{
+    KSOrderDetailView *orderDetailView;
+}
 
 @end
 
@@ -29,10 +33,19 @@
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     
     self.title = @"订单详情";
-
+    
+    orderDetailView = [[KSOrderDetailView alloc]initWithFrame:self.view.frame OrderModel:self.orderModel];
+    orderDetailView.delegate = self;
+    [self.view addSubview:orderDetailView];
 }
 
-#pragma mark WeAppBasicServiceDelegate method
+#pragma mark - KSOrderDetailViewDelegate method
+- (void)didSelectedButtonStyle:(ButtonSelectedStyle)style
+{
+    
+}
+
+#pragma mark - WeAppBasicServiceDelegate method
 
 - (void)serviceDidStartLoad:(WeAppBasicService *)service
 {

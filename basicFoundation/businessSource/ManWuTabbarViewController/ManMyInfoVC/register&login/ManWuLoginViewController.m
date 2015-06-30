@@ -12,6 +12,11 @@
 #import "KSUserInfoModel.h"
 #import "ManWuLoginContent.h"
 
+#import "DataSigner.h"
+#import "DataVerifier.h"
+
+#define PUBLICKEY @"AAAAB3NzaC1yc2EAAAABIwAAAQEAtVhJT2fMs3tD52NTJpaFVVWf/0KQYlnwMT786Mxqg34+7ynm98fXNDQryr/GTY7699VGkG/Hez0SGwcNR0/j3zOyS0wnXWL/DvhxWyqDeAxeRJ+ast++jjS8lv94TwtpDg2VwNsHTbjk5ysADU2s8fVeTuSPzjGCCkqi4ijutDNONZDNPrVI+UGBOa1LKCYqepAiF8OQ2xTL8B2qst4/RCSy+2IpYh0x0JyTcxMOIC7OyFe6sUgQDv17yUE83nw60ZrZIhw/Dz+C4ajsgGYPqCln/An0uI+h3eJodCZvex0g9ust2V2d5pzyQMH1QIt42MDZgK0Yf3eO6xzde2XrYQ=="
+
 @interface ManWuLoginViewController ()
 
 @property (nonatomic,strong) loginActionBlock        loginActionBlock;
@@ -173,6 +178,11 @@
         [WeAppToast toast:@"请输入密码"];
         return;
     }
+   
+//    id<DataSigner> signer = CreateRSADataSigner(PUBLICKEY);
+//    NSString *signedPwd = [signer signString:_text_psw.text];
+    
+    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:PUBLICKEY];
 
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text} version:nil];
 }

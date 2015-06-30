@@ -7,7 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSOrderModel.h"
+
+typedef NS_ENUM(NSInteger, ButtonSelectedStyle) {
+    ButtonSelectedStylePay,
+    ButtonSelectedStyleCancelOrder,
+    ButtonSelectedStyleNoteSend,
+    ButtonSelectedStyleReceived,
+    ButtonSelectedStyleDeleteOrder,
+    ButtonSelectedStyleService
+};
+
+@protocol KSOrderDetailViewDelegate <NSObject>
+
+- (void)didSelectedButtonStyle:(ButtonSelectedStyle)style;
+
+@end
 
 @interface KSOrderDetailView : UIView
+
+@property (nonatomic, strong) id<KSOrderDetailViewDelegate> delegate;
+
+- (id)initWithFrame:(CGRect)frame OrderModel:(KSOrderModel *)ordermodel;
 
 @end

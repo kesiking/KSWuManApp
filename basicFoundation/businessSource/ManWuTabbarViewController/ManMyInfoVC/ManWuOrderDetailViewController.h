@@ -13,6 +13,5 @@
 
 @property (nonatomic, strong) KSOrderModel *orderModel;
 @property (nonatomic, strong) KSAdapterService *service;
-@property (nonatomic, strong) CSLinearLayoutView *myInfoContainer;
 
 @end
