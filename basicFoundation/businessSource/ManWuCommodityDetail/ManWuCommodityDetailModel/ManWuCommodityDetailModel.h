@@ -35,6 +35,8 @@
 @property (nonatomic, strong) NSString*                   itemId;
 @property (nonatomic, strong) NSString*                   title;
 @property (nonatomic, strong) NSString*                   img;
+@property (nonatomic, strong) NSArray *                   otherImg;
+@property (nonatomic, strong) NSMutableArray *            totleImgs;
 @property (nonatomic, strong) NSNumber*                   price;
 @property (nonatomic, strong) NSNumber*                   sale;
 @property (nonatomic, strong) NSString*                   url;

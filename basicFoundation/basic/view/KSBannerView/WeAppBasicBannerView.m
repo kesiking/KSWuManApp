@@ -228,6 +228,10 @@
     [super setHidden:hidden];
 }
 
+-(void) pageTurn:(NSUInteger)page withAnimated:(BOOL)animated{
+    [self.bannerCycleScrollView pageTurn:page withAnimated:animated];
+}
+
 #pragma mark -
 #pragma mark TBCycleScrollViewDelegate
 

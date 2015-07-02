@@ -51,6 +51,13 @@
         self.ppathIdmap = pathIdMapTemp;
     }
     self.skuService = [[ManWuTradeDetailSKUService alloc] initWithDetailResult:self];
+    self.totleImgs = [NSMutableArray array];
+    if (self.img) {
+        [self.totleImgs addObject:self.img];
+    }
+    if (self.otherImg) {
+        [self.totleImgs addObjectsFromArray:self.otherImg];
+    }
 }
 
 -(void)setupSKUArray:(NSArray*)skuProps withPropName:(NSString*)propName{

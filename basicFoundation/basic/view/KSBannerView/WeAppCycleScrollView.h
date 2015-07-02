@@ -28,7 +28,10 @@
 //只支持奇数扩展
 @property (nonatomic, assign)               NSInteger                       curViewCount;
 @property (nonatomic, readonly)             NSArray*                        curViews;
+
 - (void)reloadData;
+
+-(void)pageTurn:(NSUInteger)page withAnimated:(BOOL)animated;
 
 @end
 

@@ -56,5 +56,7 @@ typedef struct CGRectOffsetXY CGRectOffsetXY;
 -(void) loadData;
 -(void) setLocalData:(NSArray*)array;
 -(void) setBannerViewFrame:(CGRect)frame;//设置bannerview的长宽及位置
+-(void) pageTurn:(NSUInteger)page withAnimated:(BOOL)animated;
+
 
 @end

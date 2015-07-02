@@ -112,9 +112,13 @@
 }
 
 -(void)setupBannerDataWithDescriptionModel:(ManWuCommodityDetailModel*)descriptionModel{
-    WeAppBannerItem* bannerItem = [WeAppBannerItem new];
-    bannerItem.picture = descriptionModel.img;
-    [self.bannerView setLocalData:@[bannerItem]];
+    NSMutableArray* array = [NSMutableArray array];
+    for (NSString* picUrl in descriptionModel.totleImgs) {
+        WeAppBannerItem* bannerItem = [WeAppBannerItem new];
+        bannerItem.picture = picUrl;
+        [array addObject:bannerItem];
+    }
+    [self.bannerView setLocalData:array];
 }
 
 #pragma mark - bannerView Delegate
@@ -125,6 +129,8 @@
         [self.window addSubview:self.simpleBrower];
         
         NSMutableArray<TBDetailBigPhotoModel> *arr = (NSMutableArray<TBDetailBigPhotoModel> *)[NSMutableArray array];
+        NSMutableArray *imgs = [NSMutableArray array];
+
         /*
          * 传入数组
          for (NSString *picUrl in self.picModel.picsPath) {
@@ -133,10 +139,13 @@
         */
         
         // 目前只有单张图片，传入单张
-        [arr addObject:[[TBDetailBigPhotoModel alloc] initWidthUrl:self.detailModel.img]];
+        for (NSString* picUrl in self.detailModel.totleImgs) {
+            [arr addObject:[[TBDetailBigPhotoModel alloc] initWidthUrl:picUrl]];
+            [imgs addObject:[UIImage imageNamed:@"gz_image_loading.png"]];
+        }
         
         self.simpleBrower.photoList = arr;
-        self.simpleBrower.imgs = [@[[UIImage imageNamed:@"gz_image_loading.png"]] mutableCopy];
+        self.simpleBrower.imgs = imgs;
 
         NSUInteger selectIndex = _bannerView.bannerCycleScrollView.pageControl.currentPage;
         self.simpleBrower.selectedIndex = selectIndex;
@@ -181,6 +190,11 @@
 -(TBDetailBigPhotoBrowerController *)simpleBrower{
     if (!_simpleBrower) {
         _simpleBrower = [[TBDetailBigPhotoBrowerController alloc] initWithFrame:self.window.bounds];
+        WEAKSELF
+        _simpleBrower.simplePhotoBrowserVCDisapperBlock = ^(void){
+            STRONGSELF
+            [strongSelf.bannerView pageTurn:strongSelf.simpleBrower.currentPage withAnimated:YES];
+        };
     }
     return _simpleBrower;
 }
