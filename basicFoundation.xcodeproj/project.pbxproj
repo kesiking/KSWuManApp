@@ -378,6 +378,8 @@
 		91375F7C1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */; };
 		91A2E2D21B37D9580062B7F5 /* KSOrderSKUModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A2E2D11B37D9580062B7F5 /* KSOrderSKUModel.m */; };
 		91A2E2D61B39A83D0062B7F5 /* KSInviteCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A2E2D51B39A83D0062B7F5 /* KSInviteCodeModel.m */; };
+		91BBA16E1B3FF762002591C1 /* ManWuOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BBA16D1B3FF762002591C1 /* ManWuOrderDetailViewController.m */; };
+		91BBA1711B3FFED7002591C1 /* KSOrderDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BBA1701B3FFED7002591C1 /* KSOrderDetailView.m */; };
 		91C76B491B31B67F008C5EAC /* KSOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C76B481B31B67F008C5EAC /* KSOrderTableViewCell.m */; };
 		91C76B691B31C516008C5EAC /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C76B541B31C516008C5EAC /* edit.png */; };
 		91C76B6A1B31C516008C5EAC /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C76B551B31C516008C5EAC /* edit@2x.png */; };
@@ -1193,6 +1195,10 @@
 		91A2E2D11B37D9580062B7F5 /* KSOrderSKUModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOrderSKUModel.m; sourceTree = "<group>"; };
 		91A2E2D41B39A83D0062B7F5 /* KSInviteCodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSInviteCodeModel.h; sourceTree = "<group>"; };
 		91A2E2D51B39A83D0062B7F5 /* KSInviteCodeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSInviteCodeModel.m; sourceTree = "<group>"; };
+		91BBA16C1B3FF762002591C1 /* ManWuOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuOrderDetailViewController.h; sourceTree = "<group>"; };
+		91BBA16D1B3FF762002591C1 /* ManWuOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuOrderDetailViewController.m; sourceTree = "<group>"; };
+		91BBA16F1B3FFED6002591C1 /* KSOrderDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOrderDetailView.h; sourceTree = "<group>"; };
+		91BBA1701B3FFED7002591C1 /* KSOrderDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOrderDetailView.m; sourceTree = "<group>"; };
 		91C76B471B31B67F008C5EAC /* KSOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOrderTableViewCell.h; sourceTree = "<group>"; };
 		91C76B481B31B67F008C5EAC /* KSOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOrderTableViewCell.m; sourceTree = "<group>"; };
 		91C76B541B31C516008C5EAC /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
@@ -2079,6 +2085,8 @@
 				910E5D1A1B20A40500FA584C /* ManWuMyRedPacketViewController.m */,
 				910E5D1C1B20A43500FA584C /* ManWuMyInviteCodeViewController.h */,
 				910E5D1D1B20A43500FA584C /* ManWuMyInviteCodeViewController.m */,
+				91BBA16C1B3FF762002591C1 /* ManWuOrderDetailViewController.h */,
+				91BBA16D1B3FF762002591C1 /* ManWuOrderDetailViewController.m */,
 				91E2D04F1B1761C500946A32 /* register&login */,
 				91E2D0541B1761C500946A32 /* resource */,
 			);
@@ -3050,6 +3058,8 @@
 				91A2E2D11B37D9580062B7F5 /* KSOrderSKUModel.m */,
 				91A2E2D41B39A83D0062B7F5 /* KSInviteCodeModel.h */,
 				91A2E2D51B39A83D0062B7F5 /* KSInviteCodeModel.m */,
+				91BBA16F1B3FFED6002591C1 /* KSOrderDetailView.h */,
+				91BBA1701B3FFED7002591C1 /* KSOrderDetailView.m */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -3385,6 +3395,7 @@
 				058D5AB91AF0D98A006EA35C /* Order.m in Sources */,
 				5F01FB581B3EB0CE00541648 /* UIImageView+KSWebCache.m in Sources */,
 				056664D21AEF2F4E00FD1C65 /* TBTradeDetailSKUService.m in Sources */,
+				91BBA16E1B3FF762002591C1 /* ManWuOrderDetailViewController.m in Sources */,
 				0566643C1AEB284F00FD1C65 /* KSScrollViewServiceController.m in Sources */,
 				058D5A9A1AF0B358006EA35C /* TBDetailBigPhotoBrowerController.m in Sources */,
 				052CC6AF1AF7755700AF7C78 /* ManWuSpecialForTodayView.m in Sources */,
@@ -3429,6 +3440,7 @@
 				058BC4081AE89F1500A4F799 /* ManWuCommodityListViewController.m in Sources */,
 				058D5CF41AF1F62E006EA35C /* openssl_wrapper.m in Sources */,
 				055C758E1ADFBF6000C35854 /* UIImage+WebP.m in Sources */,
+				91BBA1711B3FFED7002591C1 /* KSOrderDetailView.m in Sources */,
 				5F4087F11B1945FE00954568 /* ManWuVoucherView.m in Sources */,
 				91E3F6B61B2D37DF0080819E /* KSRedPacketTableViewCell.m in Sources */,
 				5F9216261B1077CF00554B44 /* ManWuDiscoverService.m in Sources */,
