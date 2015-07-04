@@ -12,7 +12,7 @@
 
 +(TBJSONModelKeyMapper*)modelKeyMapper
 {
-    NSDictionary* dict = @{@"id":@"redpacektId"};
+    NSDictionary* dict = @{@"id":@"redpacektId",@"description":@"desc"};
     return [[TBJSONModelKeyMapper alloc] initWithDictionary:dict];
 }
 

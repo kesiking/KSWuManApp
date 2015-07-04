@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KSRedPacketModel : NSObject
+@interface KSRedPacketModel : WeAppComponentBaseItem
 
 @property (nonatomic, strong) NSString *redpacektId;
-@property (nonatomic, strong) NSString *picUrl;
-@property (nonatomic, strong) NSString *activityTime;
-@property (nonatomic, strong) NSString *activityRule;
-@property (nonatomic, strong) NSString *useRange;
-@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString *startTime;
+@property (nonatomic, strong) NSString *endTime;
+@property (nonatomic, strong) NSString *price;
+@property (nonatomic, strong) NSString *used;
+@property (nonatomic, strong) NSString *desc;
 
 @end
