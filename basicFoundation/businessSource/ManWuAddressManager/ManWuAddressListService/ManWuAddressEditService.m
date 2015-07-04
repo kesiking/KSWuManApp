@@ -17,7 +17,7 @@
         [self addAddressInfoWithAddressId:addressId userId:userId recvName:recvName phoneNum:phoneNum address:address defaultAddress:defaultAddress];
         return;
     }
-    NSDictionary* params = @{@"id":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":[safeString(address) URLEncodedString],@"defaultAddress":defaultAddress?@"true":@"false"};
+    NSDictionary* params = @{@"id":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":safeString(address)/*[safeString(address) URLEncodedString]*/,@"defaultAddress":defaultAddress?@"true":@"false"};
     self.jsonTopKey = @"data";
     self.needLogin = YES;
     [self loadItemWithAPIName:@"address/modifyAddress.do" params:params version:nil];

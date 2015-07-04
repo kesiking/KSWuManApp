@@ -245,6 +245,12 @@
     
     CGRect rect = CGRectMake(0, 0, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.width, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height);
     
+    if(CGSizeEqualToSize(CGSizeZero, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize)){
+        
+        rect = CGRectMake(0, 0, modelInfoItem.frame.size.width * SCREEN_SCALE, modelInfoItem.frame.size.height * SCREEN_SCALE);
+        
+    }
+    
     if (!cell) {
         cell = [[KSCollectionViewCell alloc] init];
     }

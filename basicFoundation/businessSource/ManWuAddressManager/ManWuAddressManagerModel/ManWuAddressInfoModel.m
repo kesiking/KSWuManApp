@@ -17,6 +17,6 @@
 
 -(void)setFromDictionary:(NSDictionary *)dict{
     [super setFromDictionary:dict];
-    self.address = [self.address URLDecodedString];
+//    self.address = [self.address URLDecodedString];
 }
 @end

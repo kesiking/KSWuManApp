@@ -8,7 +8,7 @@
 
 // scale
 //#define CA_SCALE    (0.5)
-#define CA_BASE_SCALE (0.5)
+#define CA_BASE_SCcALE (0.5)
 #define CA_SCALE      ([WeAppEnviroment getScreenAdapterScale])
 
 #define SCREEN_BASE     320

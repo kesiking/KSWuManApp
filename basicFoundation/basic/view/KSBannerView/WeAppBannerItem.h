@@ -10,7 +10,7 @@
 
 @interface WeAppBannerItem : WeAppComponentBaseItem
 
-@property (nonatomic, strong) NSString*         bannerId;
+@property (nonatomic, strong) NSNumber*         bannerId;
 
 @property (nonatomic, strong) NSString*         data_type;
 @property (nonatomic, strong) NSString*         title;

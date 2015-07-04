@@ -94,10 +94,10 @@
 #pragma mark Image and View
 
 - (void)setImageURL:(NSString *)url {
-    if ([_imageURL isEqualToString:url]) {
-        NSLog(@"用缓存");
-        return;
-    }
+//    if ([_imageURL isEqualToString:url]) {
+//        NSLog(@"用缓存");
+//        return;
+//    }
     
     _imageURL = url;
     

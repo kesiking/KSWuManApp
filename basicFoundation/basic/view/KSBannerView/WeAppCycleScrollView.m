@@ -286,7 +286,16 @@
     if ([_delegate respondsToSelector:@selector(didClickPage:atIndex:)]) {
         [_delegate didClickPage:self atIndex:_curPage];
     }
-    
+}
+
+-(void)pageTurn:(NSUInteger)page withAnimated:(BOOL)animated{
+    NSUInteger whichPage = page;
+    if (whichPage >= _totalPages) {
+        whichPage = _totalPages - 1;
+    }
+    _curPage = whichPage;
+    [self loadData];
+//    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width * whichPage, self.scrollView.frame.origin.y) animated:animated];
 }
 
 #pragma mark - UIScrollViewDelegate

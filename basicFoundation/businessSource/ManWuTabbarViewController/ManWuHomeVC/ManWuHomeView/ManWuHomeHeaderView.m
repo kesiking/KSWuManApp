@@ -121,8 +121,16 @@
 
 - (void)BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url{
     if (aBannerView == _bannerView) {
-        NSDictionary* params = @{@"commodityId":@"commodityId"};
-        TBOpenURLFromTargetWithNativeParams(internalURL(KManWuCommodityListForDiscount), self,nil,params);
+        NSUInteger index = self.bannerView.bannerCycleScrollView.curPage;
+        if ([self.voucherService.dataList count] > index) {
+            ManWuHomeVoucherModel* voucherModel = [self.voucherService.dataList objectAtIndex:index];
+            if (voucherModel && voucherModel.voucherId == nil) {
+                return;
+            }
+            NSDictionary* params = @{@"voucherModel":voucherModel};
+
+            TBOpenURLFromTargetWithNativeParams(internalURL(@"ManWuHongBaoViewController"), self,nil,params);
+        }
     }
 }
 

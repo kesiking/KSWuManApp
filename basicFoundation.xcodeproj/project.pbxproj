@@ -367,7 +367,11 @@
 		5FD45ECF1B1BFC150064BA31 /* ManWuDiscoverSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ECE1B1BFC150064BA31 /* ManWuDiscoverSearchService.m */; };
 		5FD45ED21B1C01040064BA31 /* ManWuCommoditySearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ED11B1C01040064BA31 /* ManWuCommoditySearchListViewController.m */; };
 		5FD45ED61B1C04D90064BA31 /* ManWuCommoditySearchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ED51B1C04D90064BA31 /* ManWuCommoditySearchListView.m */; };
+		5FD52C8E1B47B8F500E27016 /* ManWuHongBaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD52C8D1B47B8F500E27016 /* ManWuHongBaoService.m */; };
 		5FD63DB21B3F8EA8002593B3 /* KSImageListCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD63DB11B3F8EA8002593B3 /* KSImageListCache.m */; };
+		5FD70B071B478F2400B61E6F /* ManWuHongBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD70B061B478F2400B61E6F /* ManWuHongBaoViewController.m */; };
+		5FD70B0A1B478F4700B61E6F /* ManWuHongBaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD70B091B478F4700B61E6F /* ManWuHongBaoView.m */; };
+		5FD70B0D1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD70B0C1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m */; };
 		5FFEB42A1B1C38D700CAC511 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB4291B1C38D700CAC511 /* button_back.png */; };
 		5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */; };
 		910E5D0C1B207E4F00FA584C /* register_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 910E5D0B1B207E4F00FA584C /* register_success.png */; };
@@ -1190,8 +1194,16 @@
 		5FD45ED11B1C01040064BA31 /* ManWuCommoditySearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySearchListViewController.m; sourceTree = "<group>"; };
 		5FD45ED41B1C04D90064BA31 /* ManWuCommoditySearchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommoditySearchListView.h; sourceTree = "<group>"; };
 		5FD45ED51B1C04D90064BA31 /* ManWuCommoditySearchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySearchListView.m; sourceTree = "<group>"; };
+		5FD52C8C1B47B8F500E27016 /* ManWuHongBaoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHongBaoService.h; sourceTree = "<group>"; };
+		5FD52C8D1B47B8F500E27016 /* ManWuHongBaoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHongBaoService.m; sourceTree = "<group>"; };
 		5FD63DB01B3F8EA8002593B3 /* KSImageListCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSImageListCache.h; sourceTree = "<group>"; };
 		5FD63DB11B3F8EA8002593B3 /* KSImageListCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSImageListCache.m; sourceTree = "<group>"; };
+		5FD70B051B478F2400B61E6F /* ManWuHongBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHongBaoViewController.h; sourceTree = "<group>"; };
+		5FD70B061B478F2400B61E6F /* ManWuHongBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHongBaoViewController.m; sourceTree = "<group>"; };
+		5FD70B081B478F4700B61E6F /* ManWuHongBaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHongBaoView.h; sourceTree = "<group>"; };
+		5FD70B091B478F4700B61E6F /* ManWuHongBaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHongBaoView.m; sourceTree = "<group>"; };
+		5FD70B0B1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHongBaoInfoDescriptionView.h; sourceTree = "<group>"; };
+		5FD70B0C1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHongBaoInfoDescriptionView.m; sourceTree = "<group>"; };
 		5FFEB4291B1C38D700CAC511 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_newitem_recomment_image.png; sourceTree = "<group>"; };
 		910E5D0B1B207E4F00FA584C /* register_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_success.png; sourceTree = "<group>"; };
@@ -2562,6 +2574,7 @@
 		058DADF11AE5F790009D0008 /* businessSource */ = {
 			isa = PBXGroup;
 			children = (
+				5FD70B041B478EA700B61E6F /* ManWuHongBao */,
 				05ACAC641AFC6AF200853E1C /* ManWuAddressManager */,
 				058D5AA61AF0D022006EA35C /* ManWuCommodityBuy */,
 				0566648D1AEE0F2100FD1C65 /* ManWuCommodityDetail */,
@@ -3034,6 +3047,21 @@
 			path = ManWuCommoditySearchListView;
 			sourceTree = "<group>";
 		};
+		5FD70B041B478EA700B61E6F /* ManWuHongBao */ = {
+			isa = PBXGroup;
+			children = (
+				5FD70B051B478F2400B61E6F /* ManWuHongBaoViewController.h */,
+				5FD70B061B478F2400B61E6F /* ManWuHongBaoViewController.m */,
+				5FD70B081B478F4700B61E6F /* ManWuHongBaoView.h */,
+				5FD70B091B478F4700B61E6F /* ManWuHongBaoView.m */,
+				5FD70B0B1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.h */,
+				5FD70B0C1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m */,
+				5FD52C8C1B47B8F500E27016 /* ManWuHongBaoService.h */,
+				5FD52C8D1B47B8F500E27016 /* ManWuHongBaoService.m */,
+			);
+			path = ManWuHongBao;
+			sourceTree = "<group>";
+		};
 		91E2D01D1B1761C500946A32 /* camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -3467,10 +3495,12 @@
 				91E2D0691B1761C500946A32 /* UserInfoViewItem.m in Sources */,
 				91E2D0721B1761C500946A32 /* ManWuRegisterViewController.m in Sources */,
 				0566643A1AEB284F00FD1C65 /* KSScrollViewConfigObject.m in Sources */,
+				5FD52C8E1B47B8F500E27016 /* ManWuHongBaoService.m in Sources */,
 				91E2D05D1B1761C500946A32 /* IphoneScreen.m in Sources */,
 				058DADB81AE110C2009D0008 /* KSView.m in Sources */,
 				056664BB1AEF1C3C00FD1C65 /* TBDetailSkuModel.m in Sources */,
 				058DAE4F1AE72FC3009D0008 /* TBURLAction.m in Sources */,
+				5FD70B0D1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m in Sources */,
 				051900871B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m in Sources */,
 				055C758A1ADFBF6000C35854 /* SDWebImagePrefetcher.m in Sources */,
 				05ACAC941AFC9FC800853E1C /* KSErrorView.m in Sources */,
@@ -3480,6 +3510,7 @@
 				056664361AEB284F00FD1C65 /* KSCollectionViewConfigObject.m in Sources */,
 				05AF2FF21B003F2800890A65 /* TBBlurView.m in Sources */,
 				058D5A9B1AF0B358006EA35C /* TBDetailNumberPageControl.m in Sources */,
+				5FD70B0A1B478F4700B61E6F /* ManWuHongBaoView.m in Sources */,
 				0553F7911AFA1F7A0013BB97 /* ManWuCommoditySortAndFiltView.m in Sources */,
 				056677AF1AF075A000FD1C65 /* ManWuBasicModel.m in Sources */,
 				91E2D0711B1761C500946A32 /* ManWuLoginViewController.m in Sources */,
@@ -3657,6 +3688,7 @@
 				055C758B1ADFBF6000C35854 /* UIButton+WebCache.m in Sources */,
 				055C758F1ADFBF6000C35854 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */,
+				5FD70B071B478F2400B61E6F /* ManWuHongBaoViewController.m in Sources */,
 				0566649A1AEE148500FD1C65 /* ManWuDetailSKUView.m in Sources */,
 				058DADD01AE52EC0009D0008 /* AFHTTPSessionManager.m in Sources */,
 				91E2D0681B1761C500946A32 /* NSString+FilePath.m in Sources */,
