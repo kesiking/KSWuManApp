@@ -169,6 +169,13 @@
     return _btn_register;
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_text_smsCode resignFirstResponder];
+    [_text_phoneNum resignFirstResponder];
+    [_text_psw resignFirstResponder];
+}
+
 - (void)cancelLogin
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -216,7 +223,7 @@
         return;
     }
 
-    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text, @"userName":_text_userName} version:nil];
+    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text?:@"", @"userName":_text_userName.text?:@""} version:nil];
     isRegister = YES;
 }
 

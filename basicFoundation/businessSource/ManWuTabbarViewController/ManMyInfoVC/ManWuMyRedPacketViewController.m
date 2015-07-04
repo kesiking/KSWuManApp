@@ -98,7 +98,7 @@
         // todo success
         
         [self.statusHandler removeStatusViewFromView:self.table];
-        NSArray *redPackets = [[NSArray alloc]initWithArray:(NSArray*)service.requestModel.item];
+        NSArray *redPackets = [[NSArray alloc]initWithArray:(NSArray*)service.requestModel.dataList];
         if([redPackets count] == 0)
         {
             [self.statusHandler showEmptyViewInView:self.table frame:self.table.bounds];
@@ -107,7 +107,7 @@
         {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
-            NSDate *endTime= [dateFormatter dateFromString:redpacket.activityTime];
+            NSDate *endTime= [dateFormatter dateFromString:redpacket.endTime];
             
             NSTimeInterval time = [endTime timeIntervalSinceNow];
             if(time > 0)
@@ -180,14 +180,14 @@
         
         UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(redPacketLabel.frame) + 10, SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
         [timeLabel setFont:[UIFont systemFontOfSize:12]];
-        timeLabel.text = [NSString stringWithFormat:@"有效期：%@",redPacketModel.activityTime];
+        timeLabel.text = [NSString stringWithFormat:@"有效期：%@",redPacketModel.startTime];
         [cell.contentView addSubview:timeLabel];
         
         UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(timeLabel.frame) + 10,  SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
         [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [descLabel setNumberOfLines:0];
         [descLabel setFont:[UIFont systemFontOfSize:12]];
-        NSString *descStr = redPacketModel.activityRule;
+        NSString *descStr = redPacketModel.endTime;
         NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
         NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
         

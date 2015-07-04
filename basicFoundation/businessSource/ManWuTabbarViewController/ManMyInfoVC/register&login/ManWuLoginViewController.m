@@ -193,9 +193,14 @@
         _progressHUD.detailsLabelText=@"正在登录...";
         _progressHUD.removeFromSuperViewOnHide=YES;
     }
-
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
+    NSDictionary* aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    if (aliPayFile == nil) {
+        aliPayFile = [[NSDictionary alloc] init];
+    }
+    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey"];
     
-    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:PUBLICKEY];
+    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
 
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text} version:nil];
 }
