@@ -274,13 +274,7 @@
     WeAppBannerItem* bannerItem = (WeAppBannerItem*)obj;
     
     if (bannerItem.picture == nil || bannerItem.picture.length == 0){
-        UIImageView* bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.bannerCycleScrollView.scrollView.frame.size.width - 2*self.bannerBoundWidth, self.bannerCycleScrollView.scrollView.frame.size.height)];
-
-        [bannerImageView setImage:[UIImage imageNamed:@"gz_image_loading"]];
-        UIButton* btn = [[UIButton alloc]initWithFrame:self.bannerCycleScrollView.scrollView.frame];
-        btn.tag = BannerViewTag;
-        [btn addTarget:self action:@selector(bannerClicked) forControlEvents:UIControlEventTouchUpInside];
-        return btn;
+        return nil;
     }
     
     UIImageView* bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.bannerCycleScrollView.scrollView.frame.size.width - 2*self.bannerBoundWidth, self.bannerCycleScrollView.scrollView.frame.size.height)];

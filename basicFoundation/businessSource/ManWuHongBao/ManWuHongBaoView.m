@@ -54,7 +54,7 @@
 - (CSLinearLayoutView *)skuContainer {
     if (!_skuContainer) {
         float containerHeight = self.height - 80;
-        CGRect frame = CGRectMake(0, 5, self.frame.size.width, containerHeight);
+        CGRect frame = CGRectMake(0, 0, self.frame.size.width, containerHeight);
         _skuContainer = [[CSLinearLayoutView alloc] initWithFrame:frame];
         _skuContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _skuContainer.backgroundColor  = RGB(0xf8, 0xf8, 0xf8);
@@ -71,7 +71,7 @@
 
 -(UIButton *)clickedBtn{
     if (_clickedBtn == nil) {
-        _clickedBtn = [[UIButton alloc] initWithFrame:CGRectMake((self.width - 290)/self.height - 34 - 24, (self.height - 30)/2, 290, 34)];
+        _clickedBtn = [[UIButton alloc] initWithFrame:CGRectMake((self.width - 290)/2, self.height - 34 - 24, 290, 34)];
         _clickedBtn.layer.cornerRadius = 3.0;
         [_clickedBtn setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Tag alpha:1]
                          forState:UIControlStateNormal];
@@ -108,6 +108,20 @@
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:voucherModel.picUrl] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
     [self.descriptionView setDescriptionModel:voucherModel];
     [self.descriptionView sizeToFit];
+    switch (voucherModel.type) {
+        case 0:
+            [self.clickedBtn setTitle:@"我要注册" forState:UIControlStateNormal];
+            break;
+        case 1:
+            [self.clickedBtn setTitle:@"我要去邀请" forState:UIControlStateNormal];
+            break;
+        case 2:
+            [self.clickedBtn setTitle:@"我要买买买" forState:UIControlStateNormal];
+            break;
+        default:
+            [self.clickedBtn setTitle:@"我要注册" forState:UIControlStateNormal];
+            break;
+    }
     [self reloadData];
 }
 
@@ -116,7 +130,7 @@
     
     CGPoint skuContentOffset          = self.skuContainer.contentOffset;
     [self.skuContainer removeAllItems];
-    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, 0, 0, 0.0);
+    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(5, 0, 0, 0.0);
     
     
     /*头部图片*/
