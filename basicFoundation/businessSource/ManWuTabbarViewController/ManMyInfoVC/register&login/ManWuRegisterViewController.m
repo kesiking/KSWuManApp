@@ -169,11 +169,10 @@
     return _btn_register;
 }
 
+#pragma mark 监听View点击事件
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [_text_smsCode resignFirstResponder];
-    [_text_phoneNum resignFirstResponder];
-    [_text_psw resignFirstResponder];
+    [self.view endEditing:NO];
 }
 
 - (void)cancelLogin
@@ -244,11 +243,14 @@
         if(isRegister)
         {
             //[WeAppToast toast:@"注册成功"];
-             registerSucView = [[KSRegisterSuccessView alloc]initWithFrame:CGRectMake(30, 30, self.view.width - 60, 200)];
+            registerSucView = [[KSRegisterSuccessView alloc]initWithFrame:self.view.frame];
+            registerSucView.delegate = self;
             [self.view.window addSubview:registerSucView];
+            
+        }else
+        {
+            [WeAppToast toast:@"验证码已发送"];
         }
-        
-        [WeAppToast toast:@"验证码已发送"];
 
     }
 }

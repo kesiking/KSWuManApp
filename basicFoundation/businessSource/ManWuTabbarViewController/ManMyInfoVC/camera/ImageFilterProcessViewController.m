@@ -46,13 +46,13 @@
     [super viewDidLoad];
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftBtn setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
-    [leftBtn setFrame:CGRectMake(10, 20, 34, 34)];
+    [leftBtn setFrame:CGRectMake(20, 40, 34, 34)];
     [leftBtn addTarget:self action:@selector(backView:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:leftBtn];
     
     UIButton *rightBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setImage:[UIImage imageNamed:@"camera_btn_ok.png"] forState:UIControlStateNormal];
-    [rightBtn setFrame:CGRectMake(270, 20, 34, 34)];
+    [rightBtn setFrame:CGRectMake(self.view.width - 54, 40, 34, 34)];
     [rightBtn addTarget:self action:@selector(fitlerDone:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:rightBtn];
     

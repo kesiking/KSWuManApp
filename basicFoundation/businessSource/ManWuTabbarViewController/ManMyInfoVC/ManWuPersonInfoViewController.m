@@ -257,6 +257,7 @@
 {
     if (buttonIndex==0)
     {
+        
         CustomImagePickerController *picker = [[CustomImagePickerController alloc] init];
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
             [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -293,10 +294,7 @@
     ImageFilterProcessViewController *fitler = [[ImageFilterProcessViewController alloc] init];
     [fitler setDelegate:self];
     fitler.currentImage = image;
-    
-    //[self presentModalViewController:fitler animated:YES];
     [self presentViewController:fitler animated:YES completion:nil];
-    // [fitler release];
 }
 
 - (void)cancelCamera
