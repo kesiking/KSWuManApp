@@ -10,7 +10,7 @@
 #import "WeAppLoadingView.h"
 #import "KSAdapterService.h"
 
-#define errorViewTag 1001
+#define errorViewTag 1010
 
 #define labelViewTag 1002
 

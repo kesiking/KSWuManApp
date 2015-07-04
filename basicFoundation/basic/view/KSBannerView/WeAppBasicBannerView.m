@@ -214,7 +214,7 @@
 #pragma mark -
 #pragma mark Private Accessors
 
-- (void)bannerClicked{
+- (void)bannerClicked:(id)sender{
     if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:)]) {
         if (self.itemView == nil) {
             [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:((WeAppBannerItem *)[_dataArray objectAtIndex:self.bannerCycleScrollView.pageControl.currentPage]).url]];
@@ -283,9 +283,9 @@
     [bannerImageView setClipsToBounds:YES];
     [bannerImageView sd_setImageWithURL:[NSURL URLWithString:bannerItem.picture] placeholderImage:[UIImage imageNamed:SNSBannerBackground]];
     
-    UIButton* btn = [[UIButton alloc]initWithFrame:self.bannerCycleScrollView.scrollView.frame];
+    UIButton* btn = [[UIButton alloc]initWithFrame:self.bannerCycleScrollView.scrollView.bounds];
     btn.tag = BannerViewTag;
-    [btn addTarget:self action:@selector(bannerClicked) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(bannerClicked:) forControlEvents:UIControlEventTouchUpInside];
     [btn addSubview:bannerImageView];
     
     return btn;
