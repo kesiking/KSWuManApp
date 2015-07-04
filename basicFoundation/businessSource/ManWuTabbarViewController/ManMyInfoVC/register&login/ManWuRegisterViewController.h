@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSRegisterSuccessView.h"
 
-@interface ManWuRegisterViewController : UIViewController<UITextFieldDelegate,WeAppBasicServiceDelegate>
+@interface ManWuRegisterViewController : UIViewController<UITextFieldDelegate,WeAppBasicServiceDelegate,KSRegisterSuccessViewDelegate>
 
 @property (nonatomic, strong) UIImageView *logo_imgView;
 @property (nonatomic, strong) MWInsetsTextField *text_phoneNum;

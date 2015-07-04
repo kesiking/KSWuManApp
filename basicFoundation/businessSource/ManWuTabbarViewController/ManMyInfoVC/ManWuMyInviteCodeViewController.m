@@ -12,6 +12,7 @@
 @interface ManWuMyInviteCodeViewController ()
 {
     NSDictionary *inviteCodeModel;
+    UIView *inviteCodeView;
 }
 
 @end
@@ -36,8 +37,6 @@
     
     self.title = @"我的邀请码";
     
-    inviteCodeModel = [[NSDictionary alloc]init];
-    
     [self.service loadItemWithAPIName:@"user/inviteCode.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
 }
 
@@ -54,115 +53,69 @@
 {
     if (service == _service) {
         // todo success
-        inviteCodeModel = (NSDictionary *)service.requestModel.item;
+        [self.statusHandler removeStatusViewFromView:self.view];
+        inviteCodeModel = [[NSDictionary alloc]initWithDictionary:(NSDictionary *)service.requestModel.item];
         
-        self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-        self.table.delegate = self;
-        self.table.dataSource = self;
-        [self.view addSubview:self.table];
+        if(inviteCodeModel == nil)
+        {
+            [self.statusHandler showEmptyViewInView:self.view frame:self.view.bounds];
+            
+        }else
+        {
+            [self initInviteCodeView];
+        }
+        
     }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service == _service) {
         // todo fail
-        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
-        [WeAppToast toast:errorInfo];
+        [self.statusHandler showViewforError:error inView:self.view frame:self.view.bounds];
     }
 }
 
-#pragma  mark  -tableView Delegate方法
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)initInviteCodeView
 {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 120;
-}
-
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *identify = [NSString stringWithFormat:@"%ld",indexPath.section];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIButton *copyBtn = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX, 55, 25)];
-        [copyBtn setTitle:@"复制" forState:UIControlStateNormal];
-        [copyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        copyBtn.layer.cornerRadius = 3.0;
-        copyBtn.layer.borderColor = [[UIColor grayColor]CGColor];
-        copyBtn.layer.borderWidth = 1.0;
-        copyBtn.tag = indexPath.section;
-        [copyBtn setBackgroundColor:[UIColor whiteColor]];
-        [copyBtn addTarget:self action:@selector(copyInviteCode:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:copyBtn];
-        
-        UILabel *inviteCodeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CGRectGetMinX(copyBtn.frame) - kSpaceX -5, 18)];
-        
-        NSString *inviteCodeStr = inviteCodeModel[@"inviteCode"];
-        NSString *inviteStr = [NSString stringWithFormat:@"邀请码：%@",inviteCodeStr];
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:inviteStr];
-        [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#666666"] range:NSMakeRange(0,3)];
-        [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"] range:NSMakeRange(4,inviteCodeStr.length)];
-        inviteCodeLabel.attributedText = str;
-        [cell.contentView addSubview:inviteCodeLabel];
-        
-        UILabel *descLabel;
-        if([inviteCodeModel[@"startTime"] length] > 0)
-        {
-            UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
-            [timeLabel setFont:[UIFont systemFontOfSize:12]];
-            timeLabel.backgroundColor = [UIColor clearColor];
-            timeLabel.textColor = [UIColor colorWithHex:0x666666];
-            timeLabel.text = [NSString stringWithFormat:@"有效期：%@至%@",inviteCodeModel[@"startTime"],inviteCodeModel[@"endTime"]];
-            [cell.contentView addSubview:timeLabel];
-            
-            descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(timeLabel.frame) + 10, WIDTH, 14)];
-        }else
-        {
-            descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
-        }
-        [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        [descLabel setNumberOfLines:0];
-        [descLabel setFont:[UIFont systemFontOfSize:12]];
-        descLabel.backgroundColor = [UIColor clearColor];
-        descLabel.textColor = [UIColor colorWithHex:0x666666];
-        
-        NSString *descStr = inviteCodeModel[@"description"];
-        NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
-        NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
-        
-        [paragraphStyle1 setLineSpacing:6.0];//调整行间距
-        // paragraphStyle1.firstLineHeadIndent = textSize20px * 2;//首行缩进
-        [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [descStr length])];
-        descLabel.attributedText = attributedString1;
-        [descLabel sizeToFit];
-        
-        [cell.contentView addSubview:descLabel];
-
-    }
+    UIButton *copyBtn = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX, 55, 25)];
+    [copyBtn setTitle:@"复制" forState:UIControlStateNormal];
+    [copyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    copyBtn.layer.cornerRadius = 3.0;
+    copyBtn.layer.borderColor = [[UIColor grayColor]CGColor];
+    copyBtn.layer.borderWidth = 1.0;
+    [copyBtn setBackgroundColor:[UIColor whiteColor]];
+    [copyBtn addTarget:self action:@selector(copyInviteCode:) forControlEvents:UIControlEventTouchUpInside];
+    [inviteCodeView addSubview:copyBtn];
     
-    return cell;
+    UILabel *inviteCodeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CGRectGetMinX(copyBtn.frame) - kSpaceX -5, 18)];
+    
+    NSString *inviteCodeStr = inviteCodeModel[@"inviteCode"];
+    NSString *inviteStr = [NSString stringWithFormat:@"邀请码：%@",inviteCodeStr];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:inviteStr];
+    [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#666666"] range:NSMakeRange(0,3)];
+    [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"] range:NSMakeRange(4,inviteCodeStr.length)];
+    inviteCodeLabel.attributedText = str;
+    [inviteCodeView addSubview:inviteCodeLabel];
+    
+    UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
+    [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [descLabel setNumberOfLines:0];
+    [descLabel setFont:[UIFont systemFontOfSize:12]];
+    descLabel.backgroundColor = [UIColor clearColor];
+    descLabel.textColor = [UIColor colorWithHex:0x666666];
+    
+    NSString *descStr = inviteCodeModel[@"description"];
+    NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
+    NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+    
+    [paragraphStyle1 setLineSpacing:10.0];//调整行间距
+    // paragraphStyle1.firstLineHeadIndent = textSize20px * 2;//首行缩进
+    [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [descStr length])];
+    descLabel.attributedText = attributedString1;
+    [descLabel sizeToFit];
+    
+    inviteCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, 15, self.view.width, 20 + inviteCodeLabel.height + descLabel.height)];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

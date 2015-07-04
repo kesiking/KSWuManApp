@@ -11,6 +11,7 @@
 @interface ManWuRegisterViewController ()
 {
     BOOL isRegister;
+    KSRegisterSuccessView *registerSucView;
 }
 
 @end
@@ -235,9 +236,9 @@
         NSLog(@"%@",service.item.componentDict);
         if(isRegister)
         {
-            [WeAppToast toast:@"注册成功"];
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[WeAppToast toast:@"注册成功"];
+             registerSucView = [[KSRegisterSuccessView alloc]initWithFrame:CGRectMake(30, 30, self.view.width - 60, 200)];
+            [self.view.window addSubview:registerSucView];
         }
         
         [WeAppToast toast:@"验证码已发送"];
@@ -309,11 +310,13 @@
     dispatch_resume(_timer);
 }
 
-#pragma mark - 注册红包展示
+#pragma mark - 注册红包关闭按钮回调KSRegisterSuccessViewDelegate
 
-- (void)showRedpackage
+- (void)didClickCloseButton
 {
-    
+    [registerSucView removeFromSuperview];
+    registerSucView = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

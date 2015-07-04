@@ -64,13 +64,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     _btn_config = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btn_config.frame = CGRectMake(SELFWIDTH - 48, 0, 44, 44);
-    _btn_config.layer.cornerRadius = 2;
-    _btn_config.titleLabel.font = [UIFont systemFontOfSize:15.5f];
-    _btn_config.clipsToBounds = YES;
-    _btn_config.userInteractionEnabled = YES;
-    [_btn_config setTitle:@"设置" forState:UIControlStateNormal];
-    [_btn_config setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _btn_config.frame = CGRectMake(SELFWIDTH - 40, 12, 20, 20);
+    [_btn_config setBackgroundImage:[UIImage imageNamed:@"btn_config"] forState:UIControlStateNormal];
     [_btn_config addTarget:self action:@selector(gotoConfig) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_btn_config];
 
@@ -86,13 +81,13 @@
 
 - (void)initCSLineLayoutView
 {
-    _myInfoContainer = [[CSLinearLayoutView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
+    _myInfoContainer = [[CSLinearLayoutView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 71)];
     _myInfoContainer.orientation = CSLinearLayoutViewOrientationHorizontal;
     _myInfoContainer.scrollEnabled = YES;
     CGFloat padding = (self.view.width / 5.0 - 50)/2;
     // add ten views
     for (int i=0; i<5; i++) {
-        UserInfoViewItem *useritem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 60.0) Tag:i];
+        UserInfoViewItem *useritem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 51.0) Tag:i];
         useritem.delegate = self;
         useritem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
         useritem.itemName.text = [orderNameArray objectAtIndex:i];
