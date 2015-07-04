@@ -243,6 +243,7 @@
     [self showNextPageLoadingView];
     if (self.isFirstLoadingView) {
         [self.hud show:YES];
+        [self.hud hide:YES afterDelay:5.0];
         self.isFirstLoadingView = NO;
     }
 }

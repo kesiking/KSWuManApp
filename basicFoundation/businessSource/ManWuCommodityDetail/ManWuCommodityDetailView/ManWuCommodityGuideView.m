@@ -12,14 +12,16 @@
 
 -(void)setupView{
     [super setupView];
-    [self.titleLabel setText:@"商品导购指南"];
+    [self.titleLabel setText:@"商家声明"];
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem *)descriptionModel{
-    for (NSUInteger index = 0; index < 5 ; index++) {
-        NSString* string = [NSString stringWithFormat:@"测试发大分接口到了时间放宽了束带结发当时看了九分裤了束带结发电视看连接符看了但是九分裤劳动时间反垄断可使肌肤水发的撒:%lu",(unsigned long)index];
-        [self.descriptionArray addObject:string];
-    }
+    
+    [self.descriptionArray addObject:@"1.全场包邮。"];
+    [self.descriptionArray addObject:@"2.签收后如发现质量问题，请24小时内联系售后反馈。在不影响二次销售情况下，无理由退货或者换货。"];
+    [self.descriptionArray addObject:@"3.购买后两个工作日内发货，节假日除外。"];
+    [self.descriptionArray addObject:@"4.屋满商家具有最终解释权，详见“关于我们”说明。"];
+    
     [self reloadData];
 }
 
