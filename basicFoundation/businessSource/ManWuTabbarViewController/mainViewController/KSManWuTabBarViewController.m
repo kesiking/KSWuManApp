@@ -147,7 +147,7 @@
         
         UIImage *selectedimage = [UIImage imageNamed:selectedImages[index]];
         UIImage *unselectedimage = [UIImage imageNamed:normalImages[index]];
-        [item setImageSize:CGSizeMake(20, 20)];
+        [item setImageSize:CGSizeMake(30, 30)];
         [item setFinishedSelectedImage:selectedimage withFinishedUnselectedImage:unselectedimage];
         
         if (IOS_VERSION >= 7.0) {
