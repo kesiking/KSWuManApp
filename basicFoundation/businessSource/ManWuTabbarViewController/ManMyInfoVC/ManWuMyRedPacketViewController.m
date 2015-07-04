@@ -105,12 +105,12 @@
         }
         for(KSRedPacketModel *redpacket in redPackets)
         {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
-            NSDate *endTime= [dateFormatter dateFromString:redpacket.endTime];
-            
-            NSTimeInterval time = [endTime timeIntervalSinceNow];
-            if(time > 0)
+//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//            [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+//            NSDate *endTime= [dateFormatter dateFromString:redpacket.endTime];
+//            NSTimeInterval time = [endTime timeIntervalSinceNow];
+//            if(time > 0)
+            if([redpacket.used integerValue] == 0)
             {
                 [validRedPackets addObject:redpacket];
             }else
@@ -173,21 +173,23 @@
         UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CELLHEIGHT - 2*kSpaceX, CELLHEIGHT - 2*kSpaceX)];
         [cell.contentView addSubview:headImage];
         
-        UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, kSpaceX, 60, 18)];
+        UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, kSpaceX, 100, 18)];
         [redPacketLabel setFont:[UIFont systemFontOfSize:16]];
-        redPacketLabel.text = @"5元";
+        redPacketLabel.text = [NSString stringWithFormat:@"%@元红包",redPacketModel.price];
         [cell.contentView addSubview:redPacketLabel];
         
         UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(redPacketLabel.frame) + 10, SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
         [timeLabel setFont:[UIFont systemFontOfSize:12]];
-        timeLabel.text = [NSString stringWithFormat:@"有效期：%@",redPacketModel.startTime];
+        NSString *startTime = [[redPacketModel.startTime componentsSeparatedByString:@" "]objectAtIndex:0];
+        NSString *endTime = [[redPacketModel.endTime componentsSeparatedByString:@" "]objectAtIndex:0];
+        timeLabel.text = [NSString stringWithFormat:@"有效期：%@至%@",startTime,endTime];
         [cell.contentView addSubview:timeLabel];
         
         UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(timeLabel.frame) + 10,  SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
         [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [descLabel setNumberOfLines:0];
         [descLabel setFont:[UIFont systemFontOfSize:12]];
-        NSString *descStr = redPacketModel.endTime;
+        NSString *descStr = redPacketModel.desc;
         NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
         NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
         
@@ -226,6 +228,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [deleteDic setObject:indexPath forKey:[redPacketArray objectAtIndex:indexPath.section]];
 }
 

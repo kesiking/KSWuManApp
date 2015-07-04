@@ -36,27 +36,27 @@
     {
         orderModel = ordermodel;
         switch ([orderModel.status integerValue]) {
-            case 0:
+            case 1:
             {
                 orderType = @"待付款";
             }
                 break;
-            case 1:
+            case 2:
             {
                 orderType = @"待发货";
             }
                 break;
-            case 2:
+            case 3:
             {
                 orderType = @"待收货";
             }
                 break;
-            case 3:
+            case 4:
             {
                 orderType = @"已收货";
             }
                 break;
-            case 4:
+            case 5:
             {
                 orderType = @"退/换货";
             }
@@ -156,8 +156,10 @@
         UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(phoneLabel.frame) + 10, self.width - 2*kSpacePaddingX, 12)];
         [addressLabel setFont:[UIFont systemFontOfSize:12]];
         [addressLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
-        NSLog(@"%@",orderModel.buyerAddress);
-        addressLabel.text = [NSString stringWithFormat:@"收货地址：%@",orderModel.buyerAddress];
+        
+        NSString *addressStr = [NSString stringWithString:[orderModel.buyerAddress stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSLog(@"%@",addressStr);
+        addressLabel.text = [NSString stringWithFormat:@"收货地址：%@",addressStr];
         [itemView_addressInfo addSubview:addressLabel];
         
         UIView *LineView=[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(addressLabel.frame) + 10, self.width, 0.5)];
@@ -168,7 +170,7 @@
         UILabel *logisticsInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(LineView.frame) + 10, self.width - 2*kSpacePaddingX, 14)];
         [logisticsInfoLabel setFont:[UIFont systemFontOfSize:14]];
         [logisticsInfoLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
-        logisticsInfoLabel.text = [NSString stringWithFormat:@"物流信息：%@",orderModel.buyerAddress];
+        logisticsInfoLabel.text = [NSString stringWithFormat:@"物流信息：%@",@""];
         [itemView_addressInfo addSubview:logisticsInfoLabel];
 
     }
@@ -274,8 +276,14 @@
         [discountValueLable setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         discountValueLable.textAlignment = NSTextAlignmentRight;
         NSInteger discountValue = [orderModel.discount integerValue];
-        discountValue = discountValue * 10;
-        discountValueLable.text = [NSString stringWithFormat:@"%ld折",(long)discountValue];
+        discountValue = discountValue / 10;
+        if(discountValue >= 10)
+        {
+            discountValueLable.text = [NSString stringWithFormat:@"无"];
+        }else
+        {
+            discountValueLable.text = [NSString stringWithFormat:@"%ld折",(long)discountValue];
+        }
         [itemView_orderInfo addSubview:discountValueLable];
 
         UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(discountLabel.frame) + 10, 50, 12)];
@@ -288,7 +296,11 @@
         [redPacketValueLable setFont:[UIFont systemFontOfSize:12]];
         [redPacketValueLable setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         redPacketValueLable.textAlignment = NSTextAlignmentRight;
-        redPacketValueLable.text = [NSString stringWithFormat:@"￥%@",orderModel.voucher];
+        if([orderModel.voucher isEqual:[NSNull null]])
+        {
+            orderModel.voucher = @"0.00";
+        }
+        redPacketValueLable.text = [NSString stringWithFormat:@"￥%@",orderModel.voucher?:@"0.00"];
         [itemView_orderInfo addSubview:redPacketValueLable];
         
         UILabel *payLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(redPacketLabel.frame) + 10, 70, 12)];
@@ -346,7 +358,7 @@
         NSString *statusStr = [[NSString alloc]init];
         
         switch ([orderModel.status integerValue]) {
-            case 0:
+            case 1:
             {
                 statusStr = @"待付款";
                 title_rightBtn = @"取消订单";
@@ -357,7 +369,7 @@
                 [btn_left setTag:ButtonSelectedStylePay];
             }
                 break;
-            case 1:
+            case 2:
             {
                 statusStr = @"待发货";
                 title_leftBtn = @"";
@@ -366,7 +378,7 @@
                 [btn_right setTag:ButtonSelectedStyleNoteSend];
             }
                 break;
-            case 2:
+            case 3:
             {
                 statusStr = @"待收货";
                 title_leftBtn = @"";
@@ -375,7 +387,7 @@
                 [btn_right setTag:ButtonSelectedStyleReceived];
             }
                 break;
-            case 3:
+            case 4:
             {
                 statusStr = @"已收货";
                 title_leftBtn = @"";
@@ -384,7 +396,7 @@
                 [btn_right setTag:ButtonSelectedStyleDeleteOrder];
             }
                 break;
-            case 4:
+            case 5:
             {
                 statusStr = @"退/换货";
                 title_leftBtn = @"";
