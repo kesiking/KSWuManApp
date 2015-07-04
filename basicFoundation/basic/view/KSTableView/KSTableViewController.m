@@ -214,7 +214,6 @@
     
     CGRect rect = CGRectZero;
     if(CGSizeEqualToSize(CGSizeZero, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize)){
-        KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
         rect = CGRectMake(0, 0, self.tableView.width, modelInfoItem.frame.size.height);
     }else{
         rect = CGRectMake(0, 0, self.tableView.width, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height);
@@ -283,7 +282,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(CGSizeEqualToSize(CGSizeZero, ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize)){
         KSCellModelInfoItem* modelInfoItem = [self.dataSourceRead getComponentModelInfoItemWithIndex:[indexPath row]];
-        return modelInfoItem.frame.size.height * SCREEN_SCALE;
+        return modelInfoItem.frame.size.height;
     }
     return ((KSCollectionViewConfigObject*)self.configObject).collectionCellSize.height;
 }

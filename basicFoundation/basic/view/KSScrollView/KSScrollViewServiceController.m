@@ -147,7 +147,7 @@
         return self.errorView;
     }
     UIView* view = [[UIView alloc] initWithFrame:self.scrollView.bounds];
-    view.backgroundColor = RGB(0xf8, 0xf8, 0xf8);
+    view.backgroundColor = [UIColor whiteColor];//RGB(0xf8, 0xf8, 0xf8);
     
     CGFloat oringeY = (view.frame.size.height - (100.0 + 40.0 + 18.0 + 24.0 + 14.0))/2;
     
