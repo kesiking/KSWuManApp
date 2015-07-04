@@ -1,14 +1,14 @@
 //
-//  ManWuMyInviteCodeViewController.h
+//  ManWuPostSaleServiceViewController.h
 //  basicFoundation
 //
-//  Created by 许学 on 15/6/4.
+//  Created by 许学 on 15/7/4.
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ManWuMyInviteCodeViewController : KSViewController<WeAppBasicServiceDelegate>
+@interface ManWuPostSaleServiceViewController : UIViewController<WeAppBasicServiceDelegate>
 
 @property (nonatomic, strong) KSAdapterService *service;
 

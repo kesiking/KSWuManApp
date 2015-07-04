@@ -31,7 +31,7 @@
 {
     if(!_itemImageView)
     {
-        _itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, self.width - 10, self.width - 10)];
+        _itemImageView = [[UIImageView alloc]initWithFrame:CGRectMake(4, 0, self.width - 8, self.width - 16)];
     }
     return _itemImageView;
 }
@@ -40,7 +40,7 @@
 {
     if(!_itemName)
     {
-        _itemName = [[UILabel alloc]initWithFrame:CGRectMake(0, self.width, self.width, self.height - self.width)];
+        _itemName = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_itemImageView.frame) + 5, self.width, 12)];
         _itemName.font = [UIFont systemFontOfSize:12.0];
         _itemName.textAlignment = NSTextAlignmentCenter;
     }

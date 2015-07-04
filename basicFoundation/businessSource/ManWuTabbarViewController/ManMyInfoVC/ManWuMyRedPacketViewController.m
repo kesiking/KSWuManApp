@@ -7,12 +7,15 @@
 //
 
 #import "ManWuMyRedPacketViewController.h"
+#import "KSRedPacketModel.h"
 
 #define CELLHEIGHT 120
 
 @interface ManWuMyRedPacketViewController ()
 {
     NSMutableArray *redPacketArray;
+    NSMutableArray *validRedPackets;
+    NSMutableArray *invalidRedPackets;
     NSMutableDictionary *deleteDic;
 }
 
@@ -24,7 +27,7 @@
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-        [_service setItemClass:[NSDictionary class]];
+        [_service setItemClass:[KSRedPacketModel class]];
         _service.jsonTopKey = @"data";
         
     }
@@ -38,13 +41,20 @@
     
     self.title = @"我的红包";
     
-    UIBarButtonItem *btn_delete = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
+    validRedPackets = [[NSMutableArray alloc]init];
+    invalidRedPackets = [[NSMutableArray alloc]init];
+    redPacketArray = [[NSMutableArray alloc]init];
     
-    self.navigationItem.rightBarButtonItem = btn_delete;
+//    UIBarButtonItem *btn_delete = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
+//    self.navigationItem.rightBarButtonItem = btn_delete;
+//    deleteDic = [[NSMutableDictionary alloc]init];
     
-    [self.service loadItemWithAPIName:@"user/myVouchers.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
+    self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    self.table.delegate = self;
+    self.table.dataSource = self;
+    [self.view addSubview:self.table];
     
-    deleteDic = [[NSMutableDictionary alloc]init];
+    [self.service loadDataListWithAPIName:@"user/myVouchers.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
 }
 
 - (void)deleteAction
@@ -86,20 +96,37 @@
 {
     if (service == _service) {
         // todo success
-        redPacketArray = [[NSMutableArray alloc]initWithObjects:@"gg",@"mm",@"zz",@"yy", nil];
         
-        self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-        self.table.delegate = self;
-        self.table.dataSource = self;
-        [self.view addSubview:self.table];
+        [self.statusHandler removeStatusViewFromView:self.table];
+        NSArray *redPackets = [[NSArray alloc]initWithArray:(NSArray*)service.requestModel.item];
+        if([redPackets count] == 0)
+        {
+            [self.statusHandler showEmptyViewInView:self.table frame:self.table.bounds];
+        }
+        for(KSRedPacketModel *redpacket in redPackets)
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+            NSDate *endTime= [dateFormatter dateFromString:redpacket.activityTime];
+            
+            NSTimeInterval time = [endTime timeIntervalSinceNow];
+            if(time > 0)
+            {
+                [validRedPackets addObject:redpacket];
+            }else
+            {
+                [invalidRedPackets addObject:redpacket];
+            }
+        }
+        redPacketArray = [NSMutableArray arrayWithObjects:validRedPackets, invalidRedPackets, nil];
+        [self.table reloadData];
     }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service == _service) {
         // todo fail
-        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
-        [WeAppToast toast:errorInfo];
+        [self.statusHandler showViewforError:error inView:self.table frame:self.table.bounds];    
     }
 }
 
@@ -107,12 +134,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [redPacketArray count];
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if(section == 0)
+    {
+        return [validRedPackets count];
+    }else
+        return [invalidRedPackets count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -137,35 +168,26 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        
+        KSRedPacketModel *redPacketModel = [[redPacketArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
         UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CELLHEIGHT - 2*kSpaceX, CELLHEIGHT - 2*kSpaceX)];
-        headImage.image = [UIImage imageNamed:@"hongbao"];
         [cell.contentView addSubview:headImage];
         
-        UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX - 5, 55, 25)];
-        stateLabel.text = @"失效否";
-        [stateLabel setFont:[UIFont systemFontOfSize:16]];
-        stateLabel.backgroundColor = [UIColor clearColor];
-        [cell.contentView addSubview:stateLabel];
-        
-        UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, kSpaceX, CGRectGetMinX(stateLabel.frame) - kSpaceX -5, 18)];
+        UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, kSpaceX, 60, 18)];
+        [redPacketLabel setFont:[UIFont systemFontOfSize:16]];
         redPacketLabel.text = @"5元";
         [cell.contentView addSubview:redPacketLabel];
         
         UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(redPacketLabel.frame) + 10, SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
         [timeLabel setFont:[UIFont systemFontOfSize:12]];
-        timeLabel.backgroundColor = [UIColor clearColor];
-        timeLabel.textColor = [UIColor colorWithHex:0x666666];
-        timeLabel.text = @"有效期";
+        timeLabel.text = [NSString stringWithFormat:@"有效期：%@",redPacketModel.activityTime];
         [cell.contentView addSubview:timeLabel];
         
         UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(timeLabel.frame) + 10,  SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
         [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [descLabel setNumberOfLines:0];
         [descLabel setFont:[UIFont systemFontOfSize:12]];
-        descLabel.backgroundColor = [UIColor clearColor];
-        descLabel.textColor = [UIColor colorWithHex:0x666666];
-        
-        NSString *descStr = @"可获得红包鬼斧神工实际数量和交流是历史环境是谁厉害了深刻数量还是理科好老师时候时候";
+        NSString *descStr = redPacketModel.activityRule;
         NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
         NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
         
@@ -174,8 +196,28 @@
         [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [descStr length])];
         descLabel.attributedText = attributedString1;
         [descLabel sizeToFit];
-        
         [cell.contentView addSubview:descLabel];
+
+        if(indexPath.section == 0)
+        {
+            headImage.image = [UIImage imageNamed:@"hongbao_valid"];
+            [redPacketLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+            [timeLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+            [descLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+            
+        }else
+        {
+            headImage.image = [UIImage imageNamed:@"hongbao_invalid"];
+            [redPacketLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
+            [timeLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
+            [descLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
+
+            UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX - 5, 55, 25)];
+            stateLabel.text = @"已过期";
+            [stateLabel setFont:[UIFont systemFontOfSize:16]];
+            [stateLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"]];
+            [cell.contentView addSubview:stateLabel];
+        }
 
     }
     

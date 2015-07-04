@@ -26,6 +26,9 @@
 @end
 
 @implementation ManWuLoginViewController
+{
+    MBProgressHUD *_progressHUD;    ///<指示器
+}
 
 -(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
     self = [self init];
@@ -182,6 +185,16 @@
 //    id<DataSigner> signer = CreateRSADataSigner(PUBLICKEY);
 //    NSString *signedPwd = [signer signString:_text_psw.text];
     
+    //初始化指示器
+    
+    if (!_progressHUD) {
+        _progressHUD=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        _progressHUD.detailsLabelText=@"正在登录...";
+        _progressHUD.removeFromSuperViewOnHide=YES;
+    }
+
+    
     NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:PUBLICKEY];
 
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text} version:nil];
@@ -218,6 +231,10 @@
 
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service
 {
+    if (_progressHUD) {
+        [_progressHUD hide:YES];
+        _progressHUD = nil;
+    }
     if (service == _service) {
         // todo success
         NSDictionary *dic_userInfo = [NSDictionary dictionaryWithDictionary:(NSDictionary*)service.requestModel.item];
@@ -229,16 +246,18 @@
         if (self.loginActionBlock) {
             self.loginActionBlock(YES);
         }
-        
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-
     }
 }
 
-- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error
+{
+    if (_progressHUD) {
+        [_progressHUD hide:YES];
+        _progressHUD = nil;
+    }
     if (service == _service) {
         // todo fail
-        NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
+        NSString *errorInfo = @"服务器异常，请稍后再试";
         [WeAppToast toast:errorInfo];
     }
 }

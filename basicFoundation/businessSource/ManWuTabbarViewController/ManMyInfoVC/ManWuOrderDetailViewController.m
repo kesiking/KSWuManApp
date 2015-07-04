@@ -8,6 +8,7 @@
 
 #import "ManWuOrderDetailViewController.h"
 #import "KSOrderDetailView.h"
+#import "ManWuPostSaleServiceViewController.h"
 
 @interface ManWuOrderDetailViewController ()<KSOrderDetailViewDelegate>
 {
@@ -42,7 +43,43 @@
 #pragma mark - KSOrderDetailViewDelegate method
 - (void)didSelectedButtonStyle:(ButtonSelectedStyle)style
 {
-    
+    switch (style) {
+        case ButtonSelectedStyleCancelOrder:
+        {
+            
+        }
+            break;
+        case ButtonSelectedStyleDeleteOrder:
+        {
+            
+        }
+            break;
+        case ButtonSelectedStylePay:
+        {
+            
+        }
+            break;
+        case ButtonSelectedStyleNoteSend:
+        {
+            
+        }
+            break;
+        case ButtonSelectedStyleReceived:
+        {
+            
+        }
+            break;
+        case ButtonSelectedStyleService:
+        {
+            ManWuPostSaleServiceViewController *postsaleService = [[ManWuPostSaleServiceViewController alloc]init];
+            [self.navigationController pushViewController:postsaleService animated:YES];
+        }
+            break;
+
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - WeAppBasicServiceDelegate method
