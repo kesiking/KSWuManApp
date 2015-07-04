@@ -39,7 +39,7 @@
             for (NSString* key in [param allKeys]) {
                 id value = [param objectForKey:key];
                 if ([value isKindOfClass:[NSString class]]) {
-                    [newParams setObject:[(NSString*)value URLEncodedString] forKey:key];
+                    [newParams setObject:[(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:key];
                 }else{
                     [newParams setObject:value forKey:key];
                 }
