@@ -35,20 +35,42 @@
     
     self.title = @"申请退款";
     
-    KSDropDownListView *dropdownList1= [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 44)];
+    KSDropDownListView *dropdownList1= [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 140)];
+    //[dropdownList1 setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
     dropdownList1.userActionLabel.text = @"是否已收货";
     dropdownList1.dataArray = @[@"已收货",@"未收货"];
     [self.view addSubview:dropdownList1];
 
-    KSDropDownListView *dropdownList2= [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(dropdownList1.frame) + 15, self.view.width - 20, 44)];
+    KSDropDownListView *dropdownList2= [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownList1.frame) + 75, self.view.width - 20, 140)];
+    //[dropdownList2 setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
     dropdownList2.userActionLabel.text = @"申请服务";
     dropdownList2.dataArray = @[@"退款",@"退货"];
     [self.view addSubview:dropdownList2];
 
-    UIPlaceHolderTextView *textView = [[UIPlaceHolderTextView alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(dropdownList2.frame) + 15, self.view.width - 20, 100)];
+    UIPlaceHolderTextView *textView = [[UIPlaceHolderTextView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownList2.frame) + 75, self.view.width - 20, 120)];
     textView.placeholderColor = [TBDetailUIStyle colorWithHexString:@"#adadad"];
+    textView.layer.cornerRadius = 3;
     textView.placeholder = @"退款说明 最多100字";
     [self.view addSubview:textView];
+    
+    UIButton *btn_commit = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, self.view.height - 150, WIDTH, 40)];
+    [btn_commit setTitle:@"提交" forState:UIControlStateNormal];
+    [btn_commit.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    btn_commit.titleLabel.textColor = [UIColor whiteColor];
+    [btn_commit setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
+    [btn_commit addTarget:self action:@selector(doPostSaleService) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn_commit];
+}
+
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
+- (void)doPostSaleService
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {

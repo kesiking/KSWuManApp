@@ -62,6 +62,12 @@
     return _btn_commit;
 }
 
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
 - (void)doFeedBack
 {
     [self.service loadItemWithAPIName:@"user/feedback.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"suggestion":_textView.text} version:nil];

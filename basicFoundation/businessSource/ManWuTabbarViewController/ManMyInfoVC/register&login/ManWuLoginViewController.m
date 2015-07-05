@@ -163,6 +163,12 @@
     return _btn_login;
 }
 
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
 - (void)login
 {
     //判断逻辑待完善

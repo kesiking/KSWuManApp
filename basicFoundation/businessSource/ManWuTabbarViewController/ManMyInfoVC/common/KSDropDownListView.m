@@ -17,16 +17,16 @@
     }else{
         frameHeight = frame.size.height;
     }
-    tableHeight = frameHeight-30;
+    tableHeight = frameHeight - 60;
     
-    frame.size.height = 30.0f;
+    frame.size.height = 60.0f;
     
-    self=[super initWithFrame:frame];
+    self = [super initWithFrame:frame];
     
     if(self){
         isShowList = NO; //默认不显示下拉框
         
-        _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, frame.size.width, 0)];
+        _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, frame.size.width, 0)];
         _table.delegate = self;
         _table.dataSource = self;
         _table.backgroundColor = [UIColor grayColor];
@@ -34,15 +34,21 @@
         _table.hidden = YES;
         [self addSubview:_table];
         
-        _userActionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 30)];
-        [_userActionLabel setFont:[UIFont systemFontOfSize:15]];
-        [_userActionLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
-        [self addSubview:_userActionLabel];
+        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, 60)];
+        [headView setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
+        headView.layer.cornerRadius = 3;
+//        headView.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
+//        headView.layer.borderWidth = 0.5;
+        [self addSubview:headView];
         
-        btn_select = [[UIButton alloc]initWithFrame:CGRectMake(frame.size.width - kSpaceX - 30, 0, 30, 30)];
+        _userActionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 200, 60)];
+        [_userActionLabel setFont:[UIFont systemFontOfSize:18]];
+        [headView addSubview:_userActionLabel];
+        
+        btn_select = [[UIButton alloc]initWithFrame:CGRectMake(frame.size.width - kSpaceX - 30, CGRectGetMinY(_userActionLabel.frame) + 15, 30, 30)];
         [btn_select setBackgroundColor:[UIColor greenColor]];
         [btn_select addTarget:self action:@selector(selectedDorpDown) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btn_select];
+        [headView addSubview:btn_select];
         
     }
     return self;
@@ -52,6 +58,17 @@
 {
     if (isShowList)
     {//如果下拉框已显示，什么都不做
+        [btn_select setBackgroundColor:[UIColor greenColor]];
+        isShowList = NO;
+        _table.hidden = YES;
+        
+        CGRect sf = self.frame;
+        sf.size.height = 40;
+        self.frame = sf;
+        CGRect frame = _table.frame;
+        frame.size.height = 0;
+        _table.frame = frame;
+
         return;
     }else {//如果下拉框尚未显示，则进行显示
         
@@ -106,18 +123,19 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 35;
+    return 40;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [btn_select setBackgroundColor:[UIColor greenColor]];
     _userActionLabel.text = [_dataArray objectAtIndex:[indexPath row]];
     isShowList = NO;
     _table.hidden = YES;
     
     CGRect sf = self.frame;
-    sf.size.height = 30;
+    sf.size.height = 40;
     self.frame = sf;
     CGRect frame = _table.frame;
     frame.size.height = 0;
