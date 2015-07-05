@@ -157,9 +157,7 @@
         [addressLabel setFont:[UIFont systemFontOfSize:12]];
         [addressLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         
-        NSString *addressStr = [NSString stringWithString:[orderModel.buyerAddress stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        NSLog(@"%@",addressStr);
-        addressLabel.text = [NSString stringWithFormat:@"收货地址：%@",addressStr];
+        addressLabel.text = [NSString stringWithFormat:@"收货地址：%@",orderModel.buyerAddress];
         [itemView_addressInfo addSubview:addressLabel];
         
         UIView *LineView=[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(addressLabel.frame) + 10, self.width, 0.5)];

@@ -587,7 +587,7 @@
 		0553F78A1AFA1F7A0013BB97 /* ManWuCommoditySortViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySortViewCell.m; sourceTree = "<group>"; };
 		0553F78B1AFA1F7A0013BB97 /* ManWuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuViewCell.h; sourceTree = "<group>"; };
 		0553F78C1AFA1F7A0013BB97 /* ManWuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuViewCell.m; sourceTree = "<group>"; };
-		055866891AD3B4F900A23FFA /* basicFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = basicFoundation.app; path = "满屋.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		055866891AD3B4F900A23FFA /* 满屋.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "满屋.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0558668D1AD3B4F900A23FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0558668E1AD3B4F900A23FFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		055866901AD3B4F900A23FFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1602,7 +1602,7 @@
 		0558668A1AD3B4F900A23FFA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				055866891AD3B4F900A23FFA /* basicFoundation.app */,
+				055866891AD3B4F900A23FFA /* 满屋.app */,
 				055866A21AD3B4F900A23FFA /* basicFoundationTests.xctest */,
 			);
 			name = Products;
@@ -3223,7 +3223,7 @@
 			);
 			name = basicFoundation;
 			productName = basicFoundation;
-			productReference = 055866891AD3B4F900A23FFA /* basicFoundation.app */;
+			productReference = 055866891AD3B4F900A23FFA /* 满屋.app */;
 			productType = "com.apple.product-type.application";
 		};
 		055866A11AD3B4F900A23FFA /* basicFoundationTests */ = {

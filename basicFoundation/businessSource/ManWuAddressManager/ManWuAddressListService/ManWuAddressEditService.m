@@ -24,7 +24,7 @@
 }
 
 -(void)addAddressInfoWithAddressId:(NSString *)addressId userId:(NSString *)userId recvName:(NSString *)recvName phoneNum:(NSString *)phoneNum address:(NSString *)address defaultAddress:(BOOL)defaultAddress{
-    NSDictionary* params = @{@"id":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":[safeString(address) URLEncodedString],@"defaultAddress":defaultAddress?@"true":@"false"};
+    NSDictionary* params = @{@"id":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":safeString(address)/*[safeString(address) URLEncodedString]*/,@"defaultAddress":defaultAddress?@"true":@"false"};
     self.jsonTopKey = @"data";
     self.needLogin = YES;
     [self loadItemWithAPIName:@"address/addAddress.do" params:params version:nil];
