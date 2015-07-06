@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ManWuMyInviteCodeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WeAppBasicServiceDelegate>
-
-@property (nonatomic, strong) UITableView *table;
+@interface ManWuMyInviteCodeViewController : KSViewController<WeAppBasicServiceDelegate>
 
 @property (nonatomic, strong) KSAdapterService *service;
 

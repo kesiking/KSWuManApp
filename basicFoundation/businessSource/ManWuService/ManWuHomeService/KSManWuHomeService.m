@@ -9,7 +9,7 @@
 #import "KSManWuHomeService.h"
 
 #define advertisement_key_name @"data"
-#define advertisement_api_name @"index/getVouchers.do"
+#define advertisement_api_name @"index/getVoucherActivities.do"
 
 #define home_activity_key_name @"data"
 #define home_activity_api_name @"index/getActs.do"

@@ -31,7 +31,7 @@
     NSUInteger count = [discoverModel.leafCategoryList count];
     if (count > 0) {
         self.discoverCollectionArray = discoverModel.leafCategoryList;
-        self.discoverCollectionHeight = (count / 4 + (NSUInteger)(count % 4 == 0 ? 0 : 1)) * caculateNumber(73);
+        self.discoverCollectionHeight = (count / 4 + (NSUInteger)(count % 4 == 0 ? 0 : 1)) * caculateNumber(75);
     }
     
     self.frame = CGRectMake(0, 0, 320, self.discoverCollectionHeight + 40);

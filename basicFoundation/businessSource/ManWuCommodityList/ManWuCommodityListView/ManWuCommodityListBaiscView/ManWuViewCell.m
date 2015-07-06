@@ -75,7 +75,7 @@
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] init];
         _priceLabel.font = [UIFont boldSystemFontOfSize:11];
-        _priceLabel.textColor = RGB(0x2d, 0x2d, 0x2d);
+        _priceLabel.textColor = [UIColor whiteColor];//RGB(0x2d, 0x2d, 0x2d);
         _priceLabel.backgroundColor = self.backgroundColor;
         _priceLabel.opaque = YES;
         _priceLabel.numberOfLines = 1;
@@ -147,6 +147,7 @@
 -(UIButton *)selectButton{
     if (_selectButton == nil) {
         _selectButton = [[UIButton alloc] initWithFrame:CGRectMake(self.commodityImageView.right - selectButton_width_height, self.commodityImageView.top, selectButton_width_height, selectButton_width_height)];
+        _selectButton.userInteractionEnabled = NO;
         [self setupSelectViewStatus:NO];
         _selectButton.hidden = YES;
         [self addSubview:_selectButton];

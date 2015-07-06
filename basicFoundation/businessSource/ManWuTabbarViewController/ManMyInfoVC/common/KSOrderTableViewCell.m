@@ -11,6 +11,7 @@
 
 @implementation KSOrderTableViewCell
 {
+    NSString *identify;
     UIImageView *_imageView;
     UILabel *_titleLabel;
     UILabel *_sizeLabel;
@@ -26,24 +27,39 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        [self initSubView];
+        if([identify isEqualToString:OrderTableCellStyleInfo])
+        {
+            [self initOrderInfoView];
+            
+        }else if ([identify isEqualToString:OrderTableCellStyleDeal])
+        {
+            [self initOrderDealView];
+        }
     }
     return self;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andFrame:(CGRect)frame;
 {
+    identify = [[NSString alloc]initWithString:reuseIdentifier];
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
         self.frame = frame;
-        [self initSubView];
+        if([identify isEqualToString:OrderTableCellStyleInfo])
+        {
+            [self initOrderInfoView];
+            
+        }else if ([identify isEqualToString:OrderTableCellStyleDeal])
+        {
+            [self initOrderDealView];
+        }
     }
     return self;
 }
 
 #pragma mark - 初始化视图
-- (void)initSubView
+- (void)initOrderInfoView
 {
     _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(kCellControlSpacingX, kCellControlSpacingY, kImageViewWidth, kImageViewWidth)];
     [self addSubview:_imageView];
@@ -86,35 +102,55 @@
     [self addSubview:_LineView];
 }
 
+- (void)initOrderDealView
+{
+    _payLabel = [[UILabel alloc]initWithFrame:CGRectMake(kCellControlSpacingX, kCellControlSpacingY, 120, kPayFontSize)];
+    [_payLabel setFont:[UIFont systemFontOfSize:kPayFontSize]];
+    [_payLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
+    [self addSubview:_payLabel];
+    
+    _btn_left = [[UIButton alloc]init];
+    _btn_right = [[UIButton alloc]init];
+
+    [self addSubview:_btn_left];
+    [self addSubview:_btn_right];
+
+}
+
 #pragma mark - 设置订单数据
 - (void)setOrderModel:(KSOrderModel *)orderModel
 {
     //设置按钮大小
     NSString *statusStr = [[NSString alloc]init];
     switch ([orderModel.status integerValue]) {
-        case 0:
+        case 1:
         {
             statusStr = @"待付款";
         }
             break;
-        case 1:
+        case 2:
         {
             statusStr = @"待发货";
         }
             break;
-        case 2:
+        case 3:
         {
             statusStr = @"待收货";
         }
             break;
-        case 3:
+        case 4:
         {
             statusStr = @"已收货";
         }
             break;
-        case 4:
+        case 5:
         {
-            statusStr = @"退/换货";
+            statusStr = @"退款中";
+        }
+            break;
+        case 6:
+        {
+            statusStr = @"已退款";
         }
             break;
             
@@ -122,25 +158,33 @@
             break;
     }
 
-    _imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderModel.imgUrl]]];
-    _titleLabel.text = orderModel.title;
-    
-    NSArray *skuList = orderModel.skuList;
-    for(KSOrderSKUModel *orderSku in skuList)
+    if([identify isEqualToString:OrderTableCellStyleInfo])
     {
-        NSString *propertyName = orderSku.propertyName;
-        if([propertyName isEqualToString:@"颜色"])
+//        _imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderModel.imgUrl]]];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:orderModel.imgUrl]];
+        _titleLabel.text = orderModel.title;
+        
+        NSArray *skuList = orderModel.skuList;
+        for(KSOrderSKUModel *orderSku in skuList)
         {
-            _colorLabel.text = [NSString stringWithFormat:@"颜色：%@",orderSku.value];
-            
-        }else if ([propertyName isEqualToString:@"尺码"])
-        {
-            _sizeLabel.text = [NSString stringWithFormat:@"尺码：%@",orderSku.value];
+            NSString *propertyName = orderSku.propertyName;
+            if([propertyName isEqualToString:@"颜色"])
+            {
+                _colorLabel.text = [NSString stringWithFormat:@"颜色：%@",orderSku.value];
+                
+            }else if ([propertyName isEqualToString:@"尺码"])
+            {
+                _sizeLabel.text = [NSString stringWithFormat:@"尺码：%@",orderSku.value];
+            }
         }
+        _buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
+        _statusLabel.text = statusStr;
+        _priceLabel.text = [NSString stringWithFormat:@"¥%@",orderModel.oriPrice];
+
+    }else if ([identify isEqualToString:OrderTableCellStyleDeal])
+    {
+        
     }
-    _buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
-    _statusLabel.text = statusStr;
-    _priceLabel.text = [NSString stringWithFormat:@"¥%@",orderModel.oriPrice];
 
 }
 

@@ -81,7 +81,7 @@
     
     CSLinearLayoutItem *guideViewLayoutItem = [[CSLinearLayoutItem alloc]
                                                  initWithView:self.guideView];
-    guideViewLayoutItem.padding             = padding;
+    guideViewLayoutItem.padding             = CSLinearLayoutMakePadding(0, 0, 44.0, 0.0);
     [self.container addItem:guideViewLayoutItem];
 }
 

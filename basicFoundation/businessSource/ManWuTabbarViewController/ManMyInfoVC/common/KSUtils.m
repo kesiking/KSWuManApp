@@ -359,7 +359,8 @@ static NSString * const kMWCMRandomRangeString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ012
     pDest=(unsigned char *)malloc(iRsaLen+1);
     memset(pDest,0,iRsaLen+1);
     
-    int ret = RSA_public_encrypt(iSrcLen, (unsigned char *)[plainData bytes], pDest, pRsa, RSA_NO_PADDING);
+    //int ret = RSA_public_encrypt(iSrcLen, (unsigned char *)[plainData bytes], pDest, pRsa, RSA_NO_PADDING);
+    int ret = RSA_private_encrypt(iSrcLen, (unsigned char *)[plainData bytes], pDest, pRsa, RSA_NO_PADDING);
     if(ret < 0)
     {
         RSA_free(pRsa);

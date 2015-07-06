@@ -8,6 +8,7 @@
 
 #import "ManWuConfigViewController.h"
 #import "ManWuFeedBackViewController.h"
+#import "ManWuAboutViewController.h"
 
 @interface ManWuConfigViewController ()
 {
@@ -127,6 +128,19 @@
             break;
         case 1:
         {
+            if(indexPath.row == 0)
+            {
+
+            }
+            else if (indexPath.row == 1)
+            {
+                ManWuAboutViewController *aboutView = [[ManWuAboutViewController alloc]init];
+                [self.navigationController pushViewController:aboutView animated:YES];
+            }
+            else if (indexPath.row == 2)
+            {
+                
+            }
             
         }
             break;

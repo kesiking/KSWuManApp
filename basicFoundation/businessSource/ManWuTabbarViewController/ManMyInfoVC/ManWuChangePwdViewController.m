@@ -103,6 +103,12 @@
     return _btn_commit;
 }
 
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
 - (void)doChangePwd
 {
     if([_text_oldPwd.text length] == 0)

@@ -83,6 +83,12 @@
     return _btn_done;
 }
 
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
 - (void)resetPwdDone
 {
     //判断逻辑待完善

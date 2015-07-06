@@ -26,6 +26,7 @@
     self.title = @"发现";
     [self.view addSubview:self.discoverListView];
     [self.discoverService loadAllCategoryCommodityListData];
+    [self showLoadingView];
 }
 
 -(void)viewDidUnload{
@@ -66,13 +67,14 @@
 }
 
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service{
+    [self hideLoadingView];
     if (service && [service.dataList count] > 0) {
         [self.discoverListView setDataWithPageList:service.dataList extraDataSource:nil];
     }
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
-    
+    [self hideLoadingView];
 }
 
 -(void)serviceCacheDidLoad:(WeAppBasicService *)service cacheData:(NSArray *)cacheData{

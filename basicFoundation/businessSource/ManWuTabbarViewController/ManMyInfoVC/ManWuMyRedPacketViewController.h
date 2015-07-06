@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ManWuMyRedPacketViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WeAppBasicServiceDelegate>
+@interface ManWuMyRedPacketViewController : KSViewController<UITableViewDataSource, UITableViewDelegate, WeAppBasicServiceDelegate>
 
 @property (nonatomic, strong) UITableView *table;
-//@property (nonatomic, strong) UIButton *btn_delete;
-//@property (nonatomic, strong) UIButton *btn_done;
 
 @property (nonatomic, strong) KSAdapterService *service;
 

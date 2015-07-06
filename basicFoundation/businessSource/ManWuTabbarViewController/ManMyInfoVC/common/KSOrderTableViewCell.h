@@ -23,9 +23,18 @@
 #define kPayFontSize 12
 #define kButtonFontSize 12
 
+#define OrderTableCellStyleInfo @"OrderTableCellStyleInfo"
+#define OrderTableCellStyleDeal @"OrderTableCellStyleDeal"
+
+
 @interface KSOrderTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) KSOrderModel *orderModel;
+
+@property (nonatomic, strong) UIButton *btn_left;
+@property (nonatomic, strong) UIButton *btn_right;
+@property (nonatomic, strong) UILabel *payLabel;
+
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andFrame:(CGRect)frame;
 

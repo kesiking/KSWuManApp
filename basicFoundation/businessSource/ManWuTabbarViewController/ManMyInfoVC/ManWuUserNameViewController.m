@@ -73,6 +73,12 @@
     [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"userName":_text_userName.text} version:nil];
 }
 
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
 #pragma mark - UITextFiledDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {

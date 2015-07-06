@@ -11,6 +11,7 @@
 @interface ManWuRegisterViewController ()
 {
     BOOL isRegister;
+    KSRegisterSuccessView *registerSucView;
 }
 
 @end
@@ -168,6 +169,12 @@
     return _btn_register;
 }
 
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
 - (void)cancelLogin
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -215,7 +222,7 @@
         return;
     }
 
-    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text, @"userName":_text_userName} version:nil];
+    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text?:@"", @"userName":_text_userName.text?:@""} version:nil];
     isRegister = YES;
 }
 
@@ -235,12 +242,15 @@
         NSLog(@"%@",service.item.componentDict);
         if(isRegister)
         {
-            [WeAppToast toast:@"注册成功"];
+            //[WeAppToast toast:@"注册成功"];
+            registerSucView = [[KSRegisterSuccessView alloc]initWithFrame:self.view.frame];
+            registerSucView.delegate = self;
+            [self.view.window addSubview:registerSucView];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+        }else
+        {
+            [WeAppToast toast:@"验证码已发送"];
         }
-        
-        [WeAppToast toast:@"验证码已发送"];
 
     }
 }
@@ -309,11 +319,13 @@
     dispatch_resume(_timer);
 }
 
-#pragma mark - 注册红包展示
+#pragma mark - 注册红包关闭按钮回调KSRegisterSuccessViewDelegate
 
-- (void)showRedpackage
+- (void)didClickCloseButton
 {
-    
+    [registerSucView removeFromSuperview];
+    registerSucView = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

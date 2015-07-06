@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HTHorizontalSelectionList.h"
 
-@interface ManWuMyOrdersViewController : UIViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,WeAppBasicServiceDelegate,HTHorizontalSelectionListDataSource,HTHorizontalSelectionListDelegate>
+@interface ManWuMyOrdersViewController : KSViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,WeAppBasicServiceDelegate,HTHorizontalSelectionListDataSource,HTHorizontalSelectionListDelegate>
 
 @property (nonatomic, strong) HTHorizontalSelectionList *selectionList;
 @property (nonatomic, strong) UIScrollView *scrollview;

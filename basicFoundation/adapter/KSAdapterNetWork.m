@@ -35,11 +35,20 @@
     [self callWithAuthCheck:apiName method:^{
         NSMutableDictionary* newParams = nil;
         if (param) {
-            newParams = [NSMutableDictionary dictionaryWithDictionary:param];
+            newParams = [NSMutableDictionary dictionary];
+            for (NSString* key in [param allKeys]) {
+                id value = [param objectForKey:key];
+                if ([value isKindOfClass:[NSString class]]) {
+                    [newParams setObject:[(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:key];
+                }else{
+                    [newParams setObject:value forKey:key];
+                }
+            }
         }
         if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
             [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
         }
+        
         [newParams removeObjectForKey:@"needLogin"];
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
         // 默认为json序列化

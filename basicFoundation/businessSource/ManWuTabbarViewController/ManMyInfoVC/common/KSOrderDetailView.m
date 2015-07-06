@@ -13,7 +13,7 @@
 #define kPadding       10
 #define itemView_orderType_height    70
 #define itemView_addressInfo_height  120
-#define itemView_orderInfo_height    240
+#define itemView_orderInfo_height    230
 #define itemView_orderDeal_height    50
 
 @implementation KSOrderDetailView
@@ -36,27 +36,27 @@
     {
         orderModel = ordermodel;
         switch ([orderModel.status integerValue]) {
-            case 0:
+            case 1:
             {
                 orderType = @"待付款";
             }
                 break;
-            case 1:
+            case 2:
             {
                 orderType = @"待发货";
             }
                 break;
-            case 2:
+            case 3:
             {
                 orderType = @"待收货";
             }
                 break;
-            case 3:
+            case 4:
             {
                 orderType = @"已收货";
             }
                 break;
-            case 4:
+            case 5:
             {
                 orderType = @"退/换货";
             }
@@ -92,11 +92,26 @@
     {
         itemView_orderType = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_orderType_height)];
         [itemView_orderType setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#dc7868"]];
-         UILabel *orderTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 200, 15)];
+         UILabel *orderTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 150, 15)];
         [orderTypeLabel setFont:[UIFont systemFontOfSize:15]];
         [orderTypeLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
         orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
         [itemView_orderType addSubview:orderTypeLabel];
+        
+        if([orderModel.status integerValue] == 4)
+        {
+            UILabel *statusLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 140, kSpacePaddingY, 140, 15)];
+            [statusLabel setFont:[UIFont systemFontOfSize:15]];
+            NSString *statusStr = @"申请审核中";
+            NSString *statusLabelStr = [NSString stringWithFormat:@"状态：%@",statusStr];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:statusLabelStr];
+            [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#ffffff"] range:NSMakeRange(0,3)];
+            [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#000000"] range:NSMakeRange(4,statusStr.length)];
+            statusLabel.attributedText = str;
+;
+            [itemView_orderType addSubview:statusLabel];
+
+        }
 
         UILabel *orderPayLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(orderTypeLabel.frame) + 10, 200, 15)];
         [orderPayLabel setFont:[UIFont systemFontOfSize:15]];
@@ -141,6 +156,7 @@
         UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(phoneLabel.frame) + 10, self.width - 2*kSpacePaddingX, 12)];
         [addressLabel setFont:[UIFont systemFontOfSize:12]];
         [addressLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+        
         addressLabel.text = [NSString stringWithFormat:@"收货地址：%@",orderModel.buyerAddress];
         [itemView_addressInfo addSubview:addressLabel];
         
@@ -152,7 +168,7 @@
         UILabel *logisticsInfoLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(LineView.frame) + 10, self.width - 2*kSpacePaddingX, 14)];
         [logisticsInfoLabel setFont:[UIFont systemFontOfSize:14]];
         [logisticsInfoLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
-        logisticsInfoLabel.text = [NSString stringWithFormat:@"物流信息：%@",orderModel.buyerAddress];
+        logisticsInfoLabel.text = [NSString stringWithFormat:@"物流信息：%@",@""];
         [itemView_addressInfo addSubview:logisticsInfoLabel];
 
     }
@@ -247,7 +263,7 @@
         expenseValueLable.text = @"免邮";
         [itemView_orderInfo addSubview:expenseValueLable];
         
-        UILabel *discountLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(expenseLabel.frame) + 10, 50, 12)];
+        UILabel *discountLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(expenseLabel.frame) + 10, 80, 12)];
         [discountLabel setFont:[UIFont systemFontOfSize:12]];
         [discountLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         discountLabel.text = @"优惠折扣：";
@@ -258,8 +274,14 @@
         [discountValueLable setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         discountValueLable.textAlignment = NSTextAlignmentRight;
         NSInteger discountValue = [orderModel.discount integerValue];
-        discountValue = discountValue * 10;
-        discountValueLable.text = [NSString stringWithFormat:@"%ld折",(long)discountValue];
+        discountValue = discountValue / 10;
+        if(discountValue >= 10)
+        {
+            discountValueLable.text = [NSString stringWithFormat:@"无"];
+        }else
+        {
+            discountValueLable.text = [NSString stringWithFormat:@"%ld折",(long)discountValue];
+        }
         [itemView_orderInfo addSubview:discountValueLable];
 
         UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(discountLabel.frame) + 10, 50, 12)];
@@ -272,10 +294,14 @@
         [redPacketValueLable setFont:[UIFont systemFontOfSize:12]];
         [redPacketValueLable setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         redPacketValueLable.textAlignment = NSTextAlignmentRight;
-        redPacketValueLable.text = [NSString stringWithFormat:@"￥%@",orderModel.voucher];
+        if([orderModel.voucher isEqual:[NSNull null]])
+        {
+            orderModel.voucher = @"0.00";
+        }
+        redPacketValueLable.text = [NSString stringWithFormat:@"￥%@",orderModel.voucher?:@"0.00"];
         [itemView_orderInfo addSubview:redPacketValueLable];
         
-        UILabel *payLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(redPacketLabel.frame) + 10, 50, 12)];
+        UILabel *payLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(redPacketLabel.frame) + 10, 70, 12)];
         [payLabel setFont:[UIFont systemFontOfSize:12]];
         [payLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
         payLabel.text = @"实付款：";
@@ -283,7 +309,7 @@
         
         UILabel *payValueLable = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 100, CGRectGetMinY(payLabel.frame), 100, 12)];
         [payValueLable setFont:[UIFont systemFontOfSize:12]];
-        [payValueLable setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+        [payValueLable setTextColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"]];
         payValueLable.textAlignment = NSTextAlignmentRight;
         payValueLable.text = [NSString stringWithFormat:@"￥%@",orderModel.payPrice];
         [itemView_orderInfo addSubview:payValueLable];
@@ -330,7 +356,7 @@
         NSString *statusStr = [[NSString alloc]init];
         
         switch ([orderModel.status integerValue]) {
-            case 0:
+            case 1:
             {
                 statusStr = @"待付款";
                 title_rightBtn = @"取消订单";
@@ -341,7 +367,7 @@
                 [btn_left setTag:ButtonSelectedStylePay];
             }
                 break;
-            case 1:
+            case 2:
             {
                 statusStr = @"待发货";
                 title_leftBtn = @"";
@@ -350,7 +376,7 @@
                 [btn_right setTag:ButtonSelectedStyleNoteSend];
             }
                 break;
-            case 2:
+            case 3:
             {
                 statusStr = @"待收货";
                 title_leftBtn = @"";
@@ -359,7 +385,7 @@
                 [btn_right setTag:ButtonSelectedStyleReceived];
             }
                 break;
-            case 3:
+            case 4:
             {
                 statusStr = @"已收货";
                 title_leftBtn = @"";
@@ -368,7 +394,7 @@
                 [btn_right setTag:ButtonSelectedStyleDeleteOrder];
             }
                 break;
-            case 4:
+            case 5:
             {
                 statusStr = @"退/换货";
                 title_leftBtn = @"";
@@ -382,22 +408,15 @@
         CGSize btn_rightSize = [title_rightBtn sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]}];
         CGFloat btn_rightX = self.width - kSpacePaddingX - btn_rightSize.width - 30;
         CGFloat btn_rightY = kSpacePaddingY;
-        CGRect btn_rightRect=CGRectMake(btn_rightX, btn_rightY, btn_rightSize.width + 30, btn_rightSize.height + 10);
+        CGRect btn_rightRect=CGRectMake(btn_rightX, btn_rightY, btn_rightSize.width + 30, 22);
         
         [btn_right setFrame:btn_rightRect];
         [btn_right.titleLabel setFont:[UIFont systemFontOfSize:12]];
         [btn_right setTitle:title_rightBtn forState:UIControlStateNormal];
         btn_right.layer.borderWidth = 0.5;
         btn_right.layer.cornerRadius = 3;
-        if([title_rightBtn isEqualToString:@"支付"] || [title_rightBtn isEqualToString:@"提醒发货"] || [title_rightBtn isEqualToString:@"物流单号"])
-        {
-            [btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"] forState:UIControlStateNormal];
-            btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#d95c47"]CGColor];
-        }else
-        {
-            [btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
-            btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
-        }
+        [btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
+        btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
         
         if([title_leftBtn length] == 0)
         {
@@ -407,7 +426,7 @@
             CGSize btn_leftSize = [title_rightBtn sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
             CGFloat btn_leftX = CGRectGetMinX(btn_right.frame) - btn_leftSize.width - 30 - 20;
             CGFloat btn_leftY = kSpacePaddingY;
-            CGRect btn_leftRect=CGRectMake(btn_leftX, btn_leftY, btn_leftSize.width + 30, btn_leftSize.height + 10);
+            CGRect btn_leftRect=CGRectMake(btn_leftX, btn_leftY, btn_leftSize.width + 30, 22);
             [btn_left setFrame:btn_leftRect];
             [btn_left.titleLabel setFont:[UIFont systemFontOfSize:12]];
             [btn_left setTitle:title_leftBtn forState:UIControlStateNormal];

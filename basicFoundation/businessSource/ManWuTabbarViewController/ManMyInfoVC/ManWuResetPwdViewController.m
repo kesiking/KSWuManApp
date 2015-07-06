@@ -96,6 +96,12 @@
     return _btn_nextStep;
 }
 
+#pragma mark 监听View点击事件
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:NO];
+}
+
 - (void)getValidateCode
 {
     //判断逻辑待完善

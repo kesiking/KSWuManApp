@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) UIImageView *itemImageView;
 @property (nonatomic, strong) UILabel *itemName;
-@property (nonatomic, strong) id <UserInfoViewItemDelegate> delegate;
+@property (nonatomic, assign) id <UserInfoViewItemDelegate> delegate;
 
 -(id)initWithFrame:(CGRect)frame Tag:(NSInteger)tag;
 
