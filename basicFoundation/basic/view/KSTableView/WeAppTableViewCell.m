@@ -87,6 +87,12 @@
     if (![self.cellView checkCellLegalWithWithCellView:self componentItem:componentItem]) {
         return;
     }
+    if (!CGRectEqualToRect(self.cellView.frame, rect)) {
+        self.cellView.frame = rect;
+    }
+    if ([extroParams isKindOfClass:[KSCellModelInfoItem class]]) {
+        self.cellView.indexPath = [(KSCellModelInfoItem*)extroParams cellIndexPath];
+    }
     [self.cellView configCellWithCellView:self Frame:rect componentItem:componentItem extroParams:extroParams];
     if (self.cellView && self.cellView.superview == nil) {
         [self addSubview:self.cellView];
