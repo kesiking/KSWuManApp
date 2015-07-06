@@ -20,6 +20,8 @@
 
 -(void)setupView{
     [self addSubview:self.labelContainer];
+
+    self.linearLayoutPadding = CSLinearLayoutMakePadding(0, labelPaddingLeft, 5.0, 0.0);
 }
 
 -(NSMutableArray *)descriptionArray{
@@ -60,24 +62,26 @@
     
     /*重新布局*/
     [self.labelContainer removeAllItems];
-    CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, labelPaddingLeft, 5.0, 0.0);
     
-    CSLinearLayoutItem *titleLabelLayoutItem = [[CSLinearLayoutItem alloc]
-                                             initWithView:self.titleLabel];
-    titleLabelLayoutItem.padding             = padding;
-    [self.labelContainer addItem:titleLabelLayoutItem];
+    if (!self.titleLabel.hidden) {
+        CSLinearLayoutItem *titleLabelLayoutItem = [[CSLinearLayoutItem alloc]
+                                                    initWithView:self.titleLabel];
+        titleLabelLayoutItem.padding             = self.linearLayoutPadding;
+        [self.labelContainer addItem:titleLabelLayoutItem];
+    }
     
     for (NSString *description in self.descriptionArray) {
+        NSUInteger index = [self.descriptionArray indexOfObject:description];
         if (description == nil || ![description isKindOfClass:[NSString class]]) {
             continue;
         }
-        UIView* descriptionView = [self getDescriptionViewWithDescription:description];
+        UIView* descriptionView = [self getDescriptionViewWithWithIndex:index description:description];
         if (descriptionView == nil) {
             continue;
         }
         CSLinearLayoutItem *subviewLayoutItem = [[CSLinearLayoutItem alloc]
                                                 initWithView:descriptionView];
-        subviewLayoutItem.padding             = padding;
+        subviewLayoutItem.padding             = [self getLayoutPaddingWithIndex:index description:description];
         [self.labelContainer addItem:subviewLayoutItem];
     }
 }
@@ -86,12 +90,19 @@
 
 }
 
--(UIView*)getDescriptionViewWithDescription:(NSString*)description{
+- (CSLinearLayoutItemPadding)getLayoutPaddingWithIndex:(NSUInteger)index description:(NSString*)description{
+    return self.linearLayoutPadding;
+}
+
+-(UIView*)getDescriptionViewWithWithIndex:(NSUInteger)index description:(NSString*)description;
+{
     if (description == nil) {
         return nil;
     }
-    
-    UILabel* label = [[UILabel alloc] initWithFrame:self.bounds];
+    CSLinearLayoutItemPadding padding = [self getLayoutPaddingWithIndex:index description:description];
+    CGRect rect = self.bounds;
+    rect.size.width = rect.size.width - padding.left - padding.right;
+    UILabel* label = [[UILabel alloc] initWithFrame:rect];
     label.backgroundColor = [UIColor whiteColor];
     label.autoresizingMask =  UIViewAutoresizingFlexibleHeight;
     label.adjustsFontSizeToFitWidth = NO;

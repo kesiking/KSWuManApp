@@ -7,6 +7,7 @@
 //
 
 #import "KSAdapterService.h"
+#import "KSOrderModel.h"
 
 @interface ManWuOrderService : KSAdapterService
 
@@ -18,5 +19,7 @@
                     payPrice:(NSNumber*)payPrice
                   activityId:(NSString*)activityId
                    voucherId:(NSString*)voucherId;
+
+-(void)loadOrderItemWithOrderId:(NSString*)orderId;
 
 @end

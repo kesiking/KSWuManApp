@@ -170,9 +170,18 @@
 
 - (void)skuPropChanged:(id)sender {
     [self reloadData];
+    // 改变headerView
+    [self setupHeaderViewWithData];
+    // delegate透出
     if (self.delegate && [self.delegate respondsToSelector:@selector(tradeSkuValueDidChange:)]) {
         [self.delegate tradeSkuValueDidChange:self];
     }
+}
+
+-(void)setupHeaderViewWithData{
+    NSString *skuId = self.detailModel.skuService.currentSKUInfo.selectSkuId;
+    NSString *skuInfo = self.detailModel.skuService.currentSKUInfo.skuInfoDescription?:[[self.detailModel.skuMap objectForKey:skuId] description];
+    NSNumber *skuPrice = self.detailModel.skuService.currentSKUInfo.price;
 }
 
 - (void)buyNowBtnClick:(id)sender {

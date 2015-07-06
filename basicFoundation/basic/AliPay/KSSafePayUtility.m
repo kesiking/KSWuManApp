@@ -119,8 +119,10 @@ static NSString    * aliPayPublicKey;
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
             BOOL isSuccess = [self processResultStatus:resultDic];
-            if (callbackBlock && isSuccess) {
-                callbackBlock(resultDic);
+            NSMutableDictionary* resultMutableDict = [NSMutableDictionary dictionaryWithDictionary:resultDic];
+            [resultMutableDict setObject:[NSNumber numberWithBool:isSuccess] forKey:@"isSuccess"];
+            if (callbackBlock) {
+                callbackBlock(resultMutableDict);
             }
         }];
     }

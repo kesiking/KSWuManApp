@@ -11,7 +11,6 @@
 
 @interface KSSafePayUtility : NSObject
 
-
 /*
  * key-value传入
  * 必须包含：tradeNO（订单号），price（价格）
