@@ -188,6 +188,7 @@
                 [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
                     // 支付成功后 todo
                     [strongSelf.loadOrderService loadOrderItemWithOrderId:tradeNO];
+                    [strongSelf showLoadingView];
                 }];
             }
         };
@@ -206,10 +207,16 @@
         _loadOrderService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
             STRONGSELF
             if (service && service.item) {
+                [strongSelf hideLoadingView];
                 ManWuOrderDetailViewController *orderDetailVC = [[ManWuOrderDetailViewController alloc]init];
                 orderDetailVC.orderModel = (KSOrderModel*)service.item;
                 [strongSelf.viewController.navigationController pushViewController:orderDetailVC animated:YES];
             }
+        };
+        
+        _loadOrderService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
+            STRONGSELF
+            [strongSelf hideLoadingView];
         };
     }
     return _loadOrderService;
