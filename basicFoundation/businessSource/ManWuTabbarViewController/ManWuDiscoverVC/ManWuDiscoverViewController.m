@@ -46,6 +46,11 @@
 -(ManWuDiscoverListView *)discoverListView{
     if (_discoverListView == nil) {
         _discoverListView = [[ManWuDiscoverListView alloc] initWithFrame:self.view.bounds];
+        WEAKSELF
+        [_discoverListView.tableViewCtl setOnRefreshEvent:^(KSScrollViewServiceController* scrollViewController){
+            STRONGSELF
+            [strongSelf.discoverService loadAllCategoryCommodityListData];
+        }];
     }
     return _discoverListView;
 }

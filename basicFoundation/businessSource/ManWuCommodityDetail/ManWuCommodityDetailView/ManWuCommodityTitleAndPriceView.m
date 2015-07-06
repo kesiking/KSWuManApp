@@ -89,7 +89,7 @@
         self.detailModel = (ManWuCommodityDetailModel*)descriptionModel;
         self.commodityTitleLabel.text = self.detailModel.title;
         self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",self.detailModel.sale];
-        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love];
+        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love?:@"0"];
         [self.commodityPraiseButton updatePraiseBtnStatus:[self.detailModel.loved boolValue]];
         [self.commodityFavorateButton updateFavBtnStatus:[self.detailModel.like boolValue]];
         [self.commodityPraiseButton setItemId:self.detailModel.itemId];

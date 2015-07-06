@@ -38,7 +38,7 @@
     
     self.itemClass = [ManWuVoucherModel class];
     
-    [self loadDataListWithAPIName:@"user/fetchVouchers.do" params:params version:nil];
+    [self loadDataListWithAPIName:@"user/fetchVouchersForOrder.do" params:params version:nil];
 }
 
 @end
