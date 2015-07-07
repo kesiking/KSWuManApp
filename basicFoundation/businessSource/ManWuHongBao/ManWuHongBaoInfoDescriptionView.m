@@ -29,12 +29,12 @@
     if (voucherModel.activityRule) {
         NSString* activityRule = [NSString stringWithFormat:@"活动规则："];
         [self.descriptionArray addObject:activityRule];
-        [self.descriptionArray addObject:@"发的是快乐附近的顺口溜交罚款蓝色的减肥的附近的顺口溜减肥了快速点击发送的都是快乐飞"];
+        [self.descriptionArray addObject:voucherModel.activityRule];
     }
     if (voucherModel.useRange) {
         NSString* useRange = [NSString stringWithFormat:@"红包使用范围："];
         [self.descriptionArray addObject:useRange];
-        [self.descriptionArray addObject:@"gfdlgkfd;lkgldf;jldfkjfklsdjfkldsjfkldsjf都是解放了快速的减肥看来是的"];
+        [self.descriptionArray addObject:voucherModel.useRange];
     }
     [self reloadData];
 }

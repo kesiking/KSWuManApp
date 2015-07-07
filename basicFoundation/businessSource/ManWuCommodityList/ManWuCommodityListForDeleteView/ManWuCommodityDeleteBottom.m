@@ -50,7 +50,7 @@
     button.clipsToBounds            = YES;
     button.titleLabel.numberOfLines = 2;
     button.titleLabel.font          = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_Chinese
-                                                                size:TBDetailFontSize_Title2];
+                                                                size:TBDetailFontSize_Title0];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 

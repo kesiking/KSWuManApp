@@ -14,4 +14,6 @@
 
 -(void)unAddFavorateWithItemId:(NSString*)itemId;
 
+-(void)unAddFavorateWithItemIds:(NSArray*)itemIds;
+
 @end

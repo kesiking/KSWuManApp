@@ -349,6 +349,7 @@
 		5F4E40511B1ED325004AE7C0 /* KSCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40501B1ED325004AE7C0 /* KSCacheService.m */; };
 		5F4E40541B1EDD42004AE7C0 /* KSAdapterCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */; };
 		5F4E40571B1F1246004AE7C0 /* KSCacheStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */; };
+		5F649A711B4BEBE0000F390F /* UICustomLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -1168,6 +1169,8 @@
 		5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAdapterCacheService.m; sourceTree = "<group>"; };
 		5F4E40551B1F1246004AE7C0 /* KSCacheStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCacheStrategy.h; sourceTree = "<group>"; };
 		5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCacheStrategy.m; sourceTree = "<group>"; };
+		5F649A6F1B4BEBE0000F390F /* UICustomLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLineLabel.h; sourceTree = "<group>"; };
+		5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLineLabel.m; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -2481,6 +2484,7 @@
 		058DADB11AE1107D009D0008 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				5F649A6E1B4BEBE0000F390F /* KSCustomLabel */,
 				5F4087FD1B194BA300954568 /* KSComBox */,
 				5F4087F31B1949FF00954568 /* KSPopMenu */,
 				05AF2FEF1B003F2800890A65 /* KSBlurView */,
@@ -3003,6 +3007,15 @@
 				5F4E40411B1ECD5C004AE7C0 /* NSObject+LKModel.m */,
 			);
 			path = FMDBHelper;
+			sourceTree = "<group>";
+		};
+		5F649A6E1B4BEBE0000F390F /* KSCustomLabel */ = {
+			isa = PBXGroup;
+			children = (
+				5F649A6F1B4BEBE0000F390F /* UICustomLineLabel.h */,
+				5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */,
+			);
+			path = KSCustomLabel;
 			sourceTree = "<group>";
 		};
 		5F9216231B1077B900554B44 /* ManWuDiscoverService */ = {
@@ -3681,6 +3694,7 @@
 				5FD63DB21B3F8EA8002593B3 /* KSImageListCache.m in Sources */,
 				058DAE4E1AE72FC3009D0008 /* KSNavigator.m in Sources */,
 				058DADD61AE52EC0009D0008 /* AFURLSessionManager.m in Sources */,
+				5F649A711B4BEBE0000F390F /* UICustomLineLabel.m in Sources */,
 				056664C51AEF206400FD1C65 /* TBDetailTipsModel.m in Sources */,
 				05B8DF5A1AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m in Sources */,
 				056664941AEE12C400FD1C65 /* ManWuDetailBottomBarView.m in Sources */,
