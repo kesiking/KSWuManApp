@@ -90,6 +90,7 @@
     _currentSkuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.quantity = [_tbDetailModel.quantity integerValue];
+    _currentSkuInfo.price = _tbDetailModel.price;
     [self initEnableMap];
 }
 
@@ -304,7 +305,8 @@
         if (skuPpathId == nil) {
             skuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
-            skuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];;
+            skuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];
+            skuInfo.price = self.tbDetailModel.price;
         }else{
             skuInfo.skuDisplayString = skuSummaryString;
             skuInfo.skuCellString = skuSummaryString;
