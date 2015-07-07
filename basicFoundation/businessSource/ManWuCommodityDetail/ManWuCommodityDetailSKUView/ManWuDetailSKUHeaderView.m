@@ -22,11 +22,13 @@
     [super setupView];
     [self addSubview:self.priceDescription];
     [self addSubview:self.priceNum];
+    /*顶部分割线*/
+    [self addSubview:[TBDetailUITools drawDivisionLine:0 yPos:self.height - 0.5 lineWidth:self.width]];
 }
 
 - (UILabel *)priceDescription {
     if (!_priceDescription) {
-        _priceDescription=[[UILabel alloc] initWithFrame:CGRectMake(0, (self.height - 36)/2, 60, 36)];
+        _priceDescription=[[UILabel alloc] initWithFrame:CGRectMake(0, (self.height - 36)/2, 35, 36)];
         _priceDescription.backgroundColor=[UIColor clearColor];
         _priceDescription.text = @"价格:";
         _priceDescription.font = [UIFont boldSystemFontOfSize:15.0];
@@ -37,9 +39,9 @@
 
 -(UILabel *)priceNum{
     if (!_priceNum) {
-        _priceNum=[[UILabel alloc] initWithFrame:CGRectMake(self.priceDescription.right, self.priceDescription.top, 100, self.priceDescription.height)];
+        _priceNum=[[UILabel alloc] initWithFrame:CGRectMake(self.priceDescription.right + 10, self.priceDescription.top, 100, self.priceDescription.height)];
         _priceNum.backgroundColor=[UIColor clearColor];
-        _priceNum.text = @"价格:";
+        _priceNum.text = @"0元";
         _priceNum.font = [UIFont boldSystemFontOfSize:15.0];
         [_priceNum setTextColor:RGB(0xFF, 0x50, 0x00)];
     }
