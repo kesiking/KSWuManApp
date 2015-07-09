@@ -8,6 +8,8 @@
 
 #import "ManWuCommodityListForDeleteView.h"
 #import "ManWuCommodityDeleteBottom.h"
+#import "ManWuCommodityDetailModel.h"
+#import "ManWuFavService.h"
 #import "ManWuFavViewCell.h"
 
 @interface ManWuCommodityListForDeleteView()
@@ -17,6 +19,8 @@
 @property (nonatomic,strong) NSString                     *sortKey;
 
 @property (nonatomic,strong) ManWuCommodityDeleteBottom   *deleteView;
+
+@property (nonatomic,strong) ManWuFavService              *unFavService;
 
 @property (nonatomic,assign) BOOL                          isEditing;
 
@@ -74,6 +78,16 @@
     return _deleteView;
 }
 
+-(ManWuFavService *)unFavService{
+    if (_unFavService == nil) {
+        _unFavService = [ManWuFavService new];
+        _unFavService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            NSLog(@"删除成功");
+        };
+    }
+    return _unFavService;
+}
+
 #pragma mark - deleteSelectCollectionCell 操作
 
 - (void)deleteSelectedCollectionCell{
@@ -85,8 +99,11 @@
      */
     self.collectionViewCtl.scrollView.userInteractionEnabled = NO;
     self.isEditing = YES;
+    WEAKSELF
     [self.collectionViewCtl deleteCollectionCellProccessBlock:^(NSArray *collectionDeleteItems,KSDataSource* dataSource) {
+        STRONGSELF
         // 发送请求删除服务端数据
+        NSMutableArray* itemIds = [NSMutableArray array];
         [collectionDeleteItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             if ([obj isKindOfClass:[NSIndexPath class]]) {
                 NSIndexPath* indexPath = obj;
@@ -94,9 +111,13 @@
                     *stop = YES;
                     return;
                 }
-                WeAppComponentBaseItem* componentItem = [dataSource getComponentItemWithIndex:[indexPath row]];
+                ManWuCommodityDetailModel* componentItem = (ManWuCommodityDetailModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
+                if (componentItem && componentItem.itemId) {
+                    [itemIds addObject:componentItem.itemId];
+                }
             }
         }];
+        [strongSelf.unFavService unAddFavorateWithItemIds:itemIds];
     } completeBolck:^{
         [self.collectionViewCtl reloadData];
         self.collectionViewCtl.scrollView.userInteractionEnabled = YES;

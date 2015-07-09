@@ -34,15 +34,21 @@
     // 统一调用登陆逻辑
     [self callWithAuthCheck:apiName method:^{
         NSMutableDictionary* newParams = nil;
+
         if (param) {
-            newParams = [NSMutableDictionary dictionary];
-            for (NSString* key in [param allKeys]) {
-                id value = [param objectForKey:key];
-                if ([value isKindOfClass:[NSString class]]) {
-                    [newParams setObject:[(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:key];
-                }else{
-                    [newParams setObject:value forKey:key];
+            BOOL unNeedEncode = [param objectForKey:@"__unNeedEncode__"];
+            if (!unNeedEncode) {
+                newParams = [NSMutableDictionary dictionary];
+                for (NSString* key in [param allKeys]) {
+                    id value = [param objectForKey:key];
+                    if ([value isKindOfClass:[NSString class]]) {
+                        [newParams setObject:[(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:key];
+                    }else{
+                        [newParams setObject:value forKey:key];
+                    }
                 }
+            }else{
+                newParams = [NSMutableDictionary dictionaryWithDictionary:param];
             }
         }
         if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
@@ -50,6 +56,7 @@
         }
         
         [newParams removeObjectForKey:@"needLogin"];
+        [newParams removeObjectForKey:@"__unNeedEncode__"];
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
         // 默认为json序列化
         AFHTTPRequestOperationManager *httpRequestOM = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:KS_MANWU_BASE_URL]];
