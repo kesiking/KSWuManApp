@@ -43,7 +43,7 @@
 
 -(ManWuCommoditySortAndFiltView *)sortFiltHeadView{
     if (_sortFiltHeadView == nil) {
-        CGRect rect = self.collectionViewCtl.scrollView.bounds;
+        CGRect rect = self.bounds;
         rect.size.height = sort_filt_view_height;
         _sortFiltHeadView = [[ManWuCommoditySortAndFiltView alloc] initWithFrame:rect];
         WEAKSELF

@@ -15,6 +15,21 @@
     // Do any additional setup after loading the view.
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
+    
+    UINavigationController* navigationController = self.navigationController;
+    if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
+        navigationController.navigationBar.barTintColor = RGB(0xf8, 0xf8, 0xf8);
+    }
+    if([navigationController.navigationBar respondsToSelector:@selector(tintColor)]){
+        navigationController.navigationBar.tintColor  =  RGB(0x66, 0x66, 0x66);
+    }
+    
+    // 修改navbar title颜色
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               RGB(0x66, 0x66, 0x66), NSForegroundColorAttributeName,
+                                               [UIFont boldSystemFontOfSize:18], NSFontAttributeName,nil];
+    
+    [navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

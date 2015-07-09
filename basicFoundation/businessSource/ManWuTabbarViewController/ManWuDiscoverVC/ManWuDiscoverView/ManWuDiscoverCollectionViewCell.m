@@ -13,6 +13,7 @@
 
 -(void)setupView{
     [self.commodityImageView setFrame:self.bounds];
+    [self addSubview:self.commodityLabel];
 }
 
 -(UIImageView *)commodityImageView{
@@ -23,12 +24,24 @@
     return _commodityImageView;
 }
 
+-(UILabel *)commodityLabel{
+    if (_commodityLabel == nil) {
+        _commodityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 15, self.width, 15)];
+        [_commodityLabel setFont:[UIFont systemFontOfSize:11]];
+        [_commodityLabel setTextAlignment:NSTextAlignmentCenter];
+        [_commodityLabel setTextColor:RGB(0xad, 0xad, 0xad)];
+    }
+    return _commodityLabel;
+}
+
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     [super configCellWithCellView:cell Frame:rect componentItem:componentItem extroParams:extroParams];
     
     ManWuDiscoverModel* discoverModel = (ManWuDiscoverModel*)componentItem;
 
     [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:discoverModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+    
+    [self.commodityLabel setText:discoverModel.name];
 }
 
 - (void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{

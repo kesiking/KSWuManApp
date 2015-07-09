@@ -13,7 +13,7 @@
 #import "ManWuSearchViewCell.h"
 #import "ManWuSearchViewCellInfoItem.h"
 
-#define searchViewBorder (caculateNumber(22))
+#define searchViewBorder (caculateNumber(33))
 
 @interface ManWuCommoditySearchListViewController ()
 
@@ -39,9 +39,10 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self.view addSubview:self.commodityListView];
-    [self.view addSubview:self.searchView];
     
     [self.commodityListView loadDataWithSearchKeyword:self.searchKeyword];
+    [self.view addSubview:self.searchView];
+
     [self.searchNavigationView addSubview:self.searchView.navigateview];
     [self.searchView.navigateview setOrigin:CGPointMake(0, (self.searchNavigationView.height - self.searchView.navigateview.height)/2)];
 }
@@ -97,6 +98,7 @@
         UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (_searchView.navigateview.height - searchViewBorder)/2, searchViewBorder, searchViewBorder)];
         [backButton setBackgroundColor:[UIColor clearColor]];
         [backButton setImage:[UIImage imageNamed:@"button_back"] forState:UIControlStateNormal];
+        [backButton setImageEdgeInsets:UIEdgeInsetsMake((backButton.height - 16.5)/2, (backButton.width - 9)/2, (backButton.height - 16.5)/2, (backButton.width - 9)/2)];
         [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [_searchView.navigateview insertSubview:backButton atIndex:0];
         _searchView.hidden = YES;

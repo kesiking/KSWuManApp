@@ -321,6 +321,8 @@
 		5F214C961B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C951B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m */; };
 		5F226EB21B33A27B00FEFBC6 /* deleteFavrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */; };
 		5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */; };
+		5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */; };
+		5F2D00091B4EAD5E007C2F4D /* manwu_sort_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */; };
 		5F4087E71B19433F00954568 /* ManWuOrderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087E61B19433F00954568 /* ManWuOrderService.m */; };
 		5F4087EE1B19436C00954568 /* ManWuVoucherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087ED1B19436C00954568 /* ManWuVoucherService.m */; };
 		5F4087F11B1945FE00954568 /* ManWuVoucherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F01B1945FE00954568 /* ManWuVoucherView.m */; };
@@ -1120,6 +1122,8 @@
 		5F214C951B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuTradeDetailSKUService.m; sourceTree = "<group>"; };
 		5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteFavrate.png; sourceTree = "<group>"; };
 		5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unDeleteFavrate.png; sourceTree = "<group>"; };
+		5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_sort_down.png; sourceTree = "<group>"; };
+		5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_sort_up.png; sourceTree = "<group>"; };
 		5F4087E51B19433F00954568 /* ManWuOrderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuOrderService.h; sourceTree = "<group>"; };
 		5F4087E61B19433F00954568 /* ManWuOrderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuOrderService.m; sourceTree = "<group>"; };
 		5F4087EC1B19436C00954568 /* ManWuVoucherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuVoucherService.h; sourceTree = "<group>"; };
@@ -1540,6 +1544,8 @@
 		0553F75A1AF9EB660013BB97 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */,
+				5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */,
 				5FFEB4291B1C38D700CAC511 /* button_back.png */,
 				5FD244F11B3ACBFE00353589 /* manwu_commodity_filt_all.png */,
 				5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */,
@@ -3370,6 +3376,7 @@
 				5F226EB21B33A27B00FEFBC6 /* deleteFavrate.png in Resources */,
 				058DAE231AE638BA009D0008 /* tabitem_discover_highlight.png in Resources */,
 				91C76B6E1B31C516008C5EAC /* order_forchange@3x.png in Resources */,
+				5F2D00091B4EAD5E007C2F4D /* manwu_sort_up.png in Resources */,
 				05AF30071B004D3F00890A65 /* loading_view_5.png in Resources */,
 				056664B21AEE37AC00FD1C65 /* tb_control_flow_number_left_press.png in Resources */,
 				5F4088121B19663200954568 /* manwu_default_address.png in Resources */,
@@ -3457,6 +3464,7 @@
 				05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */,
 				05ACACA01AFCA94800853E1C /* tb_btn_all_square_press.png in Resources */,
 				056664B41AEE37AC00FD1C65 /* tb_control_flow_number_right_press.png in Resources */,
+				5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */,
 				91671D801B482DBE00833331 /* btn_back@2x.png in Resources */,
 				5F214C801B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				052CC6BB1AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png in Resources */,
