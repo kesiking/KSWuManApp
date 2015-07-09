@@ -29,6 +29,7 @@
 #import "KSNavigator.h"
 #import "MBProgressHUD.h"
 #import "WeAppToast.h"
+#import "RSAEncrypt.h"
 
 #define WEAKSELF typeof(self) __weak __block weakSelf = self;
 #define STRONGSELF typeof(self) __strong strongSelf = weakSelf;

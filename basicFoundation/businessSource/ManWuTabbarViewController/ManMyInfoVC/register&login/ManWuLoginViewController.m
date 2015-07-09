@@ -204,9 +204,10 @@
     if (aliPayFile == nil) {
         aliPayFile = [[NSDictionary alloc] init];
     }
-    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey"];
+    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
     
-    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
+//    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
+    NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
 
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text} version:nil];
 }
