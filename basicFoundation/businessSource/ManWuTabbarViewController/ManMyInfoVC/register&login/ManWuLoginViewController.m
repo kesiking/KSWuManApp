@@ -209,7 +209,8 @@
 //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
     NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
 
-    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text} version:nil];
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":signedPwd?:@""} version:nil];
+
 }
 
 - (void)doRegister
