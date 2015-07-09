@@ -42,7 +42,14 @@
     if (!action.targetController) {
         return NO;
     }
-    [action.targetController setOpenNavigateType:action.navigationParams.navigationType];
+    if ([action.targetController isKindOfClass:[UINavigationController class]] && [((UINavigationController*)action.targetController).viewControllers count] > 0) {
+        [[((UINavigationController*)action.targetController) topViewController] setOpenNavigateType:action.navigationParams.navigationType];
+    }else{
+        [action.targetController setOpenNavigateType:action.navigationParams.navigationType];
+    }
+    if (!action.targetController.rdv_tabBarController) {
+        [action.targetController rdv_setTabBarController:action.sourceController.rdv_tabBarController];
+    }
     [continerViewController addSubcontroller:action.targetController navigateType:action.navigationParams.navigationType animated:action.navigationParams.animated];
     return YES;
 }

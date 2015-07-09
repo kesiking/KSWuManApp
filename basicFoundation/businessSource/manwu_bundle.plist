@@ -24,6 +24,8 @@
 		<string>ManWuAddressEditViewController</string>
 		<key>login</key>
 		<string>ManWuLoginViewController</string>
+		<key>manwu_register_view</key>
+		<string>ManWuRegisterViewController</string>
 	</dict>
 	<key>object_list</key>
 	<array>

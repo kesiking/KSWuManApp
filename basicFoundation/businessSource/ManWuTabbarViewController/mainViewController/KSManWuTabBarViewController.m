@@ -98,6 +98,7 @@
     }
     [self setViewControllers:navigationVCArray];
     [self configTabBarItemWithNormalImages:tabbarNormalImages selectedImages:tabbarSelectedImages titles:tabbarTitles];
+    [self.KSNavigationController rdv_setTabBarController:self];
     self.delegate = self;
 }
 

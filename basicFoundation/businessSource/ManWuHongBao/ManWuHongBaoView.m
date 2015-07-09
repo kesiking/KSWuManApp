@@ -152,7 +152,24 @@
 }
 
 -(void)clickedBtnClick:(id)sender{
-    
+    switch (self.voucherModel.type) {
+        case 0:{
+            TBOpenURLFromTarget(internalURL(kManWuRegisterView), self);
+        }
+            break;
+        case 1:{
+            TBOpenURLFromTarget(internalURL(@"ManWuMyInviteCodeViewController"), self);
+        }
+            break;
+        case 2:{
+            TBOpenURLFromTarget(tabbarURL(kManWuTabHome), self);
+        }
+            break;
+        default:{
+            TBOpenURLFromTarget(internalURL(kManWuRegisterView), self);
+        }
+            break;
+    }
 }
 
 @end

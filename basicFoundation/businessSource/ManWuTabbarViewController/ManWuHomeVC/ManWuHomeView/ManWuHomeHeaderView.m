@@ -113,6 +113,7 @@
         _bannerView.bannerBackgroundImage.image = [UIImage imageNamed:@"gz_image_loading.png"];
         _bannerView.delegate = (id)self;
         _bannerView.isRounded = NO;
+        [_bannerView setStopScroll:NO];
     }
     return _bannerView;
 }
@@ -219,6 +220,7 @@
         [bannerItems addObject:bannerItem];
     }
     [self.bannerView setLocalData:bannerItems];
+    [self.bannerView setStopScroll:NO];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

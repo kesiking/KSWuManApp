@@ -37,4 +37,6 @@
 
 #define kManWuAddressEdit        @"manwu_address_edit"
 
+#define kManWuRegisterView       @"manwu_register_view"
+
 #endif
