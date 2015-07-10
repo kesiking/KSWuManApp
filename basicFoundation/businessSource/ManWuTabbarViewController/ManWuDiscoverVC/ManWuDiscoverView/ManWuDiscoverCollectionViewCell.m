@@ -26,7 +26,7 @@
 
 -(UILabel *)commodityLabel{
     if (_commodityLabel == nil) {
-        _commodityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 15, self.width, 15)];
+        _commodityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 17, self.width, 15)];
         [_commodityLabel setFont:[UIFont systemFontOfSize:11]];
         [_commodityLabel setTextAlignment:NSTextAlignmentCenter];
         [_commodityLabel setTextColor:RGB(0xad, 0xad, 0xad)];

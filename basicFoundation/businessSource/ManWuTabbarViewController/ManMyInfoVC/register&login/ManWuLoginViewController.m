@@ -207,7 +207,8 @@
     NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
     
 //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
-    NSString *signedPwd = [[RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey] tbUrlEncoded];
+    NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
+    signedPwd = [signedPwd tbUrlEncoded];
 
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1} version:nil];
 

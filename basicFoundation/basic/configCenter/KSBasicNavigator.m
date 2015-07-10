@@ -119,7 +119,9 @@
             return viewController.rdv_tabBarController;
         }
     } else if (TBNavigationTypePresent == type) {
-        if (viewController.rdv_tabBarController) {
+        if (viewController.navigationController) {
+            return viewController.navigationController;
+        }else if (viewController.rdv_tabBarController) {
             return viewController.rdv_tabBarController;
         } else {
             return viewController;

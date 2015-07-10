@@ -11,10 +11,10 @@
 @implementation RDVTabBarController (KSNavigator)
 
 - (void)addSubcontroller:(UIViewController *)controller navigateType:(TBNavigationType)type animated:(BOOL)animated {
-    if (controller.rdv_tabBarController) {
-        [self.navigationController popToViewController:controller.rdv_tabBarController animated:YES];
-    }
     if (TBNavigationTypeTabbarSelect == type) {
+        if (controller.rdv_tabBarController) {
+            [self.navigationController popToViewController:controller.rdv_tabBarController animated:YES];
+        }
         [self setSelectedViewController:controller];
     } else if (TBNavigationTypePresent == type) {
         [self presentViewController:controller animated:animated completion:NULL];

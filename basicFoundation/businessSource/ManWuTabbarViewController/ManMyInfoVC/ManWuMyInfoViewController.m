@@ -55,10 +55,28 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self setupNavigationBar];
     // 查看是否登陆，如果未登陆则跳出登陆
     [self checkLogin];
     
     [self initUserInfoView];
+}
+
+-(void)setupNavigationBar{
+    UINavigationController* navigationController = self.navigationController;
+    if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
+        navigationController.navigationBar.barTintColor = RGB(0xf8, 0xf8, 0xf8);
+    }
+    if([navigationController.navigationBar respondsToSelector:@selector(tintColor)]){
+        navigationController.navigationBar.tintColor  =  RGB(0x66, 0x66, 0x66);
+    }
+    
+    // 修改navbar title颜色
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               RGB(0x66, 0x66, 0x66), NSForegroundColorAttributeName,
+                                               [UIFont boldSystemFontOfSize:18], NSFontAttributeName,nil];
+    [navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated

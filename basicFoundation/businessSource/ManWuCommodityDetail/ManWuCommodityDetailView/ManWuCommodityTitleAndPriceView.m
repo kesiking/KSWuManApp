@@ -53,6 +53,7 @@
     [self addSubview:self.commoditySeparateLine];
     
     self.commodityOriginalPriceLabel.lineType = LineTypeMiddle;
+    self.commodityOriginalPriceLabel.lineColor = self.commodityOriginalPriceLabel.textColor;
     
     WEAKSELF
     self.commodityPraiseButton.operationStatusChanged = ^(ManWuOperationButton* operationButton){

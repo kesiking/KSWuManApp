@@ -106,19 +106,28 @@
     CGFloat navigateViewYOringe = 0;
     _navigateview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, SEARCH_BAR_HEIGHT)];
     _navigateview.autoresizingMask=UIViewAutoresizingFlexibleWidth;
+    [_navigateview setBackgroundColor:[UIColor whiteColor]];
     
     self.searchBarRect = CGRectMake(0, navigateViewYOringe, self.navigateview.frame.size.width, SEARCH_BAR_HEIGHT);
     self.searchBarSelectRect = CGRectMake(0,navigateViewYOringe, self.navigateview.frame.size.width, SEARCH_BAR_HEIGHT);
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:self.searchBarRect];
-    self.searchBar.placeholder = @"输入搜索内容";
-    self.searchBar.barTintColor = RGB(0x66, 0x66, 0x66);
-    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self.searchBar setBackgroundImage:nil];
+    self.searchBar.searchBarStyle = UISearchBarStyleDefault;
+    self.searchBar.placeholder = @"搜你想要的";
+    self.searchBar.tintColor = RGB(0xab, 0xab, 0xab);
+    self.searchBar.barTintColor = [UIColor whiteColor];
+    self.searchBar.barStyle = UIBarStyleBlack;
+    self.searchBar.autocorrectionType = UITextAutocorrectionTypeDefault;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
+    UITextField *searchField = [self.searchBar valueForKey:@"_searchField"];
+    if (searchField) {
+        [searchField setBackgroundColor:RGB(0xf2, 0xf2, 0xf2)];
+        [searchField setBorderStyle:UITextBorderStyleRoundedRect];
+    }
     self.searchBar.backgroundImage = LOADIMAGE(@"discover_searchview_background");
     [self.searchBar setSearchTextPositionAdjustment:UIOffsetMake(0, 0)];// 设置搜索框中文本框的文本偏移量
-    [self.searchBar setAutocorrectionType:UITextAutocorrectionTypeDefault];
     self.searchBar.delegate = self;
     
     [_navigateview addSubview:self.searchBar];
