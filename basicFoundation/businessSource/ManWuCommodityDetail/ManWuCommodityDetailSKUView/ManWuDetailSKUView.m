@@ -8,6 +8,7 @@
 
 #import "ManWuDetailSKUView.h"
 #import "TBTradeSKUSelectionControl.h"
+#import "ManWuDetailSKUHeaderView.h"
 #import "ManWuTradeSKUSelectionControl.h"
 #import "ManWuDetailBuyNumberStepView.h"
 #import "ManWuDetailBottomBarView.h"
@@ -18,11 +19,13 @@
 
 @property (nonatomic, strong) CSLinearLayoutView               *skuContainer;
 
-@property (nonatomic, strong) ManWuTradeSKUSelectionControl       *skuSelectionControl;
+@property (nonatomic, strong) ManWuTradeSKUSelectionControl    *skuSelectionControl;
 
 @property (nonatomic, strong) ManWuDetailBuyNumberStepView     *buyNumberStepView;
 
 @property (nonatomic, strong) ManWuDetailBottomBarView         *bottomView;
+
+@property (nonatomic, strong) ManWuDetailSKUHeaderView         *headerView;
 
 @end
 
@@ -42,6 +45,13 @@
 -(void)setDetailModel:(ManWuCommodityDetailModel *)detailModel{
     _detailModel = detailModel;
     [self reloadData];
+}
+
+- (ManWuDetailSKUHeaderView *)headerView{
+    if (_headerView == nil) {
+        _headerView = [[ManWuDetailSKUHeaderView alloc] initWithFrame:CGRectMake(0, 0, TBSKU_CONTROL_WIDTH, 44)];
+    }
+    return _headerView;
 }
 
 - (ManWuTradeSKUSelectionControl *)skuSelectionControl {
@@ -109,7 +119,7 @@
     /*属性部分*/
 //    self.skuSelectionControl.detailModel              = self.skuDetailModel;
     self.skuSelectionControl.detailModel              = self.detailModel;
-
+    [self.headerView setPriceNumText:[NSString stringWithFormat:@"%@",self.detailModel.price]];
     /*更新最大值*/
     self.buyNumberStepView.numberStepper.maximumValue = [self.detailModel.quantity doubleValue];
     
@@ -126,6 +136,10 @@
     [self.skuContainer removeAllItems];
     CSLinearLayoutItemPadding padding = CSLinearLayoutMakePadding(0, TBSKU_BORDER_GAP, 5.0, 0.0);
     
+    CSLinearLayoutItem *headerViewItem = [[CSLinearLayoutItem alloc]
+                                            initWithView:self.headerView];
+    headerViewItem.padding             = padding;
+    [self.skuContainer addItem:headerViewItem];
     
     /*sku选择*/
     if ([self.detailModel.skuService hasSKU]) {
@@ -170,9 +184,20 @@
 
 - (void)skuPropChanged:(id)sender {
     [self reloadData];
+    // 改变headerView
+    [self setupHeaderViewWithData];
+    // delegate透出
     if (self.delegate && [self.delegate respondsToSelector:@selector(tradeSkuValueDidChange:)]) {
         [self.delegate tradeSkuValueDidChange:self];
     }
+}
+
+-(void)setupHeaderViewWithData{
+//    NSString *skuId = self.detailModel.skuService.currentSKUInfo.selectSkuId;
+//    NSString *skuInfo = self.detailModel.skuService.currentSKUInfo.skuInfoDescription?:[[self.detailModel.skuMap objectForKey:skuId] description];
+    NSNumber *skuPrice = self.detailModel.skuService.currentSKUInfo.price;
+    
+    [self.headerView setPriceNumText:[NSString stringWithFormat:@"%@",skuPrice]];
 }
 
 - (void)buyNowBtnClick:(id)sender {

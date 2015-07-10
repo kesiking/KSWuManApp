@@ -26,7 +26,7 @@
 -(UIImageView *)commodityPriceImageView{
     if (_commodityPriceImageView == nil) {
         _commodityPriceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
-        _commodityPriceImageView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        _commodityPriceImageView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
         [self addSubview:_commodityPriceImageView];
     }
     return _commodityPriceImageView;

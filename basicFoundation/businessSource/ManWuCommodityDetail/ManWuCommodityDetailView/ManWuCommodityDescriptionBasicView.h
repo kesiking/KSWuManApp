@@ -14,9 +14,15 @@
 
 @property (nonatomic, strong) UILabel                     *titleLabel;
 
+@property (nonatomic, assign) CSLinearLayoutItemPadding    linearLayoutPadding;
+
 - (void)reloadData;
 
+// override for 设置model类对象
 - (void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel;
-
+// override for 根据内容获取CSLinearLayoutItemPadding属性
+- (CSLinearLayoutItemPadding)getLayoutPaddingWithIndex:(NSUInteger)index description:(NSString*)description;
+// override for 根据内容获取展示view
+- (UIView*)getDescriptionViewWithWithIndex:(NSUInteger)index description:(NSString*)description;
 
 @end

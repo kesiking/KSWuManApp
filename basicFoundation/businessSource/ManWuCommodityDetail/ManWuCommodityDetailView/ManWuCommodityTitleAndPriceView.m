@@ -7,6 +7,7 @@
 //
 
 #import "ManWuCommodityTitleAndPriceView.h"
+#import "UICustomLineLabel.h"
 #import "ManWuPraiseButton.h"
 #import "ManWuFavButton.h"
 #import "ManWuCommodityDetailModel.h"
@@ -15,7 +16,7 @@
 
 @property (nonatomic,strong) IBOutlet UILabel     *      commodityTitleLabel;
 @property (nonatomic,strong) IBOutlet UILabel     *      commodityPriceLabel;
-
+@property (nonatomic,strong) IBOutlet UICustomLineLabel    *      commodityOriginalPriceLabel;
 @property (nonatomic,strong) IBOutlet UILabel     *      commodityPraiseLabel;
 @property (nonatomic,strong) IBOutlet ManWuPraiseButton *      commodityPraiseButton;
 @property (nonatomic,strong) IBOutlet ManWuFavButton    *      commodityFavorateButton;
@@ -50,6 +51,10 @@
     [super setupView];
     [self addSubview:self.commoditySeparateTopLine];
     [self addSubview:self.commoditySeparateLine];
+    
+    self.commodityOriginalPriceLabel.lineType = LineTypeMiddle;
+    self.commodityOriginalPriceLabel.lineColor = self.commodityOriginalPriceLabel.textColor;
+    
     WEAKSELF
     self.commodityPraiseButton.operationStatusChanged = ^(ManWuOperationButton* operationButton){
         ManWuPraiseButton* favBtn = (ManWuPraiseButton*)operationButton;
@@ -89,12 +94,15 @@
         self.detailModel = (ManWuCommodityDetailModel*)descriptionModel;
         self.commodityTitleLabel.text = self.detailModel.title;
         self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",self.detailModel.sale];
-        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love];
+        self.commodityOriginalPriceLabel.text = [NSString stringWithFormat:@"￥%@",self.detailModel.price];
+        self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love?:@"0"];
         [self.commodityPraiseButton updatePraiseBtnStatus:[self.detailModel.loved boolValue]];
         [self.commodityFavorateButton updateFavBtnStatus:[self.detailModel.like boolValue]];
         [self.commodityPraiseButton setItemId:self.detailModel.itemId];
         [self.commodityFavorateButton setItemId:self.detailModel.itemId];
     }
+    [self.commodityPriceLabel sizeToFit];
+    [self.commodityOriginalPriceLabel sizeToFit];
     [self reloadData];
 }
 
@@ -105,6 +113,8 @@
     [self.commodityTitleLabel setFrame:titleLabeRect];
     
     [self.commodityPriceLabel setOrigin:CGPointMake(self.commodityPriceLabel.origin.x, self.commodityTitleLabel.bottom + 5)];
+    
+    [self.commodityOriginalPriceLabel setOrigin:CGPointMake(self.commodityPriceLabel.right + 3, self.commodityPriceLabel.top + 8)];
     
     [self.commodityFavorateButton setOrigin:CGPointMake(self.commodityFavorateButton.origin.x, self.commodityTitleLabel.bottom)];
     

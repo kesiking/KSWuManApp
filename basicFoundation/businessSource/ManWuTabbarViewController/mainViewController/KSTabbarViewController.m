@@ -39,8 +39,15 @@
     if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
         navigationController.navigationBar.barTintColor = RGB(0xed, 0x65, 0x65);
     }else if([navigationController.navigationBar respondsToSelector:@selector(tintColor)]){
-        navigationController.navigationBar.tintColor = RGB(0xed, 0x65, 0x65);
+        navigationController.navigationBar.tintColor = [UIColor whiteColor];
     }
+    
+    // 修改navbar title颜色
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor whiteColor], NSForegroundColorAttributeName,
+                                               [UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
+    
+    [navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
 }
 
 -(void)measureViewFrame{

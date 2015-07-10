@@ -40,4 +40,15 @@
     
 }
 
+-(void)loadDiscoverSearchNumberWithKeyword:(NSString*)keyword{
+    if ([WeAppUtils isEmpty:keyword]) {
+        return;
+    }
+    
+    self.jsonTopKey = @"data";
+    self.itemClass = [ManWuCommodityDetailModel class];
+    
+    [self loadNumberValueWithAPIName:@"item/searchItemNum.do" params:@{@"content":keyword} version:nil];
+}
+
 @end

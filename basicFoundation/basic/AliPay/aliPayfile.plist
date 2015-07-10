@@ -47,5 +47,16 @@ WHIwBu2AdCAp4ntAUN3xMsFzWw6vTTWXygR2NhoJiRwcRwfeyra/HY/mvTZOcExt
 ygOrIY99Uu/1vSpxymX/kAD4kUoW6v/Tp0fFPyiz6qVkjkKtPIxsAio675tfqs/v
 2b9h7IjIg9yAwYE0ceYJM3PW9WghalpTOzYPmLW0uqxEdMuEPuoYnbPGn0Vwokxi
 SgWrV1YgGmJ9n1itig==</string>
+	<key>passwordKey1</key>
+	<string>-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC6cWfSWI86G5CLd+ebqPT49jUX
+6IoonP90EoKau5eSv+yFv6ZfHPdhopnRH6hviuy5hN4aSmYAnfyoVsTN9vJfWPly
+wpQOoXeWHF1J+qDqfo7S1TOKtuJvg+Au0B9mHUDBrIvUfWW6ZnZEbHDgEWxRmAQ4
+8KgXLoWBo0EORQBq0QIDAQAB
+-----END PUBLIC KEY-----</string>
+	<key>passwordKey2</key>
+	<string>-----BEGIN PUBLIC KEY-----
+AAAAB3NzaC1yc2EAAAABIwAAAQEAtVhJT2fMs3tD52NTJpaFVVWf/0KQYlnwMT786Mxqg34+7ynm98fXNDQryr/GTY7699VGkG/Hez0SGwcNR0/j3zOyS0wnXWL/DvhxWyqDeAxeRJ+ast++jjS8lv94TwtpDg2VwNsHTbjk5ysADU2s8fVeTuSPzjGCCkqi4ijutDNONZDNPrVI+UGBOa1LKCYqepAiF8OQ2xTL8B2qst4/RCSy+2IpYh0x0JyTcxMOIC7OyFe6sUgQDv17yUE83nw60ZrZIhw/Dz+C4ajsgGYPqCln/An0uI+h3eJodCZvex0g9ust2V2d5pzyQMH1QIt42MDZgK0Yf3eO6xzde2XrYQ==
+-----END PUBLIC KEY-----</string>
 </dict>
 </plist>

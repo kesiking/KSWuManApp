@@ -13,6 +13,7 @@
 
 -(void)setupView{
     [super setupView];
+    [self.titleLabel setHidden:YES];
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem *)descriptionModel{
@@ -36,6 +37,24 @@
         [self.descriptionArray addObject:voucherModel.useRange];
     }
     [self reloadData];
+}
+
+- (CSLinearLayoutItemPadding)getLayoutPaddingWithIndex:(NSUInteger)index description:(NSString*)description{
+    if (index % 2 == 0) {
+        return CSLinearLayoutMakePadding(20, 15, 0, 0);
+    }
+    return CSLinearLayoutMakePadding(10, 15, 0, 0);
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize newSize = [super sizeThatFits:size];;
+    
+    if ([self.descriptionArray count] > 0) {
+        /*Bug,会以中点，上下缩的，不能直接设置Bound*/
+        newSize = CGSizeMake(newSize.width, newSize.height + 25);
+    }
+    
+    return newSize;
 }
 
 @end

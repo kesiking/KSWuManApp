@@ -25,6 +25,8 @@
 
 @property (nonatomic,strong) ManWuCommodityFiltForDiscoverListView *filtForDiscoverSelectView;
 
+@property (nonatomic,strong) UIView                     *searchNumberView;
+
 @property (nonatomic,strong) NSString                   *searchKeyword;
 
 @property (nonatomic,strong) NSString                   *actIdKey;
@@ -34,6 +36,8 @@
 @property (nonatomic,strong) NSString                   *sortKey;
 
 @property (nonatomic,strong) ManWuDiscoverSearchService *searchListService;
+
+@property (nonatomic,strong) ManWuDiscoverSearchService *searchNumberService;
 
 @end
 
@@ -51,7 +55,10 @@
     sortFiltHeadViewLayoutItem.padding             = padding;
     [self.container addItem:sortFiltHeadViewLayoutItem];
     
-    
+    CSLinearLayoutItem *searchNumberViewLayoutItem = [[CSLinearLayoutItem alloc]
+                                                      initWithView:self.searchNumberView];
+    searchNumberViewLayoutItem.padding             = padding;
+    [self.container addItem:searchNumberViewLayoutItem];
     
     [self.collectionViewCtl setColletionHeaderView:self.container];
     [self setCollectionService:self.searchListService];
@@ -157,11 +164,45 @@
     return _filtForDiscoverSelectView;
 }
 
+-(UIView *)searchNumberView{
+    if (_searchNumberView == nil) {
+        _searchNumberView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, self.width, 30)];
+        UILabel* label = [[UILabel alloc] initWithFrame:_searchNumberView.bounds];
+        [label setFont:[UIFont systemFontOfSize:13]];
+        [label setTextColor:RGB(0x99, 0x99, 0x99)];
+        [_searchNumberView addSubview:label];
+        label.tag = 10010;
+    }
+    return _searchNumberView;
+}
+
 -(ManWuDiscoverSearchService *)searchListService{
     if (_searchListService == nil) {
         _searchListService = [[ManWuDiscoverSearchService alloc] init];
     }
     return _searchListService;
+}
+
+-(ManWuDiscoverSearchService *)searchNumberService{
+    if (_searchNumberService == nil) {
+        _searchNumberService = [[ManWuDiscoverSearchService alloc] init];
+        WEAKSELF
+        _searchNumberService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            UILabel* label = (UILabel*)[strongSelf.searchNumberView viewWithTag:10010];
+            if (service.numberValue) {
+                [label setText:[NSString stringWithFormat:@"共搜索到%@个结果",service.numberValue]];
+            }else{
+                [label setText:[NSString stringWithFormat:@"共搜索到0个结果"]];
+            }
+        };
+        _searchNumberService.serviceDidFailLoadBlock = ^(WeAppBasicService* service ,NSError* error){
+            STRONGSELF
+            UILabel* label = (UILabel*)[strongSelf.searchNumberView viewWithTag:10010];
+            [label setText:[NSString stringWithFormat:@"共搜索到0个结果"]];
+        };
+    }
+    return _searchNumberService;
 }
 
 -(void)loadDataWithSearchKeyword:(NSString*)searchKeyword{
@@ -199,6 +240,7 @@
     }
     // service todo
     [self.searchListService loadDiscoverSearchListDataWithWithKeyword:self.searchKeyword actId:self.actIdKey cid:self.filtKey sort:self.sortKey];
+    [self.searchNumberService loadDiscoverSearchNumberWithKeyword:self.searchKeyword];
 }
 
 @end

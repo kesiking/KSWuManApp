@@ -42,6 +42,11 @@
         
         [_leftBtn setTitle:@"筛选" forState:UIControlStateNormal];
         
+        [_leftBtn setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
+        
+        [_leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 110)];
+        [_leftBtn setImageEdgeInsets:UIEdgeInsetsMake((_leftBtn.height - 5)/2, _leftBtn.width - 25.5, (_leftBtn.height - 5)/2, 15)];
+
         [self resizeButton:_leftBtn];
         
         /*设置不同状态下的字体颜色*/
@@ -68,6 +73,11 @@
         
         [_rightBtn setTitle:@"排序" forState:UIControlStateNormal];
         
+        [_rightBtn setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
+        
+        [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 110)];
+        [_rightBtn setImageEdgeInsets:UIEdgeInsetsMake((_rightBtn.height - 5)/2, _rightBtn.width - 25.5, (_rightBtn.height - 5)/2, 15)];
+        
         [self resizeButton:_rightBtn];
         
         /*设置不同状态下的字体颜色*/
@@ -90,24 +100,27 @@
         case UIControlStateSelected:{
             /*select状态*/
             button.buttonDidSeleced = YES;
-            [button setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Title2]
+            [button setTitleColor:RGB(0x66, 0x66, 0x66)
                          forState:UIControlStateNormal];
-            [button setBorderColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ComponentBg2]
+            [button setBorderColor:RGB(0xda, 0xda, 0xda)
                           forState:UIControlStateNormal];
-            [button setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Gray]
+            [button setBackgroundColor:RGB(0xf5, 0xf5, 0xf5)
                               forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"manwu_sort_up"] forState:UIControlStateNormal];
+
         }
             break;
         case UIControlStateNormal:
         default:{
             /*normal状态*/
             button.buttonDidSeleced = NO;
-            [button setTitleColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Title2]
+            [button setTitleColor:RGB(0x66, 0x66, 0x66)
                          forState:UIControlStateNormal];
-            [button setBorderColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_LineColor1]
+            [button setBorderColor:RGB(0xda, 0xda, 0xda)
                           forState:UIControlStateNormal];
-            [button setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_White]
+            [button setBackgroundColor:RGB(0xf5, 0xf5, 0xf5)
                               forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
         }
             break;
     }

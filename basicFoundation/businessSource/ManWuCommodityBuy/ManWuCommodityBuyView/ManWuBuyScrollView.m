@@ -19,6 +19,7 @@
 #import "ManWuOrderService.h"
 #import "ManWuVoucherService.h"
 #import "KSSafePayUtility.h"
+#import "ManWuOrderDetailViewController.h"
 
 @interface ManWuBuyScrollView(){
 
@@ -35,6 +36,7 @@
 @property (nonatomic, strong) ManWuConfirmView             *comfirmView;
 
 @property (nonatomic, strong) ManWuOrderService            *createOrderService;
+@property (nonatomic, strong) ManWuOrderService            *loadOrderService;
 @property (nonatomic, strong) ManWuVoucherService          *voucherService;
 
 @property (nonatomic, assign) BOOL                          hasVoucher;
@@ -185,6 +187,8 @@
                 
                 [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
                     // 支付成功后 todo
+                    [strongSelf.loadOrderService loadOrderItemWithOrderId:tradeNO];
+                    [strongSelf showLoadingView];
                 }];
             }
         };
@@ -194,6 +198,28 @@
         };
     }
     return _createOrderService;
+}
+
+-(ManWuOrderService *)loadOrderService{
+    if (_loadOrderService == nil) {
+        _loadOrderService = [ManWuOrderService new];
+        WEAKSELF
+        _loadOrderService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.item) {
+                [strongSelf hideLoadingView];
+                ManWuOrderDetailViewController *orderDetailVC = [[ManWuOrderDetailViewController alloc]init];
+                orderDetailVC.orderModel = (KSOrderModel*)service.item;
+                [strongSelf.viewController.navigationController pushViewController:orderDetailVC animated:YES];
+            }
+        };
+        
+        _loadOrderService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
+            STRONGSELF
+            [strongSelf hideLoadingView];
+        };
+    }
+    return _loadOrderService;
 }
 
 -(ManWuVoucherService *)voucherService{

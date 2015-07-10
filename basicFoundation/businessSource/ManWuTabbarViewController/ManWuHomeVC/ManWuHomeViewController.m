@@ -38,6 +38,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    UINavigationController* navigationController = self.navigationController;
+    if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
+        navigationController.navigationBar.barTintColor = RGB(0xe8, 0x53, 0x53);
+    }else if([navigationController.navigationBar respondsToSelector:@selector(tintColor)]){
+        navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

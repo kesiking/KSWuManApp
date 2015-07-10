@@ -327,7 +327,7 @@
 #pragma mark  - TBTradeCellDelegate
 
 - (void)setObject:(id)object dict:(NSDictionary*)dict{
-    if (![object isKindOfClass:[ManWuAddressInfoModel class]]) {
+    if (object == nil || ![object isKindOfClass:[ManWuAddressInfoModel class]]) {
         return;
     }
     ManWuAddressInfoModel* addressModel = (ManWuAddressInfoModel*)object;

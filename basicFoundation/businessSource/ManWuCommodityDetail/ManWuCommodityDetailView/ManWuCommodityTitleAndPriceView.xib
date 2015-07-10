@@ -19,7 +19,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LLA-GD-2Gl">
-                    <rect key="frame" x="8" y="33" width="130" height="21"/>
+                    <rect key="frame" x="8" y="33" width="64" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="1" green="0.31372549019607843" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,12 +52,20 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="originalPrice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2ay-Wo-CDp" customClass="UICustomLineLabel">
+                    <rect key="frame" x="80" y="36" width="120" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="commodityFavorateButton" destination="Ay6-uf-wlt" id="RbL-1A-7rb"/>
+                <outlet property="commodityOriginalPriceLabel" destination="2ay-Wo-CDp" id="t1z-a8-6mj"/>
                 <outlet property="commodityPraiseButton" destination="cWX-BC-rSZ" id="nYf-jp-5bW"/>
                 <outlet property="commodityPraiseLabel" destination="3aE-Rh-ZFw" id="ffo-hS-TeX"/>
                 <outlet property="commodityPriceLabel" destination="LLA-GD-2Gl" id="DLK-4x-Sus"/>

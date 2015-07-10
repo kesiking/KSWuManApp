@@ -40,6 +40,20 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController: [[KSManWuTabBarViewController alloc] init]];
+    if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
+        navigationController.navigationBar.barTintColor = RGB(0xf8, 0xf8, 0xf8);
+    }
+    if([navigationController.navigationBar respondsToSelector:@selector(tintColor)]){
+        navigationController.navigationBar.tintColor  =   [UIColor whiteColor];
+    }
+    
+    // 修改navbar title颜色
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               RGB(0x66, 0x66, 0x66), NSForegroundColorAttributeName,
+                                               [UIFont boldSystemFontOfSize:18], NSFontAttributeName,nil];
+    
+    [navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    
     self.window.rootViewController = navigationController;
     
     [self.window makeKeyAndVisible];

@@ -187,7 +187,10 @@
         [WeAppToast toast:@"请输入密码"];
         return;
     }
-
+   
+//    id<DataSigner> signer = CreateRSADataSigner(PUBLICKEY);
+//    NSString *signedPwd = [signer signString:_text_psw.text];
+    
     //初始化指示器
     
     if (!_progressHUD) {
@@ -201,15 +204,14 @@
     if (aliPayFile == nil) {
         aliPayFile = [[NSDictionary alloc] init];
     }
-    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey"];
+    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
     
-    id<DataSigner> signer = CreateRSADataSigner(passwordKey);
-    NSString *signedString = [signer signString:_text_psw.text];
+//    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
+    NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
+    signedPwd = [signedPwd tbUrlEncoded];
 
-    
-    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:PUBLICKEY];
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":[_text_phoneNum.text tbUrlEncoded], @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1} version:nil];
 
-    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text} version:nil];
 }
 
 - (void)doRegister

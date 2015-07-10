@@ -12,4 +12,6 @@
 
 @property (nonatomic,strong) UIImageView*         commodityImageView;
 
+@property (nonatomic,strong) UILabel*             commodityLabel;
+
 @end

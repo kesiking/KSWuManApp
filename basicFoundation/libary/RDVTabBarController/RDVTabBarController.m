@@ -25,12 +25,6 @@
 #import "RDVTabBarItem.h"
 #import <objc/runtime.h>
 
-@interface UIViewController (RDVTabBarControllerItemInternal)
-
-- (void)rdv_setTabBarController:(RDVTabBarController *)tabBarController;
-
-@end
-
 @interface RDVTabBarController () {
     UIView *_contentView;
 }

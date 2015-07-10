@@ -105,3 +105,9 @@
 @property(nonatomic, readonly) RDVTabBarController *rdv_tabBarController;
 
 @end
+
+@interface UIViewController (RDVTabBarControllerItemInternal)
+
+- (void)rdv_setTabBarController:(RDVTabBarController *)tabBarController;
+
+@end

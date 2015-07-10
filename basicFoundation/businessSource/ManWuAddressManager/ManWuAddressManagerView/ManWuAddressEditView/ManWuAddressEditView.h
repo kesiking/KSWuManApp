@@ -16,4 +16,6 @@
 
 @property (nonatomic,strong) ManWuAddressInfoModel *addressInfoModel;
 
+@property (strong, nonatomic) UIButton             *deleteButton;
+
 @end

@@ -24,6 +24,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:13];
+        [_titleLabel setTextColor:RGB(0x88, 0x88, 0x88)];
         _titleLabel.numberOfLines = 1;
         _titleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_titleLabel];
@@ -44,7 +45,7 @@
     [self.commoditySortImageView setImage:[UIImage imageNamed:commodityComponentItem.imageUrl]];
     self.titleLabel.text = commodityComponentItem.titleText;
     if (extroParams.cellIndex%2 == 1) {
-        self.backgroundColor = RGB(0xe7, 0xe7, 0xe7);
+        self.backgroundColor = RGB(0xf5, 0xf5, 0xf5);
     }
 }
 

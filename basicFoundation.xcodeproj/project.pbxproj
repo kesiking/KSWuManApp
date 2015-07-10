@@ -321,6 +321,8 @@
 		5F214C961B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C951B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m */; };
 		5F226EB21B33A27B00FEFBC6 /* deleteFavrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */; };
 		5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */; };
+		5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */; };
+		5F2D00091B4EAD5E007C2F4D /* manwu_sort_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */; };
 		5F4087E71B19433F00954568 /* ManWuOrderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087E61B19433F00954568 /* ManWuOrderService.m */; };
 		5F4087EE1B19436C00954568 /* ManWuVoucherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087ED1B19436C00954568 /* ManWuVoucherService.m */; };
 		5F4087F11B1945FE00954568 /* ManWuVoucherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F01B1945FE00954568 /* ManWuVoucherView.m */; };
@@ -349,6 +351,7 @@
 		5F4E40511B1ED325004AE7C0 /* KSCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40501B1ED325004AE7C0 /* KSCacheService.m */; };
 		5F4E40541B1EDD42004AE7C0 /* KSAdapterCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */; };
 		5F4E40571B1F1246004AE7C0 /* KSCacheStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */; };
+		5F649A711B4BEBE0000F390F /* UICustomLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -361,6 +364,8 @@
 		5FD244F41B3ACBFF00353589 /* manwu_commodity_filt_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD244F11B3ACBFE00353589 /* manwu_commodity_filt_all.png */; };
 		5FD244F51B3ACBFF00353589 /* manwu_commodity_filt_buy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */; };
 		5FD244F61B3ACBFF00353589 /* manwu_commodity_filt_specialForToday.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD244F31B3ACBFE00353589 /* manwu_commodity_filt_specialForToday.png */; };
+		5FD2B7441B4B99BC00938681 /* ManWuDetailSKUHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD2B7431B4B99BC00938681 /* ManWuDetailSKUHeaderView.m */; };
+		5FD2B76A1B4E55D600938681 /* RSAEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD2B7691B4E55D600938681 /* RSAEncrypt.m */; };
 		5FD45EC51B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */; };
 		5FD45EC81B1BE3570064BA31 /* ManWuCommodityFavListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC71B1BE3570064BA31 /* ManWuCommodityFavListService.m */; };
 		5FD45ECC1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ECB1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m */; };
@@ -1120,6 +1125,8 @@
 		5F214C951B16BE1D0081BA02 /* ManWuTradeDetailSKUService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuTradeDetailSKUService.m; sourceTree = "<group>"; };
 		5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteFavrate.png; sourceTree = "<group>"; };
 		5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unDeleteFavrate.png; sourceTree = "<group>"; };
+		5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_sort_down.png; sourceTree = "<group>"; };
+		5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_sort_up.png; sourceTree = "<group>"; };
 		5F4087E51B19433F00954568 /* ManWuOrderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuOrderService.h; sourceTree = "<group>"; };
 		5F4087E61B19433F00954568 /* ManWuOrderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuOrderService.m; sourceTree = "<group>"; };
 		5F4087EC1B19436C00954568 /* ManWuVoucherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuVoucherService.h; sourceTree = "<group>"; };
@@ -1170,6 +1177,8 @@
 		5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSAdapterCacheService.m; sourceTree = "<group>"; };
 		5F4E40551B1F1246004AE7C0 /* KSCacheStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCacheStrategy.h; sourceTree = "<group>"; };
 		5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCacheStrategy.m; sourceTree = "<group>"; };
+		5F649A6F1B4BEBE0000F390F /* UICustomLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLineLabel.h; sourceTree = "<group>"; };
+		5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLineLabel.m; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -1189,6 +1198,10 @@
 		5FD244F11B3ACBFE00353589 /* manwu_commodity_filt_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_all.png; sourceTree = "<group>"; };
 		5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_buy.png; sourceTree = "<group>"; };
 		5FD244F31B3ACBFE00353589 /* manwu_commodity_filt_specialForToday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_specialForToday.png; sourceTree = "<group>"; };
+		5FD2B7421B4B99BC00938681 /* ManWuDetailSKUHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDetailSKUHeaderView.h; sourceTree = "<group>"; };
+		5FD2B7431B4B99BC00938681 /* ManWuDetailSKUHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDetailSKUHeaderView.m; sourceTree = "<group>"; };
+		5FD2B7681B4E55D600938681 /* RSAEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncrypt.h; sourceTree = "<group>"; };
+		5FD2B7691B4E55D600938681 /* RSAEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncrypt.m; sourceTree = "<group>"; };
 		5FD45EC31B1BE1BA0064BA31 /* ManWuCommdityFavoriteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommdityFavoriteListViewController.h; sourceTree = "<group>"; };
 		5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommdityFavoriteListViewController.m; sourceTree = "<group>"; };
 		5FD45EC61B1BE3570064BA31 /* ManWuCommodityFavListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityFavListService.h; sourceTree = "<group>"; };
@@ -1537,6 +1550,8 @@
 		0553F75A1AF9EB660013BB97 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */,
+				5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */,
 				5FFEB4291B1C38D700CAC511 /* button_back.png */,
 				5FD244F11B3ACBFE00353589 /* manwu_commodity_filt_all.png */,
 				5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */,
@@ -1668,6 +1683,7 @@
 		055866B31AD3B63100A23FFA /* libary */ = {
 			isa = PBXGroup;
 			children = (
+				5FD2B7671B4E55D600938681 /* RSAEncrypt */,
 				5F4E40281B1ECD5C004AE7C0 /* FMDB */,
 				5F4E40371B1ECD5C004AE7C0 /* FMDBHelper */,
 				5F214C551B158F990081BA02 /* SVWebViewController */,
@@ -1996,6 +2012,8 @@
 				056664931AEE12C400FD1C65 /* ManWuDetailBottomBarView.m */,
 				056664981AEE148500FD1C65 /* ManWuDetailSKUView.h */,
 				056664991AEE148500FD1C65 /* ManWuDetailSKUView.m */,
+				5FD2B7421B4B99BC00938681 /* ManWuDetailSKUHeaderView.h */,
+				5FD2B7431B4B99BC00938681 /* ManWuDetailSKUHeaderView.m */,
 				5F214C8E1B16B6EF0081BA02 /* ManWuTradeSKUSelectionControl.h */,
 				5F214C8F1B16B6EF0081BA02 /* ManWuTradeSKUSelectionControl.m */,
 			);
@@ -2482,6 +2500,7 @@
 		058DADB11AE1107D009D0008 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				5F649A6E1B4BEBE0000F390F /* KSCustomLabel */,
 				5F4087FD1B194BA300954568 /* KSComBox */,
 				5F4087F31B1949FF00954568 /* KSPopMenu */,
 				05AF2FEF1B003F2800890A65 /* KSBlurView */,
@@ -3006,6 +3025,15 @@
 			path = FMDBHelper;
 			sourceTree = "<group>";
 		};
+		5F649A6E1B4BEBE0000F390F /* KSCustomLabel */ = {
+			isa = PBXGroup;
+			children = (
+				5F649A6F1B4BEBE0000F390F /* UICustomLineLabel.h */,
+				5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */,
+			);
+			path = KSCustomLabel;
+			sourceTree = "<group>";
+		};
 		5F9216231B1077B900554B44 /* ManWuDiscoverService */ = {
 			isa = PBXGroup;
 			children = (
@@ -3041,6 +3069,15 @@
 				5FD45EC71B1BE3570064BA31 /* ManWuCommodityFavListService.m */,
 			);
 			path = ManWuCommodityListService;
+			sourceTree = "<group>";
+		};
+		5FD2B7671B4E55D600938681 /* RSAEncrypt */ = {
+			isa = PBXGroup;
+			children = (
+				5FD2B7681B4E55D600938681 /* RSAEncrypt.h */,
+				5FD2B7691B4E55D600938681 /* RSAEncrypt.m */,
+			);
+			path = RSAEncrypt;
 			sourceTree = "<group>";
 		};
 		5FD45EC91B1BF1A80064BA31 /* ManWuHomeVoucherModel */ = {
@@ -3350,6 +3387,7 @@
 				058DAE231AE638BA009D0008 /* tabitem_discover_highlight.png in Resources */,
 				916A44F51B500A89005C2E4D /* btn_droplist.png in Resources */,
 				91C76B6E1B31C516008C5EAC /* order_forchange@3x.png in Resources */,
+				5F2D00091B4EAD5E007C2F4D /* manwu_sort_up.png in Resources */,
 				05AF30071B004D3F00890A65 /* loading_view_5.png in Resources */,
 				056664B21AEE37AC00FD1C65 /* tb_control_flow_number_left_press.png in Resources */,
 				5F4088121B19663200954568 /* manwu_default_address.png in Resources */,
@@ -3438,6 +3476,7 @@
 				05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */,
 				05ACACA01AFCA94800853E1C /* tb_btn_all_square_press.png in Resources */,
 				056664B41AEE37AC00FD1C65 /* tb_control_flow_number_right_press.png in Resources */,
+				5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */,
 				91671D801B482DBE00833331 /* btn_back@2x.png in Resources */,
 				5F214C801B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				052CC6BB1AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png in Resources */,
@@ -3473,6 +3512,7 @@
 				058DADD21AE52EC0009D0008 /* AFSecurityPolicy.m in Sources */,
 				056664681AEDDB3200FD1C65 /* TBDetailUIStyle.m in Sources */,
 				05ACAC6F1AFC6EC500853E1C /* ManWuAddressSelectViewCell.m in Sources */,
+				5FD2B7441B4B99BC00938681 /* ManWuDetailSKUHeaderView.m in Sources */,
 				058DADAF1AE10FF7009D0008 /* RDVTabBarItem.m in Sources */,
 				05D5F2C61B00CBE4002EF23D /* KSAuthenticationCenter.m in Sources */,
 				058D5CF01AF1F62E006EA35C /* DataSigner.m in Sources */,
@@ -3574,6 +3614,7 @@
 				5F214C841B1598A20081BA02 /* ManWuPreferentialView.m in Sources */,
 				055866921AD3B4F900A23FFA /* AppDelegate.m in Sources */,
 				050FFD411B02EFDD00721E02 /* ManWuAddressManagerViewController.m in Sources */,
+				5FD2B76A1B4E55D600938681 /* RSAEncrypt.m in Sources */,
 				055C75901ADFBF6000C35854 /* UIImageView+WebCache.m in Sources */,
 				0558668F1AD3B4F900A23FFA /* main.m in Sources */,
 				91375F7C1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m in Sources */,
@@ -3687,6 +3728,7 @@
 				5FD63DB21B3F8EA8002593B3 /* KSImageListCache.m in Sources */,
 				058DAE4E1AE72FC3009D0008 /* KSNavigator.m in Sources */,
 				058DADD61AE52EC0009D0008 /* AFURLSessionManager.m in Sources */,
+				5F649A711B4BEBE0000F390F /* UICustomLineLabel.m in Sources */,
 				056664C51AEF206400FD1C65 /* TBDetailTipsModel.m in Sources */,
 				05B8DF5A1AF3499A002C2E4F /* ManWuDiscoverCollectionViewCell.m in Sources */,
 				056664941AEE12C400FD1C65 /* ManWuDetailBottomBarView.m in Sources */,

@@ -60,7 +60,7 @@
         frame.origin.x = 0;
         configObject.collectionCellSize = CGSizeZero;
         configObject.needQueueLoadData = NO;
-        configObject.needRefreshView = NO;
+        configObject.needRefreshView = YES;
         configObject.needNextPage = NO;
         configObject.needFootView = NO;
         _tableViewCtl = [[KSTableViewController alloc] initWithFrame:frame withConfigObject:configObject];

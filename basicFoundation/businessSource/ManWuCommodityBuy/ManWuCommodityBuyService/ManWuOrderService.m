@@ -46,4 +46,15 @@
     [self loadNumberValueWithAPIName:@"order/createOrder.do" params:params version:nil];
 }
 
+-(void)loadOrderItemWithOrderId:(NSNumber*)orderId{
+    if ([WeAppUtils isEmpty:orderId]) {
+        [WeAppToast toast:@"缺少必要参数，无法购买"];
+        return;
+    }
+    self.needLogin = YES;
+    self.jsonTopKey = @"data";
+    self.itemClass = [KSOrderModel class];
+    [self loadItemWithAPIName:@"order/orderDetail.do" params:@{@"orderId":orderId} version:nil];
+}
+
 @end

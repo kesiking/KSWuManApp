@@ -26,9 +26,9 @@ typedef void (^ scrollViewOnNextEvnet)(KSScrollViewServiceController* scrollView
 
 @property (nonatomic, strong) UIView*                       errorView;
 
-@property (nonatomic, strong) scrollViewOnRefreshEvent      onRefreshEvent;
+@property (nonatomic, copy  ) scrollViewOnRefreshEvent      onRefreshEvent;
 
-@property (nonatomic, strong) scrollViewOnNextEvnet         onNextEvent;
+@property (nonatomic, copy  ) scrollViewOnNextEvnet         onNextEvent;
 
 -(instancetype)initWithConfigObject:(KSScrollViewConfigObject*)configObject;
 
