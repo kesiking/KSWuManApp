@@ -111,6 +111,8 @@
     self.searchBarSelectRect = CGRectMake(0,navigateViewYOringe, self.navigateview.frame.size.width, SEARCH_BAR_HEIGHT);
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:self.searchBarRect];
+    self.searchBar.placeholder = @"输入搜索内容";
+    self.searchBar.barTintColor = RGB(0x66, 0x66, 0x66);
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.searchBar.keyboardType = UIKeyboardTypeDefault;
