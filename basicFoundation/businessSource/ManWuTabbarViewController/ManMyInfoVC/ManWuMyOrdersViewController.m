@@ -15,11 +15,12 @@
 
 #define ORDERCELLHEIGHT  80
 
-@interface ManWuMyOrdersViewController ()
+@interface ManWuMyOrdersViewController ()<UIAlertViewDelegate>
 {
     CGRect r;
     NSArray *ordersList;
     MBProgressHUD *_progressHUD;    ///<指示器
+    UIAlertView *myAlertView;
 }
 
 @end
@@ -78,6 +79,21 @@
     self.table.dataSource = self;
     self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.table];
+    
+    __block __weak __typeof(self) tempSelf = self;
+    [self.table addPullToRefreshWithActionHandler:^{
+        __strong __typeof(self) strongSelf = tempSelf;
+        
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            if ([strongSelf.table showsPullToRefresh]) {
+                //判断是否已经被取消刷新，避免出现crash
+                [strongSelf refreshDataRequest];
+                [strongSelf.table.pullToRefreshView stopAnimating];
+            }
+        });
+    }];
 
 }
 
@@ -155,8 +171,13 @@
 
     if (service == _service) {
         // todo success
-        [self.statusHandler removeStatusViewFromView:self.table];
         
+        if([service.requestModel.apiName isEqualToString:@"order/modifyOrder.do"])
+        {
+            [self initOrdersList];
+            return;
+        }
+        [self.statusHandler removeStatusViewFromView:self.table];
         ordersList = (NSArray*)service.requestModel.dataList;
         
         if([ordersList count] == 0)
@@ -333,6 +354,14 @@
             [cell.btn_right addTarget:self action:@selector(didSelectedButtonStyleScheduleInfo:) forControlEvents:UIControlEventTouchUpInside];
         }
             break;
+        case 7:
+        {
+            statusStr = @"已取消";
+            title_leftBtn = @"";
+            title_rightBtn = @"删除订单";
+            [cell.btn_right addTarget:self action:@selector(didSelectedButtonStyleDeleteOrder:) forControlEvents:UIControlEventTouchUpInside];
+        }
+            break;
             
         default:
             break;
@@ -402,9 +431,9 @@
     UIButton *button = (UIButton *)sender;
     NSInteger orderNum = button.tag;
     
-    KSOrderModel *orderModel = [ordersList objectAtIndex:orderNum];
-    
-    [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":orderModel.orderId,@"status":@7} version:nil];
+    myAlertView = [[UIAlertView alloc]initWithTitle:@"是否取消订单？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    myAlertView.tag = orderNum*100 + 7;
+    [myAlertView show];
 }
 
 #pragma mark - 提醒发货
@@ -425,6 +454,11 @@
 {
     UIButton *button = (UIButton *)sender;
     NSInteger orderNum = button.tag;
+    
+    myAlertView = [[UIAlertView alloc]initWithTitle:@"是否删除订单？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    myAlertView.tag = orderNum*100 + 8;
+    [myAlertView show];
+
 }
 
 #pragma mark - 物流单号
@@ -454,6 +488,44 @@
     }else
     {
         [self.service loadDataListWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"status":[NSString stringWithFormat:@"%ld", (long)self.origIndex]} version:nil];
+    }
+}
+
+#pragma mark - alertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSInteger orderNum = alertView.tag/100;
+    NSInteger toStatus = alertView.tag%100;
+    
+    if(buttonIndex == 0)
+    {
+        return;
+        
+    }else
+    {
+        switch (toStatus) {
+            case 7:
+            {
+                //取消订单操作
+                KSOrderModel *orderModel = [ordersList objectAtIndex:orderNum];
+                
+                [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":orderModel.orderId,@"status":@7} version:nil];
+            }
+                break;
+            case 8:
+            {
+                //取消订单操作
+                KSOrderModel *orderModel = [ordersList objectAtIndex:orderNum];
+                
+                [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":orderModel.orderId,@"status":@8} version:nil];
+            }
+                break;
+
+                
+            default:
+                break;
+        }
     }
 }
 

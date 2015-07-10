@@ -11,6 +11,12 @@
 #import "UIPlaceHolderTextView.h"
 
 @interface ManWuPostSaleServiceViewController ()
+{
+    UIScrollView *scrollView;
+    KSDropDownListView *dropdownListStatus;
+    KSDropDownListView *dropdownListService;
+    UIPlaceHolderTextView *textView;
+}
 
 @end
 
@@ -31,23 +37,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
-    
     self.title = @"申请退款";
     
-    KSDropDownListView *dropdownList1= [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 140)];
+    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    scrollView.contentSize = CGSizeMake(self.view.width,  self.view.height + 100);
+    [scrollView setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
+
+    [self setView:scrollView];
+    
+    dropdownListStatus = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 60*3)];
     //[dropdownList1 setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
-    dropdownList1.userActionLabel.text = @"是否已收货";
-    dropdownList1.dataArray = @[@"已收货",@"未收货"];
-    [self.view addSubview:dropdownList1];
+    dropdownListStatus.userActionLabel.text = @"是否已收货";
+    dropdownListStatus.dataArray = @[@"已收货",@"未收货"];
+    [self.view addSubview:dropdownListStatus];
 
-    KSDropDownListView *dropdownList2= [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownList1.frame) + 75, self.view.width - 20, 140)];
+    dropdownListService = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownListStatus.frame) + 75, self.view.width - 20, 60*5)];
     //[dropdownList2 setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
-    dropdownList2.userActionLabel.text = @"申请服务";
-    dropdownList2.dataArray = @[@"退款",@"退货"];
-    [self.view addSubview:dropdownList2];
+    dropdownListService.userActionLabel.text = @"申请服务";
+    dropdownListService.dataArray = @[@"商品质量问题",@"商品错发",@"商品运输破损",@"其他"];
+    [self.view addSubview:dropdownListService];
 
-    UIPlaceHolderTextView *textView = [[UIPlaceHolderTextView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownList2.frame) + 75, self.view.width - 20, 120)];
+     textView = [[UIPlaceHolderTextView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownListService.frame) + 75, self.view.width - 20, 200)];
     textView.placeholderColor = [TBDetailUIStyle colorWithHexString:@"#adadad"];
     textView.layer.cornerRadius = 3;
     textView.placeholder = @"退款说明 最多100字";
@@ -70,6 +80,40 @@
 
 - (void)doPostSaleService
 {
+    NSString *orderStatus = dropdownListStatus.userActionLabel.text;
+    NSString *orderService = dropdownListService.userActionLabel.text;
+    NSString *orderReason = textView.text;
+    
+    if([orderReason length] > 100)
+    {
+        [WeAppToast toast:@"退款说明最多100字"];
+    }
+    
+    [self.service loadItemWithAPIName:@"user/backMoney.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"orderId":self.orderModel.orderId, @"status":self.orderModel.status} version:nil];
+}
+
+#pragma mark WeAppBasicServiceDelegate method
+
+- (void)serviceDidStartLoad:(WeAppBasicService *)service
+{    
+    if (service == _service) {
+        // todo success
+    }
+}
+
+- (void)serviceDidFinishLoad:(WeAppBasicService *)service
+{
+    if (service == _service) {
+        // todo success
+    }
+}
+
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error
+{
+    if (service == _service) {
+        // todo fail
+        [WeAppToast toast:error.description];
+    }
     
 }
 

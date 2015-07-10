@@ -25,6 +25,8 @@
     UIView *itemView_orderInfo;
     UIView *itemView_orderDeal;
     
+    UILabel *orderTypeLabel;
+    
     NSString *orderType;
     
 }
@@ -58,7 +60,17 @@
                 break;
             case 5:
             {
-                orderType = @"退/换货";
+                orderType = @"退款中";
+            }
+                break;
+            case 6:
+            {
+                orderType = @"已退款";
+            }
+                break;
+            case 7:
+            {
+                orderType = @"已取消";
             }
                 break;
                 
@@ -92,7 +104,7 @@
     {
         itemView_orderType = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_orderType_height)];
         [itemView_orderType setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#dc7868"]];
-         UILabel *orderTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 150, 15)];
+         orderTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 150, 15)];
         [orderTypeLabel setFont:[UIFont systemFontOfSize:15]];
         [orderTypeLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
         orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
@@ -234,16 +246,19 @@
         
         buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
         
-        UIButton *btn_service = [[UIButton alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 70, CGRectGetMaxY(colorLabel.frame) - 22, 70, 22)];
-        [btn_service.titleLabel setFont:[UIFont systemFontOfSize:12]];
-        [btn_service setTitle:@"申请售后" forState:UIControlStateNormal];
-        btn_service.layer.borderWidth = 0.5;
-        btn_service.layer.cornerRadius = 3;
-        [btn_service setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
-        btn_service.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
-        [btn_service setTag:ButtonSelectedStyleService];
-        [btn_service addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
-        [itemView_orderInfo addSubview:btn_service];
+        if([orderModel.status integerValue] != 7)
+        {
+            UIButton *btn_service = [[UIButton alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 70, CGRectGetMaxY(colorLabel.frame) - 22, 70, 22)];
+            [btn_service.titleLabel setFont:[UIFont systemFontOfSize:12]];
+            [btn_service setTitle:@"申请售后" forState:UIControlStateNormal];
+            btn_service.layer.borderWidth = 0.5;
+            btn_service.layer.cornerRadius = 3;
+            [btn_service setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
+            btn_service.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
+            [btn_service setTag:ButtonSelectedStyleService];
+            [btn_service addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+            [itemView_orderInfo addSubview:btn_service];
+        }
 
         UIView *LineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame) + 10, self.width, 0.5)];
         LineView1.opaque = YES;
@@ -401,6 +416,16 @@
                 title_rightBtn = @"";
             }
                 break;
+            case 7:
+            {
+                statusStr = @"已取消";
+                title_leftBtn = @"";
+                title_rightBtn = @"删除订单";
+                [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+                [btn_right setTag:ButtonSelectedStyleDeleteOrder];
+            }
+                break;
+
                 
             default:
                 break;

@@ -17,6 +17,7 @@
     NSMutableArray *validRedPackets;
     NSMutableArray *invalidRedPackets;
     NSMutableDictionary *deleteDic;
+    MBProgressHUD *_progressHUD;    ///<指示器
 }
 
 @end
@@ -87,6 +88,15 @@
 
 - (void)serviceDidStartLoad:(WeAppBasicService *)service
 {
+    //初始化指示器
+    
+    if (!_progressHUD) {
+        _progressHUD=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        _progressHUD.detailsLabelText=@"努力加载中...";
+        _progressHUD.removeFromSuperViewOnHide=YES;
+    }
+
     if (service == _service) {
         // todo success
     }
@@ -94,6 +104,11 @@
 
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service
 {
+    if (_progressHUD) {
+        [_progressHUD hide:YES];
+        _progressHUD = nil;
+    }
+
     if (service == _service) {
         // todo success
         
@@ -123,7 +138,13 @@
     }
 }
 
-- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error
+{
+    if (_progressHUD) {
+        [_progressHUD hide:YES];
+        _progressHUD = nil;
+    }
+
     if (service == _service) {
         // todo fail
         [self.statusHandler showViewforError:error inView:self.table frame:self.table.bounds];    

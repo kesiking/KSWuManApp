@@ -13,6 +13,8 @@
 #include<openssl/pem.h>
 #include<openssl/err.h>
 
+#import "base64.h"
+
 #define LEN_OF_3DES_KEY 24
 
 const char encodingTable[16] =  {
@@ -248,7 +250,9 @@ static NSString * const kMWCMRandomRangeString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ012
 
 + (RSA*)createRsaPublicKey:(NSString*)pkvalue
 {
-    NSData* pk = [KSUtils hexToBytes:pkvalue];
+    //NSData* pk = [KSUtils hexToBytes:pkvalue];
+    NSData *pk = [Base64 decodeString:pkvalue];
+    NSLog(@"%ld",[pk length]);
     unsigned char* pPubKey = (unsigned char*)malloc([pk length]);
     if (!pPubKey)
     {
@@ -265,10 +269,10 @@ static NSString * const kMWCMRandomRangeString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ012
 
 + (NSData*)toPKCSLoginPwd:(NSString*)plainData
 {
-    char padding[128] = {0};
+    char padding[256] = {0};
     
     int dataLen = (int)[plainData length];
-    int fillLen = 125 - dataLen;
+    int fillLen = 256 - dataLen;
     
     padding[0] = 0x00;
     padding[1] = 0x02;
@@ -285,8 +289,7 @@ static NSString * const kMWCMRandomRangeString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ012
     
     memcpy(padding+startIndex+1, [plainData UTF8String], dataLen);
     
-    return [NSData dataWithBytes:padding length:128];
-    
+    return [NSData dataWithBytes:padding length:256];
 }
 
 + (NSData*)toPKCSEncode:(NSData*)plainData
@@ -337,7 +340,11 @@ static NSString * const kMWCMRandomRangeString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ012
 
 + (NSString*)encryptLoginPwd:(NSString*)loginPwd pkvalue:(NSString*)pkvalue
 {
-    NSData* padding = [KSUtils toPKCSLoginPwd:loginPwd];
+    //NSData* padding = [KSUtils toPKCSLoginPwd:loginPwd];
+    
+    NSData *padding = [loginPwd dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"%@",padding);
     
     return [KSUtils doRSAPublicEncrypt:padding pkvalue:pkvalue];
 }
@@ -359,8 +366,8 @@ static NSString * const kMWCMRandomRangeString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ012
     pDest=(unsigned char *)malloc(iRsaLen+1);
     memset(pDest,0,iRsaLen+1);
     
-    //int ret = RSA_public_encrypt(iSrcLen, (unsigned char *)[plainData bytes], pDest, pRsa, RSA_NO_PADDING);
-    int ret = RSA_private_encrypt(iSrcLen, (unsigned char *)[plainData bytes], pDest, pRsa, RSA_NO_PADDING);
+    int ret = RSA_public_encrypt(iSrcLen, (unsigned char *)[plainData bytes], pDest, pRsa, RSA_NO_PADDING);
+    //int ret = RSA_private_encrypt(iSrcLen, (unsigned char *)[plainData bytes], pDest, pRsa, RSA_NO_PADDING);
     if(ret < 0)
     {
         RSA_free(pRsa);

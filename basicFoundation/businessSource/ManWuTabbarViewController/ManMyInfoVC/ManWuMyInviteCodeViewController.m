@@ -13,6 +13,7 @@
 {
     NSDictionary *inviteCodeModel;
     UIView *inviteCodeView;
+    MBProgressHUD *_progressHUD;    ///<指示器
 }
 
 @end
@@ -44,6 +45,15 @@
 
 - (void)serviceDidStartLoad:(WeAppBasicService *)service
 {
+    //初始化指示器
+    
+    if (!_progressHUD) {
+        _progressHUD=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        _progressHUD.detailsLabelText=@"努力加载中...";
+        _progressHUD.removeFromSuperViewOnHide=YES;
+    }
+
     if (service == _service) {
         // todo success
     }
@@ -51,6 +61,11 @@
 
 - (void)serviceDidFinishLoad:(WeAppBasicService *)service
 {
+    if (_progressHUD) {
+        [_progressHUD hide:YES];
+        _progressHUD = nil;
+    }
+
     if (service == _service) {
         // todo success
         [self.statusHandler removeStatusViewFromView:self.view];
@@ -68,7 +83,13 @@
     }
 }
 
-- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+- (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error
+{
+    if (_progressHUD) {
+        [_progressHUD hide:YES];
+        _progressHUD = nil;
+    }
+
     if (service == _service) {
         // todo fail
         [self.statusHandler showViewforError:error inView:self.view frame:self.view.bounds];
@@ -85,17 +106,14 @@
     copyBtn.layer.borderWidth = 1.0;
     [copyBtn setBackgroundColor:[UIColor whiteColor]];
     [copyBtn addTarget:self action:@selector(copyInviteCode:) forControlEvents:UIControlEventTouchUpInside];
-    [inviteCodeView addSubview:copyBtn];
     
     UILabel *inviteCodeLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CGRectGetMinX(copyBtn.frame) - kSpaceX -5, 18)];
-    
     NSString *inviteCodeStr = inviteCodeModel[@"inviteCode"];
     NSString *inviteStr = [NSString stringWithFormat:@"邀请码：%@",inviteCodeStr];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:inviteStr];
     [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#666666"] range:NSMakeRange(0,3)];
-    [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"] range:NSMakeRange(4,inviteCodeStr.length)];
+    [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#d95c47"] range:NSMakeRange(4,inviteCodeStr.length)];
     inviteCodeLabel.attributedText = str;
-    [inviteCodeView addSubview:inviteCodeLabel];
     
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
     [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
@@ -114,34 +132,14 @@
     descLabel.attributedText = attributedString1;
     [descLabel sizeToFit];
     
-    inviteCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, 15, self.view.width, 20 + inviteCodeLabel.height + descLabel.height)];
+    inviteCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, 15, self.view.width, 40 + inviteCodeLabel.height + descLabel.height)];
+    [inviteCodeView setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
+    [inviteCodeView addSubview:copyBtn];
+    [inviteCodeView addSubview:inviteCodeLabel];
+    [inviteCodeView addSubview:descLabel];
+    
+    [self.view addSubview:inviteCodeView];
 
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.section) {
-        case 0:
-        {
-            if(indexPath.row == 0)
-            {
-            }
-            else if (indexPath.row == 1)
-            {
-                
-            }
-        }
-            break;
-        case 1:
-        {
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
 }
 
 - (void)copyInviteCode:(id)sender
