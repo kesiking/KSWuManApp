@@ -12,4 +12,6 @@
 
 -(void)editAddressInfoWithAddressId:(NSString *)addressId userId:(NSString *)userId recvName:(NSString *)recvName phoneNum:(NSString *)phoneNum address:(NSString *)address defaultAddress:(BOOL)defaultAddress;
 
+-(void)deleteAddressInfoWithAddressId:(NSString *)addressId;
+
 @end

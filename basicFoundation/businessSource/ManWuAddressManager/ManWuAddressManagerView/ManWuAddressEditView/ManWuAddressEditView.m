@@ -37,6 +37,8 @@
 
 @property (strong, nonatomic) ManWuAddressEditService      *addressEditService;
 
+@property (strong, nonatomic) ManWuAddressEditService      *addressDeleteService;
+
 @end
 
 @implementation ManWuAddressEditView
@@ -87,6 +89,14 @@
         _addressEditService.delegate = self;
     }
     return _addressEditService;
+}
+
+-(ManWuAddressEditService *)addressDeleteService{
+    if (_addressDeleteService == nil) {
+        _addressDeleteService = [[ManWuAddressEditService alloc] init];
+        _addressDeleteService.delegate = self;
+    }
+    return _addressDeleteService;
 }
 
 -(void)reloadData{
@@ -230,6 +240,22 @@
     return _descriptionText;
 }
 
+-(UIButton *)deleteButton{
+    if (_deleteButton == nil) {
+        _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+        [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        [_deleteButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [_deleteButton setTitleColor:RGB(0x66, 0x66, 0x66) forState:UIControlStateNormal];
+        
+        [_deleteButton addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _deleteButton;
+}
+
+-(void)deleteButtonClicked:(id)sender {
+    [self.addressDeleteService deleteAddressInfoWithAddressId:self.addressInfoModel.addressId];
+}
+
 -(ManWuAddressSetDefaultView *)settingDefaultView{
     if (_settingDefaultView == nil) {
         _settingDefaultView = [[ManWuAddressSetDefaultView alloc] initWithFrame:CGRectMake(0, 0, self.width, 50)];
@@ -325,10 +351,15 @@
 #pragma mark WeAppBasicServiceDelegate method
 
 -(void)serviceDidFinishLoad:(WeAppBasicService *)service{
-    if (service) {
+    if (service == self.addressEditService) {
         [WeAppToast toast:@"保存成功"];
         if (self.addressDidChangeBlock) {
-            self.addressDidChangeBlock(YES,self.addressInfoModel);
+            self.addressDidChangeBlock(YES, self.addressInfoModel);
+            [self.viewController.navigationController popViewControllerAnimated:YES];
+        }
+    }else if (service == self.addressDeleteService){
+        if (self.addressDidChangeBlock) {
+            self.addressDidChangeBlock(YES, nil);
             [self.viewController.navigationController popViewControllerAnimated:YES];
         }
     }

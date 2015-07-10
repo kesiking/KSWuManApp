@@ -37,6 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"编辑收货地址";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.addressEditView.deleteButton];
     [self.view addSubview:self.addressEditView];
 }
 

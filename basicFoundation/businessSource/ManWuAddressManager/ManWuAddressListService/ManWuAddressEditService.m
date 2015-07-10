@@ -23,6 +23,16 @@
     [self loadItemWithAPIName:@"address/modifyAddress.do" params:params version:nil];
 }
 
+-(void)deleteAddressInfoWithAddressId:(NSString *)addressId{
+    if (addressId == nil) {
+        return;
+    }
+    NSDictionary* params = @{@"id":safeString(addressId)};
+    self.jsonTopKey = @"data";
+    self.needLogin = YES;
+    [self loadItemWithAPIName:@"address/deleteAddress.do" params:params version:nil];
+}
+
 -(void)addAddressInfoWithAddressId:(NSString *)addressId userId:(NSString *)userId recvName:(NSString *)recvName phoneNum:(NSString *)phoneNum address:(NSString *)address defaultAddress:(BOOL)defaultAddress{
     NSDictionary* params = @{@"id":safeString(addressId),@"userId":safeString(userId),@"recvName":safeString(recvName),@"phoneNum":safeString(phoneNum),@"address":safeString(address)/*[safeString(address) URLEncodedString]*/,@"defaultAddress":defaultAddress?@"true":@"false"};
     self.jsonTopKey = @"data";
