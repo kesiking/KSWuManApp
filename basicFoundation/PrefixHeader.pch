@@ -36,5 +36,6 @@
 
 #define LOGIN_FLAG @"alreadyLogin"  //标识已登录
 
+//#define LOGIN_NEED_ENCRYPT
 
 #endif

@@ -31,7 +31,7 @@
         [self bringSubviewToFront:self.priceLabel];
         self.priceLabel.textAlignment = NSTextAlignmentCenter;
     }else{
-        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - 100 - 0.5 , self.commodityImageView.bottom - 20 - 0.5, 100, 20)];
+        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - 80 - 0.5 , self.commodityImageView.bottom - 20 - 0.5, 80, 20)];
         
         [self.salePriceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.commodityPriceImageView.width/2, self.commodityPriceImageView.height)];
         [self bringSubviewToFront:self.salePriceLabel];

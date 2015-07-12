@@ -199,6 +199,8 @@
         _progressHUD.detailsLabelText=@"正在登录...";
         _progressHUD.removeFromSuperViewOnHide=YES;
     }
+
+#ifdef LOGIN_NEED_ENCRYPT
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
     NSDictionary* aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     if (aliPayFile == nil) {
@@ -207,11 +209,15 @@
     NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
     
 //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
+    
     NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
     signedPwd = [signedPwd tbUrlEncoded];
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1} version:nil];
+#else
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text?:@""} version:nil];
 
-    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text?:@""/*,@"__unNeedEncode__":@1*/} version:nil];
-
+#endif
+//    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":@"18626876800", @"pwd":@"o3vy2D3n3WDwyHbl3T%2BXV%2FnA4uYNrbAGVdiA%2F3l%2BhyqbS9JeUkLM2rIzn6%2B5TWQp8sSZLqt9fvcKwFw3BcFCEH2fHrw3%2FdKjQwT6TIB%2BHEGkhiLGwvNT9Zq%2BEvLN6NKg7Lv%2F0mfAJNqtwM0k1JbXKwJ5BUaF0wzeXN9QVZfABUU%3D",@"__unNeedEncode__":@1} version:nil];
 }
 
 - (void)doRegister

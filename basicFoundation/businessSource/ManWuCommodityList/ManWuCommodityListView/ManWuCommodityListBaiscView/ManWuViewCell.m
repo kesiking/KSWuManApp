@@ -75,8 +75,8 @@
 -(UICustomLineLabel *)priceLabel{
     if (_priceLabel == nil) {
         _priceLabel = [[UICustomLineLabel alloc] init];
-        _priceLabel.font = [UIFont boldSystemFontOfSize:11];
-        _priceLabel.textColor = [UIColor whiteColor];//RGB(0x2d, 0x2d, 0x2d);
+        _priceLabel.font = [UIFont boldSystemFontOfSize:10];
+        _priceLabel.textColor = [UIColor yellowColor];//RGB(0x2d, 0x2d, 0x2d);
         _priceLabel.backgroundColor = self.backgroundColor;
         _priceLabel.opaque = YES;
         _priceLabel.numberOfLines = 1;
@@ -90,7 +90,7 @@
 -(UICustomLineLabel *)salePriceLabel{
     if (_salePriceLabel == nil) {
         _salePriceLabel = [[UICustomLineLabel alloc] init];
-        _salePriceLabel.font = [UIFont boldSystemFontOfSize:11];
+        _salePriceLabel.font = [UIFont boldSystemFontOfSize:12];
         _salePriceLabel.textColor = [UIColor whiteColor];//RGB(0x2d, 0x2d, 0x2d);
         _salePriceLabel.backgroundColor = self.backgroundColor;
         _salePriceLabel.opaque = YES;
