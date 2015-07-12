@@ -153,6 +153,12 @@
             statusStr = @"已退款";
         }
             break;
+        case 7:
+        {
+            statusStr = @"已取消";
+        }
+            break;
+
             
         default:
             break;

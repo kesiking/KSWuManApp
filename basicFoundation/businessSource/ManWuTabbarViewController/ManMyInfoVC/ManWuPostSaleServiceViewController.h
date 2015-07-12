@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSOrderModel.h"
 
 @interface ManWuPostSaleServiceViewController : UIViewController<WeAppBasicServiceDelegate>
 
+@property (nonatomic, strong) KSOrderModel *orderModel;
 @property (nonatomic, strong) KSAdapterService *service;
 
 @end

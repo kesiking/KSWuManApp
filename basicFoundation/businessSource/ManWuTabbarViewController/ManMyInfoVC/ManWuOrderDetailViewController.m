@@ -10,9 +10,10 @@
 #import "KSOrderDetailView.h"
 #import "ManWuPostSaleServiceViewController.h"
 
-@interface ManWuOrderDetailViewController ()<KSOrderDetailViewDelegate>
+@interface ManWuOrderDetailViewController ()<KSOrderDetailViewDelegate,UIAlertViewDelegate>
 {
     KSOrderDetailView *orderDetailView;
+    UIAlertView *myAlertView;
 }
 
 @end
@@ -46,7 +47,9 @@
     switch (style) {
         case ButtonSelectedStyleCancelOrder:
         {
-            
+            myAlertView = [[UIAlertView alloc]initWithTitle:@"是否取消订单？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            myAlertView.tag = 7;
+            [myAlertView show];
         }
             break;
         case ButtonSelectedStyleDeleteOrder:
@@ -72,6 +75,7 @@
         case ButtonSelectedStyleService:
         {
             ManWuPostSaleServiceViewController *postsaleService = [[ManWuPostSaleServiceViewController alloc]init];
+            postsaleService.orderModel = self.orderModel;
             [self.navigationController pushViewController:postsaleService animated:YES];
         }
             break;
@@ -88,6 +92,11 @@
 {
     if (service == _service) {
         // todo success
+        if([service.requestModel.apiName isEqualToString:@"order/modifyOrder.do"])
+        {
+            return;
+        }
+
     }
 }
 
@@ -104,6 +113,32 @@
         NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
         [WeAppToast toast:errorInfo];
         
+    }
+}
+
+#pragma mark - alertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSInteger toStatus = alertView.tag;
+    
+    if(buttonIndex == 0)
+    {
+        return;
+        
+    }else
+    {
+        switch (toStatus) {
+            case 7:
+            {
+                //取消订单操作
+                [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":_orderModel.orderId,@"status":@7} version:nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
