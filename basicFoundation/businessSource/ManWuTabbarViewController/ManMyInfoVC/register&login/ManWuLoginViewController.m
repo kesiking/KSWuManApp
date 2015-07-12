@@ -211,8 +211,13 @@
 //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
     
     NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
+    NSString* method = @"GET";
+#ifdef LOGIN_USE_POST_ENCRYPT
     signedPwd = [signedPwd tbUrlEncoded];
-    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1} version:nil];
+    method = @"POST";
+#endif
+    
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
 #else
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text?:@""} version:nil];
 

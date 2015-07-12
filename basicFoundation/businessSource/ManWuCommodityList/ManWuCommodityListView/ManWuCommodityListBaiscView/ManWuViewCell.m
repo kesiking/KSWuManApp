@@ -76,7 +76,7 @@
     if (_priceLabel == nil) {
         _priceLabel = [[UICustomLineLabel alloc] init];
         _priceLabel.font = [UIFont boldSystemFontOfSize:10];
-        _priceLabel.textColor = [UIColor yellowColor];//RGB(0x2d, 0x2d, 0x2d);
+        _priceLabel.textColor = RGB(0xf3, 0xf0, 0x9b);//RGB(0x2d, 0x2d, 0x2d);
         _priceLabel.backgroundColor = self.backgroundColor;
         _priceLabel.opaque = YES;
         _priceLabel.numberOfLines = 1;

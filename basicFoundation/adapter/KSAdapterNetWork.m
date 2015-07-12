@@ -55,12 +55,18 @@
             [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
         }
         
+        NSString* method = [newParams objectForKey:@"__METHOD__"];
+
         [newParams removeObjectForKey:@"needLogin"];
         [newParams removeObjectForKey:@"__unNeedEncode__"];
+        [newParams removeObjectForKey:@"__METHOD__"];
+        
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
         // 默认为json序列化
+        
         AFHTTPRequestOperationManager *httpRequestOM = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:KS_MANWU_BASE_URL]];
-        [httpRequestOM POST:path parameters:newParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        void(^successCompleteBlock)(AFHTTPRequestOperation *operation, id responseObject) = ^(AFHTTPRequestOperation *operation, id responseObject){
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 NSDictionary* responseDict = (NSDictionary*)responseObject;
                 NSString* resultstring = [responseDict objectForKey:@"resultString"];
@@ -80,13 +86,35 @@
                     errorBlock(errorDic);
                 }
             }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        };
+        void(^errorCompleteBlock)(AFHTTPRequestOperation *operation, NSError *error) = ^(AFHTTPRequestOperation *operation, NSError *error){
             NSMutableDictionary* errorDic = [NSMutableDictionary dictionary];
             if (error) {
                 [errorDic setObject:error forKey:@"responseError"];
             }
             errorBlock(errorDic);
-        }];
+        };
+        if ([method isEqualToString:@"GET"]) {
+            [httpRequestOM GET:path parameters:newParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (successCompleteBlock) {
+                    successCompleteBlock(operation, responseObject);
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (errorCompleteBlock) {
+                    errorCompleteBlock(operation, error);
+                }
+            }];
+        }else{
+            [httpRequestOM POST:path parameters:newParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (successCompleteBlock) {
+                    successCompleteBlock(operation, responseObject);
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (errorCompleteBlock) {
+                    errorCompleteBlock(operation, error);
+                }
+            }];
+        }
     } onError:errorBlock];
 }
 

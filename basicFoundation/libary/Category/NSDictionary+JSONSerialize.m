@@ -83,7 +83,7 @@
 - (NSString*)tbUrlEncoded {
     CFStringRef cfUrlEncodedString = CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                              (CFStringRef)self,NULL,
-                                                                             (CFStringRef)@"!#$%&'()*+,/:;=?@[]",
+                                                                             (CFStringRef)@":/?&=;+!@#$()',*",
                                                                              kCFStringEncodingUTF8);
     
     NSString *urlEncoded = [NSString stringWithString:(__bridge NSString*)cfUrlEncodedString];
