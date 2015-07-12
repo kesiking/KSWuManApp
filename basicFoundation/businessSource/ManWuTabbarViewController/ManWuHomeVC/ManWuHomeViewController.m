@@ -10,6 +10,7 @@
 #import "ManWuHomeHeaderView.h"
 #import "ManWuCommodityListView.h"
 #import "ManWuCommodityNewListService.h"
+#import "KSSafePayUtility.h"
 
 @interface ManWuHomeViewController (){
     
@@ -44,6 +45,9 @@
     }else if([navigationController.navigationBar respondsToSelector:@selector(tintColor)]){
         navigationController.navigationBar.tintColor = [UIColor whiteColor];
     }
+    
+//    NSDictionary* resultDict = @{@"resultStatus":@9000,@"memo":@"",@"result":@"partner=\"2088911272587293\"&seller_id=\"hzwuman@126.com\"&out_trade_no=\"2015071254093120345\"&subject=\"男装外套测试商品1\"&body=\"男装外套测试商品1\"&total_fee=\"0.01\"&notify_url=\"http://115.29.227.64/wuman/order/callbackOrder.do\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&show_url=\"m.alipay.com\"&success=\"true\"&sign_type=\"RSA\"&sign=\"iOMOBdDSo38NFnbHXii0nXIrOzwlc+GAvkN/cbtqKoNBQtRnkULEoF9m6KeRvhcQvuZl43rNdRjfhpG6ajahIVh2J8zQdHJ/FrRMp3ZKCBAzmDE/wumm3U01zoH/w5a3qGZuWKKRyz+SK6pBEhU/h9k5C5xJuPcCXnkgLAe6SNI=\""};
+//    [KSSafePayUtility processResultStatus:resultDict];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -18,4 +18,6 @@
  */
 +(void)aliPayForParams:(NSDictionary *)params callbackBlock: (CompletionBlock)callbackBlock;
 
++(BOOL)processResultStatus:(NSDictionary*)resultDic;
+
 @end
