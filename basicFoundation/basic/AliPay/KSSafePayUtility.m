@@ -145,7 +145,7 @@ static NSString    * aliPayPublicKey;
         }
         NSString* message = [NSString string];
         id<DataVerifier> verifier = CreateRSADataVerifier(aliPayPublicKey);
-        signSuccess = [verifier verifyString:message withSign:sign];
+//        signSuccess = [verifier verifyString:message withSign:sign];
     }
     
     //是否支付成功

@@ -213,7 +213,7 @@
     NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
     NSString* method = @"GET";
 #ifdef LOGIN_USE_POST_ENCRYPT
-    signedPwd = [signedPwd tbUrlEncoded];
+//    signedPwd = [signedPwd tbUrlEncoded];
     method = @"POST";
 #endif
     
