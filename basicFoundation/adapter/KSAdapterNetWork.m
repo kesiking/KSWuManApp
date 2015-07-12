@@ -33,67 +33,22 @@
     self.needLogin = [param objectForKey:@"needLogin"];
     // 统一调用登陆逻辑
     [self callWithAuthCheck:apiName method:^{
-        NSMutableDictionary* newParams = nil;
-
-        if (param) {
-            BOOL unNeedEncode = [param objectForKey:@"__unNeedEncode__"];
-            if (!unNeedEncode) {
-                newParams = [NSMutableDictionary dictionary];
-                for (NSString* key in [param allKeys]) {
-                    id value = [param objectForKey:key];
-                    if ([value isKindOfClass:[NSString class]]) {
-                        [newParams setObject:[(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:key];
-                    }else{
-                        [newParams setObject:value forKey:key];
-                    }
-                }
-            }else{
-                newParams = [NSMutableDictionary dictionaryWithDictionary:param];
-            }
-        }
-        if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
-            [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
-        }
-        
-        NSString* method = [newParams objectForKey:@"__METHOD__"];
-
-        [newParams removeObjectForKey:@"needLogin"];
-        [newParams removeObjectForKey:@"__unNeedEncode__"];
-        [newParams removeObjectForKey:@"__METHOD__"];
-        
         NSString* path = [NSString stringWithFormat:@"%@%@",DEFAULT_PARH,apiName];
         // 默认为json序列化
         
         AFHTTPRequestOperationManager *httpRequestOM = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:KS_MANWU_BASE_URL]];
         
-        void(^successCompleteBlock)(AFHTTPRequestOperation *operation, id responseObject) = ^(AFHTTPRequestOperation *operation, id responseObject){
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                NSDictionary* responseDict = (NSDictionary*)responseObject;
-                NSString* resultstring = [responseDict objectForKey:@"resultString"];
-                NSString* resultcode = [responseDict objectForKey:@"resultCode"];
-                NSString* resultApiName = apiName;
-                if ([resultcode isEqualToString:@"100"]) {
-                    successBlock(responseDict);
-                }else{
-                    if (resultstring == nil) {
-                        resultstring = @"连接成功，请求数据不存在";
-                    }
-                    NSError *error = [NSError errorWithDomain:@"apiRequestErrorDomain" code:[resultcode integerValue] userInfo:@{NSLocalizedDescriptionKey: resultstring,@"apiName":resultApiName?:@""}];
-                    NSMutableDictionary* errorDic = [NSMutableDictionary dictionary];
-                    if (error) {
-                        [errorDic setObject:error forKey:@"responseError"];
-                    }
-                    errorBlock(errorDic);
-                }
-            }
-        };
-        void(^errorCompleteBlock)(AFHTTPRequestOperation *operation, NSError *error) = ^(AFHTTPRequestOperation *operation, NSError *error){
-            NSMutableDictionary* errorDic = [NSMutableDictionary dictionary];
-            if (error) {
-                [errorDic setObject:error forKey:@"responseError"];
-            }
-            errorBlock(errorDic);
-        };
+        // 获取加密
+        NSMutableDictionary* newParams = [self getEncodeParamWithParam:param];
+        NSString* method = [newParams objectForKey:@"__METHOD__"];
+        [self preProccessParamWithParam:newParams];
+        
+        // 获取successCompleteBlock
+        void(^successCompleteBlock)(AFHTTPRequestOperation *operation, id responseObject) = [self getSuccessCompleteBlockWithApiName:apiName onSuccess:successBlock onError:errorBlock onCancel:cancelBlock];
+        
+        // 获取errorCompleteBlock
+        void(^errorCompleteBlock)(AFHTTPRequestOperation *operation, NSError *error) = [self getErrorCompleteBlockWithApiName:apiName onSuccess:successBlock onError:errorBlock onCancel:cancelBlock];
+        
         if ([method isEqualToString:@"GET"]) {
             [httpRequestOM GET:path parameters:newParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 if (successCompleteBlock) {
@@ -116,6 +71,72 @@
             }];
         }
     } onError:errorBlock];
+}
+
+-(void(^)(AFHTTPRequestOperation *operation, id responseObject))getSuccessCompleteBlockWithApiName:(NSString *)apiName onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
+    return ^void(AFHTTPRequestOperation *operation, id responseObject){
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            NSDictionary* responseDict = (NSDictionary*)responseObject;
+            NSString* resultstring = [responseDict objectForKey:@"resultString"];
+            NSString* resultcode = [responseDict objectForKey:@"resultCode"];
+            NSString* resultApiName = apiName;
+            if ([resultcode isEqualToString:@"100"]) {
+                successBlock(responseDict);
+            }else{
+                if (resultstring == nil) {
+                    resultstring = @"连接成功，请求数据不存在";
+                }
+                NSError *error = [NSError errorWithDomain:@"apiRequestErrorDomain" code:[resultcode integerValue] userInfo:@{NSLocalizedDescriptionKey: resultstring,@"apiName":resultApiName?:@""}];
+                NSMutableDictionary* errorDic = [NSMutableDictionary dictionary];
+                if (error) {
+                    [errorDic setObject:error forKey:@"responseError"];
+                }
+                errorBlock(errorDic);
+            }
+        }
+    };
+}
+
+-(void(^)(AFHTTPRequestOperation *operation, NSError *error))getErrorCompleteBlockWithApiName:(NSString *)apiName onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
+    return ^void(AFHTTPRequestOperation *operation, NSError *error){
+        NSMutableDictionary* errorDic = [NSMutableDictionary dictionary];
+        if (error) {
+            [errorDic setObject:error forKey:@"responseError"];
+        }
+        errorBlock(errorDic);
+    };
+}
+
+-(NSMutableDictionary*)getEncodeParamWithParam:(NSDictionary*)param{
+    NSMutableDictionary* newParams = nil;
+    if (param) {
+        BOOL unNeedEncode = [param objectForKey:@"__unNeedEncode__"];
+        if (!unNeedEncode) {
+            newParams = [NSMutableDictionary dictionary];
+            for (NSString* key in [param allKeys]) {
+                id value = [param objectForKey:key];
+                if ([value isKindOfClass:[NSString class]]) {
+                    [newParams setObject:[(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:key];
+                }else{
+                    [newParams setObject:value forKey:key];
+                }
+            }
+        }else{
+            newParams = [NSMutableDictionary dictionaryWithDictionary:param];
+        }
+    }
+    return newParams;
+}
+
+-(void)preProccessParamWithParam:(NSMutableDictionary*)newParams{
+    
+    if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
+        [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
+    }
+    
+    [newParams removeObjectForKey:@"needLogin"];
+    [newParams removeObjectForKey:@"__unNeedEncode__"];
+    [newParams removeObjectForKey:@"__METHOD__"];
 }
 
 // 判断是否需要登陆才能操作，如果需要登陆，则先登陆，登陆成功后在回调接口；否则直接访问

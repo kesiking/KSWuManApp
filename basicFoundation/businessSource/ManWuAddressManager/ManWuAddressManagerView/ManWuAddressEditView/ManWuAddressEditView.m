@@ -246,13 +246,17 @@
         [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
         [_deleteButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [_deleteButton setTitleColor:RGB(0x66, 0x66, 0x66) forState:UIControlStateNormal];
-        
+        [_deleteButton setTitleEdgeInsets:UIEdgeInsetsMake(0, _deleteButton.width - 40, 0, 2)];
+        [_deleteButton setBackgroundColor:[UIColor clearColor]];
         [_deleteButton addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _deleteButton;
 }
 
 -(void)deleteButtonClicked:(id)sender {
+    if (self.addressInfoModel.addressId == nil) {
+        return;
+    }
     [self.addressDeleteService deleteAddressInfoWithAddressId:self.addressInfoModel.addressId];
 }
 
