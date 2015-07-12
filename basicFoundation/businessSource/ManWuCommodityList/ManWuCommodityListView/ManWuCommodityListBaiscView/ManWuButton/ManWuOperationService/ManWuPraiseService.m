@@ -15,7 +15,44 @@
 }
 
 -(void)unAddPraiseWithItemId:(NSString*)itemId{
-    [self doPraiseWithApiName:@"collection/unAddItem.do" itemId:itemId];
+    if (itemId == nil) {
+        return;
+    }
+    [self unAddPraiseWithItemIds:@[itemId]];
+//    [self doPraiseWithApiName:@"collection/unAddItem.do" itemId:itemId];
+}
+
+-(void)unAddPraiseWithItemIds:(NSArray*)itemIds{
+    if (itemIds == nil || [itemIds count] == 0) {
+        return;
+    }
+    NSMutableString* itemIdStr = [NSMutableString string];
+    
+    NSUInteger count = [itemIds count];
+    
+    for (NSString* itemId in itemIds) {
+        if (itemId == nil || ![itemId isKindOfClass:[NSString class]]) {
+            continue;
+        }
+        [itemIdStr appendString:itemId];
+        NSUInteger index = [itemIds indexOfObject:itemId];
+        if (index < count - 1) {
+            [itemIdStr appendString:@","];
+        }
+    }
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    [params setObject:@"praise" forKey:@"action"];
+    [params setObject:[itemIdStr URLEncodedString] forKey:@"itemIds"];
+    [params setObject:@1 forKey:@"__unNeedEncode__"];
+    
+    if ([KSAuthenticationCenter userId]) {
+        [params setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
+    }
+    
+    self.needLogin = YES;
+    
+    [self loadItemWithAPIName:@"collection/unAddItem.do" params:params version:nil];
 }
 
 -(void)doPraiseWithApiName:(NSString*)apiName itemId:(NSString*)itemId{
