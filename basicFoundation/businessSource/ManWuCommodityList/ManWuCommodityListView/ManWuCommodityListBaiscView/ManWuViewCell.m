@@ -56,6 +56,7 @@
     [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 2.0, favorateImage_width_height, favorateImage_width_height)];
     [self.titleLabel setFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom + commodityImage_bottom_border, self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.favorateLabel.height)];
     [self.priceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
+    [self.salePriceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
 }
 
 -(UILabel *)titleLabel{
@@ -71,17 +72,34 @@
     return _titleLabel;
 }
 
--(UILabel *)priceLabel{
+-(UICustomLineLabel *)priceLabel{
     if (_priceLabel == nil) {
-        _priceLabel = [[UILabel alloc] init];
+        _priceLabel = [[UICustomLineLabel alloc] init];
         _priceLabel.font = [UIFont boldSystemFontOfSize:11];
         _priceLabel.textColor = [UIColor whiteColor];//RGB(0x2d, 0x2d, 0x2d);
         _priceLabel.backgroundColor = self.backgroundColor;
         _priceLabel.opaque = YES;
         _priceLabel.numberOfLines = 1;
+        _priceLabel.lineType = LineTypeNone;
+        _priceLabel.lineColor = _salePriceLabel.textColor;
         [self addSubview:_priceLabel];
     }
     return _priceLabel;
+}
+
+-(UICustomLineLabel *)salePriceLabel{
+    if (_salePriceLabel == nil) {
+        _salePriceLabel = [[UICustomLineLabel alloc] init];
+        _salePriceLabel.font = [UIFont boldSystemFontOfSize:11];
+        _salePriceLabel.textColor = [UIColor whiteColor];//RGB(0x2d, 0x2d, 0x2d);
+        _salePriceLabel.backgroundColor = self.backgroundColor;
+        _salePriceLabel.opaque = YES;
+        _salePriceLabel.numberOfLines = 1;
+        _salePriceLabel.lineType = LineTypeNone;
+        _salePriceLabel.lineColor = _salePriceLabel.textColor;
+        [self addSubview:_salePriceLabel];
+    }
+    return _salePriceLabel;
 }
 
 -(UILabel *)favorateLabel{
@@ -193,7 +211,15 @@
     self.favorateImageView.itemId = detailModel.itemId;
     [self.favorateImageView updatePraiseBtnStatus:[detailModel.loved boolValue]];
     self.titleLabel.text = detailModel.title;
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.price];
+    if (detailModel.sale) {
+        self.salePriceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
+        self.salePriceLabel.hidden = NO;
+        self.priceLabel.lineType = LineTypeMiddle;
+    }else{
+        self.priceLabel.lineType = LineTypeNone;
+        self.salePriceLabel.hidden = YES;
+    }
     NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.love longLongValue] number:3];
     self.favorateLabel.text = favorateLabelText;
     [self updateFrame];

@@ -210,7 +210,7 @@
     NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
     signedPwd = [signedPwd tbUrlEncoded];
 
-    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":[_text_phoneNum.text tbUrlEncoded], @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1} version:nil];
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text?:@""/*,@"__unNeedEncode__":@1*/} version:nil];
 
 }
 

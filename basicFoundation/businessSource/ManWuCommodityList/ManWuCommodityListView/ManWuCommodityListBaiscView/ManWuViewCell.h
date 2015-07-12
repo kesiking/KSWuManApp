@@ -8,14 +8,18 @@
 
 #import "KSViewCell.h"
 #import "ManWuPraiseButton.h"
+#import "UICustomLineLabel.h"
 
 @interface ManWuViewCell : KSViewCell
 
 @property (nonatomic,strong) UIImageView*         commodityImageView;
 @property (nonatomic,strong) ManWuPraiseButton*   favorateImageView;
 @property (nonatomic,strong) UILabel*             titleLabel;
-@property (nonatomic,strong) UILabel*             priceLabel;
+@property (nonatomic,strong) UICustomLineLabel*   priceLabel;
+@property (nonatomic,strong) UICustomLineLabel*   salePriceLabel;
 @property (nonatomic,strong) UILabel*             favorateLabel;
 @property (nonatomic,strong) UIButton*            selectButton;
+
+- (void)updateFrame;
 
 @end

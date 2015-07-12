@@ -366,7 +366,11 @@
 }
 
 -(void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError *)error{
-    [WeAppToast toast:@"保存失败，请稍后再试"];
+    if (service == self.addressEditService) {
+        [WeAppToast toast:@"保存失败，请稍后再试"];
+    }else if (service == self.addressDeleteService){
+        [WeAppToast toast:@"删除失败，请稍后再试"];
+    }
 }
 
 @end
