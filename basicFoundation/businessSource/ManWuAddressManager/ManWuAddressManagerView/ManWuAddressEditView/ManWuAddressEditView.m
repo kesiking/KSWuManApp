@@ -81,6 +81,11 @@
     
     self.settingDefaultView.isDefaultAddress = addressInfoModel.defaultAddress;
     self.isDefaultAddress = addressInfoModel.defaultAddress;
+    if (_addressInfoModel.addressId == nil) {
+        self.deleteButton.enabled = NO;
+    }else{
+        self.deleteButton.enabled = YES;
+    }
 }
 
 -(ManWuAddressEditService *)addressEditService{
