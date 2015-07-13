@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, ButtonSelectedStyle) {
 @protocol KSOrderDetailViewDelegate <NSObject>
 
 - (void)didSelectedButtonStyle:(ButtonSelectedStyle)style;
+- (void)didSelectedOrderInfoItem:(KSOrderModel *)orderModel;
 
 @end
 

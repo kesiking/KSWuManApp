@@ -21,6 +21,7 @@
     NSArray *ordersList;
     MBProgressHUD *_progressHUD;    ///<指示器
     UIAlertView *myAlertView;
+    CGFloat cellHeight;
 }
 
 @end
@@ -65,7 +66,7 @@
     
     [self.view addSubview:self.selectionList];
     
-//    ordersList = @[@[@"1.1",@"1.2",@"1.3"],@[@"2.1",@"2.2",@"2.3"],@[@"3.1",@"3.2",@"3.3"],@[@"4.1",@"4.2",@"4.3"],@[@"5.1",@"5.2",@"5.3"],@[@"6.1",@"6.2",@"6.3"]];
+    cellHeight = ORDERCELLHEIGHT;
     
     CGRect rect = self.view.frame;
     r = CGRectZero;
@@ -227,7 +228,7 @@
 {
     if(indexPath.row == 0)
     {
-        return ORDERCELLHEIGHT;
+        return cellHeight;
 
     }else
     {
@@ -249,6 +250,8 @@
         //在此设置订单列表，以便重新布局
         KSOrderModel *ordermodel = ordersList[indexPath.section];
         orderCell.orderModel = ordermodel;
+        cellHeight = orderCell.height;
+        [self tableView:tableView heightForRowAtIndexPath:indexPath];
         return orderCell;
         
     }else

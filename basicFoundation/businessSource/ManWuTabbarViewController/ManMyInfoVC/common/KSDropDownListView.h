@@ -19,5 +19,6 @@
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UILabel *userActionLabel;
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, assign) NSInteger serviceType;
 
 @end

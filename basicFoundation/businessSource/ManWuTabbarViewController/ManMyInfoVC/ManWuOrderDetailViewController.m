@@ -9,6 +9,7 @@
 #import "ManWuOrderDetailViewController.h"
 #import "KSOrderDetailView.h"
 #import "ManWuPostSaleServiceViewController.h"
+#import "KSSafePayUtility.h"
 
 @interface ManWuOrderDetailViewController ()<KSOrderDetailViewDelegate,UIAlertViewDelegate>
 {
@@ -60,6 +61,12 @@
         case ButtonSelectedStylePay:
         {
             
+            NSDictionary* params = @{@"tradeNO":self.orderModel.orderId?:@"",@"productName":self.orderModel.title?:@"",@"productDescription":self.orderModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",self.orderModel.payPrice?:@0.01]};
+            
+            [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
+                // 支付成功后 todo
+                NSLog(@"++++++++++++++支付成功");
+            }];
         }
             break;
         case ButtonSelectedStyleNoteSend:
@@ -84,6 +91,11 @@
         default:
             break;
     }
+}
+
+- (void)didSelectedOrderInfoItem:(KSOrderModel *)orderModel
+{
+    
 }
 
 #pragma mark - WeAppBasicServiceDelegate method

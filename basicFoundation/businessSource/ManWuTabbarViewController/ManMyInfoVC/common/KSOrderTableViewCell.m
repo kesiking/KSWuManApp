@@ -73,6 +73,8 @@
     _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_imageView.frame) + 5, kCellControlSpacingY, CGRectGetMinX(_priceLabel.frame) - CGRectGetMaxX(_imageView.frame) - 15, kTitleFontSize)];
     [_titleLabel setFont:[UIFont systemFontOfSize:kTitleFontSize]];
     [_titleLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
+    [_titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [_titleLabel setNumberOfLines:0];
     [self addSubview:_titleLabel];
     
     _sizeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_imageView.frame) + 5, CGRectGetMaxY(_titleLabel.frame) + 10, 60, kSize_ColorFontSize)];
@@ -170,6 +172,28 @@
         [_imageView sd_setImageWithURL:[NSURL URLWithString:orderModel.imgUrl]];
         _titleLabel.text = orderModel.title;
         
+        NSString *titleStr = orderModel.title;
+        NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:titleStr];
+        NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+//        [paragraphStyle1 setLineSpacing:5.0];//调整行间距
+        [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [titleStr length])];
+        _titleLabel.attributedText = attributedString1;
+        [_titleLabel sizeToFit];
+        
+        [_sizeLabel setFrame:CGRectMake(CGRectGetMaxX(_imageView.frame) + 5, CGRectGetMaxY(_titleLabel.frame) + 10, 60, kSize_ColorFontSize)];
+        
+        [_buyNumLabel setFrame:CGRectMake(CGRectGetMaxX(_sizeLabel.frame) + 10, CGRectGetMinY(_sizeLabel.frame), 60, kBuyNumFontSize)];
+        
+        [_colorLabel setFrame:CGRectMake(CGRectGetMaxX(_imageView.frame) + 5, CGRectGetMaxY(_sizeLabel.frame) + 5, 100, kSize_ColorFontSize)];
+        
+        [_statusLabel setFrame:CGRectMake(self.width - kStatusLabelWidth - kCellControlSpacingX, CGRectGetMinY(_colorLabel.frame), kStatusLabelWidth, kStatusFontSize)];
+        
+        [_LineView setFrame:CGRectMake(kCellControlSpacingX, CGRectGetMaxY(_statusLabel.frame) + 10, self.width - 2*kCellControlSpacingX, 0.5)];
+        
+        CGRect rect = self.frame;
+        rect.size.height = CGRectGetMaxY(_LineView.frame);
+        [self setFrame:rect];
+        
         NSArray *skuList = orderModel.skuList;
         for(KSOrderSKUModel *orderSku in skuList)
         {
@@ -182,6 +206,11 @@
             {
                 _sizeLabel.text = [NSString stringWithFormat:@"尺码：%@",orderSku.value];
             }
+        }
+        
+        if([skuList count] == 0)
+        {
+            [_buyNumLabel setFrame:_sizeLabel.frame];
         }
         _buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
         _statusLabel.text = statusStr;

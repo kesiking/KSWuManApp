@@ -17,5 +17,6 @@
 @interface KSRegisterSuccessView : UIView
 
 @property (nonatomic, assign) id<KSRegisterSuccessViewDelegate> delegate;
+@property (nonatomic, assign) NSInteger redPackerPrice;
 
 @end

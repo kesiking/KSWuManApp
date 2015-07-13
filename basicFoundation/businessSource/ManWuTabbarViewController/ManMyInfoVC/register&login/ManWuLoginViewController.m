@@ -28,6 +28,8 @@
 @implementation ManWuLoginViewController
 {
     MBProgressHUD *_progressHUD;    ///<指示器
+    
+    BOOL isKeyShow;//是否有键盘
 }
 
 -(id)initWithNavigatorURL:(NSURL *)URL query:(NSDictionary *)query nativeParams:(NSDictionary *)nativeParams{
@@ -85,6 +87,68 @@
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_btn_cancel];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
 
+    NSNotificationCenter *center=[NSNotificationCenter defaultCenter];
+    //注册键盘显示通知
+    [center addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    //注册键盘隐藏通知
+    [center addObserver:self selector:@selector(keyBoardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+#pragma mark 键盘显示时调用
+- (void)keyBoardWillShow:(NSNotification *)notification
+{
+    if(isKeyShow)
+    {
+        return;
+    }
+    isKeyShow=YES;
+//    //获取LoginArea的视图
+//    UIView *LoginArea=[self.view viewWithTag:VIEW_TAG];
+//    //获取LoginArea的Rect
+//    CGRect loginAreaRect=LoginArea.frame;
+    //键盘Rect
+    CGRect keyBoardRect=[[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    //偏移量
+    CGFloat distance=keyBoardRect.origin.y-CGRectGetMaxY(_btn_login.frame);
+    if (distance<0) {
+        [self animationWithUserInfo:notification.userInfo bloack:^{
+            if (self.view.frame.size.height == 480) {
+                self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance - 20);
+                
+            }
+            else{
+                //                self.ZYlabel.transform=CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+                self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance);
+            }
+            //            self.ZYlabel.transform = CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+        }];
+    }
+    
+}
+#pragma mark 键盘隐藏时调用
+- (void)keyBoardWillHidden:(NSNotification *)notification
+{
+    isKeyShow=NO;
+    [self animationWithUserInfo:notification.userInfo bloack:^{
+        self.view.transform=CGAffineTransformIdentity;
+        //        self.ZYlabel.transform = CGAffineTransformIdentity;
+    }];
+    
+}
+#pragma mark 键盘动画
+- (void)animationWithUserInfo:(NSDictionary *)userInfo bloack:(void (^)(void))block
+{
+    // 取出键盘弹出的时间
+    CGFloat duration=[userInfo[UIKeyboardAnimationDurationUserInfoKey]floatValue];
+    // 取出键盘弹出动画曲线
+    NSInteger curve=[userInfo[UIKeyboardAnimationCurveUserInfoKey]integerValue];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    //调用bock
+    block();
+    [UIView commitAnimations];
 }
 
 - (UIImageView *)logo_imgView
@@ -101,7 +165,7 @@
 {
     if(!_text_phoneNum)
     {
-        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_logo_imgView.frame) + 30, SELFWIDTH, 40)];
+        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_logo_imgView.frame) + 30, SELFWIDTH, TEXTFILEDHEIGHT)];
         _text_phoneNum.placeholder = @"手机号码/用户名";
         [_text_phoneNum setFont:[UIFont systemFontOfSize:16]];
         _text_phoneNum.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -118,7 +182,7 @@
 {
     if(!_text_psw)
     {
-        _text_psw = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_phoneNum.frame) + 1, SELFWIDTH, 40)];
+        _text_psw = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_phoneNum.frame) + 1, SELFWIDTH, TEXTFILEDHEIGHT)];
         _text_psw.placeholder = @"密码";
         [_text_psw setFont:[UIFont systemFontOfSize:16]];
         _text_psw.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -151,7 +215,7 @@
 {
     if(!_btn_login)
     {
-        _btn_login = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_btn_forgetPwd.frame) + 20, WIDTH, 40)];
+        _btn_login = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_btn_forgetPwd.frame) + 20, WIDTH, TEXTFILEDHEIGHT)];
         [_btn_login setTitle:@"登录" forState:UIControlStateNormal];
         [_btn_login.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_login.titleLabel.textColor = [UIColor whiteColor];
@@ -208,7 +272,7 @@
     
 //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
     NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
-    signedPwd = [signedPwd tbUrlEncoded];
+//    signedPwd = [signedPwd tbUrlEncoded];
 
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":[_text_phoneNum.text tbUrlEncoded], @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1} version:nil];
 

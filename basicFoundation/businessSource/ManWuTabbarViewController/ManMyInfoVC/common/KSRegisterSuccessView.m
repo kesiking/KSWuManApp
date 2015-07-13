@@ -43,7 +43,7 @@
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(KSPaddingX, CGRectGetMaxY(btn_close.frame) + 5, subView.width - 2*KSPaddingX, 14)];
     [titleLabel setFont:[UIFont systemFontOfSize:14]];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"恭喜您获得50元新手红包";
+    titleLabel.text = [NSString stringWithFormat:@"恭喜您获得%ld元新手红包",(long)self.redPackerPrice];
     [subView addSubview:titleLabel];
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(2*KSPaddingX, CGRectGetMaxY(titleLabel.frame) + 10, subView.width - 4*KSPaddingX, 120)];

@@ -110,15 +110,23 @@
         orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
         [itemView_orderType addSubview:orderTypeLabel];
         
-        if([orderModel.status integerValue] == 4)
+        if([orderModel.status integerValue] == 5 || [orderModel.status integerValue] == 6)
         {
             UILabel *statusLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 140, kSpacePaddingY, 140, 15)];
             [statusLabel setFont:[UIFont systemFontOfSize:15]];
-            NSString *statusStr = @"申请审核中";
+            NSString *statusStr;
+            if([orderModel.status integerValue] == 5)
+            {
+                statusStr = @"退款中";
+
+            }else
+            {
+                statusStr = @"已退款";
+            }
             NSString *statusLabelStr = [NSString stringWithFormat:@"状态：%@",statusStr];
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:statusLabelStr];
             [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#ffffff"] range:NSMakeRange(0,3)];
-            [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#000000"] range:NSMakeRange(4,statusStr.length)];
+            [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#000000"] range:NSMakeRange(3,statusStr.length)];
             statusLabel.attributedText = str;
 ;
             [itemView_orderType addSubview:statusLabel];
@@ -212,7 +220,20 @@
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 5, kSpacePaddingY, CGRectGetMinX(priceLabel.frame) - CGRectGetMaxX(imageView.frame) - 15, 12)];
         [titleLabel setFont:[UIFont systemFontOfSize:12]];
         [titleLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#666666"]];
-        titleLabel.text = orderModel.title;
+        [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        [titleLabel setNumberOfLines:0];
+        NSString *titleStr = orderModel.title;
+        NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:titleStr];
+        NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+//        [paragraphStyle1 setLineSpacing:2.0];//调整行间距
+        [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [titleStr length])];
+        titleLabel.attributedText = attributedString1;
+        [titleLabel sizeToFit];
+        
+        UITapGestureRecognizer *singleTapRecognizer;
+        singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectedOrderInfoItem)];
+        singleTapRecognizer.numberOfTapsRequired = 1; // 单击
+        [self addGestureRecognizer:singleTapRecognizer];
         [itemView_orderInfo addSubview:titleLabel];
         
         UILabel *sizeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 5, CGRectGetMaxY(titleLabel.frame) + 10, 60, 12)];
@@ -244,6 +265,11 @@
             }
         }
         
+        if([skuList count] == 0)
+        {
+            [buyNumLabel setFrame:sizeLabel.frame];
+        }
+        
         buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
         
         if([orderModel.status integerValue] != 7)
@@ -260,7 +286,7 @@
             [itemView_orderInfo addSubview:btn_service];
         }
 
-        UIView *LineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame) + 10, self.width, 0.5)];
+        UIView *LineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(colorLabel.frame) + 10, self.width, 0.5)];
         LineView1.opaque = YES;
         LineView1.backgroundColor =[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1.0];
         [itemView_orderInfo addSubview:LineView1];
@@ -346,6 +372,9 @@
         buyTimeLabel.text = [NSString stringWithFormat:@"成交时间：%@",orderModel.createTime];
         [itemView_orderInfo addSubview:buyTimeLabel];
         
+        CGRect rect = itemView_orderInfo.frame;
+        rect.size.height = CGRectGetMaxY(buyTimeLabel.frame) + 10;
+        [itemView_orderInfo setFrame:rect];        
     }
     
     CSLinearLayoutItem *item = [CSLinearLayoutItem layoutItemForView:itemView_orderInfo];
@@ -483,6 +512,16 @@
         [self.delegate didSelectedButtonStyle:buttonSelectedStyle];
     }
     
+}
+
+#pragma mark - 订单选项回调
+
+- (void)selectedOrderInfoItem
+{
+    if(self.delegate)
+    {
+        [self.delegate didSelectedOrderInfoItem:orderModel];
+    }
 }
 
 - (void)didSelectedServiceButton

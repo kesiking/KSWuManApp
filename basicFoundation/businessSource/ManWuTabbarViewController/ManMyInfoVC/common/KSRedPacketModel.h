@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
 @property (nonatomic, strong) NSString *price;
-@property (nonatomic, strong) NSString *used;
+@property (nonatomic, strong) NSString *status;  //正常0，已使用1，已过期2
 @property (nonatomic, strong) NSString *desc;
 
 @end

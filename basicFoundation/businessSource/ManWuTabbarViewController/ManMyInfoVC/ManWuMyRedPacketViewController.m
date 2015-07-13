@@ -9,15 +9,20 @@
 #import "ManWuMyRedPacketViewController.h"
 #import "KSRedPacketModel.h"
 
-#define CELLHEIGHT 120
+#define CELLHEIGHT 100
+#define FOOTHEIGHT 30
+#define HEADERHEIGHT 30
 
 @interface ManWuMyRedPacketViewController ()
 {
     NSMutableArray *redPacketArray;
     NSMutableArray *validRedPackets;
-    NSMutableArray *invalidRedPackets;
+    NSMutableArray *usedRedPackets;    //已使用
+    NSMutableArray *expiredRedPackets; //已过期
     NSMutableDictionary *deleteDic;
     MBProgressHUD *_progressHUD;    ///<指示器
+    
+    CGFloat cellHeight;
 }
 
 @end
@@ -43,13 +48,14 @@
     self.title = @"我的红包";
     
     validRedPackets = [[NSMutableArray alloc]init];
-    invalidRedPackets = [[NSMutableArray alloc]init];
+    usedRedPackets = [[NSMutableArray alloc]init];
     redPacketArray = [[NSMutableArray alloc]init];
-    
+    expiredRedPackets = [[NSMutableArray alloc]init];
 //    UIBarButtonItem *btn_delete = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction)];
 //    self.navigationItem.rightBarButtonItem = btn_delete;
 //    deleteDic = [[NSMutableDictionary alloc]init];
-    
+
+    cellHeight = CELLHEIGHT;
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.table.delegate = self;
     self.table.dataSource = self;
@@ -125,15 +131,20 @@
 //            NSDate *endTime= [dateFormatter dateFromString:redpacket.endTime];
 //            NSTimeInterval time = [endTime timeIntervalSinceNow];
 //            if(time > 0)
-            if([redpacket.used integerValue] == 0)
+            if([redpacket.status integerValue] == 0)
             {
                 [validRedPackets addObject:redpacket];
+                
+            }else if([redpacket.status integerValue] == 1)
+            {
+                [usedRedPackets addObject:redpacket];
+
             }else
             {
-                [invalidRedPackets addObject:redpacket];
+                [expiredRedPackets addObject:redpacket];
             }
         }
-        redPacketArray = [NSMutableArray arrayWithObjects:validRedPackets, invalidRedPackets, nil];
+        redPacketArray = [NSMutableArray arrayWithObjects:validRedPackets, usedRedPackets, expiredRedPackets, nil];
         [self.table reloadData];
     }
 }
@@ -155,7 +166,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return [redPacketArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -163,35 +174,79 @@
     if(section == 0)
     {
         return [validRedPackets count];
+    }else if(section == 1)
+    {
+        return [usedRedPackets count];
     }else
-        return [invalidRedPackets count];
+    {
+        return [expiredRedPackets count];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    if(section == 0)
+    {
+        return 15;
+    }else
+        return HEADERHEIGHT;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.1;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CELLHEIGHT;
+    return cellHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section != 0 && [[redPacketArray objectAtIndex:section]count] > 0)
+    {
+        UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, HEADERHEIGHT)];
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(footView.width/2 - 60, 0, 120, HEADERHEIGHT)];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        [titleLabel setFont:[UIFont systemFontOfSize:12]];
+        titleLabel.textColor = [TBDetailUIStyle colorWithHexString:@"#999999"];
+        [footView addSubview:titleLabel];
+        if(section == 1)
+        {
+            titleLabel.text = @"已使用红包";
+            
+        }if(section == 2)
+        {
+            titleLabel.text = @"已过期红包";
+        }
+        
+        UIView *LineView1=[[UIView alloc] initWithFrame:CGRectMake(0, FOOTHEIGHT/2 - 0.5, CGRectGetMinX(titleLabel.frame), 0.5)];
+        LineView1.opaque = YES;
+        LineView1.backgroundColor = [TBDetailUIStyle colorWithHexString:@"#999999"];
+        [footView addSubview:LineView1];
+        
+        UIView *LineView2=[[UIView alloc] initWithFrame:CGRectMake( CGRectGetMaxX(titleLabel.frame), FOOTHEIGHT/2 - 0.5, footView.width - CGRectGetMaxX(titleLabel.frame), 0.5)];
+        LineView2.opaque = YES;
+        LineView2.backgroundColor = [TBDetailUIStyle colorWithHexString:@"#999999"];
+        [footView addSubview:LineView2];
+        
+        return footView;
+    }
+    
+    return nil;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identify = [NSString stringWithFormat:@"%ld",indexPath.section];
+    NSString *identify = [NSString stringWithFormat:@"%ld",(long)indexPath.section];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         
         KSRedPacketModel *redPacketModel = [[redPacketArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
-        UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(kSpaceX, kSpaceX, CELLHEIGHT - 2*kSpaceX, CELLHEIGHT - 2*kSpaceX)];
+        UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, CELLHEIGHT - 2*10, CELLHEIGHT - 2*10)];
         [cell.contentView addSubview:headImage];
         
         UILabel *redPacketLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, kSpaceX, 100, 18)];
@@ -206,7 +261,7 @@
         timeLabel.text = [NSString stringWithFormat:@"有效期：%@至%@",startTime,endTime];
         [cell.contentView addSubview:timeLabel];
         
-        UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(timeLabel.frame) + 10,  SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
+        UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(headImage.frame) + 10, CGRectGetMaxY(timeLabel.frame) + 5,  SELFWIDTH - CGRectGetMaxX(headImage.frame) - 10, 14)];
         [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [descLabel setNumberOfLines:0];
         [descLabel setFont:[UIFont systemFontOfSize:12]];
@@ -214,12 +269,16 @@
         NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
         NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
         
-        [paragraphStyle1 setLineSpacing:6.0];//调整行间距
+        [paragraphStyle1 setLineSpacing:5.0];//调整行间距
         // paragraphStyle1.firstLineHeadIndent = textSize20px * 2;//首行缩进
         [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [descStr length])];
         descLabel.attributedText = attributedString1;
         [descLabel sizeToFit];
         [cell.contentView addSubview:descLabel];
+        
+        cellHeight = 3 * kSpaceX + redPacketLabel.height + timeLabel.height + descLabel.height;
+        
+        [self tableView:tableView heightForRowAtIndexPath:indexPath];
 
         if(indexPath.section == 0)
         {
@@ -236,7 +295,13 @@
             [descLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
 
             UILabel *stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(SELFWIDTH - 65, kSpaceX - 5, 55, 25)];
-            stateLabel.text = @"已过期";
+            if([redPacketModel.status integerValue] == 2)
+            {
+                stateLabel.text = @"已过期";
+            }else if ([redPacketModel.status integerValue] == 1)
+            {
+                stateLabel.text = @"已使用";
+            }
             [stateLabel setFont:[UIFont systemFontOfSize:16]];
             [stateLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"]];
             [cell.contentView addSubview:stateLabel];

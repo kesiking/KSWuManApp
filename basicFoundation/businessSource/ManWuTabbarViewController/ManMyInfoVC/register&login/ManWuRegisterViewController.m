@@ -12,6 +12,7 @@
 {
     BOOL isRegister;
     KSRegisterSuccessView *registerSucView;
+    BOOL isKeyShow;//是否有键盘
 }
 
 @end
@@ -39,9 +40,14 @@
     [self.view addSubview:self.text_phoneNum];
     [self.view addSubview:self.text_psw];
     [self.view addSubview:self.smsCodeView];
-//    [self.view addSubview:self.text_inviteCode];
-//    [self.view addSubview:self.text_userName];
+    [self.view addSubview:self.text_inviteCode];
     [self.view addSubview:self.btn_register];
+    
+    NSNotificationCenter *center=[NSNotificationCenter defaultCenter];
+    //注册键盘显示通知
+    [center addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    //注册键盘隐藏通知
+    [center addObserver:self selector:@selector(keyBoardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (UIImageView *)logo_imgView
@@ -58,7 +64,7 @@
 {
     if(!_text_phoneNum)
     {
-        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_logo_imgView.frame) + 30, SELFWIDTH, 40)];
+        _text_phoneNum = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_logo_imgView.frame) + 30, SELFWIDTH, TEXTFILEDHEIGHT)];
         _text_phoneNum.placeholder = @"手机号码";
         [_text_phoneNum setFont:[UIFont systemFontOfSize:16]];
         _text_phoneNum.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -75,7 +81,7 @@
 {
     if(!_text_psw)
     {
-        _text_psw = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_phoneNum.frame) + 1, SELFWIDTH, 40)];
+        _text_psw = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_phoneNum.frame) + 1, SELFWIDTH, TEXTFILEDHEIGHT)];
         _text_psw.placeholder = @"密码";
         [_text_psw setFont:[UIFont systemFontOfSize:16]];
         _text_psw.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
@@ -92,9 +98,9 @@
 {
     if(!_smsCodeView)
     {
-        _smsCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_psw.frame) + 1, SELFWIDTH, 40)];
+        _smsCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_psw.frame) + 1, SELFWIDTH, TEXTFILEDHEIGHT)];
         _smsCodeView.backgroundColor = [UIColor clearColor];
-        _text_smsCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 0, (SELFWIDTH)/2 + 20, 40)];
+        _text_smsCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 0, (SELFWIDTH)/2 + 20, TEXTFILEDHEIGHT)];
         _text_smsCode.placeholder = @"验证码";
         [_text_smsCode setFont:[UIFont systemFontOfSize:16]];
         //        _text_smsCode.layer.borderWidth = 1.0;
@@ -104,7 +110,7 @@
         _text_smsCode.secureTextEntry = YES;
         [_text_smsCode setBackgroundColor:[UIColor whiteColor]];
         
-        _btn_smsCode = [[UIButton alloc]initWithFrame:CGRectMake((SELFWIDTH)/2 + 20, 0, (SELFWIDTH)/2 - 20, 40)];
+        _btn_smsCode = [[UIButton alloc]initWithFrame:CGRectMake((SELFWIDTH)/2 + 20, 0, (SELFWIDTH)/2 - 20, TEXTFILEDHEIGHT)];
         [_btn_smsCode setTitle:@"获取验证码"forState:UIControlStateNormal];
         _btn_smsCode.titleLabel.font = [UIFont systemFontOfSize:16];
         [_btn_smsCode setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle colorWithHexString:@"#b9b9b9"]] forState:UIControlStateNormal];
@@ -123,10 +129,10 @@
 {
     if(!_text_inviteCode)
     {
-        _text_inviteCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_psw.frame) + 15, WIDTH, 40)];
+        _text_inviteCode = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_smsCodeView.frame) + 1, SELFWIDTH, TEXTFILEDHEIGHT)];
         _text_inviteCode.placeholder = @"邀请码";
         [_text_inviteCode setFont:[UIFont systemFontOfSize:16]];
-        _text_inviteCode.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        _text_inviteCode.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_inviteCode.keyboardType = UIKeyboardTypeNumberPad;
         _text_inviteCode.clearButtonMode = UITextFieldViewModeAlways;
         _text_inviteCode.secureTextEntry = NO;
@@ -140,7 +146,7 @@
 {
     if(!_text_userName)
     {
-        _text_userName = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_inviteCode.frame) + 15, WIDTH, 40)];
+        _text_userName = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_inviteCode.frame) + 15, WIDTH, TEXTFILEDHEIGHT)];
         _text_userName.placeholder = @"用户名";
         [_text_userName setFont:[UIFont systemFontOfSize:16]];
         _text_userName.textEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
@@ -157,7 +163,7 @@
 {
     if(!_btn_register)
     {
-        _btn_register = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_smsCodeView.frame) + 30, WIDTH, 40)];
+        _btn_register = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_inviteCode.frame) + 30, WIDTH, TEXTFILEDHEIGHT)];
         [_btn_register setTitle:@"注册" forState:UIControlStateNormal];
         [_btn_register.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_register.titleLabel.textColor = [UIColor whiteColor];
@@ -173,6 +179,62 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:NO];
+}
+
+#pragma mark 键盘显示时调用
+- (void)keyBoardWillShow:(NSNotification *)notification
+{
+    if(isKeyShow)
+    {
+        return;
+    }
+    isKeyShow=YES;
+    //    //获取LoginArea的视图
+    //    UIView *LoginArea=[self.view viewWithTag:VIEW_TAG];
+    //    //获取LoginArea的Rect
+    //    CGRect loginAreaRect=LoginArea.frame;
+    //键盘Rect
+    CGRect keyBoardRect=[[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    //偏移量
+    CGFloat distance=keyBoardRect.origin.y-CGRectGetMaxY(_text_inviteCode.frame) - 64;
+    if (distance<0) {
+        [self animationWithUserInfo:notification.userInfo bloack:^{
+            if (self.view.frame.size.height == 480) {
+                self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance - 20);
+                
+            }
+            else{
+                //                self.ZYlabel.transform=CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+                self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance);
+            }
+            //            self.ZYlabel.transform = CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+        }];
+    }
+}
+#pragma mark 键盘隐藏时调用
+- (void)keyBoardWillHidden:(NSNotification *)notification
+{
+    isKeyShow=NO;
+    [self animationWithUserInfo:notification.userInfo bloack:^{
+        self.view.transform=CGAffineTransformIdentity;
+        //        self.ZYlabel.transform = CGAffineTransformIdentity;
+    }];
+    
+}
+#pragma mark 键盘动画
+- (void)animationWithUserInfo:(NSDictionary *)userInfo bloack:(void (^)(void))block
+{
+    // 取出键盘弹出的时间
+    CGFloat duration=[userInfo[UIKeyboardAnimationDurationUserInfoKey]floatValue];
+    // 取出键盘弹出动画曲线
+    NSInteger curve=[userInfo[UIKeyboardAnimationCurveUserInfoKey]integerValue];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    //调用bock
+    block();
+    [UIView commitAnimations];
 }
 
 - (void)cancelLogin
@@ -221,8 +283,23 @@
         [WeAppToast toast:@"请输入密码"];
         return;
     }
+    
+    NSLog(@"%@",_text_phoneNum.text);
+    NSLog(@"%@",_text_psw.text);
+    NSLog(@"%@",_text_smsCode.text);
+    NSLog(@"%@",_text_inviteCode.text);
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
+    NSDictionary* aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    if (aliPayFile == nil) {
+        aliPayFile = [[NSDictionary alloc] init];
+    }
+    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
+    
+    //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
+    NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
 
-    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text?:@"", @"userName":_text_userName.text?:@""} version:nil];
+    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text?:@"", @"userName":_text_userName.text?:@"",} version:nil];
     isRegister = YES;
 }
 
@@ -243,8 +320,17 @@
         if(isRegister)
         {
             //[WeAppToast toast:@"注册成功"];
+            NSDictionary *dic_userInfo = [NSDictionary dictionaryWithDictionary:(NSDictionary*)service.requestModel.item];
+            NSInteger redPacketPrice = [[dic_userInfo objectForKey:@"voucher"]integerValue];
+            
+            if(redPacketPrice == 0)
+            {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                return;
+            }
             registerSucView = [[KSRegisterSuccessView alloc]initWithFrame:self.view.frame];
             registerSucView.delegate = self;
+            registerSucView.redPackerPrice = redPacketPrice;
             [self.view.window addSubview:registerSucView];
             
         }else

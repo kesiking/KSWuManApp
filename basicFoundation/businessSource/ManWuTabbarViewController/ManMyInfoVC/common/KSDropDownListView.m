@@ -135,6 +135,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _userActionLabel.text = [_dataArray objectAtIndex:[indexPath row]];
+    self.serviceType = indexPath.row + 1;
     isShowList = NO;
     _table.hidden = YES;
     

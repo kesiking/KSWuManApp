@@ -13,7 +13,6 @@
 @interface ManWuPostSaleServiceViewController ()
 {
     UIScrollView *scrollView;
-    KSDropDownListView *dropdownListStatus;
     KSDropDownListView *dropdownListService;
     UIPlaceHolderTextView *textView;
 }
@@ -40,21 +39,18 @@
     self.title = @"申请退款";
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-    scrollView.contentSize = CGSizeMake(self.view.width,  self.view.height + 100);
+    scrollView.contentSize = CGSizeMake(self.view.width,  self.view.height + 50);
     [scrollView setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
-
-    [self setView:scrollView];
     
-    dropdownListStatus = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 60*3)];
-    //[dropdownList1 setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
-    dropdownListStatus.userActionLabel.text = @"是否已收货";
-    dropdownListStatus.dataArray = @[@"已收货",@"未收货"];
-    [self.view addSubview:dropdownListStatus];
+    UITapGestureRecognizer* singleTapRecognizer;
+    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    singleTapRecognizer.numberOfTapsRequired = 1; // 单击
+    [scrollView addGestureRecognizer:singleTapRecognizer];
+    [self setView:scrollView];
 
-    dropdownListService = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownListStatus.frame) + 75, self.view.width - 20, 60*5)];
-    //[dropdownList2 setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
+    dropdownListService = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 60*6)];
     dropdownListService.userActionLabel.text = @"申请服务";
-    dropdownListService.dataArray = @[@"商品质量问题",@"商品错发",@"商品运输破损",@"其他"];
+    dropdownListService.dataArray = @[@"未收到货",@"商品质量问题",@"商品错发",@"商品运输破损",@"其他"];
     [self.view addSubview:dropdownListService];
 
      textView = [[UIPlaceHolderTextView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownListService.frame) + 75, self.view.width - 20, 200)];
@@ -78,18 +74,21 @@
     [self.view endEditing:NO];
 }
 
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [textView resignFirstResponder];
+}
+
 - (void)doPostSaleService
 {
-    NSString *orderStatus = dropdownListStatus.userActionLabel.text;
-    NSString *orderService = dropdownListService.userActionLabel.text;
     NSString *orderReason = textView.text;
     
     if([orderReason length] > 100)
     {
         [WeAppToast toast:@"退款说明最多100字"];
+        return;
     }
     
-    [self.service loadItemWithAPIName:@"user/backMoney.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"orderId":self.orderModel.orderId, @"status":self.orderModel.status} version:nil];
+    [self.service loadItemWithAPIName:@"user/refundOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"orderId":self.orderModel.orderId, @"type":[NSString stringWithFormat:@"%ld",(long)dropdownListService.serviceType],@"reason":orderReason?:@""} version:nil];
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -105,6 +104,7 @@
 {
     if (service == _service) {
         // todo success
+        [WeAppToast toast:@"申请退款成功"];
     }
 }
 
