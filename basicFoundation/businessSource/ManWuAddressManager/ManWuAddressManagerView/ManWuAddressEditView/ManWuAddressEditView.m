@@ -83,8 +83,10 @@
     self.isDefaultAddress = addressInfoModel.defaultAddress;
     if (_addressInfoModel.addressId == nil) {
         self.deleteButton.enabled = NO;
+        self.deleteButton.hidden = YES;
     }else{
         self.deleteButton.enabled = YES;
+        self.deleteButton.hidden = NO;
     }
 }
 
