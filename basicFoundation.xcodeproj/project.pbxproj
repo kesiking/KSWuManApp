@@ -323,6 +323,7 @@
 		5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */; };
 		5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */; };
 		5F2D00091B4EAD5E007C2F4D /* manwu_sort_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */; };
+		5F2D000C1B524714007C2F4D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2D000B1B524714007C2F4D /* NSString+MD5.m */; };
 		5F4087E71B19433F00954568 /* ManWuOrderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087E61B19433F00954568 /* ManWuOrderService.m */; };
 		5F4087EE1B19436C00954568 /* ManWuVoucherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087ED1B19436C00954568 /* ManWuVoucherService.m */; };
 		5F4087F11B1945FE00954568 /* ManWuVoucherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F01B1945FE00954568 /* ManWuVoucherView.m */; };
@@ -1127,6 +1128,8 @@
 		5F226EB11B33A27B00FEFBC6 /* unDeleteFavrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unDeleteFavrate.png; sourceTree = "<group>"; };
 		5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_sort_down.png; sourceTree = "<group>"; };
 		5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_sort_up.png; sourceTree = "<group>"; };
+		5F2D000A1B524714007C2F4D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		5F2D000B1B524714007C2F4D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		5F4087E51B19433F00954568 /* ManWuOrderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuOrderService.h; sourceTree = "<group>"; };
 		5F4087E61B19433F00954568 /* ManWuOrderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuOrderService.m; sourceTree = "<group>"; };
 		5F4087EC1B19436C00954568 /* ManWuVoucherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuVoucherService.h; sourceTree = "<group>"; };
@@ -2664,6 +2667,8 @@
 				058BC3E41AE89C2000A4F799 /* KSNavigator+RDVTabBarController.m */,
 				058DAE581AE731A3009D0008 /* NSDictionary+JSONSerialize.h */,
 				058DAE591AE731A3009D0008 /* NSDictionary+JSONSerialize.m */,
+				5F2D000A1B524714007C2F4D /* NSString+MD5.h */,
+				5F2D000B1B524714007C2F4D /* NSString+MD5.m */,
 				5F01FB561B3EB0CE00541648 /* UIImageView+KSWebCache.h */,
 				5F01FB571B3EB0CE00541648 /* UIImageView+KSWebCache.m */,
 			);
@@ -3734,6 +3739,7 @@
 				056664941AEE12C400FD1C65 /* ManWuDetailBottomBarView.m in Sources */,
 				5F4E404A1B1ECD5C004AE7C0 /* LKDBUtils.m in Sources */,
 				056664BF1AEF1FF600FD1C65 /* TBDetailSKUPriceAndQuanitiyModel.m in Sources */,
+				5F2D000C1B524714007C2F4D /* NSString+MD5.m in Sources */,
 				058D5CF11AF1F62E006EA35C /* DataVerifier.m in Sources */,
 				058DADCE1AE52EC0009D0008 /* AFHTTPRequestOperation.m in Sources */,
 				0553F76F1AFA15BE0013BB97 /* ManWuCommodityListSortAndFiltForDiscountView.m in Sources */,

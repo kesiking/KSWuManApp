@@ -26,6 +26,7 @@
 #import "WeAppConstant.h"
 #import "NSDictionary+JSONSerialize.h"
 #import "UIViewController+KSNavigator.h"
+#import "NSString+MD5.h"
 #import "KSNavigator.h"
 #import "MBProgressHUD.h"
 #import "WeAppToast.h"

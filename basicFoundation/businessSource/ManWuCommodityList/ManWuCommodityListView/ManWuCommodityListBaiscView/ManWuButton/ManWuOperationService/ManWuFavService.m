@@ -15,7 +15,11 @@
 }
 
 -(void)unAddFavorateWithItemId:(NSString*)itemId{
-    [self doFavorateWithApiName:@"collection/unAddItem.do" itemId:itemId];
+    if (itemId == nil) {
+        return;
+    }
+    [self unAddFavorateWithItemIds:@[itemId]];
+//    [self doFavorateWithApiName:@"collection/unAddItem.do" itemId:itemId];
 }
 
 -(void)doFavorateWithApiName:(NSString*)apiName itemId:(NSString*)itemId{

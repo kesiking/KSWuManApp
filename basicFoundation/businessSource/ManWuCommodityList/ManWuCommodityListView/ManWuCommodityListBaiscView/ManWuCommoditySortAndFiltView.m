@@ -104,7 +104,7 @@
                          forState:UIControlStateNormal];
             [button setBorderColor:RGB(0xda, 0xda, 0xda)
                           forState:UIControlStateNormal];
-            [button setBackgroundColor:RGB(0xf5, 0xf5, 0xf5)
+            [button setBackgroundColor:RGB(0xf8, 0xf8, 0xf8)
                               forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:@"manwu_sort_up"] forState:UIControlStateNormal];
 
@@ -118,7 +118,7 @@
                          forState:UIControlStateNormal];
             [button setBorderColor:RGB(0xda, 0xda, 0xda)
                           forState:UIControlStateNormal];
-            [button setBackgroundColor:RGB(0xf5, 0xf5, 0xf5)
+            [button setBackgroundColor:RGB(0xf8, 0xf8, 0xf8)
                               forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
         }

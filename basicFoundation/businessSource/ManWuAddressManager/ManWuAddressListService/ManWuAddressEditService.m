@@ -30,7 +30,7 @@
     NSDictionary* params = @{@"id":safeString(addressId)};
     self.jsonTopKey = @"data";
     self.needLogin = YES;
-    [self loadItemWithAPIName:@"address/deleteAddress.do" params:params version:nil];
+    [self loadItemWithAPIName:@"address/delAddress.do" params:params version:nil];
 }
 
 -(void)addAddressInfoWithAddressId:(NSString *)addressId userId:(NSString *)userId recvName:(NSString *)recvName phoneNum:(NSString *)phoneNum address:(NSString *)address defaultAddress:(BOOL)defaultAddress{

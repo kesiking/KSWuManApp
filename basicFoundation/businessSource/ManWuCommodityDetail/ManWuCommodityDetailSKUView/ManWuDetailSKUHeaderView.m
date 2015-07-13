@@ -49,7 +49,7 @@
 }
 
 -(void)setPriceNumText:(NSString*)num{
-    [self.priceNum setText:num];
+    [self.priceNum setText:[NSString stringWithFormat:@"%@元",num]];
 }
 
 @end

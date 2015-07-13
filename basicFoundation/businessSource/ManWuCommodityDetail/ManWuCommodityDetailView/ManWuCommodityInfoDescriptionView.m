@@ -9,11 +9,34 @@
 #import "ManWuCommodityInfoDescriptionView.h"
 #import "ManWuCommodityDetailModel.h"
 
+
+@interface ManWuCommodityInfoDescriptionView()
+
+@property (nonatomic,strong) UIView               *      commoditySeparateLine;
+
+@end
+
 @implementation ManWuCommodityInfoDescriptionView
 
 -(void)setupView{
     [super setupView];
     [self.titleLabel setText:@"商品详情"];
+    [self addSubview:self.commoditySeparateLine];
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self.commoditySeparateLine setFrame:CGRectMake(8, self.height - 0.5, self.width - 8 * 2, self.commoditySeparateLine.height)];
+}
+
+-(UIView *)commoditySeparateLine{
+    if (_commoditySeparateLine == nil) {
+        _commoditySeparateLine = [TBDetailUITools drawDivisionLine:8
+                                                              yPos:self.height - 0.5
+                                                         lineWidth:self.width - 8 * 2];
+        [_commoditySeparateLine setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Price2]];
+    }
+    return _commoditySeparateLine;
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem *)descriptionModel{
@@ -105,6 +128,14 @@
         }
     }
     [self reloadData];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size{
+    CGSize newSize = [super sizeThatFits:size];
+    if ([self.descriptionArray count] > 0) {
+        newSize = CGSizeMake(newSize.width, newSize.height + 5);
+    }
+    return newSize;
 }
 
 @end

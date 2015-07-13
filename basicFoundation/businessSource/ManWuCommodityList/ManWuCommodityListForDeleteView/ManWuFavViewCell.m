@@ -17,16 +17,36 @@
 
 -(void)setupView{
     [super setupView];
-    [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - self.commodityPriceImageView.width - 0.5 , self.commodityImageView.bottom - self.commodityPriceImageView.height - 0.5, self.commodityPriceImageView.width, self.commodityPriceImageView.height)];
+    [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - 50 - 0.5 , self.commodityImageView.bottom - 20 - 0.5, 50, 20)];
     [self.priceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.commodityPriceImageView.width, self.commodityPriceImageView.height)];
     [self bringSubviewToFront:self.priceLabel];
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
 }
 
+- (void)updateFrame{
+    [super updateFrame];
+    if (self.salePriceLabel.hidden) {
+        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - 50 - 0.5 , self.commodityImageView.bottom - 20 - 0.5, 50, 20)];
+        [self.priceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.commodityPriceImageView.width, self.commodityPriceImageView.height)];
+        [self bringSubviewToFront:self.priceLabel];
+        self.priceLabel.textAlignment = NSTextAlignmentCenter;
+    }else{
+        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - 80 - 0.5 , self.commodityImageView.bottom - 20 - 0.5, 80, 20)];
+        
+        [self.salePriceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.commodityPriceImageView.width/2, self.commodityPriceImageView.height)];
+        [self bringSubviewToFront:self.salePriceLabel];
+        self.salePriceLabel.textAlignment = NSTextAlignmentCenter;
+        
+        [self.priceLabel setFrame:CGRectMake(self.salePriceLabel.right , self.commodityPriceImageView.top + 0.5, self.commodityPriceImageView.width/2, self.commodityPriceImageView.height)];
+        [self bringSubviewToFront:self.priceLabel];
+        self.priceLabel.textAlignment = NSTextAlignmentCenter;
+    }
+}
+
 -(UIImageView *)commodityPriceImageView{
     if (_commodityPriceImageView == nil) {
         _commodityPriceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
-        _commodityPriceImageView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+        _commodityPriceImageView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
         [self addSubview:_commodityPriceImageView];
     }
     return _commodityPriceImageView;
@@ -61,10 +81,14 @@
         self.commodityDisabelImageView.hidden = NO;
         self.commodityPriceImageView.hidden = YES;
         self.priceLabel.hidden = YES;
+        self.salePriceLabel.hidden = YES;
     }else{
         _commodityDisabelImageView.hidden = YES;
         self.commodityPriceImageView.hidden = NO;
         self.priceLabel.hidden = NO;
+        if (detailModel.sale) {
+            self.salePriceLabel.hidden = NO;
+        }
     }
 }
 

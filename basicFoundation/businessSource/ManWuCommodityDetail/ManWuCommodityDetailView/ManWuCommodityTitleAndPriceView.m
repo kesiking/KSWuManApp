@@ -116,7 +116,7 @@
     
     [self.commodityOriginalPriceLabel setOrigin:CGPointMake(self.commodityPriceLabel.right + 3, self.commodityPriceLabel.top + 8)];
     
-    [self.commodityFavorateButton setOrigin:CGPointMake(self.commodityFavorateButton.origin.x, self.commodityTitleLabel.bottom)];
+    [self.commodityFavorateButton setOrigin:CGPointMake(self.commodityFavorateButton.origin.x, self.commodityTitleLabel.bottom + 5)];
     
     CGSize labelSize = [self.commodityPraiseLabel.text sizeWithFont:self.commodityPraiseLabel.font constrainedToSize:CGSizeMake(100, self.commodityPraiseLabel.height) lineBreakMode:NSLineBreakByWordWrapping];
     CGRect labelRect = self.commodityPraiseLabel.frame;
@@ -136,7 +136,7 @@
         _commoditySeparateTopLine = [TBDetailUITools drawDivisionLine:0
                                                               yPos:0
                                                          lineWidth:self.width];
-        [_commoditySeparateTopLine setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_Price2]];
+        [_commoditySeparateTopLine setBackgroundColor:[UIColor whiteColor]];
     }
     return _commoditySeparateTopLine;
 }
