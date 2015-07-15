@@ -11,12 +11,13 @@
 #import "ManWuAddressSetDefaultView.h"
 #import "ManWuAddressBottomVIew.h"
 #import "ManWuAddressEditService.h"
+#import "MWUtils.h"
 
 #define stand_textfield_left   (15.0)
 #define stand_textfield_right  (15.0)
 #define stand_container_height (40.0)
 
-@interface ManWuAddressEditView()<UITextFieldDelegate, HZAreaPickerDelegate,WeAppBasicServiceDelegate>{
+@interface ManWuAddressEditView()<UITextFieldDelegate, HZAreaPickerDelegate,WeAppBasicServiceDelegate,UIAlertViewDelegate>{
 
 }
 
@@ -81,6 +82,13 @@
     
     self.settingDefaultView.isDefaultAddress = addressInfoModel.defaultAddress;
     self.isDefaultAddress = addressInfoModel.defaultAddress;
+    if (_addressInfoModel.addressId == nil) {
+        self.deleteButton.enabled = NO;
+        self.deleteButton.hidden = YES;
+    }else{
+        self.deleteButton.enabled = YES;
+        self.deleteButton.hidden = NO;
+    }
 }
 
 -(ManWuAddressEditService *)addressEditService{
@@ -254,10 +262,14 @@
 }
 
 -(void)deleteButtonClicked:(id)sender {
-    if (self.addressInfoModel.addressId == nil) {
-        return;
+    UIAlertView* aleatView = [[UIAlertView alloc] initWithTitle:nil message:@"确定需要删除地址" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    [aleatView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self.addressDeleteService deleteAddressInfoWithAddressId:self.addressInfoModel.addressId];
     }
-    [self.addressDeleteService deleteAddressInfoWithAddressId:self.addressInfoModel.addressId];
 }
 
 -(ManWuAddressSetDefaultView *)settingDefaultView{
@@ -286,6 +298,14 @@
                     strongSelf.descriptionText.text = [strongSelf.descriptionText.text substringFromIndex:range.location + range.length];
                 }
                 NSString* address = [NSString stringWithFormat:@"%@ %@",strongSelf.areaText.text?:@"",strongSelf.descriptionText.text];
+                if ([MWUtils isEmptyString:strongSelf.nameInfoText.text]) {
+                    [WeAppToast toast:@"请输入姓名"];
+                    return;
+                }
+                if (![MWUtils isValidMobile:strongSelf.phoneNumText.text]) {
+                    [WeAppToast toast:@"请输入正确的手机号码"];
+                    return;
+                }
                 [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:[KSAuthenticationCenter userId] recvName:strongSelf.nameInfoText.text?:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.phoneNumText.text?:strongSelf.addressInfoModel.phoneNum address:address?:strongSelf.addressInfoModel.address defaultAddress:strongSelf.isDefaultAddress];
             }
             @catch (NSException *exception) {
@@ -362,6 +382,7 @@
             [self.viewController.navigationController popViewControllerAnimated:YES];
         }
     }else if (service == self.addressDeleteService){
+        [WeAppToast toast:@"删除成功"];
         if (self.addressDidChangeBlock) {
             self.addressDidChangeBlock(YES, nil);
             [self.viewController.navigationController popViewControllerAnimated:YES];

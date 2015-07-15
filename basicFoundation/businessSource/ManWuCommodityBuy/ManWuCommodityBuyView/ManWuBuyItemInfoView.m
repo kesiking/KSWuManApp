@@ -259,6 +259,7 @@
     self.titleLabel.text = detailModel.title;
     self.subtitleLabel.text = [dict objectForKey:@"skuInfo"];
     self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price?:detailModel.sale];
+    [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
 
 //    self.model = (TBTradeItemInfoCellModel *)object;
 //    TBTradeItemInfoCellModel *model = (TBTradeItemInfoCellModel *)self.model;

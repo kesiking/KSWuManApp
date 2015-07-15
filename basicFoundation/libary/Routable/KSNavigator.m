@@ -236,7 +236,7 @@ BOOL TBOpenURLFromTarget(NSString* urlPath, id target) {
 }
 
 BOOL TBOpenURLFromSourceAndParams(NSString* urlPath, id source, NSDictionary* params) {
-    return TBOpenURLFromTargetWithNativeParams(urlPath,source,params,nil);
+    return TBOpenURLFromTargetWithNativeParams(urlPath,source,nil,params);
 }
 
 BOOL TBOpenURLFromTargetWithNativeParams(NSString* urlPath, id source, NSDictionary* params, NSDictionary *nativeParams) {

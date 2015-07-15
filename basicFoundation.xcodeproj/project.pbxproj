@@ -324,6 +324,7 @@
 		5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */; };
 		5F2D00091B4EAD5E007C2F4D /* manwu_sort_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */; };
 		5F2D000C1B524714007C2F4D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2D000B1B524714007C2F4D /* NSString+MD5.m */; };
+		5F2D00101B567B69007C2F4D /* MWUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2D000F1B567B69007C2F4D /* MWUtils.m */; };
 		5F4087E71B19433F00954568 /* ManWuOrderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087E61B19433F00954568 /* ManWuOrderService.m */; };
 		5F4087EE1B19436C00954568 /* ManWuVoucherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087ED1B19436C00954568 /* ManWuVoucherService.m */; };
 		5F4087F11B1945FE00954568 /* ManWuVoucherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4087F01B1945FE00954568 /* ManWuVoucherView.m */; };
@@ -1130,6 +1131,8 @@
 		5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_sort_up.png; sourceTree = "<group>"; };
 		5F2D000A1B524714007C2F4D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		5F2D000B1B524714007C2F4D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		5F2D000E1B567B69007C2F4D /* MWUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWUtils.h; sourceTree = "<group>"; };
+		5F2D000F1B567B69007C2F4D /* MWUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWUtils.m; sourceTree = "<group>"; };
 		5F4087E51B19433F00954568 /* ManWuOrderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuOrderService.h; sourceTree = "<group>"; };
 		5F4087E61B19433F00954568 /* ManWuOrderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuOrderService.m; sourceTree = "<group>"; };
 		5F4087EC1B19436C00954568 /* ManWuVoucherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuVoucherService.h; sourceTree = "<group>"; };
@@ -2491,11 +2494,12 @@
 		058DADB01AE1107D009D0008 /* basic */ = {
 			isa = PBXGroup;
 			children = (
+				058DAE611AE7992D009D0008 /* MatrixConfig.plist */,
 				058D5AB11AF0D0FF006EA35C /* AliPay */,
 				058DAE631AE79A62009D0008 /* configCenter */,
 				058DADB11AE1107D009D0008 /* view */,
 				058DADB21AE1107D009D0008 /* viewController */,
-				058DAE611AE7992D009D0008 /* MatrixConfig.plist */,
+				5F2D000D1B567B69007C2F4D /* Util */,
 			);
 			path = basic;
 			sourceTree = "<group>";
@@ -2926,6 +2930,15 @@
 				5F214C701B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png */,
 			);
 			path = Safari;
+			sourceTree = "<group>";
+		};
+		5F2D000D1B567B69007C2F4D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5F2D000E1B567B69007C2F4D /* MWUtils.h */,
+				5F2D000F1B567B69007C2F4D /* MWUtils.m */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		5F4087F31B1949FF00954568 /* KSPopMenu */ = {
@@ -3507,6 +3520,7 @@
 				056664CC1AEF2DE200FD1C65 /* TBDetailSKUInfo.m in Sources */,
 				052CC67E1AF3637B00AF7C78 /* ManWuDiscoverCellModelInfoItem.m in Sources */,
 				055C75871ADFBF6000C35854 /* SDWebImageDownloader.m in Sources */,
+				5F2D00101B567B69007C2F4D /* MWUtils.m in Sources */,
 				058D5D201AF22E37006EA35C /* ManWuBuyScrollView.m in Sources */,
 				058BC3FE1AE89DA700A4F799 /* ManWuHomeViewController.m in Sources */,
 				91E2D0621B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m in Sources */,

@@ -37,7 +37,7 @@
             break;
         case WeAppDataTypeArray:
         {
-            if (![dataJosnValue isKindOfClass:[NSArray class]] || [WeAppUtils isEmpty:dataJosnValue]) {
+            if (![dataJosnValue isKindOfClass:[NSArray class]]) {
                 return nil;
             }
             
