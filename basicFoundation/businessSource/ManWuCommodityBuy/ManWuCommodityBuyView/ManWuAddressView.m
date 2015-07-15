@@ -68,13 +68,13 @@
     
     [self addSubview:self.locationIcon];
     [self addSubview:self.takeDeliveryLabel];
-    [self addSubview:self.addAddressButton];
-    [self addSubview:self.otherAddressButton];
     [self addSubview:self.seprateLine];
     [self addSubview:self.fullNameLabel];
     [self addSubview:self.phoneNumLabel];
     [self addSubview:self.addressLabel];
     [self addSubview:self.seprateBackgroundView];
+    [self addSubview:self.otherAddressButton];
+    [self addSubview:self.addAddressButton];
     [self.addressService loadDefaultAddress];
 }
 
@@ -154,7 +154,7 @@
 
 -(UIButton *)addAddressButton{
     if (_addAddressButton == nil) {
-        _addAddressButton = [[UIButton alloc] initWithFrame:CGRectMake(self.locationIcon.left , self.locationIcon.bottom + 18, kAddAddressButtonWidth, kAddAddressButtonHeight)];
+        _addAddressButton = [[UIButton alloc] initWithFrame:CGRectMake(self.locationIcon.left , self.locationIcon.bottom + 14, kAddAddressButtonWidth, kAddAddressButtonHeight)];
         
         _addAddressButton.titleLabel.font          = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_Chinese
                                                                                  size:TBDetailFontSize_Title2];
@@ -289,6 +289,10 @@
                 [strongSelf setObject:addressModel dict:nil];
             }
         };
+        _addressService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError *error){
+            STRONGSELF
+            [strongSelf setObject:nil dict:nil];
+        };
     }
     return _addressService;
 }
@@ -315,19 +319,24 @@
 }
 
 -(void)addAddressButtonClicked:(id)sender{
-    WEAKSELF
-    addressDidChangeBlock addressDidChangeBlock = ^(BOOL addressDidChange,WeAppComponentBaseItem* addressComponentItem){
-        STRONGSELF
-        [strongSelf setObject:addressComponentItem];
-    };
-    NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:addressDidChangeBlock, kAddressSelectedSuccessBlock, nil];
-    TBOpenURLFromSourceAndParams(kManWuAddressManager, self, callBacks);
+    [self otherAddressButtonClicked:sender];
+//    WEAKSELF
+//    addressDidChangeBlock addressDidChangeBlock = ^(BOOL addressDidChange,WeAppComponentBaseItem* addressComponentItem){
+//        STRONGSELF
+//        [strongSelf setObject:addressComponentItem dict:nil];
+//    };
+//    NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:addressDidChangeBlock, kAddressManagerSuccessBlock, nil];
+//    TBOpenURLFromSourceAndParams(kManWuAddressManager, self, callBacks);
 }
 
 #pragma mark  - TBTradeCellDelegate
 
 - (void)setObject:(id)object dict:(NSDictionary*)dict{
     if (object == nil || ![object isKindOfClass:[ManWuAddressInfoModel class]]) {
+        self.addAddressButton.hidden = NO;
+        self.addressLabel.hidden = YES;
+        self.otherAddressButton.hidden = YES;
+        [self sizeToFit];
         return;
     }
     ManWuAddressInfoModel* addressModel = (ManWuAddressInfoModel*)object;
@@ -337,9 +346,11 @@
     if (self.addressId == nil || addressModel.address == nil) {
         self.addAddressButton.hidden = NO;
         self.addressLabel.hidden = YES;
+        self.otherAddressButton.hidden = YES;
     }else{
         self.addAddressButton.hidden = YES;
         self.addressLabel.hidden = NO;
+        self.otherAddressButton.hidden = NO;
     }
     
     self.fullNameLabel.text = [NSString stringWithFormat:@"收货人：%@", addressModel.recvName ?: @""];
@@ -389,7 +400,7 @@
     if (self.addressLabel.text || self.fullNameLabel.text) {
         newSize.height = 80 + self.seprateBackgroundView.height + self.addressLabel.height;
     }else{
-        newSize.height = 63 + self.seprateBackgroundView.height;
+        newSize.height = 80 + self.seprateBackgroundView.height;
     }
     
     return newSize;

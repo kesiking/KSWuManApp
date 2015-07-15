@@ -16,7 +16,7 @@
 #define stand_textfield_right  (15.0)
 #define stand_container_height (40.0)
 
-@interface ManWuAddressEditView()<UITextFieldDelegate, HZAreaPickerDelegate,WeAppBasicServiceDelegate>{
+@interface ManWuAddressEditView()<UITextFieldDelegate, HZAreaPickerDelegate,WeAppBasicServiceDelegate,UIAlertViewDelegate>{
 
 }
 
@@ -261,10 +261,14 @@
 }
 
 -(void)deleteButtonClicked:(id)sender {
-    if (self.addressInfoModel.addressId == nil) {
-        return;
+    UIAlertView* aleatView = [[UIAlertView alloc] initWithTitle:nil message:@"确定需要删除地址" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    [aleatView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self.addressDeleteService deleteAddressInfoWithAddressId:self.addressInfoModel.addressId];
     }
-    [self.addressDeleteService deleteAddressInfoWithAddressId:self.addressInfoModel.addressId];
 }
 
 -(ManWuAddressSetDefaultView *)settingDefaultView{

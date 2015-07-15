@@ -492,6 +492,8 @@
             [self setupDataList:[service.pagedList getItemList]];
         }else if(service.dataList){
             [self setupDataList:service.dataList];
+        }else{
+            [self setupDataList:@[]];
         }
     }
     [self requestDidLoad];
