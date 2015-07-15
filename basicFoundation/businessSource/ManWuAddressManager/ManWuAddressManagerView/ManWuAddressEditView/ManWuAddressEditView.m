@@ -11,6 +11,7 @@
 #import "ManWuAddressSetDefaultView.h"
 #import "ManWuAddressBottomVIew.h"
 #import "ManWuAddressEditService.h"
+#import "MWUtils.h"
 
 #define stand_textfield_left   (15.0)
 #define stand_textfield_right  (15.0)
@@ -297,6 +298,14 @@
                     strongSelf.descriptionText.text = [strongSelf.descriptionText.text substringFromIndex:range.location + range.length];
                 }
                 NSString* address = [NSString stringWithFormat:@"%@ %@",strongSelf.areaText.text?:@"",strongSelf.descriptionText.text];
+                if ([MWUtils isEmptyString:strongSelf.nameInfoText.text]) {
+                    [WeAppToast toast:@"请输入姓名"];
+                    return;
+                }
+                if (![MWUtils isValidMobile:strongSelf.phoneNumText.text]) {
+                    [WeAppToast toast:@"请输入正确的手机号码"];
+                    return;
+                }
                 [strongSelf.addressEditService editAddressInfoWithAddressId:strongSelf.addressInfoModel.addressId userId:[KSAuthenticationCenter userId] recvName:strongSelf.nameInfoText.text?:strongSelf.addressInfoModel.recvName phoneNum:strongSelf.phoneNumText.text?:strongSelf.addressInfoModel.phoneNum address:address?:strongSelf.addressInfoModel.address defaultAddress:strongSelf.isDefaultAddress];
             }
             @catch (NSException *exception) {
@@ -373,6 +382,7 @@
             [self.viewController.navigationController popViewControllerAnimated:YES];
         }
     }else if (service == self.addressDeleteService){
+        [WeAppToast toast:@"删除成功"];
         if (self.addressDidChangeBlock) {
             self.addressDidChangeBlock(YES, nil);
             [self.viewController.navigationController popViewControllerAnimated:YES];
