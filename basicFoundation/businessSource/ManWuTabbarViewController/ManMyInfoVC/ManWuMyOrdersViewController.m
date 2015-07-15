@@ -82,6 +82,7 @@
     [self.view addSubview:self.table];
     
     __block __weak __typeof(self) tempSelf = self;
+    
     [self.table addPullToRefreshWithActionHandler:^{
         __strong __typeof(self) strongSelf = tempSelf;
         
@@ -95,7 +96,8 @@
             }
         });
     }];
-
+    
+    [self.view bringSubviewToFront:self.selectionList];
 }
 
 #pragma mark -请求订单数据
