@@ -8,6 +8,9 @@
 
 #import "KSAdapterService.h"
 
+#define kUserAddFavSuccessNotification @"userAddFavSuccessNotification"
+#define kUserUnAddFavSuccessNotification @"userUnAddFavSuccessNotification"
+
 @interface ManWuFavService : KSAdapterService
 
 -(void)addFavorateWithItemId:(NSString*)itemId;

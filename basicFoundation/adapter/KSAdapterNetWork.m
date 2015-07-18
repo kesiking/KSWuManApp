@@ -130,7 +130,7 @@
 
 -(void)preProccessParamWithParam:(NSMutableDictionary*)newParams{
     
-    if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
+    if (![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
         [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
     

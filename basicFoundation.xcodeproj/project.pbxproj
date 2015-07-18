@@ -359,6 +359,7 @@
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
 		5F9216261B1077CF00554B44 /* ManWuDiscoverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216251B1077CF00554B44 /* ManWuDiscoverService.m */; };
 		5F92162A1B13498800554B44 /* ManWuDiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216291B13498800554B44 /* ManWuDiscoverModel.m */; };
+		5F97966F1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F97966E1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m */; };
 		5F9F459E1B1D40290017E632 /* aliPayfile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F9F459D1B1D40290017E632 /* aliPayfile.plist */; };
 		5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */; };
 		5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06221B0E011F00852188 /* KSPaginationItem.m */; };
@@ -1194,6 +1195,8 @@
 		5F9216251B1077CF00554B44 /* ManWuDiscoverService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverService.m; sourceTree = "<group>"; };
 		5F9216281B13498800554B44 /* ManWuDiscoverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDiscoverModel.h; sourceTree = "<group>"; };
 		5F9216291B13498800554B44 /* ManWuDiscoverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDiscoverModel.m; sourceTree = "<group>"; };
+		5F97966D1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListBasicViewController.h; sourceTree = "<group>"; };
+		5F97966E1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListBasicViewController.m; sourceTree = "<group>"; };
 		5F9F459D1B1D40290017E632 /* aliPayfile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = aliPayfile.plist; sourceTree = "<group>"; };
 		5FBA061E1B0DEC6000852188 /* ManWuCommodityListBasicService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListBasicService.h; sourceTree = "<group>"; };
 		5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListBasicService.m; sourceTree = "<group>"; };
@@ -2251,6 +2254,8 @@
 				5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */,
 				5FD45ED01B1C01040064BA31 /* ManWuCommoditySearchListViewController.h */,
 				5FD45ED11B1C01040064BA31 /* ManWuCommoditySearchListViewController.m */,
+				5F97966D1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.h */,
+				5F97966E1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m */,
 			);
 			path = ManWuCommodityListViewController;
 			sourceTree = "<group>";
@@ -3543,6 +3548,7 @@
 				5FD45EC51B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m in Sources */,
 				5F4E40421B1ECD5C004AE7C0 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				052CC6C01AF86D1A00AF7C78 /* KSSearchBasicView.m in Sources */,
+				5F97966F1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m in Sources */,
 				058D5D001AF210C0006EA35C /* ManWuBuyBasicView.m in Sources */,
 				058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */,
 				056664A11AEE2F7C00FD1C65 /* ManWuCommodityDetailViewController.m in Sources */,

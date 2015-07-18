@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 逸行. All rights reserved.
 //
 
-#import "KSManWuViewController.h"
+#import "ManWuCommodityListBasicViewController.h"
 
-@interface ManWuCommodityListViewController : KSManWuViewController
+@interface ManWuCommodityListViewController : ManWuCommodityListBasicViewController
 
 @end
