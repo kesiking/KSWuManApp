@@ -134,7 +134,7 @@
         _text_inviteCode.placeholder = @"邀请码";
         [_text_inviteCode setFont:[UIFont systemFontOfSize:16]];
         _text_inviteCode.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
-        _text_inviteCode.keyboardType = UIKeyboardTypeNumberPad;
+        _text_inviteCode.keyboardType = UIKeyboardTypeNamePhonePad;
         _text_inviteCode.clearButtonMode = UITextFieldViewModeAlways;
         _text_inviteCode.secureTextEntry = NO;
         _text_inviteCode.delegate = self;

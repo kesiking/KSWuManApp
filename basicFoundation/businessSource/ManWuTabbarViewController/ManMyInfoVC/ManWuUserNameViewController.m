@@ -49,8 +49,10 @@
             self.title = @"性别";
             dropdownListSex = [[KSDropDownListView alloc]initWithFrame:CGRectMake(0, 30, self.view.width, TEXTFILEDHEIGHT*3) CellHeight:TEXTFILEDHEIGHT];
             dropdownListSex.cellHeight = TEXTFILEDHEIGHT;
-            dropdownListSex.userActionLabel.text = [KSUserInfoModel sharedConstant].sex?:@"男";
-            if([[KSUserInfoModel sharedConstant].sex length] == 0)
+            if([[KSUserInfoModel sharedConstant].sex isEqualToString:@"1"])
+            {
+                dropdownListSex.userActionLabel.text = @"女";
+            }else
             {
                 dropdownListSex.userActionLabel.text = @"男";
             }
