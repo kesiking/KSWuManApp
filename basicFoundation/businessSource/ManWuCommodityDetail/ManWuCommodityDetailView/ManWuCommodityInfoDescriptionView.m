@@ -127,6 +127,11 @@
             }
         }
     }
+    if ([self.descriptionArray count] == 0) {
+        [self.commoditySeparateLine setHidden:YES];
+    }else{
+        [self.commoditySeparateLine setHidden:NO];
+    }
     [self reloadData];
 }
 
