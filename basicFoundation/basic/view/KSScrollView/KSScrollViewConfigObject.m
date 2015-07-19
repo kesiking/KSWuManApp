@@ -15,6 +15,7 @@
     self.needNextPage = YES;
     self.needFootView = YES;
     self.needQueueLoadData = YES;
+    self.scrollViewCacheType = KSScrollViewConfigCacheType_default;
 }
 
 @end

@@ -342,6 +342,7 @@
             WEAKSELF
             [self.cacheService readCacheWithApiName:self.apiName withParam:self.requestModel.params withFetchCondition:[self.cacheService.fetchConditionDict objectForKey:self.apiName] componentItemClass:self.itemClass readSuccess:^(NSMutableArray *componentItems) {
                 STRONGSELF
+                strongSelf.cacheComponentItems = componentItems;
                 if (componentItems && [componentItems count] > 0 && strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(serviceCacheDidLoad:cacheData:)]) {
                     [strongSelf.delegate performSelector:@selector(serviceCacheDidLoad:cacheData:) withObject:strongSelf withObject:componentItems];
                 }

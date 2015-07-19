@@ -8,6 +8,12 @@
 
 #import "KSPaginationItem.h"
 
+#define default_current_page @"cpage"
+#define default_timestamp @"timestamp"
+#define default_id_name @"id"
+#define default_page_size @"pageSize"
+#define default_direction @"direction"
+
 @implementation KSPaginationItem
 
 -(void)addParams:(NSDictionary *)params withDict:(NSMutableDictionary *)dict{
@@ -23,30 +29,30 @@
         if (params && [params count] > 0) {
             curPageName = [params objectForKey:@"curPageName"];
             if (curPageName == nil || ![curPageName isKindOfClass:[NSString class]]) {
-                curPageName = [NSString stringWithFormat:@"cpage"];
+                curPageName = [NSString stringWithFormat:default_current_page];
             }
             timestampName = [params objectForKey:@"timestampName"];
             if (timestampName == nil || ![timestampName isKindOfClass:[NSString class]]) {
-                timestampName = [NSString stringWithFormat:@"timestamp"];
+                timestampName = [NSString stringWithFormat:default_timestamp];
             }
             idStampName = [params objectForKey:@"idName"];
             if (idStampName == nil || ![idStampName isKindOfClass:[NSString class]]) {
-                idStampName = [NSString stringWithFormat:@"id"];
+                idStampName = [NSString stringWithFormat:default_id_name];
             }
             pageSizeName = [params objectForKey:@"pageSizeName"];
             if (pageSizeName == nil || ![pageSizeName isKindOfClass:[NSString class]]) {
-                pageSizeName = [NSString stringWithFormat:@"pageSize"];
+                pageSizeName = [NSString stringWithFormat:default_page_size];
             }
             directionName = [params objectForKey:@"directionName"];
             if (directionName == nil || ![directionName isKindOfClass:[NSString class]]) {
-                directionName = [NSString stringWithFormat:@"direction"];
+                directionName = [NSString stringWithFormat:default_direction];
             }
         }else{
-            curPageName = [NSString stringWithFormat:@"cpage"];
-            timestampName = [NSString stringWithFormat:@"timestamp"];
-            idStampName = [NSString stringWithFormat:@"id"];
-            pageSizeName = [NSString stringWithFormat:@"pageSize"];
-            directionName = [NSString stringWithFormat:@"direction"];
+            curPageName = [NSString stringWithFormat:default_current_page];
+            timestampName = [NSString stringWithFormat:default_timestamp];
+            idStampName = [NSString stringWithFormat:default_id_name];
+            pageSizeName = [NSString stringWithFormat:default_page_size];
+            directionName = [NSString stringWithFormat:default_direction];
         }
         
         if (self.paginationType == WeAppPaginationTypeDefault) {

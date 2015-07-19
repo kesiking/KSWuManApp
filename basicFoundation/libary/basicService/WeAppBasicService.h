@@ -84,6 +84,8 @@ typedef void(^serviceDidFailLoadBlock) (WeAppBasicService* service,NSError* erro
 
 @property (nonatomic, assign) BOOL                  needCache;
 
+@property (nonatomic, strong) NSArray*              cacheComponentItems;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark service block  delegate与block任选其一即可

@@ -79,12 +79,17 @@
 }
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
+    if (service.dataList == nil && service.cacheComponentItems && [service.cacheComponentItems count] > 0) {
+        [self.discoverListView setDataWithPageList:service.cacheComponentItems extraDataSource:nil];
+    }
     [self hideLoadingView];
 }
 
 -(void)serviceCacheDidLoad:(WeAppBasicService *)service cacheData:(NSArray *)cacheData{
-    if (cacheData && [cacheData count] > 0) {
-        [self.discoverListView setDataWithPageList:cacheData extraDataSource:nil];
+    if (self.discoverListView.tableViewCtl.configObject.scrollViewCacheType == KSScrollViewConfigCacheType_default) {
+        if (cacheData && [cacheData count] > 0) {
+            [self.discoverListView setDataWithPageList:cacheData extraDataSource:nil];
+        }
     }
 }
 
