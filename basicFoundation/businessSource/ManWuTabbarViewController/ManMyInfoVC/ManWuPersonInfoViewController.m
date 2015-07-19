@@ -166,9 +166,9 @@
             case 2:
             {
                 cell_person.textLabel.text = @"性别";
-                if([[KSUserInfoModel sharedConstant].sex isEqualToString:@"1"])
+                if([[KSUserInfoModel sharedConstant].sex isEqualToString:@"0"])
                 {
-                    cell_person.detailTextLabel.text  = @"nv";
+                    cell_person.detailTextLabel.text  = @"女";
                 }else
                 {
                     cell_person.detailTextLabel.text  = @"男";

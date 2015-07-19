@@ -36,7 +36,15 @@ static KSUserInfoModel *userInfoModel=nil;
     userInfoModel.imgUrl = dict[@"imgUrl"];
     userInfoModel.email = dict[@"email"];
     userInfoModel.inviteCode = dict[@"inviteCode"];
-    userInfoModel.sex = [NSString stringWithFormat:@"%@",dict[@"sex"]];
+    NSString *sex = dict[@"sex"];
+    if([sex isEqual:[NSNull null]])
+    {
+        sex = @"";
+    }else
+    {
+        userInfoModel.sex = [NSString stringWithFormat:@"%@",sex];
+    }
+
 }
 
 - (void)updateUserInfo:(NSDictionary *)userInfoDic
@@ -46,11 +54,15 @@ static KSUserInfoModel *userInfoModel=nil;
     [dic setValue:userInfoDic[@"imgUrl"] forKey:@"imgUrl"];
     [dic setValue:userInfoDic[@"inviteCode"] forKey:@"inviteCode"];
     [dic setValue:userInfoDic[@"phone"] forKey:@"phone"];
-    NSString *sex = [NSString stringWithFormat:@"%@",userInfoDic[@"sex"]?:@""];
+    NSString *sex = userInfoDic[@"sex"];
     if([sex isEqual:[NSNull null]])
     {
         sex = @"";
+    }else
+    {
+        userInfoModel.sex = [NSString stringWithFormat:@"%@",sex];
     }
+    
     [dic setValue:sex forKey:@"sex"];
     [dic setValue:userInfoDic[@"userName"] forKey:@"userName"];
     [dic setValue:userInfoDic[@"userId"] forKey:@"userId"];

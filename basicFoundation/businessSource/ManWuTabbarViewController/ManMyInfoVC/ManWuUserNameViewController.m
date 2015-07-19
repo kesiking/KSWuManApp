@@ -49,7 +49,7 @@
             self.title = @"性别";
             dropdownListSex = [[KSDropDownListView alloc]initWithFrame:CGRectMake(0, 30, self.view.width, TEXTFILEDHEIGHT*3) CellHeight:TEXTFILEDHEIGHT];
             dropdownListSex.cellHeight = TEXTFILEDHEIGHT;
-            if([[KSUserInfoModel sharedConstant].sex isEqualToString:@"1"])
+            if([[KSUserInfoModel sharedConstant].sex isEqualToString:@"0"])
             {
                 dropdownListSex.userActionLabel.text = @"女";
             }else
@@ -124,12 +124,12 @@
             break;
         case UserInfoConfigSexStyle:
             
-            if([dropdownListSex.userActionLabel.text isEqualToString:@"男"])
-            {
-                sexValue = @"1";
-            }else
+            if([dropdownListSex.userActionLabel.text isEqualToString:@"女"])
             {
                 sexValue = @"0";
+            }else
+            {
+                sexValue = @"1";
             }
             [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"sex":sexValue} version:nil];
             break;
