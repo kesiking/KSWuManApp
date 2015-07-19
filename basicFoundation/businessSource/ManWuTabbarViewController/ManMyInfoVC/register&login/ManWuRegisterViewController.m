@@ -23,7 +23,7 @@
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-        [_service setItemClass:[NSDictionary class]];
+        [_service setItemClass:[WeAppComponentBaseItem class]];
         _service.jsonTopKey = @"data";
     }
     return _service;
@@ -285,22 +285,24 @@
         return;
     }
     
-    NSLog(@"%@",_text_phoneNum.text);
-    NSLog(@"%@",_text_psw.text);
-    NSLog(@"%@",_text_smsCode.text);
-    NSLog(@"%@",_text_inviteCode.text);
-    
+#ifdef LOGIN_NEED_ENCRYPT
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
     NSDictionary* aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     if (aliPayFile == nil) {
         aliPayFile = [[NSDictionary alloc] init];
     }
     NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
-    
-    //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
     NSString *signedPwd = [RSAEncrypt encryptString:_text_psw.text publicKey:passwordKey];
+    NSString* method = @"GET";
 
-    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text?:@"", @"userName":_text_userName.text?:@"",} version:nil];
+#ifdef LOGIN_USE_POST_ENCRYPT
+    method = @"POST";
+#endif
+    [self.service loadItemWithAPIName:@"user/register.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":[signedPwd tbUrlEncoded]?:@"", @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text?:@"",@"userName":_text_userName.text?:@"",@"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
+#else
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phoneNum":_text_phoneNum.text, @"pwd":_text_psw.text, @"validateCode":_text_smsCode.text, @"code":_text_inviteCode.text?:@"", @"userName":_text_userName.text?:@""} version:nil];
+#endif
+
     isRegister = YES;
 }
 
@@ -317,11 +319,10 @@
 {
     if (service == _service) {
         // todo success
-        NSLog(@"%@",service.item.componentDict);
         if(isRegister)
         {
             //[WeAppToast toast:@"注册成功"];
-            NSDictionary *dic_userInfo = [NSDictionary dictionaryWithDictionary:(NSDictionary*)service.requestModel.item];
+            NSDictionary *dic_userInfo = [NSDictionary dictionaryWithDictionary:service.requestModel.item.componentDict];
             NSInteger redPacketPrice = [[dic_userInfo objectForKey:@"voucher"]integerValue];
             
             if(redPacketPrice == 0)

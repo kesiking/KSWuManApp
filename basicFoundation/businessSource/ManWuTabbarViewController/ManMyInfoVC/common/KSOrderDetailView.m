@@ -415,9 +415,9 @@
             {
                 statusStr = @"待发货";
                 title_leftBtn = @"";
-                title_rightBtn = @"提醒发货";
-                [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
-                [btn_right setTag:ButtonSelectedStyleNoteSend];
+                title_rightBtn = @""; //@"提醒发货";
+//                [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
+//                [btn_right setTag:ButtonSelectedStyleNoteSend];
             }
                 break;
             case 3:

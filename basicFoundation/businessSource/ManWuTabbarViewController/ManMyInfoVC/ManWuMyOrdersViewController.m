@@ -71,7 +71,7 @@
     CGRect rect = self.view.frame;
     r = CGRectZero;
     r.origin.x = 0;
-    r.origin.y = CGRectGetMaxY(self.selectionList.frame) + 15;
+    r.origin.y = CGRectGetMaxY(self.selectionList.frame);
     r.size.width = rect.size.width;
     r.size.height = rect.size.height - r.origin.y;
     
@@ -218,6 +218,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if(section == 0)
+        return 15;
+    
     return 0.1;
 }
 
@@ -323,8 +326,8 @@
         {
             statusStr = @"待发货";
             title_leftBtn = @"";
-            title_rightBtn = @"提醒发货";
-            [cell.btn_right addTarget:self action:@selector(didSelectedButtonStyleNoteSend:) forControlEvents:UIControlEventTouchUpInside];
+            title_rightBtn = @""; //@"提醒发货";
+//            [cell.btn_right addTarget:self action:@selector(didSelectedButtonStyleNoteSend:) forControlEvents:UIControlEventTouchUpInside];
         }
             break;
         case 3:

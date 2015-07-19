@@ -217,7 +217,7 @@
     method = @"POST";
 #endif
     
-    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":signedPwd?:@"",@"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
+    [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":[signedPwd tbUrlEncoded]?:@"",@"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
 #else
     [self.service loadItemWithAPIName:@"user/login.do" params:@{@"phone":_text_phoneNum.text, @"pwd":_text_psw.text?:@""} version:nil];
 
