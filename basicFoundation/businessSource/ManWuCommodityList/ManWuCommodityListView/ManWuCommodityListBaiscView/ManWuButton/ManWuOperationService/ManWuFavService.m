@@ -73,4 +73,15 @@
     [self loadItemWithAPIName:@"collection/unAddItem.do" params:params version:nil];
 }
 
+-(void)modelDidFinishLoad:(WeAppBasicRequestModel *)model{
+    if ([model.apiName isEqualToString:@"collection/addItem.do"]) {
+        // 发送收藏成功消息
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserAddFavSuccessNotification object:nil userInfo:model.params];
+    }else if ([model.apiName isEqualToString:@"collection/unAddItem.do"]){
+        // 发送收藏取消消息
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserUnAddFavSuccessNotification object:nil userInfo:model.params];
+    }
+    [super modelDidFinishLoad:model];
+}
+
 @end

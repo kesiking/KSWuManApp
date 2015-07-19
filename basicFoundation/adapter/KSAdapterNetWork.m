@@ -17,18 +17,12 @@
 
 -(void)request:(NSString *)apiName withParam:(NSDictionary *)param onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
     
-#ifdef MOCKDATA
-    NSString* jsonData = [[KSNetworkDataMock sharedInstantce] getJsonDataWithKey:apiName];
-    if (jsonData) {
-        NSError* error = nil;
-        NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        if (responseDict) {
-            successBlock(responseDict);
-            return;
-        }
+    BOOL hasMockData = [self didLoadDataFromMockWithApiName:apiName withParam:param onSuccess:successBlock onError:errorBlock onCancel:cancelBlock];
+    
+    if (hasMockData) {
+        return;
     }
-#endif
+    
     // 检查是否需要登陆
     self.needLogin = [param objectForKey:@"needLogin"];
     // 统一调用登陆逻辑
@@ -41,6 +35,9 @@
         // 获取加密
         NSMutableDictionary* newParams = [self getEncodeParamWithParam:param];
         NSString* method = [newParams objectForKey:@"__METHOD__"];
+#ifdef METHOD_GET
+        method = @"GET";
+#endif
         [self preProccessParamWithParam:newParams];
         
         // 获取successCompleteBlock
@@ -71,6 +68,22 @@
             }];
         }
     } onError:errorBlock];
+}
+
+-(BOOL)didLoadDataFromMockWithApiName:(NSString *)apiName withParam:(NSDictionary *)param onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
+#ifdef MOCKDATA
+    NSString* jsonData = [[KSNetworkDataMock sharedInstantce] getJsonDataWithKey:apiName];
+    if (jsonData) {
+        NSError* error = nil;
+        NSData *data = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        if (responseDict) {
+            successBlock(responseDict);
+            return YES;
+        }
+    }
+#endif
+    return NO;
 }
 
 -(void(^)(AFHTTPRequestOperation *operation, id responseObject))getSuccessCompleteBlockWithApiName:(NSString *)apiName onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
@@ -130,7 +143,7 @@
 
 -(void)preProccessParamWithParam:(NSMutableDictionary*)newParams{
     
-    if (self.needLogin && ![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
+    if (![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
         [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
     

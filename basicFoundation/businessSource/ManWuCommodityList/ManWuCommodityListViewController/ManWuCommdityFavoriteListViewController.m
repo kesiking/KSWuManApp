@@ -41,6 +41,10 @@
     [self.favListService loadCommodityFavorateData];
 }
 
+-(BOOL)needRefreshFav{
+    return YES;
+}
+
 -(void)viewDidUnload{
     self.commodityListView = nil;
     [super viewDidUnload];

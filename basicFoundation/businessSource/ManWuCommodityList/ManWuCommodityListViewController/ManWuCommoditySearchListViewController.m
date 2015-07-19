@@ -48,7 +48,7 @@
 }
 
 -(void)refreshDataRequest{
-    [self.commodityListView loadDataWithSearchKeyword:self.searchKeyword];
+    [self.commodityListView refreshDataRequest];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
