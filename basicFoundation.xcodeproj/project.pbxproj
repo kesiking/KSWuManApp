@@ -375,6 +375,8 @@
 		5FD2ED1F1B5BAAC7009FDF24 /* skuview_decrease@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED1B1B5BAAC7009FDF24 /* skuview_decrease@3x.png */; };
 		5FD2ED201B5BAAC7009FDF24 /* skuview_increase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED1C1B5BAAC7009FDF24 /* skuview_increase@2x.png */; };
 		5FD2ED211B5BAAC7009FDF24 /* skuview_increase@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED1D1B5BAAC7009FDF24 /* skuview_increase@3x.png */; };
+		5FD2ED241B5BB00E009FDF24 /* favorate_button_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED221B5BB00E009FDF24 /* favorate_button_image@2x.png */; };
+		5FD2ED251B5BB00E009FDF24 /* favorate_button_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED231B5BB00E009FDF24 /* favorate_button_image@3x.png */; };
 		5FD45EC51B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */; };
 		5FD45EC81B1BE3570064BA31 /* ManWuCommodityFavListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC71B1BE3570064BA31 /* ManWuCommodityFavListService.m */; };
 		5FD45ECC1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ECB1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m */; };
@@ -1226,6 +1228,8 @@
 		5FD2ED1B1B5BAAC7009FDF24 /* skuview_decrease@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skuview_decrease@3x.png"; sourceTree = "<group>"; };
 		5FD2ED1C1B5BAAC7009FDF24 /* skuview_increase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skuview_increase@2x.png"; sourceTree = "<group>"; };
 		5FD2ED1D1B5BAAC7009FDF24 /* skuview_increase@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skuview_increase@3x.png"; sourceTree = "<group>"; };
+		5FD2ED221B5BB00E009FDF24 /* favorate_button_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorate_button_image@2x.png"; sourceTree = "<group>"; };
+		5FD2ED231B5BB00E009FDF24 /* favorate_button_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorate_button_image@3x.png"; sourceTree = "<group>"; };
 		5FD45EC31B1BE1BA0064BA31 /* ManWuCommdityFavoriteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommdityFavoriteListViewController.h; sourceTree = "<group>"; };
 		5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommdityFavoriteListViewController.m; sourceTree = "<group>"; };
 		5FD45EC61B1BE3570064BA31 /* ManWuCommodityFavListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityFavListService.h; sourceTree = "<group>"; };
@@ -2856,6 +2860,8 @@
 		05AF300E1B00506C00890A65 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5FD2ED221B5BB00E009FDF24 /* favorate_button_image@2x.png */,
+				5FD2ED231B5BB00E009FDF24 /* favorate_button_image@3x.png */,
 				5FD2ED161B5BA9F1009FDF24 /* praise_button_image@2x.png */,
 				5FD2ED171B5BA9F1009FDF24 /* praise_button_image@3x.png */,
 				05AF300F1B00506C00890A65 /* favorate_button_image.png */,
@@ -3465,6 +3471,7 @@
 				058BC3FB1AE89DA700A4F799 /* tabbarViewControllerRegister.plist in Resources */,
 				91C76B831B31C7B3008C5EAC /* order_received@3x.png in Resources */,
 				91BBA1801B42DBFA002591C1 /* registerSuc_close@3x.png in Resources */,
+				5FD2ED251B5BB00E009FDF24 /* favorate_button_image@3x.png in Resources */,
 				058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */,
 				5F01FB521B3E3E4100541648 /* KSNetworkDataMock.plist in Resources */,
 				5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */,
@@ -3534,6 +3541,7 @@
 				91C76B791B31C516008C5EAC /* sex_man@2x.png in Resources */,
 				05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */,
 				05ACACA01AFCA94800853E1C /* tb_btn_all_square_press.png in Resources */,
+				5FD2ED241B5BB00E009FDF24 /* favorate_button_image@2x.png in Resources */,
 				056664B41AEE37AC00FD1C65 /* tb_control_flow_number_right_press.png in Resources */,
 				5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */,
 				91671D801B482DBE00833331 /* btn_back@2x.png in Resources */,

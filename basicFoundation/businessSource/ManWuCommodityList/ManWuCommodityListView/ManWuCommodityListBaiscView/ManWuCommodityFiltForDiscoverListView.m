@@ -15,11 +15,13 @@
     NSArray* sortAndFiltArray = @[
                                   @{
                                       @"imageUrl":@"manwu_commodity_sort_price",
+                                      @"selectImageUrl":@"manwu_commodity_sort_price",
                                       @"titleText":@"按价格排序",
                                       @"sortKey":@"1"
                                       },
                                   @{
                                       @"imageUrl":@"manwu_commodity_sort_like",
+                                      @"selectImageUrl":@"manwu_commodity_sort_price",
                                       @"titleText":@"按人气排序",
                                       @"sortKey":@"2"
                                       }

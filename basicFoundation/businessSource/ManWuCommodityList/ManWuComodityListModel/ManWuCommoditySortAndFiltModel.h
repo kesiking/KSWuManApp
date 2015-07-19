@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSString*           imageUrl;
 
+@property (nonatomic, strong) NSString*           selectImageUrl;
+
 @property (nonatomic, strong) NSString*           titleText;
 
 @property (nonatomic, strong) NSString*           subTitleText;
