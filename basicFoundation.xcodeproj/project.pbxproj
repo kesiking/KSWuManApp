@@ -377,6 +377,56 @@
 		5FD2ED211B5BAAC7009FDF24 /* skuview_increase@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED1D1B5BAAC7009FDF24 /* skuview_increase@3x.png */; };
 		5FD2ED241B5BB00E009FDF24 /* favorate_button_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED221B5BB00E009FDF24 /* favorate_button_image@2x.png */; };
 		5FD2ED251B5BB00E009FDF24 /* favorate_button_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED231B5BB00E009FDF24 /* favorate_button_image@3x.png */; };
+		5FD2ED2B1B5BC282009FDF24 /* manwu_commodity_sort_price@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED261B5BC282009FDF24 /* manwu_commodity_sort_price@2x.png */; };
+		5FD2ED2C1B5BC282009FDF24 /* manwu_commodity_sort_price@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED271B5BC282009FDF24 /* manwu_commodity_sort_price@3x.png */; };
+		5FD2ED2D1B5BC282009FDF24 /* manwu_commodity_sort_select_price.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED281B5BC282009FDF24 /* manwu_commodity_sort_select_price.png */; };
+		5FD2ED2E1B5BC282009FDF24 /* manwu_commodity_sort_select_price@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED291B5BC282009FDF24 /* manwu_commodity_sort_select_price@2x.png */; };
+		5FD2ED2F1B5BC282009FDF24 /* manwu_commodity_sort_select_price@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED2A1B5BC282009FDF24 /* manwu_commodity_sort_select_price@3x.png */; };
+		5FD2ED351B5BC304009FDF24 /* manwu_commodity_sort_like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED301B5BC304009FDF24 /* manwu_commodity_sort_like@2x.png */; };
+		5FD2ED361B5BC304009FDF24 /* manwu_commodity_sort_like@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED311B5BC304009FDF24 /* manwu_commodity_sort_like@3x.png */; };
+		5FD2ED371B5BC304009FDF24 /* manwu_commodity_sort_select_like.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED321B5BC304009FDF24 /* manwu_commodity_sort_select_like.png */; };
+		5FD2ED381B5BC304009FDF24 /* manwu_commodity_sort_select_like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED331B5BC304009FDF24 /* manwu_commodity_sort_select_like@2x.png */; };
+		5FD2ED391B5BC304009FDF24 /* manwu_commodity_sort_select_like@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED341B5BC304009FDF24 /* manwu_commodity_sort_select_like@3x.png */; };
+		5FD2ED741B5BC573009FDF24 /* manwu_commodity_filt_select_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED701B5BC573009FDF24 /* manwu_commodity_filt_select_all.png */; };
+		5FD2ED751B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED711B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png */; };
+		5FD2ED761B5BC573009FDF24 /* manwu_commodity_filt_select_discount.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED721B5BC573009FDF24 /* manwu_commodity_filt_select_discount.png */; };
+		5FD2ED771B5BC573009FDF24 /* manwu_commodity_filt_select_specialForToday.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED731B5BC573009FDF24 /* manwu_commodity_filt_select_specialForToday.png */; };
+		5FD2ED9D1B5BC9B3009FDF24 /* manwu_category_bra.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED791B5BC9B3009FDF24 /* manwu_category_bra.png */; };
+		5FD2ED9E1B5BC9B3009FDF24 /* manwu_category_bra@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED7A1B5BC9B3009FDF24 /* manwu_category_bra@2x.png */; };
+		5FD2ED9F1B5BC9B3009FDF24 /* manwu_category_bra@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED7B1B5BC9B3009FDF24 /* manwu_category_bra@3x.png */; };
+		5FD2EDA01B5BC9B3009FDF24 /* manwu_category_dress.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED7C1B5BC9B3009FDF24 /* manwu_category_dress.png */; };
+		5FD2EDA11B5BC9B3009FDF24 /* manwu_category_dress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED7D1B5BC9B3009FDF24 /* manwu_category_dress@2x.png */; };
+		5FD2EDA21B5BC9B3009FDF24 /* manwu_category_dress@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED7E1B5BC9B3009FDF24 /* manwu_category_dress@3x.png */; };
+		5FD2EDA31B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED7F1B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show.png */; };
+		5FD2EDA41B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED801B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@2x.png */; };
+		5FD2EDA51B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED811B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@3x.png */; };
+		5FD2EDA61B5BC9B3009FDF24 /* manwu_category_high_heeled_show.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED821B5BC9B3009FDF24 /* manwu_category_high_heeled_show.png */; };
+		5FD2EDA71B5BC9B3009FDF24 /* manwu_category_high_heeled_show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED831B5BC9B3009FDF24 /* manwu_category_high_heeled_show@2x.png */; };
+		5FD2EDA81B5BC9B3009FDF24 /* manwu_category_high_heeled_show@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED841B5BC9B3009FDF24 /* manwu_category_high_heeled_show@3x.png */; };
+		5FD2EDA91B5BC9B3009FDF24 /* manwu_category_man_select_shoe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED851B5BC9B3009FDF24 /* manwu_category_man_select_shoe.png */; };
+		5FD2EDAA1B5BC9B3009FDF24 /* manwu_category_man_select_shoe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED861B5BC9B3009FDF24 /* manwu_category_man_select_shoe@2x.png */; };
+		5FD2EDAB1B5BC9B3009FDF24 /* manwu_category_man_select_shoe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED871B5BC9B3009FDF24 /* manwu_category_man_select_shoe@3x.png */; };
+		5FD2EDAC1B5BC9B3009FDF24 /* manwu_category_man_shoe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED881B5BC9B3009FDF24 /* manwu_category_man_shoe.png */; };
+		5FD2EDAD1B5BC9B3009FDF24 /* manwu_category_man_shoe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED891B5BC9B3009FDF24 /* manwu_category_man_shoe@2x.png */; };
+		5FD2EDAE1B5BC9B3009FDF24 /* manwu_category_man_shoe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED8A1B5BC9B3009FDF24 /* manwu_category_man_shoe@3x.png */; };
+		5FD2EDAF1B5BC9B3009FDF24 /* manwu_category_necklace.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED8B1B5BC9B3009FDF24 /* manwu_category_necklace.png */; };
+		5FD2EDB01B5BC9B3009FDF24 /* manwu_category_necklace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED8C1B5BC9B3009FDF24 /* manwu_category_necklace@2x.png */; };
+		5FD2EDB11B5BC9B3009FDF24 /* manwu_category_necklace@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED8D1B5BC9B3009FDF24 /* manwu_category_necklace@3x.png */; };
+		5FD2EDB21B5BC9B3009FDF24 /* manwu_category_select_bra.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED8E1B5BC9B3009FDF24 /* manwu_category_select_bra.png */; };
+		5FD2EDB31B5BC9B3009FDF24 /* manwu_category_select_bra@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED8F1B5BC9B3009FDF24 /* manwu_category_select_bra@2x.png */; };
+		5FD2EDB41B5BC9B3009FDF24 /* manwu_category_select_bra@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED901B5BC9B3009FDF24 /* manwu_category_select_bra@3x.png */; };
+		5FD2EDB51B5BC9B3009FDF24 /* manwu_category_select_dress.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED911B5BC9B3009FDF24 /* manwu_category_select_dress.png */; };
+		5FD2EDB61B5BC9B3009FDF24 /* manwu_category_select_dress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED921B5BC9B3009FDF24 /* manwu_category_select_dress@2x.png */; };
+		5FD2EDB71B5BC9B3009FDF24 /* manwu_category_select_dress@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED931B5BC9B3009FDF24 /* manwu_category_select_dress@3x.png */; };
+		5FD2EDB81B5BC9B3009FDF24 /* manwu_category_select_necklace.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED941B5BC9B3009FDF24 /* manwu_category_select_necklace.png */; };
+		5FD2EDB91B5BC9B3009FDF24 /* manwu_category_select_necklace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED951B5BC9B3009FDF24 /* manwu_category_select_necklace@2x.png */; };
+		5FD2EDBA1B5BC9B3009FDF24 /* manwu_category_select_necklace@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED961B5BC9B3009FDF24 /* manwu_category_select_necklace@3x.png */; };
+		5FD2EDBB1B5BC9B3009FDF24 /* manwu_category_select_shirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED971B5BC9B3009FDF24 /* manwu_category_select_shirt.png */; };
+		5FD2EDBC1B5BC9B3009FDF24 /* manwu_category_select_shirt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED981B5BC9B3009FDF24 /* manwu_category_select_shirt@2x.png */; };
+		5FD2EDBD1B5BC9B3009FDF24 /* manwu_category_select_shirt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED991B5BC9B3009FDF24 /* manwu_category_select_shirt@3x.png */; };
+		5FD2EDBE1B5BC9B3009FDF24 /* manwu_category_shirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED9A1B5BC9B3009FDF24 /* manwu_category_shirt.png */; };
+		5FD2EDBF1B5BC9B3009FDF24 /* manwu_category_shirt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED9B1B5BC9B3009FDF24 /* manwu_category_shirt@2x.png */; };
+		5FD2EDC01B5BC9B3009FDF24 /* manwu_category_shirt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD2ED9C1B5BC9B3009FDF24 /* manwu_category_shirt@3x.png */; };
 		5FD45EC51B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */; };
 		5FD45EC81B1BE3570064BA31 /* ManWuCommodityFavListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45EC71B1BE3570064BA31 /* ManWuCommodityFavListService.m */; };
 		5FD45ECC1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD45ECB1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m */; };
@@ -1230,6 +1280,56 @@
 		5FD2ED1D1B5BAAC7009FDF24 /* skuview_increase@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skuview_increase@3x.png"; sourceTree = "<group>"; };
 		5FD2ED221B5BB00E009FDF24 /* favorate_button_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorate_button_image@2x.png"; sourceTree = "<group>"; };
 		5FD2ED231B5BB00E009FDF24 /* favorate_button_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorate_button_image@3x.png"; sourceTree = "<group>"; };
+		5FD2ED261B5BC282009FDF24 /* manwu_commodity_sort_price@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_price@2x.png"; sourceTree = "<group>"; };
+		5FD2ED271B5BC282009FDF24 /* manwu_commodity_sort_price@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_price@3x.png"; sourceTree = "<group>"; };
+		5FD2ED281B5BC282009FDF24 /* manwu_commodity_sort_select_price.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_sort_select_price.png; sourceTree = "<group>"; };
+		5FD2ED291B5BC282009FDF24 /* manwu_commodity_sort_select_price@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_select_price@2x.png"; sourceTree = "<group>"; };
+		5FD2ED2A1B5BC282009FDF24 /* manwu_commodity_sort_select_price@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_select_price@3x.png"; sourceTree = "<group>"; };
+		5FD2ED301B5BC304009FDF24 /* manwu_commodity_sort_like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_like@2x.png"; sourceTree = "<group>"; };
+		5FD2ED311B5BC304009FDF24 /* manwu_commodity_sort_like@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_like@3x.png"; sourceTree = "<group>"; };
+		5FD2ED321B5BC304009FDF24 /* manwu_commodity_sort_select_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_sort_select_like.png; sourceTree = "<group>"; };
+		5FD2ED331B5BC304009FDF24 /* manwu_commodity_sort_select_like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_select_like@2x.png"; sourceTree = "<group>"; };
+		5FD2ED341B5BC304009FDF24 /* manwu_commodity_sort_select_like@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_commodity_sort_select_like@3x.png"; sourceTree = "<group>"; };
+		5FD2ED701B5BC573009FDF24 /* manwu_commodity_filt_select_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_select_all.png; sourceTree = "<group>"; };
+		5FD2ED711B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_select_buy.png; sourceTree = "<group>"; };
+		5FD2ED721B5BC573009FDF24 /* manwu_commodity_filt_select_discount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_select_discount.png; sourceTree = "<group>"; };
+		5FD2ED731B5BC573009FDF24 /* manwu_commodity_filt_select_specialForToday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_commodity_filt_select_specialForToday.png; sourceTree = "<group>"; };
+		5FD2ED791B5BC9B3009FDF24 /* manwu_category_bra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_bra.png; sourceTree = "<group>"; };
+		5FD2ED7A1B5BC9B3009FDF24 /* manwu_category_bra@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_bra@2x.png"; sourceTree = "<group>"; };
+		5FD2ED7B1B5BC9B3009FDF24 /* manwu_category_bra@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_bra@3x.png"; sourceTree = "<group>"; };
+		5FD2ED7C1B5BC9B3009FDF24 /* manwu_category_dress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_dress.png; sourceTree = "<group>"; };
+		5FD2ED7D1B5BC9B3009FDF24 /* manwu_category_dress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_dress@2x.png"; sourceTree = "<group>"; };
+		5FD2ED7E1B5BC9B3009FDF24 /* manwu_category_dress@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_dress@3x.png"; sourceTree = "<group>"; };
+		5FD2ED7F1B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_high_heeled_select_show.png; sourceTree = "<group>"; };
+		5FD2ED801B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_high_heeled_select_show@2x.png"; sourceTree = "<group>"; };
+		5FD2ED811B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_high_heeled_select_show@3x.png"; sourceTree = "<group>"; };
+		5FD2ED821B5BC9B3009FDF24 /* manwu_category_high_heeled_show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_high_heeled_show.png; sourceTree = "<group>"; };
+		5FD2ED831B5BC9B3009FDF24 /* manwu_category_high_heeled_show@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_high_heeled_show@2x.png"; sourceTree = "<group>"; };
+		5FD2ED841B5BC9B3009FDF24 /* manwu_category_high_heeled_show@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_high_heeled_show@3x.png"; sourceTree = "<group>"; };
+		5FD2ED851B5BC9B3009FDF24 /* manwu_category_man_select_shoe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_man_select_shoe.png; sourceTree = "<group>"; };
+		5FD2ED861B5BC9B3009FDF24 /* manwu_category_man_select_shoe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_man_select_shoe@2x.png"; sourceTree = "<group>"; };
+		5FD2ED871B5BC9B3009FDF24 /* manwu_category_man_select_shoe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_man_select_shoe@3x.png"; sourceTree = "<group>"; };
+		5FD2ED881B5BC9B3009FDF24 /* manwu_category_man_shoe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_man_shoe.png; sourceTree = "<group>"; };
+		5FD2ED891B5BC9B3009FDF24 /* manwu_category_man_shoe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_man_shoe@2x.png"; sourceTree = "<group>"; };
+		5FD2ED8A1B5BC9B3009FDF24 /* manwu_category_man_shoe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_man_shoe@3x.png"; sourceTree = "<group>"; };
+		5FD2ED8B1B5BC9B3009FDF24 /* manwu_category_necklace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_necklace.png; sourceTree = "<group>"; };
+		5FD2ED8C1B5BC9B3009FDF24 /* manwu_category_necklace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_necklace@2x.png"; sourceTree = "<group>"; };
+		5FD2ED8D1B5BC9B3009FDF24 /* manwu_category_necklace@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_necklace@3x.png"; sourceTree = "<group>"; };
+		5FD2ED8E1B5BC9B3009FDF24 /* manwu_category_select_bra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_select_bra.png; sourceTree = "<group>"; };
+		5FD2ED8F1B5BC9B3009FDF24 /* manwu_category_select_bra@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_bra@2x.png"; sourceTree = "<group>"; };
+		5FD2ED901B5BC9B3009FDF24 /* manwu_category_select_bra@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_bra@3x.png"; sourceTree = "<group>"; };
+		5FD2ED911B5BC9B3009FDF24 /* manwu_category_select_dress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_select_dress.png; sourceTree = "<group>"; };
+		5FD2ED921B5BC9B3009FDF24 /* manwu_category_select_dress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_dress@2x.png"; sourceTree = "<group>"; };
+		5FD2ED931B5BC9B3009FDF24 /* manwu_category_select_dress@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_dress@3x.png"; sourceTree = "<group>"; };
+		5FD2ED941B5BC9B3009FDF24 /* manwu_category_select_necklace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_select_necklace.png; sourceTree = "<group>"; };
+		5FD2ED951B5BC9B3009FDF24 /* manwu_category_select_necklace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_necklace@2x.png"; sourceTree = "<group>"; };
+		5FD2ED961B5BC9B3009FDF24 /* manwu_category_select_necklace@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_necklace@3x.png"; sourceTree = "<group>"; };
+		5FD2ED971B5BC9B3009FDF24 /* manwu_category_select_shirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_select_shirt.png; sourceTree = "<group>"; };
+		5FD2ED981B5BC9B3009FDF24 /* manwu_category_select_shirt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_shirt@2x.png"; sourceTree = "<group>"; };
+		5FD2ED991B5BC9B3009FDF24 /* manwu_category_select_shirt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_select_shirt@3x.png"; sourceTree = "<group>"; };
+		5FD2ED9A1B5BC9B3009FDF24 /* manwu_category_shirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_category_shirt.png; sourceTree = "<group>"; };
+		5FD2ED9B1B5BC9B3009FDF24 /* manwu_category_shirt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_shirt@2x.png"; sourceTree = "<group>"; };
+		5FD2ED9C1B5BC9B3009FDF24 /* manwu_category_shirt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_category_shirt@3x.png"; sourceTree = "<group>"; };
 		5FD45EC31B1BE1BA0064BA31 /* ManWuCommdityFavoriteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommdityFavoriteListViewController.h; sourceTree = "<group>"; };
 		5FD45EC41B1BE1BB0064BA31 /* ManWuCommdityFavoriteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommdityFavoriteListViewController.m; sourceTree = "<group>"; };
 		5FD45EC61B1BE3570064BA31 /* ManWuCommodityFavListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityFavListService.h; sourceTree = "<group>"; };
@@ -1581,6 +1681,17 @@
 		0553F75A1AF9EB660013BB97 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5FD2ED781B5BC9B3009FDF24 /* manwu_category_icons */,
+				5FD2ED261B5BC282009FDF24 /* manwu_commodity_sort_price@2x.png */,
+				5FD2ED271B5BC282009FDF24 /* manwu_commodity_sort_price@3x.png */,
+				5FD2ED281B5BC282009FDF24 /* manwu_commodity_sort_select_price.png */,
+				5FD2ED291B5BC282009FDF24 /* manwu_commodity_sort_select_price@2x.png */,
+				5FD2ED2A1B5BC282009FDF24 /* manwu_commodity_sort_select_price@3x.png */,
+				5FD2ED301B5BC304009FDF24 /* manwu_commodity_sort_like@2x.png */,
+				5FD2ED311B5BC304009FDF24 /* manwu_commodity_sort_like@3x.png */,
+				5FD2ED321B5BC304009FDF24 /* manwu_commodity_sort_select_like.png */,
+				5FD2ED331B5BC304009FDF24 /* manwu_commodity_sort_select_like@2x.png */,
+				5FD2ED341B5BC304009FDF24 /* manwu_commodity_sort_select_like@3x.png */,
 				5F2D00061B4EAD5E007C2F4D /* manwu_sort_down.png */,
 				5F2D00071B4EAD5E007C2F4D /* manwu_sort_up.png */,
 				5FFEB4291B1C38D700CAC511 /* button_back.png */,
@@ -1588,6 +1699,10 @@
 				5FD244F21B3ACBFE00353589 /* manwu_commodity_filt_buy.png */,
 				5FD244F31B3ACBFE00353589 /* manwu_commodity_filt_specialForToday.png */,
 				0553F75D1AF9EB660013BB97 /* manwu_commodity_filt_discount.png */,
+				5FD2ED701B5BC573009FDF24 /* manwu_commodity_filt_select_all.png */,
+				5FD2ED711B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png */,
+				5FD2ED721B5BC573009FDF24 /* manwu_commodity_filt_select_discount.png */,
+				5FD2ED731B5BC573009FDF24 /* manwu_commodity_filt_select_specialForToday.png */,
 				5F4088131B196E7700954568 /* manwu_commodity_sort_like.png */,
 				5F4088141B196E7700954568 /* manwu_commodity_sort_price.png */,
 				5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */,
@@ -3133,6 +3248,49 @@
 			path = RSAEncrypt;
 			sourceTree = "<group>";
 		};
+		5FD2ED781B5BC9B3009FDF24 /* manwu_category_icons */ = {
+			isa = PBXGroup;
+			children = (
+				5FD2ED791B5BC9B3009FDF24 /* manwu_category_bra.png */,
+				5FD2ED7A1B5BC9B3009FDF24 /* manwu_category_bra@2x.png */,
+				5FD2ED7B1B5BC9B3009FDF24 /* manwu_category_bra@3x.png */,
+				5FD2ED7C1B5BC9B3009FDF24 /* manwu_category_dress.png */,
+				5FD2ED7D1B5BC9B3009FDF24 /* manwu_category_dress@2x.png */,
+				5FD2ED7E1B5BC9B3009FDF24 /* manwu_category_dress@3x.png */,
+				5FD2ED7F1B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show.png */,
+				5FD2ED801B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@2x.png */,
+				5FD2ED811B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@3x.png */,
+				5FD2ED821B5BC9B3009FDF24 /* manwu_category_high_heeled_show.png */,
+				5FD2ED831B5BC9B3009FDF24 /* manwu_category_high_heeled_show@2x.png */,
+				5FD2ED841B5BC9B3009FDF24 /* manwu_category_high_heeled_show@3x.png */,
+				5FD2ED851B5BC9B3009FDF24 /* manwu_category_man_select_shoe.png */,
+				5FD2ED861B5BC9B3009FDF24 /* manwu_category_man_select_shoe@2x.png */,
+				5FD2ED871B5BC9B3009FDF24 /* manwu_category_man_select_shoe@3x.png */,
+				5FD2ED881B5BC9B3009FDF24 /* manwu_category_man_shoe.png */,
+				5FD2ED891B5BC9B3009FDF24 /* manwu_category_man_shoe@2x.png */,
+				5FD2ED8A1B5BC9B3009FDF24 /* manwu_category_man_shoe@3x.png */,
+				5FD2ED8B1B5BC9B3009FDF24 /* manwu_category_necklace.png */,
+				5FD2ED8C1B5BC9B3009FDF24 /* manwu_category_necklace@2x.png */,
+				5FD2ED8D1B5BC9B3009FDF24 /* manwu_category_necklace@3x.png */,
+				5FD2ED8E1B5BC9B3009FDF24 /* manwu_category_select_bra.png */,
+				5FD2ED8F1B5BC9B3009FDF24 /* manwu_category_select_bra@2x.png */,
+				5FD2ED901B5BC9B3009FDF24 /* manwu_category_select_bra@3x.png */,
+				5FD2ED911B5BC9B3009FDF24 /* manwu_category_select_dress.png */,
+				5FD2ED921B5BC9B3009FDF24 /* manwu_category_select_dress@2x.png */,
+				5FD2ED931B5BC9B3009FDF24 /* manwu_category_select_dress@3x.png */,
+				5FD2ED941B5BC9B3009FDF24 /* manwu_category_select_necklace.png */,
+				5FD2ED951B5BC9B3009FDF24 /* manwu_category_select_necklace@2x.png */,
+				5FD2ED961B5BC9B3009FDF24 /* manwu_category_select_necklace@3x.png */,
+				5FD2ED971B5BC9B3009FDF24 /* manwu_category_select_shirt.png */,
+				5FD2ED981B5BC9B3009FDF24 /* manwu_category_select_shirt@2x.png */,
+				5FD2ED991B5BC9B3009FDF24 /* manwu_category_select_shirt@3x.png */,
+				5FD2ED9A1B5BC9B3009FDF24 /* manwu_category_shirt.png */,
+				5FD2ED9B1B5BC9B3009FDF24 /* manwu_category_shirt@2x.png */,
+				5FD2ED9C1B5BC9B3009FDF24 /* manwu_category_shirt@3x.png */,
+			);
+			path = manwu_category_icons;
+			sourceTree = "<group>";
+		};
 		5FD45EC91B1BF1A80064BA31 /* ManWuHomeVoucherModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3398,15 +3556,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FD2EDA51B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@3x.png in Resources */,
 				5FFEB42A1B1C38D700CAC511 /* button_back.png in Resources */,
 				058DAE351AE63A31009D0008 /* tabitem_home_normal.png in Resources */,
+				5FD2EDA71B5BC9B3009FDF24 /* manwu_category_high_heeled_show@2x.png in Resources */,
 				058DAE331AE63A31009D0008 /* tabitem_discover_normal.png in Resources */,
+				5FD2ED351B5BC304009FDF24 /* manwu_commodity_sort_like@2x.png in Resources */,
 				05AF30161B00506C00890A65 /* unPraise_button_image.png in Resources */,
 				91C76B701B31C516008C5EAC /* order_forpay@2x.png in Resources */,
 				5F214C7A1B158F990081BA02 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
 				91C76B6D1B31C516008C5EAC /* order_forchange@2x.png in Resources */,
 				91C76B761B31C516008C5EAC /* order_forsend@2x.png in Resources */,
 				5F214C791B158F990081BA02 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
+				5FD2EDA31B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show.png in Resources */,
 				91C76B721B31C516008C5EAC /* order_forreceive.png in Resources */,
 				91E2D0741B1761C500946A32 /* inputbox@2x.png in Resources */,
 				05AF30031B004D3F00890A65 /* loading_view_1.png in Resources */,
@@ -3416,37 +3578,52 @@
 				5F9F459E1B1D40290017E632 /* aliPayfile.plist in Resources */,
 				91C76B781B31C516008C5EAC /* sex_man.png in Resources */,
 				91C76B6B1B31C516008C5EAC /* edit@3x.png in Resources */,
+				5FD2EDB21B5BC9B3009FDF24 /* manwu_category_select_bra.png in Resources */,
 				5F214C7D1B158F990081BA02 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				050FFD3E1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib in Resources */,
 				91BBA17E1B42DBFA002591C1 /* registerSuc_close.png in Resources */,
 				91C76B6F1B31C516008C5EAC /* order_forpay.png in Resources */,
+				5FD2ED2F1B5BC282009FDF24 /* manwu_commodity_sort_select_price@3x.png in Resources */,
 				5F214C7E1B158F990081BA02 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
 				5FD244F41B3ACBFF00353589 /* manwu_commodity_filt_all.png in Resources */,
+				5FD2EDB61B5BC9B3009FDF24 /* manwu_category_select_dress@2x.png in Resources */,
 				050FFD7C1B03222600721E02 /* HZAreaPickerView.xib in Resources */,
 				058DAE621AE7992D009D0008 /* MatrixConfig.plist in Resources */,
 				05AF300A1B004D3F00890A65 /* loading_view_8.png in Resources */,
 				5FD2ED211B5BAAC7009FDF24 /* skuview_increase@3x.png in Resources */,
 				058D5D111AF2140C006EA35C /* tbbuy_warning@2x.png in Resources */,
+				5FD2ED2C1B5BC282009FDF24 /* manwu_commodity_sort_price@3x.png in Resources */,
 				058D5D0F1AF2140C006EA35C /* tbbuy_location@2x.png in Resources */,
 				91BBA1811B42DBFA002591C1 /* btn_config.png in Resources */,
 				91CBB19E1B3C45710037547A /* hongbao_valid@3x.png in Resources */,
 				5FD244F51B3ACBFF00353589 /* manwu_commodity_filt_buy.png in Resources */,
+				5FD2ED9F1B5BC9B3009FDF24 /* manwu_category_bra@3x.png in Resources */,
 				055866981AD3B4F900A23FFA /* Main.storyboard in Resources */,
+				5FD2EDB51B5BC9B3009FDF24 /* manwu_category_select_dress.png in Resources */,
 				5F226EB31B33A27B00FEFBC6 /* unDeleteFavrate.png in Resources */,
+				5FD2ED771B5BC573009FDF24 /* manwu_commodity_filt_select_specialForToday.png in Resources */,
 				5F214C751B158F990081BA02 /* SVWebViewController.strings in Resources */,
 				058DAE1F1AE638BA009D0008 /* tabbar_background_white.png in Resources */,
 				91BBA1821B42DBFA002591C1 /* btn_config@2x.png in Resources */,
 				91671D821B482DBE00833331 /* camera_btn_ok@2x.png in Resources */,
+				5FD2EDAA1B5BC9B3009FDF24 /* manwu_category_man_select_shoe@2x.png in Resources */,
 				05AF30141B00506C00890A65 /* praise_button_image.png in Resources */,
 				058DAE371AE63A31009D0008 /* tabitem_info_normal.png in Resources */,
 				916A44F71B500A89005C2E4D /* btn_droplist@3x.png in Resources */,
 				5F226EB21B33A27B00FEFBC6 /* deleteFavrate.png in Resources */,
+				5FD2ED361B5BC304009FDF24 /* manwu_commodity_sort_like@3x.png in Resources */,
+				5FD2ED741B5BC573009FDF24 /* manwu_commodity_filt_select_all.png in Resources */,
 				058DAE231AE638BA009D0008 /* tabitem_discover_highlight.png in Resources */,
 				916A44F51B500A89005C2E4D /* btn_droplist.png in Resources */,
+				5FD2EDB91B5BC9B3009FDF24 /* manwu_category_select_necklace@2x.png in Resources */,
+				5FD2EDAC1B5BC9B3009FDF24 /* manwu_category_man_shoe.png in Resources */,
 				91C76B6E1B31C516008C5EAC /* order_forchange@3x.png in Resources */,
 				5FD2ED1E1B5BAAC7009FDF24 /* skuview_decrease@2x.png in Resources */,
 				5F2D00091B4EAD5E007C2F4D /* manwu_sort_up.png in Resources */,
+				5FD2EDB81B5BC9B3009FDF24 /* manwu_category_select_necklace.png in Resources */,
 				05AF30071B004D3F00890A65 /* loading_view_5.png in Resources */,
+				5FD2EDBC1B5BC9B3009FDF24 /* manwu_category_select_shirt@2x.png in Resources */,
+				5FD2ED761B5BC573009FDF24 /* manwu_commodity_filt_select_discount.png in Resources */,
 				056664B21AEE37AC00FD1C65 /* tb_control_flow_number_left_press.png in Resources */,
 				5F4088121B19663200954568 /* manwu_default_address.png in Resources */,
 				056664B01AEE37AC00FD1C65 /* tb_control_flow_number_center.png in Resources */,
@@ -3455,23 +3632,29 @@
 				91C76B811B31C7B3008C5EAC /* order_received.png in Resources */,
 				5F4088151B196E7700954568 /* manwu_commodity_sort_like.png in Resources */,
 				91E2D0761B1761C500946A32 /* sure-button01-s@2x.png in Resources */,
+				5FD2EDBB1B5BC9B3009FDF24 /* manwu_category_select_shirt.png in Resources */,
 				91E2D0751B1761C500946A32 /* sure-button01-s.png in Resources */,
 				91C76B731B31C516008C5EAC /* order_forreceive@2x.png in Resources */,
+				5FD2ED2E1B5BC282009FDF24 /* manwu_commodity_sort_select_price@2x.png in Resources */,
 				5F4088111B19663200954568 /* manwu_common_address.png in Resources */,
+				5FD2EDA61B5BC9B3009FDF24 /* manwu_category_high_heeled_show.png in Resources */,
 				915DC0111B5B7E0A00E5EBA4 /* defaultHead@2x.png in Resources */,
 				05AF30081B004D3F00890A65 /* loading_view_6.png in Resources */,
 				058D5D0E1AF2140C006EA35C /* tbbuy_item_increase@2x.png in Resources */,
 				5F4088161B196E7700954568 /* manwu_commodity_sort_price.png in Resources */,
 				91C76B6C1B31C516008C5EAC /* order_forchange.png in Resources */,
 				05AF30041B004D3F00890A65 /* loading_view_2.png in Resources */,
+				5FD2ED371B5BC304009FDF24 /* manwu_commodity_sort_select_like.png in Resources */,
 				917EC3FD1B4648DE00C84DCB /* hongbao_invalid.png in Resources */,
 				058DAE271AE638BA009D0008 /* tabitem_home_highlight.png in Resources */,
+				5FD2EDB41B5BC9B3009FDF24 /* manwu_category_select_bra@3x.png in Resources */,
 				058D5D0D1AF2140C006EA35C /* tbbuy_item_increase2@2x.png in Resources */,
 				05ACAC711AFC6F7B00853E1C /* ManWuAddressSelectViewCell.xib in Resources */,
 				058BC3FB1AE89DA700A4F799 /* tabbarViewControllerRegister.plist in Resources */,
 				91C76B831B31C7B3008C5EAC /* order_received@3x.png in Resources */,
 				91BBA1801B42DBFA002591C1 /* registerSuc_close@3x.png in Resources */,
 				5FD2ED251B5BB00E009FDF24 /* favorate_button_image@3x.png in Resources */,
+				5FD2EDA01B5BC9B3009FDF24 /* manwu_category_dress.png in Resources */,
 				058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */,
 				5F01FB521B3E3E4100541648 /* KSNetworkDataMock.plist in Resources */,
 				5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */,
@@ -3481,13 +3664,22 @@
 				5F214C7C1B158F990081BA02 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				052CC6A51AF765C800AF7C78 /* ManWuCommodityTitleAndPriceView.xib in Resources */,
 				91E2D0771B1761C500946A32 /* sure-button01.png in Resources */,
+				5FD2EDB71B5BC9B3009FDF24 /* manwu_category_select_dress@3x.png in Resources */,
+				5FD2EDBD1B5BC9B3009FDF24 /* manwu_category_select_shirt@3x.png in Resources */,
 				91C76B7B1B31C516008C5EAC /* sex_woman.png in Resources */,
 				915DC0101B5B7E0A00E5EBA4 /* defaultHead.png in Resources */,
 				91C76B821B31C7B3008C5EAC /* order_received@2x.png in Resources */,
+				5FD2EDB31B5BC9B3009FDF24 /* manwu_category_select_bra@2x.png in Resources */,
 				91671D811B482DBE00833331 /* camera_btn_ok.png in Resources */,
+				5FD2ED391B5BC304009FDF24 /* manwu_commodity_sort_select_like@3x.png in Resources */,
+				5FD2EDAB1B5BC9B3009FDF24 /* manwu_category_man_select_shoe@3x.png in Resources */,
 				0553F7611AF9EB660013BB97 /* manwu_commodity_filt_discount.png in Resources */,
+				5FD2ED9D1B5BC9B3009FDF24 /* manwu_category_bra.png in Resources */,
+				5FD2EDA11B5BC9B3009FDF24 /* manwu_category_dress@2x.png in Resources */,
+				5FD2EDA91B5BC9B3009FDF24 /* manwu_category_man_select_shoe.png in Resources */,
 				05AF30061B004D3F00890A65 /* loading_view_4.png in Resources */,
 				91671D7F1B482DBE00833331 /* btn_back.png in Resources */,
+				5FD2EDA21B5BC9B3009FDF24 /* manwu_category_dress@3x.png in Resources */,
 				05AF30131B00506C00890A65 /* favorate_button_image.png in Resources */,
 				058DAE201AE638BA009D0008 /* tabbar_background_white@2x.png in Resources */,
 				91C76B7C1B31C516008C5EAC /* sex_woman@3x.png in Resources */,
@@ -3496,18 +3688,26 @@
 				050FFD6B1B02F98000721E02 /* city.plist in Resources */,
 				056664AE1AEE37AC00FD1C65 /* skuview_increase.png in Resources */,
 				05AF30051B004D3F00890A65 /* loading_view_3.png in Resources */,
+				5FD2EDAD1B5BC9B3009FDF24 /* manwu_category_man_shoe@2x.png in Resources */,
 				0558669D1AD3B4F900A23FFA /* LaunchScreen.xib in Resources */,
+				5FD2EDBA1B5BC9B3009FDF24 /* manwu_category_select_necklace@3x.png in Resources */,
+				5FD2ED2D1B5BC282009FDF24 /* manwu_commodity_sort_select_price.png in Resources */,
+				5FD2EDA81B5BC9B3009FDF24 /* manwu_category_high_heeled_show@3x.png in Resources */,
 				058D5D101AF2140C006EA35C /* tbbuy_question_fill@2x.png in Resources */,
+				5FD2ED751B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png in Resources */,
 				05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */,
 				056664B11AEE37AC00FD1C65 /* tb_control_flow_number_left.png in Resources */,
 				91C76B771B31C516008C5EAC /* order_forsend@3x.png in Resources */,
+				5FD2ED2B1B5BC282009FDF24 /* manwu_commodity_sort_price@2x.png in Resources */,
 				056664AF1AEE37AC00FD1C65 /* skuview_increase2.png in Resources */,
 				056664B81AEE37E600FD1C65 /* skuview_decrease2.png in Resources */,
 				0558669A1AD3B4F900A23FFA /* Images.xcassets in Resources */,
 				91C76B711B31C516008C5EAC /* order_forpay@3x.png in Resources */,
 				052CC6B81AF8588400AF7C78 /* home_discount_placehold_banner.png in Resources */,
+				5FD2EDAE1B5BC9B3009FDF24 /* manwu_category_man_shoe@3x.png in Resources */,
 				917EC3FF1B4648DE00C84DCB /* hongbao_invalid@3x.png in Resources */,
 				91BBA17F1B42DBFA002591C1 /* registerSuc_close@2x.png in Resources */,
+				5FD2ED9E1B5BC9B3009FDF24 /* manwu_category_bra@2x.png in Resources */,
 				5FD2ED191B5BA9F1009FDF24 /* praise_button_image@3x.png in Resources */,
 				5FD2ED181B5BA9F1009FDF24 /* praise_button_image@2x.png in Resources */,
 				058D5A921AF0B2BB006EA35C /* Default@2x.png in Resources */,
@@ -3517,14 +3717,17 @@
 				050FFD6A1B02F98000721E02 /* area.plist in Resources */,
 				052CC6C41AF8BDFE00AF7C78 /* discover_searchview_background.png in Resources */,
 				058DAE2B1AE638BA009D0008 /* tabitem_info_highlight.png in Resources */,
+				5FD2EDC01B5BC9B3009FDF24 /* manwu_category_shirt@3x.png in Resources */,
 				056664B71AEE37E600FD1C65 /* skuview_decrease.png in Resources */,
 				058D5D0C1AF2140C006EA35C /* tbbuy_item_decrease@2x.png in Resources */,
 				056664491AEB4BA200FD1C65 /* gz_image_loading.png in Resources */,
 				058D5CF91AF1F68E006EA35C /* AlipaySDK.bundle in Resources */,
 				91CBB19D1B3C45710037547A /* hongbao_valid@2x.png in Resources */,
+				5FD2EDBE1B5BC9B3009FDF24 /* manwu_category_shirt.png in Resources */,
 				5F214C771B158F990081BA02 /* SVWebViewController.bundle in Resources */,
 				916A44F61B500A89005C2E4D /* btn_droplist@2x.png in Resources */,
 				058D5D0A1AF2140C006EA35C /* tbbuy_arrow@2x.png in Resources */,
+				5FD2EDB01B5BC9B3009FDF24 /* manwu_category_necklace@2x.png in Resources */,
 				058DADDB1AE52F97009D0008 /* SVProgressHUD.bundle in Resources */,
 				056664B31AEE37AC00FD1C65 /* tb_control_flow_number_right.png in Resources */,
 				05ACAC9A1AFCA03A00853E1C /* wifi_error_image.png in Resources */,
@@ -3538,14 +3741,19 @@
 				052CC6BA1AF8588400AF7C78 /* home_specialForToday_first_placehold_banner.png in Resources */,
 				91BBA1831B42DBFA002591C1 /* btn_config@3x.png in Resources */,
 				058DAE681AE79CB4009D0008 /* manwu_bundle.plist in Resources */,
+				5FD2ED381B5BC304009FDF24 /* manwu_commodity_sort_select_like@2x.png in Resources */,
 				91C76B791B31C516008C5EAC /* sex_man@2x.png in Resources */,
 				05ACAC9C1AFCA08200853E1C /* smile_error_image.png in Resources */,
 				05ACACA01AFCA94800853E1C /* tb_btn_all_square_press.png in Resources */,
 				5FD2ED241B5BB00E009FDF24 /* favorate_button_image@2x.png in Resources */,
+				5FD2EDA41B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@2x.png in Resources */,
+				5FD2EDAF1B5BC9B3009FDF24 /* manwu_category_necklace.png in Resources */,
 				056664B41AEE37AC00FD1C65 /* tb_control_flow_number_right_press.png in Resources */,
 				5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */,
 				91671D801B482DBE00833331 /* btn_back@2x.png in Resources */,
 				5F214C801B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
+				5FD2EDB11B5BC9B3009FDF24 /* manwu_category_necklace@3x.png in Resources */,
+				5FD2EDBF1B5BC9B3009FDF24 /* manwu_category_shirt@2x.png in Resources */,
 				052CC6BB1AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

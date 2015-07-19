@@ -23,6 +23,8 @@ typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* in
 // tableView的删除操作时使用
 @property (nonatomic, strong) NSMutableArray*   collectionDeleteItems;
 
+@property (nonatomic, strong) NSIndexPath*      selectIndexPath;
+
 // init method
 -(instancetype)initWithFrame:(CGRect)frame withConfigObject:(KSCollectionViewConfigObject*)configObject;
 

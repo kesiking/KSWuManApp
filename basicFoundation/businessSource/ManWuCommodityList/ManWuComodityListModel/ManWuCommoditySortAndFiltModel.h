@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) NSString*           filtKey;
 
+@property (nonatomic, strong) NSString*           cid;
+
 @property (nonatomic, strong) NSString*           actIdKey;
 
 @end
