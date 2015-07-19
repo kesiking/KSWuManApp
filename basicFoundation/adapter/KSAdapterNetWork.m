@@ -170,7 +170,7 @@ static NSString* rsaPasswordKey = nil;
     
     if (inputFormatter == nil) {
         inputFormatter = [[NSDateFormatter alloc] init];
-        [inputFormatter setDateFormat:@"yyyyMMddHH"];
+        [inputFormatter setDateFormat:@"yyyyMMddHHmmss"];
     }
     
     NSString* requestTime = [NSString stringWithFormat:@"wuman_%@",[inputFormatter stringFromDate:[NSDate date]]];
