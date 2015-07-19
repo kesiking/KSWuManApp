@@ -207,7 +207,7 @@
         itemView_orderInfo = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_orderInfo_height)];
         [itemView_orderInfo setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(kSpacePaddingX, kSpacePaddingY, 50, 50)];
-        imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderModel.imgUrl]]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:orderModel.imgUrl]];
         [itemView_orderInfo addSubview:imageView];
         
         UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 60, kSpacePaddingY, 60, 12)];
