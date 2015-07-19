@@ -329,6 +329,12 @@
 }
 
 
+#pragma mark -刷新页面
+- (void)refreshDataRequest
+{
+    [self.service loadDataListWithAPIName:@"user/myVouchers.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
