@@ -18,12 +18,13 @@
     [self.commoditySortImageView setFrame:CGRectMake((20), (self.height - 30)/2, 30,30)];
     [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + (10), self.commoditySortImageView.top, 200, 15)];
     [self.subTitleLabel setFrame:CGRectMake(self.commoditySortImageView.right + (10), self.titleLabel.bottom, 200, self.titleLabel.height)];
+    [self.titleLabel setFont:[UIFont systemFontOfSize:9]];
 }
 
 -(UILabel *)subTitleLabel{
     if (_subTitleLabel == nil) {
         _subTitleLabel = [[UILabel alloc] init];
-        _subTitleLabel.font = [UIFont systemFontOfSize:13];
+        _subTitleLabel.font = [UIFont systemFontOfSize:12];
         _subTitleLabel.numberOfLines = 1;
         [self addSubview:_subTitleLabel];
     }
