@@ -356,7 +356,7 @@
         [_incrementButton setBackgroundImage:[UIImage imageNamed:@"tb_control_flow_number_right"] forState:UIControlStateNormal];
         [_incrementButton setBackgroundImage:[UIImage imageNamed:@"tb_control_flow_number_right_press"] forState:UIControlStateHighlighted];
         [_incrementButton setImage:[UIImage imageNamed:@"skuview_increase.png"] forState:UIControlStateNormal];
-        [_incrementButton setImage:[UIImage imageNamed:@"skuview_increase2.png"] forState:UIControlStateHighlighted];
+        [_incrementButton setImage:[UIImage imageNamed:@"skuview_increase.png"] forState:UIControlStateHighlighted];
         //    [incrementButton addTarget:self action:@selector(didPressButton:) forControlEvents:UIControlEventTouchUpInside];
         [_incrementButton addTarget:self action:@selector(didBeginLongTap:) forControlEvents:UIControlEventTouchDown | UIControlEventTouchDragEnter];
         [_incrementButton addTarget:self action:@selector(didEndLongTap) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside | UIControlEventTouchCancel | UIControlEventTouchDragExit];
@@ -377,7 +377,7 @@
                                     forState:UIControlStateHighlighted];
         [_decrementButton setImage:[UIImage imageNamed:@"skuview_decrease.png"]
                           forState:UIControlStateNormal];
-        [_decrementButton setImage:[UIImage imageNamed:@"skuview_decrease2.png"]
+        [_decrementButton setImage:[UIImage imageNamed:@"skuview_decrease.png"]
                           forState:UIControlStateHighlighted];
         [_decrementButton setAutoresizingMask:UIViewAutoresizingNone];
         //    [decrementButton addTarget:self action:@selector(didPressButton:) forControlEvents:UIControlEventTouchUpInside];
