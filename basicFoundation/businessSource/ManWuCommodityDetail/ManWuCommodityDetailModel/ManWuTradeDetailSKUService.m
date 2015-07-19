@@ -306,7 +306,7 @@
             skuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];
-            skuInfo.price = self.tbDetailModel.price;
+            skuInfo.price = self.tbDetailModel.sale?self.tbDetailModel.sale:self.tbDetailModel.price;
         }else{
             skuInfo.skuDisplayString = skuSummaryString;
             skuInfo.skuCellString = skuSummaryString;
