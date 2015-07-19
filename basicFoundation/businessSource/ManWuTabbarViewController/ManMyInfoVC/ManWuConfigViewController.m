@@ -162,6 +162,7 @@
     switch (alertView.tag) {
         case 100:
             [[SDImageCache sharedImageCache ] clearDisk];
+            [[NSNotificationCenter defaultCenter]postNotificationName:ClearCacheNotification object:nil];
             [WeAppToast toast:@"清除缓存成功"];
             break;
             

@@ -166,10 +166,12 @@
             case 2:
             {
                 cell_person.textLabel.text = @"性别";
-                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].sex?:@"男";
-                if([[KSUserInfoModel sharedConstant].sex length] == 0)
+                if([[KSUserInfoModel sharedConstant].sex isEqualToString:@"0"])
                 {
-                    cell_person.detailTextLabel.text = @"男";
+                    cell_person.detailTextLabel.text  = @"女";
+                }else
+                {
+                    cell_person.detailTextLabel.text  = @"男";
                 }
             }
                 break;

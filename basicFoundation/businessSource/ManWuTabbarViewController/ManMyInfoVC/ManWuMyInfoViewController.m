@@ -167,11 +167,11 @@
         
     }else if ([[KSUserInfoModel sharedConstant].sex isEqualToString:@"0"])
     {
-        sexImageView.image = [UIImage imageNamed:@"sex_man"];
+        sexImageView.image = [UIImage imageNamed:@"sex_wuman"];
 
     }else
     {
-        sexImageView.image = [UIImage imageNamed:@"sex_wuman"];
+        sexImageView.image = [UIImage imageNamed:@"sex_man"];
     }
     
     UIButton *btn_edit = [[UIButton alloc]initWithFrame:CGRectMake(SELFWIDTH - 60, CGRectGetMinY(headImageView.frame) +5, 25, 25)];
