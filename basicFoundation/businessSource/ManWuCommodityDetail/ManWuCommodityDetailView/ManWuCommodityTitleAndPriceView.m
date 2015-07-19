@@ -97,7 +97,7 @@
         self.commodityOriginalPriceLabel.text = [NSString stringWithFormat:@"￥%@",self.detailModel.price];
         self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love?:@"0"];
         [self.commodityPraiseButton updatePraiseBtnStatus:[self.detailModel.loved boolValue]];
-        [self.commodityFavorateButton updateFavBtnStatus:[self.detailModel.like boolValue]];
+        [self.commodityFavorateButton updateFavBtnStatus:[self.detailModel.collected boolValue]];
         [self.commodityPraiseButton setItemId:self.detailModel.itemId];
         [self.commodityFavorateButton setItemId:self.detailModel.itemId];
     }

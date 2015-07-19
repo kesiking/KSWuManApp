@@ -48,6 +48,7 @@
 @property (nonatomic, strong) NSString*                   like;
 @property (nonatomic, strong) NSNumber*                   love;
 @property (nonatomic, strong) NSNumber*                   loved;
+@property (nonatomic, strong) NSNumber*                   collected;
 @property (nonatomic, strong) NSNumber*                   quantity;
 @property (nonatomic, strong) NSString*                   brand;
 @property (nonatomic, strong) NSString*                   fengge;
