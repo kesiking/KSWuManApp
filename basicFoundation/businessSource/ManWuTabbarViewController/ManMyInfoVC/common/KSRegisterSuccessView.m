@@ -12,8 +12,11 @@
 #define KSPaddingY 10
 
 @implementation KSRegisterSuccessView
+{
+    NSInteger redPackerPrice;
+}
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame RedPackerPrice:(NSInteger)packerPrice
 {
     self = [super initWithFrame:frame];
     if(self)
@@ -25,6 +28,7 @@
         maskview.alpha=0.5;
         [self addSubview:maskview];
 
+        redPackerPrice = packerPrice;
         [self initSubView];
     }
     return self;
@@ -43,7 +47,7 @@
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(KSPaddingX, CGRectGetMaxY(btn_close.frame) + 5, subView.width - 2*KSPaddingX, 14)];
     [titleLabel setFont:[UIFont systemFontOfSize:14]];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = [NSString stringWithFormat:@"恭喜您获得%ld元新手红包",(long)self.redPackerPrice];
+    titleLabel.text = [NSString stringWithFormat:@"恭喜您获得%ld元新手红包",(long)redPackerPrice];
     [subView addSubview:titleLabel];
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(2*KSPaddingX, CGRectGetMaxY(titleLabel.frame) + 10, subView.width - 4*KSPaddingX, 120)];

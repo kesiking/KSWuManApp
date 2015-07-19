@@ -144,12 +144,13 @@
 
 - (void)copyInviteCode:(id)sender
 {
-    UIPasteboard *pasterBoard = [UIPasteboard pasteboardWithName:@"myInviteCode" create:YES];
+//    UIPasteboard *pasterBoard = [UIPasteboard pasteboardWithName:@"myInviteCode" create:YES];
+    UIPasteboard *pasterBoard = [UIPasteboard generalPasteboard];
     pasterBoard.string = inviteCodeModel[@"inviteCode"];
-    
-    NSString * str = pasterBoard.string;
-    
-    NSLog(@"%@",str);
+//    
+//    NSString * str = pasterBoard.string;
+//    
+//    NSLog(@"%@",str);
 }
 
 - (void)didReceiveMemoryWarning {

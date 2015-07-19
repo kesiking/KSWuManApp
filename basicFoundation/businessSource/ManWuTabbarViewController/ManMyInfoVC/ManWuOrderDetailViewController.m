@@ -76,7 +76,7 @@
             break;
         case ButtonSelectedStyleReceived:
         {
-            
+            [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":self.orderModel.orderId,@"status":@4} version:nil];
         }
             break;
         case ButtonSelectedStyleService:

@@ -334,8 +334,8 @@
         {
             statusStr = @"待收货";
             title_leftBtn = @"";
-            title_rightBtn = @"物流单号";
-            [cell.btn_right addTarget:self action:@selector(didSelectedButtonStyleLogisticsInfo:) forControlEvents:UIControlEventTouchUpInside];
+            title_rightBtn = @"确认收货";
+            [cell.btn_right addTarget:self action:@selector(didSelectedButtonStyleReceived:) forControlEvents:UIControlEventTouchUpInside];
         }
             break;
         case 4:
@@ -469,12 +469,15 @@
 
 }
 
-#pragma mark - 物流单号
+#pragma mark - 确认收货
 
-- (void)didSelectedButtonStyleLogisticsInfo:(id)sender
+- (void)didSelectedButtonStyleReceived:(id)sender
 {
     UIButton *button = (UIButton *)sender;
     NSInteger orderNum = button.tag;
+    KSOrderModel *orderModel = [ordersList objectAtIndex:orderNum];
+
+    [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":orderModel.orderId,@"status":@4} version:nil];
 }
 
 #pragma mark - 查看进度
@@ -523,7 +526,7 @@
                 break;
             case 8:
             {
-                //取消订单操作
+                //删除订单操作
                 KSOrderModel *orderModel = [ordersList objectAtIndex:orderNum];
                 
                 [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":orderModel.orderId,@"status":@8} version:nil];

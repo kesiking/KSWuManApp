@@ -238,11 +238,6 @@
     [UIView commitAnimations];
 }
 
-- (void)cancelLogin
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)getValidateCode
 {
     if(_text_phoneNum.text.length == 0)
@@ -263,7 +258,7 @@
 
 - (void)registerButtonTapped
 {
-
+    [self.view endEditing:NO];
     //判断规则后续完善
     
     if(_text_phoneNum.text.length == 0)
@@ -327,12 +322,12 @@
             
             if(redPacketPrice == 0)
             {
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [WeAppToast toast:@"恭喜您注册成功"];
+                [self.navigationController popViewControllerAnimated:YES];
                 return;
             }
-            registerSucView = [[KSRegisterSuccessView alloc]initWithFrame:self.view.frame];
+            registerSucView = [[KSRegisterSuccessView alloc]initWithFrame:self.view.frame RedPackerPrice:redPacketPrice];
             registerSucView.delegate = self;
-            registerSucView.redPackerPrice = redPacketPrice;
             [self.view.window addSubview:registerSucView];
             
         }else
@@ -413,7 +408,7 @@
 {
     [registerSucView removeFromSuperview];
     registerSucView = nil;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
