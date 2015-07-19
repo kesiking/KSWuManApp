@@ -168,7 +168,6 @@
 
     if([identify isEqualToString:OrderTableCellStyleInfo])
     {
-//        _imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderModel.imgUrl]]];
         [_imageView sd_setImageWithURL:[NSURL URLWithString:orderModel.imgUrl]];
         _titleLabel.text = orderModel.title;
         

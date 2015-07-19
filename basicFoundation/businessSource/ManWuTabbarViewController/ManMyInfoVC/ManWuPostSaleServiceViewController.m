@@ -48,12 +48,12 @@
     [scrollView addGestureRecognizer:singleTapRecognizer];
     [self setView:scrollView];
 
-    dropdownListService = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 60*6)];
+    dropdownListService = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 60*6) CellHeight:60];
     dropdownListService.userActionLabel.text = @"申请服务";
     dropdownListService.dataArray = @[@"未收到货",@"商品质量问题",@"商品错发",@"商品运输破损",@"其他"];
     [self.view addSubview:dropdownListService];
 
-     textView = [[UIPlaceHolderTextView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownListService.frame) + 75, self.view.width - 20, 200)];
+    textView = [[UIPlaceHolderTextView alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(dropdownListService.frame) + 75, self.view.width - 20, 200)];
     textView.placeholderColor = [TBDetailUIStyle colorWithHexString:@"#adadad"];
     textView.layer.cornerRadius = 3;
     textView.placeholder = @"退款说明 最多100字";

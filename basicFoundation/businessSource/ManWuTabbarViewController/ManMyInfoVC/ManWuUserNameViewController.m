@@ -7,8 +7,13 @@
 //
 
 #import "ManWuUserNameViewController.h"
+#import "KSDropDownListView.h"
 
 @interface ManWuUserNameViewController ()
+{
+    KSDropDownListView *dropdownListSex;
+    NSString *textString;
+}
 
 @end
 
@@ -29,40 +34,80 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
-    self.title = @"用户名";
-    
-    [self.view addSubview:self.text_userName];
-    [self.view addSubview:self.btn_commit];
+    switch (self.configStyle) {
+        case UserInfoConfigUserNameStyle:
+            self.title = @"用户名";
+            textString = [KSUserInfoModel sharedConstant].userName?:@"";
+            if([[KSUserInfoModel sharedConstant].userName length] == 0)
+            {
+                textString = @"请输入用户名";
+            }
+            [self.view addSubview:self.text_userInfo];
+            [self.view addSubview:self.btn_commit];
+            break;
+        case UserInfoConfigSexStyle:
+            self.title = @"性别";
+            dropdownListSex = [[KSDropDownListView alloc]initWithFrame:CGRectMake(0, 30, self.view.width, TEXTFILEDHEIGHT*3) CellHeight:TEXTFILEDHEIGHT];
+            dropdownListSex.cellHeight = TEXTFILEDHEIGHT;
+            dropdownListSex.userActionLabel.text = [KSUserInfoModel sharedConstant].sex?:@"男";
+            if([[KSUserInfoModel sharedConstant].sex length] == 0)
+            {
+                dropdownListSex.userActionLabel.text = @"男";
+            }
+            dropdownListSex.dataArray = @[@"男",@"女"];
+            [self.view addSubview:dropdownListSex];
+            [self.view addSubview:self.btn_commit];
+            break;
+        case UserInfoConfigEmailStyle:
+            self.title = @"邮箱";
+            textString = [KSUserInfoModel sharedConstant].email?:@"";
+            if([[KSUserInfoModel sharedConstant].email length] == 0)
+            {
+                textString = @"请输入邮箱";
+            }
+            [self.view addSubview:self.text_userInfo];
+            [self.view addSubview:self.btn_commit];
+            break;
+        default:
+            break;
+    }
 }
 
-- (MWInsetsTextField *)text_userName
+- (MWInsetsTextField *)text_userInfo
 {
-    if(!_text_userName)
+    if(!_text_userInfo)
     {
-        _text_userName = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, SELFWIDTH, 40)];
-        _text_userName.text = [KSUserInfoModel sharedConstant].userName;
-        [_text_userName setFont:[UIFont systemFontOfSize:16]];
-        _text_userName.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
-        _text_userName.keyboardType = UIKeyboardTypeNamePhonePad;
-        _text_userName.clearButtonMode = UITextFieldViewModeAlways;
-        _text_userName.secureTextEntry = NO;
-        _text_userName.delegate = self;
-        [_text_userName setBackgroundColor:[UIColor whiteColor]];
+        _text_userInfo = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, SELFWIDTH, TEXTFILEDHEIGHT)];
+        _text_userInfo.placeholder = textString;
+        [_text_userInfo setFont:[UIFont systemFontOfSize:16]];
+        _text_userInfo.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+        _text_userInfo.keyboardType = UIKeyboardTypeNamePhonePad;
+        _text_userInfo.clearButtonMode = UITextFieldViewModeAlways;
+        _text_userInfo.secureTextEntry = NO;
+        _text_userInfo.delegate = self;
+        [_text_userInfo setBackgroundColor:[UIColor whiteColor]];
     }
-    return _text_userName;
+    return _text_userInfo;
 }
 
 - (UIButton *)btn_commit
 {
     if(!_btn_commit)
     {
-        _btn_commit = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_userName.frame) + 30, WIDTH, 40)];
+        if(self.configStyle == UserInfoConfigSexStyle)
+        {
+            _btn_commit = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(dropdownListSex.frame) + 30, WIDTH, 40)];
+
+        }else
+        {
+            _btn_commit = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_text_userInfo.frame) + 30, WIDTH, 40)];
+        }
+
         [_btn_commit setTitle:@"保存" forState:UIControlStateNormal];
         [_btn_commit.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_commit.titleLabel.textColor = [UIColor whiteColor];
         [_btn_commit setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
         [_btn_commit addTarget:self action:@selector(doCommit) forControlEvents:UIControlEventTouchUpInside];
-        _btn_commit.enabled = NO;
     }
     
     return _btn_commit;
@@ -70,7 +115,28 @@
 
 - (void)doCommit
 {
-    [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"userName":_text_userName.text} version:nil];
+    NSString *sexValue;
+    switch (self.configStyle) {
+        case UserInfoConfigUserNameStyle:
+            [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"userName":_text_userInfo.text} version:nil];
+            break;
+        case UserInfoConfigSexStyle:
+            
+            if([dropdownListSex.userActionLabel.text isEqualToString:@"男"])
+            {
+                sexValue = @"1";
+            }else
+            {
+                sexValue = @"0";
+            }
+            [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"sex":sexValue} version:nil];
+            break;
+        case UserInfoConfigEmailStyle:
+            [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"email":_text_userInfo.text} version:nil];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark 监听View点击事件

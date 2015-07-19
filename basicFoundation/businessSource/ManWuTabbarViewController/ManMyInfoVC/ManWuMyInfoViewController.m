@@ -132,11 +132,10 @@
     }
     if([[KSUserInfoModel sharedConstant].imgUrl length] == 0)
     {
-        headImageView.image = [UIImage imageNamed:@"tabitem_home_highlight"];
+        headImageView.image = [UIImage imageNamed:@"defaultHead"];
     }else
     {
-        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl]]];
-        headImageView.image = image;
+        [headImageView sd_setImageWithURL:[NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl] placeholderImage:[UIImage imageNamed:@"defaultHead"]];
     }
     
     if(!lab_userName)
@@ -146,7 +145,16 @@
         [_userInfoView addSubview:lab_userName];
     }
     NSLog(@"%@",[KSUserInfoModel sharedConstant].userName);
-    lab_userName.text = [KSUserInfoModel sharedConstant].userName;
+    NSLog(@"%@",[KSUserInfoModel sharedConstant].sex);
+
+    if([[KSUserInfoModel sharedConstant].userName length] == 0)
+    {
+        lab_userName.text = [KSUserInfoModel sharedConstant].phone;
+        
+    }else
+    {
+        lab_userName.text = [KSUserInfoModel sharedConstant].userName?:[KSUserInfoModel sharedConstant].phone;
+    }
     
     if(!sexImageView)
     {

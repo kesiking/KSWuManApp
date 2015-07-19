@@ -102,7 +102,7 @@
     
     NSInteger rows = 0;
     if (section == 0) {
-        rows = 3;
+        rows = 5;
     }else
         rows = 1;
     
@@ -142,12 +142,11 @@
                 headImg.layer.cornerRadius = headImg.frame.size.width * 0.5;
                 if([[KSUserInfoModel sharedConstant].imgUrl length] == 0)
                 {
-                    headImg.image = [UIImage imageNamed:@"tabitem_home_highlight"];
+                    headImg.image = [UIImage imageNamed:@"defaultHead"];
                 }else
                 {
                     NSURL *url = [NSURL URLWithString:[KSUserInfoModel sharedConstant].imgUrl];                    
-                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
-                    headImg.image = image;
+                    [headImg sd_setImageWithURL:url placeholderImage: [UIImage imageNamed:@"defaultHead"]];
                 }
                 [cell_person.contentView addSubview:headImg];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBigHeadImg:)];
@@ -160,17 +159,35 @@
             case 1:
             {
                 cell_person.textLabel.text = @"用户名";
-                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].userName;
+                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].userName?:@"";
             }
                 break;
                 
             case 2:
             {
+                cell_person.textLabel.text = @"性别";
+                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].sex?:@"男";
+                if([[KSUserInfoModel sharedConstant].sex length] == 0)
+                {
+                    cell_person.detailTextLabel.text = @"男";
+                }
+            }
+                break;
+            case 3:
+            {
                 cell_person.textLabel.text = @"手机号码";
-                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].phone;
+                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].phone?:@"";
                 cell_person.accessoryType = UITableViewCellAccessoryNone;
             }
                 break;
+
+            case 4:
+            {
+                cell_person.textLabel.text = @"邮箱";
+                cell_person.detailTextLabel.text = [KSUserInfoModel sharedConstant].email?:@"";
+            }
+                break;
+
                 
             default:
                 break;
@@ -187,9 +204,25 @@
         if(indexPath.row == 0)
         {
             [self updateHeadImg];
-        }else if (indexPath.row == 1)
+        }else if (indexPath.row == 3)
+        {
+            
+        }else
         {
             ManWuUserNameViewController *userNameVC = [[ManWuUserNameViewController alloc]init];
+            switch (indexPath.row) {
+                case 1:
+                    userNameVC.configStyle = UserInfoConfigUserNameStyle;
+                    break;
+                case 2:
+                    userNameVC.configStyle = UserInfoConfigSexStyle;
+                    break;
+                case 4:
+                    userNameVC.configStyle = UserInfoConfigEmailStyle;
+                    break;
+                default:
+                    break;
+            }
             [self.navigationController pushViewController:userNameVC animated:YES];
         }
     }
@@ -353,7 +386,7 @@
     
     NSData *imgData=UIImageJPEGRepresentation(image , 0.4);
     NSString *imgDataString=[imgData base64Encoding];
-    [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"imgb64":imgDataString} version:nil];
+    [self.service loadItemWithAPIName:@"user/modifyUser.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"imgb64":[imgDataString tbUrlEncoded],@"__unNeedEncode__":@1} version:nil];
 }
 
 #pragma mark - 对图片尺寸进行压缩--

@@ -10,9 +10,10 @@
 #import "ManWuFeedBackViewController.h"
 #import "ManWuAboutViewController.h"
 
-@interface ManWuConfigViewController ()
+@interface ManWuConfigViewController ()<UIAlertViewDelegate>
 {
     NSArray *dataArray;
+    UIAlertView *myAlertView;
 }
 
 @end
@@ -130,7 +131,9 @@
         {
             if(indexPath.row == 0)
             {
-
+                myAlertView = [[UIAlertView alloc]initWithTitle:@"是否清除缓存？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                myAlertView.tag = 100;
+                [myAlertView show];
             }
             else if (indexPath.row == 1)
             {
@@ -143,6 +146,23 @@
             }
             
         }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        return;
+    }
+    switch (alertView.tag) {
+        case 100:
+            [[SDImageCache sharedImageCache ] clearDisk];
+            [WeAppToast toast:@"清除缓存成功"];
             break;
             
         default:

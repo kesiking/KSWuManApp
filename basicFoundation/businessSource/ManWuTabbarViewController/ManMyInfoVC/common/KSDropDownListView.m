@@ -12,20 +12,17 @@
 
 @implementation KSDropDownListView
 
--(id)initWithFrame:(CGRect)frame
+-(id)initWithFrame:(CGRect)frame CellHeight:(CGFloat)cellHeight
 {
+    self.cellHeight = cellHeight;
     frameHeight = frame.size.height;
- 
-    tableHeight = frameHeight - CELLHEIGHT;
-    
-    frame.size.height = CELLHEIGHT;
-    
+    tableHeight = frameHeight - self.cellHeight;
+    frame.size.height = self.cellHeight;
     self = [super initWithFrame:frame];
-    
     if(self){
         isShowList = NO; //默认不显示下拉框
         
-        _table = [[UITableView alloc] initWithFrame:CGRectMake(0, CELLHEIGHT, frame.size.width, 0)];
+        _table = [[UITableView alloc] initWithFrame:CGRectMake(0, self.cellHeight, frame.size.width, 0)];
         _table.delegate = self;
         _table.dataSource = self;
         _table.backgroundColor = [UIColor grayColor];
@@ -33,16 +30,16 @@
         _table.hidden = YES;
         [self addSubview:_table];
         
-        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, CELLHEIGHT)];
+        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, self.cellHeight)];
         [headView setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
         headView.layer.cornerRadius = 3;
         [self addSubview:headView];
         
-        _userActionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 200, CELLHEIGHT)];
+        _userActionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kSpaceX, 0, 200, self.cellHeight)];
         [_userActionLabel setFont:[UIFont systemFontOfSize:18]];
         [headView addSubview:_userActionLabel];
         
-        btn_select = [[UIButton alloc]initWithFrame:CGRectMake(frame.size.width - kSpaceX - 15, CGRectGetMinY(_userActionLabel.frame) + 23, 14, 14)];
+        btn_select = [[UIButton alloc]initWithFrame:CGRectMake(frame.size.width - kSpaceX - 15, frame.size.height/2 - 7, 14, 14)];
         [btn_select setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_droplist"]]];
         [btn_select addTarget:self action:@selector(selectedDorpDown) forControlEvents:UIControlEventTouchUpInside];
         [headView addSubview:btn_select];
@@ -59,7 +56,7 @@
         _table.hidden = YES;
         
         CGRect sf = self.frame;
-        sf.size.height = CELLHEIGHT;
+        sf.size.height = self.cellHeight;
         self.frame = sf;
         CGRect frame = _table.frame;
         frame.size.height = 0;
@@ -117,7 +114,7 @@
     
     if(indexPath.row != [_dataArray count] - 1)
     {
-        UIView *LineView=[[UIView alloc] initWithFrame:CGRectMake(0, CELLHEIGHT - 0.5, self.width, 0.5)];
+        UIView *LineView=[[UIView alloc] initWithFrame:CGRectMake(0, self.cellHeight - 0.5, self.width, 0.5)];
         LineView.opaque = YES;
         LineView.backgroundColor = [TBDetailUIStyle colorWithHexString:@"#ffffff"];
         [cell.contentView addSubview:LineView];
@@ -128,7 +125,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CELLHEIGHT;
+    return self.cellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,7 +137,7 @@
     _table.hidden = YES;
     
     CGRect sf = self.frame;
-    sf.size.height = CELLHEIGHT;
+    sf.size.height = self.cellHeight;
     self.frame = sf;
     CGRect frame = _table.frame;
     frame.size.height = 0;

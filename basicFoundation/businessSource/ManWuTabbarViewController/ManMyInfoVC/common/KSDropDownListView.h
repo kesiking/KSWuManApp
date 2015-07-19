@@ -16,9 +16,13 @@
     CGFloat frameHeight;
 }
 
+@property (nonatomic, assign) CGFloat cellHeight;
+
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UILabel *userActionLabel;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, assign) NSInteger serviceType;
+
+-(id)initWithFrame:(CGRect)frame CellHeight:(CGFloat)cellHeight;
 
 @end
