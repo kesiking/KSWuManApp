@@ -21,7 +21,7 @@
                                       },
                                   @{
                                       @"imageUrl":@"manwu_commodity_sort_like",
-                                      @"selectImageUrl":@"manwu_commodity_sort_select_price",
+                                      @"selectImageUrl":@"manwu_commodity_sort_select_like",
                                       @"titleText":@"按人气排序",
                                       @"sortKey":@"2"
                                       }
