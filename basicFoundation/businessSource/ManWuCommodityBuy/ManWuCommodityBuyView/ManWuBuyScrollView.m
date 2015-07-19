@@ -157,6 +157,10 @@
             if (strongSelf.hasVoucher) {
                 payPrice -= strongSelf.voucherView.voucherPrice;
             }
+            if (strongSelf.addressView.addressId == nil || strongSelf.addressView.addressId.length == 0) {
+                [WeAppToast toast:@"请先输入您的收货地址"];
+                return;
+            }
             
             [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:[NSNumber numberWithFloat:payPrice] activityId:nil voucherId:strongSelf.voucherView.voucherId];
         };

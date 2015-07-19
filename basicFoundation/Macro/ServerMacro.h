@@ -13,6 +13,8 @@
 #import "ManWuBasicModel.h"
 #import "KSAuthenticationCenter.h"
 
+#define CategoryNeedCache
+
 #define DEFAULT_SCHEME @"http"
 #define DEFAULT_HOST @"115.29.227.64"
 #define DEFAULT_PORT @"8080"

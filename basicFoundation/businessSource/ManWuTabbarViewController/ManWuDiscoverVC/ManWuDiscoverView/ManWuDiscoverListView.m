@@ -63,6 +63,8 @@
         configObject.needRefreshView = YES;
         configObject.needNextPage = NO;
         configObject.needFootView = NO;
+        // 失败后用缓存刷新，如果成功则不做任何操作
+        configObject.scrollViewCacheType = KSScrollViewConfigCacheType_afterFail;
         _tableViewCtl = [[KSTableViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_tableViewCtl registerClass:[ManWuDiscoverViewCell class]];
         [_tableViewCtl setDataSourceRead:self.dataSourceRead];

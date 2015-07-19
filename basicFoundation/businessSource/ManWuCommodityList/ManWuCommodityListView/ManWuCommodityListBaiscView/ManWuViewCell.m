@@ -211,9 +211,9 @@
     self.favorateImageView.itemId = detailModel.itemId;
     [self.favorateImageView updatePraiseBtnStatus:[detailModel.loved boolValue]];
     self.titleLabel.text = detailModel.title;
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.price];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[detailModel.price floatValue]];
     if (detailModel.sale) {
-        self.salePriceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.sale];
+        self.salePriceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[detailModel.sale floatValue]];
         self.salePriceLabel.hidden = NO;
         self.priceLabel.lineType = LineTypeMiddle;
     }else{

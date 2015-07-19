@@ -500,9 +500,17 @@
 }
 
 -(void)serviceCacheDidLoad:(WeAppBasicService *)service cacheData:(NSArray*)cacheData{
-    if (service && service.apiName && cacheData && [cacheData count] > 0) {
-        [self setupDataList:cacheData];
-        [self requestDidLoad];
+    switch (self.configObject.scrollViewCacheType) {
+        case KSScrollViewConfigCacheType_default:
+        {
+            if (service && service.apiName && cacheData && [cacheData count] > 0) {
+                [self setupDataList:cacheData];
+                [self requestDidLoad];
+            }
+        }
+            break;
+        default:
+            break;
     }
 }
 
@@ -522,16 +530,29 @@
 
 - (void)service:(WeAppBasicService *)service didFailLoadWithError:(NSError*)error{
     if (service && service.apiName) {
-        if ([self needQueueLoadData]) {
-            // 如果首次进入页面或是页面一直没有数据则主线程更新
-            if ([self.dataSourceRead count] == 0) {
-                [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+        switch (self.configObject.scrollViewCacheType) {
+            case KSScrollViewConfigCacheType_default:
+            {
+                if (service.pagedList) {
+                    [self setupDataList:[service.pagedList getItemList]];
+                }else if(service.dataList){
+                    [self setupDataList:service.dataList];
+                }else{
+                    [self setupDataList:@[]];
+                }
             }
-            dispatch_async(_serialQueue, ^{
-                [self.dataSourceWrite setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
-            });
-        }else{
-            [self.dataSourceRead setDataWithPageList:[service.pagedList getItemList] extraDataSource:nil];
+                break;
+            case KSScrollViewConfigCacheType_afterFail:
+            {
+                if (service.cacheComponentItems && [service.cacheComponentItems count] > 0) {
+                    [self setupDataList:service.cacheComponentItems];
+                }else{
+                    [self setupDataList:@[]];
+                }
+            }
+                break;
+            default:
+                break;
         }
     }
     [self apiRequestDidFail];

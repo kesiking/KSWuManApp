@@ -15,6 +15,17 @@
 
 @implementation KSAdapterNetWork
 
+static NSString* rsaPasswordKey = nil;
+
++(void)initialize{
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
+    NSDictionary* aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    if (aliPayFile == nil) {
+        aliPayFile = [[NSDictionary alloc] init];
+    }
+    rsaPasswordKey = [aliPayFile objectForKey:@"passwordKey1"];
+}
+
 -(void)request:(NSString *)apiName withParam:(NSDictionary *)param onSuccess:(NetworkSuccessBlock)successBlock onError:(NetworkErrorBlock)errorBlock onCancel:(NetworkCancelBlock)cancelBlock{
     
     BOOL hasMockData = [self didLoadDataFromMockWithApiName:apiName withParam:param onSuccess:successBlock onError:errorBlock onCancel:cancelBlock];
@@ -147,6 +158,26 @@
         [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
     
+    // 接口加密校验参数
+    /*!
+     *  @author 孟希羲, 15-07-19 15:07:43
+     *
+     *  @brief  接口加密校验参数
+     *
+     *  @since 1.0
+     */
+    static NSDateFormatter *inputFormatter = nil;
+    
+    if (inputFormatter == nil) {
+        inputFormatter = [[NSDateFormatter alloc] init];
+        [inputFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    }
+    
+    NSString* requestTime = [NSString stringWithFormat:@"wuman_%@",[inputFormatter stringFromDate:[NSDate date]]];
+    NSString *requestTimeRSA = [RSAEncrypt encryptString:requestTime publicKey:rsaPasswordKey];
+    [newParams setObject:[requestTimeRSA tbUrlEncoded] forKey:@"sign"];
+    /****************************/
+    // 删除不必要的参数
     [newParams removeObjectForKey:@"needLogin"];
     [newParams removeObjectForKey:@"__unNeedEncode__"];
     [newParams removeObjectForKey:@"__METHOD__"];

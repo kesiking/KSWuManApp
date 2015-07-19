@@ -119,7 +119,8 @@
     /*属性部分*/
 //    self.skuSelectionControl.detailModel              = self.skuDetailModel;
     self.skuSelectionControl.detailModel              = self.detailModel;
-    [self.headerView setPriceNumText:[NSString stringWithFormat:@"%@",self.detailModel.price]];
+    NSString* price = self.detailModel.sale?[NSString stringWithFormat:@"%@",self.detailModel.sale]:[NSString stringWithFormat:@"%@",self.detailModel.price];
+    [self.headerView setPriceNumText:price];
     /*更新最大值*/
     self.buyNumberStepView.numberStepper.maximumValue = [self.detailModel.quantity doubleValue];
     

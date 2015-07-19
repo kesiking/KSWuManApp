@@ -13,6 +13,7 @@
 
 -(void)setupView{
     [super setupView];
+    self.backgroundColor = [UIColor whiteColor];
     [self.titleLabel setHidden:YES];
 }
 
