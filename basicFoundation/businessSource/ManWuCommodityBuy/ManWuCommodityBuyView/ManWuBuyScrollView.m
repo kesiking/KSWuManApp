@@ -49,6 +49,7 @@
     self.backgroundColor = RGB(0xf8, 0xf8, 0xf8);
     _dict = [NSMutableDictionary dictionary];
     [self addSubview:self.skuContainer];
+    _commodityPriceCaculate = [ManWuCommodityPriceCaculate new];
     [self reloadData];
 }
 
@@ -152,11 +153,14 @@
             STRONGSELF
             NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"1";
             NSString* itemId = strongSelf.detailModel.itemId;
-            NSNumber* buyNum = [strongSelf.dict objectForKey:@"buyNumber"]?:@1;
-            float payPrice = [strongSelf.orderPayView.payPrice floatValue];
+            NSNumber* buyNum = [strongSelf.commodityPriceCaculate getCommodityCount];
+            
+            float payPrice = [strongSelf.commodityPriceCaculate getTruePriceWithVoucherPrice:0];
+            
             if (strongSelf.hasVoucher) {
-                payPrice -= strongSelf.voucherView.voucherPrice;
+                payPrice = [strongSelf.commodityPriceCaculate getTruePriceWithVoucherPrice:strongSelf.voucherView.voucherPrice];
             }
+            
             if (strongSelf.addressView.addressId == nil || strongSelf.addressView.addressId.length == 0) {
                 [WeAppToast toast:@"请先输入您的收货地址"];
                 return;
@@ -249,6 +253,8 @@
     if (self.dict != dict) {
         [self.dict addEntriesFromDictionary:dict];
     }
+    [self.commodityPriceCaculate setObject:object dict:dict];
+
     [self.commodityInfoItem setObject:object dict:dict];
     [self.quantityView setObject:object dict:dict];
     [self.deliveryView setObject:object dict:dict];

@@ -84,6 +84,7 @@
 #pragma mark - Override
 
 - (void)setObject:(id)object dict:(NSDictionary *)dict {
+    [super setObject:object dict:dict];
     if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
         return;
     }
@@ -91,19 +92,7 @@
 
     self.textLabel.text = @"优惠折扣";
     
-    NSNumber* salePrice = [dict objectForKey:@"skuPrice"]?:detailModel.sale;
-    
-    if (salePrice == nil) {
-        salePrice = detailModel.price;
-    }
-    CGFloat discount = 0;
-    NSString* discountStr = [NSString stringWithFormat:@"%@",detailModel.discount];
-    if (detailModel.price && [detailModel.price floatValue] != 0) {
-        discount = [salePrice floatValue] / [detailModel.price floatValue];
-    }
-    if (discount > 0 && discount < 1) {
-        discountStr = [NSString stringWithFormat:@"%.1f折",discount * 10];
-    }
+    NSString* discountStr = [self.commodityPriceCaculate getCommodityDiscount];
     self.detailTextLabel.text = discountStr;
 }
 

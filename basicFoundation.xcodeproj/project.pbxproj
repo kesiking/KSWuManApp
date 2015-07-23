@@ -438,6 +438,7 @@
 		5FD70B071B478F2400B61E6F /* ManWuHongBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD70B061B478F2400B61E6F /* ManWuHongBaoViewController.m */; };
 		5FD70B0A1B478F4700B61E6F /* ManWuHongBaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD70B091B478F4700B61E6F /* ManWuHongBaoView.m */; };
 		5FD70B0D1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD70B0C1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m */; };
+		5FF41C361B607E18001A2881 /* ManWuCommodityPriceCaculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF41C351B607E18001A2881 /* ManWuCommodityPriceCaculate.m */; };
 		5FFEB42A1B1C38D700CAC511 /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB4291B1C38D700CAC511 /* button_back.png */; };
 		5FFEB42C1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */; };
 		910E5D0C1B207E4F00FA584C /* register_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 910E5D0B1B207E4F00FA584C /* register_success.png */; };
@@ -1352,6 +1353,8 @@
 		5FD70B091B478F4700B61E6F /* ManWuHongBaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHongBaoView.m; sourceTree = "<group>"; };
 		5FD70B0B1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHongBaoInfoDescriptionView.h; sourceTree = "<group>"; };
 		5FD70B0C1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHongBaoInfoDescriptionView.m; sourceTree = "<group>"; };
+		5FF41C341B607E18001A2881 /* ManWuCommodityPriceCaculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityPriceCaculate.h; sourceTree = "<group>"; };
+		5FF41C351B607E18001A2881 /* ManWuCommodityPriceCaculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityPriceCaculate.m; sourceTree = "<group>"; };
 		5FFEB4291B1C38D700CAC511 /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		5FFEB42B1B1C3FFA00CAC511 /* manwu_newitem_recomment_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_newitem_recomment_image.png; sourceTree = "<group>"; };
 		910E5D0B1B207E4F00FA584C /* register_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_success.png; sourceTree = "<group>"; };
@@ -2420,6 +2423,7 @@
 			isa = PBXGroup;
 			children = (
 				058D5D011AF2140C006EA35C /* Resources */,
+				5FF41C331B607E03001A2881 /* ManWuCommodityPriceCaculate */,
 				058D5AA71AF0D022006EA35C /* ManWuCommodityBuyModel */,
 				058D5AA81AF0D022006EA35C /* ManWuCommodityBuyService */,
 				058D5AA91AF0D022006EA35C /* ManWuCommodityBuyView */,
@@ -3324,6 +3328,15 @@
 			path = ManWuHongBao;
 			sourceTree = "<group>";
 		};
+		5FF41C331B607E03001A2881 /* ManWuCommodityPriceCaculate */ = {
+			isa = PBXGroup;
+			children = (
+				5FF41C341B607E18001A2881 /* ManWuCommodityPriceCaculate.h */,
+				5FF41C351B607E18001A2881 /* ManWuCommodityPriceCaculate.m */,
+			);
+			path = ManWuCommodityPriceCaculate;
+			sourceTree = "<group>";
+		};
 		91E2D01D1B1761C500946A32 /* camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -3804,6 +3817,7 @@
 				058D5D001AF210C0006EA35C /* ManWuBuyBasicView.m in Sources */,
 				058DAE721AE7A5CF009D0008 /* KSBasicNavigator.m in Sources */,
 				056664A11AEE2F7C00FD1C65 /* ManWuCommodityDetailViewController.m in Sources */,
+				5FF41C361B607E18001A2881 /* ManWuCommodityPriceCaculate.m in Sources */,
 				058D5D1D1AF2296F006EA35C /* ManWuConfirmView.m in Sources */,
 				05B8DF541AF344B8002C2E4F /* ManWuDiscoverViewCell.m in Sources */,
 				5F214C7B1B158F990081BA02 /* SVWebViewControllerActivityChrome.m in Sources */,

@@ -250,15 +250,18 @@
 //}
 
 - (void)setObject:(id)object dict:(NSDictionary *)dict {
+    [super setObject:object dict:dict];
     if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
         return;
     }
-    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
-    NSNumber* price = [dict objectForKey:@"skuPrice"];
 
+    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
     self.titleLabel.text = detailModel.title;
     self.subtitleLabel.text = [dict objectForKey:@"skuInfo"];
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price?:detailModel.sale];
+    
+    NSNumber* price = [self.commodityPriceCaculate getCommodityPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
+    
     [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
 
 //    self.model = (TBTradeItemInfoCellModel *)object;

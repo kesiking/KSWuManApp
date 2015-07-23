@@ -103,11 +103,7 @@
 #pragma mark - Override
 
 - (void)setObject:(id)object dict:(NSDictionary *)dict {
-//    if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
-//        return;
-//    }
-//    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
-    
+    [super setObject:object dict:dict];
     if (![object isKindOfClass:[NSArray class]]) {
         return;
     }

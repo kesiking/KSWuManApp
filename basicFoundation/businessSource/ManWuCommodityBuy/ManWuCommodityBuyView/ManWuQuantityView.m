@@ -67,19 +67,14 @@
 //}
 
 - (void)setObject:(id)object dict:(NSDictionary *)dict{
+    [super setObject:object dict:dict];
     if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
         return;
     }
+
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
-    NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
-    NSString*  selectSkuPpathId = [dict objectForKey:@"selectSkuPpathId"];
-    NSUInteger quantity = [detailModel.quantity unsignedIntegerValue];
-    if (selectSkuPpathId) {
-        NSNumber* quantityNumber = ((ManWuCommoditySKUDetailModel*)[detailModel.skuMap objectForKey:selectSkuPpathId]).quantity;
-        if (quantityNumber) {
-            quantity = [quantityNumber unsignedIntegerValue];
-        }
-    }
+    NSUInteger count = [[self.commodityPriceCaculate getCommodityCount] unsignedIntegerValue];
+    NSUInteger quantity = [[self.commodityPriceCaculate getCommodityQuantity] unsignedIntegerValue];
 
     self.buyNumberStepView.numberStepper.value = count;
     self.buyNumberStepView.numberStepper.maximumValue = quantity;

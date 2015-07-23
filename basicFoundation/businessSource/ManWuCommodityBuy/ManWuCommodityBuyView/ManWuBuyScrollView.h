@@ -7,6 +7,7 @@
 //
 
 #import "KSView.h"
+#import "ManWuCommodityPriceCaculate.h"
 
 @class ManWuCommodityDetailModel;
 
@@ -14,6 +15,7 @@
 
 @property (nonatomic, strong) ManWuCommodityDetailModel         *detailModel;
 @property (nonatomic, strong) NSMutableDictionary               *dict;
+@property (nonatomic, strong) ManWuCommodityPriceCaculate       *commodityPriceCaculate;
 
 - (void)setObject:(ManWuCommodityDetailModel *)object dict:(NSDictionary *)dict;
 
