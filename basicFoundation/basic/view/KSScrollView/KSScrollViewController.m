@@ -74,6 +74,20 @@
     }
 }
 
+-(KSDataSource *)dataSourceRead {
+    if (!_dataSourceRead) {
+        _dataSourceRead = [[KSDataSource alloc]init];
+    }
+    return _dataSourceRead;
+}
+
+-(KSDataSource *)dataSourceWrite {
+    if (!_dataSourceWrite) {
+        _dataSourceWrite = [[KSDataSource alloc]init];
+    }
+    return _dataSourceWrite;
+}
+
 -(void)scrollRectToOffsetWithAnimated:(BOOL)animated{
     if (self.scrollView == nil) {
         return;

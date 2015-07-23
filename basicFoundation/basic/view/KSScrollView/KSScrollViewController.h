@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "KSDataSource.h"
 
-@interface KSScrollViewController : NSObject<UIScrollViewDelegate>
+@interface KSScrollViewController : NSObject<UIScrollViewDelegate>{
+    // for read
+    KSDataSource*      _dataSourceRead;
+    // for write
+    KSDataSource*      _dataSourceWrite;
+}
 
 @property (nonatomic, strong) UIScrollView*      scrollView;
 
