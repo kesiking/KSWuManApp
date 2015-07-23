@@ -55,6 +55,9 @@
 }
 
 - (NSString*)getCommodityDiscount{
+    if (self.detailModel.activityDiscount && self.detailModel.activityPrice == nil) {
+        return [NSString stringWithFormat:@"%@",self.detailModel.activityDiscount];
+    }
     CGFloat discount = 0;
     NSNumber* salePrice = [self getCommodityPrice];
 
@@ -71,7 +74,9 @@
 - (float)getTruePriceWithVoucherPrice:(float)voucherPrice{
     NSUInteger count = [[self getCommodityCount] unsignedIntegerValue];
     float price = [[self getCommodityPrice] floatValue];
-    
+    if (self.detailModel.activityDiscount && self.detailModel.activityPrice == nil) {
+        price = price * [self.detailModel.activityDiscount floatValue];
+    }
     return (float)(price * count - voucherPrice);
 }
 
