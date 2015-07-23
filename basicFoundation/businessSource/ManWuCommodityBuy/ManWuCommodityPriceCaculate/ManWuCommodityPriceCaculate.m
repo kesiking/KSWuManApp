@@ -39,7 +39,15 @@
 }
 
 - (NSNumber*)getCommodityPrice{
-    return [self.dict objectForKey:@"skuPrice"]?:(self.detailModel.sale?:self.detailModel.price);
+    NSNumber* price = self.detailModel.activityPrice;
+    if (price == nil) {
+        price = self.detailModel.sale?:self.detailModel.price;
+    }
+    return [self.dict objectForKey:@"skuPrice"]?:price;
+}
+
+- (NSNumber*)getCommodityPriceWithSkuPrice:(NSNumber*)skuPrice{
+    return self.detailModel.activityPrice?:skuPrice;
 }
 
 - (NSNumber*)getCommodityCount{

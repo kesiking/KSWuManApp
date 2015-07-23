@@ -18,6 +18,8 @@
 
 - (NSNumber*)getCommodityPrice;
 
+- (NSNumber*)getCommodityPriceWithSkuPrice:(NSNumber*)skuPrice;
+
 - (NSNumber*)getCommodityCount;
 
 - (NSString*)getCommodityDiscount;

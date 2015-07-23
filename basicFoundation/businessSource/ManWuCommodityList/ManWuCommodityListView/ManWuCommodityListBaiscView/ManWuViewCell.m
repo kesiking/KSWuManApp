@@ -9,6 +9,7 @@
 #import "ManWuViewCell.h"
 #import "KSCollectionViewController.h"
 #import "ManWuCommodityDetailModel.h"
+#import "ManWuCommodityPriceCaculate.h"
 #import "UIImage+Resize.h"
 #import "UIImageView+KSWebCache.h"
 #import "KSImageListCache.h"
@@ -29,6 +30,8 @@
 @interface ManWuViewCell()
 
 @property (nonatomic,strong) NSString*         commodityImageUrl;
+
+@property (nonatomic,strong) ManWuCommodityPriceCaculate * commodityPriceCaculate;
 
 @end
 
@@ -51,6 +54,7 @@
 }
 
 -(void)setupView{
+    _commodityPriceCaculate = [ManWuCommodityPriceCaculate new];
     [self.commodityImageView setFrame:CGRectMake(0, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
     [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - favorateLabel_width, self.commodityImageView.bottom + commodityImage_bottom_border, favorateLabel_width, favorateLabel_height)];
     [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 2.0, favorateImage_width_height, favorateImage_width_height)];
@@ -185,6 +189,7 @@
         return;
     }
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
+    [self.commodityPriceCaculate setObject:detailModel dict:nil];
     if (extroParams.imageHasLoaded) {
         WEAKSELF
         UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
@@ -212,8 +217,9 @@
     [self.favorateImageView updatePraiseBtnStatus:[detailModel.loved boolValue]];
     self.titleLabel.text = detailModel.title;
     self.priceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[detailModel.price floatValue]];
-    if (detailModel.sale) {
-        self.salePriceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[detailModel.sale floatValue]];
+    NSNumber* salePrice = [self.commodityPriceCaculate getCommodityPrice];
+    if (salePrice != detailModel.price) {
+        self.salePriceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[salePrice floatValue]];
         self.salePriceLabel.hidden = NO;
         self.priceLabel.lineType = LineTypeMiddle;
     }else{
