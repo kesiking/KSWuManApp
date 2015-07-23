@@ -154,6 +154,7 @@
             NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"1";
             NSString* itemId = strongSelf.detailModel.itemId;
             NSNumber* buyNum = [strongSelf.commodityPriceCaculate getCommodityCount];
+            NSNumber* activityId = strongSelf.detailModel.activityId;
             
             float payPrice = [strongSelf.commodityPriceCaculate getTruePriceWithVoucherPrice:0];
             
@@ -166,7 +167,7 @@
                 return;
             }
             
-            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:[NSNumber numberWithFloat:payPrice] activityId:nil voucherId:strongSelf.voucherView.voucherId];
+            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:[NSNumber numberWithFloat:payPrice] activityId:activityId voucherId:strongSelf.voucherView.voucherId];
         };
     }
     return _comfirmView;
@@ -247,6 +248,9 @@
 }
 
 - (void)setObject:(ManWuCommodityDetailModel *)object dict:(NSDictionary *)dict{
+    if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
+        return;
+    }
     if (self.detailModel != object) {
         self.detailModel = object;
     }
@@ -262,7 +266,7 @@
     [self.orderPayView setObject:object dict:dict];
     [self.comfirmView setObject:object dict:dict];
 //    [self.voucherService loadVoucherWithItemId:object.itemId buyNum:[self.dict objectForKey:@"buyNum"]?:@1];
-    [self.voucherService fetchVoucherWithCidId:object.cid userId:[KSAuthenticationCenter userId] payPrice:self.orderPayView.payPrice];
+    [self.voucherService fetchVoucherWithCidId:object.cid userId:[KSAuthenticationCenter userId] activityTypeId:self.detailModel.activityTypeId payPrice:self.orderPayView.payPrice];
     [self reloadData];
 }
 

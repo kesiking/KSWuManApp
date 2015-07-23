@@ -15,6 +15,7 @@
 
 -(void)fetchVoucherWithCidId:(NSNumber*)cidId
                       userId:(NSString*)userId
+              activityTypeId:(NSNumber*)activityTypeId
                     payPrice:(NSNumber*)payPrice;
 
 @end

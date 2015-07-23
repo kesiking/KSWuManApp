@@ -17,7 +17,7 @@
                       itemId:(NSString*)itemId
                       buyNum:(NSNumber*)buyNum
                     payPrice:(NSNumber*)payPrice
-                  activityId:(NSString*)activityId
+                  activityId:(NSNumber*)activityId
                    voucherId:(NSString*)voucherId;
 
 -(void)loadOrderItemWithOrderId:(NSString*)orderId;
