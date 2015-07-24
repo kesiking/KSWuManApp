@@ -94,7 +94,7 @@
     _currentSkuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
-    _currentSkuInfo.quantity = [_tbDetailModel.quantity integerValue];
+    _currentSkuInfo.quantity = [[_commodityPriceCaculate getCommodityQuantity] integerValue];
     _currentSkuInfo.price = [_commodityPriceCaculate getCommodityPrice];
     [self initEnableMap];
 }
@@ -320,8 +320,8 @@
             ManWuCommoditySKUDetailModel * currentSku = [_skuMap objectForKey:skuPpathId];
             skuInfo.selectSkuId = currentSku.skuId;
             _selectedSkuId = currentSku.skuId;
-            skuInfo.quantity = [currentSku.quantity integerValue];
-            skuInfo.price = [_commodityPriceCaculate getCommodityPriceWithSkuPrice:currentSku.price];
+            skuInfo.quantity = [[_commodityPriceCaculate getCommodityQuantityWithSkuModel:currentSku] integerValue];
+            skuInfo.price = [_commodityPriceCaculate getCommodityPriceWithSkuModel:currentSku];
         }
         
         if (skuPpathId == nil && [tempPidVidMap count] == [allTempPids count]) {

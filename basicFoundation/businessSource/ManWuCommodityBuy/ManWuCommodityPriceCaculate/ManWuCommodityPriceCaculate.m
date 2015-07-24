@@ -7,7 +7,8 @@
 //
 
 #import "ManWuCommodityPriceCaculate.h"
-#import "ManWuCommodityDetailModel.h"
+
+#define USE_ACTIVITY_DISCOUNT_IN_PRICE
 
 @interface ManWuCommodityPriceCaculate()
 
@@ -35,19 +36,41 @@
             quantity = quantityNumber;
         }
     }
+    NSNumber* activityQuantity = self.detailModel.activityBuyLimit;
+    if (activityQuantity) {
+        return [activityQuantity floatValue] > [quantity floatValue] ? quantity : activityQuantity;
+    }
     return quantity;
+}
+
+- (NSNumber*)getCommodityQuantityWithSkuModel:(ManWuCommoditySKUDetailModel*)skuModel{
+    if (self.detailModel.activityBuyLimit) {
+        return [self.detailModel.activityBuyLimit floatValue] > [skuModel.quantity floatValue] ? skuModel.quantity : self.detailModel.activityBuyLimit;
+    }
+    return skuModel.quantity;
 }
 
 - (NSNumber*)getCommodityPrice{
     NSNumber* price = self.detailModel.activityPrice;
     if (price == nil) {
         price = self.detailModel.sale?:self.detailModel.price;
+#ifdef USE_ACTIVITY_DISCOUNT_IN_PRICE
+        if (self.detailModel.activityDiscount && self.detailModel.activityPrice == nil) {
+             price = [NSNumber numberWithFloat:[price floatValue] * [self.detailModel.activityDiscount floatValue]];
+        }
+#endif
     }
     return [self.dict objectForKey:@"skuPrice"]?:price;
 }
 
-- (NSNumber*)getCommodityPriceWithSkuPrice:(NSNumber*)skuPrice{
-    return self.detailModel.activityPrice?:skuPrice;
+- (NSNumber*)getCommodityPriceWithSkuModel:(ManWuCommoditySKUDetailModel*)skuModel{
+#ifdef USE_ACTIVITY_DISCOUNT_IN_PRICE
+    if (self.detailModel.activityDiscount && self.detailModel.activityPrice == nil) {
+        NSNumber* price = [NSNumber numberWithFloat:[skuModel.price floatValue] * [self.detailModel.activityDiscount floatValue]];
+        return price;
+    }
+#endif
+    return self.detailModel.activityPrice?:skuModel.price;
 }
 
 - (NSNumber*)getCommodityCount{
@@ -74,9 +97,11 @@
 - (float)getTruePriceWithVoucherPrice:(float)voucherPrice{
     NSUInteger count = [[self getCommodityCount] unsignedIntegerValue];
     float price = [[self getCommodityPrice] floatValue];
+#ifndef USE_ACTIVITY_DISCOUNT_IN_PRICE
     if (self.detailModel.activityDiscount && self.detailModel.activityPrice == nil) {
         price = price * [self.detailModel.activityDiscount floatValue];
     }
+#endif
     return (float)(price * count - voucherPrice);
 }
 

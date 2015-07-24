@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ManWuCommodityDetailModel.h"
 
 @interface ManWuCommodityPriceCaculate : NSObject
 
@@ -16,9 +17,11 @@
 
 - (NSNumber*)getCommodityQuantity;
 
+- (NSNumber*)getCommodityQuantityWithSkuModel:(ManWuCommoditySKUDetailModel*)skuModel;
+
 - (NSNumber*)getCommodityPrice;
 
-- (NSNumber*)getCommodityPriceWithSkuPrice:(NSNumber*)skuPrice;
+- (NSNumber*)getCommodityPriceWithSkuModel:(ManWuCommoditySKUDetailModel*)skuModel;
 
 - (NSNumber*)getCommodityCount;
 
