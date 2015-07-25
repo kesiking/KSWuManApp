@@ -36,6 +36,7 @@
         CGRect rect = self.bounds;
         rect.size.width = rect.size.width / 2 - 2;
         _leftImageView = [[UIImageView alloc] initWithFrame:rect];
+        [_leftImageView setContentMode:UIViewContentModeScaleAspectFill];
         [_leftImageView setImage:[UIImage imageNamed:@"home_specialForToday_first_placehold_banner"]];
         _leftImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer* getstureRecognize = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleImageViewClickEvent:)];
@@ -49,6 +50,7 @@
         CGRect rect = self.leftImageView.frame;
         rect.origin.x = self.leftImageView.right + 2;
         _rightImageView = [[UIImageView alloc] initWithFrame:rect];
+        [_rightImageView setContentMode:UIViewContentModeScaleAspectFill];
         [_rightImageView setImage:[UIImage imageNamed:@"home_specialForToday_second_placehold_banner"]];
         _rightImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer* getstureRecognize = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleImageViewClickEvent:)];

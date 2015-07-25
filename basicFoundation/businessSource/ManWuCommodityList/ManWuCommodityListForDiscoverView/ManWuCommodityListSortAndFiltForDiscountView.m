@@ -121,7 +121,7 @@
             strongSelf.sortListSelectView.hidden = NO;
             CGRect rect = strongSelf.sortListSelectView.collectionViewCtl.frame;
             CGRect sortFiltViewRect = [strongSelf.container convertRect:strongSelf.container.frame toView:strongSelf];
-            rect.origin.y = CGRectGetMaxY(sortFiltViewRect);
+            rect.origin.y = CGRectGetMaxY(sortFiltViewRect) - 5;
             [strongSelf.sortListSelectView.collectionViewCtl setFrame:rect];
         };
         
@@ -130,7 +130,7 @@
             strongSelf.filtForDiscoverSelectView.hidden = NO;
             CGRect rect = strongSelf.filtForDiscoverSelectView.collectionViewCtl.frame;
             CGRect sortFiltViewRect = [strongSelf.container convertRect:strongSelf.container.frame toView:strongSelf];
-            rect.origin.y = CGRectGetMaxY(sortFiltViewRect);
+            rect.origin.y = CGRectGetMaxY(sortFiltViewRect) - 5;
             [strongSelf.filtForDiscoverSelectView.collectionViewCtl setFrame:rect];
         };
     }
