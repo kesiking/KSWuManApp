@@ -102,7 +102,11 @@
         price = price * [self.detailModel.activityDiscount floatValue];
     }
 #endif
-    return (float)(price * count - voucherPrice);
+    float truePrice = (price * count - voucherPrice);
+    if (truePrice <= 0) {
+        truePrice = 0.01;
+    }
+    return truePrice;
 }
 
 @end

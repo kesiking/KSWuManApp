@@ -107,16 +107,23 @@
     if (![object isKindOfClass:[NSArray class]]) {
         return;
     }
+    
+    ManWuVoucherModel* voucherModel = [ManWuVoucherModel new];
+    voucherModel.price = @0;
+    NSMutableArray *objectArray = [NSMutableArray arrayWithArray:object];
+    [objectArray insertObject:voucherModel atIndex:0];
+    
     NSMutableArray *array = [NSMutableArray array];
-    for (ManWuVoucherModel* voucherModel in object) {
+    for (ManWuVoucherModel* voucherModel in objectArray) {
         if (voucherModel.price == nil) {
             continue;
         }
         [array addObject:voucherModel.price];
     }
+    
     self.textLabel.text = @"红包";
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@",@""];
-    self.voucherList = object;
+    self.voucherList = objectArray;
     self.comBox.titlesList = array;
     if ([array count] < 5) {
         self.comBox.tableHeight = [array count] * self.comBox.height;
