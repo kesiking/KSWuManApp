@@ -343,6 +343,7 @@
 {
     // TODO: Select Item
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    self.selectIndexPath = indexPath;
     KSCollectionViewCell *cell = (KSCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
     if (cell) {
         //获取cell模板数据

@@ -7,6 +7,7 @@
 //
 
 #import "KSView.h"
+#import "ManWuCommodityPriceCaculate.h"
 
 #define kArrowFileName         @"tbbuy_arrow"
 #define kLocationFileName      @"tbbuy_location"
@@ -58,12 +59,12 @@
 
 @interface ManWuBuyBasicView : KSView
 
-@property (nonatomic, weak)   id                    delegate;
+@property (nonatomic, weak)             id     delegate;
 
-@property (nonatomic, assign, readonly) CGRect      seperateFrame;
-@property (nonatomic,strong) UIView                 *endline;
+@property (nonatomic, assign, readonly) CGRect seperateFrame;
+@property (nonatomic,strong)            UIView *endline;
 
-
+@property (nonatomic, strong) ManWuCommodityPriceCaculate *commodityPriceCaculate;
 
 - (void)inspectSeperateFrame;
 

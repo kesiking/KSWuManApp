@@ -12,6 +12,7 @@
 
 -(void)setupView{
     [super setupView];
+    _commodityPriceCaculate = [ManWuCommodityPriceCaculate new];
     self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.endline];
 }
@@ -21,7 +22,7 @@
 }
 
 - (void)setObject:(id)object dict:(NSDictionary*)dict{
-    
+    [self.commodityPriceCaculate setObject:object dict:dict];
 }
 
 - (CGRect)seperateFrame {

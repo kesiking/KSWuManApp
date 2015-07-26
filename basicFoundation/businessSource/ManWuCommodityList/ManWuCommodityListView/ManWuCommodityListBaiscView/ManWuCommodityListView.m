@@ -12,10 +12,6 @@
 
 @interface ManWuCommodityListView()
 
-@property (nonatomic,strong) KSDataSource*      dataSourceRead;
-
-@property (nonatomic,strong) KSDataSource*      dataSourceWrite;
-
 @end
 
 @implementation ManWuCommodityListView
@@ -44,8 +40,6 @@
 
 -(void)dealloc{
     _collectionViewCtl = nil;
-    _dataSourceRead = nil;
-    _dataSourceWrite = nil;
 }
 
 -(KSCollectionViewController *)collectionViewCtl{
@@ -59,26 +53,10 @@
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl setErrorViewTitle:@"暂无数据，请稍后再试"];
         [_collectionViewCtl registerClass:[ManWuFavViewCell class]];
-        [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
-        [_collectionViewCtl setDataSourceWrite:self.dataSourceWrite];
         [_collectionViewCtl getCollectionView].scrollEnabled = YES;
         [_collectionViewCtl getCollectionView].alwaysBounceVertical = YES;
     }
     return _collectionViewCtl;
-}
-
--(KSDataSource *)dataSourceRead {
-    if (!_dataSourceRead) {
-        _dataSourceRead = [[KSDataSource alloc]init];
-    }
-    return _dataSourceRead;
-}
-
--(KSDataSource *)dataSourceWrite {
-    if (!_dataSourceWrite) {
-        _dataSourceWrite = [[KSDataSource alloc]init];
-    }
-    return _dataSourceWrite;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -44,16 +44,16 @@
 }
 
 - (void)setObject:(id)object dict:(NSDictionary *)dict{
+    [super setObject:object dict:dict];
     if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
         return;
     }
+    
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
     _scaleView.transform = CGAffineTransformIdentity;
     _scaleView.frame = CGRectMake(15, 0.0, self.width - 15 * 2, self.height);
-    NSUInteger count = [dict objectForKey:@"buyNumber"] ? [[dict objectForKey:@"buyNumber"] unsignedIntegerValue] : 1;
-    NSNumber* price = [dict objectForKey:@"skuPrice"];
     
-    float truePrice = (CGFloat)((price?[price floatValue]:[detailModel.sale floatValue]) * count - self.voucherPrice);
+    float truePrice = [self.commodityPriceCaculate getTruePriceWithVoucherPrice:self.voucherPrice];
     
     _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", truePrice];
     
@@ -68,8 +68,8 @@
 
 -(void)setVoucherPrice:(float)voucherPrice{
     _voucherPrice = voucherPrice;
-    float price = [_payPrice floatValue];
-    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", price - voucherPrice];
+    float truePrice = [self.commodityPriceCaculate getTruePriceWithVoucherPrice:voucherPrice];
+    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", truePrice];
 }
 
 @end

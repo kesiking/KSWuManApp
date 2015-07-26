@@ -8,10 +8,13 @@
 
 #import "ManWuTradeDetailSKUService.h"
 #import "ManWuCommodityDetailModel.h"
+#import "ManWuCommodityPriceCaculate.h"
 
 @interface ManWuTradeDetailSKUService ()
 
 @property (nonatomic, strong) ManWuCommodityDetailModel   *tbDetailModel;
+
+@property (nonatomic, strong) ManWuCommodityPriceCaculate *commodityPriceCaculate;
 
 @property (nonatomic, strong) NSMutableDictionary         *skuValueNameDic;//valueId到name的映射
 @property (nonatomic, strong) NSMutableDictionary         *skuPropMap;//属性map
@@ -59,6 +62,8 @@
 
 - (void)resetDetailResult:(ManWuCommodityDetailModel *)tBDetailModel{
     _tbDetailModel = tBDetailModel;
+    _commodityPriceCaculate = [ManWuCommodityPriceCaculate new];
+    [_commodityPriceCaculate setObject:tBDetailModel dict:nil];
     [self initProperties];
     _skuMap = tBDetailModel.skuMap;
     [self initSKUData];
@@ -89,8 +94,8 @@
     _currentSkuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
     _currentSkuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
-    _currentSkuInfo.quantity = [_tbDetailModel.quantity integerValue];
-    _currentSkuInfo.price = _tbDetailModel.price;
+    _currentSkuInfo.quantity = [[_commodityPriceCaculate getCommodityQuantity] integerValue];
+    _currentSkuInfo.price = [_commodityPriceCaculate getCommodityPrice];
     [self initEnableMap];
 }
 
@@ -306,7 +311,7 @@
             skuInfo.skuDisplayString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuPopUpString = [@"请选择" stringByAppendingFormat:@"%@",needToselectSummary];
             skuInfo.skuCellString = [@"选择" stringByAppendingFormat:@"%@",needToselectSummary];
-            skuInfo.price = self.tbDetailModel.sale?self.tbDetailModel.sale:self.tbDetailModel.price;
+            skuInfo.price = [_commodityPriceCaculate getCommodityPrice];
         }else{
             skuInfo.skuDisplayString = skuSummaryString;
             skuInfo.skuCellString = skuSummaryString;
@@ -315,8 +320,8 @@
             ManWuCommoditySKUDetailModel * currentSku = [_skuMap objectForKey:skuPpathId];
             skuInfo.selectSkuId = currentSku.skuId;
             _selectedSkuId = currentSku.skuId;
-            skuInfo.quantity = [currentSku.quantity integerValue];
-            skuInfo.price = currentSku.price;
+            skuInfo.quantity = [[_commodityPriceCaculate getCommodityQuantityWithSkuModel:currentSku] integerValue];
+            skuInfo.price = [_commodityPriceCaculate getCommodityPriceWithSkuModel:currentSku];
         }
         
         if (skuPpathId == nil && [tempPidVidMap count] == [allTempPids count]) {

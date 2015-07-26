@@ -22,6 +22,8 @@ typedef void(^collectionViewDidSelectedBlock) (UICollectionView* collectionView,
 // 点击cell事件触发时回调
 @property (nonatomic, strong) collectionViewDidSelectedBlock  collectionViewDidSelectedBlock;
 
+@property (nonatomic, strong) NSIndexPath*      selectIndexPath;
+
 // collection的删除操作时使用
 @property (nonatomic, strong) NSMutableArray*   collectionDeleteItems;
 

@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSString*           imageUrl;
 
+@property (nonatomic, strong) NSString*           selectImageUrl;
+
 @property (nonatomic, strong) NSString*           titleText;
 
 @property (nonatomic, strong) NSString*           subTitleText;
@@ -19,6 +21,8 @@
 @property (nonatomic, strong) NSString*           sortKey;
 
 @property (nonatomic, strong) NSString*           filtKey;
+
+@property (nonatomic, strong) NSString*           cid;
 
 @property (nonatomic, strong) NSString*           actIdKey;
 

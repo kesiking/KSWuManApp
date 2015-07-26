@@ -58,4 +58,10 @@
 @property (nonatomic, strong) NSString*                   info;
 @property (nonatomic, strong) NSArray*                    color;
 
+@property (nonatomic, strong) NSNumber*                   activityId;
+@property (nonatomic, strong) NSNumber*                   activityTypeId;
+@property (nonatomic, strong) NSNumber*                   activityPrice;
+@property (nonatomic, strong) NSNumber*                   activityDiscount;
+@property (nonatomic, strong) NSNumber*                   activityBuyLimit;
+
 @end

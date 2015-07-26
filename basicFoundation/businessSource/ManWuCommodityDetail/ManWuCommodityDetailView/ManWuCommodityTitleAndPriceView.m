@@ -11,6 +11,7 @@
 #import "ManWuPraiseButton.h"
 #import "ManWuFavButton.h"
 #import "ManWuCommodityDetailModel.h"
+#import "ManWuCommodityPriceCaculate.h"
 
 @interface ManWuCommodityTitleAndPriceView()
 
@@ -25,6 +26,8 @@
 @property (nonatomic,strong) UIView               *      commoditySeparateLine;
 
 @property (nonatomic,strong) ManWuCommodityDetailModel * detailModel;
+
+@property (nonatomic,strong) ManWuCommodityPriceCaculate * commodityPriceCaculate;
 
 @end
 
@@ -49,6 +52,7 @@
 
 -(void)setupView{
     [super setupView];
+    _commodityPriceCaculate = [ManWuCommodityPriceCaculate new];
     [self addSubview:self.commoditySeparateTopLine];
     [self addSubview:self.commoditySeparateLine];
     
@@ -92,9 +96,16 @@
      */
     if ([descriptionModel isKindOfClass:[ManWuCommodityDetailModel class]]) {
         self.detailModel = (ManWuCommodityDetailModel*)descriptionModel;
+        [self.commodityPriceCaculate setObject:self.detailModel dict:nil];
         self.commodityTitleLabel.text = self.detailModel.title;
-        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",self.detailModel.sale];
+        NSNumber* salePrice = [self.commodityPriceCaculate getCommodityPrice];
+        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",salePrice];
         self.commodityOriginalPriceLabel.text = [NSString stringWithFormat:@"￥%@",self.detailModel.price];
+        if (salePrice == self.detailModel.price) {
+            self.commodityOriginalPriceLabel.hidden = YES;
+        }else{
+            self.commodityOriginalPriceLabel.hidden = NO;
+        }
         self.commodityPraiseLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.love?:@"0"];
         [self.commodityPraiseButton updatePraiseBtnStatus:[self.detailModel.loved boolValue]];
         [self.commodityFavorateButton updateFavBtnStatus:[self.detailModel.collected boolValue]];

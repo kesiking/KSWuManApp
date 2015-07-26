@@ -26,6 +26,7 @@
 
 -(void)fetchVoucherWithCidId:(NSNumber*)cidId
                       userId:(NSString*)userId
+              activityTypeId:(NSNumber*)activityTypeId
                     payPrice:(NSNumber*)payPrice{
     if ([WeAppUtils isEmpty:cidId]
         || [WeAppUtils isEmpty:userId]
@@ -34,7 +35,12 @@
     }
     
     self.jsonTopKey = @"data";
-    NSDictionary* params = @{@"catId":cidId,@"userId":userId,@"payPrice":payPrice};
+    
+    NSMutableDictionary* params = [@{@"catId":cidId,@"userId":userId,@"payPrice":payPrice} mutableCopy];
+    
+    if (activityTypeId) {
+        [params setObject:activityTypeId forKey:@"activityTypeId"];
+    }
     
     self.itemClass = [ManWuVoucherModel class];
     

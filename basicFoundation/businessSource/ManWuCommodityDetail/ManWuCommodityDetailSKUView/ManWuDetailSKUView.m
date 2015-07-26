@@ -12,10 +12,13 @@
 #import "ManWuTradeSKUSelectionControl.h"
 #import "ManWuDetailBuyNumberStepView.h"
 #import "ManWuDetailBottomBarView.h"
+#import "ManWuCommodityPriceCaculate.h"
 
 #define NEED_BUYNUMBERSTEPVIEW_COMPONENT (1)
 
 @interface ManWuDetailSKUView()
+
+@property (nonatomic, strong) ManWuCommodityPriceCaculate      *commodityPriceCaculate;
 
 @property (nonatomic, strong) CSLinearLayoutView               *skuContainer;
 
@@ -32,6 +35,7 @@
 @implementation ManWuDetailSKUView
 
 -(void)setupView{
+    _commodityPriceCaculate = [ManWuCommodityPriceCaculate new];
     [self addSubview:self.skuContainer];
     [self addSubview:self.bottomView];
     [self reloadData];
@@ -119,7 +123,8 @@
     /*属性部分*/
 //    self.skuSelectionControl.detailModel              = self.skuDetailModel;
     self.skuSelectionControl.detailModel              = self.detailModel;
-    NSString* price = self.detailModel.sale?[NSString stringWithFormat:@"%@",self.detailModel.sale]:[NSString stringWithFormat:@"%@",self.detailModel.price];
+    [self.commodityPriceCaculate setObject:self.detailModel dict:nil];
+    NSString* price = [NSString stringWithFormat:@"%@",[self.commodityPriceCaculate getCommodityPrice]];
     [self.headerView setPriceNumText:price];
     /*更新最大值*/
     self.buyNumberStepView.numberStepper.maximumValue = [self.detailModel.quantity doubleValue];

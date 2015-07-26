@@ -81,6 +81,7 @@
             if (strongSelf.sortListSelectedBlock) {
                 strongSelf.sortListSelectedBlock(strongSelf
                                                  .collectionViewCtl,indexPath,dataSource);
+                [collectionView reloadData];
             }
         };
     }

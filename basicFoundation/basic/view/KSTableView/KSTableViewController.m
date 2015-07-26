@@ -295,6 +295,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Select Item
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectIndexPath = indexPath;
     WeAppTableViewCell *cell = (WeAppTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
     if (cell) {
         //获取cell模板数据

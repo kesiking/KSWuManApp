@@ -332,6 +332,7 @@
 #pragma mark  - TBTradeCellDelegate
 
 - (void)setObject:(id)object dict:(NSDictionary*)dict{
+    [super setObject:object dict:dict];
     if (object == nil || ![object isKindOfClass:[ManWuAddressInfoModel class]]) {
         self.addAddressButton.hidden = NO;
         self.addressLabel.hidden = YES;

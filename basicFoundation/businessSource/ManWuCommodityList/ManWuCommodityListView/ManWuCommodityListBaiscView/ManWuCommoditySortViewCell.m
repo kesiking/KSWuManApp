@@ -8,22 +8,25 @@
 
 #import "ManWuCommoditySortViewCell.h"
 #import "ManWuCommoditySortAndFiltModel.h"
+#import "KSCollectionViewController.h"
 
-#define sortImageViewWidthAndHeight (20)
+#define sortImageViewWidth  (28)
+#define sortImageViewHeight (30)
+
 
 @implementation ManWuCommoditySortViewCell
 
 -(void)setupView{
     [super setupView];
     self.backgroundColor = [UIColor whiteColor];
-    [self.commoditySortImageView setFrame:CGRectMake(10, ceil((self.height - caculateNumber(sortImageViewWidthAndHeight))/2), caculateNumber(sortImageViewWidthAndHeight),caculateNumber(sortImageViewWidthAndHeight))];
-    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + caculateNumber(10), self.commoditySortImageView.top, caculateNumber(200), self.commoditySortImageView.height)];
+    [self.commoditySortImageView setFrame:CGRectMake(10, ceil((self.height - (sortImageViewHeight))/2), (sortImageViewWidth),(sortImageViewHeight))];
+    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + (10), self.commoditySortImageView.top, (200), self.commoditySortImageView.height)];
 }
 
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.font = [UIFont systemFontOfSize:12];
         [_titleLabel setTextColor:RGB(0x88, 0x88, 0x88)];
         _titleLabel.numberOfLines = 1;
         _titleLabel.backgroundColor = [UIColor clearColor];
@@ -42,11 +45,19 @@
 
 - (void)configCellWithCellView:(id<KSViewCellProtocol>)cell Frame:(CGRect)rect componentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
     ManWuCommoditySortAndFiltModel* commodityComponentItem = (ManWuCommoditySortAndFiltModel*)componentItem;
+    KSCollectionViewController* collectionViewCtl = ((KSCollectionViewController*)self.scrollViewCtl);
     [self.commoditySortImageView setImage:[UIImage imageNamed:commodityComponentItem.imageUrl]];
-    self.titleLabel.text = commodityComponentItem.titleText;
-    if (extroParams.cellIndex%2 == 1) {
-        self.backgroundColor = RGB(0xf5, 0xf5, 0xf5);
+    [self.titleLabel setTextColor:RGB(0x88, 0x88, 0x88)];
+    self.backgroundColor = RGB(0xf5, 0xf5, 0xf5);
+    if ([collectionViewCtl isKindOfClass:[KSCollectionViewController class]]) {
+        if ([collectionViewCtl.selectIndexPath row] == extroParams.cellIndex) {
+            [self.commoditySortImageView setImage:[UIImage imageNamed:commodityComponentItem.selectImageUrl]];
+            [self.titleLabel setTextColor:RGB(0xf0, 0x7b, 0x7b)];
+            self.backgroundColor = [UIColor whiteColor];
+        }
     }
+    self.titleLabel.text = commodityComponentItem.titleText;
+    
 }
 
 -(void)refreshCellImagesWithComponentItem:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem *)extroParams{
