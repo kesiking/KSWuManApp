@@ -256,6 +256,10 @@
     if (self.buyNumberStepView.numberStepper.value>0) {
         buyNumber = [NSNumber numberWithDouble:(double)self.buyNumberStepView.numberStepper.value];
     }
+    if (self.buyNumberStepView.numberStepper.value > [[self.commodityPriceCaculate getCommodityQuantity] unsignedIntegerValue]) {
+        [WeAppToast toast:@"超出库存啦"];
+        return;
+    }
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:buyNumber,@"buyNumber",skuId, @"skuId",skuInfo,@"skuInfo",nil];
     if (skuPrice) {
         [params setObject:skuPrice forKey:@"skuPrice"];
