@@ -198,7 +198,7 @@
     WEAKSELF
     void(^cancelActionBlock)(void) = ^(void){
         STRONGSELF
-        [WeAppToast toast:@"取消登陆"];
+//        [WeAppToast toast:@"取消登陆"];
         // 如果当前选中的tab就是我的登陆页面，取消登陆后跳转到上次选中的tab
         if (strongSelf == strongSelf.rdv_tabBarController.selectedViewController) {
             if (strongSelf.rdv_tabBarController.preSelectedIndex != strongSelf.rdv_tabBarController.selectedIndex) {
