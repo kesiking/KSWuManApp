@@ -51,10 +51,9 @@
 -(ManWuCommodityListSortAndFiltForDiscountView *)commodityListView{
     if (_commodityListView == nil) {
         _commodityListView = [[ManWuCommodityListSortAndFiltForDiscountView alloc] initWithFrame:self.view.bounds];
+        [_commodityListView setDescriptionModel:self.activityModel];
         if (self.actId) {
             [_commodityListView setActIdKey:self.actId];
-        }else{
-            [_commodityListView setDescriptionModel:self.activityModel];
         }
         NSMutableDictionary *params = [@{@"actIdKey":self.actId?:defaultActIdKey,@"sortKey":defaultSortKey} mutableCopy];
         if (self.cid) {

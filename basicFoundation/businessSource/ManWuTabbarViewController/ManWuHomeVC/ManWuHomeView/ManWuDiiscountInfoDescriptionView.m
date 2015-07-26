@@ -48,9 +48,9 @@
 }
 
 -(void)reloadData{
-    if (self.activityModel.picUrl) {
+    if (self.activityModel.picUrl && self.activityModel.picUrl.length > 0) {
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.activityModel.picUrl] placeholderImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
-    }else{
+    }else if(self.imageView.image == nil){
         [self.imageView setImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
     }
 }

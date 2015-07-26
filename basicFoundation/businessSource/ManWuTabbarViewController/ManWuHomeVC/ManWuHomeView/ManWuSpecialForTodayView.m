@@ -74,13 +74,13 @@
 }
 
 -(void)reloadData{
-    if (self.leftActivityModel.picUrl) {
+    if (self.leftActivityModel.picUrl && self.leftActivityModel.picUrl.length > 0) {
         [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:self.leftActivityModel.picUrl] placeholderImage:[UIImage imageNamed:@"home_specialForToday_first_placehold_banner"]];
     }else{
         [self.leftImageView setImage:[UIImage imageNamed:@"home_specialForToday_first_placehold_banner"]];
     }
     
-    if (self.rightActivityModel.picUrl) {
+    if (self.rightActivityModel.picUrl && self.rightActivityModel.picUrl.length > 0) {
         [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:self.rightActivityModel.picUrl] placeholderImage:[UIImage imageNamed:@"home_specialForToday_second_placehold_banner"]];
     }else{
         [self.rightImageView setImage:[UIImage imageNamed:@"home_specialForToday_second_placehold_banner"]];

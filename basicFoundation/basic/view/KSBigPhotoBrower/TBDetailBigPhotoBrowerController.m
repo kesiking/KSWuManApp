@@ -718,6 +718,10 @@ static CGFloat const detailAlpha = 0.95;
     [self hideBars:nil];
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+     NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f , _currentPage = %lu",scrollView.contentOffset.x,scrollView.contentOffset.y , _currentPage);
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f , _currentPage = %lu",scrollView.contentOffset.x,scrollView.contentOffset.y , _currentPage);
 }

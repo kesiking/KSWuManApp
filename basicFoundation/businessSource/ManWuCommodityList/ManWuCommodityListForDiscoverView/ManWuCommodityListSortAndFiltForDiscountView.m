@@ -72,6 +72,12 @@
     
     [self.collectionViewCtl setColletionHeaderView:self.container];
     [self setCollectionService:self.actListService];
+    
+    WEAKSELF
+    self.collectionViewCtl.onRefreshEvent = ^(KSScrollViewServiceController* scrollViewController){
+        STRONGSELF
+        [strongSelf.activityService loadCommodityActivityDataWithTypeId:strongSelf.actIdKey];
+    };
 }
 
 -(void)setActIdKey:(NSString*)actIdKey{
