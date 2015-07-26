@@ -31,5 +31,8 @@
 #define CACHEPATH NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]
 #define DOCUMENTPATH NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]
 
+#define beyond_quantity_message @"已经没货啦" 
+#define beyond_buylimit_quantity_message @"每人限购%@件"
+
 
 #endif

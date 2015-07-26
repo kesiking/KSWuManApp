@@ -111,9 +111,9 @@
         _buyNumberStepView.numberStepper.showAleartViewBlock = ^(double value){
             STRONGSELF
             if (strongSelf.detailModel.activityBuyLimit != nil && [strongSelf.detailModel.activityBuyLimit unsignedIntegerValue] == [[self.commodityPriceCaculate getCommodityQuantity] unsignedIntegerValue]) {
-                [WeAppToast toast:[NSString stringWithFormat:@"最多购买%@件商品",strongSelf.detailModel.activityBuyLimit] toView:strongSelf.window];
+                [WeAppToast toast:[NSString stringWithFormat:beyond_buylimit_quantity_message,strongSelf.detailModel.activityBuyLimit] toView:strongSelf.window];
             }else{
-                [WeAppToast toast:@"无库存啦~~" toView:strongSelf.window];
+                [WeAppToast toast:beyond_quantity_message toView:strongSelf.window];
             }
         };
     }
@@ -138,7 +138,7 @@
     /*更新最大值*/
     self.buyNumberStepView.numberStepper.maximumValue = [self.detailModel.quantity doubleValue];
     
-    if (self.skuDetailModel.skuService.currentSKUInfo.selectSkuId.length > 0) {
+    if (self.detailModel.skuService.currentSKUInfo.selectSkuId.length > 0) {
         self.buyNumberStepView.numberStepper.maximumValue = self.detailModel.skuService.currentSKUInfo.quantity;
     }
     
@@ -257,7 +257,7 @@
         buyNumber = [NSNumber numberWithDouble:(double)self.buyNumberStepView.numberStepper.value];
     }
     if (self.buyNumberStepView.numberStepper.value > [[self.commodityPriceCaculate getCommodityQuantity] unsignedIntegerValue]) {
-        [WeAppToast toast:@"超出库存啦"];
+        [WeAppToast toast:@"已经没货啦，请重新输入购买数量！"];
         return;
     }
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:buyNumber,@"buyNumber",skuId, @"skuId",skuInfo,@"skuInfo",nil];

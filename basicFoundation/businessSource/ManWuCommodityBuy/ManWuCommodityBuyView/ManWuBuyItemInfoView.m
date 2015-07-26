@@ -49,7 +49,7 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.subtitleLabel];
     [self addSubview:self.priceLabel];
-//    [self addSubview:self.quantityLabel];
+    [self addSubview:self.quantityLabel];
 //    [self addSubview:self.weightLabel];
 }
 
@@ -154,8 +154,8 @@
         _quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
         _quantityLabel.backgroundColor = [UIColor clearColor];
         _quantityLabel.textAlignment = NSTextAlignmentRight;
-        _quantityLabel.font = [UIFont boldSystemFontOfSize:11];
-        _quantityLabel.textColor = TBBUY_COLOR_C;   
+        _quantityLabel.font = [UIFont systemFontOfSize:TBBUY_FONT_5];
+        _quantityLabel.textColor = TBBUY_COLOR_C;
     }
     return _quantityLabel;
 }
@@ -188,6 +188,9 @@
     if (self.subtitleLabel.text) {
         self.subtitleLabel.top = self.titleLabel.bottom;
     }
+    
+    [self.quantityLabel sizeToFit];
+    [self.quantityLabel setFrame:CGRectMake(self.width - HORIZONTAL_MARGIN - self.quantityLabel.width, self.priceLabel.bottom + 5, self.quantityLabel.width, self.quantityLabel.height)];
     
 //    CGFloat x = self.titleLabel.left;
 //    CGFloat y = self.titleLabel.bottom + GIFT_ICON_TOP_MARGIN;
@@ -258,9 +261,11 @@
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
     self.titleLabel.text = detailModel.title;
     self.subtitleLabel.text = [dict objectForKey:@"skuInfo"];
-    
     NSNumber* price = [self.commodityPriceCaculate getCommodityPrice];
     self.priceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[price floatValue]];
+    
+    NSNumber* quantity = [self.commodityPriceCaculate getCommodityQuantity];
+    [self.quantityLabel setText:[NSString stringWithFormat:@"库存%@件",quantity]];
     
     [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
 
