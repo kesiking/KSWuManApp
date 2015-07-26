@@ -18,6 +18,8 @@
 
 @interface ManWuQuantityView ()
 
+@property (nonatomic, strong) ManWuCommodityDetailModel         *commodityDetailModel;
+
 @end
 
 @implementation ManWuQuantityView
@@ -35,6 +37,15 @@
     if (!_buyNumberStepView) {
         _buyNumberStepView = [[ManWuDetailBuyNumberStepView alloc] initWithFrame:CGRectMake(15, 0, self.width - 15 * 2, self.height)];
         _buyNumberStepView.valueDidChangeBlock = self.valueDidChangeBlock;
+        WEAKSELF
+        _buyNumberStepView.numberStepper.showAleartViewBlock = ^(double value){
+            STRONGSELF
+            if (strongSelf.commodityDetailModel.activityBuyLimit != nil && [strongSelf.commodityDetailModel.activityBuyLimit unsignedIntegerValue] == [[self.commodityPriceCaculate getCommodityQuantity] unsignedIntegerValue]) {
+                [WeAppToast toast:[NSString stringWithFormat:@"最多购买%@件商品",strongSelf.commodityDetailModel.activityBuyLimit] toView:strongSelf.window];
+            }else{
+                [WeAppToast toast:@"无库存啦~~" toView:strongSelf.window];
+            }
+        };
     }
     return _buyNumberStepView;
 }
@@ -72,7 +83,8 @@
         return;
     }
 
-    ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
+    self.commodityDetailModel = (ManWuCommodityDetailModel*)object;
+    
     NSUInteger count = [[self.commodityPriceCaculate getCommodityCount] unsignedIntegerValue];
     NSUInteger quantity = [[self.commodityPriceCaculate getCommodityQuantity] unsignedIntegerValue];
 

@@ -25,7 +25,7 @@
 
 #define defaultCidKey @"0"
 
-#define defaultActIdKey @"1"
+#define defaultActIdKey @"0"
 
 #define WriteTag 1
 #define ReadTag 2

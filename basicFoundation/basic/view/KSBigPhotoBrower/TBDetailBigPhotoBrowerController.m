@@ -722,6 +722,14 @@ static CGFloat const detailAlpha = 0.95;
      NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f , _currentPage = %lu",scrollView.contentOffset.x,scrollView.contentOffset.y , _currentPage);
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+     NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f , _currentPage = %lu",scrollView.contentOffset.x,scrollView.contentOffset.y , _currentPage);
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f , _currentPage = %lu",scrollView.contentOffset.x,scrollView.contentOffset.y , _currentPage);
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f , _currentPage = %lu",scrollView.contentOffset.x,scrollView.contentOffset.y , _currentPage);
 }

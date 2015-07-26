@@ -29,10 +29,14 @@ typedef void (^ popStart)();
 typedef void (^ popEnd)();
 typedef void (^ valueChange)(double value);
 typedef BOOL (^ shouldChangeValue)(double value);
+typedef void (^ showAleartViewBlock)(double value);
+
 @property (strong, nonatomic) popStart onPop;
 @property (strong, nonatomic) popEnd onEnd;
 @property (strong, nonatomic) valueChange onValueChange;
 @property (strong, nonatomic) shouldChangeValue onShouldChangeValue;
+@property (strong, nonatomic) showAleartViewBlock showAleartViewBlock;
+
 - (UIImage *)backgroundImageForState:(UIControlState)state;
 - (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state;
 

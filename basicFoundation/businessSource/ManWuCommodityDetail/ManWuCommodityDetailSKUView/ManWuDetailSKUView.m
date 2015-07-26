@@ -107,6 +107,15 @@
             offsetY = offsetY > 0 ? offsetY : 0;
             [weakSelf.skuContainer setContentOffset:CGPointMake(0, offsetY) animated:YES];
         };
+        
+        _buyNumberStepView.numberStepper.showAleartViewBlock = ^(double value){
+            STRONGSELF
+            if (strongSelf.detailModel.activityBuyLimit != nil && [strongSelf.detailModel.activityBuyLimit unsignedIntegerValue] == [[self.commodityPriceCaculate getCommodityQuantity] unsignedIntegerValue]) {
+                [WeAppToast toast:[NSString stringWithFormat:@"最多购买%@件商品",strongSelf.detailModel.activityBuyLimit] toView:strongSelf.window];
+            }else{
+                [WeAppToast toast:@"无库存啦~~" toView:strongSelf.window];
+            }
+        };
     }
     return _buyNumberStepView;
 }

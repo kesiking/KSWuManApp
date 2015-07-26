@@ -150,7 +150,7 @@
     NSUInteger value = [atextField.text integerValue];
     atextField.text = [NSString stringWithFormat:@"%@", @(value)];
     if (value < _minimumValue || value > _maximumValue) {
-        [WeAppToast toast:@"数量超出范围~" toView:self.window];
+        [self showAlertViewWithValue:value];
         [self setLabelText];
     } else{
         [self setValidValue:value];
@@ -577,7 +577,7 @@
 	} else {
 		if (newValue > _maximumValue) {
 			if (!_wraps) {
-				[self showAlertView];
+                [self showAlertViewWithValue:newValue];
                 return;
 			} else {
 				newValue = _minimumValue;
@@ -604,7 +604,7 @@
 		if (newValue < _minimumValue) {
 			if (!_wraps) {
 				
-				[self showAlertView];
+                [self showAlertViewWithValue:newValue];
 				[self setValue:_minimumValue];
 				
 				return;
@@ -615,7 +615,7 @@
 	} else {
 		if (newValue > _maximumValue) {
 			if (!_wraps) {
-				[self showAlertView];
+                [self showAlertViewWithValue:newValue];
 				[self setValue:_maximumValue];
 			} else {
 				newValue = _minimumValue;
@@ -625,8 +625,12 @@
 	[self setValueWithoutEvents:newValue];
 }
 
--(void)showAlertView{
-    [WeAppToast toast:@"数量超出范围~" toView:self.window];
+-(void)showAlertViewWithValue:(NSUInteger)value{
+    if (self.showAleartViewBlock) {
+        self.showAleartViewBlock(value);
+    }else{
+        [WeAppToast toast:@"数量超出范围~" toView:self.window];
+    }
 }
 
 
