@@ -28,13 +28,14 @@
     if (_leftBtn == nil) {
         CGRect rect = self.bounds;
         rect.size.width /= 2;
+        rect.size.width -= 0.5;
         _leftBtn = [[TBDetailSKUButton alloc] initWithFrame:rect];
         
         _leftBtn.reversesTitleShadowWhenHighlighted = NO;
         _leftBtn.adjustsImageWhenHighlighted = NO;
         
         _leftBtn.layer.borderWidth  = 1.0;
-        _leftBtn.layer.cornerRadius = 3.0;
+//        _leftBtn.layer.cornerRadius = 3.0;
         
         [_leftBtn addTarget:self
                    action:@selector(leftButtonClicked:)
@@ -44,7 +45,7 @@
         
         [_leftBtn setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
         
-        [_leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 110)];
+        [_leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 100)];
         [_leftBtn setImageEdgeInsets:UIEdgeInsetsMake((_leftBtn.height - 5)/2, _leftBtn.width - 25.5, (_leftBtn.height - 5)/2, 15)];
 
         [self resizeButton:_leftBtn];
@@ -58,14 +59,14 @@
 -(TBDetailSKUButton *)rightBtn{
     if (_rightBtn == nil) {
         CGRect rect = self.leftBtn.frame;
-        rect.origin.x = self.leftBtn.right;
+        rect.origin.x = self.leftBtn.right + 1;
         _rightBtn = [[TBDetailSKUButton alloc] initWithFrame:rect];
         
         _rightBtn.reversesTitleShadowWhenHighlighted = NO;
         _rightBtn.adjustsImageWhenHighlighted = NO;
         
         _rightBtn.layer.borderWidth  = 1.0;
-        _rightBtn.layer.cornerRadius = 3.0;
+//        _rightBtn.layer.cornerRadius = 3.0;
         
         [_rightBtn addTarget:self
                      action:@selector(rightButtonClicked:)
@@ -75,7 +76,7 @@
         
         [_rightBtn setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
         
-        [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 110)];
+        [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 100)];
         [_rightBtn setImageEdgeInsets:UIEdgeInsetsMake((_rightBtn.height - 5)/2, _rightBtn.width - 25.5, (_rightBtn.height - 5)/2, 15)];
         
         [self resizeButton:_rightBtn];
@@ -89,8 +90,7 @@
 -(void)resizeButton:(TBDetailSKUButton*)button{
     button.clipsToBounds            = YES;
     button.titleLabel.numberOfLines = 2;
-    button.titleLabel.font          = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_Chinese
-                                                                size:TBDetailFontSize_Title2];
+    button.titleLabel.font          = [UIFont systemFontOfSize:17];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 

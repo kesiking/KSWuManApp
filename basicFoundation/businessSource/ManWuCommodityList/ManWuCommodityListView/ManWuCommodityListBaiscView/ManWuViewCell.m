@@ -15,7 +15,7 @@
 #import "KSImageListCache.h"
 
 #define commodityImage_border        (8.0)
-#define commodityImage_width_height  (self.width - 0)
+#define commodityImage_width_height  (self.width - 8)
 #define commodityImage_bottom_border (5.0)
 #define favorateLabel_width          (30)
 #define favorateLabel_height         (15)
@@ -55,12 +55,7 @@
 
 -(void)setupView{
     _commodityPriceCaculate = [ManWuCommodityPriceCaculate new];
-    [self.commodityImageView setFrame:CGRectMake(0, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
-    [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - favorateLabel_width, self.commodityImageView.bottom + commodityImage_bottom_border, favorateLabel_width, favorateLabel_height)];
-    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 2.0, favorateImage_width_height, favorateImage_width_height)];
-    [self.titleLabel setFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom + commodityImage_bottom_border, self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.favorateLabel.height)];
-    [self.priceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
-    [self.salePriceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
+    [self updateFrame];
 }
 
 -(UILabel *)titleLabel{
@@ -178,6 +173,19 @@
 }
 
 - (void)updateFrame{
+    NSUInteger index = self.indexPath.row;
+    if (index % 2 == 0) {
+        [self.commodityImageView setFrame:CGRectMake(8, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
+    }else{
+        [self.commodityImageView setFrame:CGRectMake(0, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
+    }
+    
+    [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - favorateLabel_width, self.commodityImageView.bottom + commodityImage_bottom_border, favorateLabel_width, favorateLabel_height)];
+    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 2.0, favorateImage_width_height, favorateImage_width_height)];
+    [self.titleLabel setFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom + commodityImage_bottom_border, self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.favorateLabel.height)];
+    [self.priceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
+    [self.salePriceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
+    
     [self.favorateLabel sizeToFit];
     [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - self.favorateLabel.width, self.favorateLabel.top, self.favorateLabel.width, self.favorateLabel.height)];
     [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - self.favorateImageView.width, self.favorateImageView.top, self.favorateImageView.width, self.favorateImageView.height)];

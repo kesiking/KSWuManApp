@@ -47,8 +47,8 @@
         KSCollectionViewConfigObject* configObject = [[KSCollectionViewConfigObject alloc] init];
         [configObject setupStandConfig];
         CGRect frame = self.bounds;
-        frame.size.width = frame.size.width - 2 * 8;
-        frame.origin.x = 8;
+        frame.size.width = frame.size.width - 2 * 0;
+        frame.origin.x = 0;
         configObject.collectionCellSize = CGSizeMake(frame.size.width/2, caculateNumber(180));
         _collectionViewCtl = [[KSCollectionViewController alloc] initWithFrame:frame withConfigObject:configObject];
         [_collectionViewCtl setErrorViewTitle:@"暂无数据，请稍后再试"];
