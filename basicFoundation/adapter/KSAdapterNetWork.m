@@ -176,8 +176,21 @@ static NSString* rsaPasswordKey = nil;
         [inputFormatter setDateFormat:@"yyyyMMddHHmmss"];
     }
     
-    NSString* requestTime = [NSString stringWithFormat:@"%@_%@",userId,[inputFormatter stringFromDate:[NSDate date]]];
-    NSString *requestTimeRSA = [RSAEncrypt encryptString:requestTime publicKey:rsaPasswordKey];
+    NSString* requestTime = [NSString stringWithFormat:@"%@",[inputFormatter stringFromDate:[NSDate date]]];
+    NSMutableString* signStr = [NSMutableString string];
+    NSArray* allKeys =  [newParams allKeys];
+    for (NSString* key in allKeys) {
+        id value = [newParams objectForKey:key];
+        [signStr appendString:key];
+        [signStr appendString:@"="];
+        [signStr appendString:[NSString stringWithFormat:@"%@",value]];
+        [signStr appendString:@"&"];
+    }
+    [signStr appendString:@"time"];
+    [signStr appendString:@"="];
+    [signStr appendString:requestTime];
+
+    NSString *requestTimeRSA = [RSAEncrypt encryptString:signStr publicKey:rsaPasswordKey];
     [newParams setObject:[requestTimeRSA tbUrlEncoded] forKey:@"sign"];
     /****************************/
     // 删除不必要的参数
