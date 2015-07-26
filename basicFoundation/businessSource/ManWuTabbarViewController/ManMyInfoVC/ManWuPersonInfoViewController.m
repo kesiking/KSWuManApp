@@ -59,8 +59,10 @@
     _table.scrollEnabled = NO;
     _table.sectionFooterHeight = 1;
     [self.view addSubview:_table];
-    
+    // 将推出登陆逻辑挪到设置页面中 ---- 孟希羲
+    /*
     [self quitMethod];
+     */
     
 }
 

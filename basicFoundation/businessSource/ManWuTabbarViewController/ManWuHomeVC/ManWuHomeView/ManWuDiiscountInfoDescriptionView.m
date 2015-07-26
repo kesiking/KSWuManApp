@@ -27,8 +27,8 @@
 -(UIImageView *)imageView{
     if (_imageView == nil) {
         CGRect rect = self.bounds;
-        rect.origin.y = 8;
-        rect.size.height = rect.size.height - 8;
+        rect.origin.y = 0;
+        rect.size.height = rect.size.height;
         _imageView = [[UIImageView alloc] initWithFrame:rect];
         [_imageView setImage:[UIImage imageNamed:@"home_discount_placehold_banner"]];
         _imageView.userInteractionEnabled = YES;

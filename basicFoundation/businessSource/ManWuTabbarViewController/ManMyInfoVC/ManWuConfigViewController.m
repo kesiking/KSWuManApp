@@ -10,6 +10,8 @@
 #import "ManWuFeedBackViewController.h"
 #import "ManWuAboutViewController.h"
 
+#define DEFAULT_CELL_HEIGHT 44      //tableView默认行高
+
 @interface ManWuConfigViewController ()<UIAlertViewDelegate>
 {
     NSArray *dataArray;
@@ -44,6 +46,7 @@
     self.table.dataSource = self;
     [self.view addSubview:self.table];
     
+    [self quitMethod];
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -194,6 +197,30 @@
         default:
             break;
     }
+}
+
+- (void)quitMethod
+{
+    UIView *viewQuit = [[UIView alloc] initWithFrame:CGRectMake(0, 0,SELFWIDTH, 60 + DEFAULT_CELL_HEIGHT)];
+    [_table setTableFooterView:viewQuit];
+    
+    CGRect rectButton=CGRectMake(0,60, SELFWIDTH, DEFAULT_CELL_HEIGHT);
+    UIButton * quitBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    quitBtn.frame=rectButton;
+    quitBtn.tag=2001;
+    [quitBtn setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#ffffff"]] forState:UIControlStateNormal];
+    quitBtn.layer.cornerRadius=3;
+    [quitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [quitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [quitBtn addTarget:self action:@selector(quitButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [viewQuit addSubview:quitBtn];
+}
+
+-(void)quitButtonClick:(UIButton*)sender
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:[LOGIN_FLAG filePathOfCaches] error:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
