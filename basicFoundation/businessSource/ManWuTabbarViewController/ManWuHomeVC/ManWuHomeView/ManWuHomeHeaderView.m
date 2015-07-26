@@ -78,10 +78,12 @@
     specialViewLayoutItem.padding             = padding;
     [self.container addItem:specialViewLayoutItem];
     
-    CSLinearLayoutItem *bannerViewLayoutItem = [[CSLinearLayoutItem alloc]
-                                                initWithView:self.bannerView];
-    bannerViewLayoutItem.padding             = padding;
-    [self.container addItem:bannerViewLayoutItem];
+    if (self.voucherService.dataList != nil && [self.voucherService.dataList count] > 0) {
+        CSLinearLayoutItem *bannerViewLayoutItem = [[CSLinearLayoutItem alloc]
+                                                    initWithView:self.bannerView];
+        bannerViewLayoutItem.padding             = padding;
+        [self.container addItem:bannerViewLayoutItem];
+    }
     
     CSLinearLayoutItem *recommendViewLayoutItem = [[CSLinearLayoutItem alloc]
                                                initWithView:self.recommendView];
@@ -219,6 +221,7 @@
         [bannerItems addObject:bannerItem];
     }
     [self.bannerView setLocalData:bannerItems];
+    [self reloadData];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

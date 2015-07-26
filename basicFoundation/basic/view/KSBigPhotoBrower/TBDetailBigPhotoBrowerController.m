@@ -718,6 +718,10 @@ static CGFloat const detailAlpha = 0.95;
     [self hideBars:nil];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f , _currentPage = %lu",scrollView.contentOffset.x,scrollView.contentOffset.y , _currentPage);
+}
+
 //ScrollView 划动的动画结束后调用.
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat pageWidth = _scrollView.frame.size.width;

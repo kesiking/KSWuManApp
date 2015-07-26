@@ -124,7 +124,7 @@
 //    self.skuSelectionControl.detailModel              = self.skuDetailModel;
     self.skuSelectionControl.detailModel              = self.detailModel;
     [self.commodityPriceCaculate setObject:self.detailModel dict:nil];
-    NSString* price = [NSString stringWithFormat:@"%@",[self.commodityPriceCaculate getCommodityPrice]];
+    NSString* price = [NSString stringWithFormat:@"%0.2f",[[self.commodityPriceCaculate getCommodityPrice] floatValue]];
     [self.headerView setPriceNumText:price];
     /*更新最大值*/
     self.buyNumberStepView.numberStepper.maximumValue = [self.detailModel.quantity doubleValue];
@@ -203,7 +203,7 @@
 //    NSString *skuInfo = self.detailModel.skuService.currentSKUInfo.skuInfoDescription?:[[self.detailModel.skuMap objectForKey:skuId] description];
     NSNumber *skuPrice = self.detailModel.skuService.currentSKUInfo.price;
     
-    [self.headerView setPriceNumText:[NSString stringWithFormat:@"%@",skuPrice]];
+    [self.headerView setPriceNumText:[NSString stringWithFormat:@"%0.2f",[skuPrice floatValue]]];
 }
 
 - (void)buyNowBtnClick:(id)sender {

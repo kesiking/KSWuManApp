@@ -99,7 +99,7 @@
         [self.commodityPriceCaculate setObject:self.detailModel dict:nil];
         self.commodityTitleLabel.text = self.detailModel.title;
         NSNumber* salePrice = [self.commodityPriceCaculate getCommodityPrice];
-        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %@",salePrice];
+        self.commodityPriceLabel.text = [NSString stringWithFormat:@"￥ %0.2f",[salePrice floatValue]];
         self.commodityOriginalPriceLabel.text = [NSString stringWithFormat:@"￥%@",self.detailModel.price];
         if (salePrice == self.detailModel.price) {
             self.commodityOriginalPriceLabel.hidden = YES;

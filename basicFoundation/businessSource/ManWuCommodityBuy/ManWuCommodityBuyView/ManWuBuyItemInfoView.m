@@ -260,7 +260,7 @@
     self.subtitleLabel.text = [dict objectForKey:@"skuInfo"];
     
     NSNumber* price = [self.commodityPriceCaculate getCommodityPrice];
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[price floatValue]];
     
     [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
 

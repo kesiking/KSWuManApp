@@ -27,7 +27,7 @@
 @end
 
 //图片切换时的回调block
-typedef void (^ChangeImageBlock)( int,int);
+typedef void (^ChangeImageBlock)( NSUInteger,NSUInteger);
 //看大图控件消失时刻的回调block
 typedef void (^SimplePhotoBrowserVCDisapperBlock)(void);
 

@@ -23,9 +23,9 @@
 
 #define defaultSortKey @"1"
 
-#define defaultCidKey @"1"
+#define defaultCidKey @"0"
 
-#define defaultActIdKey @"0"
+#define defaultActIdKey @"1"
 
 #define WriteTag 1
 #define ReadTag 2
