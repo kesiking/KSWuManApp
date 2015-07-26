@@ -68,7 +68,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:13];
         _titleLabel.textColor = RGB(0x66, 0x66, 0x66);
-        _titleLabel.backgroundColor = self.backgroundColor;
+        _titleLabel.backgroundColor = [UIColor whiteColor];
         _titleLabel.opaque = YES;
         _titleLabel.numberOfLines = 1;
         [self addSubview:_titleLabel];
@@ -81,7 +81,7 @@
         _priceLabel = [[UICustomLineLabel alloc] init];
         _priceLabel.font = [UIFont boldSystemFontOfSize:10];
         _priceLabel.textColor = RGB(0xf3, 0xf0, 0x9b);//RGB(0x2d, 0x2d, 0x2d);
-        _priceLabel.backgroundColor = self.backgroundColor;
+        _priceLabel.backgroundColor = [UIColor clearColor];
         _priceLabel.opaque = YES;
         _priceLabel.numberOfLines = 1;
         _priceLabel.lineType = LineTypeNone;
@@ -96,7 +96,7 @@
         _salePriceLabel = [[UICustomLineLabel alloc] init];
         _salePriceLabel.font = [UIFont boldSystemFontOfSize:12];
         _salePriceLabel.textColor = [UIColor whiteColor];//RGB(0x2d, 0x2d, 0x2d);
-        _salePriceLabel.backgroundColor = self.backgroundColor;
+        _salePriceLabel.backgroundColor = [UIColor clearColor];
         _salePriceLabel.opaque = YES;
         _salePriceLabel.numberOfLines = 1;
         _salePriceLabel.lineType = LineTypeNone;

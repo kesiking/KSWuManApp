@@ -19,14 +19,14 @@
 -(void)setupView{
     [super setupView];
     self.backgroundColor = [UIColor whiteColor];
-    [self.commoditySortImageView setFrame:CGRectMake(10, ceil((self.height - (sortImageViewHeight))/2), (sortImageViewWidth),(sortImageViewHeight))];
-    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + (10), self.commoditySortImageView.top, (200), self.commoditySortImageView.height)];
+    [self.commoditySortImageView setFrame:CGRectMake(20, ceil((self.height - (sortImageViewHeight))/2), (sortImageViewWidth),(sortImageViewHeight))];
+    [self.titleLabel setFrame:CGRectMake(self.commoditySortImageView.right + (12), self.commoditySortImageView.top, (200), self.commoditySortImageView.height)];
 }
 
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:12];
+        _titleLabel.font = [UIFont systemFontOfSize:13];
         [_titleLabel setTextColor:RGB(0x88, 0x88, 0x88)];
         _titleLabel.numberOfLines = 1;
         _titleLabel.backgroundColor = [UIColor clearColor];
