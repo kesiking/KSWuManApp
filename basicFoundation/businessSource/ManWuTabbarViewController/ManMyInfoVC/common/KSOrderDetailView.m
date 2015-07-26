@@ -272,7 +272,7 @@
         
         buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
         
-        if([orderModel.status integerValue] != 7)
+        if([orderModel.status integerValue] != 7 && [orderModel.status integerValue] != 5 && [orderModel.status integerValue] != 6)
         {
             UIButton *btn_service = [[UIButton alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 70, CGRectGetMaxY(colorLabel.frame) - 22, 70, 22)];
             [btn_service.titleLabel setFont:[UIFont systemFontOfSize:12]];

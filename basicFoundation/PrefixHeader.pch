@@ -39,7 +39,7 @@
 
 #define LOGIN_NEED_ENCRYPT
 #define LOGIN_USE_POST_ENCRYPT
-
+#define MYBUILDNUM [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
 //#define METHOD_GET
 
 #define ClearCacheNotification @"ClearCacheNotification"

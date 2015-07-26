@@ -14,6 +14,7 @@
 {
     NSArray *dataArray;
     UIAlertView *myAlertView;
+    NSString *appUrl;
 }
 
 @end
@@ -24,7 +25,8 @@
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-        //[_service setItemClass:[KSModelDemo class]];
+        [_service setItemClass:[NSDictionary class]];
+        _service.jsonTopKey = @"data";
     }
     return _service;
 }
@@ -57,6 +59,25 @@
 {
     if (service == _service) {
         // todo success
+        if([service.requestModel.apiName isEqualToString:@"app/getIos.do"])
+        {
+            NSDictionary *dataDic = [[NSDictionary alloc]initWithDictionary:(NSDictionary*)service.requestModel.item];
+            NSString *buildNum = dataDic[@"version"];
+            if([buildNum length] == 0 || [buildNum intValue] < [MYBUILDNUM intValue])
+            {
+                [WeAppToast toast:@"当前已是最新版本"];
+                return;
+            }
+            if([buildNum intValue] > [MYBUILDNUM intValue])
+            {
+                appUrl = dataDic[@"url"];
+                myAlertView = [[UIAlertView alloc]initWithTitle:@"新版本升级" message:nil delegate:self cancelButtonTitle:@"以后再说" otherButtonTitles:@"确定", nil];
+                myAlertView.tag = 101;
+                [myAlertView show];
+
+            }
+
+        }
     }
 }
 
@@ -123,7 +144,7 @@
             }
             else if (indexPath.row == 1)
             {
-                
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:appUrl]];
             }
         }
             break;
@@ -142,7 +163,7 @@
             }
             else if (indexPath.row == 2)
             {
-                
+                [self.service loadItemWithAPIName:@"app/getIos.do" params:nil version:nil];
             }
             
         }
@@ -165,6 +186,10 @@
             [[NSNotificationCenter defaultCenter]postNotificationName:ClearCacheNotification object:nil];
             [WeAppToast toast:@"清除缓存成功"];
             break;
+        case 101:
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:appUrl]];
+            break;
+
             
         default:
             break;
