@@ -10,8 +10,8 @@
 #import "ManWuCommoditySortAndFiltModel.h"
 #import "KSCollectionViewController.h"
 
-#define sortImageViewWidth  (28)
-#define sortImageViewHeight (30)
+#define sortImageViewWidth  (24)
+#define sortImageViewHeight (25)
 
 
 @implementation ManWuCommoditySortViewCell
