@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "KSManWuTabBarViewController.h"
+#import "KSGuideConfig.h"
 #import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
@@ -57,6 +58,12 @@
     self.window.rootViewController = navigationController;
     
     [self.window makeKeyAndVisible];
+    
+    [self configGuideScrollView];
+}
+
+- (void)configGuideScrollView{
+    [KSGuideConfig configGuideScrollView];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
