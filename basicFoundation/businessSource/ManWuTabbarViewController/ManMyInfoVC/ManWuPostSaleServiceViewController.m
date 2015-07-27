@@ -12,6 +12,8 @@
 
 @interface ManWuPostSaleServiceViewController ()
 {
+    BOOL isRegister;
+    BOOL isKeyShow;//是否有键盘
     UIScrollView *scrollView;
     KSDropDownListView *dropdownListService;
     UIPlaceHolderTextView *textView;
@@ -37,16 +39,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"申请退款";
+    [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     
-    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-    scrollView.contentSize = CGSizeMake(self.view.width,  self.view.height + 50);
-    [scrollView setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
-    
-    UITapGestureRecognizer* singleTapRecognizer;
-    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-    singleTapRecognizer.numberOfTapsRequired = 1; // 单击
-    [scrollView addGestureRecognizer:singleTapRecognizer];
-    [self setView:scrollView];
+//    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+//    scrollView.contentSize = CGSizeMake(self.view.width,  self.view.height + 50);
+//    [scrollView setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
+//    
+//    UITapGestureRecognizer* singleTapRecognizer;
+//    singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+//    singleTapRecognizer.numberOfTapsRequired = 1; // 单击
+//    [scrollView addGestureRecognizer:singleTapRecognizer];
+//    [self setView:scrollView];
 
     dropdownListService = [[KSDropDownListView alloc]initWithFrame:CGRectMake(10, 15, self.view.width - 20, 60*6) CellHeight:60];
     dropdownListService.userActionLabel.text = @"申请服务";
@@ -66,12 +69,73 @@
     [btn_commit setBackgroundImage:[TBDetailUIStyle createImageWithColor:[TBDetailUIStyle   colorWithHexString:@"#dc7868"]] forState:UIControlStateNormal];
     [btn_commit addTarget:self action:@selector(doPostSaleService) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn_commit];
+    
+    isRegister = NO;
+    NSNotificationCenter *center=[NSNotificationCenter defaultCenter];
+    //注册键盘显示通知
+    [center addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    //注册键盘隐藏通知
+    [center addObserver:self selector:@selector(keyBoardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 #pragma mark 监听View点击事件
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:NO];
+}
+
+#pragma mark 键盘显示时调用
+- (void)keyBoardWillShow:(NSNotification *)notification
+{
+    if(isKeyShow)
+    {
+        return;
+    }
+    isKeyShow=YES;
+    //    //获取LoginArea的视图
+    //    UIView *LoginArea=[self.view viewWithTag:VIEW_TAG];
+    //    //获取LoginArea的Rect
+    //    CGRect loginAreaRect=LoginArea.frame;
+    //键盘Rect
+    CGRect keyBoardRect=[[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    //偏移量
+    CGFloat distance = -dropdownListService.height;
+    [self animationWithUserInfo:notification.userInfo bloack:^{
+        if (self.view.frame.size.height == 480) {
+            self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance);
+            
+        }
+        else{
+            //                self.ZYlabel.transform=CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+            self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance);
+        }
+        //            self.ZYlabel.transform = CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+    }];
+}
+#pragma mark 键盘隐藏时调用
+- (void)keyBoardWillHidden:(NSNotification *)notification
+{
+    isKeyShow=NO;
+    [self animationWithUserInfo:notification.userInfo bloack:^{
+        self.view.transform=CGAffineTransformIdentity;
+        //        self.ZYlabel.transform = CGAffineTransformIdentity;
+    }];
+    
+}
+#pragma mark 键盘动画
+- (void)animationWithUserInfo:(NSDictionary *)userInfo bloack:(void (^)(void))block
+{
+    // 取出键盘弹出的时间
+    CGFloat duration=[userInfo[UIKeyboardAnimationDurationUserInfoKey]floatValue];
+    // 取出键盘弹出动画曲线
+    NSInteger curve=[userInfo[UIKeyboardAnimationCurveUserInfoKey]integerValue];
+    //开始动画
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    //调用bock
+    block();
+    [UIView commitAnimations];
 }
 
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{

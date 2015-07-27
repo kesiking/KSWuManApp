@@ -131,8 +131,31 @@
         [WeAppToast toast:@"新密码输入不一致"];
         return;
     }
-
+    
+#ifdef LOGIN_NEED_ENCRYPT
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
+    NSDictionary* aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    if (aliPayFile == nil) {
+        aliPayFile = [[NSDictionary alloc] init];
+    }
+    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
+    
+    //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
+    
+    NSString *signedPwd = [RSAEncrypt encryptString:_text_oldPwd.text publicKey:passwordKey];
+    NSString *signedNewPwd = [RSAEncrypt encryptString:_text_newPwd.text publicKey:passwordKey];
+    NSString* method = @"GET";
+#ifdef LOGIN_USE_POST_ENCRYPT
+    
+    method = @"POST";
+#endif
+    
+    [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phone":[KSUserInfoModel sharedConstant].phone, @"pwd":[signedPwd tbUrlEncoded]?:@"",@"newPwd":[signedNewPwd tbUrlEncoded]?:@"",@"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
+#else
     [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phone":[KSUserInfoModel sharedConstant].phone,@"pwd":_text_oldPwd.text,@"newPwd":_text_newPwd.text} version:nil];
+    
+#endif
+
 }
 
 #pragma mark WeAppBasicServiceDelegate method

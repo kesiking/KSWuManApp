@@ -106,7 +106,29 @@
         [WeAppToast toast:@"新密码输入不一致"];
         return;
     }
+    
+#ifdef LOGIN_NEED_ENCRYPT
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"aliPayfile" ofType:@"plist"];
+    NSDictionary* aliPayFile = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    if (aliPayFile == nil) {
+        aliPayFile = [[NSDictionary alloc] init];
+    }
+    NSString* passwordKey = [aliPayFile objectForKey:@"passwordKey1"];
+    
+    //    NSString *signedPwd = [KSUtils encryptLoginPwd:_text_psw.text pkvalue:passwordKey];
+    
+    NSString *signedNewPwd = [RSAEncrypt encryptString:_text_newPwd.text publicKey:passwordKey];
+    NSString* method = @"GET";
+#ifdef LOGIN_USE_POST_ENCRYPT
+    
+    method = @"POST";
+#endif
+    
+    [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phoneNum":_phoneNum, @"newPwd":[signedNewPwd tbUrlEncoded]?:@"", @"validateCode":_smsCode, @"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
+#else
     [self.service loadNumberValueWithAPIName:@"user/modifyPwd.do" params:@{@"phoneNum":_phoneNum,@"newPwd":_text_newPwd.text,@"validateCode":_smsCode} version:nil];
+    
+#endif
     
 }
 
