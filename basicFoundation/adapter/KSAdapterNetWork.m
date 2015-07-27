@@ -157,10 +157,6 @@ static NSString* rsaPasswordKey = nil;
     if (![newParams objectForKey:@"userId"] && [KSAuthenticationCenter userId]) {
         [newParams setObject:[KSAuthenticationCenter userId] forKey:@"userId"];
     }
-    NSString* userId = [KSAuthenticationCenter userId];
-    if (userId == nil || userId.length == 0) {
-        return;
-    }
     // 接口加密校验参数
     /*!
      *  @author 孟希羲, 15-07-19 15:07:43
@@ -189,6 +185,10 @@ static NSString* rsaPasswordKey = nil;
     [signStr appendString:@"time"];
     [signStr appendString:@"="];
     [signStr appendString:requestTime];
+    
+    if (requestTime) {
+        [newParams setObject:requestTime forKey:@"time"];
+    }
 
     NSString *requestTimeRSA = [RSAEncrypt encryptString:signStr publicKey:rsaPasswordKey];
     [newParams setObject:[requestTimeRSA tbUrlEncoded] forKey:@"sign"];
