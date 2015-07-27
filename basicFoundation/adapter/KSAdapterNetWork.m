@@ -191,7 +191,11 @@ static NSString* rsaPasswordKey = nil;
     }
 
     NSString *requestTimeRSA = [RSAEncrypt encryptString:signStr publicKey:rsaPasswordKey];
-    [newParams setObject:[requestTimeRSA tbUrlEncoded] forKey:@"sign"];
+    requestTimeRSA = [requestTimeRSA tbUrlEncoded];
+    if (requestTimeRSA) {
+        [newParams setObject:requestTimeRSA forKey:@"sign"];
+    }
+    
     /****************************/
     // 删除不必要的参数
     [newParams removeObjectForKey:@"needLogin"];

@@ -49,8 +49,7 @@
 -(void)resizeButton:(TBDetailSKUButton*)button{
     button.clipsToBounds            = YES;
     button.titleLabel.numberOfLines = 2;
-    button.titleLabel.font          = [TBDetailUIStyle fontWithStyle:TBDetailFontStyle_Chinese
-                                                                size:TBDetailFontSize_Title0];
+    button.titleLabel.font          = [UIFont boldSystemFontOfSize:17];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
