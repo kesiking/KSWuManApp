@@ -11,6 +11,8 @@
 
 @interface ManWuCommodityPriceCaculate : NSObject
 
++ (NSString*)getStringWithNSNumber:(NSNumber*)number FractionDigits:(NSUInteger)fractionDigits;
+
 - (void)setObject:(id)object dict:(NSDictionary*)dict;
 
 - (float)getTruePriceWithVoucherPrice:(float)voucherPrice;

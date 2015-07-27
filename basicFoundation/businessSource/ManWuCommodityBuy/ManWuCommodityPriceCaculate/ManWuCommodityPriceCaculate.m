@@ -19,6 +19,17 @@
 
 @implementation ManWuCommodityPriceCaculate
 
++ (NSString*)getStringWithNSNumber:(NSNumber*)number FractionDigits:(NSUInteger)fractionDigits{
+    static NSNumberFormatter *formatter = nil;
+    if (formatter == nil) {
+        formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    }
+    [formatter setMaximumFractionDigits:fractionDigits];
+
+    return [formatter stringFromNumber:number];
+}
+
 - (void)setObject:(id)object dict:(NSDictionary*)dict{
     if (![object isKindOfClass:[ManWuCommodityDetailModel class]]) {
         return;
