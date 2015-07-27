@@ -65,6 +65,7 @@
         _scrollView.delegate = self;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.scrollEnabled = NO;
         _scrollView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_scrollView];
         
@@ -139,6 +140,7 @@
     self.scrollView.clipsToBounds = NO;
     self.scrollView.bouncesZoom = NO;
     self.scrollView.zoomScale = 1.0;
+    self.scrollView.scrollEnabled = NO;
     float width = img.size.width;
     float height = img.size.height;
     
@@ -158,7 +160,7 @@
     self.maxScale = 1.0;
     self.scrollView.minimumZoomScale = self.minScale;
     self.scrollView.maximumZoomScale = self.maxScale;
-    
+        
     CGRect imgFrame = CGRectMake(0, 0, contSize.width, contSize.height);
     self.imageView.frame = imgFrame;
     //        _imageView.center=self.center;
@@ -196,7 +198,17 @@
     zs = MAX(zs, _minScale);
     zs = MIN(zs, _maxScale);
     NSLog(@"%f",zs);
+    // 尝试解决不能滑动问题
+    if (zs > _minScale) {
+        aScrollView.scrollEnabled = YES;
+    }else{
+        aScrollView.scrollEnabled = NO;
+    }
     [_scrollView setZoomScale:zs animated:YES];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+     NSLog(@"-----> scrollView: contentOffset.x = %f,contentOffset.y = %f",scrollView.contentOffset.x,scrollView.contentOffset.y);
 }
 
 - (void)setSelected:(BOOL)value animated:(BOOL)animated {
