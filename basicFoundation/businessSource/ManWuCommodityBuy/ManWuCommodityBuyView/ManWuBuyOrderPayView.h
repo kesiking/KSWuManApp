@@ -14,4 +14,6 @@
 
 @property (nonatomic, assign)   float                       voucherPrice;
 
+-(NSNumber*)getTruePriceWithVoucherPrice;
+
 @end

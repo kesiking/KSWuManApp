@@ -7,7 +7,6 @@
 //
 
 #import "ManWuVoucherService.h"
-#import "ManWuVoucherModel.h"
 
 @implementation ManWuVoucherService
 

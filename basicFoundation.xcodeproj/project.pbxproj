@@ -354,6 +354,13 @@
 		5F4E40541B1EDD42004AE7C0 /* KSAdapterCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */; };
 		5F4E40571B1F1246004AE7C0 /* KSCacheStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */; };
 		5F649A711B4BEBE0000F390F /* UICustomLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */; };
+		5F8E7F661B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F5F1B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png */; };
+		5F8E7F671B6BA50B00E80F5D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F601B6BA50B00E80F5D /* Default-Landscape~ipad.png */; };
+		5F8E7F681B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F611B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png */; };
+		5F8E7F691B6BA50B00E80F5D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F621B6BA50B00E80F5D /* Default-Portrait~ipad.png */; };
+		5F8E7F6A1B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F631B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png */; };
+		5F8E7F6B1B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F641B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png */; };
+		5F8E7F6C1B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F651B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -1274,6 +1281,13 @@
 		5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCacheStrategy.m; sourceTree = "<group>"; };
 		5F649A6F1B4BEBE0000F390F /* UICustomLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLineLabel.h; sourceTree = "<group>"; };
 		5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLineLabel.m; sourceTree = "<group>"; };
+		5F8E7F5F1B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		5F8E7F601B6BA50B00E80F5D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		5F8E7F611B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		5F8E7F621B6BA50B00E80F5D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		5F8E7F631B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-800-667h@2x.png"; sourceTree = "<group>"; };
+		5F8E7F641B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-800-Landscape-736h@3x.png"; sourceTree = "<group>"; };
+		5F8E7F651B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-800-Portrait-736h@3x.png"; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -1872,6 +1886,13 @@
 		0558668C1AD3B4F900A23FFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5F8E7F5F1B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png */,
+				5F8E7F601B6BA50B00E80F5D /* Default-Landscape~ipad.png */,
+				5F8E7F611B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png */,
+				5F8E7F621B6BA50B00E80F5D /* Default-Portrait~ipad.png */,
+				5F8E7F631B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png */,
+				5F8E7F641B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png */,
+				5F8E7F651B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png */,
 				058D5A8D1AF0B2BB006EA35C /* Default-568h@2x.png */,
 				058D5A8E1AF0B2BB006EA35C /* Default.png */,
 				058D5A8F1AF0B2BB006EA35C /* Default@2x.png */,
@@ -3675,6 +3696,7 @@
 				5FD2ED351B5BC304009FDF24 /* manwu_commodity_sort_like@2x.png in Resources */,
 				05AF30161B00506C00890A65 /* unPraise_button_image.png in Resources */,
 				91C76B701B31C516008C5EAC /* order_forpay@2x.png in Resources */,
+				5F8E7F6B1B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png in Resources */,
 				5FE3E90D1B64CCF30066671C /* manwu_commodity_filt_specialForToday@2x.png in Resources */,
 				5FE3E91B1B64CF390066671C /* manwu_commodity_filt_select_discount@2x.png in Resources */,
 				5F214C7A1B158F990081BA02 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
@@ -3699,6 +3721,7 @@
 				050FFD3E1B02EEAC00721E02 /* ManWuAddressManagerViewCell.xib in Resources */,
 				91BBA17E1B42DBFA002591C1 /* registerSuc_close.png in Resources */,
 				91C76B6F1B31C516008C5EAC /* order_forpay.png in Resources */,
+				5F8E7F691B6BA50B00E80F5D /* Default-Portrait~ipad.png in Resources */,
 				5FD2ED2F1B5BC282009FDF24 /* manwu_commodity_sort_select_price@3x.png in Resources */,
 				5F214C7E1B158F990081BA02 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
 				5FD244F41B3ACBFF00353589 /* manwu_commodity_filt_all.png in Resources */,
@@ -3743,6 +3766,7 @@
 				5FE612F21B65EFF700AE60C7 /* img_index_03bg@2x.png in Resources */,
 				5FD2EDBC1B5BC9B3009FDF24 /* manwu_category_select_shirt@2x.png in Resources */,
 				5FE3E90A1B64CCF30066671C /* manwu_commodity_filt_buy@3x.png in Resources */,
+				5F8E7F6A1B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png in Resources */,
 				5FD2ED761B5BC573009FDF24 /* manwu_commodity_filt_select_discount.png in Resources */,
 				056664B21AEE37AC00FD1C65 /* tb_control_flow_number_left_press.png in Resources */,
 				5F4088121B19663200954568 /* manwu_default_address.png in Resources */,
@@ -3812,6 +3836,7 @@
 				5FD2EDA21B5BC9B3009FDF24 /* manwu_category_dress@3x.png in Resources */,
 				05AF30131B00506C00890A65 /* favorate_button_image.png in Resources */,
 				058DAE201AE638BA009D0008 /* tabbar_background_white@2x.png in Resources */,
+				5F8E7F661B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png in Resources */,
 				91C76B7C1B31C516008C5EAC /* sex_woman@3x.png in Resources */,
 				5FD2ED201B5BAAC7009FDF24 /* skuview_increase@2x.png in Resources */,
 				058D5D0B1AF2140C006EA35C /* tbbuy_item_decrease2@2x.png in Resources */,
@@ -3825,6 +3850,7 @@
 				5FD2EDA81B5BC9B3009FDF24 /* manwu_category_high_heeled_show@3x.png in Resources */,
 				058D5D101AF2140C006EA35C /* tbbuy_question_fill@2x.png in Resources */,
 				5FD2ED751B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png in Resources */,
+				5F8E7F671B6BA50B00E80F5D /* Default-Landscape~ipad.png in Resources */,
 				05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */,
 				5FE3E9081B64CCF30066671C /* manwu_commodity_filt_all@3x.png in Resources */,
 				056664B11AEE37AC00FD1C65 /* tb_control_flow_number_left.png in Resources */,
@@ -3884,9 +3910,11 @@
 				5FD2EDA41B5BC9B3009FDF24 /* manwu_category_high_heeled_select_show@2x.png in Resources */,
 				5FD2EDAF1B5BC9B3009FDF24 /* manwu_category_necklace.png in Resources */,
 				056664B41AEE37AC00FD1C65 /* tb_control_flow_number_right_press.png in Resources */,
+				5F8E7F6C1B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png in Resources */,
 				5F2D00081B4EAD5E007C2F4D /* manwu_sort_down.png in Resources */,
 				91671D801B482DBE00833331 /* btn_back@2x.png in Resources */,
 				5F214C801B158F990081BA02 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
+				5F8E7F681B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png in Resources */,
 				5FD2EDB11B5BC9B3009FDF24 /* manwu_category_necklace@3x.png in Resources */,
 				5FD2EDBF1B5BC9B3009FDF24 /* manwu_category_shirt@2x.png in Resources */,
 				052CC6BB1AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png in Resources */,

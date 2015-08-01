@@ -53,11 +53,9 @@
     _scaleView.transform = CGAffineTransformIdentity;
     _scaleView.frame = CGRectMake(15, 0.0, self.width - 15 * 2, self.height);
     
-    float truePrice = [self.commodityPriceCaculate getTruePriceWithVoucherPrice:self.voucherPrice];
+    _priceLabel.text = [self getTruePriceStrWithVoucherPrice];
     
-    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", truePrice];
-    
-    _payPrice = [NSNumber numberWithFloat:truePrice];
+    _payPrice = [self getTruePriceWithVoucherPrice];
     
     CGSize priceSize = [_priceLabel.text sizeWithFont:_priceLabel.font];
     
@@ -68,8 +66,21 @@
 
 -(void)setVoucherPrice:(float)voucherPrice{
     _voucherPrice = voucherPrice;
-    float truePrice = [self.commodityPriceCaculate getTruePriceWithVoucherPrice:voucherPrice];
-    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f", truePrice];
+    _priceLabel.text = [self getTruePriceStrWithVoucherPrice];
+}
+
+-(NSNumber*)getTruePriceWithVoucherPrice{
+    float payPrice = [self getFloatTruePriceWithVoucherPrice];
+    return [NSNumber numberWithFloat:payPrice];
+}
+
+-(float)getFloatTruePriceWithVoucherPrice{
+    return [self.commodityPriceCaculate getTruePriceWithVoucherPrice:self.voucherPrice];
+}
+
+-(NSString*)getTruePriceStrWithVoucherPrice{
+    float truePrice = [self getFloatTruePriceWithVoucherPrice];
+    return [NSString stringWithFormat:@"¥%.2f", truePrice];
 }
 
 @end
