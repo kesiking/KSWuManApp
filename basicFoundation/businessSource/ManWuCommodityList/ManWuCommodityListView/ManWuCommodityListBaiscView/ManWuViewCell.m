@@ -202,17 +202,18 @@
         WEAKSELF
         UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
         if (image == nil) {
-            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                STRONGSELF
-                if (image && error == nil) {
-                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
-                }
-                return image;
-            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (image && detailModel.img) {
-                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
-                }
-            }];
+            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+//            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                STRONGSELF
+//                if (image && error == nil) {
+//                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
+//                }
+//                return image;
+//            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                if (image && detailModel.img) {
+//                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
+//                }
+//            }];
         }else{
             [self.commodityImageView setImage:image];
         }
