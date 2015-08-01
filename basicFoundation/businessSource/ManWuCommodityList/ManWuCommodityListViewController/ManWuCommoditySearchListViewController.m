@@ -45,6 +45,9 @@
 
     [self.searchNavigationView addSubview:self.searchView.navigateview];
     [self.searchView.navigateview setOrigin:CGPointMake(0, (self.searchNavigationView.height - self.searchView.navigateview.height)/2)];
+    
+    [self.view bringSubviewToFront:self.searchView];
+    [self.view bringSubviewToFront:self.searchNavigationView];
 }
 
 -(void)refreshDataRequest{
@@ -73,6 +76,7 @@
 -(UIView *)searchNavigationView{
     if (_searchNavigationView == nil) {
         _searchNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 64)];
+        _searchNavigationView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:_searchNavigationView];
     }
     return _searchNavigationView;

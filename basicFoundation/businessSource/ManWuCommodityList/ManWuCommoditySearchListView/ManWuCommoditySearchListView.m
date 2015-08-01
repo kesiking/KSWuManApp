@@ -127,6 +127,8 @@
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
             NSDictionary* params = @{@"actIdKey":sortAndFiltModel.actIdKey?:defaultActIdKey};
             [strongSelf loadDataWithParams:params];
+            
+            [strongSelf.sortFiltHeadView setLeftBtnTitle:sortAndFiltModel.titleText];
         };
         _sortListSelectView.hidden = YES;
         [self addSubview:_sortListSelectView];
@@ -157,6 +159,8 @@
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
             NSDictionary* params = @{@"sortKey":sortAndFiltModel.sortKey?:defaultSortKey};
             [strongSelf loadDataWithParams:params];
+            
+            [strongSelf.sortFiltHeadView setRightBtnTitle:sortAndFiltModel.titleText];
         };
         _filtForDiscoverSelectView.hidden = YES;
         [self addSubview:_filtForDiscoverSelectView];
@@ -168,7 +172,7 @@
     if (_searchNumberView == nil) {
         _searchNumberView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, self.width, 30)];
         UILabel* label = [[UILabel alloc] initWithFrame:_searchNumberView.bounds];
-        [label setFont:[UIFont systemFontOfSize:13]];
+        [label setFont:[UIFont systemFontOfSize:12]];
         [label setTextColor:RGB(0x99, 0x99, 0x99)];
         [_searchNumberView addSubview:label];
         label.tag = 10010;
@@ -195,11 +199,13 @@
             }else{
                 [label setText:[NSString stringWithFormat:@"共搜索到0个结果"]];
             }
+            [strongSelf hideLoadingView];
         };
         _searchNumberService.serviceDidFailLoadBlock = ^(WeAppBasicService* service ,NSError* error){
             STRONGSELF
             UILabel* label = (UILabel*)[strongSelf.searchNumberView viewWithTag:10010];
             [label setText:[NSString stringWithFormat:@"共搜索到0个结果"]];
+            [strongSelf hideLoadingView];
         };
     }
     return _searchNumberService;
@@ -239,6 +245,7 @@
         return;
     }
     // service todo
+    [self showLoadingView];
     [self.searchListService loadDiscoverSearchListDataWithWithKeyword:self.searchKeyword actId:self.actIdKey cid:self.filtKey sort:self.sortKey];
     [self.searchNumberService loadDiscoverSearchNumberWithKeyword:self.searchKeyword];
 }
