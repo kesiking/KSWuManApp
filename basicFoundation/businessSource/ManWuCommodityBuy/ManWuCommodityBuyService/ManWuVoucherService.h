@@ -7,6 +7,7 @@
 //
 
 #import "KSAdapterService.h"
+#import "ManWuVoucherModel.h"
 
 @interface ManWuVoucherService : KSAdapterService
 

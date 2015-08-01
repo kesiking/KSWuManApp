@@ -156,21 +156,21 @@
             NSNumber* buyNum = [strongSelf.commodityPriceCaculate getCommodityCount];
             NSNumber* activityId = strongSelf.detailModel.activityId;
             
-            float payPrice = [strongSelf.commodityPriceCaculate getTruePriceWithVoucherPrice:0];
-            
-            if (strongSelf.hasVoucher) {
-                payPrice = [strongSelf.commodityPriceCaculate getTruePriceWithVoucherPrice:strongSelf.voucherView.voucherPrice];
-            }
+            NSNumber* payPrice = [strongSelf getCommodityPayPrice];
             
             if (strongSelf.addressView.addressId == nil || strongSelf.addressView.addressId.length == 0) {
                 [WeAppToast toast:@"请先输入您的收货地址"];
                 return;
             }
             
-            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:[NSNumber numberWithFloat:payPrice] activityId:activityId voucherId:strongSelf.voucherView.voucherId];
+            [strongSelf.createOrderService createOrderWithUserId:[KSAuthenticationCenter userId] addressId:strongSelf.addressView.addressId skuId:skuId itemId:itemId buyNum:buyNum payPrice:payPrice activityId:activityId voucherId:strongSelf.voucherView.voucherId];
         };
     }
     return _comfirmView;
+}
+
+-(NSNumber*)getCommodityPayPrice{
+    return [self.orderPayView getTruePriceWithVoucherPrice];
 }
 
 - (CSLinearLayoutView *)skuContainer {
@@ -192,7 +192,7 @@
             STRONGSELF
             if (service && service.numberValue) {
                 NSString* tradeNO = [NSString stringWithFormat:@"%@",service.numberValue];
-                NSDictionary* params = @{@"tradeNO":tradeNO?:@"",@"productName":strongSelf.detailModel.title?:@"",@"productDescription":strongSelf.detailModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",strongSelf.orderPayView.payPrice?:@0.01]};
+                NSDictionary* params = @{@"tradeNO":tradeNO?:@"",@"productName":strongSelf.detailModel.title?:@"",@"productDescription":strongSelf.detailModel.title?:@"",@"price":[NSString stringWithFormat:@"%@",[strongSelf getCommodityPayPrice]?:@0.01]};
                 
                 [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
                     // 支付成功后 todo
