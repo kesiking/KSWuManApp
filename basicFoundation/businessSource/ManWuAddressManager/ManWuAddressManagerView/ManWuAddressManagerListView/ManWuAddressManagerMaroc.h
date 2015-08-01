@@ -17,6 +17,8 @@
 
 #define kAddressModelKey                    @"addressModel"
 
+#define kAddressDefaultSettingKey           @"addressDefaultSetting"
+
 typedef void(^addressDidChangeBlock) (BOOL addressDidChange,WeAppComponentBaseItem* addressComponentItem);
 
 typedef void (^successWrapper)(WeAppComponentBaseItem *addressModel);

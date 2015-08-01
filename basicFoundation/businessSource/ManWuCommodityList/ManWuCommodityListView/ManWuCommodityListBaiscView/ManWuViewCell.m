@@ -209,8 +209,8 @@
                 }
                 return image;
             } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (image && imageURL) {
-                    [[KSImageListCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString];
+                if (image && detailModel.img) {
+                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
                 }
             }];
         }else{
@@ -277,17 +277,21 @@
         WEAKSELF
         UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
         if (image == nil) {
-            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                STRONGSELF
-                if (image && error == nil) {
-                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
-                }
-                return image;
-            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (image && imageURL) {
-                    [[KSImageListCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString];
-                }
-            }];
+            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+//            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                STRONGSELF
+//                if (image && error == nil) {
+//                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
+//                }
+//                return image;
+//            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                STRONGSELF
+//                if (image && detailModel.img && error == nil) {
+//                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
+//                }else{
+//                    strongSelf.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
+//                }
+//            }];
         }else{
             [self.commodityImageView setImage:image];
         }

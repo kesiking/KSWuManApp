@@ -40,6 +40,11 @@
                                                  name:UIApplicationDidReceiveMemoryWarningNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearMemory)
+                                                 name:ClearCacheNotification
+                                               object:nil];
+    
 }
 
 - (UIImage *)imageFromMemoryCacheForKey:(NSString *)key {

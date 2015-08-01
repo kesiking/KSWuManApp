@@ -15,9 +15,11 @@
 
 @property (nonatomic,strong) ManWuAddressEditView   * addressEditView;
 
-@property (nonatomic,strong) ManWuAddressInfoModel  * addressInfoModel;
+@property (nonatomic,strong) ManWuAddressInfoModel   *addressInfoModel;
 
-@property (nonatomic,strong) addressDidChangeBlock  addressDidChangeBlock;
+@property (nonatomic,strong) addressDidChangeBlock    addressDidChangeBlock;
+
+@property (nonatomic,assign) BOOL                     isDefaultAddress;
 
 @end
 
@@ -28,6 +30,7 @@
         if (nativeParams) {
             self.addressDidChangeBlock = [nativeParams objectForKey:kAddressManagerSuccessBlock];
             self.addressInfoModel = [nativeParams objectForKey:kAddressModelKey];
+            self.isDefaultAddress = [nativeParams objectForKey:kAddressDefaultSettingKey];
         }
     }
     return self;
@@ -54,6 +57,7 @@
 -(ManWuAddressEditView *)addressEditView{
     if (_addressEditView == nil) {
         _addressEditView = [[ManWuAddressEditView alloc] initWithFrame:self.view.bounds];
+        [_addressEditView setIsDefaultAddress:self.isDefaultAddress];
         [_addressEditView setAddressInfoModel:self.addressInfoModel];
         if (self.addressDidChangeBlock) {
             _addressEditView.addressDidChangeBlock = self.addressDidChangeBlock;

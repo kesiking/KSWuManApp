@@ -18,4 +18,6 @@
 
 @property (strong, nonatomic) UIButton             *deleteButton;
 
+@property (nonatomic, assign) BOOL                  isDefaultAddress;
+
 @end
