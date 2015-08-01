@@ -181,9 +181,9 @@
             return;
         }
         [self.statusHandler removeStatusViewFromView:self.table];
-        ordersList = (NSArray*)service.requestModel.dataList;
+        NSArray *orderslist = (NSArray*)service.requestModel.dataList;
         
-        if([ordersList count] == 0)
+        if([orderslist count] == 0)
         {
             [self.statusHandler showEmptyViewInView:self.table frame:self.table.bounds];
         }
