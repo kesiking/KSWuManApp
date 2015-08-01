@@ -55,7 +55,10 @@
             break;
         case ButtonSelectedStyleDeleteOrder:
         {
-            
+            myAlertView = [[UIAlertView alloc]initWithTitle:@"是否删除订单？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            myAlertView.tag = 8;
+            [myAlertView show];
+
         }
             break;
         case ButtonSelectedStylePay:
@@ -65,7 +68,17 @@
             
             [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
                 // 支付成功后 todo
-                NSLog(@"++++++++++++++支付成功");
+
+                BOOL ret = (BOOL)resultDic[@"isSuccess"];
+                if(ret)
+                {
+                    NSLog(@"++++++++++++++支付成功");
+                    self.orderModel.status = [NSString stringWithFormat:@"%d",2];
+                    [orderDetailView updateViewWithOrderModel:self.orderModel];
+                }else
+                {
+                    NSLog(@"++++++++++++++支付失败");
+                }
             }];
         }
             break;
@@ -83,6 +96,13 @@
         {
             ManWuPostSaleServiceViewController *postsaleService = [[ManWuPostSaleServiceViewController alloc]init];
             postsaleService.orderModel = self.orderModel;
+            postsaleService.postSaleServeSuccess = ^(BOOL ret)
+            {
+                self.orderModel.status = [NSString stringWithFormat:@"%d",5];
+                [orderDetailView updateViewWithOrderModel:self.orderModel];
+                
+            };
+            
             [self.navigationController pushViewController:postsaleService animated:YES];
         }
             break;
@@ -95,7 +115,8 @@
 
 - (void)didSelectedOrderInfoItem:(KSOrderModel *)orderModel
 {
-    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:orderModel.itemId?:@"",@"itemId", nil];
+    TBOpenURLFromTargetWithNativeParams(internalURL(kManWuCommodityDetail), self,nil,params);
 }
 
 #pragma mark - WeAppBasicServiceDelegate method
@@ -104,10 +125,6 @@
 {
     if (service == _service) {
         // todo success
-        if([service.requestModel.apiName isEqualToString:@"order/modifyOrder.do"])
-        {
-            return;
-        }
 
     }
 }
@@ -116,6 +133,20 @@
 {
     if (service == _service) {
         // todo success
+        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:service.requestModel.params];
+        if([service.requestModel.apiName isEqualToString:@"order/modifyOrder.do"])
+        {
+            if([[dic objectForKey:@"status"] integerValue] == 8)
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+            }else
+            {
+                self.orderModel.status = [NSString stringWithFormat:@"%@",[dic objectForKey:@"status"]];
+                [orderDetailView updateViewWithOrderModel:self.orderModel];
+            }
+            return;
+        }
+
     }
 }
 
@@ -145,6 +176,12 @@
             {
                 //取消订单操作
                 [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":_orderModel.orderId,@"status":@7} version:nil];
+            }
+                break;
+            case 8:
+            {
+                //取消订单操作
+                [self.service loadItemWithAPIName:@"order/modifyOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId,@"orderId":_orderModel.orderId,@"status":@8} version:nil];
             }
                 break;
                 

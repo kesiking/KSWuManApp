@@ -354,7 +354,7 @@
         forSendItem.remindNum = forSendNum;
         forReceiveItem.remindNum = forReceiveNum;
 //        receivedItem.remindNum = receivedNum;
-//        forChangeItem.remindNum = forChangeNum;
+        forChangeItem.remindNum = forChangeNum;
     }
 }
 

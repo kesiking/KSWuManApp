@@ -24,9 +24,11 @@
     UIView *itemView_addressInfo;
     UIView *itemView_orderInfo;
     UIView *itemView_orderDeal;
+    UIButton *btn_service;
+    UIButton *btn_left;
+    UIButton *btn_right;
     
     UILabel *orderTypeLabel;
-    
     NSString *orderType;
     
 }
@@ -272,9 +274,9 @@
         
         buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
         
-        if([orderModel.status integerValue] != 7 && [orderModel.status integerValue] != 5 && [orderModel.status integerValue] != 6)
+        if([orderModel.status integerValue] != 7 && [orderModel.status integerValue] != 5 && [orderModel.status integerValue] != 6 && [orderModel.status integerValue] != 1)
         {
-            UIButton *btn_service = [[UIButton alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 70, CGRectGetMaxY(colorLabel.frame) - 22, 70, 22)];
+            btn_service = [[UIButton alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 70, CGRectGetMaxY(colorLabel.frame) - 22, 70, 22)];
             [btn_service.titleLabel setFont:[UIFont systemFontOfSize:12]];
             [btn_service setTitle:@"申请售后" forState:UIControlStateNormal];
             btn_service.layer.borderWidth = 0.5;
@@ -386,14 +388,18 @@
 
 - (void)initItemView_orderDeal
 {
+    if([orderModel.status integerValue] == 2 || [orderModel.status integerValue] == 5)
+    {
+        return;
+    }
     if(!itemView_orderDeal)
     {
         itemView_orderDeal = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, itemView_orderDeal_height)];
         [itemView_orderDeal setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
 
         //设置按钮大小
-        UIButton *btn_left = [[UIButton alloc]init];
-        UIButton *btn_right = [[UIButton alloc]init];
+        btn_left = [[UIButton alloc]init];
+        btn_right = [[UIButton alloc]init];
         
         NSString *title_leftBtn = [[NSString alloc]init];
         NSString *title_rightBtn = [[NSString alloc]init];
@@ -422,7 +428,7 @@
                 break;
             case 3:
             {
-                statusStr = @"待收货";
+                statusStr = @"已发货";
                 title_leftBtn = @"";
                 title_rightBtn = @"确认收货";
                 [btn_right addTarget:self action:@selector(didSelectedOrderDealButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -440,9 +446,16 @@
                 break;
             case 5:
             {
-                statusStr = @"退/换货";
+                statusStr = @"退款中";
                 title_leftBtn = @"";
                 title_rightBtn = @"";
+            }
+                break;
+            case 6:
+            {
+                statusStr = @"已退款";
+                title_leftBtn = @"";
+                title_rightBtn = @"删除订单";
             }
                 break;
             case 7:
@@ -459,6 +472,7 @@
             default:
                 break;
         }
+        
         CGSize btn_rightSize = [title_rightBtn sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]}];
         CGFloat btn_rightX = self.width - kSpacePaddingX - btn_rightSize.width - 30;
         CGFloat btn_rightY = kSpacePaddingY;
@@ -499,6 +513,68 @@
     item.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
     item.verticalAlignment = CSLinearLayoutItemVerticalAlignmentCenter;
     [myInfoContainer addItem:item];
+
+}
+
+- (void)updateViewWithOrderModel:(KSOrderModel*)model
+{
+    if([model.status integerValue] == 7)
+    {
+        orderType = @"已取消";
+        orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
+        if(btn_left)
+        {
+            [btn_left removeFromSuperview];
+        }
+        if(btn_right)
+        {
+            btn_right.titleLabel.text = @"删除订单";
+        }
+    }else if([model.status integerValue] == 6)
+    {
+        orderType = @"已退款";
+        orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
+        if(btn_right)
+        {
+            btn_right.titleLabel.text = @"删除订单";
+        }
+
+    }else if([model.status integerValue] == 5)
+    {
+        orderType = @"退款中";
+        orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
+        if(itemView_orderDeal)
+        {
+            [itemView_orderDeal removeFromSuperview];
+        }
+        
+    }else if([model.status integerValue] == 4)
+    {
+        orderType = @"已收货";
+        orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
+        if(btn_right)
+        {
+            btn_right.titleLabel.text = @"删除订单";
+        }
+        
+    }else if([model.status integerValue] == 3)
+    {
+        orderType = @"已发货";
+        orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
+        if(btn_right)
+        {
+            btn_right.titleLabel.text = @"确认收货";
+        }
+        
+    }else if([model.status integerValue] == 2)
+    {
+        orderType = @"待发货";
+        orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
+        if(itemView_orderDeal)
+        {
+            [itemView_orderDeal removeFromSuperview];
+        }
+    }
 
 }
 

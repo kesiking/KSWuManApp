@@ -38,13 +38,13 @@
 {
     if(!_text_newPwd)
     {
-        _text_newPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, SELFWIDTH, 40)];
+        _text_newPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, 30, SELFWIDTH, TEXTFILEDHEIGHT)];
         _text_newPwd.placeholder = @"新密码";
         [_text_newPwd setFont:[UIFont systemFontOfSize:16]];
         _text_newPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_newPwd.keyboardType = UIKeyboardTypeNumberPad;
         _text_newPwd.clearButtonMode = UITextFieldViewModeAlways;
-        _text_newPwd.secureTextEntry = NO;
+        _text_newPwd.secureTextEntry = YES;
         _text_newPwd.delegate = self;
         [_text_newPwd setBackgroundColor:[UIColor whiteColor]];
     }
@@ -55,13 +55,13 @@
 {
     if(!_text_renewPwd)
     {
-        _text_renewPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_newPwd.frame) + 1, SELFWIDTH, 40)];
+        _text_renewPwd = [[MWInsetsTextField alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_text_newPwd.frame) + 1, SELFWIDTH, TEXTFILEDHEIGHT)];
         _text_renewPwd.placeholder = @"确认新密码";
         [_text_renewPwd setFont:[UIFont systemFontOfSize:16]];
         _text_renewPwd.textEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         _text_renewPwd.keyboardType = UIKeyboardTypeNumberPad;
         _text_renewPwd.clearButtonMode = UITextFieldViewModeAlways;
-        _text_renewPwd.secureTextEntry = NO;
+        _text_renewPwd.secureTextEntry = YES;
         _text_renewPwd.delegate = self;
         [_text_renewPwd setBackgroundColor:[UIColor whiteColor]];
     }
@@ -124,9 +124,9 @@
     method = @"POST";
 #endif
     
-    [self.service loadItemWithAPIName:@"user/reset.do" params:@{@"phoneNum":_phoneNum, @"newPwd":[signedNewPwd tbUrlEncoded]?:@"", @"validateCode":_smsCode, @"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
+    [self.service loadItemWithAPIName:@"user/modifyPwd.do" params:@{@"phone":_phoneNum, @"newPwd":[signedNewPwd tbUrlEncoded]?:@"", @"validateCode":_smsCode, @"__unNeedEncode__":@1,@"__METHOD__":method} version:nil];
 #else
-    [self.service loadNumberValueWithAPIName:@"user/modifyPwd.do" params:@{@"phoneNum":_phoneNum,@"newPwd":_text_newPwd.text,@"validateCode":_smsCode} version:nil];
+    [self.service loadNumberValueWithAPIName:@"user/modifyPwd.do" params:@{@"phone":_phoneNum,@"newPwd":_text_newPwd.text,@"validateCode":_smsCode} version:nil];
     
 #endif
     
@@ -145,7 +145,8 @@
 {
     if (service == _service) {
         // todo success
-        NSLog(@"%@",service.item.componentDict);
+        [WeAppToast toast:@"找回密码成功"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 

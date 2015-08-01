@@ -65,7 +65,7 @@
 }
 
 -(void)addTheRemindImage{
-    _remindImage=[[UIImageView alloc] initWithFrame:CGRectMake(45, 5, 15, 15)];
+    _remindImage=[[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 15, 15)];
     _remindImage.image=[UIImage imageNamed:@"public_Remindnumber.png"];
     _remindImage.backgroundColor=[UIColor clearColor];
     [self addSubview:_remindImage];
@@ -84,12 +84,12 @@
     }else{
         _remindImage.alpha = 1;
         if(remindNum < 0 ){
-            _remindImage.frame = CGRectMake(55, 5, 8, 8);
+            _remindImage.frame = CGRectMake(30, 0, 10, 10);
         }else{
             UILabel *numberLabel=[[UILabel alloc] initWithFrame:CGRectMake(3, 2, 10, 10)];
             numberLabel.backgroundColor=[UIColor clearColor];
             numberLabel.textAlignment=NSTextAlignmentCenter;
-            numberLabel.font=[UIFont systemFontOfSize:8];
+            numberLabel.font=[UIFont systemFontOfSize:10];
             numberLabel.textColor=[UIColor whiteColor];
             numberLabel.text=[NSString stringWithFormat:@"%ld",(long)remindNum];
             if (remindNum>99) {
@@ -100,7 +100,7 @@
                 //对图片进行边帽设置，可以把图片分为4个部分，取大约值即可，将来放大的话 四个角不变，其余部分会自动有规则的填充
                 UIImage *newImage=[img stretchableImageWithLeftCapWidth:7.5 topCapHeight:7.5];
                 _remindImage.image=newImage;
-                _remindImage.frame=CGRectMake(40, 5, 20, 15);
+                _remindImage.frame=CGRectMake(30, 0, 20, 15);
                 numberLabel.frame=CGRectMake(3, 2, 15, 10);
                 numberLabel.text=[NSString stringWithFormat:@"99+"];
             }
@@ -114,7 +114,7 @@
 -(void)setIsRemind:(BOOL)isRemind{
     if (isRemind && _remindNum == 0) {
         if (_remindImage==nil) {
-            _remindImage=[[UIImageView alloc] initWithFrame:CGRectMake(47, 5, 8, 8)];
+            _remindImage=[[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 10, 10)];
         }
         
         _remindImage.image=[UIImage imageNamed:@"public_Remindnumber"];

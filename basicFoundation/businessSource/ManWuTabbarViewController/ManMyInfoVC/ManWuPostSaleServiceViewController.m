@@ -152,7 +152,7 @@
         return;
     }
     
-    [self.service loadItemWithAPIName:@"user/refundOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"orderId":self.orderModel.orderId, @"type":[NSString stringWithFormat:@"%ld",(long)dropdownListService.serviceType],@"reason":orderReason?:@""} version:nil];
+    [self.service loadItemWithAPIName:@"order/refundOrder.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId, @"orderId":self.orderModel.orderId, @"type":[NSString stringWithFormat:@"%ld",(long)dropdownListService.serviceType],@"reason":orderReason?:@""} version:nil];
 }
 
 #pragma mark WeAppBasicServiceDelegate method
@@ -169,6 +169,12 @@
     if (service == _service) {
         // todo success
         [WeAppToast toast:@"申请退款成功"];
+
+        if(self.postSaleServeSuccess)
+        {
+            self.postSaleServeSuccess(YES);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

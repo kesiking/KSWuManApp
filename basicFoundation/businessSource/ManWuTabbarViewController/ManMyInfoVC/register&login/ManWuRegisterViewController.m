@@ -197,18 +197,18 @@
     //键盘Rect
     CGRect keyBoardRect=[[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
     //偏移量
-    CGFloat distance=keyBoardRect.origin.y-CGRectGetMaxY(_text_inviteCode.frame) - 64;
+    CGFloat distance;
+    distance=keyBoardRect.origin.y-CGRectGetMaxY(_text_inviteCode.frame) - 64;
     if (distance<0) {
         [self animationWithUserInfo:notification.userInfo bloack:^{
-            if (self.view.frame.size.height == 480) {
-                self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance - 20);
-                
-            }
-            else{
-                //                self.ZYlabel.transform=CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+            if (self.view.frame.size.height <= 480) {
                 self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance);
             }
-            //            self.ZYlabel.transform = CGAffineTransformTranslate(self.ZYlabel.transform, 0, distance);
+            else{
+
+                self.view.transform=CGAffineTransformTranslate(self.view.transform, 0, distance - 30);
+            }
+
         }];
     }
 }
@@ -252,7 +252,7 @@
     }
     [self.service loadNumberValueWithAPIName:@"user/sendValidateCode.do" params:@{@"phoneNum":_text_phoneNum.text} version:nil];
     
-    [self showSecondTimeout:90 target:self timerOutAction:@selector(updateUIWhenSecondTimeout:)];
+    [self showSecondTimeout:60 target:self timerOutAction:@selector(updateUIWhenSecondTimeout:)];
     
 }
 

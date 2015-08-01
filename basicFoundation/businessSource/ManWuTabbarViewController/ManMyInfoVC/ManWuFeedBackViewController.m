@@ -38,7 +38,7 @@
 {
     if(!_textView)
     {
-        _textView = [[UITextView alloc]initWithFrame:CGRectMake(kSpaceX, 30, WIDTH, 200)];
+        _textView = [[UITextView alloc]initWithFrame:CGRectMake(kSpaceX, 30, WIDTH, 180)];
         _textView.keyboardType = UIKeyboardTypeNamePhonePad;
         _textView.backgroundColor = [UIColor clearColor];
         _textView.font = [UIFont systemFontOfSize:14];
@@ -51,7 +51,7 @@
 {
     if(!_btn_commit)
     {
-        _btn_commit = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_textView.frame) + 30, WIDTH, 40)];
+        _btn_commit = [[UIButton alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(_textView.frame) + 60, WIDTH, 40)];
         [_btn_commit setTitle:@"提交" forState:UIControlStateNormal];
         [_btn_commit.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _btn_commit.titleLabel.textColor = [UIColor whiteColor];

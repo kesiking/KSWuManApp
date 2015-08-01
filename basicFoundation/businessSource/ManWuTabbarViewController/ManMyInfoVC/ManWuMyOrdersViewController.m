@@ -47,8 +47,6 @@
     
     ordersList = [[NSArray alloc]init];
     
-    [self initOrdersList];
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.selectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     self.selectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
@@ -62,7 +60,7 @@
                       @"待发货",
                       @"待收货",
                       @"已收货",
-                      @"退/换货"];
+                      @"退款"];
     
     [self.view addSubview:self.selectionList];
     
@@ -98,6 +96,12 @@
     }];
     
     [self.view bringSubviewToFront:self.selectionList];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initOrdersList];
 }
 
 #pragma mark -请求订单数据
@@ -332,7 +336,7 @@
             break;
         case 3:
         {
-            statusStr = @"待收货";
+            statusStr = @"已发货";
             title_leftBtn = @"";
             title_rightBtn = @"确认收货";
             [cell.btn_right addTarget:self action:@selector(didSelectedButtonStyleReceived:) forControlEvents:UIControlEventTouchUpInside];
@@ -374,24 +378,32 @@
         default:
             break;
     }
-    CGSize btn_rightSize = [title_rightBtn sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]}];
-    CGFloat btn_rightX = self.view.width - kCellControlSpacingX - btn_rightSize.width - 30;
-    CGFloat btn_rightY = kCellControlSpacingX;
-    CGRect btn_rightRect=CGRectMake(btn_rightX, btn_rightY, btn_rightSize.width + 30, btn_rightSize.height + 10);
     
-    [cell.btn_right setFrame:btn_rightRect];
-    [cell.btn_right.titleLabel setFont:[UIFont systemFontOfSize:kButtonFontSize]];
-    [cell.btn_right setTitle:title_rightBtn forState:UIControlStateNormal];
-    cell.btn_right.layer.borderWidth = 0.5;
-    cell.btn_right.layer.cornerRadius = 3;
-    if([title_rightBtn isEqualToString:@"支付"] || [title_rightBtn isEqualToString:@"提醒发货"] || [title_rightBtn isEqualToString:@"物流单号"])
+    if([title_rightBtn length] == 0)
     {
-        [cell.btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"] forState:UIControlStateNormal];
-        cell.btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#d95c47"]CGColor];
+        cell.btn_right.enabled = NO;
+        [cell.btn_right removeFromSuperview];
     }else
     {
-        [cell.btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
-        cell.btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
+        CGSize btn_rightSize = [title_rightBtn sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]}];
+        CGFloat btn_rightX = self.view.width - kCellControlSpacingX - btn_rightSize.width - 30;
+        CGFloat btn_rightY = kCellControlSpacingX;
+        CGRect btn_rightRect=CGRectMake(btn_rightX, btn_rightY, btn_rightSize.width + 30, btn_rightSize.height + 10);
+        
+        [cell.btn_right setFrame:btn_rightRect];
+        [cell.btn_right.titleLabel setFont:[UIFont systemFontOfSize:kButtonFontSize]];
+        [cell.btn_right setTitle:title_rightBtn forState:UIControlStateNormal];
+        cell.btn_right.layer.borderWidth = 0.5;
+        cell.btn_right.layer.cornerRadius = 3;
+        if([title_rightBtn isEqualToString:@"支付"] || [title_rightBtn isEqualToString:@"提醒发货"] || [title_rightBtn isEqualToString:@"物流单号"])
+        {
+            [cell.btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"] forState:UIControlStateNormal];
+            cell.btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#d95c47"]CGColor];
+        }else
+        {
+            [cell.btn_right setTitleColor:[TBDetailUIStyle colorWithHexString:@"#666666"] forState:UIControlStateNormal];
+            cell.btn_right.layer.borderColor = [[TBDetailUIStyle colorWithHexString:@"#666666"]CGColor];
+        }
     }
     
     if([title_leftBtn length] == 0)
@@ -486,6 +498,9 @@
 {
     UIButton *button = (UIButton *)sender;
     NSInteger orderNum = button.tag;
+    ManWuOrderDetailViewController *orderDetailVC = [[ManWuOrderDetailViewController alloc]init];
+    orderDetailVC.orderModel = [ordersList objectAtIndex:orderNum];
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
 }
 
 #pragma mark - 页面刷新

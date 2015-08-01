@@ -227,6 +227,10 @@
                 default:
                     break;
             }
+
+            UIBarButtonItem *backItem = [[UIBarButtonItem alloc]init];
+            backItem.title = @"返回";
+            self.navigationItem.backBarButtonItem = backItem;
             [self.navigationController pushViewController:userNameVC animated:YES];
         }
     }
