@@ -106,7 +106,7 @@
 
 - (void)initOrderDealView
 {
-    _payLabel = [[UILabel alloc]initWithFrame:CGRectMake(kCellControlSpacingX, kCellControlSpacingY, 120, kPayFontSize)];
+    _payLabel = [[UILabel alloc]initWithFrame:CGRectMake(kCellControlSpacingX, kCellControlSpacingY, 140, kPayFontSize)];
     [_payLabel setFont:[UIFont systemFontOfSize:kPayFontSize]];
     [_payLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
     [self addSubview:_payLabel];
@@ -213,7 +213,7 @@
         }
         _buyNumLabel.text = [NSString stringWithFormat:@"数量：%@",orderModel.buyNum];
         _statusLabel.text = statusStr;
-        _priceLabel.text = [NSString stringWithFormat:@"¥%@",orderModel.oriPrice];
+        _priceLabel.text = [NSString stringWithFormat:@"¥%0.2f",[orderModel.oriPrice floatValue]];
 
     }else if ([identify isEqualToString:OrderTableCellStyleDeal])
     {

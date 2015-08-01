@@ -31,6 +31,12 @@
     NSInteger forReceiveNum;
     NSInteger receivedNum;
     NSInteger forChangeNum;
+    UserInfoViewItem *forPayItem;
+    UserInfoViewItem *forSendItem;
+    UserInfoViewItem *forReceiveItem;
+    UserInfoViewItem *receivedItem;
+    UserInfoViewItem *forChangeItem;
+
 }
 
 -(KSAdapterService *)service{
@@ -53,8 +59,9 @@
     dataSource = @[@[@"CSLineLayout"],@[@"CSLineLayout",@"全部订单"],@[@"常用收货地址",@"我收藏的",@"我的红包",@"我的邀请码"]];
     orderImageArray = @[@"order_forpay",@"order_forsend",@"order_forreceive",@"order_received",@"order_forchange"];
     orderNameArray = @[@"待付款",@"待发货",@"待收货",@"已收货",@"退款"];
-    
+
     [self initCSLineLayoutView];
+
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.table.delegate = self;
     self.table.dataSource = self;
@@ -118,12 +125,48 @@
     _myInfoContainer.scrollEnabled = YES;
     CGFloat padding = (self.view.width / 5.0 - 50)/2;
     // add ten views
+    CSLinearLayoutItem *item;
     for (int i=0; i<5; i++) {
-        UserInfoViewItem *useritem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 51.0) Tag:i];
-        useritem.delegate = self;
-        useritem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
-        useritem.itemName.text = [orderNameArray objectAtIndex:i];
-        CSLinearLayoutItem *item = [CSLinearLayoutItem layoutItemForView:useritem];
+        switch (i) {
+            case 0:
+                forPayItem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 51.0) Tag:i];
+                forPayItem.delegate = self;
+                forPayItem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
+                forPayItem.itemName.text = [orderNameArray objectAtIndex:i];
+                item = [CSLinearLayoutItem layoutItemForView:forPayItem];
+                break;
+            case 1:
+                forSendItem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 51.0) Tag:i];
+                forSendItem.delegate = self;
+                forSendItem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
+                forSendItem.itemName.text = [orderNameArray objectAtIndex:i];
+                item = [CSLinearLayoutItem layoutItemForView:forSendItem];
+                break;
+            case 2:
+                forReceiveItem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 51.0) Tag:i];
+                forReceiveItem.delegate = self;
+                forReceiveItem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
+                forReceiveItem.itemName.text = [orderNameArray objectAtIndex:i];
+                item = [CSLinearLayoutItem layoutItemForView:forReceiveItem];
+                break;
+            case 3:
+                receivedItem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 51.0) Tag:i];
+                receivedItem.delegate = self;
+                receivedItem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
+                receivedItem.itemName.text = [orderNameArray objectAtIndex:i];
+                item = [CSLinearLayoutItem layoutItemForView:receivedItem];
+                break;
+            case 4:
+                forChangeItem = [[UserInfoViewItem alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0, 51.0) Tag:i];
+                forChangeItem.delegate = self;
+                forChangeItem.itemImageView.image = [UIImage imageNamed:[orderImageArray objectAtIndex:i]];
+                forChangeItem.itemName.text = [orderNameArray objectAtIndex:i];
+                item = [CSLinearLayoutItem layoutItemForView:forChangeItem];
+                break;
+                
+            default:
+                break;
+        }
         item.padding = CSLinearLayoutMakePadding(10.0, padding,10.0, padding);
         item.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
         item.verticalAlignment = CSLinearLayoutItemVerticalAlignmentCenter;
@@ -281,6 +324,7 @@
 {
     if (service == _service) {
         // todo success
+        forPayNum = 0; forSendNum = 0; forReceiveNum = 0; receivedNum = 0; forChangeNum = 0;
         NSArray *ordersList = (NSArray*)service.requestModel.dataList;
         for(KSOrderModel *orderModel in ordersList)
         {
@@ -305,18 +349,12 @@
                     break;
             }
         }
-        UserInfoViewItem *item;
-        item = [_myInfoContainer.items objectAtIndex:0];
-        item.remindNum = forPayNum;
-        item = [_myInfoContainer.items objectAtIndex:1];
-        item.remindNum = forSendNum;
-        item = [_myInfoContainer.items objectAtIndex:2];
-        item.remindNum = forReceiveNum;
-        item = [_myInfoContainer.items objectAtIndex:3];
-        item.remindNum = receivedNum;
-        item = [_myInfoContainer.items objectAtIndex:4];
-        item.remindNum = forChangeNum;
         
+        forPayItem.remindNum = forPayNum;
+        forSendItem.remindNum = forSendNum;
+        forReceiveItem.remindNum = forReceiveNum;
+//        receivedItem.remindNum = receivedNum;
+//        forChangeItem.remindNum = forChangeNum;
     }
 }
 
@@ -325,7 +363,6 @@
         // todo fail
         NSString *errorInfo = error.userInfo[@"NSLocalizedDescription"];
         [WeAppToast toast:errorInfo];
-
     }
 }
 

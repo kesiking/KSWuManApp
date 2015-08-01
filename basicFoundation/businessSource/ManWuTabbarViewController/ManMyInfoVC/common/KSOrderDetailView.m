@@ -136,7 +136,7 @@
         UILabel *orderPayLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpacePaddingX, CGRectGetMaxY(orderTypeLabel.frame) + 10, 200, 15)];
         [orderPayLabel setFont:[UIFont systemFontOfSize:15]];
         [orderPayLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
-        orderPayLabel.text = [NSString stringWithFormat:@"订单总金额：￥%@",orderModel.payPrice];
+        orderPayLabel.text = [NSString stringWithFormat:@"订单总金额：￥%0.2f",[orderModel.payPrice floatValue]];
         [itemView_orderType addSubview:orderPayLabel];
 
     }
@@ -210,11 +210,11 @@
         [imageView sd_setImageWithURL:[NSURL URLWithString:orderModel.imgUrl]];
         [itemView_orderInfo addSubview:imageView];
         
-        UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 60, kSpacePaddingY, 60, 12)];
+        UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 80, kSpacePaddingY, 80, 12)];
         priceLabel.textAlignment = NSTextAlignmentRight;
         [priceLabel setFont:[UIFont systemFontOfSize:12]];
         [priceLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
-        priceLabel.text = [NSString stringWithFormat:@"￥%@",orderModel.oriPrice];
+        priceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[orderModel.oriPrice floatValue]];
         [itemView_orderInfo addSubview:priceLabel];
         
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 5, kSpacePaddingY, CGRectGetMinX(priceLabel.frame) - CGRectGetMaxX(imageView.frame) - 15, 12)];
@@ -316,7 +316,7 @@
         discountValueLable.textAlignment = NSTextAlignmentRight;
         NSInteger discountValue = [orderModel.discount integerValue];
         discountValue = discountValue / 10;
-        if(discountValue >= 10)
+        if(discountValue >= 10 || discountValue == 0)
         {
             discountValueLable.text = [NSString stringWithFormat:@"无"];
         }else
@@ -352,7 +352,7 @@
         [payValueLable setFont:[UIFont systemFontOfSize:12]];
         [payValueLable setTextColor:[TBDetailUIStyle colorWithHexString:@"#d95c47"]];
         payValueLable.textAlignment = NSTextAlignmentRight;
-        payValueLable.text = [NSString stringWithFormat:@"￥%@",orderModel.payPrice];
+        payValueLable.text = [NSString stringWithFormat:@"￥%0.2f",[orderModel.payPrice floatValue]];
         [itemView_orderInfo addSubview:payValueLable];
 
         UIView *LineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(payLabel.frame) + 10, self.width, 0.5)];
