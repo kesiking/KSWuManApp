@@ -374,6 +374,9 @@
 		5F92162A1B13498800554B44 /* ManWuDiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216291B13498800554B44 /* ManWuDiscoverModel.m */; };
 		5F97966F1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F97966E1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m */; };
 		5F9F459E1B1D40290017E632 /* aliPayfile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F9F459D1B1D40290017E632 /* aliPayfile.plist */; };
+		5FAECD571B6CD47B00AB6D1C /* manwu_default_sort.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAECD541B6CD47B00AB6D1C /* manwu_default_sort.png */; };
+		5FAECD581B6CD47B00AB6D1C /* manwu_default_sort@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAECD551B6CD47B00AB6D1C /* manwu_default_sort@2x.png */; };
+		5FAECD591B6CD47B00AB6D1C /* manwu_default_sort@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAECD561B6CD47B00AB6D1C /* manwu_default_sort@3x.png */; };
 		5FBA06201B0DEC6000852188 /* ManWuCommodityListBasicService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */; };
 		5FBA06231B0E011F00852188 /* KSPaginationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06221B0E011F00852188 /* KSPaginationItem.m */; };
 		5FBA06261B0F515A00852188 /* ManWuCommodityActListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA06251B0F515A00852188 /* ManWuCommodityActListService.m */; };
@@ -1312,6 +1315,9 @@
 		5F97966D1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListBasicViewController.h; sourceTree = "<group>"; };
 		5F97966E1B5A15BD00DDA741 /* ManWuCommodityListBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListBasicViewController.m; sourceTree = "<group>"; };
 		5F9F459D1B1D40290017E632 /* aliPayfile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = aliPayfile.plist; sourceTree = "<group>"; };
+		5FAECD541B6CD47B00AB6D1C /* manwu_default_sort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_default_sort.png; sourceTree = "<group>"; };
+		5FAECD551B6CD47B00AB6D1C /* manwu_default_sort@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_default_sort@2x.png"; sourceTree = "<group>"; };
+		5FAECD561B6CD47B00AB6D1C /* manwu_default_sort@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_default_sort@3x.png"; sourceTree = "<group>"; };
 		5FBA061E1B0DEC6000852188 /* ManWuCommodityListBasicService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuCommodityListBasicService.h; sourceTree = "<group>"; };
 		5FBA061F1B0DEC6000852188 /* ManWuCommodityListBasicService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommodityListBasicService.m; sourceTree = "<group>"; };
 		5FBA06211B0E011F00852188 /* KSPaginationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPaginationItem.h; sourceTree = "<group>"; };
@@ -1802,6 +1808,9 @@
 				5FE3E9141B64CF390066671C /* manwu_commodity_filt_select_discount@3x.png */,
 				5FE3E9151B64CF390066671C /* manwu_commodity_filt_select_specialForToday@2x.png */,
 				5FE3E9161B64CF390066671C /* manwu_commodity_filt_select_specialForToday@3x.png */,
+				5FAECD541B6CD47B00AB6D1C /* manwu_default_sort.png */,
+				5FAECD551B6CD47B00AB6D1C /* manwu_default_sort@2x.png */,
+				5FAECD561B6CD47B00AB6D1C /* manwu_default_sort@3x.png */,
 				5F4088131B196E7700954568 /* manwu_commodity_sort_like.png */,
 				5F4088141B196E7700954568 /* manwu_commodity_sort_price.png */,
 				5F226EB01B33A27B00FEFBC6 /* deleteFavrate.png */,
@@ -3872,6 +3881,7 @@
 				058D5D101AF2140C006EA35C /* tbbuy_question_fill@2x.png in Resources */,
 				5F8E7F761B6CA99200E80F5D /* manwu_start_buttpm_image.png in Resources */,
 				5FD2ED751B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png in Resources */,
+				5FAECD591B6CD47B00AB6D1C /* manwu_default_sort@3x.png in Resources */,
 				5F8E7F671B6BA50B00E80F5D /* Default-Landscape~ipad.png in Resources */,
 				05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */,
 				5FE3E9081B64CCF30066671C /* manwu_commodity_filt_all@3x.png in Resources */,
@@ -3918,6 +3928,8 @@
 				5FD244F61B3ACBFF00353589 /* manwu_commodity_filt_specialForToday.png in Resources */,
 				052CC6B91AF8588400AF7C78 /* home_placehold_banner.png in Resources */,
 				5FD2ED1F1B5BAAC7009FDF24 /* skuview_decrease@3x.png in Resources */,
+				5FAECD571B6CD47B00AB6D1C /* manwu_default_sort.png in Resources */,
+				5FAECD581B6CD47B00AB6D1C /* manwu_default_sort@2x.png in Resources */,
 				915DC0121B5B7E0A00E5EBA4 /* defaultHead@3x.png in Resources */,
 				91E2D0731B1761C500946A32 /* inputbox.png in Resources */,
 				91C76B741B31C516008C5EAC /* order_forreceive@3x.png in Resources */,

@@ -24,6 +24,12 @@
                                       @"selectImageUrl":@"manwu_commodity_sort_select_like",
                                       @"titleText":@"按人气排序",
                                       @"sortKey":@"2"
+                                      },
+                                  @{
+                                      @"imageUrl":@"manwu_default_sort",
+                                      @"selectImageUrl":@"manwu_default_sort",
+                                      @"titleText":@"默认排序",
+                                      @"sortKey":@"0"
                                       }
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];

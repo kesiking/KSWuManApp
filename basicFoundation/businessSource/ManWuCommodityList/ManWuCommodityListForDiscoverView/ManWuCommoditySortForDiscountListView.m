@@ -71,6 +71,14 @@
                                       @"titleText":@"Ornament",
                                       @"subTitleText":@"配饰",
                                       @"cid":@"18"
+                                      },
+                                      @{
+                                      @"imageUrl":@"manwu_commodity_filt_all",
+                                      @"selectImageUrl":@"manwu_commodity_filt_select_all",
+                                      
+                                      @"titleText":@"All for you",
+                                      @"subTitleText":@"全部",
+                                      @"cid":@"0"
                                       }
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];
