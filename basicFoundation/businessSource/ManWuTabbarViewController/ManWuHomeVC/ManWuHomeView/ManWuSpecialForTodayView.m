@@ -34,9 +34,10 @@
 -(UIImageView *)leftImageView{
     if (_leftImageView == nil) {
         CGRect rect = self.bounds;
-        rect.size.width = rect.size.width / 2 - 2;
+        rect.size.width = rect.size.width / 2 - 4;
         _leftImageView = [[UIImageView alloc] initWithFrame:rect];
         [_leftImageView setContentMode:UIViewContentModeScaleAspectFill];
+        _leftImageView.clipsToBounds = YES;
         [_leftImageView setImage:[UIImage imageNamed:@"home_specialForToday_first_placehold_banner"]];
         _leftImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer* getstureRecognize = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleImageViewClickEvent:)];
@@ -48,9 +49,10 @@
 -(UIImageView *)rightImageView{
     if (_rightImageView == nil) {
         CGRect rect = self.leftImageView.frame;
-        rect.origin.x = self.leftImageView.right + 2;
+        rect.origin.x = self.leftImageView.right + 4;
         _rightImageView = [[UIImageView alloc] initWithFrame:rect];
         [_rightImageView setContentMode:UIViewContentModeScaleAspectFill];
+        _rightImageView.clipsToBounds = YES;
         [_rightImageView setImage:[UIImage imageNamed:@"home_specialForToday_second_placehold_banner"]];
         _rightImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer* getstureRecognize = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleImageViewClickEvent:)];

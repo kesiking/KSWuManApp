@@ -86,7 +86,7 @@
     if (_commodityListView == nil) {
         CGRect rect = self.view.bounds;
         rect.origin.y = self.searchNavigationView.bottom;
-        rect.size.height = rect.size.height;
+        rect.size.height = rect.size.height - 20;
         _commodityListView = [[ManWuCommoditySearchListView alloc] initWithFrame:rect];
     }
     return _commodityListView;

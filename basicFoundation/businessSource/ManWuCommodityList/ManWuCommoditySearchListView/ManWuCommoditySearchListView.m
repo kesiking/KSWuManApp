@@ -64,6 +64,10 @@
     [self setCollectionService:self.searchListService];
 }
 
+-(void)setupCollectionViewConfigObject:(KSCollectionViewConfigObject *)configObject{
+    configObject.needRefreshView = NO;
+}
+
 #pragma mark - container
 
 - (CSLinearLayoutView *)container {
