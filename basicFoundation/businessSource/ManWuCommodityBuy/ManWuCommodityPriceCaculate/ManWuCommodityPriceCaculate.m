@@ -117,7 +117,10 @@
     if (truePrice <= 0) {
         truePrice = 0.01;
     }
-    return truePrice;
+    
+    NSString *truePriceStr = [NSString stringWithFormat:@"%.2f",truePrice];
+    
+    return [truePriceStr floatValue];
 }
 
 @end

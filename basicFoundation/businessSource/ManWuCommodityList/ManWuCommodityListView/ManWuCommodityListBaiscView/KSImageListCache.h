@@ -22,4 +22,6 @@
 
 - (void)removeImageForKey:(NSString *)key;
 
+- (void)clearMemory;
+
 @end

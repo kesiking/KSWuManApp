@@ -319,14 +319,16 @@
 }
 
 -(void)addAddressButtonClicked:(id)sender{
-    [self otherAddressButtonClicked:sender];
-//    WEAKSELF
-//    addressDidChangeBlock addressDidChangeBlock = ^(BOOL addressDidChange,WeAppComponentBaseItem* addressComponentItem){
-//        STRONGSELF
-//        [strongSelf setObject:addressComponentItem dict:nil];
-//    };
-//    NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:addressDidChangeBlock, kAddressManagerSuccessBlock, nil];
-//    TBOpenURLFromSourceAndParams(kManWuAddressManager, self, callBacks);
+//    [self otherAddressButtonClicked:sender];
+    WEAKSELF
+    addressDidChangeBlock addressDidChangeBlock = ^(BOOL addressDidChange,WeAppComponentBaseItem* addressComponentItem){
+        STRONGSELF
+        [strongSelf.addressService loadDefaultAddress];
+    };
+    
+    NSDictionary *callBacks =[NSDictionary dictionaryWithObjectsAndKeys:addressDidChangeBlock, kAddressManagerSuccessBlock,@YES,kAddressDefaultSettingKey, nil];
+    
+    TBOpenURLFromTargetWithNativeParams(kManWuAddressEdit, self, nil,callBacks);
 }
 
 #pragma mark  - TBTradeCellDelegate

@@ -31,8 +31,6 @@
 
 @property (strong, nonatomic) UITextField           *descriptionText;
 
-@property (assign, nonatomic) BOOL                   isDefaultAddress;
-
 @property (strong, nonatomic) ManWuAddressSetDefaultView   *settingDefaultView;
 @property (strong, nonatomic) ManWuAddressBottomVIew       *bottomView;
 
@@ -80,8 +78,10 @@
         self.descriptionText.text = addressInfoModel.address;
     }
     
-    self.settingDefaultView.isDefaultAddress = addressInfoModel.defaultAddress;
-    self.isDefaultAddress = addressInfoModel.defaultAddress;
+    self.settingDefaultView.isDefaultAddress = addressInfoModel?addressInfoModel.defaultAddress:self.isDefaultAddress;
+    if (addressInfoModel) {
+        self.isDefaultAddress = addressInfoModel.defaultAddress;
+    }
     if (_addressInfoModel.addressId == nil) {
         self.deleteButton.enabled = NO;
         self.deleteButton.hidden = YES;
