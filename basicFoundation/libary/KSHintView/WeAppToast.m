@@ -23,6 +23,9 @@
 }
 
 +(void)toast:(NSString*)s toView:(UIView*)v displaytime:(float)t postion:(int)y{
+    if (s == nil || s.length == 0) {
+        return;
+    }
     @synchronized([self class]) {
     
     UIView*h=[v viewWithTag:hinttag];

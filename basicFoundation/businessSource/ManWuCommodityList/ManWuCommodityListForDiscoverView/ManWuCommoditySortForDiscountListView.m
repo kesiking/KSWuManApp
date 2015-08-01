@@ -30,7 +30,7 @@
 
                                       @"titleText":@"Women's Cloth",
                                       @"subTitleText":@"女装",
-                                      @"cid":@"1"
+                                      @"cid":@"10"
                                       },
                                   @{
                                       @"imageUrl":@"manwu_category_shirt",
@@ -38,7 +38,7 @@
 
                                       @"titleText":@"Men's Cloth",
                                       @"subTitleText":@"男装",
-                                      @"cid":@"10"
+                                      @"cid":@"1"
                                       },
                                      @{
                                       @"imageUrl":@"manwu_category_high_heeled_show",
@@ -71,9 +71,18 @@
                                       @"titleText":@"Ornament",
                                       @"subTitleText":@"配饰",
                                       @"cid":@"18"
+                                      },
+                                      @{
+                                      @"imageUrl":@"manwu_commodity_filt_all",
+                                      @"selectImageUrl":@"manwu_commodity_filt_select_all",
+                                      
+                                      @"titleText":@"All for you",
+                                      @"subTitleText":@"全部",
+                                      @"cid":@"0"
                                       }
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];
+    self.collectionViewCtl.selectIndexPath = [NSIndexPath indexPathForRow:[commoditySortAndFiltModels count] - 1 inSection:0];
     [self setSortListArray:commoditySortAndFiltModels];
 #else
     // 从网络获取

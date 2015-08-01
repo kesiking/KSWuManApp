@@ -164,7 +164,8 @@
             if (sortListSelectBlock) {
                 sortListSelectBlock();
             }
-            ManWuDiscoverModel* sortAndFiltModel = (ManWuDiscoverModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
+            ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
+            [strongSelf.sortFiltHeadView setLeftBtnTitle:sortAndFiltModel.subTitleText];
 #ifdef needFiltTagListView
             [strongSelf.filtTagListView setDataWithPageList:sortAndFiltModel.leafCategoryList title:sortAndFiltModel.name];
             CGRect rect = strongSelf.filtTagListView.tagListLayoutView.frame;
@@ -208,6 +209,8 @@
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
             NSDictionary* params = @{@"sortKey":sortAndFiltModel.sortKey?:defaultSortKey};
             [strongSelf loadDataWithParams:params];
+            [strongSelf.sortFiltHeadView setRightBtnTitle:sortAndFiltModel.titleText];
+
         };
         _filtForDiscoverSelectView.hidden = YES;
         [self addSubview:_filtForDiscoverSelectView];

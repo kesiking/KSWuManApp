@@ -76,7 +76,7 @@
         
         [_rightBtn setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
         
-        [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 100)];
+        [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 90)];
         [_rightBtn setImageEdgeInsets:UIEdgeInsetsMake((_rightBtn.height - 5)/2, _rightBtn.width - 25.5, (_rightBtn.height - 5)/2, 15)];
         
         [self resizeButton:_rightBtn];
@@ -124,6 +124,22 @@
         }
             break;
     }
+}
+
+-(void)setLeftBtnTitle:(NSString*)title{
+    if (title == nil || [title isEqualToString:@"全部"] || [title isEqualToString:@"默认"]) {
+        [self.leftBtn setTitle:@"筛选" forState:UIControlStateNormal];
+        return;
+    }
+    [self.leftBtn setTitle:title forState:UIControlStateNormal];
+}
+
+-(void)setRightBtnTitle:(NSString*)title{
+    if (title == nil || [title isEqualToString:@"全部"] || [title isEqualToString:@"默认排序"]) {
+        [self.rightBtn setTitle:@"排序" forState:UIControlStateNormal];
+        return;
+    }
+    [self.rightBtn setTitle:title forState:UIControlStateNormal];
 }
 
 -(void)setButtonSelected:(TBDetailSKUButton *)button

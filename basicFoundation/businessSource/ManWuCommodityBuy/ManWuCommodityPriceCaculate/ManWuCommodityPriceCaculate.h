@@ -21,6 +21,8 @@
 
 - (NSNumber*)getCommodityQuantityWithSkuModel:(ManWuCommoditySKUDetailModel*)skuModel;
 
+- (NSNumber*)getCommodityOrigenPrice;
+
 - (NSNumber*)getCommodityPrice;
 
 - (NSNumber*)getCommodityPriceWithSkuModel:(ManWuCommoditySKUDetailModel*)skuModel;

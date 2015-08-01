@@ -46,6 +46,7 @@
     if (_collectionViewCtl == nil) {
         KSCollectionViewConfigObject* configObject = [[KSCollectionViewConfigObject alloc] init];
         [configObject setupStandConfig];
+        [self setupCollectionViewConfigObject:configObject];
         CGRect frame = self.bounds;
         frame.size.width = frame.size.width - 2 * 0;
         frame.origin.x = 0;
@@ -57,6 +58,10 @@
         [_collectionViewCtl getCollectionView].alwaysBounceVertical = YES;
     }
     return _collectionViewCtl;
+}
+
+-(void)setupCollectionViewConfigObject:(KSCollectionViewConfigObject*)configObject{
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

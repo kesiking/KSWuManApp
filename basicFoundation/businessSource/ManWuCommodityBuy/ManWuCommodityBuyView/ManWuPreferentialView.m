@@ -91,8 +91,10 @@
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
 
     self.textLabel.text = @"优惠折扣";
-    
     NSString* discountStr = [self.commodityPriceCaculate getCommodityDiscount];
+    if (detailModel.activityPrice) {
+       discountStr = [NSString stringWithFormat:@"%@元购",detailModel.activityPrice];
+    }
     self.detailTextLabel.text = discountStr;
 }
 

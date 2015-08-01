@@ -8,6 +8,7 @@
 
 #import "ManWuAddressSelectListView.h"
 #import "ManWuAddressSelectViewCell.h"
+#import "ManWuAddressManagerViewCell.h"
 #import "ManWuAddressService.h"
 
 @interface ManWuAddressSelectListView()
@@ -50,9 +51,11 @@
         configObject.needQueueLoadData = NO;
         configObject.needNextPage = NO;
         CGRect frame = self.bounds;
-        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 115);
+        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 102);
+//        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 115);
         _collectionViewCtl = [[KSTableViewController alloc] initWithFrame:frame withConfigObject:configObject];
-        [_collectionViewCtl registerClass:[ManWuAddressSelectViewCell class]];
+//        [_collectionViewCtl registerClass:[ManWuAddressSelectViewCell class]];
+        [_collectionViewCtl registerClass:[ManWuAddressManagerViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         [_collectionViewCtl.scrollView setBackgroundColor:RGB(0xf8, 0xf8, 0xf8)];
         _collectionViewCtl.errorViewTitle = @"未添加收货地址，点击\"管理\"添加";

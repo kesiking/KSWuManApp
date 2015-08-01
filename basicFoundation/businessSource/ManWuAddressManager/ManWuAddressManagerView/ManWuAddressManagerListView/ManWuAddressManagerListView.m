@@ -8,6 +8,7 @@
 
 #import "ManWuAddressManagerListView.h"
 #import "ManWuAddressManagerViewCell.h"
+#import "ManWuAddressSelectViewCell.h"
 #import "ManWuAddAddressView.h"
 #import "ManWuAddressService.h"
 
@@ -54,12 +55,15 @@
         [configObject setupStandConfig];
         configObject.needQueueLoadData = NO;
         configObject.needNextPage = NO;
-        configObject.needRefreshView = NO;
+        configObject.needRefreshView = YES;
         CGRect frame = self.bounds;
         frame.size.height -= self.addAddressView.height;
-        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 102);
+//        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 102);
+        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 145);
+
         _collectionViewCtl = [[KSTableViewController alloc] initWithFrame:frame withConfigObject:configObject];
-        [_collectionViewCtl registerClass:[ManWuAddressManagerViewCell class]];
+        [_collectionViewCtl registerClass:[ManWuAddressSelectViewCell class]];
+//        [_collectionViewCtl registerClass:[ManWuAddressManagerViewCell class]];
         [_collectionViewCtl setDataSourceRead:self.dataSourceRead];
         [_collectionViewCtl.scrollView setBackgroundColor:RGB(0xf8, 0xf8, 0xf8)];
         _collectionViewCtl.errorViewTitle = @"未添加收货地址，快去添加吧";
@@ -79,6 +83,12 @@
             }
             TBOpenURLFromTargetWithNativeParams(internalURL(kManWuAddressEdit), strongSelf.viewController, nil, addressParams);
         };
+        
+        _collectionViewCtl.tableCellViewOperationBlock = ^(UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject){
+            STRONGSELF
+            [strongSelf.addressService loadAddressList];
+        };
+        
     }
     return _collectionViewCtl;
 }

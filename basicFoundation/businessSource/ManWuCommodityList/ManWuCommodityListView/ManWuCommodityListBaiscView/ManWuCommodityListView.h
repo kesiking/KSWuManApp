@@ -18,4 +18,6 @@
 
 -(KSAdapterService*)getCollectionService;
 
+-(void)setupCollectionViewConfigObject:(KSCollectionViewConfigObject*)configObject;
+
 @end

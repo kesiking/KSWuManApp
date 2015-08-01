@@ -16,5 +16,7 @@
 @property (nonatomic, strong) IBOutlet UILabel     *phoneNumLabel;
 @property (nonatomic, strong) IBOutlet UILabel     *addressLabel;
 @property (nonatomic, strong) IBOutlet UIView      *seprateBackgroundView;
+@property (nonatomic, strong) IBOutlet UIButton    *addressEditBtn;
+@property (nonatomic, strong) IBOutlet UIButton    *addressDeleteBtn;
 
 @end

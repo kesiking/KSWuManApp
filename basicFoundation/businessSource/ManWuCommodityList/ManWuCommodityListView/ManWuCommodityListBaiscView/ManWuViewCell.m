@@ -16,11 +16,12 @@
 
 #define commodityImage_border        (8.0)
 #define commodityImage_width_height  (self.width - 8)
-#define commodityImage_bottom_border (5.0)
+#define commodityImage_bottom_border (5.0 * 2)
 #define favorateLabel_width          (30)
 #define favorateLabel_height         (15)
-#define favorateImage_right_border   (4)
-#define favorateImage_width_height   (30)
+#define favorateImage_right_border   (12)
+#define favorateImage_top_border     (19)
+#define favorateImage_width_height   (55)
 #define favorateImage_width          (17)
 #define favorateImage_height         (15)
 #define favorateImage_left_border    (2)
@@ -130,7 +131,7 @@
 -(ManWuPraiseButton *)favorateImageView{
     if (_favorateImageView == nil) {
         _favorateImageView = [[ManWuPraiseButton alloc] init];
-        [_favorateImageView setImageEdgeInsets:UIEdgeInsetsMake(1, (favorateImage_width_height - favorateImage_width), (favorateImage_width_height - favorateImage_height) - 1, 0)];
+        [_favorateImageView setImageEdgeInsets:UIEdgeInsetsMake((favorateImage_width_height - favorateImage_height)/2, (favorateImage_width_height - favorateImage_width)/2, (favorateImage_width_height - favorateImage_height)/2, (favorateImage_width_height - favorateImage_width)/2)];
         WEAKSELF
         _favorateImageView.operationStatusChanged = ^(ManWuOperationButton* operationButton){
             STRONGSELF
@@ -180,16 +181,19 @@
         [self.commodityImageView setFrame:CGRectMake(0, commodityImage_border, commodityImage_width_height, commodityImage_width_height)];
     }
     
+    [self.selectButton setFrame:CGRectMake(self.commodityImageView.right - selectButton_width_height, self.commodityImageView.top, selectButton_width_height, selectButton_width_height)];
+    
     [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - favorateLabel_width, self.commodityImageView.bottom + commodityImage_bottom_border, favorateLabel_width, favorateLabel_height)];
     [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - favorateImage_width_height, self.commodityImageView.bottom + commodityImage_bottom_border - 2.0, favorateImage_width_height, favorateImage_width_height)];
     [self.titleLabel setFrame:CGRectMake(self.commodityImageView.left, self.commodityImageView.bottom + commodityImage_bottom_border, self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.favorateLabel.height)];
-    [self.priceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
-    [self.salePriceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
     
     [self.favorateLabel sizeToFit];
     [self.favorateLabel setFrame:CGRectMake(self.commodityImageView.right - self.favorateLabel.width, self.favorateLabel.top, self.favorateLabel.width, self.favorateLabel.height)];
-    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - self.favorateImageView.width, self.favorateImageView.top, self.favorateImageView.width, self.favorateImageView.height)];
+    [self.favorateImageView setFrame:CGRectMake(self.favorateLabel.left - favorateImage_right_border - self.favorateImageView.width/2, self.favorateImageView.top - favorateImage_top_border, self.favorateImageView.width, self.favorateImageView.height)];
     [self.titleLabel setFrame:CGRectMake(self.titleLabel.left, self.titleLabel.top , self.favorateImageView.left - self.commodityImageView.left - favorateImage_left_border, self.titleLabel.height)];
+    
+    [self.priceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
+    [self.salePriceLabel setFrame:CGRectMake(self.titleLabel.left , self.titleLabel.bottom + titleLabel_bottom_border, self.titleLabel.width, self.titleLabel.height)];
 }
 
 - (void)reloadDataWithComponent:(WeAppComponentBaseItem *)componentItem extroParams:(KSCellModelInfoItem*)extroParams{
@@ -202,18 +206,18 @@
         WEAKSELF
         UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
         if (image == nil) {
-            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
-//            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                STRONGSELF
-//                if (image && error == nil) {
-//                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
-//                }
-//                return image;
-//            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                if (image && detailModel.img) {
-//                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
-//                }
-//            }];
+//            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                STRONGSELF
+                if (image && error == nil) {
+                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
+                }
+                return image;
+            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (image && detailModel.img) {
+                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
+                }
+            }];
         }else{
             [self.commodityImageView setImage:image];
         }
@@ -278,21 +282,21 @@
         WEAKSELF
         UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
         if (image == nil) {
-            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
-//            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                STRONGSELF
-//                if (image && error == nil) {
-//                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
-//                }
-//                return image;
-//            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                STRONGSELF
-//                if (image && detailModel.img && error == nil) {
-//                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
-//                }else{
-//                    strongSelf.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
-//                }
-//            }];
+//            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
+            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                STRONGSELF
+                if (image && error == nil) {
+                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
+                }
+                return image;
+            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                STRONGSELF
+                if (image && detailModel.img && error == nil) {
+                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
+                }else{
+                    strongSelf.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
+                }
+            }];
         }else{
             [self.commodityImageView setImage:image];
         }

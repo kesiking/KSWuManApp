@@ -7,6 +7,7 @@
 //
 
 #import "KSImageListCache.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation KSImageListCache
 
@@ -51,24 +52,45 @@
     if (key == nil) {
         return nil;
     }
-    
-    return [self.memCache objectForKey:key];
+    NSString* fileKey = [self getImageKeyWithKey:key];
+    if (fileKey == nil) {
+        return nil;
+    }
+    return [self.memCache objectForKey:fileKey];
 }
 
 - (void)storeImage:(UIImage *)image forKey:(NSString *)key {
     if (!image || !key) {
         return;
     }
-    
-    [self.memCache setObject:image forKey:key cost:image.size.height * image.size.width * image.scale];
+    NSString* fileKey = [self getImageKeyWithKey:key];
+    if (fileKey == nil) {
+        return;
+    }
+    [self.memCache setObject:image forKey:fileKey cost:image.size.height * image.size.width * image.scale];
 }
 
 - (void)removeImageForKey:(NSString *)key{
     if (key == nil) {
         return;
     }
-    
-    [self.memCache removeObjectForKey:key];
+    NSString* fileKey = [self getImageKeyWithKey:key];
+    if (fileKey == nil) {
+        return;
+    }
+    [self.memCache removeObjectForKey:fileKey];
+}
+
+-(NSString*)getImageKeyWithKey:(NSString*)key{
+    const char *str = [key UTF8String];
+    if (str == NULL) {
+        str = "";
+    }
+    unsigned char r[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, (CC_LONG)strlen(str), r);
+    NSString *filename = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+                          r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
+    return filename;
 }
 
 - (void)clearMemory {

@@ -32,7 +32,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"我收藏的";
+    self.title = @"我的收藏";
     [self.view addSubview:self.commodityListView];
     self.editListButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(editStart:)];
     self.finishListButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(editFinish:)];
