@@ -7,6 +7,7 @@
 //
 
 #import "ManWuResetPwdViewController.h"
+#import "ManWuDoneResetPwdViewController.h"
 
 @interface ManWuResetPwdViewController ()
 
@@ -117,7 +118,7 @@
     }
     [self.service loadNumberValueWithAPIName:@"user/sendValidateCode.do" params:@{@"phoneNum":_text_phoneNum.text} version:nil];
     
-    [self showSecondTimeout:90 target:self timerOutAction:@selector(updateUIWhenSecondTimeout:)];
+    [self showSecondTimeout:60 target:self timerOutAction:@selector(updateUIWhenSecondTimeout:)];
     
 }
 
@@ -139,7 +140,11 @@
         [WeAppToast toast:@"请输入验证码"];
         return;
     }
-
+    
+    ManWuDoneResetPwdViewController *doneResetPwdVC = [[ManWuDoneResetPwdViewController alloc]init];
+    doneResetPwdVC.smsCode = _text_smsCode.text;
+    doneResetPwdVC.phoneNum = _text_phoneNum.text;
+    [self.navigationController pushViewController:doneResetPwdVC animated:YES];
 }
 
 #pragma mark WeAppBasicServiceDelegate method

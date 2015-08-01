@@ -39,7 +39,7 @@
         [_userActionLabel setFont:[UIFont systemFontOfSize:18]];
         [headView addSubview:_userActionLabel];
         
-        btn_select = [[UIButton alloc]initWithFrame:CGRectMake(frame.size.width - kSpaceX - 15, frame.size.height/2 - 7, 14, 14)];
+        btn_select = [[UIButton alloc]initWithFrame:CGRectMake(frame.size.width - kSpaceX - 30, frame.size.height/2 - 15, 30, 30)];
         [btn_select setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_droplist"]]];
         [btn_select addTarget:self action:@selector(selectedDorpDown) forControlEvents:UIControlEventTouchUpInside];
         [headView addSubview:btn_select];

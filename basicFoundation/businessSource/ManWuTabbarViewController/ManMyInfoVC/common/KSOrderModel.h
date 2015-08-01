@@ -11,6 +11,7 @@
 
 @interface KSOrderModel : WeAppComponentBaseItem
 
+@property (nonatomic, strong) NSString* itemId;
 @property (nonatomic, strong) NSString* buyNum;
 @property (nonatomic, strong) NSString* buyerAddress;
 @property (nonatomic, strong) NSString* buyerName;

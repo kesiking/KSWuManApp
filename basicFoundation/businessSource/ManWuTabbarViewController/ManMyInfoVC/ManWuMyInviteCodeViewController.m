@@ -115,28 +115,28 @@
     [str addAttribute:NSForegroundColorAttributeName value:[TBDetailUIStyle colorWithHexString:@"#d95c47"] range:NSMakeRange(4,inviteCodeStr.length)];
     inviteCodeLabel.attributedText = str;
     
-    UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
-    [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [descLabel setNumberOfLines:0];
-    [descLabel setFont:[UIFont systemFontOfSize:12]];
-    descLabel.backgroundColor = [UIColor clearColor];
-    descLabel.textColor = [UIColor colorWithHex:0x666666];
+//    UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(kSpaceX, CGRectGetMaxY(inviteCodeLabel.frame) + 10, WIDTH, 14)];
+//    [descLabel setLineBreakMode:NSLineBreakByWordWrapping];
+//    [descLabel setNumberOfLines:0];
+//    [descLabel setFont:[UIFont systemFontOfSize:12]];
+//    descLabel.backgroundColor = [UIColor clearColor];
+//    descLabel.textColor = [UIColor colorWithHex:0x666666];
+//    
+//    NSString *descStr = inviteCodeModel[@"description"];
+//    NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
+//    NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+//    
+//    [paragraphStyle1 setLineSpacing:10.0];//调整行间距
+//    // paragraphStyle1.firstLineHeadIndent = textSize20px * 2;//首行缩进
+//    [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [descStr length])];
+//    descLabel.attributedText = attributedString1;
+//    [descLabel sizeToFit];
     
-    NSString *descStr = inviteCodeModel[@"description"];
-    NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:descStr];
-    NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
-    
-    [paragraphStyle1 setLineSpacing:10.0];//调整行间距
-    // paragraphStyle1.firstLineHeadIndent = textSize20px * 2;//首行缩进
-    [attributedString1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [descStr length])];
-    descLabel.attributedText = attributedString1;
-    [descLabel sizeToFit];
-    
-    inviteCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, 15, self.view.width, 40 + inviteCodeLabel.height + descLabel.height)];
+    inviteCodeView = [[UIView alloc]initWithFrame:CGRectMake(0, 15, self.view.width, 40 + inviteCodeLabel.height)];
     [inviteCodeView setBackgroundColor:[TBDetailUIStyle colorWithHexString:@"#ffffff"]];
     [inviteCodeView addSubview:copyBtn];
     [inviteCodeView addSubview:inviteCodeLabel];
-    [inviteCodeView addSubview:descLabel];
+//    [inviteCodeView addSubview:descLabel];
     
     [self.view addSubview:inviteCodeView];
 
@@ -147,6 +147,7 @@
 //    UIPasteboard *pasterBoard = [UIPasteboard pasteboardWithName:@"myInviteCode" create:YES];
     UIPasteboard *pasterBoard = [UIPasteboard generalPasteboard];
     pasterBoard.string = inviteCodeModel[@"inviteCode"];
+    [WeAppToast toast:@"复制邀请码成功"];
 //    
 //    NSString * str = pasterBoard.string;
 //    

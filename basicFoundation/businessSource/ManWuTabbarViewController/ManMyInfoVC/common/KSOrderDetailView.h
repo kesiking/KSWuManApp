@@ -30,5 +30,6 @@ typedef NS_ENUM(NSInteger, ButtonSelectedStyle) {
 @property (nonatomic, assign) id<KSOrderDetailViewDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame OrderModel:(KSOrderModel *)ordermodel;
+- (void)updateViewWithOrderModel:(KSOrderModel*)model;
 
 @end
