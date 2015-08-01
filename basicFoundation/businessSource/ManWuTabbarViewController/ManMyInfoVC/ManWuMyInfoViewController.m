@@ -14,6 +14,7 @@
 #import "ManWuConfigViewController.h"
 #import "ManWuMyRedPacketViewController.h"
 #import "ManWuMyInviteCodeViewController.h"
+#import "KSOrderModel.h"
 
 @implementation ManWuMyInfoViewController
 {
@@ -24,13 +25,20 @@
     NSArray *orderImageArray;
     NSArray *orderNameArray;
     BOOL isAlreadyLogined;
+    NSMutableArray *userItems;
+    NSInteger forPayNum;
+    NSInteger forSendNum;
+    NSInteger forReceiveNum;
+    NSInteger receivedNum;
+    NSInteger forChangeNum;
 }
 
 -(KSAdapterService *)service{
     if (_service == nil) {
         _service = [[KSAdapterService alloc] init];
         _service.delegate = self;
-        //[_service setItemClass:[KSModelDemo class]];
+        [_service setItemClass:[KSOrderModel class]];
+        _service.jsonTopKey = @"data";
     }
     return _service;
 }
@@ -38,12 +46,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    forPayNum = 0; forSendNum = 0; forReceiveNum = 0; receivedNum = 0; forChangeNum = 0;
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
 
     self.title = @"我的";
     dataSource = @[@[@"CSLineLayout"],@[@"CSLineLayout",@"全部订单"],@[@"常用收货地址",@"我收藏的",@"我的红包",@"我的邀请码"]];
     orderImageArray = @[@"order_forpay",@"order_forsend",@"order_forreceive",@"order_received",@"order_forchange"];
-    orderNameArray = @[@"待付款",@"待发货",@"待收货",@"已收货",@"退/换货"];
+    orderNameArray = @[@"待付款",@"待发货",@"待收货",@"已收货",@"退款"];
     
     [self initCSLineLayoutView];
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
@@ -58,7 +67,7 @@
     [self setupNavigationBar];
     // 查看是否登陆，如果未登陆则跳出登陆
     [self checkLogin];
-    
+    [self initOrdersData];
     [self initUserInfoView];
 }
 
@@ -95,6 +104,11 @@
     {
         [_btn_config removeFromSuperview];
     }
+}
+
+- (void)initOrdersData
+{
+    [self.service loadDataListWithAPIName:@"order/myOrders.do" params:@{@"userId":[KSUserInfoModel sharedConstant].userId} version:nil];
 }
 
 - (void)initCSLineLayoutView
@@ -267,6 +281,42 @@
 {
     if (service == _service) {
         // todo success
+        NSArray *ordersList = (NSArray*)service.requestModel.dataList;
+        for(KSOrderModel *orderModel in ordersList)
+        {
+            switch ([orderModel.status integerValue]) {
+                case 1:
+                    forPayNum ++;
+                    break;
+                case 2:
+                    forSendNum ++;
+                    break;
+                case 3:
+                    forReceiveNum ++;
+                    break;
+                case 4:
+                    receivedNum ++;
+                    break;
+                case 5:
+                    forChangeNum ++;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        UserInfoViewItem *item;
+        item = [_myInfoContainer.items objectAtIndex:0];
+        item.remindNum = forPayNum;
+        item = [_myInfoContainer.items objectAtIndex:1];
+        item.remindNum = forSendNum;
+        item = [_myInfoContainer.items objectAtIndex:2];
+        item.remindNum = forReceiveNum;
+        item = [_myInfoContainer.items objectAtIndex:3];
+        item.remindNum = receivedNum;
+        item = [_myInfoContainer.items objectAtIndex:4];
+        item.remindNum = forChangeNum;
+        
     }
 }
 

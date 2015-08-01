@@ -478,6 +478,8 @@
 		910E5D1E1B20A43500FA584C /* ManWuMyInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910E5D1D1B20A43500FA584C /* ManWuMyInviteCodeViewController.m */; };
 		9116A69C1B30508700F2DBF9 /* KSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9116A69B1B30508700F2DBF9 /* KSUtils.m */; };
 		91375F7C1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */; };
+		914F04C81B6BA3AF00EBE17B /* public_Remindnumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 914F04C61B6BA3AF00EBE17B /* public_Remindnumber@2x.png */; };
+		914F04C91B6BA3AF00EBE17B /* public_Remindnumber@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 914F04C71B6BA3AF00EBE17B /* public_Remindnumber@3x.png */; };
 		915DC0101B5B7E0A00E5EBA4 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 915DC00D1B5B7E0A00E5EBA4 /* defaultHead.png */; };
 		915DC0111B5B7E0A00E5EBA4 /* defaultHead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 915DC00E1B5B7E0A00E5EBA4 /* defaultHead@2x.png */; };
 		915DC0121B5B7E0A00E5EBA4 /* defaultHead@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 915DC00F1B5B7E0A00E5EBA4 /* defaultHead@3x.png */; };
@@ -691,7 +693,7 @@
 		0553F78A1AFA1F7A0013BB97 /* ManWuCommoditySortViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuCommoditySortViewCell.m; sourceTree = "<group>"; };
 		0553F78B1AFA1F7A0013BB97 /* ManWuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuViewCell.h; sourceTree = "<group>"; };
 		0553F78C1AFA1F7A0013BB97 /* ManWuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuViewCell.m; sourceTree = "<group>"; };
-		055866891AD3B4F900A23FFA /* 满屋.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "满屋.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		055866891AD3B4F900A23FFA /* 屋满.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "屋满.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0558668D1AD3B4F900A23FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0558668E1AD3B4F900A23FFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		055866901AD3B4F900A23FFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1432,6 +1434,8 @@
 		9116A69B1B30508700F2DBF9 /* KSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSUtils.m; sourceTree = "<group>"; };
 		91375F7A1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuDoneResetPwdViewController.h; sourceTree = "<group>"; };
 		91375F7B1B1DEFB7006ACAC2 /* ManWuDoneResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuDoneResetPwdViewController.m; sourceTree = "<group>"; };
+		914F04C61B6BA3AF00EBE17B /* public_Remindnumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "public_Remindnumber@2x.png"; sourceTree = "<group>"; };
+		914F04C71B6BA3AF00EBE17B /* public_Remindnumber@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "public_Remindnumber@3x.png"; sourceTree = "<group>"; };
 		915DC00D1B5B7E0A00E5EBA4 /* defaultHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHead.png; sourceTree = "<group>"; };
 		915DC00E1B5B7E0A00E5EBA4 /* defaultHead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultHead@2x.png"; sourceTree = "<group>"; };
 		915DC00F1B5B7E0A00E5EBA4 /* defaultHead@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultHead@3x.png"; sourceTree = "<group>"; };
@@ -1852,7 +1856,7 @@
 		0558668A1AD3B4F900A23FFA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				055866891AD3B4F900A23FFA /* 满屋.app */,
+				055866891AD3B4F900A23FFA /* 屋满.app */,
 				055866A21AD3B4F900A23FFA /* basicFoundationTests.xctest */,
 			);
 			name = Products;
@@ -3537,6 +3541,8 @@
 		91E2D0541B1761C500946A32 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				914F04C61B6BA3AF00EBE17B /* public_Remindnumber@2x.png */,
+				914F04C71B6BA3AF00EBE17B /* public_Remindnumber@3x.png */,
 				915DC00D1B5B7E0A00E5EBA4 /* defaultHead.png */,
 				915DC00E1B5B7E0A00E5EBA4 /* defaultHead@2x.png */,
 				915DC00F1B5B7E0A00E5EBA4 /* defaultHead@3x.png */,
@@ -3609,7 +3615,7 @@
 			);
 			name = basicFoundation;
 			productName = basicFoundation;
-			productReference = 055866891AD3B4F900A23FFA /* 满屋.app */;
+			productReference = 055866891AD3B4F900A23FFA /* 屋满.app */;
 			productType = "com.apple.product-type.application";
 		};
 		055866A11AD3B4F900A23FFA /* basicFoundationTests */ = {
@@ -3770,6 +3776,7 @@
 				058D5A911AF0B2BB006EA35C /* Default.png in Resources */,
 				5FE3E91C1B64CF390066671C /* manwu_commodity_filt_select_discount@3x.png in Resources */,
 				91C76B811B31C7B3008C5EAC /* order_received.png in Resources */,
+				914F04C91B6BA3AF00EBE17B /* public_Remindnumber@3x.png in Resources */,
 				5F4088151B196E7700954568 /* manwu_commodity_sort_like.png in Resources */,
 				91E2D0761B1761C500946A32 /* sure-button01-s@2x.png in Resources */,
 				5FD2EDBB1B5BC9B3009FDF24 /* manwu_category_select_shirt.png in Resources */,
@@ -3808,6 +3815,7 @@
 				91E2D0771B1761C500946A32 /* sure-button01.png in Resources */,
 				5FD2EDB71B5BC9B3009FDF24 /* manwu_category_select_dress@3x.png in Resources */,
 				5FD2EDBD1B5BC9B3009FDF24 /* manwu_category_select_shirt@3x.png in Resources */,
+				914F04C81B6BA3AF00EBE17B /* public_Remindnumber@2x.png in Resources */,
 				91C76B7B1B31C516008C5EAC /* sex_woman.png in Resources */,
 				915DC0101B5B7E0A00E5EBA4 /* defaultHead.png in Resources */,
 				91C76B821B31C7B3008C5EAC /* order_received@2x.png in Resources */,
@@ -4414,7 +4422,7 @@
 					"$(PROJECT_DIR)/basicFoundation/libary/AliPaySDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "满屋";
+				PRODUCT_NAME = "屋满";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4451,7 +4459,7 @@
 					"$(PROJECT_DIR)/basicFoundation",
 					"$(PROJECT_DIR)/basicFoundation/libary/AliPaySDK",
 				);
-				PRODUCT_NAME = "满屋";
+				PRODUCT_NAME = "屋满";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

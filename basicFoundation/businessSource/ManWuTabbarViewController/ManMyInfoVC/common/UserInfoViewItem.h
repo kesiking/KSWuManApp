@@ -17,6 +17,9 @@
 @interface UserInfoViewItem : UIView
 
 @property (nonatomic, strong) UIImageView *itemImageView;
+@property (nonatomic, strong) UIImageView *remindImage;  //提醒图
+@property (nonatomic, assign) BOOL isRemind;  //是否提醒
+@property (nonatomic, assign) NSInteger remindNum;  //提醒数量
 @property (nonatomic, strong) UILabel *itemName;
 @property (nonatomic, assign) id <UserInfoViewItemDelegate> delegate;
 
