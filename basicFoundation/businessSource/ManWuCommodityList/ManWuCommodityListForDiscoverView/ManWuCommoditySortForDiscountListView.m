@@ -30,7 +30,7 @@
 
                                       @"titleText":@"Women's Cloth",
                                       @"subTitleText":@"女装",
-                                      @"cid":@"1"
+                                      @"cid":@"10"
                                       },
                                   @{
                                       @"imageUrl":@"manwu_category_shirt",
@@ -38,7 +38,7 @@
 
                                       @"titleText":@"Men's Cloth",
                                       @"subTitleText":@"男装",
-                                      @"cid":@"10"
+                                      @"cid":@"1"
                                       },
                                      @{
                                       @"imageUrl":@"manwu_category_high_heeled_show",

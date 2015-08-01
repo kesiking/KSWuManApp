@@ -23,9 +23,11 @@
     }
     static ZWIntroductionViewController *introductionView = nil;
     if (introductionView == nil) {
-        NSArray *coverImageNames = @[@"img_index_01txt", @"img_index_02txt", @"img_index_03txt"];
+        NSArray *coverImageNames = @[@"img_index_01bg", @"img_index_02bg", @"img_index_03bg"];//@[@"img_index_01txt", @"img_index_02txt", @"img_index_03txt"];
         NSArray *backgroundImageNames = @[@"img_index_01bg", @"img_index_02bg", @"img_index_03bg"];
-        introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:backgroundImageNames];
+        UIButton* enterButton = [UIButton new];
+        [enterButton setBackgroundImage:[UIImage imageNamed:@"manwu_start_buttpm_image"] forState:UIControlStateNormal];
+        introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:backgroundImageNames button:enterButton];
     }
     
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:introductionView.view];

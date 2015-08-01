@@ -361,6 +361,12 @@
 		5F8E7F6A1B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F631B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png */; };
 		5F8E7F6B1B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F641B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png */; };
 		5F8E7F6C1B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F651B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png */; };
+		5F8E7F701B6CA70500E80F5D /* img_index_01bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F6D1B6CA70500E80F5D /* img_index_01bg@3x.png */; };
+		5F8E7F711B6CA70500E80F5D /* img_index_02bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F6E1B6CA70500E80F5D /* img_index_02bg@3x.png */; };
+		5F8E7F721B6CA70500E80F5D /* img_index_03bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F6F1B6CA70500E80F5D /* img_index_03bg@3x.png */; };
+		5F8E7F761B6CA99200E80F5D /* manwu_start_buttpm_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F731B6CA99200E80F5D /* manwu_start_buttpm_image.png */; };
+		5F8E7F771B6CA99200E80F5D /* manwu_start_buttpm_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F741B6CA99200E80F5D /* manwu_start_buttpm_image@2x.png */; };
+		5F8E7F781B6CA99200E80F5D /* manwu_start_buttpm_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F751B6CA99200E80F5D /* manwu_start_buttpm_image@3x.png */; };
 		5F92161D1B1020F500554B44 /* KSPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F92161C1B1020F500554B44 /* KSPageList.m */; };
 		5F92161F1B103A0600554B44 /* weapp_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F92161E1B103A0600554B44 /* weapp_empty.png */; };
 		5F9216221B103DF000554B44 /* ManWuCommodityNewListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9216211B103DF000554B44 /* ManWuCommodityNewListService.m */; };
@@ -1288,6 +1294,12 @@
 		5F8E7F631B6BA50B00E80F5D /* LaunchImage-800-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-800-667h@2x.png"; sourceTree = "<group>"; };
 		5F8E7F641B6BA50B00E80F5D /* LaunchImage-800-Landscape-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-800-Landscape-736h@3x.png"; sourceTree = "<group>"; };
 		5F8E7F651B6BA50B00E80F5D /* LaunchImage-800-Portrait-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-800-Portrait-736h@3x.png"; sourceTree = "<group>"; };
+		5F8E7F6D1B6CA70500E80F5D /* img_index_01bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_index_01bg@3x.png"; sourceTree = "<group>"; };
+		5F8E7F6E1B6CA70500E80F5D /* img_index_02bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_index_02bg@3x.png"; sourceTree = "<group>"; };
+		5F8E7F6F1B6CA70500E80F5D /* img_index_03bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_index_03bg@3x.png"; sourceTree = "<group>"; };
+		5F8E7F731B6CA99200E80F5D /* manwu_start_buttpm_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manwu_start_buttpm_image.png; sourceTree = "<group>"; };
+		5F8E7F741B6CA99200E80F5D /* manwu_start_buttpm_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_start_buttpm_image@2x.png"; sourceTree = "<group>"; };
+		5F8E7F751B6CA99200E80F5D /* manwu_start_buttpm_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manwu_start_buttpm_image@3x.png"; sourceTree = "<group>"; };
 		5F92161B1B1020F500554B44 /* KSPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPageList.h; sourceTree = "<group>"; };
 		5F92161C1B1020F500554B44 /* KSPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPageList.m; sourceTree = "<group>"; };
 		5F92161E1B103A0600554B44 /* weapp_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weapp_empty.png; sourceTree = "<group>"; };
@@ -3435,6 +3447,12 @@
 		5FE612E71B65EFF700AE60C7 /* imageStart */ = {
 			isa = PBXGroup;
 			children = (
+				5F8E7F731B6CA99200E80F5D /* manwu_start_buttpm_image.png */,
+				5F8E7F741B6CA99200E80F5D /* manwu_start_buttpm_image@2x.png */,
+				5F8E7F751B6CA99200E80F5D /* manwu_start_buttpm_image@3x.png */,
+				5F8E7F6D1B6CA70500E80F5D /* img_index_01bg@3x.png */,
+				5F8E7F6E1B6CA70500E80F5D /* img_index_02bg@3x.png */,
+				5F8E7F6F1B6CA70500E80F5D /* img_index_03bg@3x.png */,
 				5FE612E81B65EFF700AE60C7 /* img_index_01bg@2x.png */,
 				5FE612E91B65EFF700AE60C7 /* img_index_01txt@2x.png */,
 				5FE612EA1B65EFF700AE60C7 /* img_index_02bg@2x.png */,
@@ -3756,6 +3774,7 @@
 				5FD2ED741B5BC573009FDF24 /* manwu_commodity_filt_select_all.png in Resources */,
 				058DAE231AE638BA009D0008 /* tabitem_discover_highlight.png in Resources */,
 				916A44F51B500A89005C2E4D /* btn_droplist.png in Resources */,
+				5F8E7F721B6CA70500E80F5D /* img_index_03bg@3x.png in Resources */,
 				5FD2EDB91B5BC9B3009FDF24 /* manwu_category_select_necklace@2x.png in Resources */,
 				5FD2EDAC1B5BC9B3009FDF24 /* manwu_category_man_shoe.png in Resources */,
 				91C76B6E1B31C516008C5EAC /* order_forchange@3x.png in Resources */,
@@ -3793,6 +3812,7 @@
 				05AF30041B004D3F00890A65 /* loading_view_2.png in Resources */,
 				5FD2ED371B5BC304009FDF24 /* manwu_commodity_sort_select_like.png in Resources */,
 				917EC3FD1B4648DE00C84DCB /* hongbao_invalid.png in Resources */,
+				5F8E7F711B6CA70500E80F5D /* img_index_02bg@3x.png in Resources */,
 				5FE3E91D1B64CF390066671C /* manwu_commodity_filt_select_specialForToday@2x.png in Resources */,
 				058DAE271AE638BA009D0008 /* tabitem_home_highlight.png in Resources */,
 				5FD2EDB41B5BC9B3009FDF24 /* manwu_category_select_bra@3x.png in Resources */,
@@ -3802,6 +3822,7 @@
 				91C76B831B31C7B3008C5EAC /* order_received@3x.png in Resources */,
 				91BBA1801B42DBFA002591C1 /* registerSuc_close@3x.png in Resources */,
 				5FD2ED251B5BB00E009FDF24 /* favorate_button_image@3x.png in Resources */,
+				5F8E7F771B6CA99200E80F5D /* manwu_start_buttpm_image@2x.png in Resources */,
 				5FD2EDA01B5BC9B3009FDF24 /* manwu_category_dress.png in Resources */,
 				058D5A901AF0B2BB006EA35C /* Default-568h@2x.png in Resources */,
 				5F01FB521B3E3E4100541648 /* KSNetworkDataMock.plist in Resources */,
@@ -3849,6 +3870,7 @@
 				5FD2ED2D1B5BC282009FDF24 /* manwu_commodity_sort_select_price.png in Resources */,
 				5FD2EDA81B5BC9B3009FDF24 /* manwu_category_high_heeled_show@3x.png in Resources */,
 				058D5D101AF2140C006EA35C /* tbbuy_question_fill@2x.png in Resources */,
+				5F8E7F761B6CA99200E80F5D /* manwu_start_buttpm_image.png in Resources */,
 				5FD2ED751B5BC573009FDF24 /* manwu_commodity_filt_select_buy.png in Resources */,
 				5F8E7F671B6BA50B00E80F5D /* Default-Landscape~ipad.png in Resources */,
 				05AF30151B00506C00890A65 /* unFavorate_button_image.png in Resources */,
@@ -3861,6 +3883,7 @@
 				0558669A1AD3B4F900A23FFA /* Images.xcassets in Resources */,
 				91C76B711B31C516008C5EAC /* order_forpay@3x.png in Resources */,
 				052CC6B81AF8588400AF7C78 /* home_discount_placehold_banner.png in Resources */,
+				5F8E7F701B6CA70500E80F5D /* img_index_01bg@3x.png in Resources */,
 				5FD2EDAE1B5BC9B3009FDF24 /* manwu_category_man_shoe@3x.png in Resources */,
 				917EC3FF1B4648DE00C84DCB /* hongbao_invalid@3x.png in Resources */,
 				91BBA17F1B42DBFA002591C1 /* registerSuc_close@2x.png in Resources */,
@@ -3874,6 +3897,7 @@
 				050FFD6A1B02F98000721E02 /* area.plist in Resources */,
 				052CC6C41AF8BDFE00AF7C78 /* discover_searchview_background.png in Resources */,
 				058DAE2B1AE638BA009D0008 /* tabitem_info_highlight.png in Resources */,
+				5F8E7F781B6CA99200E80F5D /* manwu_start_buttpm_image@3x.png in Resources */,
 				5FD2EDC01B5BC9B3009FDF24 /* manwu_category_shirt@3x.png in Resources */,
 				056664B71AEE37E600FD1C65 /* skuview_decrease.png in Resources */,
 				058D5D0C1AF2140C006EA35C /* tbbuy_item_decrease@2x.png in Resources */,
