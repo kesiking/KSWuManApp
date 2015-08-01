@@ -261,8 +261,10 @@
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
     self.titleLabel.text = detailModel.title;
     self.subtitleLabel.text = [dict objectForKey:@"skuInfo"];
-    NSNumber* price = [self.commodityPriceCaculate getCommodityOrigenPrice];
+    NSNumber* price = [self.commodityPriceCaculate getCommodityPrice];
     self.priceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[price floatValue]];
+    [self.priceLabel sizeToFit];
+    [self.priceLabel setOrigin:CGPointMake(self.width- HORIZONTAL_MARGIN - self.priceLabel.width, self.priceLabel.origin.y)];
     
     if (detailModel.activityBuyLimit) {
         [self.quantityLabel setText:[NSString stringWithFormat:@"限购%@件",detailModel.activityBuyLimit]];
