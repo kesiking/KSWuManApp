@@ -18,4 +18,8 @@ typedef void(^rightButtonSelectedBlock) (UIView *rightButton);
 
 -(void)clearButtonStatus;
 
+-(void)setLeftBtnTitle:(NSString*)title;
+
+-(void)setRightBtnTitle:(NSString*)title;
+
 @end

@@ -90,6 +90,8 @@
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
             NSDictionary* params = @{@"actIdKey":sortAndFiltModel.actIdKey?:defaultActIdKey};
             [strongSelf loadDataWithParams:params];
+            
+            [strongSelf.sortFiltHeadView setLeftBtnTitle:sortAndFiltModel.titleText];
         };
         _sortListSelectView.hidden = YES;
         [self addSubview:_sortListSelectView];
@@ -120,6 +122,8 @@
             ManWuCommoditySortAndFiltModel* sortAndFiltModel = (ManWuCommoditySortAndFiltModel*)[dataSource getComponentItemWithIndex:[indexPath row]];
             NSDictionary* params = @{@"sortKey":sortAndFiltModel.sortKey?:defaultSortKey};
             [strongSelf loadDataWithParams:params];
+            
+            [strongSelf.sortFiltHeadView setRightBtnTitle:sortAndFiltModel.titleText];
         };
         _filtForDiscoverSelectView.hidden = YES;
         [self addSubview:_filtForDiscoverSelectView];
