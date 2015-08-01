@@ -181,9 +181,9 @@
             return;
         }
         [self.statusHandler removeStatusViewFromView:self.table];
-        NSArray *orderslist = (NSArray*)service.requestModel.dataList;
+        ordersList = (NSArray*)service.requestModel.dataList;
         
-        if([orderslist count] == 0)
+        if([ordersList count] == 0)
         {
             [self.statusHandler showEmptyViewInView:self.table frame:self.table.bounds];
         }
@@ -292,7 +292,7 @@
 //    [payLabel setFont:[UIFont systemFontOfSize:kPayFontSize]];
 //    [payLabel setTextColor:[TBDetailUIStyle colorWithHexString:@"#b3b3b3"]];
     KSOrderModel *ordermodel = ordersList[indexPath.section];
-    NSString *payPriceStr = [NSString stringWithFormat:@"￥%@",ordermodel.payPrice];
+    NSString *payPriceStr = [NSString stringWithFormat:@"￥%0.2f",[ordermodel.payPrice floatValue]];
     NSString *payStr = [NSString stringWithFormat:@"实付款：%@",payPriceStr];
     NSLog(@"%lu",(unsigned long)[payStr length]);
     NSLog(@"%lu", [[NSString stringWithFormat:@"实付款："]length]);
