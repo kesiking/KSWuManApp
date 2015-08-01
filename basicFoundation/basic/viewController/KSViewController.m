@@ -20,6 +20,8 @@
     // Do any additional setup after loading the view.
     [self measureViewFrame];
     [self setupView];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = item;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

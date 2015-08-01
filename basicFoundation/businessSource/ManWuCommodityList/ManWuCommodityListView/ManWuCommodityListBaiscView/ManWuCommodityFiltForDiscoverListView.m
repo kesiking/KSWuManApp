@@ -14,6 +14,12 @@
 -(void)initModel{
     NSArray* sortAndFiltArray = @[
                                   @{
+                                      @"imageUrl":@"manwu_default_sort",
+                                      @"selectImageUrl":@"manwu_default_select_sort",
+                                      @"titleText":@"默认排序",
+                                      @"sortKey":@"0"
+                                      },
+                                  @{
                                       @"imageUrl":@"manwu_commodity_sort_price",
                                       @"selectImageUrl":@"manwu_commodity_sort_select_price",
                                       @"titleText":@"按价格排序",
@@ -24,12 +30,6 @@
                                       @"selectImageUrl":@"manwu_commodity_sort_select_like",
                                       @"titleText":@"按人气排序",
                                       @"sortKey":@"2"
-                                      },
-                                  @{
-                                      @"imageUrl":@"manwu_default_sort",
-                                      @"selectImageUrl":@"manwu_default_sort",
-                                      @"titleText":@"默认排序",
-                                      @"sortKey":@"0"
                                       }
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];

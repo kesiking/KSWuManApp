@@ -58,6 +58,13 @@
     }
 }
 
+-(UINavigationItem *)navigationItem{
+    if (self.rdv_tabBarController.navigationItem) {
+        return self.rdv_tabBarController.navigationItem;
+    }
+    return [super navigationItem];
+}
+
 #pragma mark- KSTabBarViewControllerProtocol
 
 -(BOOL)shouldSelectViewController:(UIViewController *)viewController{

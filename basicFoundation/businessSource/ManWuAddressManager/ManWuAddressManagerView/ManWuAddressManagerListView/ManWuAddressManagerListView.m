@@ -55,7 +55,7 @@
         [configObject setupStandConfig];
         configObject.needQueueLoadData = NO;
         configObject.needNextPage = NO;
-        configObject.needRefreshView = NO;
+        configObject.needRefreshView = YES;
         CGRect frame = self.bounds;
         frame.size.height -= self.addAddressView.height;
 //        configObject.collectionCellSize = KSCGSizeMake(frame.size.width, 102);

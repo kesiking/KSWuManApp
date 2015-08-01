@@ -135,7 +135,7 @@
 }
 
 -(void)setRightBtnTitle:(NSString*)title{
-    if (title == nil || [title isEqualToString:@"全部"] || [title isEqualToString:@"默认"]) {
+    if (title == nil || [title isEqualToString:@"全部"] || [title isEqualToString:@"默认排序"]) {
         [self.rightBtn setTitle:@"排序" forState:UIControlStateNormal];
         return;
     }

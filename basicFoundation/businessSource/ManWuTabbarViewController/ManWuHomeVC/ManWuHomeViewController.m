@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"屋满";
+    self.navigationItem.title = @"屋满";
     [self.view addSubview:self.commodityListView];
     [self.headerView refresh];
     [self.headerView sizeToFit];

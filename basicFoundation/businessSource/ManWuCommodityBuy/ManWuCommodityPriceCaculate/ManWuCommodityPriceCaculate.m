@@ -61,6 +61,10 @@
     return skuModel.quantity;
 }
 
+- (NSNumber*)getCommodityOrigenPrice{
+    return self.detailModel.price;
+}
+
 - (NSNumber*)getCommodityPrice{
     NSNumber* price = self.detailModel.activityPrice;
     if (price == nil) {
@@ -90,7 +94,7 @@
 
 - (NSString*)getCommodityDiscount{
     if (self.detailModel.activityDiscount && self.detailModel.activityPrice == nil) {
-        return [NSString stringWithFormat:@"%@",self.detailModel.activityDiscount];
+        return [NSString stringWithFormat:@"%.1f折",[self.detailModel.activityDiscount floatValue] * 10];
     }
     CGFloat discount = 0;
     NSNumber* salePrice = [self getCommodityPrice];

@@ -261,11 +261,15 @@
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)object;
     self.titleLabel.text = detailModel.title;
     self.subtitleLabel.text = [dict objectForKey:@"skuInfo"];
-    NSNumber* price = [self.commodityPriceCaculate getCommodityPrice];
+    NSNumber* price = [self.commodityPriceCaculate getCommodityOrigenPrice];
     self.priceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[price floatValue]];
     
-    NSNumber* quantity = [self.commodityPriceCaculate getCommodityQuantity];
-    [self.quantityLabel setText:[NSString stringWithFormat:@"库存%@件",quantity]];
+    if (detailModel.activityBuyLimit) {
+        [self.quantityLabel setText:[NSString stringWithFormat:@"限购%@件",detailModel.activityBuyLimit]];
+    }else{
+        NSNumber* quantity = [self.commodityPriceCaculate getCommodityQuantity];
+        [self.quantityLabel setText:[NSString stringWithFormat:@"库存%@件",quantity]];
+    }
     
     [self.itemImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
 

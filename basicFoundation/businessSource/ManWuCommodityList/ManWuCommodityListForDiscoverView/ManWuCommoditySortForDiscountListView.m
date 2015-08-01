@@ -82,6 +82,7 @@
                                       }
                                   ];
     NSArray* commoditySortAndFiltModels = [ManWuCommoditySortAndFiltModel modelArrayWithJSON:sortAndFiltArray];
+    self.collectionViewCtl.selectIndexPath = [NSIndexPath indexPathForRow:[commoditySortAndFiltModels count] - 1 inSection:0];
     [self setSortListArray:commoditySortAndFiltModels];
 #else
     // 从网络获取
