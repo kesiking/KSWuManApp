@@ -11,6 +11,8 @@
 
 typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject);
 
+typedef void(^tableCellViewOperationBlock) (UITableView* tableView,NSIndexPath* indexPath,KSDataSource* dataSource,KSCollectionViewConfigObject* configObject);
+
 @interface KSTableViewController : KSScrollViewServiceController<UITableViewDataSource, UITableViewDelegate>{
     UITableView*                 _tableView;
 }
@@ -19,6 +21,9 @@ typedef void(^tableViewDidSelectedBlock) (UITableView* tableView,NSIndexPath* in
 @property (nonatomic, strong) UIView*           tableFooterView;
 
 @property (nonatomic, strong) tableViewDidSelectedBlock  tableViewDidSelectedBlock;
+
+@property (nonatomic, strong) tableCellViewOperationBlock  tableCellViewOperationBlock;
+
 
 // tableView的删除操作时使用
 @property (nonatomic, strong) NSMutableArray*   collectionDeleteItems;
