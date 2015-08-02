@@ -20,6 +20,10 @@ static char imageURLKey;
 }
 
 - (void)ks_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock didDownLoadBlock:(SDWebImageDidDownLoadCompletionBlock)downLoadBlock completed:(SDWebImageCompletionBlock)completedBlock{
+    static dispatch_queue_t ioQueue = nil;
+    if (ioQueue == nil) {
+        ioQueue = dispatch_queue_create("com.hackemist.manwu.SDWebImageCache", DISPATCH_QUEUE_SERIAL);
+    }
     [self sd_cancelCurrentImageLoad];
     objc_setAssociatedObject(self, &imageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -29,28 +33,48 @@ static char imageURLKey;
     
     if (url) {
         __weak UIImageView *wself = self;
+
+        UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:url.absoluteString];
+        if (image) {
+            dispatch_main_sync_safe(^{
+                if (!wself) return;
+                wself.image = image;
+                [wself setNeedsLayout];
+                if (completedBlock) {
+                    completedBlock(image, nil, SDImageCacheTypeMemory, url);
+                }
+            });
+            
+            return;
+        }
+        
         id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if (!wself) return;
             __block UIImage* imageBlock = image;
-            dispatch_async([[KSImageListCache sharedImageCache] ioQueue], ^{
+            dispatch_async(ioQueue, ^{
+                NSLog(@"------> thread in ioqueue 1  befor downLoadBlock");
                 if (downLoadBlock) {
                     imageBlock = downLoadBlock(imageBlock, error, cacheType, url);
                 }
-                
+                NSLog(@"------> thread in ioqueue 2  after downLoadBlock");
                 dispatch_main_sync_safe(^{
+                    NSLog(@"------> thread in main 3  befor completedBlock");
                     if (!wself) return;
                     if (imageBlock) {
                         wself.image = imageBlock;
                         [wself setNeedsLayout];
+                        [[KSImageListCache sharedImageCache] storeImage:imageBlock forKey:url.absoluteString];
                     } else {
                         if ((options & SDWebImageDelayPlaceholder)) {
                             wself.image = placeholder;
                             [wself setNeedsLayout];
                         }
                     }
+
                     if (completedBlock && finished) {
                         completedBlock(imageBlock, error, cacheType, url);
                     }
+                    NSLog(@"------> thread in main 4  after completedBlock");
                 });
             });
         }];

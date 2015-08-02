@@ -203,25 +203,7 @@
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
     [self.commodityPriceCaculate setObject:detailModel dict:nil];
     if (extroParams.imageHasLoaded) {
-        WEAKSELF
-        UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
-        if (image == nil) {
-//            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
-            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                STRONGSELF
-                if (image && error == nil) {
-                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
-                }
-                return image;
-            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (image && detailModel.img) {
-                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
-                }
-            }];
-        }else{
-            [self.commodityImageView setImage:image];
-        }
-        self.commodityImageUrl = detailModel.img;
+        [self reloadCommodityImageViewWithImageUrl:detailModel.img];
     }else{
         self.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
         self.commodityImageUrl = nil;
@@ -282,29 +264,19 @@
         return;
     }
     ManWuCommodityDetailModel* detailModel = (ManWuCommodityDetailModel*)componentItem;
-    if (self.commodityImageUrl != detailModel.img) {
+    [self reloadCommodityImageViewWithImageUrl:detailModel.img];
+}
+
+-(void)reloadCommodityImageViewWithImageUrl:(NSString*)imageUrl{
+    if (self.commodityImageUrl != imageUrl) {
         WEAKSELF
-        UIImage* image = [[KSImageListCache sharedImageCache] imageFromMemoryCacheForKey:detailModel.img];
-        if (image == nil) {
-//            [self.commodityImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"]];
-            [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:detailModel.img] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                STRONGSELF
-                if (image && error == nil) {
-                    return [image resizedImage:strongSelf.commodityImageView.size interpolationQuality:kCGInterpolationHigh];
-                }
-                return image;
-            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                STRONGSELF
-                if (image && detailModel.img && error == nil) {
-                    [[KSImageListCache sharedImageCache] storeImage:image forKey:detailModel.img];
-                }else{
-                    strongSelf.commodityImageView.image = [UIImage imageNamed:@"gz_image_loading"];
-                }
-            }];
-        }else{
-            [self.commodityImageView setImage:image];
-        }
-        self.commodityImageUrl = detailModel.img;
+        [self.commodityImageView ks_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"gz_image_loading"] didDownLoadBlock:^UIImage *(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            STRONGSELF
+            if (image && error == nil) {
+                return [image resizedImage:CGSizeMake(strongSelf.commodityImageView.size.width * [[UIScreen mainScreen] scale], strongSelf.commodityImageView.size.height * [[UIScreen mainScreen] scale]) interpolationQuality:kCGInterpolationHigh];
+            }
+            return image;
+        } completed:nil];
     }else{
         NSLog(@"----> don't need reload image again");
     }
