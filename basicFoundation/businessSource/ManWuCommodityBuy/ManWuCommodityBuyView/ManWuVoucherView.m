@@ -124,7 +124,7 @@
         if (voucherModel.price == nil) {
             continue;
         }
-        [array addObject:voucherModel.price];
+        [array addObject:[NSString stringWithFormat:@"%@元",voucherModel.price]];
     }
     
     self.textLabel.text = @"红包";
