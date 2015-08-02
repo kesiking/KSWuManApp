@@ -107,6 +107,12 @@
     if (![object isKindOfClass:[NSArray class]]) {
         return;
     }
+    if ([object count] == 0) {
+        self.voucherList = [NSMutableArray array];
+        self.comBox.titlesList = [NSMutableArray array];
+        [self.comBox reloadData];
+        return;
+    }
     
     ManWuVoucherModel* voucherModel = [ManWuVoucherModel new];
     voucherModel.price = @0;
@@ -118,7 +124,7 @@
         if (voucherModel.price == nil) {
             continue;
         }
-        [array addObject:voucherModel.price];
+        [array addObject:[NSString stringWithFormat:@"%@元",voucherModel.price]];
     }
     
     self.textLabel.text = @"红包";

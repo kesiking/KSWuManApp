@@ -265,11 +265,10 @@
     self.priceLabel.text = [NSString stringWithFormat:@"￥%0.2f",[price floatValue]];
     [self.priceLabel sizeToFit];
     [self.priceLabel setOrigin:CGPointMake(self.width- HORIZONTAL_MARGIN - self.priceLabel.width, self.priceLabel.origin.y)];
-    
-    if (detailModel.activityBuyLimit) {
+    NSNumber* quantity = [self.commodityPriceCaculate getCommodityQuantity];
+    if (detailModel.activityBuyLimit && quantity == detailModel.activityBuyLimit) {
         [self.quantityLabel setText:[NSString stringWithFormat:@"限购%@件",detailModel.activityBuyLimit]];
     }else{
-        NSNumber* quantity = [self.commodityPriceCaculate getCommodityQuantity];
         [self.quantityLabel setText:[NSString stringWithFormat:@"库存%@件",quantity]];
     }
     

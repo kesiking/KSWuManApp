@@ -9,6 +9,12 @@
 #import "KSView.h"
 #import "ManWuHomeVoucherModel.h"
 
+typedef NS_ENUM(NSInteger, ManWuVoucherType) {
+    ManWuVoucherTypeInviteCode        = 1,
+    ManWuVoucherTypeRegister          = 2,
+    ManWuVoucherTypeBuyBuyBuy         = 3,
+};
+
 @interface ManWuHongBaoView : KSView
 
 @property (nonatomic, strong) ManWuHomeVoucherModel       *voucherModel;

@@ -69,14 +69,18 @@
     
     [_supView addSubview:_listTable];
     
-    titleLabel.text = safeStringForSting([_titlesList objectAtIndex:_defaultIndex]);
+    if ([_titlesList count] > _defaultIndex) {
+        titleLabel.text = safeStringForSting([_titlesList objectAtIndex:_defaultIndex]);
+    }
 }
 
 //刷新视图
 -(void)reloadData
 {
     [_listTable reloadData];
-    titleLabel.text = safeStringForSting([_titlesList objectAtIndex:_defaultIndex]);
+    if ([_titlesList count] > _defaultIndex) {
+        titleLabel.text = safeStringForSting([_titlesList objectAtIndex:_defaultIndex]);
+    }
 }
 
 //关闭父视图上面的其他combox

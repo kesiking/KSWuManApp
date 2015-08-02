@@ -29,7 +29,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"商品列表";
+    self.title = @"红包活动";
     [self.view addSubview:self.hongBaoView];
 }
 
