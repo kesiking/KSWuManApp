@@ -84,12 +84,12 @@
     }else{
         _remindImage.alpha = 1;
         if(remindNum < 0 ){
-            _remindImage.frame = CGRectMake(30, 0, 10, 10);
+            _remindImage.frame = CGRectMake(30, 0, 15, 15);
         }else{
-            UILabel *numberLabel=[[UILabel alloc] initWithFrame:CGRectMake(3, 2, 10, 10)];
+            UILabel *numberLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
             numberLabel.backgroundColor=[UIColor clearColor];
             numberLabel.textAlignment=NSTextAlignmentCenter;
-            numberLabel.font=[UIFont systemFontOfSize:10];
+            numberLabel.font=[UIFont systemFontOfSize:12];
             numberLabel.textColor=[UIColor whiteColor];
             numberLabel.text=[NSString stringWithFormat:@"%ld",(long)remindNum];
             if (remindNum>99) {
@@ -101,7 +101,7 @@
                 UIImage *newImage=[img stretchableImageWithLeftCapWidth:7.5 topCapHeight:7.5];
                 _remindImage.image=newImage;
                 _remindImage.frame=CGRectMake(30, 0, 20, 15);
-                numberLabel.frame=CGRectMake(3, 2, 15, 10);
+                numberLabel.frame=CGRectMake(0, 0, 20, 15);
                 numberLabel.text=[NSString stringWithFormat:@"99+"];
             }
             
@@ -114,7 +114,7 @@
 -(void)setIsRemind:(BOOL)isRemind{
     if (isRemind && _remindNum == 0) {
         if (_remindImage==nil) {
-            _remindImage=[[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 10, 10)];
+            _remindImage=[[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 15, 15)];
         }
         
         _remindImage.image=[UIImage imageNamed:@"public_Remindnumber"];

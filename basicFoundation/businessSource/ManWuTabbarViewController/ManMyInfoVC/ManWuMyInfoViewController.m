@@ -55,7 +55,6 @@
     forPayNum = 0; forSendNum = 0; forReceiveNum = 0; receivedNum = 0; forChangeNum = 0;
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
 
-    self.navigationItem.title = @"我的";
     dataSource = @[@[@"CSLineLayout"],@[@"CSLineLayout",@"全部订单"],@[@"常用收货地址",@"我的收藏",@"我的红包",@"我的邀请码"]];
     orderImageArray = @[@"order_forpay",@"order_forsend",@"order_forreceive",@"order_received",@"order_forchange"];
     orderNameArray = @[@"待付款",@"待发货",@"待收货",@"已收货",@"退款"];
@@ -71,6 +70,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationItem.title = @"我的";
+
     [self setupNavigationBar];
     // 查看是否登陆，如果未登陆则跳出登陆
     [self checkLogin];

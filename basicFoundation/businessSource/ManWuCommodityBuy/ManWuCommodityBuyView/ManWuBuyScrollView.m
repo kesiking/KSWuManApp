@@ -151,7 +151,7 @@
         WEAKSELF
         _comfirmView.confirmButtonClick = ^(){
             STRONGSELF
-            NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"1";
+            NSString* skuId = [strongSelf.dict objectForKey:@"skuId"]?:@"0";
             NSString* itemId = strongSelf.detailModel.itemId;
             NSNumber* buyNum = [strongSelf.commodityPriceCaculate getCommodityCount];
             NSNumber* activityId = strongSelf.detailModel.activityId;

@@ -29,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"屋满";
     [self.view addSubview:self.commodityListView];
     [self.headerView refresh];
     [self.headerView sizeToFit];
@@ -39,6 +38,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationItem.title = @"屋满";
     UINavigationController* navigationController = self.navigationController;
     if([navigationController.navigationBar respondsToSelector:@selector(barTintColor)]){
         navigationController.navigationBar.barTintColor = RGB(0xe8, 0x53, 0x53);

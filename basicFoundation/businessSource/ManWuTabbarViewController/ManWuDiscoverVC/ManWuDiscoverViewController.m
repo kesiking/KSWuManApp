@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"发现";
     [self.view addSubview:self.discoverListView];
     [self.discoverService loadAllCategoryCommodityListData];
     [self showLoadingView];
@@ -36,6 +35,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationItem.title = @"发现";
 }
 
 - (void)didReceiveMemoryWarning {
