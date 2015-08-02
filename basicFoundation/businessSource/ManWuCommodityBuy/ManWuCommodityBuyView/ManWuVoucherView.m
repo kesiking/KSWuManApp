@@ -107,6 +107,12 @@
     if (![object isKindOfClass:[NSArray class]]) {
         return;
     }
+    if ([object count] == 0) {
+        self.voucherList = [NSMutableArray array];
+        self.comBox.titlesList = [NSMutableArray array];
+        [self.comBox reloadData];
+        return;
+    }
     
     ManWuVoucherModel* voucherModel = [ManWuVoucherModel new];
     voucherModel.price = @0;

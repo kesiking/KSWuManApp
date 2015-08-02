@@ -242,6 +242,10 @@
                 strongSelf.hasVoucher = YES;
                 [strongSelf.voucherView setObject:service.dataList dict:nil];
                 [strongSelf reloadData];
+            }else{
+                strongSelf.hasVoucher = NO;
+                [strongSelf.voucherView setObject:@[] dict:nil];
+                [strongSelf reloadData];
             }
         };
     }
