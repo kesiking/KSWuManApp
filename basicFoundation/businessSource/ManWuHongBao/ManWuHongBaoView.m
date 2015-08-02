@@ -109,13 +109,13 @@
     [self.descriptionView setDescriptionModel:voucherModel];
     [self.descriptionView sizeToFit];
     switch (voucherModel.type) {
-        case 0:
+        case ManWuVoucherTypeRegister:
             [self.clickedBtn setTitle:@"我要注册" forState:UIControlStateNormal];
             break;
-        case 1:
+        case ManWuVoucherTypeInviteCode:
             [self.clickedBtn setTitle:@"我要去邀请" forState:UIControlStateNormal];
             break;
-        case 2:
+        case ManWuVoucherTypeBuyBuyBuy:
             [self.clickedBtn setTitle:@"我要买买买" forState:UIControlStateNormal];
             break;
         default:
@@ -153,15 +153,15 @@
 
 -(void)clickedBtnClick:(id)sender{
     switch (self.voucherModel.type) {
-        case 0:{
+        case ManWuVoucherTypeRegister:{
             TBOpenURLFromTarget(internalURL(kManWuRegisterView), self);
         }
             break;
-        case 1:{
+        case ManWuVoucherTypeInviteCode:{
             TBOpenURLFromTarget(internalURL(@"ManWuMyInviteCodeViewController"), self);
         }
             break;
-        case 2:{
+        case ManWuVoucherTypeBuyBuyBuy:{
             TBOpenURLFromTarget(tabbarURL(kManWuTabHome), self);
         }
             break;
