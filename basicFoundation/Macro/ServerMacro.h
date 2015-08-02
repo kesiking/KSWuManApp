@@ -16,10 +16,10 @@
 #define CategoryNeedCache
 
 #define DEFAULT_SCHEME @"http"
-#define DEFAULT_HOST @"115.29.227.64"
+#define DEFAULT_HOST @"www.topmimo.com"
 #define DEFAULT_PORT @"8080"
 #define DEFAULT_PARH @"wuman/"
-#define KS_MANWU_BASE_URL [NSString stringWithFormat:@"%@://%@:%@/",DEFAULT_SCHEME,DEFAULT_HOST,DEFAULT_PORT]
+#define KS_MANWU_BASE_URL [NSString stringWithFormat:@"%@://%@/",DEFAULT_SCHEME,DEFAULT_HOST]
 
 #define defaultSortKey @"1"
 

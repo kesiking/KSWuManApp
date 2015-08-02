@@ -92,7 +92,7 @@ static NSString    * aliPayPublicKey;
     }
     order.amount = price; //商品价格
 
-    order.notifyURL =  @"http://115.29.227.64/wuman/order/callbackOrder.do"; //回调URL 服务器异步通知页面路径
+    order.notifyURL =  @"http://www.topmimo.com/wuman/order/callbackOrder.do"; //回调URL 服务器异步通知页面路径
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";

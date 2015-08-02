@@ -203,6 +203,7 @@
         };
         _createOrderService.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
             STRONGSELF
+            NSLog(@"创建订单服务器返回错误%@",error.description);
             [WeAppToast toast:[NSString stringWithFormat:@"服务器在偷懒，请稍微再试"]];
         };
     }

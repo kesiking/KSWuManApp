@@ -231,6 +231,10 @@
     self.titleLabel.text = detailModel.title;
     self.priceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[detailModel.price floatValue]];
     NSNumber* salePrice = [self.commodityPriceCaculate getCommodityPrice];
+    if (detailModel.activityDiscount)
+    {
+        salePrice = detailModel.sale;
+    }
     if (salePrice != detailModel.price) {
         self.salePriceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[salePrice floatValue]];
         self.salePriceLabel.hidden = NO;
