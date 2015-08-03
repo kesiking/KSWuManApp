@@ -439,7 +439,16 @@
     
     [KSSafePayUtility aliPayForParams:params callbackBlock:^(NSDictionary *resultDic) {
         // 支付成功后 todo
-        NSLog(@"++++++++++++++支付成功");
+        
+        BOOL ret = (BOOL)resultDic[@"isSuccess"];
+        if(ret)
+        {
+            NSLog(@"++++++++++++++支付成功");
+            [self initOrdersList];
+        }else
+        {
+            NSLog(@"++++++++++++++支付失败");
+        }
     }];
 
 }
