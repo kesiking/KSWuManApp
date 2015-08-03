@@ -75,7 +75,6 @@
 		055866981AD3B4F900A23FFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055866961AD3B4F900A23FFA /* Main.storyboard */; };
 		0558669A1AD3B4F900A23FFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055866991AD3B4F900A23FFA /* Images.xcassets */; };
 		0558669D1AD3B4F900A23FFA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0558669B1AD3B4F900A23FFA /* LaunchScreen.xib */; };
-		055866A91AD3B4F900A23FFA /* basicFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866A81AD3B4F900A23FFA /* basicFoundationTests.m */; };
 		055866B71AD3B65900A23FFA /* Routable.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866B61AD3B65900A23FFA /* Routable.m */; };
 		055866CD1AD3E05B00A23FFA /* WeAppBasicPagedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866C81AD3E05B00A23FFA /* WeAppBasicPagedList.m */; };
 		055866CE1AD3E05B00A23FFA /* WeAppBasicRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 055866CA1AD3E05B00A23FFA /* WeAppBasicRequestModel.m */; };
@@ -580,16 +579,6 @@
 		91E2D0771B1761C500946A32 /* sure-button01.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E2D0591B1761C500946A32 /* sure-button01.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		055866A31AD3B4F900A23FFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 055866811AD3B4F900A23FFA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 055866881AD3B4F900A23FFA;
-			remoteInfo = basicFoundation;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		050FFD291B02DEEB00721E02 /* KSServiceDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSServiceDemo.h; sourceTree = "<group>"; };
 		050FFD2A1B02DEEB00721E02 /* KSServiceDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSServiceDemo.m; sourceTree = "<group>"; };
@@ -715,7 +704,6 @@
 		055866971AD3B4F900A23FFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		055866991AD3B4F900A23FFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0558669C1AD3B4F900A23FFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		055866A21AD3B4F900A23FFA /* basicFoundationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basicFoundationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		055866A71AD3B4F900A23FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055866A81AD3B4F900A23FFA /* basicFoundationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basicFoundationTests.m; sourceTree = "<group>"; };
 		055866B51AD3B65900A23FFA /* Routable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Routable.h; sourceTree = "<group>"; };
@@ -1601,13 +1589,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0558669F1AD3B4F900A23FFA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1887,7 +1868,6 @@
 			isa = PBXGroup;
 			children = (
 				055866891AD3B4F900A23FFA /* 屋满.app */,
-				055866A21AD3B4F900A23FFA /* basicFoundationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3654,24 +3634,6 @@
 			productReference = 055866891AD3B4F900A23FFA /* 屋满.app */;
 			productType = "com.apple.product-type.application";
 		};
-		055866A11AD3B4F900A23FFA /* basicFoundationTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 055866AF1AD3B4F900A23FFA /* Build configuration list for PBXNativeTarget "basicFoundationTests" */;
-			buildPhases = (
-				0558669E1AD3B4F900A23FFA /* Sources */,
-				0558669F1AD3B4F900A23FFA /* Frameworks */,
-				055866A01AD3B4F900A23FFA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				055866A41AD3B4F900A23FFA /* PBXTargetDependency */,
-			);
-			name = basicFoundationTests;
-			productName = basicFoundationTests;
-			productReference = 055866A21AD3B4F900A23FFA /* basicFoundationTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -3684,10 +3646,6 @@
 					055866881AD3B4F900A23FFA = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = PS3T6HBA6H;
-					};
-					055866A11AD3B4F900A23FFA = {
-						CreatedOnToolsVersion = 6.0.1;
-						TestTargetID = 055866881AD3B4F900A23FFA;
 					};
 				};
 			};
@@ -3714,7 +3672,6 @@
 			projectRoot = "";
 			targets = (
 				055866881AD3B4F900A23FFA /* basicFoundation */,
-				055866A11AD3B4F900A23FFA /* basicFoundationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3966,13 +3923,6 @@
 				5FD2EDB11B5BC9B3009FDF24 /* manwu_category_necklace@3x.png in Resources */,
 				5FD2EDBF1B5BC9B3009FDF24 /* manwu_category_shirt@2x.png in Resources */,
 				052CC6BB1AF8588400AF7C78 /* home_specialForToday_second_placehold_banner.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		055866A01AD3B4F900A23FFA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4306,23 +4256,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0558669E1AD3B4F900A23FFA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				055866A91AD3B4F900A23FFA /* basicFoundationTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		055866A41AD3B4F900A23FFA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 055866881AD3B4F900A23FFA /* basicFoundation */;
-			targetProxy = 055866A31AD3B4F900A23FFA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		055866961AD3B4F900A23FFA /* Main.storyboard */ = {
@@ -4512,40 +4446,6 @@
 			};
 			name = Release;
 		};
-		055866B01AD3B4F900A23FFA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = basicFoundationTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/basicFoundation.app/basicFoundation";
-			};
-			name = Debug;
-		};
-		055866B11AD3B4F900A23FFA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = basicFoundationTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/basicFoundation.app/basicFoundation";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4563,15 +4463,6 @@
 			buildConfigurations = (
 				055866AD1AD3B4F900A23FFA /* Debug */,
 				055866AE1AD3B4F900A23FFA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		055866AF1AD3B4F900A23FFA /* Build configuration list for PBXNativeTarget "basicFoundationTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				055866B01AD3B4F900A23FFA /* Debug */,
-				055866B11AD3B4F900A23FFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -108,7 +108,7 @@
     if(!_logo_imgView)
     {
         _logo_imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SELFWIDTH/2 - 30, 30, 60, 60)];
-        _logo_imgView.backgroundColor = [UIColor redColor];
+        _logo_imgView.image = [UIImage imageNamed:@"58.png"];
     }
     return _logo_imgView;
 }
