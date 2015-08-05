@@ -156,6 +156,7 @@
             }
             NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.love longLongValue] number:3];
             strongSelf.favorateLabel.text = favorateLabelText;
+            [strongSelf updateFrame];
         };
         [self addSubview:_favorateImageView];
     }
