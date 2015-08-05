@@ -73,6 +73,22 @@
         _collectionViewCtl.service.delegate = nil;
         _collectionViewCtl.service = nil;
         _collectionViewCtl.service = service;
+        WEAKSELF
+        _collectionViewCtl.service.serviceDidStartLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            BOOL isNextPage = [[strongSelf.collectionViewCtl valueForKey:@"isNextPage"] boolValue];
+            if (!isNextPage) {
+                [strongSelf showLoadingView];
+            }
+        };
+        _collectionViewCtl.service.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            [strongSelf hideLoadingView];
+        };
+        _collectionViewCtl.service.serviceDidFailLoadBlock = ^(WeAppBasicService* service, NSError* error){
+            STRONGSELF
+            [strongSelf hideLoadingView];
+        };
     }
 }
 

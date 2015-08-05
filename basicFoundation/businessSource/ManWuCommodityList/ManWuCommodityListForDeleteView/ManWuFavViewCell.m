@@ -31,13 +31,16 @@
         [self bringSubviewToFront:self.priceLabel];
         self.priceLabel.textAlignment = NSTextAlignmentCenter;
     }else{
-        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - 90 - 0.5 , self.commodityImageView.bottom - 20 - 0.5, 90, 20)];
+        [self.priceLabel sizeToFit];
+        [self.salePriceLabel sizeToFit];
+        CGFloat commodityPriceImageViewWidth = MAX(self.priceLabel.width + self.salePriceLabel.width + 5, 90);
+        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - commodityPriceImageViewWidth - 0.5 , self.commodityImageView.bottom - 20 - 0.5, commodityPriceImageViewWidth, 20)];
         
-        [self.salePriceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.commodityPriceImageView.width/2, self.commodityPriceImageView.height)];
+        [self.salePriceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.salePriceLabel.width, self.commodityPriceImageView.height)];
         [self bringSubviewToFront:self.salePriceLabel];
         self.salePriceLabel.textAlignment = NSTextAlignmentCenter;
         
-        [self.priceLabel setFrame:CGRectMake(self.salePriceLabel.right , self.commodityPriceImageView.top + 0.5, self.commodityPriceImageView.width/2, self.commodityPriceImageView.height)];
+        [self.priceLabel setFrame:CGRectMake(self.salePriceLabel.right + 5 , self.commodityPriceImageView.top + 0.5, self.priceLabel.width, self.commodityPriceImageView.height)];
         [self bringSubviewToFront:self.priceLabel];
         self.priceLabel.textAlignment = NSTextAlignmentCenter;
     }

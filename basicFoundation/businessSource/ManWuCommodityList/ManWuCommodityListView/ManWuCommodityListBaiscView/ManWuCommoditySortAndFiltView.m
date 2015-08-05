@@ -45,7 +45,7 @@
         
         [_leftBtn setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
         
-        [_leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 100)];
+        [_leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 90)];
         [_leftBtn setImageEdgeInsets:UIEdgeInsetsMake((_leftBtn.height - 5)/2, _leftBtn.width - 25.5, (_leftBtn.height - 5)/2, 15)];
 
         [self resizeButton:_leftBtn];
@@ -76,7 +76,11 @@
         
         [_rightBtn setImage:[UIImage imageNamed:@"manwu_sort_down"] forState:UIControlStateNormal];
         
-        [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 90)];
+        if (SCREEN_WIDTH > SCREEN_BASE) {
+            [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 90)];
+        }else{
+            [_rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 70)];
+        }
         [_rightBtn setImageEdgeInsets:UIEdgeInsetsMake((_rightBtn.height - 5)/2, _rightBtn.width - 25.5, (_rightBtn.height - 5)/2, 15)];
         
         [self resizeButton:_rightBtn];
@@ -89,8 +93,13 @@
 
 -(void)resizeButton:(TBDetailSKUButton*)button{
     button.clipsToBounds            = YES;
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     button.titleLabel.numberOfLines = 2;
-    button.titleLabel.font          = [UIFont systemFontOfSize:17];
+    if (SCREEN_WIDTH > SCREEN_BASE) {
+        button.titleLabel.font          = [UIFont systemFontOfSize:17];
+    }else{
+        button.titleLabel.font          = [UIFont systemFontOfSize:14];
+    }
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
