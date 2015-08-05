@@ -26,7 +26,10 @@
 - (void)updateFrame{
     [super updateFrame];
     if (self.salePriceLabel.hidden) {
-        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - 50 - 0.5 , self.commodityImageView.bottom - 20 - 0.5, 50, 20)];
+        [self.priceLabel sizeToFit];
+        CGFloat commodityPriceImageViewWidth = MAX(self.priceLabel.width + 10, 50);
+
+        [self.commodityPriceImageView setFrame:CGRectMake(self.commodityImageView.right - commodityPriceImageViewWidth - 0.5 , self.commodityImageView.bottom - 20 - 0.5, commodityPriceImageViewWidth, 20)];
         [self.priceLabel setFrame:CGRectMake(self.commodityPriceImageView.left , self.commodityPriceImageView.top, self.commodityPriceImageView.width, self.commodityPriceImageView.height)];
         [self bringSubviewToFront:self.priceLabel];
         self.priceLabel.textAlignment = NSTextAlignmentCenter;
