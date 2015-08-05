@@ -221,8 +221,12 @@
         self.salePriceLabel.text = [NSString stringWithFormat:@"￥%0.1f",[salePrice floatValue]];
         self.salePriceLabel.hidden = NO;
         self.priceLabel.lineType = LineTypeMiddle;
+        self.priceLabel.font = [UIFont boldSystemFontOfSize:10];
+        self.priceLabel.textColor = RGB(0xf3, 0xf0, 0x9b);
     }else{
         self.priceLabel.lineType = LineTypeNone;
+        self.priceLabel.font = [UIFont boldSystemFontOfSize:13];
+        self.priceLabel.textColor = [UIColor whiteColor];
         self.salePriceLabel.hidden = YES;
     }
     NSString* favorateLabelText = [WeAppUtils longNumberAbbreviation:[detailModel.love longLongValue] number:3];
