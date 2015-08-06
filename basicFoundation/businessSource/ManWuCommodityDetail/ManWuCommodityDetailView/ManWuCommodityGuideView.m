@@ -21,6 +21,7 @@
     [self.descriptionArray addObject:@"2.签收后如发现质量问题，请24小时内联系售后反馈。在不影响二次销售情况下，无理由退货或者换货。"];
     [self.descriptionArray addObject:@"3.购买后两个工作日内发货，节假日除外。"];
     [self.descriptionArray addObject:@"4.屋满商家具有最终解释权，详见“关于我们”说明。"];
+    [self.descriptionArray addObject:@"5.客服QQ：2054794075，客服电话：0571-86290178。"];
     
     [self reloadData];
 }
