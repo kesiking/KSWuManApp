@@ -112,18 +112,15 @@
         orderTypeLabel.text = [NSString stringWithFormat:@"订单类型：%@",orderType];
         [itemView_orderType addSubview:orderTypeLabel];
         
-        if([orderModel.status integerValue] == 5 || [orderModel.status integerValue] == 6)
+        if([orderModel.status integerValue] == 5)
         {
             UILabel *statusLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width - kSpacePaddingX - 140, kSpacePaddingY, 140, 15)];
             [statusLabel setFont:[UIFont systemFontOfSize:15]];
             NSString *statusStr;
             if([orderModel.status integerValue] == 5)
             {
-                statusStr = @"退款中";
+                statusStr = @"审核中";
 
-            }else
-            {
-                statusStr = @"已退款";
             }
             NSString *statusLabelStr = [NSString stringWithFormat:@"状态：%@",statusStr];
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:statusLabelStr];
