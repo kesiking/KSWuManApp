@@ -73,8 +73,8 @@
                                       @"cid":@"18"
                                       },
                                       @{
-                                      @"imageUrl":@"manwu_commodity_filt_all",
-                                      @"selectImageUrl":@"manwu_commodity_filt_select_all",
+                                      @"imageUrl":@"manwu_category_all",
+                                      @"selectImageUrl":@"manwu_category_select_all",
                                       
                                       @"titleText":@"All for you",
                                       @"subTitleText":@"全部",
