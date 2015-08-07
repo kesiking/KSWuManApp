@@ -56,7 +56,7 @@
     if(!_logo_imgView)
     {
         _logo_imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SELFWIDTH/2 - 30, 30, 60, 60)];
-        _logo_imgView.image = [UIImage imageNamed:@"58.png"];
+        _logo_imgView.image = [UIImage imageNamed:@"120.png"];
     }
     return _logo_imgView;
 }
