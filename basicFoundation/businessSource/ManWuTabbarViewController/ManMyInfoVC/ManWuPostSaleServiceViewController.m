@@ -182,7 +182,7 @@
 {
     if (service == _service) {
         // todo fail
-        [WeAppToast toast:error.description];
+        [WeAppToast toast:@"服务器在偷懒，请稍后再试"];
     }
     
 }
