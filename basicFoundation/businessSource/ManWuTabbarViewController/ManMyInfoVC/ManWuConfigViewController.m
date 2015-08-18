@@ -40,7 +40,7 @@
     [self.view setBackgroundColor:[TBDetailUIStyle colorWithStyle:TBDetailColorStyle_ButtonDisabled]];
     self.title = @"设置";
     
-    dataArray = @[@[@"意见反馈",@"去App Store评分"],@[@"清除缓存",@"关于我们",@"版本更新"]];
+    dataArray = @[@[@"意见反馈",@"去App Store评分"],@[@"清除缓存",@"关于我们"]];
     self.table = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.table.delegate = self;
     self.table.dataSource = self;
