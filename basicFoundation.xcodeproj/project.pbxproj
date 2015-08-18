@@ -295,6 +295,8 @@
 		5F01FB521B3E3E4100541648 /* KSNetworkDataMock.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F01FB511B3E3E4100541648 /* KSNetworkDataMock.plist */; };
 		5F01FB551B3E3F0000541648 /* KSNetworkDataMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F01FB541B3E3F0000541648 /* KSNetworkDataMock.m */; };
 		5F01FB581B3EB0CE00541648 /* UIImageView+KSWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F01FB571B3EB0CE00541648 /* UIImageView+KSWebCache.m */; };
+		5F061BB01B82FD5B002634E2 /* ManWuHomeAdvertisementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F061BAF1B82FD5B002634E2 /* ManWuHomeAdvertisementModel.m */; };
+		5F061BB31B82FEF3002634E2 /* ManWuHomeVoucherAndAdvModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F061BB21B82FEF3002634E2 /* ManWuHomeVoucherAndAdvModel.m */; };
 		5F214C4D1B146FF70081BA02 /* ManWuAddressService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C4C1B146FF70081BA02 /* ManWuAddressService.m */; };
 		5F214C501B148E520081BA02 /* ManWuAddressEditService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C4F1B148E520081BA02 /* ManWuAddressEditService.m */; };
 		5F214C541B154A290081BA02 /* ManWuHomeActivityInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F214C531B154A290081BA02 /* ManWuHomeActivityInfoModel.m */; };
@@ -1180,6 +1182,10 @@
 		5F01FB541B3E3F0000541648 /* KSNetworkDataMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNetworkDataMock.m; sourceTree = "<group>"; };
 		5F01FB561B3EB0CE00541648 /* UIImageView+KSWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+KSWebCache.h"; sourceTree = "<group>"; };
 		5F01FB571B3EB0CE00541648 /* UIImageView+KSWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+KSWebCache.m"; sourceTree = "<group>"; };
+		5F061BAE1B82FD5B002634E2 /* ManWuHomeAdvertisementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHomeAdvertisementModel.h; sourceTree = "<group>"; };
+		5F061BAF1B82FD5B002634E2 /* ManWuHomeAdvertisementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHomeAdvertisementModel.m; sourceTree = "<group>"; };
+		5F061BB11B82FEF3002634E2 /* ManWuHomeVoucherAndAdvModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuHomeVoucherAndAdvModel.h; sourceTree = "<group>"; };
+		5F061BB21B82FEF3002634E2 /* ManWuHomeVoucherAndAdvModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuHomeVoucherAndAdvModel.m; sourceTree = "<group>"; };
 		5F214C4B1B146FF70081BA02 /* ManWuAddressService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressService.h; sourceTree = "<group>"; };
 		5F214C4C1B146FF70081BA02 /* ManWuAddressService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManWuAddressService.m; sourceTree = "<group>"; };
 		5F214C4E1B148E520081BA02 /* ManWuAddressEditService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManWuAddressEditService.h; sourceTree = "<group>"; };
@@ -3423,6 +3429,10 @@
 			children = (
 				5FD45ECA1B1BF1C90064BA31 /* ManWuHomeVoucherModel.h */,
 				5FD45ECB1B1BF1C90064BA31 /* ManWuHomeVoucherModel.m */,
+				5F061BAE1B82FD5B002634E2 /* ManWuHomeAdvertisementModel.h */,
+				5F061BAF1B82FD5B002634E2 /* ManWuHomeAdvertisementModel.m */,
+				5F061BB11B82FEF3002634E2 /* ManWuHomeVoucherAndAdvModel.h */,
+				5F061BB21B82FEF3002634E2 /* ManWuHomeVoucherAndAdvModel.m */,
 			);
 			path = ManWuHomeVoucherModel;
 			sourceTree = "<group>";
@@ -4045,6 +4055,7 @@
 				056664BB1AEF1C3C00FD1C65 /* TBDetailSkuModel.m in Sources */,
 				058DAE4F1AE72FC3009D0008 /* TBURLAction.m in Sources */,
 				5FD70B0D1B47936800B61E6F /* ManWuHongBaoInfoDescriptionView.m in Sources */,
+				5F061BB01B82FD5B002634E2 /* ManWuHomeAdvertisementModel.m in Sources */,
 				051900871B0438C700C077D5 /* ManWuCommodityFiltTabLabel.m in Sources */,
 				055C758A1ADFBF6000C35854 /* SDWebImagePrefetcher.m in Sources */,
 				05ACAC941AFC9FC800853E1C /* KSErrorView.m in Sources */,
@@ -4231,6 +4242,7 @@
 				056664C81AEF22AA00FD1C65 /* TBDetailInputViewModel.m in Sources */,
 				058D5D1A1AF22164006EA35C /* ManWuDeliveryView.m in Sources */,
 				5F214C761B158F990081BA02 /* SVModalWebViewController.m in Sources */,
+				5F061BB31B82FEF3002634E2 /* ManWuHomeVoucherAndAdvModel.m in Sources */,
 				055C75851ADFBF6000C35854 /* SDWebImageCompat.m in Sources */,
 				052CC6A91AF7728600AF7C78 /* ManWuHomeHeaderView.m in Sources */,
 				055C758B1ADFBF6000C35854 /* UIButton+WebCache.m in Sources */,
