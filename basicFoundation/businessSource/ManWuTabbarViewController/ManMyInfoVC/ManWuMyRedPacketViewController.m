@@ -276,7 +276,7 @@
         [descLabel sizeToFit];
         [cell.contentView addSubview:descLabel];
         
-        cellHeight = 3 * kSpaceX + redPacketLabel.height + timeLabel.height + descLabel.height;
+        cellHeight = MAX((3 * kSpaceX + redPacketLabel.height + timeLabel.height + descLabel.height), CELLHEIGHT);
         
         [self tableView:tableView heightForRowAtIndexPath:indexPath];
 
