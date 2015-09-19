@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) WeAppBasicBannerView                  *bannerView;
 
+@property (nonatomic, strong) WeAppBasicBannerView                  *advertisementView;
+
 @property (nonatomic, strong) ManWuDiiscountInfoDescriptionView     *discountInfo;
 
 @property (nonatomic, strong) ManWuSpecialForTodayView              *specialView;
@@ -34,6 +36,8 @@
 
 @property (nonatomic, strong) KSManWuHomeService           *voucherService;
 
+@property (nonatomic, strong) KSManWuHomeService           *homeAdvertisementService;
+
 @end
 
 @implementation ManWuHomeHeaderView
@@ -43,6 +47,7 @@
     [self addSubview:self.container];
     [self.homeActivityService loadHomeActivityData];
     [self.voucherService loadBannerVoucherData];
+    [self.homeAdvertisementService loadAdvertisementsData];
 }
 
 -(void)setDescriptionModel:(WeAppComponentBaseItem*)descriptionModel{
@@ -52,6 +57,7 @@
 -(void)refresh{
     [self.homeActivityService loadHomeActivityData];
     [self.voucherService loadBannerVoucherData];
+    [self.homeAdvertisementService loadAdvertisementsData];
     [self reloadData];
 }
 
@@ -82,6 +88,11 @@
                                                 initWithView:self.bannerView];
     bannerViewLayoutItem.padding             = padding;
     [self.container addItem:bannerViewLayoutItem];
+    
+    CSLinearLayoutItem *advertisementLayoutItem = [[CSLinearLayoutItem alloc]
+                                                initWithView:self.advertisementView];
+    advertisementLayoutItem.padding             = padding;
+    [self.container addItem:advertisementLayoutItem];
     
     CSLinearLayoutItem *recommendViewLayoutItem = [[CSLinearLayoutItem alloc]
                                                initWithView:self.recommendView];
@@ -119,6 +130,19 @@
     return _bannerView;
 }
 
+-(WeAppBasicBannerView *)advertisementView{
+    if (_advertisementView == nil) {
+        _advertisementView = [[WeAppBasicBannerView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, banner_height)];
+        _advertisementView.backgroundColor = [UIColor whiteColor];
+        [_advertisementView.bannerCloseButton removeFromSuperview];
+        _advertisementView.clipsToBounds = YES;
+        _advertisementView.bannerBackgroundImage.image = [UIImage imageNamed:@"gz_image_loading.png"];
+        _advertisementView.delegate = (id)self;
+        _advertisementView.isRounded = NO;
+    }
+    return _advertisementView;
+}
+
 #pragma mark - bannerView Delegate
 
 - (void)BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url{
@@ -130,8 +154,18 @@
                 return;
             }
             NSDictionary* params = @{@"voucherModel":voucherModel};
-
             TBOpenURLFromTargetWithNativeParams(internalURL(@"ManWuHongBaoViewController"), self,nil,params);
+        }
+    }else if(aBannerView == _advertisementView){
+        NSUInteger index = self.advertisementView.bannerCycleScrollView.curPage;
+        if ([self.homeAdvertisementService.dataList count] > index) {
+            ManWuHomeAdvertisementModel* advertisementModel = [self.homeAdvertisementService.dataList objectAtIndex:index];
+            if (advertisementModel
+                && advertisementModel.advertisementId == nil
+                && advertisementModel.linkUrl == nil) {
+                return;
+            }
+            TBOpenURLFromTargetWithNativeParams(advertisementModel.linkUrl, self,nil, nil);
         }
     }
 }
@@ -180,6 +214,20 @@
     return _homeActivityService;
 }
 
+-(KSManWuHomeService *)homeAdvertisementService{
+    if (_homeAdvertisementService == nil) {
+        _homeAdvertisementService = [[KSManWuHomeService alloc] init];
+        WEAKSELF
+        _homeAdvertisementService.serviceDidFinishLoadBlock = ^(WeAppBasicService* service){
+            STRONGSELF
+            if (service && service.dataList) {
+                [strongSelf setupAdvertisementWithDataList:service.dataList];
+            }
+        };
+    }
+    return _homeAdvertisementService;
+}
+
 -(KSManWuHomeService *)voucherService{
     if (_voucherService == nil) {
         _voucherService = [[KSManWuHomeService alloc] init];
@@ -205,7 +253,6 @@
     }else if (count > 1){
         [self.specialView setLeftDescriptionModel:[array objectAtIndex:1] rightDescriptionModel:nil];
     }
-    
     [self reloadData];
 }
 
@@ -221,6 +268,21 @@
         [bannerItems addObject:bannerItem];
     }
     [self.bannerView setLocalData:bannerItems];
+    [self reloadData];
+}
+
+-(void)setupAdvertisementWithDataList:(NSArray *)array{
+    NSMutableArray* bannerItems = [NSMutableArray array];
+    for (ManWuHomeAdvertisementModel*advertisementModel in array) {
+        if (![advertisementModel isKindOfClass:[ManWuHomeAdvertisementModel class]]) {
+            continue;
+        }
+        WeAppBannerItem* bannerItem = [WeAppBannerItem new];
+        bannerItem.bannerId = advertisementModel.advertisementId;
+        bannerItem.picture = advertisementModel.picUrl;
+        [bannerItems addObject:bannerItem];
+    }
+    [self.advertisementView setLocalData:bannerItems];
     [self reloadData];
 }
 

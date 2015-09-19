@@ -85,4 +85,15 @@ static NSDictionary*         _nametoClassDict = nil;
     return urlResolverClass;
 }
 
++(Class)getWebViewUrlResolverClassWithURL:(NSURL*)url{
+    return NSClassFromString(@"KSWebViewURLResolver");
+}
+
++(BOOL)isHttpUrlWithURL:(NSURL*)url{
+    if([[url scheme] isEqualToString:@"http"] || [[url scheme] isEqualToString:@"https"]){
+        return YES;
+    }
+    return NO;
+}
+
 @end

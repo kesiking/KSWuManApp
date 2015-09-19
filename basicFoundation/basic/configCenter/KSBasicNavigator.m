@@ -27,8 +27,13 @@
 }
 
 - (BOOL)openURLAction:(TBURLAction*)action {
-    NSString* classNamePath = [action isActionURLLegal] ? [action getURLPathWithoutSlash] : action.urlPath;
-    Class urlResolverClass = [KSConfigCenter getUrlResolverClassWithName:classNamePath];
+    Class urlResolverClass = nil;
+    if ([KSConfigCenter isHttpUrlWithURL:action.URL]) {
+        urlResolverClass = [KSConfigCenter getWebViewUrlResolverClassWithURL:action.URL];
+    }else{
+        NSString* classNamePath = [action isActionURLLegal] ? [action getURLPathWithoutSlash] : action.urlPath;
+        urlResolverClass = [KSConfigCenter getUrlResolverClassWithName:classNamePath];
+    }
     if (urlResolverClass == nil || ![urlResolverClass isSubclassOfClass:[KSBasicURLResolver class]]) {
         return [super openURLAction:action];
     }

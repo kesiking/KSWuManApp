@@ -14,5 +14,7 @@
 @property (nonatomic, strong) NSString*                       picUrl;
 @property (nonatomic, strong) NSString*                       activityTime;
 @property (nonatomic, strong) NSString*                       content;
+@property (nonatomic, strong) NSString*                       title;
+@property (nonatomic, strong) NSString*                       linkUrl;
 
 @end

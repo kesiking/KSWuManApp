@@ -11,6 +11,7 @@
 #define advertisement_key_name @"data"
 #define advertisement_api_name @"index/getVoucherActivities.do"
 #define advertisement_new_api_name @"index/getMiddleBanner.do"
+#define advertisement_version_1_1_api_name @"index/getAdvertisements.do"
 
 #define home_activity_key_name @"data"
 #define home_activity_api_name @"index/getActs.do"
@@ -27,6 +28,12 @@
     self.itemClass = [ManWuHomeVoucherModel class];
     self.jsonTopKey = advertisement_key_name;
     [self loadDataListWithAPIName:advertisement_api_name params:nil version:nil];
+}
+
+-(void)loadAdvertisementsData{
+    self.itemClass = [ManWuHomeAdvertisementModel class];
+    self.jsonTopKey = advertisement_key_name;
+    [self loadDataListWithAPIName:advertisement_version_1_1_api_name params:nil version:nil];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "KSAdapterService.h"
 #import "ManWuHomeActivityInfoModel.h"
+#import "ManWuHomeAdvertisementModel.h"
 #import "ManWuHomeVoucherModel.h"
 
 @interface KSManWuHomeService : KSAdapterService
@@ -15,5 +16,7 @@
 -(void)loadHomeActivityData;
 
 -(void)loadBannerVoucherData;
+
+-(void)loadAdvertisementsData;
 
 @end

@@ -361,6 +361,8 @@
 		5F4E40541B1EDD42004AE7C0 /* KSAdapterCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40531B1EDD42004AE7C0 /* KSAdapterCacheService.m */; };
 		5F4E40571B1F1246004AE7C0 /* KSCacheStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */; };
 		5F649A711B4BEBE0000F390F /* UICustomLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */; };
+		5F7CD9201BAD58D500FC9555 /* KSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CD91F1BAD58D500FC9555 /* KSWebViewController.m */; };
+		5F7CD9231BAD5BDA00FC9555 /* KSWebViewURLResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CD9221BAD5BDA00FC9555 /* KSWebViewURLResolver.m */; };
 		5F8E7F661B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F5F1B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png */; };
 		5F8E7F671B6BA50B00E80F5D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F601B6BA50B00E80F5D /* Default-Landscape~ipad.png */; };
 		5F8E7F681B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E7F611B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png */; };
@@ -1299,6 +1301,10 @@
 		5F4E40561B1F1246004AE7C0 /* KSCacheStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCacheStrategy.m; sourceTree = "<group>"; };
 		5F649A6F1B4BEBE0000F390F /* UICustomLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomLineLabel.h; sourceTree = "<group>"; };
 		5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomLineLabel.m; sourceTree = "<group>"; };
+		5F7CD91E1BAD58D500FC9555 /* KSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSWebViewController.h; sourceTree = "<group>"; };
+		5F7CD91F1BAD58D500FC9555 /* KSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWebViewController.m; sourceTree = "<group>"; };
+		5F7CD9211BAD5BDA00FC9555 /* KSWebViewURLResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSWebViewURLResolver.h; sourceTree = "<group>"; };
+		5F7CD9221BAD5BDA00FC9555 /* KSWebViewURLResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWebViewURLResolver.m; sourceTree = "<group>"; };
 		5F8E7F5F1B6BA50B00E80F5D /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		5F8E7F601B6BA50B00E80F5D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5F8E7F611B6BA50B00E80F5D /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
@@ -2397,6 +2403,8 @@
 				055AC46D1B01BE4E005F9DA2 /* ManWuLoginResolver.m */,
 				058BC3E81AE89DA600A4F799 /* KSHomeURLResolver.h */,
 				058BC3E91AE89DA600A4F799 /* KSHomeURLResolver.m */,
+				5F7CD9211BAD5BDA00FC9555 /* KSWebViewURLResolver.h */,
+				5F7CD9221BAD5BDA00FC9555 /* KSWebViewURLResolver.m */,
 				058BC3EA1AE89DA600A4F799 /* KSTabbarViewController.h */,
 				058BC3EB1AE89DA600A4F799 /* KSTabbarViewController.m */,
 				058BC3EC1AE89DA700A4F799 /* KSManWuTabBarViewController.h */,
@@ -2770,6 +2778,7 @@
 				058DADB11AE1107D009D0008 /* view */,
 				058DADB21AE1107D009D0008 /* viewController */,
 				5F2D000D1B567B69007C2F4D /* Util */,
+				5F7CD91D1BAD589E00FC9555 /* webViewController */,
 			);
 			path = basic;
 			sourceTree = "<group>";
@@ -3327,6 +3336,15 @@
 				5F649A701B4BEBE0000F390F /* UICustomLineLabel.m */,
 			);
 			path = KSCustomLabel;
+			sourceTree = "<group>";
+		};
+		5F7CD91D1BAD589E00FC9555 /* webViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5F7CD91E1BAD58D500FC9555 /* KSWebViewController.h */,
+				5F7CD91F1BAD58D500FC9555 /* KSWebViewController.m */,
+			);
+			path = webViewController;
 			sourceTree = "<group>";
 		};
 		5F9216231B1077B900554B44 /* ManWuDiscoverService */ = {
@@ -3986,6 +4004,7 @@
 				5F2D00101B567B69007C2F4D /* MWUtils.m in Sources */,
 				058D5D201AF22E37006EA35C /* ManWuBuyScrollView.m in Sources */,
 				058BC3FE1AE89DA700A4F799 /* ManWuHomeViewController.m in Sources */,
+				5F7CD9201BAD58D500FC9555 /* KSWebViewController.m in Sources */,
 				91E2D0621B1761C500946A32 /* UIImage+SplitImageIntoTwoParts.m in Sources */,
 				5F4087FB1B1949FF00954568 /* XHPopMenuItem.m in Sources */,
 				5FD45ED21B1C01040064BA31 /* ManWuCommoditySearchListViewController.m in Sources */,
@@ -4030,6 +4049,7 @@
 				05E88EDC1B033E0500E0B646 /* ManWuAddressBottomVIew.m in Sources */,
 				058DADE21AE5E0BB009D0008 /* KSAdapterService.m in Sources */,
 				5FD45ECF1B1BFC150064BA31 /* ManWuDiscoverSearchService.m in Sources */,
+				5F7CD9231BAD5BDA00FC9555 /* KSWebViewURLResolver.m in Sources */,
 				052CC69C1AF7446900AF7C78 /* ManWuCommodityGuideView.m in Sources */,
 				91E2D0641B1761C500946A32 /* HTHorizontalSelectionListScrollView.m in Sources */,
 				917EC4021B46C41300C84DCB /* KSDropDownListView.m in Sources */,

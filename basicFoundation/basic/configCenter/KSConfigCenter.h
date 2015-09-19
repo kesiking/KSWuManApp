@@ -14,6 +14,10 @@
 
 +(Class)getUrlResolverClassWithName:(NSString*)name;
 
++(Class)getWebViewUrlResolverClassWithURL:(NSURL*)url;
+
++(BOOL)isHttpUrlWithURL:(NSURL*)url;
+
 +(NSDictionary*)getViewContollerNameToClassDict;
 
 @end
