@@ -34,7 +34,7 @@
 -(UIImageView *)leftImageView{
     if (_leftImageView == nil) {
         CGRect rect = self.bounds;
-        rect.size.width = rect.size.width / 2 - 4;
+        rect.size.width = rect.size.width / 2 - 2;
         _leftImageView = [[UIImageView alloc] initWithFrame:rect];
         [_leftImageView setContentMode:UIViewContentModeScaleAspectFill];
         _leftImageView.clipsToBounds = YES;

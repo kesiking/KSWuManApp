@@ -22,7 +22,7 @@
 -(void)setupView{
     [super setupView];
     _viewListArray = [NSMutableArray array];
-    self.padding = CSLinearLayoutMakePadding(0.0, 0.0, 0, 0);
+    self.padding = CSLinearLayoutMakePadding(0.0, 0.0, 4, 0);
     self.selectIndex = 0;
     [self addSubview: self.bgImageView];
     [self addSubview:self.linearContainer];
