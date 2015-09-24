@@ -12,6 +12,7 @@
 #import "ManWuSpecialForTodayView.h"
 #import "ManWuRecommendForListHeaderView.h"
 #import "KSManWuHomeService.h"
+#import "ManWuHomeHotShowView.h"
 
 #define banner_height               (60.0 * SCREEN_SCALE)
 #define discountInfo_height         (108.0 * SCREEN_SCALE)
@@ -24,7 +25,7 @@
 
 @property (nonatomic, strong) WeAppBasicBannerView                  *bannerView;
 
-@property (nonatomic, strong) WeAppBasicBannerView                  *advertisementView;
+@property (nonatomic, strong) ManWuHomeHotShowView                  *advertisementView;
 
 @property (nonatomic, strong) ManWuDiiscountInfoDescriptionView     *discountInfo;
 
@@ -130,15 +131,24 @@
     return _bannerView;
 }
 
--(WeAppBasicBannerView *)advertisementView{
+-(ManWuHomeHotShowView *)advertisementView{
     if (_advertisementView == nil) {
-        _advertisementView = [[WeAppBasicBannerView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, banner_height)];
+        _advertisementView = [[ManWuHomeHotShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 0)];
         _advertisementView.backgroundColor = [UIColor whiteColor];
-        [_advertisementView.bannerCloseButton removeFromSuperview];
-        _advertisementView.clipsToBounds = YES;
-        _advertisementView.bannerBackgroundImage.image = [UIImage imageNamed:@"gz_image_loading.png"];
-        _advertisementView.delegate = (id)self;
-        _advertisementView.isRounded = NO;
+        WEAKSELF
+        _advertisementView.listViewClickedBlock = ^(ManWuHomeHotShowView* listView, NSInteger index, id dataInfo){
+            STRONGSELF
+            if (![dataInfo isKindOfClass:[ManWuHomeAdvertisementModel class]]) {
+                return;
+            }
+            ManWuHomeAdvertisementModel* advertisementModel = (ManWuHomeAdvertisementModel*)dataInfo;
+            if (advertisementModel
+                && advertisementModel.advertisementId == nil
+                && advertisementModel.linkUrl == nil) {
+                return;
+            }
+            TBOpenURLFromTargetWithNativeParams(advertisementModel.linkUrl, strongSelf,nil, nil);
+        };
     }
     return _advertisementView;
 }
@@ -155,17 +165,6 @@
             }
             NSDictionary* params = @{@"voucherModel":voucherModel};
             TBOpenURLFromTargetWithNativeParams(internalURL(@"ManWuHongBaoViewController"), self,nil,params);
-        }
-    }else if(aBannerView == _advertisementView){
-        NSUInteger index = self.advertisementView.bannerCycleScrollView.curPage;
-        if ([self.homeAdvertisementService.dataList count] > index) {
-            ManWuHomeAdvertisementModel* advertisementModel = [self.homeAdvertisementService.dataList objectAtIndex:index];
-            if (advertisementModel
-                && advertisementModel.advertisementId == nil
-                && advertisementModel.linkUrl == nil) {
-                return;
-            }
-            TBOpenURLFromTargetWithNativeParams(advertisementModel.linkUrl, self,nil, nil);
         }
     }
 }
@@ -272,17 +271,7 @@
 }
 
 -(void)setupAdvertisementWithDataList:(NSArray *)array{
-    NSMutableArray* bannerItems = [NSMutableArray array];
-    for (ManWuHomeAdvertisementModel*advertisementModel in array) {
-        if (![advertisementModel isKindOfClass:[ManWuHomeAdvertisementModel class]]) {
-            continue;
-        }
-        WeAppBannerItem* bannerItem = [WeAppBannerItem new];
-        bannerItem.bannerId = advertisementModel.advertisementId;
-        bannerItem.picture = advertisementModel.picUrl;
-        [bannerItems addObject:bannerItem];
-    }
-    [self.advertisementView setLocalData:bannerItems];
+    [self.advertisementView setupDataWithDataList:array];
     [self reloadData];
 }
 
