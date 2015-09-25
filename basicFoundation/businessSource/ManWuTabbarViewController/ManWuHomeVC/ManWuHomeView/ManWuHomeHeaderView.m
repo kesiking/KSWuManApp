@@ -221,6 +221,8 @@
             STRONGSELF
             if (service && service.dataList) {
                 [strongSelf setupAdvertisementWithDataList:service.dataList];
+            }else{
+                [strongSelf setupAdvertisementWithDataList:@[]];
             }
         };
     }

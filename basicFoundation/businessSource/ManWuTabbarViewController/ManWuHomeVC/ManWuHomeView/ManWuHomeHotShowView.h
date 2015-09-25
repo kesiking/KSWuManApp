@@ -8,7 +8,7 @@
 
 #import "KSView.h"
 
-#define hotShowViewHeight (128)
+#define hotShowViewHeight (110)
 
 @class ManWuHomeHotShowView;
 
