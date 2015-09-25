@@ -104,6 +104,8 @@
     
     if ([self.viewListArray count] > 0) {
         newSize = CGSizeMake(newSize.width, self.linearContainer.height);
+    }else{
+        newSize = CGSizeMake(newSize.width, 0);
     }
     
     return newSize;
