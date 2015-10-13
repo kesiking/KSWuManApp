@@ -24,7 +24,7 @@
 
 - (void) BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url;
 
-- (void) BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url withComponentItem:(id)componentItem;
+- (void) BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url withComponentItem:(id)componentItem atPageIndex:(NSUInteger)pageIndex;
 
 @end
 
@@ -36,7 +36,7 @@ typedef struct CGRectOffsetXY CGRectOffsetXY;
 
 typedef NSString* (^getURLForImageViewForBannerViewBlock) (WeAppBasicBannerView * bannerView, id obj, NSInteger pageIndex);
 typedef void (^setupImageViewForBannerViewBlock) (WeAppBasicBannerView * bannerView, UIImageView* bannerImageView,  UIButton* btn, NSInteger pageIndex);
-typedef BOOL (^didBannerViewNeedReloadData) (NSArray* newData);
+typedef BOOL (^didBannerViewNeedReloadData) (NSArray* newData, NSArray* oldData);
 
 @interface WeAppBasicBannerView : UIView<WeAppCycleScrollViewDatasource,WeAppCycleScrollViewDelegate,UIScrollViewDelegate>{
     WeAppCycleScrollView*                                                                                       _bannerCycleScrollView;

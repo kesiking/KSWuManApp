@@ -74,7 +74,7 @@
     // 如果有回调则不再使用默认的WeAppBannerItem作为对象
     if (self.getURLForImageViewForBannerViewBlock) {
         if (self.didBannerViewNeedReloadData) {
-            return self.didBannerViewNeedReloadData(newData);
+            return self.didBannerViewNeedReloadData(newData, _dataArray);
         }
         return YES;
     }
@@ -231,8 +231,8 @@
     }else if([obj isKindOfClass:[WeAppBannerItem class]]){
         imageUrl = ((WeAppBannerItem *)[_dataArray objectAtIndex:self.bannerCycleScrollView.pageControl.currentPage]).url;
     }
-    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:withComponentItem:)]) {
-        [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl] withComponentItem:obj];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:withComponentItem:atPageIndex:)]) {
+        [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl] withComponentItem:obj atPageIndex:pageIndex];
     }else if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:)]) {
         if (self.itemView == nil) {
             [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl]];
@@ -264,8 +264,8 @@
     }else if([obj isKindOfClass:[WeAppBannerItem class]]){
         imageUrl = ((WeAppBannerItem *)[_dataArray objectAtIndex:self.bannerCycleScrollView.pageControl.currentPage]).url;
     }
-    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:withComponentItem:)]) {
-        [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl] withComponentItem:obj];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:withComponentItem:atPageIndex:)]) {
+        [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl] withComponentItem:obj atPageIndex:index];
     }else if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:)]) {
         if (self.itemView == nil) {
             [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl]];
