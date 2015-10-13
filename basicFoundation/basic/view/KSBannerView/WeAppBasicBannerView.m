@@ -71,6 +71,14 @@
         }
     }
     
+    // 如果有回调则不再使用默认的WeAppBannerItem作为对象
+    if (self.getURLForImageViewForBannerViewBlock) {
+        if (self.didBannerViewNeedReloadData) {
+            return self.didBannerViewNeedReloadData(newData);
+        }
+        return YES;
+    }
+    
     for (int i = 0; i<newData.count; i++) {
         WeAppBannerItem *newItem = [newData objectAtIndex:i];
         
@@ -215,9 +223,19 @@
 #pragma mark Private Accessors
 
 - (void)bannerClicked:(id)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:)]) {
+    NSString * imageUrl = nil;
+    NSUInteger pageIndex = self.bannerCycleScrollView.pageControl.currentPage;
+    id obj = [_dataArray objectAtIndex:pageIndex];
+    if (self.getURLForImageViewForBannerViewBlock) {
+        imageUrl = self.getURLForImageViewForBannerViewBlock(self,obj,pageIndex);
+    }else if([obj isKindOfClass:[WeAppBannerItem class]]){
+        imageUrl = ((WeAppBannerItem *)[_dataArray objectAtIndex:self.bannerCycleScrollView.pageControl.currentPage]).url;
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:withComponentItem:)]) {
+        [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl] withComponentItem:obj];
+    }else if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:)]) {
         if (self.itemView == nil) {
-            [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:((WeAppBannerItem *)[_dataArray objectAtIndex:self.bannerCycleScrollView.pageControl.currentPage]).url]];
+            [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl]];
         }
     }
 }
@@ -236,12 +254,22 @@
 #pragma mark TBCycleScrollViewDelegate
 
 -(void)didClickPage:(WeAppCycleScrollView *)csView atIndex:(NSInteger)index{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:)] && index < [_dataArray count]) {
-        id obj = [_dataArray objectAtIndex:index];
-        if (obj && [obj isKindOfClass:[WeAppBannerItem class]]) {
-            [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:((WeAppBannerItem *)obj).url]];
+    if (index >= [_dataArray count]) {
+        return;
+    }
+    NSString * imageUrl = nil;
+    id obj = [_dataArray objectAtIndex:index];
+    if (self.getURLForImageViewForBannerViewBlock) {
+        imageUrl = self.getURLForImageViewForBannerViewBlock(self,obj,index);
+    }else if([obj isKindOfClass:[WeAppBannerItem class]]){
+        imageUrl = ((WeAppBannerItem *)[_dataArray objectAtIndex:self.bannerCycleScrollView.pageControl.currentPage]).url;
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:withComponentItem:)]) {
+        [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl] withComponentItem:obj];
+    }else if (self.delegate && [self.delegate respondsToSelector:@selector(BannerView:didSelectPageWithURL:)]) {
+        if (self.itemView == nil) {
+            [self.delegate BannerView:self didSelectPageWithURL:[NSURL URLWithString:imageUrl]];
         }
-        
     }
 }
 
@@ -267,26 +295,37 @@
         return bannerImageView;
     }
     
-    if (![obj isKindOfClass:[WeAppBannerItem class]]) {
-        return nil;
-    }
+    NSString* imageUrl = nil;
     
-    WeAppBannerItem* bannerItem = (WeAppBannerItem*)obj;
-    
-    if (bannerItem.picture == nil || bannerItem.picture.length == 0){
-        return nil;
+    if (self.getURLForImageViewForBannerViewBlock) {
+        imageUrl = self.getURLForImageViewForBannerViewBlock(self,obj,pageIndex);
+    }else{
+        if (![obj isKindOfClass:[WeAppBannerItem class]]) {
+            return nil;
+        }
+        
+        WeAppBannerItem* bannerItem = (WeAppBannerItem*)obj;
+        
+        if (bannerItem.picture == nil || bannerItem.picture.length == 0){
+            return nil;
+        }
+        imageUrl = bannerItem.picture;
     }
     
     UIImageView* bannerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.bannerCycleScrollView.scrollView.frame.size.width - 2*self.bannerBoundWidth, self.bannerCycleScrollView.scrollView.frame.size.height)];
     //图片居中显示，不拉伸
     [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
     [bannerImageView setClipsToBounds:YES];
-    [bannerImageView sd_setImageWithURL:[NSURL URLWithString:bannerItem.picture] placeholderImage:[UIImage imageNamed:SNSBannerBackground]];
+    [bannerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:SNSBannerBackground]];
     
     UIButton* btn = [[UIButton alloc]initWithFrame:self.bannerCycleScrollView.scrollView.bounds];
     btn.tag = BannerViewTag;
     [btn addTarget:self action:@selector(bannerClicked:) forControlEvents:UIControlEventTouchUpInside];
     [btn addSubview:bannerImageView];
+    
+    if (self.setupImageViewForBannerViewBlock) {
+        self.setupImageViewForBannerViewBlock(self,bannerImageView,btn,pageIndex);
+    }
     
     return btn;
     

@@ -31,7 +31,7 @@
 
 - (void)reloadData;
 
--(void)pageTurn:(NSUInteger)page withAnimated:(BOOL)animated;
+- (void)pageTurn:(NSUInteger)page withAnimated:(BOOL)animated;
 
 @end
 

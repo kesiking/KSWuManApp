@@ -127,6 +127,13 @@
         _bannerView.bannerBackgroundImage.image = [UIImage imageNamed:@"gz_image_loading.png"];
         _bannerView.delegate = (id)self;
         _bannerView.isRounded = NO;
+        _bannerView.getURLForImageViewForBannerViewBlock =  ^NSString*(WeAppBasicBannerView * bannerView, id obj, NSInteger pageIndex){
+            if ([obj isKindOfClass:[ManWuHomeVoucherModel class]]) {
+                ManWuHomeVoucherModel* voucherModel = (ManWuHomeVoucherModel*)obj;
+                return voucherModel.picUrl;
+            }
+            return nil;
+        };
     }
     return _bannerView;
 }
@@ -268,7 +275,8 @@
         bannerItem.picture = voucherModel.picUrl;
         [bannerItems addObject:bannerItem];
     }
-    [self.bannerView setLocalData:bannerItems];
+//    [self.bannerView setLocalData:bannerItems];
+    [self.bannerView setLocalData:array];
     [self reloadData];
 }
 

@@ -24,6 +24,8 @@
 
 - (void) BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url;
 
+- (void) BannerView:(UIView*)aBannerView didSelectPageWithURL:(NSURL*) url withComponentItem:(id)componentItem;
+
 @end
 
 struct CGRectOffsetXY {
@@ -31,6 +33,10 @@ struct CGRectOffsetXY {
     CGFloat yOffset;
 };
 typedef struct CGRectOffsetXY CGRectOffsetXY;
+
+typedef NSString* (^getURLForImageViewForBannerViewBlock) (WeAppBasicBannerView * bannerView, id obj, NSInteger pageIndex);
+typedef void (^setupImageViewForBannerViewBlock) (WeAppBasicBannerView * bannerView, UIImageView* bannerImageView,  UIButton* btn, NSInteger pageIndex);
+typedef BOOL (^didBannerViewNeedReloadData) (NSArray* newData);
 
 @interface WeAppBasicBannerView : UIView<WeAppCycleScrollViewDatasource,WeAppCycleScrollViewDelegate,UIScrollViewDelegate>{
     WeAppCycleScrollView*                                                                                       _bannerCycleScrollView;
@@ -44,6 +50,12 @@ typedef struct CGRectOffsetXY CGRectOffsetXY;
 @property(nonatomic,strong)UIButton*                bannerCloseButton;
 @property(nonatomic,assign)BOOL                     isRounded;//默认有圆角
 @property(nonatomic,assign)BOOL                     isPageControlCenter;//默认有圆角
+/*********************
+ 回调函数
+ *********************/
+@property(nonatomic,copy)getURLForImageViewForBannerViewBlock getURLForImageViewForBannerViewBlock; //获取URL
+@property(nonatomic,copy)setupImageViewForBannerViewBlock setupImageViewForBannerViewBlock; //配置ImageView
+@property(nonatomic,copy)didBannerViewNeedReloadData didBannerViewNeedReloadData; //是否需要reloadData
 /*********************
  new property
  *********************/
