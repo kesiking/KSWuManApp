@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "KSManWuTabBarViewController.h"
 #import "KSGuideConfig.h"
+#import "KSDebugManager.h"
 #import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
@@ -22,6 +23,8 @@
     // Override point for customization after application launch.
     [self configApplication];
     [self configUIContent];
+    // 配置KSDebugManager
+    [KSDebugManager setupDebugManager];
     
     return YES;
 }
@@ -100,6 +103,7 @@
             NSLog(@"result = %@",resultDic);
         }];
     }
-    return YES; }
+    return YES;
+}
 
 @end
