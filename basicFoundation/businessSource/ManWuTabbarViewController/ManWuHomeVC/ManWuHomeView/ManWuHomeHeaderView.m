@@ -46,8 +46,8 @@
 -(void)setupView{
     [super setupView];
     [self addSubview:self.container];
-    [self.homeActivityService loadHomeActivityData];
     [self.voucherService loadBannerVoucherData];
+    [self.homeActivityService loadHomeActivityData];
     [self.homeAdvertisementService loadAdvertisementsData];
 }
 
